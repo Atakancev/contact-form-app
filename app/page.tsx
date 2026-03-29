@@ -1,10 +1,17 @@
 'use client';
 
 import { useState, KeyboardEvent } from 'react';
+import Image from 'next/image';
 
 type Step = 'project' | 'name' | 'email' | 'message' | 'success';
 
-const PROJECTS = ['General', 'TyconX', 'MafiaX', 'CountFit', 'Memori'];
+const PROJECTS = [
+  { label: 'General', icon: null },
+  { label: 'TyconX', icon: 'https://www.atakancevik.com/_next/image?url=%2Ftyconx.jpg&w=128&q=75' },
+  { label: 'MafiaX', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmafiax.jpg&w=128&q=75' },
+  { label: 'CountFit', icon: 'https://www.atakancevik.com/_next/image?url=%2Fcountfit.jpg&w=128&q=75' },
+  { label: 'Memori', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmemori.jpg&w=128&q=75' },
+];
 
 const inputClass =
   'w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-base';
@@ -52,13 +59,23 @@ export default function ContactPage() {
             <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">Get in touch</p>
             <h1 className="text-2xl font-bold text-white mb-8">What are you reaching out about?</h1>
             <div className="flex flex-col gap-3">
-              {PROJECTS.map(p => (
+              {PROJECTS.map(({ label, icon }) => (
                 <button
-                  key={p}
-                  onClick={() => { setProject(p); setStep('name'); }}
-                  className="w-full text-left bg-[#111111] border border-white/10 hover:border-indigo-500 hover:bg-[#1a1a1a] text-white rounded-xl px-5 py-4 text-sm font-medium transition"
+                  key={label}
+                  onClick={() => { setProject(label); setStep('name'); }}
+                  className="w-full text-left bg-[#111111] border border-white/10 hover:border-indigo-500 hover:bg-[#1a1a1a] text-white rounded-xl px-5 py-4 text-sm font-medium transition flex items-center gap-3"
                 >
-                  {p}
+                  {icon && (
+                    <Image
+                      src={icon}
+                      alt={label}
+                      width={28}
+                      height={28}
+                      className="rounded-md object-cover flex-shrink-0"
+                      unoptimized
+                    />
+                  )}
+                  {label}
                 </button>
               ))}
             </div>
