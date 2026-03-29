@@ -2,6 +2,7 @@
 
 import { useState, KeyboardEvent } from 'react';
 import Image from 'next/image';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 type Step = 'project' | 'name' | 'email' | 'message' | 'success';
 
@@ -27,6 +28,7 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -34,7 +36,7 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
     const res = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message: `[${project}]\n\n${message}` }),
+      body: JSON.stringify({ name, email, message: `[${project}]\n\n${message}`, turnstileToken }),
     });
     const data = await res.json();
     setLoading(false);
@@ -152,11 +154,16 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
               className={`${inputClass} resize-none`}
             />
             {errorMsg && <p className="text-sm text-red-400 mt-2">{errorMsg}</p>}
+            <Turnstile
+              siteKey="0x4AAAAAACxrQEHugGkQcOI6"
+              onSuccess={setTurnstileToken}
+              className="mt-4"
+            />
             <div className="flex justify-between items-center mt-4">
               <button onClick={() => setStep('email')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">← Back</button>
               <button
                 onClick={handleSubmit}
-                disabled={!message.trim() || loading}
+                disabled={!message.trim() || loading || !turnstileToken}
                 className={btnClass}
               >
                 {loading ? 'Sending...' : 'Send Message →'}
