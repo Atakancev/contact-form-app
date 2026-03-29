@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path+",
+        source: "/((?!countfit-privacy-policy).*)",
         destination: "https://kurzai.com",
         permanent: true,
       },
