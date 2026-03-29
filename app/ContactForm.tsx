@@ -30,6 +30,8 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
   const [errorMsg, setErrorMsg] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
 
+  const isValidEmail = (val: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+
   const handleSubmit = async () => {
     setLoading(true);
     setErrorMsg('');
@@ -122,7 +124,7 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => handleEnter(e, () => email.trim() && setStep('message'))}
+              onKeyDown={e => handleEnter(e, () => isValidEmail(email) && setStep('message'))}
               placeholder="you@example.com"
               className={inputClass}
             />
@@ -130,7 +132,7 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
               <button onClick={() => setStep('name')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">← Back</button>
               <button
                 onClick={() => setStep('message')}
-                disabled={!email.trim()}
+                disabled={!isValidEmail(email)}
                 className={btnClass}
               >
                 Continue →
