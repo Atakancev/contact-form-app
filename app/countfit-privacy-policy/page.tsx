@@ -7,10 +7,10 @@ export default function CountFitPrivacyPolicy() {
       ),
     },
     {
-      title: "Information Storage",
+      title: "Information Storage and Local Data",
       content: (
         <ul className="space-y-2">
-          {["All data is stored locally on your device only", "No personal information is collected or transmitted to external servers", "You have full control over your data"].map(i => <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>)}
+          {["All data is stored locally on your device only", "You have full control over your data", "We do not operate our own backend for workout data storage"].map(i => <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>)}
         </ul>
       ),
     },
@@ -34,6 +34,37 @@ export default function CountFitPrivacyPolicy() {
             {["Provide workout tracking features", "Show your progress statistics", "Enable app functionality"].map(i => <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>)}
           </ul>
         </>
+      ),
+    },
+    {
+      title: "Ads and Third-Party Services",
+      content: (
+        <>
+          <p className="mb-3">CountFit may show optional rewarded ads to unlock certain non-essential features, such as detailed statistics or CSV export.</p>
+          <p className="mb-3">For these rewarded ads, the app uses Google AdMob. When an ad is requested or shown, Google and its partners may process limited technical information required to deliver, measure, and protect ad services. This may include device or app identifiers, IP address, approximate location derived from IP, diagnostic information, and ad performance data, subject to Google&apos;s own policies and your device settings.</p>
+          <p className="mb-3">CountFit does not use rewarded ads to lock core workout logging features, and if no ad is available the app may allow you to continue without one.</p>
+          <p>To learn more about how Google may process data for ads, please review Google&apos;s privacy information: <a href="https://policies.google.com/privacy" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition">https://policies.google.com/privacy</a></p>
+        </>
+      ),
+    },
+    {
+      title: "In-App Purchases",
+      content: (
+        <>
+          <p className="mb-3">CountFit offers an optional one-time in-app purchase to permanently remove rewarded ad prompts in supported areas of the app.</p>
+          <p className="mb-3">For this purchase:</p>
+          <ul className="space-y-2">
+            {["Payment processing is handled by Apple through the App Store", "CountFit does not receive or store your full payment card details", "The app may check your purchase entitlement locally through Apple's StoreKit framework to determine whether the No Ads unlock is active"].map(i => <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>)}
+          </ul>
+        </>
+      ),
+    },
+    {
+      title: "Account and Purchase Data",
+      content: (
+        <ul className="space-y-2">
+          {["CountFit does not require a CountFit account", "In-app purchase ownership is managed by Apple and tied to the Apple ID used for the purchase, subject to Apple's rules", "Restoring purchases uses Apple's systems"].map(i => <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>)}
+        </ul>
       ),
     },
     {
@@ -77,7 +108,7 @@ export default function CountFitPrivacyPolicy() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">CountFit</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Privacy Policy</h1>
-          <p className="text-zinc-500 text-sm">Last updated January 5, 2025</p>
+          <p className="text-zinc-500 text-sm">Last updated July 5, 2026</p>
         </div>
       </div>
 
@@ -98,15 +129,15 @@ export default function CountFitPrivacyPolicy() {
         {/* Contact */}
         <div className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <div className="flex gap-4">
-            <span className="text-xs text-zinc-600 font-mono mt-1 w-5 shrink-0">09</span>
+            <span className="text-xs text-zinc-600 font-mono mt-1 w-5 shrink-0">12</span>
             <div>
               <h2 className="text-white font-semibold mb-3">Contact</h2>
-              <p className="text-zinc-400 text-sm mb-4">For questions about this privacy policy or the app, please reach out.</p>
+              <p className="text-zinc-400 text-sm mb-4">For questions about this privacy policy or the app, please contact Cevik.</p>
               <a
-                href="mailto:cevikdev@gmail.com"
+                href="mailto:info@ck-labs.de"
                 className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg"
               >
-                cevikdev@gmail.com
+                info@ck-labs.de
               </a>
             </div>
           </div>
