@@ -60,7 +60,7 @@ export default function KesanPrivacyPolicy() {
       title: "8. Güvenlik ve değişiklikler",
       content: (
         <p>
-          Makul teknik ve idari güvenlik önlemleri uygularız. İnternet üzerindeki hiçbir aktarımın tamamen risksiz olmadığını hatırlatırız. Bu metni hizmet veya mevzuat değiştikçe güncelleyebilir, önemli değişiklikleri uygulama içinde duyurabiliriz.
+          Makul teknik ve idari güvenlik önlemleri uygularız. İnternet üzerindeki hiçbir aktarımın tamamen risksiz olmadığını hatırlatırız. Çocuk güvenliği ve cinsel istismarı önlemeye yönelik standartlarımızı <a href="/kesan-safety-standards" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition">ayrı bir sayfada</a> yayımlarız. Bu metni hizmet veya mevzuat değiştikçe güncelleyebilir, önemli değişiklikleri uygulama içinde duyurabiliriz.
         </p>
       ),
     },
