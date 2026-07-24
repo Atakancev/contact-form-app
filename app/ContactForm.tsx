@@ -12,6 +12,7 @@ const PROJECTS = [
   { label: 'MafiaX', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmafiax.jpg&w=128&q=75' },
   { label: 'CountFit', icon: 'https://www.atakancevik.com/_next/image?url=%2Fcountfit.jpg&w=128&q=75' },
   { label: 'Memori', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmemori.jpg&w=128&q=75' },
+  { label: 'Keşan', icon: null },
 ];
 
 const inputClass =
@@ -20,7 +21,8 @@ const inputClass =
 const btnClass =
   'bg-indigo-600 hover:bg-indigo-500 disabled:bg-indigo-800 disabled:text-indigo-400 text-white font-medium px-6 py-2.5 rounded-lg text-sm transition';
 
-export default function ContactForm({ initialProject }: { initialProject?: string }) {
+export default function ContactForm({ initialProject, language = 'en' }: { initialProject?: string; language?: 'en' | 'tr' }) {
+  const isTurkish = language === 'tr';
   const [step, setStep] = useState<Step>(initialProject ? 'name' : 'project');
   const [project, setProject] = useState(initialProject ?? '');
   const [name, setName] = useState('');
@@ -60,8 +62,8 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
         {/* Step: project */}
         {step === 'project' && (
           <div className="animate-fadeIn">
-            <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">Get in touch</p>
-            <h1 className="text-2xl font-bold text-white mb-8">What are you reaching out about?</h1>
+            <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">{isTurkish ? 'İletişime geç' : 'Get in touch'}</p>
+            <h1 className="text-2xl font-bold text-white mb-8">{isTurkish ? 'Ne hakkında iletişime geçiyorsun?' : 'What are you reaching out about?'}</h1>
             <div className="flex flex-col gap-3">
               {PROJECTS.map(({ label, icon }) => (
                 <button
@@ -90,24 +92,24 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
         {step === 'name' && (
           <div className="animate-fadeIn">
             <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">{project}</p>
-            <h1 className="text-2xl font-bold text-white mb-8">What's your name?</h1>
+            <h1 className="text-2xl font-bold text-white mb-8">{isTurkish ? 'Adın nedir?' : "What's your name?"}</h1>
             <input
               autoFocus
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
               onKeyDown={e => handleEnter(e, () => name.trim() && setStep('email'))}
-              placeholder="Your name"
+              placeholder={isTurkish ? 'Adın' : 'Your name'}
               className={inputClass}
             />
             <div className="flex justify-between items-center mt-4">
-              <button onClick={() => { setStep('project'); if (initialProject) setProject(initialProject); }} className="text-sm text-zinc-500 hover:text-zinc-300 transition">← Back</button>
+              <button onClick={() => { setStep('project'); if (initialProject) setProject(initialProject); }} className="text-sm text-zinc-500 hover:text-zinc-300 transition">{isTurkish ? '← Geri' : '← Back'}</button>
               <button
                 onClick={() => setStep('email')}
                 disabled={!name.trim()}
                 className={btnClass}
               >
-                Continue →
+                {isTurkish ? 'Devam et →' : 'Continue →'}
               </button>
             </div>
           </div>
@@ -117,25 +119,25 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
         {step === 'email' && (
           <div className="animate-fadeIn">
             <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">{project}</p>
-            <h1 className="text-2xl font-bold text-white mb-2">Hi {name}!</h1>
-            <p className="text-zinc-400 mb-8 text-sm">In case we need to contact you back — where's the best email to reach you?</p>
+            <h1 className="text-2xl font-bold text-white mb-2">{isTurkish ? `Merhaba ${name}!` : `Hi ${name}!`}</h1>
+            <p className="text-zinc-400 mb-8 text-sm">{isTurkish ? 'Sana geri dönüş yapabilmemiz için — sana ulaşabileceğimiz en iyi e-posta adresi nedir?' : "In case we need to contact you back — where's the best email to reach you?"}</p>
             <input
               autoFocus
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               onKeyDown={e => handleEnter(e, () => isValidEmail(email) && setStep('message'))}
-              placeholder="you@example.com"
+              placeholder={isTurkish ? 'sen@example.com' : 'you@example.com'}
               className={inputClass}
             />
             <div className="flex justify-between items-center mt-4">
-              <button onClick={() => setStep('name')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">← Back</button>
+              <button onClick={() => setStep('name')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">{isTurkish ? '← Geri' : '← Back'}</button>
               <button
                 onClick={() => setStep('message')}
                 disabled={!isValidEmail(email)}
                 className={btnClass}
               >
-                Continue →
+                {isTurkish ? 'Devam et →' : 'Continue →'}
               </button>
             </div>
           </div>
@@ -145,14 +147,14 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
         {step === 'message' && (
           <div className="animate-fadeIn">
             <p className="text-zinc-500 text-sm mb-3 uppercase tracking-widest">{project}</p>
-            <h1 className="text-2xl font-bold text-white mb-2">What's on your mind?</h1>
-            <p className="text-zinc-400 mb-8 text-sm">Tell us everything — we're listening.</p>
+            <h1 className="text-2xl font-bold text-white mb-2">{isTurkish ? 'Aklında ne var?' : "What's on your mind?"}</h1>
+            <p className="text-zinc-400 mb-8 text-sm">{isTurkish ? 'Bize her şeyi anlat — seni dinliyoruz.' : "Tell us everything — we're listening."}</p>
             <textarea
               autoFocus
               rows={6}
               value={message}
               onChange={e => setMessage(e.target.value)}
-              placeholder="Write your message here..."
+              placeholder={isTurkish ? 'Mesajını buraya yaz...' : 'Write your message here...'}
               className={`${inputClass} resize-none`}
             />
             {errorMsg && <p className="text-sm text-red-400 mt-2">{errorMsg}</p>}
@@ -162,13 +164,13 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
               className="mt-4"
             />
             <div className="flex justify-between items-center mt-4">
-              <button onClick={() => setStep('email')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">← Back</button>
+              <button onClick={() => setStep('email')} className="text-sm text-zinc-500 hover:text-zinc-300 transition">{isTurkish ? '← Geri' : '← Back'}</button>
               <button
                 onClick={handleSubmit}
                 disabled={!message.trim() || loading || !turnstileToken}
                 className={btnClass}
               >
-                {loading ? 'Sending...' : 'Send Message →'}
+                {loading ? (isTurkish ? 'Gönderiliyor...' : 'Sending...') : (isTurkish ? 'Mesajı gönder →' : 'Send Message →')}
               </button>
             </div>
           </div>
@@ -182,16 +184,15 @@ export default function ContactForm({ initialProject }: { initialProject?: strin
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-white mb-3">We've got your message, {name}!</h1>
+            <h1 className="text-2xl font-bold text-white mb-3">{isTurkish ? `Mesajını aldık, ${name}!` : `We've got your message, ${name}!`}</h1>
             <p className="text-zinc-400 text-sm leading-relaxed mb-8">
-              Thank you for reaching out about <span className="text-indigo-400 font-medium">{project}</span>.<br />
-              Our team will carefully review your message and get back to you at <span className="text-white font-medium">{email}</span> as soon as possible. We're excited to connect!
+              {isTurkish ? <><span className="text-indigo-400 font-medium">{project}</span> hakkında bizimle iletişime geçtiğin için teşekkürler.<br />Ekibimiz mesajını dikkatle inceleyecek ve en kısa sürede <span className="text-white font-medium">{email}</span> adresinden sana dönüş yapacak.</> : <>Thank you for reaching out about <span className="text-indigo-400 font-medium">{project}</span>.<br />Our team will carefully review your message and get back to you at <span className="text-white font-medium">{email}</span> as soon as possible. We're excited to connect!</>}
             </p>
             <button
               onClick={() => { setStep('project'); setProject(initialProject ?? ''); setName(''); setEmail(''); setMessage(''); }}
               className="text-sm text-zinc-500 hover:text-zinc-300 transition"
             >
-              Send another message
+              {isTurkish ? 'Başka bir mesaj gönder' : 'Send another message'}
             </button>
           </div>
         )}
