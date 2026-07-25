@@ -4,7 +4,7 @@ export default function KesanPrivacyPolicy() {
       title: "1. Veri sorumlusu",
       content: (
         <p>
-          Keşan uygulamasının veri sorumlusu CK-Labs&apos;tır. Soruların, taleplerin ve veri hakların için <a href="mailto:info@ck-labs.de" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition">info@ck-labs.de</a> adresinden bize ulaşabilirsin.
+          Keşan App uygulamasının veri sorumlusu CK-Labs&apos;tır. Soruların, taleplerin ve veri hakların için <a href="mailto:info@ck-labs.de" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 transition">info@ck-labs.de</a> adresinden bize ulaşabilirsin.
         </p>
       ),
     },
@@ -12,7 +12,7 @@ export default function KesanPrivacyPolicy() {
       title: "2. Hangi verileri işleriz?",
       content: (
         <p>
-          Hesap oluştururken verdiğin görünen ad, kullanıcı adı, biyografi ve profil fotoğrafı; Keşan&apos;da oluşturduğun paylaşım, yorum, anket, etkinlik ve işletme katkıları; oy, takip, rapor ve uygulama tercihleri işlenebilir. Uygulama izin verdiğinde konum bilgisi yalnızca sana yakın mahalle veya köy kanalını önermek için kullanılabilir; sürekli konum takibi yapmayız.
+          Hesap oluştururken verdiğin görünen ad, kullanıcı adı, biyografi ve profil fotoğrafı; Keşan App&apos;te oluşturduğun paylaşım, yorum, anket, etkinlik ve işletme katkıları; oy, takip, rapor ve uygulama tercihleri işlenebilir. Uygulama izin verdiğinde konum bilgisi yalnızca sana yakın mahalle veya köy kanalını önermek için kullanılabilir; sürekli konum takibi yapmayız.
         </p>
       ),
     },
@@ -20,7 +20,7 @@ export default function KesanPrivacyPolicy() {
       title: "3. Yapay zekâ destekli özellikler",
       content: (
         <p>
-          Keşan&apos;da yapay zekâ; paylaşım, yorum ve etkinliklerde güvenlik ve moderasyon ön kontrolü, konu etiketleri, benzer içerik veya etkinlik tespiti ve daha ilgili akış önerileri için kullanılabilir. AI çıktıları yardımcı niteliktedir; nihai moderasyon ve hizmet kararları CK-Labs&apos;ın kuralları ve insan incelemesiyle değerlendirilebilir. Yapay zekâ senin adına otomatik paylaşım yapmaz.
+          Keşan App&apos;te yapay zekâ; paylaşım, yorum ve etkinliklerde güvenlik ve moderasyon ön kontrolü, konu etiketleri, benzer içerik veya etkinlik tespiti ve daha ilgili akış önerileri için kullanılabilir. AI çıktıları yardımcı niteliktedir; nihai moderasyon ve hizmet kararları CK-Labs&apos;ın kuralları ve insan incelemesiyle değerlendirilebilir. Yapay zekâ senin adına otomatik paylaşım yapmaz.
         </p>
       ),
     },
@@ -36,7 +36,7 @@ export default function KesanPrivacyPolicy() {
       title: "5. Paylaşımlar ve görünürlük",
       content: (
         <p>
-          Keşan&apos;da yayınladığın içerikler, seçtiğin kanal ve uygulamanın sosyal özellikleri kapsamında diğer kullanıcılar tarafından görülebilir. Anonim paylaşım seçeneği, içeriğin sahibini toplulukta gizler; CK-Labs açısından içeriğin hesabınla ilişkilendirilebilmesi mümkündür.
+          Keşan App&apos;te yayınladığın içerikler, seçtiğin kanal ve uygulamanın sosyal özellikleri kapsamında diğer kullanıcılar tarafından görülebilir. Anonim paylaşım seçeneği, içeriğin sahibini toplulukta gizler; CK-Labs açısından içeriğin hesabınla ilişkilendirilebilmesi mümkündür.
         </p>
       ),
     },
@@ -72,7 +72,7 @@ export default function KesanPrivacyPolicy() {
         <div className="max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wide">CK-Labs · Keşan</span>
+            <span className="text-indigo-400 text-xs font-medium tracking-wide">CK-Labs · Keşan App</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Gizlilik sözleşmesi</h1>
           <p className="text-zinc-500 text-sm">Son güncelleme: 19 Temmuz 2026</p>
@@ -82,7 +82,7 @@ export default function KesanPrivacyPolicy() {
       <div className="max-w-2xl mx-auto px-4 py-12 space-y-1">
         <h2 className="text-2xl font-black text-white px-6 mb-2">Verilerini nasıl kullandığımızı açıkça anlatalım.</h2>
         <p className="text-zinc-400 text-sm leading-relaxed px-6 mb-6">
-          Bu metin, Keşan uygulamasını kullanırken işlenen veriler ve yapay zekâ destekli özellikler hakkında bilgilendirme sağlar.
+          Bu metin, Keşan App uygulamasını kullanırken işlenen veriler ve yapay zekâ destekli özellikler hakkında bilgilendirme sağlar.
         </p>
 
         {sections.map((section) => (

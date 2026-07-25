@@ -12,7 +12,7 @@ const PROJECTS = [
   { label: 'MafiaX', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmafiax.jpg&w=128&q=75' },
   { label: 'CountFit', icon: 'https://www.atakancevik.com/_next/image?url=%2Fcountfit.jpg&w=128&q=75' },
   { label: 'Memori', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmemori.jpg&w=128&q=75' },
-  { label: 'Keşan', icon: null },
+  { label: 'Keşan App', icon: null },
 ];
 
 const inputClass =
