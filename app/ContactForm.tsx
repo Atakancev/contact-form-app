@@ -13,7 +13,7 @@ const PROJECTS = [
   { label: 'CountFit', icon: 'https://www.atakancevik.com/_next/image?url=%2Fcountfit.jpg&w=128&q=75' },
   { label: 'Memori', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmemori.jpg&w=128&q=75' },
   { label: 'Keşan App', icon: null },
-  { label: 'ChitCity', icon: null },
+  { label: 'ChatCity', icon: null },
 ];
 
 const inputClass =
