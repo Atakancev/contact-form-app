@@ -2,10 +2,10 @@ const sections = [
   {
     title: 'Product types',
     body: [
-      'Diamonds are virtual in-game currency. Purchased Diamonds do not expire solely because time passes, are for use only inside TyconX, and are not redeemable from CK-Labs for cash except where mandatory law requires otherwise.',
+      'Diamonds are virtual in-game currency. Purchased Diamonds do not expire solely because time passes, are for use only inside TycoonX, and are not redeemable from CK-Labs for cash except where mandatory law requires otherwise.',
       '30-Day VIP is a one-time, non-renewing entitlement lasting 30 consecutive days from activation or availability to the account unless the purchase screen expressly states otherwise.',
       'Lifetime VIP is a one-time entitlement that may be offered only during selected limited promotional sales windows. It is not a permanently available product. CK-Labs may end or discontinue a sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.',
-      'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten an already valid purchase. Lifetime VIP is intended for the commercial operating lifetime of the TyconX Service for the purchasing account and does not promise that TyconX will operate forever. The commercial-lifetime meaning and the limited-time nature of the offer must be shown clearly at or immediately before checkout.',
+      'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten an already valid purchase. Lifetime VIP is intended for the commercial operating lifetime of the TycoonX Service for the purchasing account and does not promise that TycoonX will operate forever. The commercial-lifetime meaning and the limited-time nature of the offer must be shown clearly at or immediately before checkout.',
     ],
   },
   {
@@ -13,38 +13,50 @@ const sections = [
     body: [
       'Apple processes purchases made through Apple In-App Purchase and operates the App Store refund-request process. CK-Labs may investigate delivery and entitlement issues but does not control Apple’s refund decision.',
       'Purchased Diamonds are intended to be consumable in-app purchases. Lifetime VIP is intended to be a non-consumable purchase and is restorable while valid. One-time 30-Day VIP is intended to be a non-renewing entitlement with CK-Labs maintaining the authoritative account entitlement state where needed.',
-      'If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value so the refunded purchase is not retained twice.',
+      'If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value so the refunded purchase is not retained twice.',
     ],
   },
   {
     title: 'Google Play purchases',
     body: [
       'Google processes the transaction through the applicable Google Play billing arrangement and provides transaction or order information used to validate the purchase.',
-      'Where Google Play policy requires Google Play Billing for in-app digital goods or services, TyconX will use that system unless an applicable regional program, platform rule, or law permits an alternative.',
+      'Where Google Play policy requires Google Play Billing for in-app digital goods or services, TycoonX will use that system unless an applicable regional program, platform rule, or law permits an alternative.',
       'Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules, CK-Labs policy, and applicable law.',
       'If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.',
     ],
   },
   {
-    title: 'TyconX web shop powered by Xsolla',
+    title: 'TycoonX web shop powered by Xsolla',
     body: [
-      'Purchases made through the official TyconX web shop may be processed by Xsolla. Depending on the applicable checkout arrangement, an Xsolla group company may act as merchant of record.',
+      'Purchases made through the official TycoonX web shop may be processed by Xsolla. Depending on the applicable checkout arrangement, an Xsolla group company may act as merchant of record.',
       'When Xsolla acts as merchant of record, the Xsolla entity shown at checkout or on the receipt may be responsible under its applicable terms for payment processing, transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
-      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. Xsolla currently indicates which refund-policy type applies at the checkout, and that transaction-specific policy applies together with mandatory consumer law.',
-      'CK-Labs remains responsible for delivering the corresponding TyconX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value.',
+      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. The transaction-specific Xsolla terms and refund policy shown for that purchase apply together with mandatory consumer law.',
+      'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value.',
+    ],
+  },
+  {
+    title: 'Prices, regional pricing, and future price changes',
+    body: [
+      'CK-Labs may change the prices, bundle sizes, Diamond quantities, VIP prices, regional prices, currencies, availability, and promotional offers for future purchases. A current price is not a promise that the same product, quantity, discount, or price will remain available later.',
+      'Prices may differ between Apple App Store, Google Play, the official TycoonX web shop, countries, regions, currencies, and separate promotional sales windows. Platform pricing systems, taxes, VAT, currency conversion, foreign-exchange movements, local pricing conventions, or payment-provider rules may also cause local prices to change.',
+      'The final total price and currency displayed by the applicable checkout before the user confirms the purchase govern that transaction, subject to correction of obvious pricing errors where permitted by law. For consumers in Germany and elsewhere where required, mandatory taxes and unavoidable price components must be included or presented as required by applicable price-display law.',
+      'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price. A later price decrease does not automatically create a right to a refund, credit, partial refund, price match, or additional Diamonds or VIP time, and a later price increase does not create an additional charge for an already completed one-time purchase, except where mandatory law requires otherwise.',
+      'Lifetime VIP may be sold at different prices in different genuine promotional sales windows. Purchasing in one sales window does not create a right to a later lower promotional price, and a future sales window does not require CK-Labs to match an earlier price.',
+      'Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading. CK-Labs may end a genuine promotion or later run a separate promotion, but will not use false pricing or false urgency to mislead consumers.',
+      'If CK-Labs later introduces a recurring subscription or another product with recurring charges, any price-change, notice, consent, cancellation, or renewal rules required for that recurring product will apply separately. The one-time price-change rules above do not authorize an undisclosed recurring charge.',
     ],
   },
   {
     title: 'Restore and cross-device recovery',
     body: [
       'Lifetime VIP should be restorable or recoverable after verification while the entitlement remains valid. A valid 30-Day VIP should be restored from authoritative account or server records where required.',
-      'Diamonds are consumable purchases and are not restored as a second purchase after consumption. The current TyconX account balance is preserved through TyconX account/server state where applicable. Restore operations never create duplicate paid value.',
+      'Diamonds are consumable purchases and are not restored as a second purchase after consumption. The current TycoonX account balance is preserved through TycoonX account/server state where applicable. Restore operations never create duplicate paid value.',
     ],
   },
   {
     title: 'Delivery problems',
     body: [
-      'If you were charged but the purchased content does not appear, confirm you are using the correct TyconX account, use Restore Purchases where applicable, allow reasonable time for a pending provider transaction to complete, and contact TyconX Support with the order or transaction details if the issue remains.',
+      'If you were charged but the purchased content does not appear, confirm you are using the correct TycoonX account, use Restore Purchases where applicable, allow reasonable time for a pending provider transaction to complete, and contact TycoonX Support with the order or transaction details if the issue remains.',
       'CK-Labs may validate the transaction with Apple, Google, Xsolla, or the applicable provider before granting, restoring, changing, or refunding an entitlement.',
     ],
   },
@@ -59,9 +71,9 @@ const sections = [
   {
     title: 'Unauthorized or fraudulent purchases',
     body: [
-      'Users should promptly report suspected unauthorized purchases to the relevant payment provider and TyconX Support.',
+      'Users should promptly report suspected unauthorized purchases to the relevant payment provider and TycoonX Support.',
       'CK-Labs may investigate receipts, transaction identifiers, entitlement records, server logs, account activity, device/session information, payment-provider events, and related security records to prevent fraud and duplicate delivery.',
-      'Fraudulent receipts, manipulated clients, payment abuse, deliberate false fraud reports, abusive chargebacks, or attempts to retain refunded digital value may lead to entitlement correction, purchase restrictions, account suspension, or termination in accordance with the TyconX Terms and applicable law.',
+      'Fraudulent receipts, manipulated clients, payment abuse, deliberate false fraud reports, abusive chargebacks, or attempts to retain refunded digital value may lead to entitlement correction, purchase restrictions, account suspension, or termination in accordance with the TycoonX Terms and applicable law.',
     ],
   },
   {
@@ -77,25 +89,25 @@ const sections = [
   {
     title: 'Service discontinuation',
     body: [
-      'If TyconX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.',
-      'Lifetime VIP is tied to the commercial operating lifetime of TyconX for the purchasing account, not the biological lifetime of the user and not an unlimited promise that the Service will exist forever. Mandatory refund, price-reduction, termination, warranty, or other consumer remedies remain unaffected.',
+      'If TycoonX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.',
+      'Lifetime VIP is tied to the commercial operating lifetime of TycoonX for the purchasing account, not the biological lifetime of the user and not an unlimited promise that the Service will exist forever. Mandatory refund, price-reduction, termination, warranty, or other consumer remedies remain unaffected.',
     ],
   },
 ];
 
-export default function TyconXPurchaseRefundPolicy() {
+export default function TycoonXPurchaseRefundPolicy() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="border-b border-white/5 px-4 py-16">
         <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wide">TyconX · CK-Labs</span>
+            <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Purchases & Refunds</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            This policy covers Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP offers, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
+            This policy covers Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP offers, price changes, Apple App Store purchases, Google Play purchases, and the official TycoonX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
           </p>
         </div>
       </div>
@@ -117,11 +129,11 @@ export default function TyconXPurchaseRefundPolicy() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Legal & support</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TyconX is operated by CK-Labs. For delivery problems, purchase questions, suspected fraud, or entitlement disputes, use TyconX Support or email us.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX is operated by CK-Labs. For delivery problems, purchase questions, suspected fraud, or entitlement disputes, use TycoonX Support or email us.</p>
           <div className="flex flex-wrap gap-3">
             <a href="/tyconx-terms-of-service" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
             <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Privacy Policy</a>
-            <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TyconX Support</a>
+            <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
         </section>
