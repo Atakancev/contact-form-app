@@ -15,6 +15,7 @@ export default function TycoonXSupport() {
             <a href="/tyconx-purchase-refund-policy" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Purchases & Refunds</a>
             <a href="/tyconx-privacy-policy" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Privacy Policy</a>
             <a href="/tycoonx-community-standards" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Community Standards</a>
+            <a href="/tycoonx-legal" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Legal Languages</a>
           </div>
         </div>
       </div>
