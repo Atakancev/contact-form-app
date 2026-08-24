@@ -11,6 +11,13 @@ const sections = [
     ],
   },
   {
+    title: 'Sources of Data',
+    body: [
+      'We receive data directly from you when you create or use an account, play TyconX, contact Support, submit community content, or change settings. We also receive limited information from services you choose or use with TyconX, including supported authentication providers and Apple, Google, Xsolla, or another authorized payment provider when they send purchase, entitlement, refund, revocation, fraud, or transaction-status information.',
+      'Payment providers may process payment-card, bank, billing-address, tax-location, or other payment details independently under their own privacy notices. CK-Labs generally receives the transaction and entitlement information needed to deliver and reconcile TyconX purchases rather than the full payment instrument details.',
+    ],
+  },
+  {
     title: 'Why We Process Information',
     body: [
       'We process information to create and secure accounts, operate and synchronize TyconX, deliver and restore valid purchases, prevent duplicate delivery and fraud, detect cheating or exploits, investigate incidents, correct invalid game state, provide support, moderate community features, enforce the Terms, diagnose technical problems, improve the Service, send operational/legal notices, and comply with legal obligations.',
@@ -24,16 +31,24 @@ const sections = [
     ],
   },
   {
+    title: 'Data Needed to Provide TyconX',
+    body: [
+      'Some information is necessary to perform the TyconX contract or process a purchase. For example, an account identifier is needed to maintain persistent game state, and valid transaction or entitlement information is needed to deliver, restore, refund, or revoke paid content correctly. If required information is not provided or cannot be verified, we may be unable to create or authenticate an account, deliver a purchase, restore an entitlement, or provide the affected feature.',
+      'Optional information or processing that is not necessary for the core Service is handled separately where required, including consent controls where applicable.',
+    ],
+  },
+  {
     title: 'How We Share Information',
     body: [
       'We do not sell personal data. We may share only what is reasonably necessary with service providers supporting hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications or security; platform/payment partners such as Apple, Google, Xsolla or other authorized providers for purchase validation, refunds, revocations, fraud and disputes; other players where you intentionally use public/social game features; authorities where legally required; and parties involved in a lawful business transfer.',
-      'TyconX currently uses infrastructure such as Supabase for parts of its backend. Providers are subject to applicable contractual and legal safeguards.',
+      'Apple, Google, Xsolla, banks, card networks, or other payment participants may act as independent controllers for parts of their own payment, fraud, tax, account, or platform processing. Their own privacy notices and legal obligations apply to that independent processing. TyconX currently uses infrastructure such as Supabase for parts of its backend, and service providers are subject to applicable contractual and legal safeguards.',
     ],
   },
   {
     title: 'International Transfers',
     body: [
       'TyconX and some providers may process information outside your country of residence. Where the GDPR or similar transfer restrictions apply, we use an appropriate legal transfer mechanism where required, such as an adequacy decision, Standard Contractual Clauses, or another recognized safeguard. International transfers are not based merely on a statement that use of TyconX equals consent.',
+      'Where applicable law gives you a right to information about the safeguards used for an international transfer, you may contact TyconX Support to request further information or an available copy of the relevant safeguards, subject to lawful redactions and third-party confidentiality requirements.',
     ],
   },
   {
@@ -72,7 +87,8 @@ const sections = [
   {
     title: 'Automated Security and Moderation',
     body: [
-      'TyconX may use automated rules, signals, or systems to identify suspicious activity, spam, fraud, abusive content, exploit patterns, invalid purchases, or other conduct that may threaten users or the Service. Automated signals may lead to review, temporary restrictions, moderation, or investigation. Rights concerning solely automated decisions remain unaffected where applicable law provides them.',
+      'TyconX may use automated rules, signals, or systems to identify suspicious activity, spam, fraud, abusive content, exploit patterns, invalid purchases, or other conduct that may threaten users or the Service. Automated signals may lead to review, temporary restrictions, moderation, or investigation.',
+      'Where applicable law restricts solely automated decisions that produce legal or similarly significant effects, CK-Labs will apply the required safeguards, including human involvement or review where the law requires it. Rights concerning such decisions remain unaffected.',
     ],
   },
   {
@@ -122,14 +138,14 @@ export default function TyconXPrivacyPolicy() {
         ))}
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
-          <h2 className="text-white font-semibold mb-3">Contact</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TyconX is operated by CK-Labs. For privacy requests, account deletion, security reports, purchase-related privacy questions, or other data-protection concerns, use TyconX Support or email us.</p>
+          <h2 className="text-white font-semibold mb-3">Controller & contact</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">CK-Labs is the controller for the TyconX processing described in this Policy. For privacy requests, account deletion, security reports, purchase-related privacy questions, or other data-protection concerns, use TyconX Support or email us.</p>
           <div className="flex flex-wrap gap-3">
             <a href="/tyconx-support" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">TyconX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
             <a href="/tyconx-terms-of-service" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
           </div>
-          <p className="text-zinc-600 text-xs leading-relaxed mt-4">Additional legally required operator details should be made available in the applicable legal notice or imprint for the Service.</p>
+          <p className="text-zinc-600 text-xs leading-relaxed mt-4">Additional legally required operator identity and address details must be made available in the applicable legal notice or imprint for the Service.</p>
         </section>
       </div>
     </main>
