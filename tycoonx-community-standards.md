@@ -4,6 +4,8 @@
 
 This Community Standards & Moderation Policy ("Community Policy") supplements the TycoonX Terms of Service and applies to user-generated content and social features made available through **TycoonX**, operated by **CK-Labs**.
 
+For TycoonX community features, this Community Policy is the more specific rule. If a general provision of the Terms conflicts with this Community Policy about moderation, public/private UGC handling, or UGC licensing, this Community Policy controls for that subject to the extent permitted by law.
+
 Nothing in this Community Policy limits rights that cannot legally be waived. Where the EU Digital Services Act ("DSA") or another mandatory law applies to a particular TycoonX community feature, CK-Labs will apply the duties that law requires for that feature.
 
 ## 1. Where this Policy applies
@@ -11,6 +13,8 @@ Nothing in this Community Policy limits rights that cannot legally be waived. Wh
 This Community Policy applies to content or conduct submitted, transmitted, displayed, or made available through TycoonX community features, including public or group chat, direct messages, profile text, company or union content, names, descriptions, comments, reports, images, creative works, and other user-generated content ("UGC").
 
 You are responsible for content you submit and must have the rights and permissions necessary to submit it.
+
+Where platform rules require it, TycoonX may require users to accept the applicable Terms and/or this Community Policy before they can create or upload UGC.
 
 ## 2. Prohibited content and conduct
 
@@ -33,7 +37,7 @@ Context matters. Ordinary criticism, disagreement, satire, competitive game talk
 
 TycoonX may provide in-app tools to report content or users and to block or otherwise limit interaction with abusive users. Users should use those tools when available, especially for content that requires CK-Labs review.
 
-Apple App Store and Google Play rules may require specific in-app reporting, filtering, blocking, and moderation functionality for UGC features. The existence of this Policy does not replace those product-level safeguards.
+Apple App Store and Google Play rules may require specific in-app reporting, filtering, blocking, terms-acceptance, age-safety, and moderation functionality for UGC features. The existence of this Policy does not replace those product-level safeguards.
 
 Where a TycoonX feature qualifies as a hosting service under the DSA, CK-Labs will provide the legally required electronic notice-and-action mechanism for reporting specific information alleged to be illegal. A legally sufficient notice may need to identify the specific content, explain why it is considered illegal, and provide the information required by applicable law.
 
@@ -90,25 +94,33 @@ Private direct messages, private support communications, and non-public reports 
 
 The license ends when the relevant UGC is deleted from active systems except to the extent continued processing is reasonably necessary for backups, legal obligations, security, moderation evidence, dispute handling, or other lawful purposes, or where the content has been lawfully shared by other users in a way that cannot reasonably be recalled.
 
-## 9. Intellectual-property complaints
+## 9. Age and minor-safety controls
+
+TycoonX may restrict, disable, or alter access to community or social features based on declared or verified age, parental authorization, platform age controls, applicable law, App Store or Google Play requirements, or reasonable child-safety measures.
+
+A user does not acquire a right to access a particular social feature merely because the underlying TycoonX game remains available. Where necessary for child safety or platform compliance, CK-Labs may make a social feature unavailable to an age group or require additional age or parental checks, subject to applicable law.
+
+TycoonX does not permit child sexual abuse or exploitation content, grooming, or sexual exploitation of minors. CK-Labs may take immediate protective action and preserve or report relevant evidence where required by law.
+
+## 10. Intellectual-property complaints
 
 Rights holders may report content they believe infringes their intellectual-property rights through TycoonX Support or another designated reporting route. A report should provide enough information to identify the content and the claimed right.
 
 CK-Labs may remove or restrict allegedly infringing content where required or reasonably justified after review. Users remain responsible for having the rights needed for content they upload.
 
-## 10. Platform requirements
+## 11. Platform requirements
 
-TycoonX community features must also comply with the rules of the platform through which the app is distributed. Apple and Google may require in-app reporting, blocking, filtering, terms acceptance, contact information, and ongoing moderation independently of this Community Policy.
+TycoonX community features must also comply with the rules of the platform through which the app is distributed. Apple and Google may require in-app reporting, blocking, filtering, terms acceptance, age-rating disclosures, age controls, contact information, and ongoing moderation independently of this Community Policy.
 
-CK-Labs may change, restrict, or discontinue a community feature if necessary to comply with law, App Store or Google Play rules, safety requirements, technical constraints, or material abuse patterns. Paid digital-product rights remain subject to the separate TycoonX Terms and mandatory consumer law.
+CK-Labs may change, restrict, age-gate, or discontinue a community feature if necessary to comply with law, App Store or Google Play rules, safety requirements, technical constraints, or material abuse patterns. Paid digital-product rights remain subject to the separate TycoonX Terms and mandatory consumer law.
 
-## 11. Changes to this Community Policy
+## 12. Changes to this Community Policy
 
 CK-Labs may update this Community Policy for valid reasons such as changes in law, platform rules, moderation tools, safety risks, community features, or abuse patterns.
 
 Significant changes will be communicated where applicable law requires it. A policy change does not retroactively make past lawful conduct a violation.
 
-## 12. Contact
+## 13. Contact
 
 TycoonX is operated by **CK-Labs**.
 
