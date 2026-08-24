@@ -4,7 +4,7 @@ const sections = [
     body: [
       'Account and profile data such as supported sign-in identifiers, email address, display name, avatar, language, time zone, settings, and account lifecycle events.',
       'Gameplay and economy data needed to operate the persistent TycoonX world, including progression, inventory, virtual currency and Diamond balances, companies, production, market activity, housing, jobs, contracts, loans, stocks, transactions, and VIP entitlement state.',
-      'Purchase and entitlement data such as payment platform, product identifier, transaction identifiers, signed transaction or receipt information, purchase/activation/expiry status, refund/revocation/chargeback status, and delivery or correction history. We generally do not receive your full payment-card number from platform stores or payment processors.',
+      'Purchase and entitlement data such as payment platform, product identifier, transaction identifiers, signed transaction or receipt information, purchase/activation/expiry status, refund/revocation/chargeback status, and delivery, restore, migration, or correction history. We generally do not receive your full payment-card number from platform stores or payment processors.',
       'Security and fraud data such as login/session records, IP address, device/platform information made available to the Service, app version, diagnostics, suspicious access patterns, invalid purchase validations, exploit indicators, anti-abuse signals, and moderation/security logs.',
       'Communications and community content such as chats, reports, profile/company content, support tickets, contact-form submissions, bug reports, appeals, attachments, timestamps, and moderation status.',
       'Usage and analytics information such as feature usage, sessions, retention, performance, interaction events, and aggregated economy/balancing metrics.',
@@ -33,14 +33,14 @@ const sections = [
   {
     title: 'Data Needed to Provide TycoonX',
     body: [
-      'Some information is necessary to perform the TycoonX contract or process a purchase. For example, an account identifier is needed to maintain persistent game state, and valid transaction or entitlement information is needed to deliver, restore, refund, or revoke paid content correctly. If required information is not provided or cannot be verified, we may be unable to create or authenticate an account, deliver a purchase, restore an entitlement, or provide the affected feature.',
+      'Some information is necessary to perform the TycoonX contract or process a purchase. For example, an account identifier is needed to maintain persistent game state, and valid transaction or entitlement information is needed to deliver, restore, refund, revoke, or reconcile paid content correctly. If required information is not provided or cannot be verified, we may be unable to create or authenticate an account, deliver a purchase, restore an entitlement, or provide the affected feature.',
       'Optional information or processing that is not necessary for the core Service is handled separately where required, including consent controls where applicable.',
     ],
   },
   {
     title: 'How We Share Information',
     body: [
-      'We do not sell personal data. We may share only what is reasonably necessary with service providers supporting hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications or security; platform/payment partners such as Apple, Google, Xsolla or other authorized providers for purchase validation, refunds, revocations, fraud and disputes; other players where you intentionally use public/social game features; authorities where legally required; and parties involved in a lawful business transfer.',
+      'We do not sell personal data. We may share only what is reasonably necessary with service providers supporting hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications or security; platform/payment partners such as Apple, Google, Xsolla or other authorized providers for purchase validation, restoration, refunds, revocations, fraud and disputes; other players where you intentionally use public/social game features; authorities where legally required; and parties involved in a lawful business transfer.',
       'Apple, Google, Xsolla, banks, card networks, or other payment participants may act as independent controllers for parts of their own payment, fraud, tax, account, or platform processing. Their own privacy notices and legal obligations apply to that independent processing. TycoonX currently uses infrastructure such as Supabase for parts of its backend, and service providers are subject to applicable contractual and legal safeguards.',
     ],
   },
@@ -54,7 +54,7 @@ const sections = [
   {
     title: 'Data Retention',
     body: [
-      'We keep personal data only for as long as reasonably necessary for its purpose and for additional periods required or permitted by law. Active account/game data may be retained while the account is active; support records for reasonable follow-up and dispute periods; purchase, refund, accounting and tax records for legally required or dispute-related periods; and security, anti-fraud, exploit, moderation and audit records for a reasonable period needed to protect the Service, investigate incidents or defend claims.',
+      'We keep personal data only for as long as reasonably necessary for its purpose and for additional periods required or permitted by law. Active account/game data may be retained while the account is active; support records for reasonable follow-up and dispute periods; purchase, refund, entitlement, restore, accounting and tax records for legally required, contract-performance, fraud-prevention, or dispute-related periods; and security, anti-fraud, exploit, moderation and audit records for a reasonable period needed to protect the Service, investigate incidents or defend claims.',
       'Backups may remain for a limited backup lifecycle before deletion or overwrite. Anonymized or genuinely aggregated data may be retained where it no longer identifies a person.',
     ],
   },
@@ -62,13 +62,15 @@ const sections = [
     title: 'Your Privacy Rights',
     body: [
       'Depending on applicable law, you may have rights to access, correct, delete, restrict, object, receive certain data in a portable format, withdraw consent where processing is consent-based, and lodge a complaint with a competent data-protection authority.',
-      'You can request account deletion through TycoonX where available or contact TycoonX Support. We may need to verify your identity. Certain records may still be retained where required or permitted for legal, tax, accounting, fraud-prevention, security, dispute-resolution, or legal-claims purposes.',
+      'You can request account deletion through TycoonX where available or contact TycoonX Support. We may need to verify your identity. Certain records may still be retained where required or permitted for legal, tax, accounting, contract-performance, fraud-prevention, security, dispute-resolution, or legal-claims purposes.',
     ],
   },
   {
     title: 'Account Deletion and Paid Entitlements',
     body: [
-      'Deleting your TycoonX account is separate from requesting a payment refund. Account deletion may permanently remove access to account-linked progress, Diamonds, virtual items, and VIP entitlements. It does not automatically create a right to cash redemption or a refund. Refund rights remain governed by the payment provider and applicable mandatory law.',
+      'Deleting your TycoonX account is separate from requesting a payment refund. Account deletion may permanently remove account-linked gameplay progress, Diamonds, consumable value, inventory, social data, and other profile state. It does not automatically create a right to cash redemption or a refund.',
+      'Deleting the TycoonX account does not necessarily erase or invalidate a separate Apple, Google, Xsolla, or other payment-provider transaction record. Where a valid Lifetime VIP or other non-consumable/restorable entitlement remains associated with the purchaser under platform rules, provider records, the contract, or mandatory law, CK-Labs may retain the minimum transaction and entitlement evidence reasonably necessary to verify and restore that entitlement.',
+      'A later restore may require reasonable proof that the same purchaser controls the relevant platform or payment account. Restoring a paid entitlement does not recreate deleted gameplay progress, consumed Diamonds, inventory, history, or transferred assets unless applicable law requires otherwise. Refund rights remain governed by the payment provider process and mandatory law.',
     ],
   },
   {
