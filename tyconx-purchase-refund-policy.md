@@ -27,7 +27,7 @@ Diamonds are virtual in-game currency.
 - It lasts for 30 consecutive days from activation or availability to the purchasing TycoonX account.
 - It does not automatically renew and does not create a recurring payment obligation.
 - On Apple platforms it is intended to use an Apple-approved non-renewing entitlement structure.
-- On Google Play it must not silently create recurring billing when marketed as one-time 30-Day VIP.
+- On Google Play it must not silently create recurring billing when marketed as one-time 30-Day VIP. If repeat 30-Day purchases are intended, the Google product configuration must also allow a later legitimate purchase after the prior benefit has been provisioned or expired.
 - On the official TycoonX web shop it is a one-time 30-day digital entitlement unless checkout clearly says otherwise.
 - CK-Labs maintains authoritative entitlement state where needed so a still-valid entitlement can be recognized on supported devices.
 
@@ -42,9 +42,9 @@ Lifetime VIP is a one-time premium entitlement offered only during **selected li
 - Genuine countdowns, closing dates, and limited-time statements must reflect the actual offer and must not be misleading.
 - Ending a sales window affects future availability only and does not by itself cancel or shorten an already valid Lifetime VIP entitlement.
 - On Apple platforms Lifetime VIP is intended to be a non-consumable In-App Purchase.
-- On Google Play it is intended to be a one-time non-consumable entitlement.
+- On Google Play it is intended to be a one-time non-consumable entitlement associated with the purchasing Google Account.
 - On the official TycoonX web shop it may be sold as a one-time Xsolla web purchase.
-- Lifetime VIP is restorable or re-linked after verification where the applicable platform and TycoonX account system support restoration.
+- Lifetime VIP is restorable or re-linked after verification where the applicable platform, payment-provider record, contract, or mandatory law requires restoration.
 - **“Lifetime” means the commercial operating lifetime of the TycoonX Service for the purchasing account while TycoonX continues to be operated and made available. It does not promise that TycoonX will operate forever.**
 - The commercial-lifetime meaning and limited-time nature of the offer must be disclosed clearly at or immediately before checkout wherever Lifetime VIP is sold.
 - Mandatory consumer remedies remain available if discontinuation, defects, non-supply, or material changes give the user statutory rights.
@@ -64,6 +64,8 @@ For purchases made through Google Play:
 
 - Google processes the transaction through the applicable Google Play billing arrangement and provides order or transaction information used to validate the purchase.
 - Where Google Play policy requires Google Play Billing for in-app digital goods or services, TycoonX uses that system unless an applicable regional program, platform rule, or law permits an alternative.
+- Lifetime VIP is intended to use a one-time non-consumable Google Play product. Google describes non-consumable products as one-time purchases permanently associated with the purchasing Google Account.
+- A one-time 30-Day VIP must be configured so it does not silently become recurring billing and, if repeat purchases are intended, so its product configuration does not permanently block a later legitimate 30-Day purchase.
 - Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules and applicable law.
 - If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.
 
@@ -132,6 +134,10 @@ A legally required electronic withdrawal function supplements rather than remove
 - **Diamonds:** consumable purchases are not restored as a second purchase after consumption. The current TycoonX account balance is maintained through authoritative TycoonX account state where applicable.
 
 A restore operation never creates duplicate purchased value.
+
+Deleting a TycoonX account may permanently delete profile and gameplay state, but it does not necessarily cancel or erase a separate valid Apple, Google, Xsolla, or other payment-provider transaction. Where a valid Lifetime VIP or other restorable entitlement remains associated with the purchaser under platform rules, provider records, the contract, or mandatory law, CK-Labs may require reasonable proof that the same purchaser controls the relevant platform or payment account before attaching that entitlement to an eligible TycoonX account.
+
+Restoring a paid entitlement after account deletion does not recreate deleted gameplay progress, consumed Diamonds, inventory, social history, transaction history, or transferred assets unless applicable law requires otherwise.
 
 ## 9. Delivery problems
 
