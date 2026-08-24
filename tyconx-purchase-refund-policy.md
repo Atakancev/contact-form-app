@@ -34,13 +34,14 @@ Lifetime VIP is a one-time premium entitlement that may be offered only during *
 
 - Lifetime VIP is **not a permanently available product**. CK-Labs may start, end, shorten, extend, or discontinue a Lifetime VIP sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.
 - The fact that another user previously purchased Lifetime VIP does not create a right for any other user to purchase it later, and a previous sales window does not create a promise or expectation that the offer will return.
+- Any countdown, closing date, or other time-limited sales statement should reflect the genuine sales window communicated for that offer. CK-Labs may later decide to run a separate future promotion, but a later promotion does not create a right to purchase during a closed sales window.
 - Ending a Lifetime VIP sales window affects only future availability for purchase. It does not cancel or shorten a valid Lifetime VIP entitlement that was already purchased, except as otherwise permitted by the TyconX Terms of Service and applicable law.
 - On Apple platforms it is intended to be a **Non-Consumable In-App Purchase**.
 - On Google Play it is intended to be a one-time non-consumable entitlement.
 - On the TyconX web shop it may be sold as a one-time Xsolla web purchase.
 - It is restorable or re-linked after verification where the applicable platform and CK-Labs account system support restoration.
 - **"Lifetime" means the commercial operating lifetime of the TyconX Service for the purchasing account while TyconX continues to be operated and made available by CK-Labs. It does not promise that TyconX will operate forever.**
-- The commercial-lifetime meaning and, where relevant, the limited-time nature of the current sales offer must be disclosed clearly at or immediately before checkout wherever Lifetime VIP is sold.
+- The commercial-lifetime meaning and the limited-time nature of the current sales offer must be disclosed clearly at or immediately before checkout wherever Lifetime VIP is sold.
 - Mandatory consumer remedies remain available if discontinuation, defects, non-supply, or material changes give the user statutory rights.
 
 ## 2. Apple App Store purchases
@@ -70,7 +71,7 @@ Purchases made through the official TyconX web shop may be processed by **Xsolla
 
 Depending on the applicable checkout arrangement, an Xsolla group company may act as **merchant of record**. When it does, the Xsolla entity shown at checkout or on the receipt may be responsible under its applicable terms for payment processing, transaction taxes/VAT, fraud screening, refunds, payment disputes, and chargebacks.
 
-The exact Xsolla legal entity, payment method, price, taxes, refund policy, and legally required purchase information applicable to a transaction are determined by the checkout and receipt for that transaction.
+The exact Xsolla legal entity, payment method, price, taxes, refund policy, and legally required purchase information applicable to a transaction are determined by the checkout and receipt for that transaction. Xsolla currently indicates which refund-policy type applies at checkout, and that transaction-specific policy applies together with mandatory consumer law.
 
 CK-Labs remains responsible for delivering the corresponding TyconX entitlement after receiving valid confirmation of a successful Xsolla transaction.
 
@@ -137,7 +138,12 @@ A 30-Day VIP is provided over a period of time. Immediate activation does not au
 
 Where applicable law allows performance to begin during a withdrawal period, the checkout may request the consumer's express request for early performance. If the consumer validly withdraws while a statutory withdrawal right remains, any amount due for service already supplied will be determined only as permitted by applicable law.
 
-CK-Labs should not use one blanket "no refunds" or "waive all withdrawal rights" checkbox for Diamonds and 30-Day VIP because their legal treatment can differ.
+### Ongoing entitlement such as Lifetime VIP
+Lifetime VIP is also an entitlement supplied over time. Its one-time purchase price and non-renewing nature do not by themselves eliminate statutory withdrawal rights or mandatory digital-service remedies.
+
+Any early-performance request, expiry of a withdrawal right, proportional payment following withdrawal, or other consequence applies only where the legal requirements for the specific transaction are satisfied.
+
+CK-Labs should not use one blanket "no refunds" or "waive all withdrawal rights" checkbox for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.
 
 ## 10. Service discontinuation
 
@@ -150,6 +156,8 @@ This does not waive any mandatory refund, price-reduction, termination, warranty
 ## 11. Changes to products
 
 CK-Labs may rebalance or modify game mechanics and VIP features for valid game-design, economy, security, technical, platform, legal, or abuse-prevention reasons, subject to applicable law.
+
+For a digital product supplied continuously over time, a change beyond what is necessary to keep the product contract-compliant will be made only on a contractual basis that provides a valid reason, without additional cost to the consumer, and with clear information where mandatory law requires this. If a change more than insignificantly impairs access or use, mandatory law may require advance notice on a durable medium and may give the consumer a time-limited right to terminate without charge.
 
 Where mandatory law requires advance notice, a valid contractual reason, continued access to an unchanged version, price reduction, termination, refund, or another remedy, those requirements remain applicable.
 
