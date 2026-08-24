@@ -42,8 +42,24 @@ const sections = [
       'The final total price and currency displayed by the applicable checkout before the user confirms the purchase govern that transaction, subject to correction of obvious pricing errors where permitted by law. For consumers in Germany and elsewhere where required, mandatory taxes and unavoidable price components must be included or presented as required by applicable price-display law.',
       'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price. A later price decrease does not automatically create a right to a refund, credit, partial refund, price match, or additional Diamonds or VIP time, and a later price increase does not create an additional charge for an already completed one-time purchase, except where mandatory law requires otherwise.',
       'Lifetime VIP may be sold at different prices in different genuine promotional sales windows. Purchasing in one sales window does not create a right to a later lower promotional price, and a future sales window does not require CK-Labs to match an earlier price.',
-      'Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading. CK-Labs may end a genuine promotion or later run a separate promotion, but will not use false pricing or false urgency to mislead consumers.',
+      'Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading. Where a jurisdiction requires a particular reference price, discount disclosure, or price-history rule for the specific product or offer, the applicable marketing and checkout must follow that rule.',
       'If CK-Labs later introduces a recurring subscription or another product with recurring charges, any price-change, notice, consent, cancellation, or renewal rules required for that recurring product will apply separately. The one-time price-change rules above do not authorize an undisclosed recurring charge.',
+    ],
+  },
+  {
+    title: 'Checkout information and payment confirmation',
+    body: [
+      'Before a consumer places a paid order, the applicable checkout must present the legally required pre-contract information clearly and in the required place. Depending on the transaction, this can include the main characteristics of the product, total price including mandatory taxes and charges, duration or termination conditions, delivery information, material functionality, compatibility or interoperability information, and the identity of the contracting trader.',
+      'Where German law applies to an online checkout that creates a payment obligation, the ordering step must make the payment obligation clear in the manner required by law. CK-Labs will not rely on hidden wording, preselected paid extras, or an ambiguous final-order control to create a payment obligation.',
+      'If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact, the applicable checkout or offer must disclose it before the order is placed. Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing merely because prices differ between regions.',
+    ],
+  },
+  {
+    title: 'German electronic withdrawal function',
+    body: [
+      'Since June 19, 2026, German law requires an electronic withdrawal function for covered distance contracts concluded through an online user interface while a statutory withdrawal period is running. Where this requirement applies to a TycoonX transaction and CK-Labs is the contracting trader responsible for the interface, CK-Labs must provide the required clearly labelled, continuously available, prominently accessible withdrawal function and confirmation process.',
+      'Where Apple, Google, Xsolla, or another provider is the contracting merchant or controls the relevant purchase interface and withdrawal process, the provider’s legally compliant withdrawal or refund flow may be the applicable route. CK-Labs will not use this allocation of roles to remove a mandatory withdrawal right.',
+      'Submitting a withdrawal through a legally required electronic withdrawal function must be acknowledged on a durable medium where required by law. This electronic route does not remove any other legally valid way a consumer may exercise a withdrawal right.',
     ],
   },
   {
@@ -61,11 +77,30 @@ const sections = [
     ],
   },
   {
+    title: 'Obvious errors, failed payments, and duplicate grants',
+    body: [
+      'If a checkout, catalog, currency, tax, product, quantity, or entitlement configuration contains an obvious error, CK-Labs or the applicable payment provider may correct the error for future transactions and, where legally permitted, cancel an unfulfilled erroneous transaction and refund the amount actually paid rather than provide unintended value. Mandatory rights and any already binding contract remain governed by applicable law.',
+      'A screenshot, stale cached display, manipulated client, outdated app version, unofficial source, or client-side display error does not override a valid final checkout record or reliable authoritative server and payment-provider records.',
+      'Duplicate entitlements or virtual value created by retries, replayed webhooks, store-notification duplication, race conditions, bugs, restore errors, compromised credentials, or other technical failures may be removed or consolidated so the user receives the valid value actually purchased.',
+      'If a payment is pending, rejected, reversed, cancelled, fails fraud review, or is never confirmed, CK-Labs may delay or withhold the corresponding entitlement until a valid successful transaction is confirmed.',
+    ],
+  },
+  {
+    title: 'Promotions, coupons, and offer abuse',
+    body: [
+      'Promotions may be limited by time, country, platform, account, purchase history, eligibility, quantity, redemption count, or other clearly stated conditions. Unless the offer states otherwise, promotions cannot be combined and do not create entitlement to a future promotion.',
+      'Users must not exploit technical errors, duplicate coupon redemption, manipulated region or identity information, automated purchase abuse, refund cycling, account farming, or other methods to obtain promotional value beyond the genuine offer.',
+      'Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.',
+      'A voluntary goodwill credit, free extension, discretionary refund, bonus, or compensation granted beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy will be offered in another case.',
+    ],
+  },
+  {
     title: 'Refunds, reversals, and chargebacks',
     body: [
       'A refund or payment reversal does not entitle a user to keep both the returned money and the corresponding paid digital value.',
       'If a payment is refunded, reversed, charged back, cancelled, or found invalid after value was credited, CK-Labs may, subject to applicable law, revoke the related entitlement, remove unused Diamonds or virtual value, reverse directly related invalid game transactions, apply an equivalent balance correction where refunded value was already consumed or transferred, or temporarily restrict purchase/economy functions while a payment dispute is investigated.',
       'CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse a specific invalid transaction or as otherwise permitted by law.',
+      'Refunds are ordinarily processed through the payment channel that handled the purchase and, where the provider requires it, to the original payment method. Currency conversion differences, bank fees, card-issuer fees, or exchange-rate movements outside CK-Labs control remain subject to the provider’s rules and mandatory law.',
     ],
   },
   {
