@@ -293,9 +293,17 @@ Termination for cause remains subject to mandatory law and applicable platform r
 
 If TycoonX allows you to submit messages, names, descriptions, images, creative works, or other content, you remain responsible for content you submit and must have the rights necessary to submit it.
 
-You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, store, reproduce, display, format, translate, transmit, moderate, and technically adapt submitted content only as reasonably necessary to operate, secure, promote, and improve TycoonX, subject to applicable privacy and intellectual-property law.
+You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, store, reproduce, format, translate, transmit, display, moderate, back up, and technically adapt submitted content only as reasonably necessary to operate, secure, moderate, support, and improve TycoonX, subject to applicable privacy and intellectual-property law.
 
-CK-Labs may remove or restrict content that violates these Terms, community rules, law, third-party rights, platform rules, or reasonable safety requirements. Mandatory rights concerning user content remain unaffected.
+For content you intentionally make public in TycoonX, the license also permits CK-Labs to display that public content as part of the Service and, where consistent with the context, your settings, applicable law, and third-party rights, to feature or reproduce public content for TycoonX community or promotional purposes.
+
+Private direct messages, private support communications, and non-public reports are not licensed for public promotional use merely because CK-Labs must process them to provide, secure, moderate, or support the Service.
+
+CK-Labs may remove or restrict content that violates these Terms, the TycoonX Community Standards & Moderation Policy, law, third-party rights, platform rules, or reasonable safety requirements. The Community Policy contains more specific rules for moderation, public/private UGC handling, age-safety, reporting, blocking, and review, and controls for those specific subjects if a general provision of these Terms conflicts with it to the extent permitted by law.
+
+The UGC license ends when the relevant content is deleted from active systems except to the extent continued processing is reasonably necessary for backups, legal obligations, security, moderation evidence, dispute handling, or other lawful purposes, or where content has been lawfully shared by other users in a way that cannot reasonably be recalled.
+
+Mandatory rights concerning user content remain unaffected.
 
 ## 29. CK-Labs intellectual property
 
@@ -338,5 +346,3 @@ For account, purchase, security, enforcement, or legal questions, use TycoonX Su
 **Email:** cevikdev@gmail.com
 
 For payment-provider-controlled refunds, users may also need to use the applicable Apple, Google, or Xsolla process.
-
-Additional legally required operator identity, address, registration, and tax details must be made available through the applicable TycoonX legal notice or imprint.
