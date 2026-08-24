@@ -97,6 +97,9 @@ Until CK-Labs explicitly chooses and implements Family Sharing, do not market Li
 - CK-Labs may troubleshoot entitlement delivery but should not claim control over Apple’s refund decision.
 - When Apple reports a refund/revocation, reconcile the associated TycoonX entitlement or virtual value without confiscating unrelated legitimate purchases.
 
+### Current-version expectations
+Apple’s current App Review guidance expects submitted apps to be complete, functional, compatible with current platform behavior, and maintained as Apple evolves its operating systems and deprecated technologies. Treat forced/supported-version logic as a security and compatibility tool, not as a substitute for CK-Labs’ own obligation to maintain a conforming paid digital product where mandatory law applies.
+
 ## 4. Google Play
 
 - Use Google Play Billing for in-app digital products where Google Play policy requires it, unless a valid regional/program/legal exception applies.
@@ -109,6 +112,16 @@ Until CK-Labs explicitly chooses and implements Family Sharing, do not market Li
 - Reconcile refunds, cancellations, chargebacks, and invalid purchases to the corresponding TycoonX entitlement or paid value.
 - If Google processes the refund, TycoonX should consume the resulting provider status rather than promise an independent contradictory refund outcome.
 - Test account deletion and later entitlement recovery so a still-valid non-consumable Lifetime VIP can be re-linked to the same verified purchaser without recreating deleted gameplay state or Diamond consumables.
+
+### P0 Google Play target-API gate for 31 August 2026
+Google’s published deadline for **31 August 2026** requires new Android apps and app updates for mobile to target **Android 16 / API level 36 or higher**. Existing mobile apps generally need to target **Android 15 / API level 35 or higher** to remain available to new users on devices running a newer Android version than the app targets. Google indicates that an extension to **1 November 2026** may be requestable through Play Console where applicable.
+
+Before the next Android release or the deadline:
+- verify the actual TycoonX production Android `targetSdk` / target API level in the game repository and release artifact;
+- do not assume this legal/web repository proves Android compliance;
+- if the app is below the required level, plan the platform upgrade before submitting an update;
+- if additional time is genuinely needed and Google offers the extension for the app, decide deliberately whether to request it before the deadline; and
+- recheck Google’s current requirement immediately before submission because platform deadlines can change.
 
 ### Google Play EEA external offers / Xsolla linkouts
 Users may be able to consume TycoonX content purchased outside Google Play, but that does **not** mean TycoonX should insert an Xsolla web-shop link into the Google Play app without checking the current program rules.
@@ -134,7 +147,7 @@ The web shop must not be linked or promoted inside Apple/Google apps in a way th
 
 For Lifetime VIP sold through the web shop, maintain enough lawful transaction/entitlement evidence to distinguish account deletion from cancellation/refund of the underlying purchase. Define a verified re-link process for a purchaser who deletes a TycoonX account and later proves control of the same purchase identity, subject to the Xsolla contract, privacy law, and mandatory consumer rights.
 
-Xsolla’s current public Refund Policy says the applicable refund-policy type is shown at checkout and the relevant Xsolla contracting company can depend on the payment method. Do not hard-code one universal Xsolla refund policy or entity into TycoonX legal copy unless the actual CK-Labs Xsolla setup makes that statement true.
+Xsolla’s public Refund Policy was reverified on **24 August 2026** and is currently dated **16 June 2026**. It says the applicable refund-policy type is shown at checkout and the relevant Xsolla contracting company can depend on the payment method. Do not hard-code one universal Xsolla refund policy or entity into TycoonX legal copy unless the actual CK-Labs Xsolla setup makes that statement true.
 
 ## 6. Prices and promotions
 
@@ -158,6 +171,13 @@ Operational rules:
 - if automated decision-making ever truly personalizes an individual consumer price and the law requires disclosure, disclose that fact before purchase.
 
 Ordinary country-based, storefront-based, tax-based, currency-based, or generally available regional pricing should not be described internally as “personalized pricing” merely because prices differ by region.
+
+### Public-statement conformity gate
+German digital-product conformity rules can make public statements and advertising about product characteristics relevant to what a consumer may objectively expect. Before a paid-product launch or material campaign:
+- compare App Store, Google Play, webshop, website, screenshots, release notes, ads, and Lifetime VIP sales copy against the actual current product;
+- do not promise permanence, benefits, compatibility, automation, availability, or support that the product does not actually provide;
+- correct materially outdated statements before purchase using the legally appropriate method; and
+- treat prominent “Lifetime”, “limited time”, discount, feature, and compatibility claims as contractual-risk surfaces, not just marketing copy.
 
 ## 7. Obvious errors and accidental grants
 
@@ -266,6 +286,18 @@ Terms should preserve CK-Labs’ ability, subject to mandatory law, to:
 
 TycoonX may reasonably require supported versions for security, anti-fraud, compatibility, legal, or platform reasons.
 
+Under German digital-product rules, required updates are not only a user obligation. Where applicable, CK-Labs must provide and inform consumers about updates necessary to keep the paid digital product in conformity during the legally relevant period, including security updates.
+
+### Founder-protective §327f update workflow
+To preserve the protection available when a consumer does not install a required update:
+- actually make the required/security update available;
+- clearly inform the affected user that the update is available;
+- clearly explain the relevant consequences of not installing it;
+- provide adequate installation/update instructions or a reliable normal store-update path;
+- allow a reasonable period for installation where the law requires one;
+- retain reasonable evidence of the version, release date, notice text, notice channel, and date/time of the notice; and
+- rely on this protection only for a lack of conformity caused **solely** by the missing update, never for an unrelated defect or a failure by CK-Labs to supply the update correctly.
+
 Plan for lawful replacement/discontinuation of:
 - payment providers;
 - hosting/database/storage providers;
@@ -368,6 +400,7 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] Product type/configuration is correct per Apple/Google/Xsolla channel.
 - [ ] Google Lifetime VIP is non-consumable if sold under the intended permanent-benefit model.
 - [ ] Google 30-Day VIP repeat-purchase behavior is verified if users may buy another 30-day period later.
+- [ ] Google Play Android target-API compliance is verified for the **31 August 2026** deadline, or a valid Google extension to **1 November 2026** is confirmed if needed.
 - [ ] Google Play EEA Xsolla/external-offer linkouts are used only under the current applicable program/rules.
 - [ ] Purchased Diamonds do not expire solely because time passes.
 - [ ] Lifetime VIP limited-time and commercial-lifetime disclosure is visible before purchase.
@@ -383,6 +416,8 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] German payment-obligation button/order flow is compliant where CK-Labs controls an applicable German consumer checkout.
 - [ ] German §356a electronic withdrawal function responsibility is verified and implemented for every covered web/UI purchase channel.
 - [ ] Diamond early-supply withdrawal consent/acknowledgement/contract confirmation is implemented where legally required.
+- [ ] Required/security-update notices record availability, consequences of non-installation, and adequate update instructions where German §327f applies.
+- [ ] Store listings, website, webshop, screenshots, ads, and Lifetime VIP sales copy are checked for materially outdated or overpromising public statements before paid launch.
 - [ ] Promotions/countdowns/discount claims are genuine and not misleading.
 - [ ] Apple Lifetime VIP sales-window implementation has been checked against current IAP removal/availability guidance; a short promotional end is not implemented by blindly toggling Remove from Sale.
 - [ ] Store privacy disclosures match actual code/SDK behavior.
@@ -402,6 +437,8 @@ The strongest remaining blockers before calling the complete TycoonX legal/payme
 3. **German §356a withdrawal function:** responsibility and implementation must be verified on the real web purchase interface for every covered transaction.
 4. **Withdrawal consent implementation for immediate Diamond delivery:** the transaction-specific flow must be verified, not only described in Terms.
 5. **Entitlement lifecycle testing:** account deletion, reinstall/new-device restoration, cross-platform idempotency, Apple Family Sharing decision/status, Google 30-Day repeat-purchase behavior, and the Apple limited-time Lifetime VIP sales-window implementation must be tested against the final store configuration.
-6. **Google/Xsolla route compliance:** any EEA Google Play in-app external-offer/linkout must be verified against the current Google program before it is exposed.
-7. **German consumer-dispute process:** §36 VSBG applicability/statement and §37 post-dispute workflow need final operator-specific verification; do not use the discontinued EU ODR platform.
-8. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
+6. **Google Play 31 August 2026 target-API gate:** the actual TycoonX Android target SDK/API level must be verified in the game/release artifact; this legal repository alone cannot establish compliance.
+7. **Google/Xsolla route compliance:** any EEA Google Play in-app external-offer/linkout must be verified against the current Google program before it is exposed.
+8. **German consumer-dispute process:** §36 VSBG applicability/statement and §37 post-dispute workflow need final operator-specific verification; do not use the discontinued EU ODR platform.
+9. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
+10. **Operational §327f evidence:** if CK-Labs wants to rely on the user-not-installed-update protection, the actual update availability/consequence notices and adequate instructions must be implemented and evidenced; Terms wording alone is not enough.
