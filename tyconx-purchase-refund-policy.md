@@ -212,7 +212,17 @@ Its one-time purchase price and non-renewing nature do not by themselves elimina
 
 CK-Labs will not use one blanket “no refunds” or “waive all withdrawal rights” clause for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.
 
-## 15. Cross-platform access, Family Sharing, and duplicate entitlement records
+## 15. Required updates and supported versions
+
+Paid TycoonX content does not include a promise that every historic app version, device, operating system, API, or platform integration will remain supported indefinitely.
+
+Where German digital-product law applies, CK-Labs will provide and inform consumers about updates required to keep the relevant paid digital product in conformity during the legally relevant period, including required security updates.
+
+If a required update has been provided and the user was clearly informed that it is available and of the consequences of not installing it, failure to install the update within a reasonable time may affect claims for a lack of conformity caused **solely** by the missing update to the extent applicable law provides. This applies only where CK-Labs provided adequate installation instructions and does not remove rights relating to an unrelated defect, non-supply, or invalid entitlement.
+
+A valid paid entitlement should remain associated with the purchaser and be recognized on supported versions where required by the product terms, platform rules, or mandatory law. Requiring an update is not a basis to duplicate a purchase, erase a valid restorable Lifetime VIP, or avoid a remedy that remains legally due.
+
+## 16. Cross-platform access, Family Sharing, and duplicate entitlement records
 
 A valid purchase may be recognized on another supported TycoonX device or platform only where TycoonX supports that access and the applicable store, payment-provider, country, and platform rules permit it. Cross-platform recognition does not itself create a new transaction or an additional paid grant.
 
@@ -224,7 +234,7 @@ Apple Family Sharing applies only where CK-Labs has enabled it for the relevant 
 
 If TycoonX does not expressly show an Apple product as Family Shareable, the purchase does not include a promise of Family Sharing.
 
-## 16. Permanent service discontinuation
+## 17. Permanent service discontinuation
 
 If TycoonX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.
 
@@ -232,7 +242,7 @@ Lifetime VIP is tied to the commercial operating lifetime of TycoonX for the pur
 
 This does not waive any mandatory refund, price-reduction, termination, warranty, or other consumer remedy that applies because of the circumstances or timing of discontinuation.
 
-## 17. Contact
+## 18. Contact
 
 TycoonX is operated by **CK-Labs**.
 
