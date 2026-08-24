@@ -9,8 +9,9 @@ This checklist covers TycoonX user-generated content (UGC), chat, social/communi
 
 - [x] Public Community Standards & Moderation Policy exists at `/tycoonx-community-standards`.
 - [x] The rendered policy uses **TycoonX**, never `TyconX`.
-- [x] The Community Policy now states that its more specific UGC/moderation/public-private licensing rules control over a conflicting general Terms provision for that subject, to the extent permitted by law.
-- [ ] Link the Community Standards from the Terms of Service and relevant in-app community/reporting surfaces.
+- [x] The Community Policy states that its more specific UGC/moderation/public-private licensing rules control over a conflicting general Terms provision for that subject, to the extent permitted by law.
+- [x] The public Terms of Service link to the Community Standards.
+- [ ] Link the Community Standards from relevant in-app community/reporting surfaces.
 - [ ] Ensure users can retrieve the applicable Terms/Community Standards before creating or uploading UGC.
 - [ ] Where Google Play policy applies, obtain Terms/User Policy acceptance before the user can create or upload UGC.
 
@@ -70,8 +71,8 @@ Where a TycoonX community feature falls within the DSA intermediary-service fram
 - [x] Community Policy explains that moderation can use reports, filters, automated rules/classifiers, security signals, and human review.
 - [x] Community Policy explains possible moderation actions.
 - [x] Community Policy explains that users can challenge a decision through Support unless another route is provided.
-- [x] Community Policy now states that its specific UGC/moderation rules control over a conflicting general Terms provision for that subject.
-- [ ] Link the Community Policy from the main Terms so the restrictions and moderation process are incorporated visibly into the contractual framework.
+- [x] Community Policy states that its specific UGC/moderation rules control over a conflicting general Terms provision for that subject.
+- [x] The public Terms now link the Community Policy and directly reproduce the narrower public/private UGC rules.
 - [ ] Keep significant Terms/community-policy changes appropriately communicated where required.
 
 ## 6. EU DSA Article 16 notice-and-action mechanism
@@ -121,22 +122,22 @@ The DSA contains exemptions from some additional online-platform duties for micr
 - [x] Community Policy limits the operational UGC license to what is reasonably necessary to host, store, format, translate, transmit, display, moderate, back up, secure, support, and improve TycoonX.
 - [x] Public UGC may be featured for TycoonX community/promotional purposes only where consistent with context, settings, law, and third-party rights.
 - [x] Private direct messages, private support communications, and non-public reports are not licensed for public promotional use merely because CK-Labs processes them.
-- [x] Community Policy now expressly controls over a conflicting broader general Terms provision for UGC licensing, reducing ambiguity until the Terms wording itself is synchronized.
-- [ ] Synchronize the same narrow public/private distinction directly into the main Terms of Service for clarity and consistency.
-- [ ] Sync corresponding privacy wording if the final implementation or marketing workflow uses public UGC promotion.
+- [x] The main Terms now use the same narrow public/private UGC distinction and incorporate the Community Policy for specific moderation/UGC rules.
+- [x] The Privacy Policy now explains the same public/private distinction, requires an appropriate legal basis for public promotional use, and states that consent will be requested where legally required.
 
 ## 10. Moderation records and privacy
 
-- [ ] Privacy Policy matches the actual data used for reports, blocking, moderation, appeals, automated signals, and enforcement logs.
-- [ ] Retention is proportionate and tied to safety, fraud/security, dispute, legal-claim, or mandatory-law needs.
-- [ ] Do not retain private communications indefinitely merely because moderation once occurred.
-- [ ] Do not expose reporter identity to the reported user unless legally required or necessary under a valid process.
-- [ ] Human reviewers see only the data reasonably necessary for their moderation role.
-- [ ] Automated moderation with significant legal/similarly significant effects receives GDPR safeguards where required.
+- [x] Privacy Policy identifies chats, reports, support content, moderation status, anti-abuse signals, and automated security/moderation as processed data or purposes.
+- [x] Privacy Policy now states that private communications are not retained indefinitely merely because moderation once occurred; longer retention requires a separate lawful need.
+- [x] Privacy Policy now limits moderation/legal-review access to private communications to reasonably necessary and lawful circumstances.
+- [ ] Verify actual production retention periods match the policy and are proportionate to safety, fraud/security, dispute, legal-claim, or mandatory-law needs.
+- [ ] Verify production tooling does not expose reporter identity to the reported user unless legally required or necessary under a valid process.
+- [ ] Verify human reviewers see only data reasonably necessary for their moderation role.
+- [ ] Verify automated moderation with significant legal/similarly significant effects receives GDPR safeguards where required.
 
 ## 11. Founder-protective moderation wording
 
-The legal framework should preserve CK-Labs’ ability, subject to mandatory law, to:
+The legal framework preserves CK-Labs’ ability, subject to mandatory law, to:
 - use proportionate automated and human moderation;
 - take temporary protective action before a full review where serious safety/security risk exists;
 - reverse or modify a moderation decision if later evidence changes the assessment;
@@ -151,10 +152,9 @@ Do not use these protections to remove unrelated legitimate paid digital value o
 
 ## 12. Current P0/P1 gaps
 
-1. **P0: UGC acceptance implementation:** the legal policy exists, but the actual app flow must be verified to require Terms/User Policy acceptance before UGC creation where Google Play requires it.
-2. **P0: DSA Article 16 implementation evidence:** a compliant illegal-content notice-and-action flow must be verified for every TycoonX feature that qualifies as hosting under the DSA.
-3. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient. The production app must implement the required controls.
+1. **P0: UGC acceptance implementation:** verify the actual app flow requires Terms/User Policy acceptance before UGC creation where Google Play requires it.
+2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA.
+3. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient; the production app must implement the required controls.
 4. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
 5. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
-6. **P1: Direct Terms wording sync:** the specific-policy precedence now protects the narrower public/private UGC rule, but the main Terms should still be rewritten to match it exactly.
-7. **P1: Privacy parity:** verify the Privacy Policy and actual moderation data retention/automation match the final moderation implementation.
+6. **P1: Privacy implementation parity:** verify actual retention periods, reviewer access, reporter confidentiality, and automated-decision safeguards match the now-synchronized Privacy Policy.
