@@ -45,6 +45,15 @@ For Lifetime VIP, clearly show near the purchase control:
 
 Do not use wording such as “VIP forever no matter what” or “guaranteed forever.”
 
+### Limited-time Lifetime VIP sales window
+Apple currently tells developers to announce an intended In-App Purchase removal from sale and stop merchandising it at least 31 days before removal, and notes that customers who already bought a removed non-consumable retain access through StoreKit/App Store Server API records.
+
+Operational rule for TycoonX:
+- do **not** use App Store Connect “Remove from Sale” as a casual short-sale countdown mechanism without first checking the current Apple removal guidance;
+- for a shorter Lifetime VIP promotion, verify an App Review-safe product/offer presentation that closes new purchases at the genuine advertised end while preserving restoration for prior purchasers, rather than assuming the underlying non-consumable SKU itself must be removed from sale;
+- stop any App Store merchandising/promotion of the Lifetime VIP when the genuine offer closes;
+- if the IAP itself will actually be removed from sale, follow Apple’s then-current notice/removal guidance and preserve restoration for existing purchasers.
+
 ### Restore Purchases
 TycoonX should expose an obvious user-initiated Restore Purchases action where applicable.
 
@@ -56,6 +65,19 @@ TycoonX should expose an obvious user-initiated Restore Purchases action where a
 - log enough transaction and entitlement information for support/audit purposes;
 - never grant paid value solely because a client claims payment succeeded.
 
+### Account deletion + restore test
+Account deletion must not be implemented as an accidental paid-entitlement destruction mechanism.
+
+Test this explicitly:
+1. user purchases Lifetime VIP through Apple;
+2. user deletes the TycoonX account and the deletable gameplay/profile data is removed;
+3. the Apple purchase record remains independently verifiable where Apple retains it;
+4. the same purchaser creates or signs into an eligible TycoonX account;
+5. Restore Purchases re-links the valid Lifetime VIP after reasonable verification;
+6. deleted gameplay progress, consumed Diamonds, inventory, and social history are **not** recreated merely because VIP was restored.
+
+Explain the consequence of account deletion before final confirmation where platform rules or applicable law require it.
+
 ### Refunds
 - Do not promise “no refunds.”
 - Apple controls its App Store refund-request process.
@@ -65,11 +87,14 @@ TycoonX should expose an obvious user-initiated Restore Purchases action where a
 ## 4. Google Play
 
 - Use Google Play Billing for in-app digital products where Google Play policy requires it, unless a valid regional/program/legal exception applies.
-- Configure one-time products so a product advertised as one-time 30-Day VIP or Lifetime VIP does not silently become recurring billing.
+- Configure Lifetime VIP as a one-time **non-consumable** product if that remains the intended Google Play model. Google currently describes non-consumables as purchased once and permanently associated with the purchaser’s Google Account.
+- Configure one-time 30-Day VIP so it does not silently become recurring billing.
+- If players may legitimately buy another 30-Day VIP later, confirm the Google product configuration is repeatable after the prior entitlement is provisioned/expired; a non-consumable configuration would permanently block repurchase.
 - Product metadata, price, duration, and promotional claims must be accurate and not misleading.
 - Regional prices may differ. Keep country/region eligibility and storefront rules separate from any truly personalized automated price.
 - Reconcile refunds, cancellations, chargebacks, and invalid purchases to the corresponding TycoonX entitlement or paid value.
 - If Google processes the refund, TycoonX should consume the resulting provider status rather than promise an independent contradictory refund outcome.
+- Test account deletion and later entitlement recovery so a still-valid non-consumable Lifetime VIP can be re-linked to the same verified purchaser without recreating deleted gameplay state or Diamond consumables.
 
 ## 5. Official TycoonX web shop using Xsolla
 
@@ -80,6 +105,8 @@ Where an Xsolla entity acts as merchant of record, the transaction-specific chec
 CK-Labs remains responsible for correctly delivering the corresponding TycoonX entitlement after valid transaction confirmation.
 
 The web shop must not be linked or promoted inside Apple/Google apps in a way that violates the applicable platform, country, program, or law.
+
+For Lifetime VIP sold through the web shop, maintain enough lawful transaction/entitlement evidence to distinguish account deletion from cancellation/refund of the underlying purchase. Define a verified re-link process for a purchaser who deletes a TycoonX account and later proves control of the same purchase identity, subject to the Xsolla contract, privacy law, and mandatory consumer rights.
 
 ## 6. Prices and promotions
 
@@ -238,6 +265,7 @@ The Privacy Policy and store privacy disclosures should match actual behavior fo
 - gameplay/economy state;
 - transaction and entitlement validation data;
 - refund/revocation/chargeback data;
+- entitlement restore/re-link evidence;
 - support communications;
 - security/fraud/abuse logs;
 - device/technical/diagnostic information;
@@ -274,9 +302,13 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] German legal notice/Impressum is complete for the real operator.
 - [ ] Every rendered legal/checkout/support reference spells **TycoonX** correctly.
 - [ ] Product type/configuration is correct per Apple/Google/Xsolla channel.
+- [ ] Google Lifetime VIP is non-consumable if sold under the intended permanent-benefit model.
+- [ ] Google 30-Day VIP repeat-purchase behavior is verified if users may buy another 30-day period later.
 - [ ] Purchased Diamonds do not expire solely because time passes.
 - [ ] Lifetime VIP limited-time and commercial-lifetime disclosure is visible before purchase.
 - [ ] Lifetime VIP restoration works after reinstall/new supported device where applicable.
+- [ ] Lifetime VIP restoration after TycoonX account deletion is tested for the same verified purchaser without restoring deleted gameplay/consumables.
+- [ ] Account deletion UI clearly explains the effect on gameplay data versus restorable paid entitlements where required.
 - [ ] Valid 30-Day VIP restores without extending/duplicating its period.
 - [ ] Refund/revocation/chargeback events reconcile server-side idempotently.
 - [ ] No client-only paid entitlement trust path exists.
@@ -285,6 +317,7 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] German §356a electronic withdrawal function responsibility is verified and implemented for every covered web/UI purchase channel.
 - [ ] Diamond early-supply withdrawal consent/acknowledgement/contract confirmation is implemented where legally required.
 - [ ] Promotions/countdowns/discount claims are genuine and not misleading.
+- [ ] Apple Lifetime VIP sales-window implementation has been checked against current IAP removal/availability guidance; a short promotional end is not implemented by blindly toggling Remove from Sale.
 - [ ] Store privacy disclosures match actual code/SDK behavior.
 - [ ] Merchant-of-record and refund responsibility is verified for the actual Xsolla configuration.
 - [ ] Apple/Google external-payment linking is checked per current country/platform/program rules.
@@ -298,4 +331,5 @@ The strongest remaining blockers before calling the complete TycoonX legal/payme
 2. **Checkout implementation evidence:** the legal documents cannot prove that the real Apple, Google, and Xsolla purchase screens provide every required disclosure and consent.
 3. **German §356a withdrawal function:** responsibility and implementation must be verified on the real web purchase interface for every covered transaction.
 4. **Withdrawal consent implementation for immediate Diamond delivery:** the transaction-specific flow must be verified, not only described in Terms.
-5. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
+5. **Entitlement lifecycle testing:** account deletion, reinstall/new-device restoration, Google 30-Day repeat-purchase behavior, and the Apple limited-time Lifetime VIP sales-window implementation must be tested against the final store configuration.
+6. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
