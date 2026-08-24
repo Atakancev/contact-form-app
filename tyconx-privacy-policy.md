@@ -28,7 +28,7 @@ When you make or restore a purchase, we may receive or process information such 
 - transaction identifier and original transaction identifier where applicable;
 - purchase, activation, expiry, refund, revocation, cancellation, or chargeback status;
 - purchase receipt, signed transaction information, validation token, or equivalent confirmation data;
-- entitlement history and delivery or correction records.
+- entitlement history and delivery, restore, migration, or correction records.
 
 We generally do not receive your full payment-card number from platform stores or payment processors.
 
@@ -55,7 +55,7 @@ We may process information about how TycoonX is used, such as:
 
 ### 1.7 Information from Third Parties
 We may receive information from:
-- Apple App Store, Google Play, Xsolla, and other authorized payment providers to validate purchases, refunds, revocations, disputes, and entitlements;
+- Apple App Store, Google Play, Xsolla, and other authorized payment providers to validate purchases, restores, refunds, revocations, disputes, and entitlements;
 - authentication providers used to sign in;
 - hosting, database, storage, analytics, crash-reporting, moderation, notification, or security providers that support the Service.
 
@@ -108,7 +108,7 @@ We may disclose information only where reasonably necessary to:
 Providers that support hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications, security, or other technical operations. Providers receive only the information reasonably necessary for their role and are subject to applicable contractual and legal safeguards.
 
 ### Platform and payment partners
-Apple, Google, Xsolla, or other authorized payment or platform providers where needed to validate purchases, entitlement status, refunds, revocations, fraud, disputes, taxes, or compliance with their rules.
+Apple, Google, Xsolla, or other authorized payment or platform providers where needed to validate purchases, restores, entitlement status, refunds, revocations, fraud, disputes, taxes, or compliance with their rules.
 
 Apple, Google, Xsolla, banks, card networks, and other payment participants may act as independent controllers for parts of their own payment, fraud, tax, account, or platform processing. Their own privacy notices and legal obligations apply to that independent processing.
 
@@ -136,12 +136,12 @@ We keep personal data only for as long as reasonably necessary for the purpose f
 Retention may differ by data category. For example:
 - active account and gameplay data may be retained while the account remains active and as needed to provide the Service;
 - support records may be retained for a reasonable period to handle follow-up questions, disputes, abuse, or legal claims;
-- purchase, refund, entitlement, transaction, accounting, and tax records may be retained for legally required or dispute-related periods;
+- purchase, refund, entitlement, restore, transaction, accounting, and tax records may be retained for legally required, contract-performance, fraud-prevention, or dispute-related periods;
 - security, anti-fraud, exploit, moderation, and audit records may be retained for a reasonable period necessary to protect the Service, detect repeat abuse, investigate incidents, or establish or defend claims;
 - backup copies may remain for a limited backup lifecycle before deletion or overwrite;
 - anonymized or genuinely aggregated data may be retained where it no longer identifies a person.
 
-When an account is deleted, we delete or anonymize personal data that is no longer necessary, subject to lawful retention requirements and technical backup cycles.
+When an account is deleted, we delete or anonymize personal data that is no longer necessary, subject to lawful retention requirements, valid entitlement-restoration needs, and technical backup cycles.
 
 ## 8. Your Privacy Rights
 
@@ -157,15 +157,19 @@ Depending on applicable law, you may have rights to:
 
 You can request account deletion through TycoonX where that option is available or contact TycoonX Support. We may need to verify your identity before acting on a request.
 
-Certain records may still be retained where required or permitted for legal, tax, accounting, fraud-prevention, security, dispute-resolution, or legal-claims purposes.
+Certain records may still be retained where required or permitted for legal, tax, accounting, contract-performance, fraud-prevention, security, dispute-resolution, entitlement-restoration, or legal-claims purposes.
 
 ## 9. Account Deletion and Paid Entitlements
 
 Deleting your TycoonX account is separate from requesting a payment refund.
 
-Deleting an account may permanently remove access to account-linked progress, Diamonds, virtual items, and VIP entitlements. Account deletion does not automatically create a right to cash redemption or a refund. Refund rights remain governed by the payment provider’s process and applicable mandatory law.
+Deleting an account may permanently remove account-linked gameplay progress, Diamonds, consumable value, inventory, social data, and other profile state. Account deletion does not automatically create a right to cash redemption or a refund.
 
-Where required by law, we provide remedies and refunds that cannot legally be excluded.
+Deleting the TycoonX account does not necessarily erase or invalidate a separate Apple, Google, Xsolla, or other payment-provider transaction record. Where a valid Lifetime VIP or other non-consumable/restorable entitlement remains associated with the purchaser under platform rules, provider records, the contract, or mandatory law, CK-Labs may retain the minimum transaction and entitlement evidence reasonably necessary to verify and restore that entitlement.
+
+A later restore may require reasonable proof that the same purchaser controls the relevant platform or payment account. Restoring a paid entitlement does not recreate deleted gameplay progress, consumed Diamonds, inventory, history, or transferred assets unless applicable law requires otherwise.
+
+Refund rights remain governed by the payment provider’s process and applicable mandatory law. Where required by law, we provide remedies and refunds that cannot legally be excluded.
 
 ## 10. Children
 
