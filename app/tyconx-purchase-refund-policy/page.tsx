@@ -5,7 +5,8 @@ const sections = [
       'Diamonds are virtual in-game currency. Purchased Diamonds do not expire solely because time passes, are for use only inside TycoonX, and are not redeemable from CK-Labs for cash except where mandatory law requires otherwise.',
       '30-Day VIP is a one-time, non-renewing entitlement lasting 30 consecutive days from activation or availability to the account unless the purchase screen expressly states otherwise.',
       'Lifetime VIP is a one-time entitlement that may be offered only during selected limited promotional sales windows. It is not a permanently available product. CK-Labs may end or discontinue a sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.',
-      'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten an already valid purchase. Lifetime VIP is intended for the commercial operating lifetime of the TycoonX Service for the purchasing account and does not promise that TycoonX will operate forever. The commercial-lifetime meaning and the limited-time nature of the offer must be shown clearly at or immediately before checkout.',
+      'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten an already valid purchase. Opening a purchase screen, placing an item in a cart, starting checkout, or entering a pending payment state before a sales window closes does not by itself reserve Lifetime VIP or an earlier price. If an authorized provider later confirms a valid transaction under its rules, CK-Labs will honor the provider-confirmed transaction according to the applicable offer and mandatory law.',
+      'Lifetime VIP is intended for the commercial operating lifetime of the TycoonX Service for the purchasing account and does not promise that TycoonX will operate forever. The commercial-lifetime meaning and the limited-time nature of the offer must be shown clearly at or immediately before checkout.',
     ],
   },
   {
@@ -13,6 +14,7 @@ const sections = [
     body: [
       'Apple processes purchases made through Apple In-App Purchase and operates the App Store refund-request process. CK-Labs may investigate delivery and entitlement issues but does not control Apple’s refund decision.',
       'Purchased Diamonds are intended to be consumable in-app purchases. Lifetime VIP is intended to be a non-consumable purchase and is restorable while valid. One-time 30-Day VIP is intended to be a non-renewing entitlement with CK-Labs maintaining the authoritative account entitlement state where needed.',
+      'A purchase that Apple still reports as pending does not create a TycoonX paid entitlement until Apple reports a completed valid transaction. If Apple later completes a provider-approved pending transaction, TycoonX may grant the corresponding entitlement at that time even if the original promotion has meanwhile ended, where the Apple transaction validly relates to that offer.',
       'If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value so the refunded purchase is not retained twice.',
     ],
   },
@@ -22,6 +24,7 @@ const sections = [
       'Google processes the transaction through the applicable Google Play billing arrangement and provides transaction or order information used to validate the purchase.',
       'Where Google Play policy requires Google Play Billing for in-app digital goods or services, TycoonX will use that system unless an applicable regional program, platform rule, or law permits an alternative.',
       'Lifetime VIP is intended to use a one-time non-consumable Google Play product so the valid purchase remains associated with the purchasing Google Account. A one-time 30-Day VIP must be configured so that it does not silently create recurring billing and, if repeat purchases are intended, so the product configuration does not permanently block a later legitimate 30-Day purchase.',
+      'A Google Play purchase in a PENDING state does not create a TycoonX paid entitlement. The entitlement is granted only after Google reports a valid completed PURCHASED state and required verification succeeds. If a pending purchase later becomes a valid completed purchase, TycoonX may grant the applicable entitlement at that time, including where completion occurs after a limited promotion has closed but the provider-confirmed transaction validly belongs to that offer.',
       'Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules, CK-Labs policy, and applicable law.',
       'If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.',
     ],
@@ -32,7 +35,8 @@ const sections = [
       'Purchases made through the official TycoonX web shop may be processed by Xsolla. Depending on the applicable checkout arrangement, an Xsolla group company may act as merchant of record.',
       'When Xsolla acts as merchant of record, the Xsolla entity shown at checkout or on the receipt may be responsible under its applicable terms for payment processing, transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
       'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. The transaction-specific Xsolla terms and refund policy shown for that purchase apply together with mandatory consumer law.',
-      'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value.',
+      'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment. Returning from checkout, displaying a client-side success message, or creating an order does not by itself require CK-Labs to grant paid value before valid provider confirmation is received.',
+      'If a valid Xsolla transaction is later confirmed after a processing delay, CK-Labs may grant the corresponding entitlement at confirmation time according to the provider-confirmed transaction and applicable offer. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value.',
     ],
   },
   {
@@ -40,7 +44,8 @@ const sections = [
     body: [
       'CK-Labs may change the prices, bundle sizes, Diamond quantities, VIP prices, regional prices, currencies, availability, and promotional offers for future purchases. A current price is not a promise that the same product, quantity, discount, or price will remain available later.',
       'Prices may differ between Apple App Store, Google Play, the official TycoonX web shop, countries, regions, currencies, and separate promotional sales windows. Platform pricing systems, taxes, VAT, currency conversion, foreign-exchange movements, local pricing conventions, or payment-provider rules may also cause local prices to change.',
-      'The final total price and currency displayed by the applicable checkout before the user confirms the purchase govern that transaction, subject to correction of obvious pricing errors where permitted by law. For consumers in Germany and elsewhere where required, mandatory taxes and unavoidable price components must be included or presented as required by applicable price-display law.',
+      'The final total price and currency displayed by the applicable checkout before the user confirms the purchase govern that transaction, subject to correction of obvious pricing errors where permitted by law. Opening a product page, entering checkout, or seeing a cached or earlier price before confirmation does not by itself lock that price for a future transaction. The provider-confirmed transaction record and legally binding checkout information for the completed order control, subject to mandatory law.',
+      'For consumers in Germany and elsewhere where required, mandatory taxes and unavoidable price components must be included or presented as required by applicable price-display law.',
       'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price. A later price decrease does not automatically create a right to a refund, credit, partial refund, price match, or additional Diamonds or VIP time, and a later price increase does not create an additional charge for an already completed one-time purchase, except where mandatory law requires otherwise.',
       'Lifetime VIP may be sold at different prices in different genuine promotional sales windows. Purchasing in one sales window does not create a right to a later lower promotional price, and a future sales window does not require CK-Labs to match an earlier price.',
       'Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading. Where a jurisdiction requires a particular reference price, discount disclosure, or price-history rule for the specific product or offer, the applicable marketing and checkout must follow that rule.',
@@ -77,6 +82,7 @@ const sections = [
     body: [
       'If you were charged but the purchased content does not appear, confirm you are using the correct TycoonX account, use Restore Purchases where applicable, allow reasonable time for a pending provider transaction to complete, and contact TycoonX Support with the order or transaction details if the issue remains.',
       'CK-Labs may validate the transaction with Apple, Google, Xsolla, or the applicable provider before granting, restoring, changing, or refunding an entitlement.',
+      'A pending purchase does not reserve a second entitlement or create a duplicate grant. If the provider later confirms that the pending transaction became a valid completed purchase, CK-Labs will reconcile it against the authoritative transaction and existing entitlement state.',
     ],
   },
   {
@@ -103,7 +109,8 @@ const sections = [
       'A refund or payment reversal does not entitle a user to keep both the returned money and the corresponding paid digital value.',
       'If a payment is refunded, reversed, charged back, cancelled, or found invalid after value was credited, CK-Labs may, subject to applicable law, revoke the related entitlement, remove unused Diamonds or virtual value, reverse directly related invalid game transactions, apply an equivalent balance correction where refunded value was already consumed or transferred, or temporarily restrict purchase/economy functions while a payment dispute is investigated.',
       'CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse a specific invalid transaction or as otherwise permitted by law.',
-      'Refunds are ordinarily processed through the payment channel that handled the purchase and, where the provider requires it, to the original payment method. Currency conversion differences, bank fees, card-issuer fees, or exchange-rate movements outside CK-Labs control remain subject to the provider’s rules and mandatory law.',
+      'Refunds are ordinarily processed through the payment channel that handled the purchase and, where the provider requires it, to the original payment method. Approval of a refund and the time when funds actually appear can differ. CK-Labs does not control third-party settlement timing, currency conversion differences, bank fees, card-issuer fees, or exchange-rate movements, subject to provider rules and mandatory law.',
+      'Where Apple, Google, Xsolla, or another provider is the contracting merchant or issuer of the transaction receipt or tax document, that provider controls the form and correction process for its receipt or invoice. CK-Labs may provide TycoonX entitlement support and transaction-identification assistance but cannot promise to alter or reissue a third-party merchant’s billing or tax document. Where CK-Labs itself is legally required to issue a receipt, invoice, credit note, or other document, applicable law remains controlling.',
     ],
   },
   {
