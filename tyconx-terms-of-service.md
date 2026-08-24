@@ -1,361 +1,338 @@
-# TyconX Terms of Service
+# TycoonX Terms of Service
 
 **Last updated: August 24, 2026**
 
-These Terms of Service ("Terms") govern your use of TyconX and any related mobile, web, community, support, payment-entitlement, and online services (together, the "Service"). TyconX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
+These Terms of Service ("Terms") govern use of **TycoonX**, including the mobile and web applications, websites, support services, payment entitlements, community features, and related online services (together, the "Service"). TycoonX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
 
 By creating an account, using the Service, or purchasing digital content or entitlements, you agree to these Terms. If you do not agree, do not use the Service.
 
 Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited, including mandatory consumer rights in the European Union, Germany, or your country of residence.
 
-## 1. TyconX is a game simulation
+## 1. TycoonX is a game simulation
 
-TyconX is an entertainment and economic simulation game. In-game money, Diamonds, shares, companies, property, items, products, currencies, rewards, statistics, and other game assets are fictional digital game elements unless we expressly state otherwise.
+TycoonX is an entertainment and economic simulation game. In-game money, Diamonds, shares, companies, property, items, products, rewards, statistics, and other game assets are fictional digital game elements unless CK-Labs expressly states otherwise.
 
-They are not bank deposits, securities, investments, legal tender, cryptocurrency, stored-value money, or claims against CK-Labs. They do not create ownership of any real-world asset and are not guaranteed to have or retain any real-world monetary value.
+They are not bank deposits, securities, investments, legal tender, cryptocurrency, stored-value money, or claims against CK-Labs. They do not create ownership of real-world assets and are not guaranteed to have or retain real-world monetary value.
 
-## 2. Accounts and security
+Except where mandatory law requires otherwise, virtual assets cannot be redeemed from CK-Labs for cash and have no guaranteed resale value, exchange rate, purchasing power, or future utility.
 
-You are responsible for keeping your account credentials, connected platform accounts, devices, and payment accounts secure and for using reasonable security measures available to you.
+## 2. Accounts, eligibility, and security
 
-You must not sell, rent, share, transfer, or commercially trade your account unless CK-Labs expressly permits it in writing.
+You are responsible for keeping your account credentials, connected platform accounts, devices, and payment accounts secure and for using reasonable security measures available to you. Promptly contact TycoonX Support if you believe your account or payment account has been compromised.
 
-You must promptly contact TyconX Support if you believe your account or payment account has been compromised.
+You must not sell, rent, transfer, commercially trade, or share an account or paid entitlement except where TycoonX expressly provides a supported transfer mechanism or CK-Labs expressly permits it.
 
-CK-Labs may temporarily restrict an account when reasonably necessary to investigate suspected compromise, fraud, abuse, security incidents, payment disputes, or violations of these Terms.
+CK-Labs may temporarily restrict an account or specific functions where reasonably necessary to investigate suspected compromise, fraud, payment disputes, exploit activity, abusive conduct, or other security concerns. Emergency restrictions may be applied before an investigation is complete when reasonably necessary to protect users, payments, game integrity, or infrastructure.
 
-## 3. Virtual items and Diamonds
+Where age, parental authorization, or other eligibility requirements apply under local law or platform rules, you may use or purchase through TycoonX only when those requirements are satisfied.
 
-### 3.1 Limited in-game right
+## 3. Diamonds and other virtual items
 
-Diamonds and other virtual items are licensed digital game content or entitlements for use only inside TyconX. Except where mandatory law requires otherwise, you do not acquire property ownership in the underlying game data.
+Diamonds and other virtual items are licensed digital game content or entitlements for use only inside TycoonX. Except where mandatory law requires otherwise, purchasing them does not transfer ownership of the underlying game data.
 
-Virtual items cannot be exchanged with CK-Labs for cash or other real-world value and must not be sold or transferred outside mechanisms expressly provided by TyconX.
+**Purchased Diamonds do not expire solely because time passes.** CK-Labs may correct or remove Diamonds where the corresponding purchase is refunded, reversed, charged back, fraudulent, duplicated, technically erroneous, or otherwise invalid.
 
-### 3.2 Purchased Diamonds
+Promotional, gifted, event, beta, test, compensation, or free Diamonds and benefits may have separately disclosed conditions, limits, eligibility requirements, or expiry where permitted by law and platform rules. Free or promotional grants do not automatically create a right to equivalent future grants.
 
-Diamonds purchased through an authorized payment channel are credited only after the applicable purchase has been successfully confirmed and validated for the TyconX account receiving the entitlement.
+The gameplay utility of Diamonds and other virtual items may change for valid reasons such as balancing, economy stability, anti-inflation measures, security, abuse prevention, technical changes, new features, bug fixes, or legal requirements, subject to mandatory digital-product law.
 
-**Purchased Diamonds do not expire solely because time passes.** This does not prevent CK-Labs from correcting or removing Diamonds where the corresponding purchase is refunded, reversed, charged back, fraudulent, duplicated, technically erroneous, or otherwise invalid.
+## 4. One-time 30-Day VIP
 
-Promotional, gifted, event, test, beta, compensation, or free Diamonds may be subject to separate conditions, limits, or expiry if those conditions are clearly disclosed when they are granted and are permitted by applicable platform rules and law.
+A product described as **30-Day VIP**, **30 Days VIP**, or similar is a one-time, non-renewing digital entitlement unless the purchase screen clearly states otherwise.
 
-### 3.3 No fixed game value
+It provides the VIP features described at purchase for **30 consecutive days** beginning when the entitlement is activated or otherwise made available to the purchasing TycoonX account.
 
-The gameplay utility of Diamonds, virtual items, currencies, rewards, and other game assets may change as part of balancing, economy changes, new features, anti-inflation measures, bug fixes, or other valid game-design reasons, subject to applicable law.
+It does not automatically renew and does not create a recurring payment obligation. Any future recurring VIP product would require its own clear recurring-price, renewal, cancellation, and consent information.
 
-A gameplay change does not convert virtual items into cash or create a right to a fixed exchange rate, fixed purchasing power, fixed resale value, or guaranteed future feature set.
-
-## 4. VIP products
-
-### 4.1 One-time 30-Day VIP
-
-A product described as **30-Day VIP**, **30 Days VIP**, or similar is a one-time, non-renewing digital entitlement unless the purchase screen explicitly says otherwise.
-
-It provides the VIP features described at the time of purchase for **30 consecutive days** beginning when the entitlement is activated or otherwise made available to your account. It does not automatically renew and does not create a recurring payment obligation unless a separate offer clearly states that it is recurring and you expressly accept it.
-
-### 4.2 Lifetime VIP
+## 5. Limited-time Lifetime VIP
 
 **Lifetime VIP** is a one-time digital entitlement that may be offered only during **limited promotional sales windows** selected by CK-Labs. It is not a permanently available product.
 
-CK-Labs may start, end, shorten, extend, or discontinue a Lifetime VIP sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.
+CK-Labs may start, end, shorten, extend, or discontinue a genuine Lifetime VIP sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.
 
-The fact that another user previously purchased Lifetime VIP, or that CK-Labs previously ran a Lifetime VIP sales window, does not create a right or expectation that the product will remain available or return later. Ending a sales window affects future availability only and does not by itself cancel or shorten an already valid Lifetime VIP entitlement.
+Previous availability does not create a right or expectation that Lifetime VIP will remain available, return later, or return at the same price. A later promotion does not create a right to purchase during an earlier closed sales window.
 
-Any countdown, closing date, or other time-limited sales statement displayed for a Lifetime VIP offer should reflect the genuine sales window communicated for that offer. CK-Labs may later decide to run a separate future promotion, but a later promotion does not create a right to purchase during a closed sales window.
+Ending a sales window affects future availability only and does not by itself cancel or shorten a valid Lifetime VIP already purchased.
 
-A valid Lifetime VIP purchase is intended to remain active for the **commercial operating lifetime of the TyconX Service for the purchasing account**, while TyconX continues to be operated and made available by CK-Labs and while the purchasing account remains eligible to use the Service.
+A valid Lifetime VIP purchase is intended to remain active for the **commercial operating lifetime of the TycoonX Service for the purchasing account**, while TycoonX continues to be operated and made available and while the account remains eligible to use the Service.
 
-"Lifetime" does **not** mean the biological lifetime of the purchaser, the lifetime of any owner, employee, company, device, platform, or server, and it is not a promise that TyconX will operate forever or for any fixed minimum number of years beyond what mandatory law requires or what a consumer may reasonably expect from the specific offer.
+"Lifetime" does not mean the biological lifetime of the purchaser, CK-Labs, any owner, device, platform, payment provider, server, or other company, and it is not a promise that TycoonX will operate forever or for a fixed minimum number of years beyond mandatory law and the reasonable expectations created by the specific offer.
 
-Lifetime VIP may end if:
+Lifetime VIP may end if TycoonX is permanently discontinued, the account is deleted at the user’s request, the account is lawfully terminated for a serious or repeated Terms violation, the purchase is refunded or invalid, or continued supply becomes prohibited or impossible because of law, platform rules, or another circumstance recognized by applicable law. Mandatory consumer remedies remain unaffected.
 
-- TyconX is permanently discontinued;
-- the relevant platform or product is lawfully discontinued and no equivalent access can reasonably be provided;
-- the purchasing account is deleted at the user's request;
-- the account is lawfully terminated for a serious or repeated Terms violation;
-- the purchase is refunded, reversed, charged back, cancelled, fraudulent, or invalid; or
-- continuation is prohibited by law, regulation, court order, payment-provider rule, or platform requirement.
+Any countdown, closing date, limited-time statement, or price-advantage claim used for Lifetime VIP must reflect a genuine offer and must not be misleading.
 
-A device change, app reinstall, ordinary maintenance outage, or supported platform/server migration does not by itself terminate a valid Lifetime VIP entitlement. Where technically and legally feasible, CK-Labs will restore the valid entitlement after purchase verification.
+The commercial-lifetime meaning and the limited-time nature of the current sales offer must be disclosed clearly at or immediately before the Lifetime VIP purchase screen.
 
-**The commercial-lifetime meaning and the limited-time nature of the current sales offer must be disclosed clearly at or immediately before the Lifetime VIP purchase screen.** The name "Lifetime VIP" must not be presented in a way that suggests perpetual operation independent of the existence of TyconX.
+## 6. VIP features and digital-product changes
 
-Where applicable law gives you mandatory remedies because a paid digital service is discontinued, defective, materially changed, or no longer supplied, those rights remain unaffected.
+VIP may include changing gameplay benefits, convenience features, cosmetics, limits, automation features, access privileges, or other benefits. CK-Labs may improve, replace, rebalance, add, or remove individual features for valid reasons such as game balance, economy health, security, abuse prevention, technical compatibility, platform requirements, legal compliance, accessibility, or evolution of the Service.
 
-### 4.3 VIP features may evolve
+For a digital product supplied continuously over time, a change beyond what is necessary to maintain conformity will be made only where the contract and applicable law permit it. Where required, the change will have a valid contractual reason, will not impose additional cost on the consumer, and will be communicated clearly.
 
-VIP may include changing gameplay benefits, convenience features, cosmetics, limits, automation features, access privileges, or other benefits. CK-Labs may improve, replace, rebalance, add, or remove individual VIP features for valid reasons such as game balance, security, technical limitations, legal compliance, platform requirements, abuse prevention, or evolution of the Service.
+If a change more than insignificantly impairs access or use, CK-Labs will provide the advance notice, durable-medium information, termination right, unchanged-version option, refund, price reduction, or other remedy required by applicable law.
 
-For a digital product supplied continuously over time, a change beyond what is necessary to keep the product contract-compliant will be made only on a contractual basis that provides a valid reason, without additional cost to the consumer, and with clear information where mandatory law requires this. If a change more than insignificantly impairs access or use, mandatory law may require advance notice on a durable medium and may give the consumer a time-limited right to terminate without charge.
+## 7. Authorized purchase channels
 
-Where mandatory law requires advance information, a valid contractual reason, continued access to an unchanged version, price reduction, termination rights, or another remedy, we will respect those requirements.
+TycoonX paid digital products may be offered through **Apple App Store In-App Purchase**, **Google Play**, and the **official TycoonX web shop using Xsolla**, plus any other channel expressly authorized by CK-Labs in the future.
 
-## 5. Authorized purchase channels
+Prices, currencies, taxes, payment methods, billing entities, refund procedures, promotional availability, and regional availability may differ by channel. A price or promotion on one channel does not require CK-Labs to offer the same price or promotion on another channel unless applicable law or platform rules require otherwise.
 
-TyconX paid digital products may be offered through Apple App Store In-App Purchase, Google Play, and the official TyconX web shop using Xsolla, plus any other channel expressly authorized by CK-Labs in the future.
+A purchase does not create a right to bypass Apple, Google, Xsolla, tax, country, platform, or payment-provider restrictions. Users must not falsify country, tax location, payment information, eligibility, or account information to obtain an offer or regional price for which they are not eligible.
 
-Prices, currencies, taxes, payment methods, billing entities, refund procedures, and regional availability may differ by channel. A price or promotion on one channel does not require CK-Labs to offer the same price on another channel unless applicable law or platform rules require otherwise.
-
-A purchase does not create a right to bypass the rules of Apple, Google, Xsolla, or another applicable payment provider. External payment options may be displayed or linked inside an app only where the relevant platform rules, regional programs, and law permit it.
-
-### 5.1 Apple App Store purchases
+## 8. Apple App Store purchases
 
 For purchases made through Apple In-App Purchase:
 
-- Apple processes the payment and provides the App Store transaction record;
-- Apple operates the consumer refund-request process for App Store purchases;
-- CK-Labs may investigate delivery and entitlement issues but does not control whether Apple approves or rejects a refund request;
-- purchased Diamonds are intended to be sold as consumable in-app purchases;
-- Lifetime VIP is intended to be sold as a non-consumable purchase and is restorable while the entitlement remains valid; and
-- a one-time 30-Day VIP is intended to be sold as a non-renewing entitlement, with CK-Labs maintaining the authoritative account entitlement state where needed.
+- Apple processes the payment and provides the App Store transaction record.
+- Apple operates the consumer refund-request process for App Store purchases, while CK-Labs handles TycoonX entitlement delivery and game-state issues.
+- Purchased Diamonds are intended to be consumable In-App Purchases.
+- Lifetime VIP is intended to be a non-consumable purchase and restorable while valid.
+- One-time 30-Day VIP is intended to use an Apple-approved non-renewing entitlement structure with authoritative entitlement state maintained where needed.
 
-If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value so the refunded purchase is not retained twice.
+If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value so the refunded or invalid purchase is not retained twice.
 
-### 5.2 Google Play purchases
+## 9. Google Play purchases
 
 For purchases made through Google Play:
 
-- Google processes the payment through the applicable Google Play billing arrangement and provides transaction/order information used to validate the purchase;
-- where Google Play's Payments policy requires Google Play Billing for in-app digital goods or services, TyconX will use that billing system unless an applicable regional alternative-billing or external-offers program, platform rule, or law permits another method;
-- Google may process some refund requests directly, and CK-Labs may also be able to process eligible refunds through Google Play according to Google's tools, CK-Labs policy, and applicable law;
-- CK-Labs is responsible for delivering a valid TyconX entitlement after a confirmed transaction is received; and
-- if Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.
+- Google processes the transaction through the applicable Google Play billing arrangement and provides transaction or order information used to validate the purchase.
+- Where Google Play policy requires Google Play Billing for in-app digital goods or services, TycoonX uses that system unless an applicable regional program, platform rule, or law permits another method.
+- Google may process eligible refunds directly, and CK-Labs may also be able to process eligible refunds through Google’s developer tools according to Google rules and applicable law.
+- If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.
 
-Google Play purchase, refund, and alternative-billing rules can vary by country and may change. The rules and checkout information applicable to the user's transaction apply in addition to these Terms.
+## 10. TycoonX web shop powered by Xsolla
 
-### 5.3 TyconX web shop powered by Xsolla
+Purchases made through the official TycoonX web shop may be processed by **Xsolla**.
 
-Purchases made through the official TyconX web shop may be processed by **Xsolla**.
+Depending on the checkout arrangement, an Xsolla group company may act as merchant of record. When it does, the Xsolla entity shown during checkout or on the receipt may be responsible under its applicable terms for payment processing, applicable transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.
 
-Depending on the applicable Xsolla checkout arrangement, an Xsolla group company may act as the **merchant of record** for the transaction. When Xsolla acts as merchant of record, the applicable Xsolla entity is the seller/payment counterparty shown during checkout or on the receipt and may be responsible under its terms for payment processing, applicable transaction taxes/VAT, fraud screening, refunds, payment disputes, and chargebacks.
+The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for that transaction. Transaction-specific Xsolla terms and mandatory consumer law apply where relevant.
 
-The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information for a web-shop transaction are determined by the Xsolla checkout and receipt applicable to that transaction. Xsolla currently indicates which refund-policy type applies at checkout, and that transaction-specific policy applies together with mandatory consumer law.
+CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value.
 
-CK-Labs remains responsible for delivering the corresponding TyconX digital entitlement after CK-Labs receives valid confirmation of a successful transaction. CK-Labs may verify Xsolla transaction information before granting, restoring, changing, or removing an entitlement.
+A web-shop purchase does not create a right to advertise, link to, or complete the Xsolla purchase inside an Apple or Google app where the applicable platform rules, country rules, or law do not permit it.
 
-If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the related TyconX entitlement or virtual value so the refunded or invalid purchase is not retained twice.
+## 11. Prices, regional pricing, and future price changes
 
-A web-shop purchase does not create a right to advertise, link to, or complete the Xsolla purchase inside an Apple or Google app where the relevant platform rules do not permit it.
+CK-Labs may change prices, Diamond bundle sizes or quantities, VIP prices, regional prices, currencies, product availability, and promotional offers for **future purchases**.
 
-## 6. Prices, taxes, and currency conversion
+A current price, bundle, discount, or product is not a promise that the same offer will remain available later.
 
-The total price and currency displayed by the applicable checkout provider before you confirm the purchase govern that transaction, subject to correction of obvious pricing errors where permitted by law.
+Prices may differ between Apple App Store, Google Play, the official TycoonX web shop, countries, regions, currencies, and separate promotional sales windows. Platform pricing systems, taxes, VAT, foreign-exchange movements, local pricing conventions, or payment-provider rules may cause local prices to change.
 
-Taxes, VAT, payment-provider charges, and currency conversion may be handled by Apple, Google, Xsolla, CK-Labs, or another authorized payment provider depending on the purchase channel and transaction structure.
+The final total price and currency displayed by the applicable checkout before confirmation govern that transaction, subject to correction of obvious pricing or configuration errors where permitted by law. Mandatory taxes and unavoidable price components will be displayed as required by applicable law.
 
-Your bank, card issuer, mobile carrier, or payment provider may separately impose exchange-rate, foreign-transaction, or other charges that CK-Labs does not control.
+A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price. A later price decrease does not automatically create a right to a refund, credit, partial refund, price match, additional Diamonds, or additional VIP time. A later price increase does not create an additional charge for an already completed one-time purchase.
 
-## 7. Purchase delivery and verification
+Lifetime VIP may be sold at different prices in different genuine sales windows. Purchasing during one sales window does not create a right to a later lower promotional price or a promise that any future sales window will use the same price.
 
-A paid entitlement is delivered only after the applicable payment channel reports a valid successful transaction and any required purchase validation is completed.
+Where a jurisdiction imposes a specific reference-price, price-history, or discount-disclosure rule on the particular product or offer, the applicable marketing and checkout must follow that rule.
 
-Network interruptions, delayed store notifications, fraud review, incomplete payment authentication, payment-provider delays, or service outages may temporarily delay delivery.
+If CK-Labs later introduces a recurring subscription or another recurring-charge product, the price-change, renewal, notice, consent, and cancellation rules applicable to that product apply separately. These one-time purchase rules do not authorize an undisclosed recurring charge.
 
-If you were charged but did not receive the purchased entitlement, contact TyconX Support and provide the order or transaction identifier shown on your receipt. CK-Labs may verify the transaction with Apple, Google, Xsolla, or the applicable provider before granting, restoring, changing, or refunding an entitlement.
+## 12. Checkout information and payment confirmation
 
-CK-Labs may reject or reverse duplicate grants created by retries, replayed webhooks, forged receipts, manipulated clients, compromised credentials, or similar technical or fraudulent activity.
+Before a consumer places a paid order, the applicable checkout must present legally required pre-contract information clearly and at the legally required point in the flow.
 
-## 8. Refunds, reversals, and chargebacks
+Depending on the transaction and applicable law, this can include the main characteristics of the product, the total price including mandatory taxes and charges, duration or termination information, delivery information, material functionality, compatibility or interoperability information for digital products, accepted payment methods, delivery restrictions, and the identity and contact information of the contracting trader.
 
-Refund rights depend on the purchase channel, product type, country, applicable platform/payment-provider rules, and mandatory consumer law.
+Where German law applies to an online checkout creating a payment obligation, the final ordering step must make that payment obligation clear in the manner required by law. CK-Labs will not rely on hidden wording, preselected paid extras, or an ambiguous final-order control to create a payment obligation.
 
-A refund or payment reversal does not entitle a user to keep both the returned money and the corresponding paid digital value.
+If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact, the applicable checkout or offer must disclose it before the order is placed. Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing merely because prices differ between regions.
 
-If a payment is refunded, reversed, cancelled, charged back, or found invalid after content has been credited, CK-Labs may, subject to applicable law:
+## 13. German electronic withdrawal function
 
-- revoke the corresponding VIP or other entitlement;
-- remove the corresponding unused Diamonds or virtual value;
-- reverse game transactions that directly resulted from the invalid paid value;
-- apply an equivalent balance correction where refunded value has already been consumed or transferred; or
-- temporarily restrict purchase/economy functions while a payment dispute is investigated.
+For covered distance contracts concluded through an online user interface, German law requires an electronic withdrawal function while the statutory withdrawal period is running.
 
-CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse a specific invalid transaction or as otherwise permitted by law.
+Where that requirement applies to a TycoonX transaction and CK-Labs is the contracting trader responsible for the online interface, CK-Labs must provide the legally required clearly labelled, continuously available, prominently placed, easily accessible withdrawal function, confirmation step, and receipt confirmation on a durable medium.
 
-You must not knowingly file a false fraud report or abusive chargeback for a purchase you authorized and received.
+Where Apple, Google, Xsolla, or another provider is the contracting merchant or controls the legally relevant purchase and withdrawal interface, that provider’s compliant withdrawal or refund flow may be the applicable route. This allocation of roles does not remove a mandatory withdrawal right.
 
-Nothing in this section limits refund, price-reduction, termination, withdrawal, warranty, or other rights that cannot legally be waived.
+The electronic withdrawal function supplements rather than removes any other legally valid way a consumer may exercise a withdrawal right.
 
-## 9. EU/EEA and German withdrawal rights
+## 14. Delivery, restore, and authoritative records
 
-Consumers may have a statutory right of withdrawal depending on the product, purchase channel, country, and manner in which a digital product is supplied.
+A paid entitlement is delivered only after the applicable payment channel reports a valid successful transaction and required validation is completed. Network interruptions, provider delays, fraud review, incomplete authentication, store outages, or service outages may delay delivery.
 
-### 9.1 Immediately supplied digital content such as Diamonds
+Lifetime VIP should be restorable or recoverable after verification while valid. A valid 30-Day VIP should be restored from authoritative account or server records where applicable. Diamonds are consumable purchases and are not restored as a second purchase after consumption.
 
-Where applicable law permits the statutory withdrawal right for digital content not supplied on a physical medium to expire when supply begins, the right expires only if **all legally required conditions** are satisfied. For German consumers this includes, where applicable, the required express consent to begin performance before the withdrawal period expires, acknowledgement that this causes the withdrawal right to expire when performance begins, and the required contractual confirmation.
+Where a client display conflicts with reliable authoritative server records, signed store records, provider transaction records, or verified backups, CK-Labs may use the reliable authoritative records to correct the account, subject to mandatory legal rights and the user’s ability to challenge an incorrect decision through Support.
 
-TyconX or the applicable checkout provider should obtain this consent and acknowledgement separately and clearly when legally required. Merely accepting these Terms is not intended to substitute for a transaction-specific consent where the law requires one.
+## 15. Obvious errors, failed payments, and duplicate grants
 
-### 9.2 Time-limited digital service such as 30-Day VIP
+If a checkout, catalog, currency, tax, product, quantity, or entitlement configuration contains an obvious error, CK-Labs or the applicable payment provider may correct the error for future transactions and, where legally permitted, cancel an unfulfilled erroneous transaction and refund the amount actually paid rather than provide unintended value. Mandatory rights and any already binding contract remain governed by applicable law.
 
-A 30-Day VIP is supplied over a period of time. Immediate activation does not automatically eliminate every statutory withdrawal right merely because access has begun.
+A screenshot, stale cached display, manipulated client, outdated app version, unofficial source, or client-side display error does not override a valid final checkout record or reliable authoritative server and payment-provider records.
 
-Where applicable law permits performance to begin during a withdrawal period, the checkout may request the consumer's express request for early performance. If the consumer validly withdraws while a statutory withdrawal right still exists, payment for service already supplied, if any, will be determined only as permitted by applicable law.
+Duplicate entitlements or virtual value created by retries, replayed webhooks, store-notification duplication, race conditions, bugs, restore errors, compromised credentials, or other technical failures may be removed or consolidated so the user receives only the valid value actually purchased.
 
-### 9.3 Ongoing entitlement such as Lifetime VIP
+If a payment is pending, rejected, reversed, cancelled, fails fraud review, or is never confirmed, CK-Labs may delay or withhold the corresponding entitlement until a valid successful transaction is confirmed.
 
-Lifetime VIP is also an entitlement supplied over time. Its one-time purchase price and non-renewing nature do not by themselves eliminate statutory withdrawal rights or mandatory digital-service remedies.
+## 16. Promotions, coupons, and goodwill
 
-Any early-performance request, expiry of a withdrawal right, proportional payment following withdrawal, or other consequence applies only where the legal requirements for the specific transaction are satisfied.
+Promotions may be limited by time, country, platform, account, purchase history, eligibility, quantity, redemption count, or other clearly stated conditions. Unless the offer states otherwise, promotions cannot be combined and do not create entitlement to a future promotion.
 
-CK-Labs will not use one blanket "no refunds" or "you waive all withdrawal rights" clause for Diamonds, 30-Day VIP, and Lifetime VIP because the legal treatment can differ.
+Users must not exploit technical errors, duplicate coupon redemption, manipulated region or identity information, automated purchase abuse, refund cycling, account farming, or other methods to obtain promotional value beyond the genuine offer.
 
-### 9.4 Provider-operated refund flows
+Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.
 
-Apple, Google, Xsolla, or another payment provider may administer some or all refund or withdrawal requests for purchases made through that provider. CK-Labs may require use of the provider's process where the provider controls the payment transaction, without reducing mandatory rights.
+A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, beta benefit, or tester grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.
 
-## 10. Game integrity, exploits, automation, and cheating
+## 17. Refunds, reversals, and chargebacks
+
+Refund rights depend on the purchase channel, product type, country, applicable provider rules, and mandatory consumer law. A refund or payment reversal does not entitle a user to keep both the returned money and the corresponding paid digital value.
+
+If a payment is refunded, reversed, cancelled, charged back, or found invalid after value has been credited, CK-Labs may, subject to applicable law:
+
+- revoke the related VIP or other entitlement;
+- remove corresponding unused Diamonds or virtual value;
+- reverse directly related invalid game transactions;
+- apply an equivalent correction where refunded value was already consumed or transferred; or
+- temporarily restrict purchase and economy functions while a payment dispute is investigated.
+
+CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse the specific invalid transaction or as otherwise permitted by law.
+
+Knowingly filing false fraud reports, abusive chargebacks, or repeated payment disputes for purchases that were authorized and received may lead to purchase restrictions or account enforcement after reasonable investigation, without limiting genuine fraud reporting or consumer rights.
+
+Refunds are ordinarily processed through the payment channel that handled the purchase and, where the provider requires it, to the original payment method. Currency conversion differences, bank fees, card-issuer fees, or exchange-rate movements outside CK-Labs control remain subject to provider rules and mandatory law.
+
+## 18. EU and German withdrawal and digital-product rights
+
+Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.
+
+For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only when every legally required condition is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation.
+
+A 30-Day VIP and Lifetime VIP are supplied over time. Immediate activation or a one-time purchase price does not by itself eliminate every statutory withdrawal or digital-service remedy. Any early-performance request, proportional payment after withdrawal, termination, or other consequence applies only where the legal requirements for that transaction are satisfied.
+
+Accepting these general Terms is not intended to replace a separate transaction-specific consent where the law requires one.
+
+## 19. Game integrity, exploits, automation, and cheating
 
 You must not:
 
-- hack, tamper with, exploit, interfere with, or abuse the Service;
-- intentionally use bugs, race conditions, duplicated transactions, invalid receipts, manipulated clients, unauthorized APIs, scripts, bots, macros, or automation to obtain an unfair advantage;
-- bypass rate limits, security controls, purchase validation, anti-fraud systems, access controls, or game restrictions;
-- create or operate accounts to evade sanctions, limits, bans, or payment restrictions;
-- knowingly receive, launder, move, hide, or retain assets generated through exploits, fraud, unauthorized money transfers, or manipulated game state; or
-- attack, overload, scrape, probe, or disrupt the Service or its infrastructure.
+- hack, tamper with, exploit, interfere with, or abuse TycoonX;
+- intentionally use bugs, race conditions, duplicated transactions, invalid receipts, manipulated clients, unauthorized APIs, scripts, bots, macros, or automation for unfair advantage;
+- bypass security, rate limits, purchase validation, anti-fraud systems, access controls, or game restrictions;
+- evade sanctions, limits, bans, or payment restrictions; or
+- knowingly receive, move, hide, or retain assets generated through exploits, fraud, unauthorized transfers, or manipulated game state.
 
 If an exploit, hack, bug, payment error, unauthorized tool, compromised system, or data corruption creates invalid game state, CK-Labs may use authoritative server records, transaction records, backups, audit logs, and other reliable evidence to restore integrity.
 
-We may invalidate, reverse, remove, recalculate, or roll back affected game transactions, balances, assets, items, rewards, entitlements, scores, company state, market activity, or other records. These corrections may affect accounts that received invalid assets even if the current holder did not personally create the exploit, provided we act reasonably and do not remove legitimately purchased value without the correction, replacement, refund, or other remedy required by applicable law.
+CK-Labs may invalidate, reverse, remove, recalculate, or roll back affected transactions, balances, assets, items, rewards, entitlements, scores, company state, market activity, or other records. Corrections may affect accounts that received invalid assets even if the current holder did not create the exploit, provided CK-Labs acts reasonably and preserves any remedy required for legitimate paid value.
 
-## 11. Account compromise and unauthorized activity
+## 20. Account compromise and unauthorized activity
 
-If your account is compromised, contact Support as soon as possible. CK-Labs may investigate available server logs and may restore or correct game state where reasonably verifiable and technically feasible.
+If your account is compromised, contact TycoonX Support as soon as possible. CK-Labs may investigate available server logs and may restore or correct game state where reasonably verifiable and technically feasible, but cannot promise that every action, trade, transfer, deletion, or consequence can be reversed.
 
-We cannot promise that every action, trade, message, transfer, market transaction, deletion, or other consequence of account compromise can be reversed.
+To the extent permitted by law, CK-Labs is not responsible for losses caused solely by a user’s disclosure of credentials, insecure device, unauthorized account sharing, or failure to use reasonable security measures. This does not exclude liability for a security failure caused by CK-Labs or liability that cannot legally be excluded.
 
-To the extent permitted by law, CK-Labs is not responsible for losses caused solely by your disclosure of credentials, insecure device, unauthorized account sharing, or failure to use reasonable security measures. This does not exclude liability for a security failure caused by CK-Labs or any liability that cannot legally be excluded.
+## 21. Economy balancing, corrections, and resets
 
-## 12. Economy balancing and corrections
+To keep the multiplayer economy functional, fair, and technically stable, CK-Labs may make balancing changes to production speeds, prices, rewards, taxes, limits, demand, supply, formulas, energy costs, probabilities, NPC behavior, market rules, company rules, progression, and similar mechanics.
 
-TyconX is a persistent multiplayer simulation. To keep the economy functional, fair, and technically stable, CK-Labs may make balancing changes, including changes to production speeds, prices, rewards, taxes, limits, demand, supply, formulas, energy costs, probabilities, NPC behavior, market rules, company rules, progression, and similar mechanics.
+CK-Labs may correct obvious errors, duplicated rewards, impossible balances, corrupted records, exploit-generated value, unintended calculations, or other invalid game state.
 
-We may correct obvious errors, duplicated rewards, impossible balances, corrupted records, exploit-generated value, or calculations that did not operate as intended.
+A broad economy reset, server reset, migration, or rollback affecting legitimate paid digital value will be handled subject to applicable law. These Terms do not create an unlimited right to confiscate legitimately purchased value without any remedy where mandatory law requires one.
 
-For paid digital products supplied over time, changes that materially impair access or use will be handled in accordance with applicable mandatory digital-content and digital-service law.
+## 22. Updates, supported versions, and compatibility
 
-## 13. Availability, maintenance, outages, and recovery
+TycoonX may require users to install reasonable updates or use supported app versions where necessary for security, anti-fraud controls, compatibility, legal compliance, platform requirements, or correct operation of online features.
 
-The Service may occasionally be unavailable because of maintenance, updates, security events, hosting failures, network failures, third-party outages, attacks, emergency fixes, capacity issues, or events outside our reasonable control.
+CK-Labs may stop supporting obsolete app versions, devices, operating systems, APIs, or payment integrations when continued support is no longer reasonably practicable, provided mandatory update, conformity, notice, and remedy obligations are respected.
 
-We do not guarantee uninterrupted, error-free, latency-free, or permanently available operation.
+A user who intentionally continues using an unsupported or materially outdated client may experience unavailable features or incorrect local display until a supported version is installed. Authoritative server and payment records remain controlling for entitlement verification, subject to mandatory rights.
 
-CK-Labs may use backups, snapshots, transaction logs, or other recovery methods following a serious incident. Recovery may result in the loss or reversal of recent game actions that occurred after the latest reliable recovery point.
+## 23. Third-party services and provider changes
 
-Any limitation in this section applies only to the extent permitted by law and does not remove mandatory rights relating to the supply or conformity of paid digital products.
+TycoonX depends on third-party platforms and infrastructure that may include Apple, Google, Xsolla, hosting, database, network, authentication, storage, and other providers. Their independent outages, policy changes, regional restrictions, account actions, or technical failures may affect TycoonX.
 
-## 14. Security incidents, hacks, and emergency measures
+CK-Labs may replace, add, or discontinue payment processors, infrastructure providers, authentication methods, or platform integrations for valid technical, commercial, security, legal, or availability reasons, subject to applicable law and reasonable continuity of valid paid entitlements where required.
 
-No online service can be guaranteed completely secure. CK-Labs may take emergency measures to protect TyconX, users, and payments, including disabling features, forcing reauthentication, invalidating sessions, freezing affected transactions, rolling back demonstrably corrupted game state, or temporarily taking servers offline.
+CK-Labs is not responsible for independent third-party conduct beyond the extent imposed by applicable law, but remains responsible for CK-Labs obligations that cannot be shifted to a third party.
 
-CK-Labs will not be responsible for losses caused solely by circumstances outside its reasonable control to the maximum extent permitted by law. This does not exclude liability that cannot legally be excluded.
+## 24. Availability, outages, security incidents, and force majeure
 
-## 15. Permanent discontinuation of TyconX
+The Service may occasionally be unavailable because of maintenance, updates, security events, hosting failures, network failures, third-party outages, cyberattacks, emergency fixes, capacity issues, natural disasters, governmental action, labor disruption, war, widespread infrastructure failure, or other events outside reasonable control.
 
-CK-Labs may permanently discontinue all or part of TyconX for a valid reason, including severe technical or security problems, legal or regulatory requirements, platform removal, payment-provider restrictions, unsustainable operating conditions, force majeure, or a business decision to cease operating the Service.
+CK-Labs may temporarily disable purchases, markets, transfers, multiplayer functions, logins, or other features when reasonably necessary to protect users, payment integrity, data, or infrastructure.
 
-Where legally required and reasonably practicable, we will provide advance notice through the Service, email, account notice, or another durable medium.
+CK-Labs may use backups, snapshots, transaction logs, or other recovery methods after a serious incident, including forcing reauthentication, invalidating sessions, freezing affected transactions, or rolling back demonstrably corrupted game state. Mandatory rights relating to paid digital products remain unaffected.
 
-When the Service permanently ends, access to online game data, virtual items, Diamonds, accounts, companies, leaderboards, and VIP benefits may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.
+No clause in these Terms excludes liability where such exclusion is prohibited by law.
 
-Lifetime VIP ends when the TyconX Service permanently ends, as clearly disclosed in Section 4.2. This does not waive any mandatory refund, price-reduction, termination, warranty, or other consumer remedy that may apply because of the circumstances or timing of discontinuation.
+## 25. Permanent discontinuation
 
-## 16. Suspension and termination
+CK-Labs may permanently discontinue all or part of TycoonX for a valid reason, including severe technical or security problems, legal or regulatory requirements, platform removal, payment-provider restrictions, unsustainable operating conditions, force majeure, or a business decision to cease operating the Service.
 
-CK-Labs may warn, restrict, suspend, reset, or terminate accounts for serious or repeated violations of these Terms, fraud, cheating, security threats, unlawful activity, abusive conduct, payment abuse, or conduct that materially harms other users or the Service.
+Where legally required and reasonably practicable, CK-Labs will provide advance notice. When TycoonX permanently ends, online accounts, Diamonds, virtual items, companies, leaderboards, and VIP benefits may also end. Lifetime VIP ends with the commercial operating lifetime of the Service.
 
-Where immediate action is reasonably necessary to protect users, game integrity, payments, or infrastructure, we may suspend first and investigate afterward.
+Virtual items do not automatically become redeemable for cash merely because the Service closes. Mandatory refund, price-reduction, termination, warranty, or other consumer remedies that apply because of the circumstances or timing of discontinuation remain unaffected.
 
-Where appropriate, you may contact Support to dispute an enforcement decision. We may preserve evidence and security records where legally permitted or required.
+## 26. Business transfer, sale, merger, or successor operator
 
-Termination for cause may result in loss of access to game progress and entitlements, subject to mandatory law and applicable platform rules.
+CK-Labs may sell, transfer, reorganize, merge, finance, or otherwise transfer the TycoonX business, technology, assets, or operation to a successor or affiliated entity.
 
-## 17. User content and community features
+Where permitted by law, rights and obligations connected with TycoonX may be transferred to the successor so the Service and valid entitlements can continue. CK-Labs will provide notice, obtain consent, or preserve termination and objection rights where applicable law requires it.
 
-You remain responsible for content you submit through chat, profiles, support, companies, forums, or other social features.
+A business transfer does not by itself erase a valid paid entitlement. If the successor continues TycoonX, valid entitlements should continue according to the applicable Terms and mandatory law, subject to lawful transition arrangements.
 
-You must not submit unlawful, infringing, threatening, harassing, hateful, fraudulent, privacy-invasive, sexually exploitative, malicious, or otherwise prohibited content.
+## 27. Suspension and termination
 
-You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, reproduce, process, display, transmit, moderate, and technically adapt user content only as reasonably necessary to operate, secure, moderate, and improve the Service, subject to applicable privacy and intellectual-property law.
+CK-Labs may warn, restrict, suspend, reset affected invalid state, or terminate accounts for serious or repeated violations of these Terms, fraud, cheating, security threats, unlawful activity, abusive conduct, payment abuse, ban evasion, or conduct that materially harms other users or the Service.
 
-## 18. Intellectual property
+Where immediate action is reasonably necessary to protect users, game integrity, payments, or infrastructure, CK-Labs may suspend first and investigate afterward. Where appropriate, users may contact Support to dispute an enforcement decision.
 
-TyconX, including its software, game systems, visual design, branding, databases, text, artwork, audio, and other protected elements, is owned by or licensed to CK-Labs and is protected by applicable intellectual-property laws.
+Termination for cause remains subject to mandatory law and applicable platform rules. CK-Labs will not rely on this section to eliminate non-waivable consumer remedies.
 
-These Terms grant you only a personal, limited, revocable, non-exclusive, non-transferable right to use the Service for lawful personal entertainment, subject to these Terms.
+## 28. User content and community features
 
-## 19. Third-party platforms and services
+If TycoonX allows you to submit messages, names, descriptions, images, creative works, or other content, you remain responsible for content you submit and must have the rights necessary to submit it.
 
-The Service may depend on third parties such as Apple, Google, Xsolla, Supabase, cloud infrastructure, payment processors, authentication providers, analytics providers, notification services, and hosting providers.
+You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, store, reproduce, display, format, translate, transmit, moderate, and technically adapt submitted content only as reasonably necessary to operate, secure, promote, and improve TycoonX, subject to applicable privacy and intellectual-property law.
 
-Their services and terms may affect availability or functionality. CK-Labs is not responsible for independent acts or failures of third parties beyond the extent for which CK-Labs is legally responsible under mandatory law.
+CK-Labs may remove or restrict content that violates these Terms, community rules, law, third-party rights, platform rules, or reasonable safety requirements. Mandatory rights concerning user content remain unaffected.
 
-## 20. Apple-specific license terms
+## 29. CK-Labs intellectual property
 
-For the iOS version, any license between you and CK-Labs is between you and CK-Labs only, not Apple. CK-Labs, not Apple, is responsible for TyconX and its content, maintenance and support, warranties to the extent applicable, product claims, legal or regulatory compliance claims, and intellectual-property claims relating to TyconX.
+TycoonX software, branding, interfaces, game systems, artwork, text, databases, and other CK-Labs materials are protected by intellectual-property and other applicable laws.
 
-The license is non-transferable and limited to use on Apple-branded products that you own or control, as permitted by the applicable Apple Media Services usage rules, including permitted Family Sharing or similar Apple account features where applicable.
+Subject to these Terms, CK-Labs grants you a limited, personal, non-exclusive, non-transferable, revocable right to use TycoonX for its intended consumer use while the Service and your account remain available. This license does not permit copying, reverse engineering except where law expressly permits it, resale, commercial exploitation, or unauthorized distribution.
 
-You must comply with applicable third-party terms when using TyconX. You represent that you are not located in a country or region subject to a United States Government embargo or designated as supporting terrorism and that you are not on a United States Government prohibited or restricted party list.
+## 30. Liability and statutory rights
 
-Apple and Apple's subsidiaries are third-party beneficiaries of these Apple-specific license terms and may enforce them against you as a third-party beneficiary after your acceptance of these Terms. Apple has no obligation to provide maintenance or support for TyconX.
+CK-Labs liability is unlimited where limitation is prohibited by law, including for intent, gross negligence, injury to life, body, or health, fraudulently concealed defects, expressly assumed guarantees, and liability under mandatory product-liability law.
 
-## 21. Changes to TyconX and these Terms
+For damage caused by simple negligence, CK-Labs is liable for breach of essential contractual obligations only to the extent permitted by law. In such cases, liability may be limited to damage that was foreseeable and typical for the contract at the time it was concluded. Any mandatory stricter liability remains unaffected.
 
-We may update these Terms when reasonably necessary because of new features, legal requirements, security issues, platform requirements, payment-provider changes, business-model changes, abuse patterns, or changes to the Service.
+Nothing in these Terms limits statutory rights for defective, non-conforming, unavailable, or materially changed digital products where those rights cannot be waived.
 
-We will provide notice of material changes where required by law. Changes will not retroactively remove rights that have already accrued under mandatory law.
+## 31. Changes to these Terms
 
-If applicable law requires your consent to a change, the change will not bind you without that consent.
+CK-Labs may update these Terms to reflect changes in law, platform requirements, payment providers, security needs, technical operation, new features, or other valid reasons.
 
-## 22. Statutory rights for digital products
+Material changes that affect existing consumer rights or ongoing paid digital services will be communicated in the manner and timeframe required by applicable law. A change to these Terms does not retroactively authorize conduct that was unlawful when the relevant transaction occurred.
 
-If you are a consumer, mandatory laws governing digital content and digital services may give you rights relating to supply, conformity, updates, remedies, price reduction, termination, reimbursement, and certain modifications.
+Where applicable law requires express consent rather than notice or continued use, CK-Labs will request that consent.
 
-For consumers in Germany, this includes, where applicable, the statutory rules on digital products in **Sections 327 et seq. of the German Civil Code (BGB)**.
+## 32. Governing law, disputes, and severability
 
-These Terms are intended to operate together with those mandatory rights, not replace them.
+These Terms are governed by German law, without depriving consumers of mandatory protections available under the law of their habitual country of residence where those protections apply.
 
-## 23. Liability
+For consumers, jurisdiction is determined by mandatory statutory rules. These Terms do not impose mandatory arbitration or require a consumer to litigate in a location where applicable law gives the consumer another forum.
 
-Nothing in these Terms excludes or limits liability where exclusion or limitation is prohibited by law.
+If a provision of these Terms is invalid or unenforceable, the remaining provisions remain in effect to the extent legally possible. The invalid provision is replaced only by the applicable statutory rule or a lawful interpretation, not by an unlimited expansion in favor of CK-Labs.
 
-In particular, CK-Labs does not exclude liability for:
+A failure by CK-Labs to enforce a provision once does not automatically waive the right to enforce that provision later.
 
-- intent or gross negligence;
-- injury to life, body, or health caused by negligence or intent;
-- fraudulently concealed defects;
-- guarantees expressly given by CK-Labs;
-- liability under mandatory product-liability law; or
-- other liability that cannot legally be limited.
+## 33. Contact
 
-For damage caused by ordinary negligence, CK-Labs is liable, where permitted by law, only for breach of an essential contractual obligation whose performance is necessary for the proper performance of the contract and on whose performance you may regularly rely. In such cases, liability is limited to the type of damage that was reasonably foreseeable when the contract was concluded.
+TycoonX is operated by **CK-Labs**.
 
-The above limitations also apply, where legally permitted, to employees, representatives, and agents of CK-Labs.
-
-## 24. Governing law and severability
-
-These Terms are governed by the laws of the Federal Republic of Germany, excluding its conflict-of-laws rules, to the extent this choice is permitted.
-
-If you are a consumer and the mandatory consumer law of your country of habitual residence provides greater protection, that mandatory protection remains applicable.
-
-Nothing in these Terms requires a consumer to bring a claim in a court that cannot lawfully be required under applicable jurisdiction rules.
-
-If any provision of these Terms is invalid or unenforceable, the remaining provisions remain effective to the extent permitted by law. The invalid provision will be replaced only to the extent the applicable law itself provides or permits. This section does not create an unlawful reduction-preserving interpretation of an invalid consumer clause.
-
-## 25. Privacy
-
-The TyconX Privacy Policy explains how CK-Labs processes personal data in connection with accounts, gameplay, support, security, Apple/Google/Xsolla transaction confirmations, refunds, payment disputes, and entitlement delivery.
-
-## 26. Contact
-
-TyconX is operated by **CK-Labs**.
-
-For support, purchase issues, account disputes, security reports, or legal questions, use the in-app TyconX Support Center or contact:
+For account, purchase, security, enforcement, or legal questions, use TycoonX Support or contact:
 
 **Email:** cevikdev@gmail.com
 
-For billing or refund matters controlled by Apple, Google, or Xsolla, you may also need to use that provider's official support or refund process.
+For payment-provider-controlled refunds, users may also need to use the applicable Apple, Google, or Xsolla process.
 
-Additional legally required business information must be provided in the applicable legal notice or imprint made available with the Service.
+Additional legally required operator identity, address, registration, and tax details must be made available through the applicable TycoonX legal notice or imprint.
