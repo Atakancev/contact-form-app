@@ -4,7 +4,8 @@ const sections = [
     body: [
       'Diamonds are virtual in-game currency. Purchased Diamonds do not expire solely because time passes, are for use only inside TyconX, and are not redeemable from CK-Labs for cash except where mandatory law requires otherwise.',
       '30-Day VIP is a one-time, non-renewing entitlement lasting 30 consecutive days from activation or availability to the account unless the purchase screen expressly states otherwise.',
-      'Lifetime VIP is a one-time entitlement for the commercial operating lifetime of the TyconX Service for the purchasing account. It does not promise that TyconX will operate forever. This meaning must also be shown clearly at or immediately before checkout.',
+      'Lifetime VIP is a one-time entitlement that may be offered only during selected limited promotional sales windows. It is not a permanently available product. CK-Labs may end or discontinue a sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.',
+      'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten an already valid purchase. Lifetime VIP is intended for the commercial operating lifetime of the TyconX Service for the purchasing account and does not promise that TyconX will operate forever. The commercial-lifetime meaning and the limited-time nature of the offer must be shown clearly at or immediately before checkout.',
     ],
   },
   {
@@ -29,8 +30,8 @@ const sections = [
     body: [
       'Purchases made through the official TyconX web shop may be processed by Xsolla. Depending on the applicable checkout arrangement, an Xsolla group company may act as merchant of record.',
       'When Xsolla acts as merchant of record, the Xsolla entity shown at checkout or on the receipt may be responsible under its applicable terms for payment processing, transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
-      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. CK-Labs remains responsible for delivering the corresponding TyconX entitlement after receiving valid confirmation of successful payment.',
-      'If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value.',
+      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. Xsolla currently indicates which refund-policy type applies at the checkout, and that transaction-specific policy applies together with mandatory consumer law.',
+      'CK-Labs remains responsible for delivering the corresponding TyconX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value.',
     ],
   },
   {
@@ -69,7 +70,8 @@ const sections = [
       'Nothing in this Policy excludes statutory rights that cannot legally be waived. For German consumers, Sections 327 et seq. BGB may apply to paid digital content and digital services.',
       'For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only if every legal requirement is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation. Accepting the general Terms is not intended to replace a separate consent where the law requires one.',
       'A 30-Day VIP is supplied over a period of time. Immediate activation does not automatically eliminate every statutory withdrawal right merely because access has begun. Where applicable law allows early performance, the checkout may request the consumer’s express request for it, and any amount due after a valid withdrawal is determined only as permitted by law.',
-      'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds and 30-Day VIP because their legal treatment can differ.',
+      'Lifetime VIP is also an entitlement supplied over time. Its one-time purchase price and non-renewing nature do not by themselves eliminate statutory withdrawal rights or mandatory digital-service remedies. Any early-performance request, expiry of a withdrawal right, proportional payment following withdrawal, or other consequence applies only where the legal requirements for that transaction are satisfied.',
+      'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.',
     ],
   },
   {
@@ -93,7 +95,7 @@ export default function TyconXPurchaseRefundPolicy() {
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Purchases & Refunds</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            This policy covers Diamonds, one-time 30-Day VIP, Lifetime VIP, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
+            This policy covers Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP offers, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
           </p>
         </div>
       </div>
