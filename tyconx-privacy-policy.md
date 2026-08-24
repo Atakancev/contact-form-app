@@ -68,7 +68,7 @@ We process information where necessary to:
 - prevent duplicate delivery, fraudulent receipts, chargeback abuse, exploits, unauthorized transfers, cheating, account takeover, and other abuse;
 - investigate incidents and restore or correct corrupted or invalid game state;
 - provide support, handle purchase or entitlement disputes, and respond to appeals;
-- moderate community features and enforce the TycoonX Terms of Service;
+- moderate community features and enforce the TycoonX Terms of Service and Community Standards;
 - operate analytics, diagnose failures, improve stability, balance the economy, and develop features;
 - send service messages such as security, purchase, support, legal, or operational notices;
 - comply with legal, accounting, tax, consumer-protection, fraud-prevention, and regulatory obligations;
@@ -82,7 +82,7 @@ Where the GDPR or similar law applies, we rely on one or more of the following l
 For processing needed to provide the Service you requested, including account access, gameplay, synchronized game state, purchase delivery, valid entitlement restoration, and support.
 
 ### Legitimate interests
-For interests such as protecting accounts and infrastructure, preventing fraud and cheating, preserving game-economy integrity, diagnosing technical problems, maintaining service security, defending claims, and improving TycoonX, where those interests are not overridden by your rights and interests.
+For interests such as protecting accounts and infrastructure, preventing fraud and cheating, preserving game-economy integrity, diagnosing technical problems, maintaining service security, defending claims, operating proportionate community moderation, and improving TycoonX, where those interests are not overridden by your rights and interests.
 
 ### Legal obligation
 For processing required by applicable law, including accounting, tax, consumer-protection, lawful authority requests, and legally required recordkeeping.
@@ -113,7 +113,7 @@ Apple, Google, Xsolla, or other authorized payment or platform providers where n
 Apple, Google, Xsolla, banks, card networks, and other payment participants may act as independent controllers for parts of their own payment, fraud, tax, account, or platform processing. Their own privacy notices and legal obligations apply to that independent processing.
 
 ### Other players
-Information you intentionally make available through social or multiplayer features may be visible to other users, such as profile information, chats, leaderboards, company membership, market listings, or public game actions.
+Information you intentionally make available through social or multiplayer features may be visible to other users, such as profile information, public chats, leaderboards, company membership, market listings, or public game actions.
 
 ### Authorities and legal recipients
 We may disclose information where required by law, valid legal process, or where reasonably necessary to protect users, prevent fraud, investigate security incidents, or establish, exercise, or defend legal claims.
@@ -121,7 +121,15 @@ We may disclose information where required by law, valid legal process, or where
 ### Business transfers
 If TycoonX or CK-Labs is reorganized, sold, merged, financed, or transferred, relevant information may be transferred as part of that transaction subject to applicable data-protection law and appropriate notice or other safeguards where required.
 
-## 6. International Transfers
+## 6. Public and Private Community Content
+
+Content you intentionally make public in TycoonX may be displayed to other users as part of the Service. Where the TycoonX Terms and Community Standards permit public UGC to be featured for TycoonX community or promotional purposes, CK-Labs will use an appropriate legal basis and respect the context in which the content was shared, applicable settings, third-party rights, and mandatory law. If consent is required for a particular promotional use, CK-Labs will request it separately.
+
+Private direct messages, private support communications, and non-public reports are processed as needed to provide, secure, moderate, support, investigate, or legally protect the Service. They are not made public or used for public promotional purposes merely because CK-Labs must process them for those operational purposes.
+
+Moderation or legal-review access to private communications is limited to circumstances where such processing is reasonably necessary and lawful, for example responding to a report, protecting users, investigating abuse or fraud, complying with law, or establishing or defending legal claims.
+
+## 7. International Transfers
 
 TycoonX and some service providers may process information in countries outside your country of residence.
 
@@ -129,7 +137,7 @@ Where the GDPR or similar transfer restrictions apply, we use an appropriate leg
 
 Where applicable law gives you a right to information about safeguards used for an international transfer, you may contact TycoonX Support to request further information or an available copy of the relevant safeguards, subject to lawful redactions and third-party confidentiality requirements.
 
-## 7. Data Retention
+## 8. Data Retention
 
 We keep personal data only for as long as reasonably necessary for the purpose for which it was collected and for any additional period required or permitted by law.
 
@@ -138,12 +146,13 @@ Retention may differ by data category. For example:
 - support records may be retained for a reasonable period to handle follow-up questions, disputes, abuse, or legal claims;
 - purchase, refund, entitlement, restore, transaction, accounting, and tax records may be retained for legally required, contract-performance, fraud-prevention, or dispute-related periods;
 - security, anti-fraud, exploit, moderation, and audit records may be retained for a reasonable period necessary to protect the Service, detect repeat abuse, investigate incidents, or establish or defend claims;
+- private communications are not retained indefinitely merely because they were once reviewed for moderation; any longer retention must have a separate lawful need such as an active dispute, safety investigation, legal claim, or legal obligation;
 - backup copies may remain for a limited backup lifecycle before deletion or overwrite;
 - anonymized or genuinely aggregated data may be retained where it no longer identifies a person.
 
 When an account is deleted, we delete or anonymize personal data that is no longer necessary, subject to lawful retention requirements, valid entitlement-restoration needs, and technical backup cycles.
 
-## 8. Your Privacy Rights
+## 9. Your Privacy Rights
 
 Depending on applicable law, you may have rights to:
 - access personal data we hold about you;
@@ -159,7 +168,7 @@ You can request account deletion through TycoonX where that option is available 
 
 Certain records may still be retained where required or permitted for legal, tax, accounting, contract-performance, fraud-prevention, security, dispute-resolution, entitlement-restoration, or legal-claims purposes.
 
-## 9. Account Deletion and Paid Entitlements
+## 10. Account Deletion and Paid Entitlements
 
 Deleting your TycoonX account is separate from requesting a payment refund.
 
@@ -171,15 +180,17 @@ A later restore may require reasonable proof that the same purchaser controls th
 
 Refund rights remain governed by the payment provider’s process and applicable mandatory law. Where required by law, we provide remedies and refunds that cannot legally be excluded.
 
-## 10. Children
+## 11. Children and Age-Related Controls
 
 TycoonX is not directed to children below the minimum age permitted for independent use in the user’s jurisdiction. Where parental consent is legally required, the Service should not be used without the required authorization.
+
+CK-Labs may process limited age, age-range, parental-authorization, or platform age-control information where reasonably necessary to comply with law, apply age-appropriate social-feature restrictions, satisfy App Store or Google Play requirements, or protect minors. TycoonX may restrict or disable community features for certain age groups even where the underlying game remains available.
 
 If we learn that personal data was collected from a child in circumstances that do not satisfy applicable law, we may restrict the account and delete the information as required.
 
 Parents or guardians who believe a child has provided personal data unlawfully should contact TycoonX Support.
 
-## 11. Security
+## 12. Security
 
 We use technical and organizational measures designed to protect TycoonX data, such as access controls, authentication controls, encrypted network transport where applicable, monitoring, rate limiting, purchase validation, audit logging, backups, and other safeguards appropriate to the Service.
 
@@ -187,27 +198,27 @@ No online service can guarantee absolute security. If you believe your account h
 
 You are responsible for protecting your own account credentials and devices. This does not reduce CK-Labs obligations for security measures required by applicable law.
 
-## 12. Automated Security and Moderation
+## 13. Automated Security and Moderation
 
 TycoonX may use automated rules, signals, or systems to identify suspicious activity, spam, fraud, abusive content, exploit patterns, invalid purchases, or other conduct that may threaten users or the Service.
 
 Automated signals may lead to review, temporary restrictions, moderation, or investigation. Where applicable law restricts solely automated decisions that produce legal or similarly significant effects, CK-Labs will apply the required safeguards, including human involvement or review where the law requires it.
 
-## 13. Third-Party Links and Services
+## 14. Third-Party Links and Services
 
 TycoonX may link to or interoperate with third-party services. Those third parties may process information under their own privacy policies. CK-Labs is not responsible for independent third-party privacy practices except to the extent applicable law makes CK-Labs responsible.
 
-## 14. Changes to This Privacy Policy
+## 15. Changes to This Privacy Policy
 
-We may update this Policy to reflect changes to TycoonX, data practices, providers, security measures, or legal requirements.
+We may update this Policy to reflect changes to TycoonX, data practices, providers, security measures, community features, or legal requirements.
 
 We will update the “Last updated” date and provide additional notice where applicable law requires it. If a change requires your consent, we will request that consent rather than treating continued use alone as consent.
 
-## 15. Contact
+## 16. Contact
 
 TycoonX is operated by **CK-Labs**.
 
-For privacy requests, account deletion, security reports, purchase-related privacy questions, or other data-protection concerns, contact TycoonX Support or:
+For privacy requests, account deletion, security reports, purchase-related privacy questions, moderation-data questions, or other data-protection concerns, contact TycoonX Support or:
 
 **Email:** cevikdev@gmail.com
 
