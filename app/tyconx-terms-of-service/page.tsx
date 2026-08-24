@@ -202,8 +202,11 @@ const sections = [
     title: 'Updates, supported versions, and compatibility',
     body: [
       'TycoonX may require users to install reasonable updates or use supported app versions where necessary for security, anti-fraud controls, compatibility, legal compliance, platform requirements, or correct operation of online features.',
+      'Where German digital-product law applies, CK-Labs will provide and inform consumers about updates required to keep the relevant digital product in conformity during the legally relevant period, including required security updates.',
+      'If CK-Labs has provided such an update and clearly informed the user that the update is available and of the consequences of not installing it, a user who fails to install it within a reasonable time may lose claims for a lack of conformity caused solely by the missing update to the extent applicable law provides. This applies only where the failure to install was not caused by deficient installation instructions provided by CK-Labs and does not reduce rights relating to an unrelated defect.',
       'CK-Labs may stop supporting obsolete app versions, devices, operating systems, APIs, or payment integrations when continued support is no longer reasonably practicable, provided mandatory update, conformity, notice, and remedy obligations are respected.',
       'A user who intentionally continues using an unsupported or materially outdated client may experience unavailable features or incorrect local display until a supported version is installed. Authoritative server and payment records remain controlling for entitlement verification, subject to mandatory rights.',
+      'Requiring a supported version does not permit CK-Labs to avoid a legally required update, security update, conformity remedy, or entitlement that remains due under applicable law.',
     ],
   },
   {
