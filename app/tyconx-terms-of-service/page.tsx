@@ -31,16 +31,20 @@ const sections = [
   {
     title: 'Lifetime VIP',
     body: [
-      'Lifetime VIP is a one-time digital entitlement intended to remain active for the commercial operating lifetime of the TyconX Service for the purchasing account, while TyconX continues to be operated and made available by CK-Labs and while the account remains eligible to use the Service.',
+      'Lifetime VIP is a one-time digital entitlement that may be offered only during limited promotional sales windows selected by CK-Labs. It is not a permanently available product. CK-Labs may start, end, shorten, extend, or discontinue a sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.',
+      'The fact that another user previously purchased Lifetime VIP, or that CK-Labs previously ran a Lifetime VIP sales window, does not create a right or expectation that the product will remain available or return later. Ending a sales window affects future availability only and does not by itself cancel or shorten a valid Lifetime VIP entitlement already purchased.',
+      'Any countdown, closing date, or other time-limited sales statement displayed for a Lifetime VIP offer should reflect the genuine sales window communicated for that offer. CK-Labs may later decide to run a separate future promotion, but a later promotion does not create a right to purchase during a closed sales window.',
+      'Lifetime VIP is intended to remain active for the commercial operating lifetime of the TyconX Service for the purchasing account, while TyconX continues to be operated and made available by CK-Labs and while the account remains eligible to use the Service.',
       'Lifetime does not mean the biological lifetime of the purchaser, the lifetime of CK-Labs, any owner, device, platform, or server, and it is not a promise that TyconX will operate forever or for a fixed minimum number of years beyond what mandatory law requires or what a consumer may reasonably expect from the specific offer.',
       'Lifetime VIP may end if TyconX is permanently discontinued, the relevant product or platform is lawfully discontinued and no equivalent access can reasonably be provided, the account is deleted at the user’s request or lawfully terminated for a serious or repeated Terms violation, the purchase is refunded or invalid, or continuation is prohibited by law or platform requirements. Mandatory consumer remedies remain unaffected.',
-      'This commercial-lifetime meaning must also be shown clearly at or immediately before the Lifetime VIP purchase screen so the term Lifetime is not presented as a promise of perpetual operation.',
+      'The commercial-lifetime meaning and the limited-time nature of the current sales offer must also be shown clearly at or immediately before the Lifetime VIP purchase screen.',
     ],
   },
   {
     title: 'VIP features may evolve',
     body: [
       'VIP may include changing gameplay benefits, convenience features, cosmetics, limits, automation features, access privileges, or other benefits. CK-Labs may improve, replace, rebalance, add, or remove individual VIP features for valid reasons such as game balance, security, technical limitations, legal compliance, platform requirements, abuse prevention, or evolution of the Service.',
+      'For a digital product supplied continuously over time, a change beyond what is necessary to keep the product contract-compliant will be made only on a contractual basis that provides a valid reason, without additional cost to the consumer, and with clear information where mandatory law requires this. If a change more than insignificantly impairs access or use, mandatory law may require advance notice on a durable medium and may give the consumer a time-limited right to terminate without charge.',
       'Where mandatory law requires advance information, a valid contractual reason, continued access to an unchanged version, price reduction, termination rights, or another remedy, those requirements remain applicable.',
     ],
   },
@@ -72,7 +76,7 @@ const sections = [
     title: 'TyconX web shop powered by Xsolla',
     body: [
       'Purchases made through the official TyconX web shop may be processed by Xsolla. Depending on the checkout arrangement, an Xsolla group company may act as merchant of record. When it does, the Xsolla entity shown at checkout or on the receipt may be responsible under its terms for payment processing, applicable transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
-      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information for a web-shop transaction are determined by the checkout and receipt applicable to that transaction.',
+      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information for a web-shop transaction are determined by the checkout and receipt applicable to that transaction. Xsolla currently presents the refund-policy type applicable to a purchase in its checkout, and that transaction-specific policy applies together with mandatory law.',
       'CK-Labs remains responsible for delivering the corresponding TyconX digital entitlement after CK-Labs receives valid confirmation of a successful transaction. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the related TyconX entitlement or virtual value.',
       'A web-shop purchase does not create a right to advertise, link to, or complete the Xsolla purchase inside an Apple or Google app where the relevant platform rules do not permit it.',
     ],
@@ -98,7 +102,8 @@ const sections = [
     body: [
       'For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only if every legal requirement is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation. Merely accepting these Terms is not intended to replace a separate consent where the law requires one.',
       'A 30-Day VIP is supplied over a period of time. Immediate activation does not automatically remove every statutory withdrawal right merely because access has begun. Where the law permits early performance, the checkout may request the consumer’s express request for it, and any amount due after a valid withdrawal is determined only as permitted by law.',
-      'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds and 30-Day VIP because their legal treatment can differ.',
+      'Lifetime VIP is also an entitlement supplied over time rather than a single Diamond-style consumable delivery. Its one-time price and non-renewing nature do not by themselves eliminate statutory withdrawal or digital-service remedies. Any early-performance request, expiry of a withdrawal right, proportional payment after withdrawal, or other consequence applies only where the legal requirements for that specific transaction are satisfied.',
+      'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.',
     ],
   },
   {
@@ -173,7 +178,7 @@ export default function TyconXTermsOfService() {
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Terms of Service</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            These Terms govern TyconX, including Diamonds, one-time 30-Day VIP, Lifetime VIP, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. Mandatory consumer rights remain unaffected.
+            These Terms govern TyconX, including Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP offers, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. Mandatory consumer rights remain unaffected.
           </p>
         </div>
       </div>
@@ -181,7 +186,7 @@ export default function TyconXTermsOfService() {
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-2">
         <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/[0.06] p-5 mb-8">
           <p className="text-zinc-300 text-sm leading-relaxed">
-            Important: Lifetime VIP means the commercial operating lifetime of the TyconX Service for the purchasing account. It is not a promise that TyconX will operate forever. The same meaning must be shown at checkout before purchase.
+            Important: Lifetime VIP is a limited-time promotional product, not a permanently available offer. If purchased, Lifetime VIP means the commercial operating lifetime of the TyconX Service for the purchasing account. It is not a promise that TyconX will operate forever. Both points must be shown at checkout before purchase.
           </p>
         </div>
 
