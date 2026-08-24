@@ -8,7 +8,7 @@ type Step = 'project' | 'name' | 'email' | 'message' | 'success';
 
 const PROJECTS = [
   { label: 'General', icon: null },
-  { label: 'TyconX', icon: 'https://www.atakancevik.com/_next/image?url=%2Ftyconx.jpg&w=128&q=75' },
+  { label: 'TycoonX', icon: 'https://www.atakancevik.com/_next/image?url=%2Ftyconx.jpg&w=128&q=75' },
   { label: 'MafiaX', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmafiax.jpg&w=128&q=75' },
   { label: 'CountFit', icon: 'https://www.atakancevik.com/_next/image?url=%2Fcountfit.jpg&w=128&q=75' },
   { label: 'Memori', icon: 'https://www.atakancevik.com/_next/image?url=%2Fmemori.jpg&w=128&q=75' },
