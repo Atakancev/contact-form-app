@@ -2,71 +2,81 @@ const sections = [
   {
     title: 'Product types',
     body: [
-      'Diamonds are virtual in-game currency. On Apple platforms they are intended to be sold as Consumable In-App Purchases. Purchased Diamonds do not expire solely because time passes and are not redeemable from CK-Labs for cash.',
-      '30-Day VIP is intended to be a one-time, non-renewing entitlement. On Apple platforms it is intended to be configured as a Non-Renewing Subscription. It lasts for 30 consecutive days from activation or availability to the account and does not automatically renew.',
-      'Lifetime VIP is intended to be a Non-Consumable In-App Purchase on Apple platforms. It is a one-time purchase and is restorable while the entitlement remains valid. Lifetime means the commercial lifetime of the TyconX Service while TyconX continues to be operated and made available by CK-Labs. It does not promise that TyconX will operate forever.',
+      'Diamonds are virtual in-game currency. Purchased Diamonds do not expire solely because time passes, are for use only inside TyconX, and are not redeemable from CK-Labs for cash except where mandatory law requires otherwise.',
+      '30-Day VIP is a one-time, non-renewing entitlement lasting 30 consecutive days from activation or availability to the account unless the purchase screen expressly states otherwise.',
+      'Lifetime VIP is a one-time entitlement for the commercial operating lifetime of the TyconX Service for the purchasing account. It does not promise that TyconX will operate forever. This meaning must also be shown clearly at or immediately before checkout.',
     ],
   },
   {
-    title: 'App Store purchases',
+    title: 'Apple App Store purchases',
     body: [
-      'For purchases made through Apple In-App Purchase, Apple processes the payment and provides the App Store transaction record. Apple operates the consumer refund-request process for App Store purchases.',
-      'Users who want to request an Apple refund should use Apple’s official refund process at reportaproblem.apple.com or the refund controls Apple makes available in their region. CK-Labs can investigate delivery, entitlement, account, and game-state issues but does not control whether Apple approves or rejects a refund request.',
-      'If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement, Diamonds, virtual items, or account value so the refunded purchase is not retained twice.',
+      'Apple processes purchases made through Apple In-App Purchase and operates the App Store refund-request process. CK-Labs may investigate delivery and entitlement issues but does not control Apple’s refund decision.',
+      'Purchased Diamonds are intended to be consumable in-app purchases. Lifetime VIP is intended to be a non-consumable purchase and is restorable while valid. One-time 30-Day VIP is intended to be a non-renewing entitlement with CK-Labs maintaining the authoritative account entitlement state where needed.',
+      'If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value so the refunded purchase is not retained twice.',
     ],
   },
   {
-    title: 'Restore Purchases',
+    title: 'Google Play purchases',
     body: [
-      'TyconX should provide a user-initiated Restore Purchases mechanism where applicable. Lifetime VIP is restorable as a non-consumable entitlement.',
-      'For 30-Day VIP, CK-Labs is responsible for restoring the valid non-renewing entitlement state from authoritative account or server records where required.',
-      'Diamonds are consumable purchases and are not restored as a repeat Apple transaction after consumption. The current TyconX account balance is preserved through TyconX account/server state where applicable. A restore operation does not create duplicate value.',
+      'Google processes the transaction through the applicable Google Play billing arrangement and provides transaction or order information used to validate the purchase.',
+      'Where Google Play policy requires Google Play Billing for in-app digital goods or services, TyconX will use that system unless an applicable regional program, platform rule, or law permits an alternative.',
+      'Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules, CK-Labs policy, and applicable law.',
+      'If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.',
+    ],
+  },
+  {
+    title: 'TyconX web shop powered by Xsolla',
+    body: [
+      'Purchases made through the official TyconX web shop may be processed by Xsolla. Depending on the applicable checkout arrangement, an Xsolla group company may act as merchant of record.',
+      'When Xsolla acts as merchant of record, the Xsolla entity shown at checkout or on the receipt may be responsible under its applicable terms for payment processing, transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
+      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for the transaction. CK-Labs remains responsible for delivering the corresponding TyconX entitlement after receiving valid confirmation of successful payment.',
+      'If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TyconX entitlement or virtual value.',
+    ],
+  },
+  {
+    title: 'Restore and cross-device recovery',
+    body: [
+      'Lifetime VIP should be restorable or recoverable after verification while the entitlement remains valid. A valid 30-Day VIP should be restored from authoritative account or server records where required.',
+      'Diamonds are consumable purchases and are not restored as a second purchase after consumption. The current TyconX account balance is preserved through TyconX account/server state where applicable. Restore operations never create duplicate paid value.',
     ],
   },
   {
     title: 'Delivery problems',
     body: [
-      'If you were charged but the purchased content does not appear, confirm that you are using the correct TyconX account, use Restore Purchases where applicable, allow reasonable time for a pending App Store transaction to complete, and then contact TyconX Support if the issue remains.',
-      'CK-Labs may validate the transaction with the applicable payment provider and correct the entitlement where the purchase is valid.',
+      'If you were charged but the purchased content does not appear, confirm you are using the correct TyconX account, use Restore Purchases where applicable, allow reasonable time for a pending provider transaction to complete, and contact TyconX Support with the order or transaction details if the issue remains.',
+      'CK-Labs may validate the transaction with Apple, Google, Xsolla, or the applicable provider before granting, restoring, changing, or refunding an entitlement.',
     ],
   },
   {
     title: 'Refunds, reversals, and chargebacks',
     body: [
-      'A refund or payment reversal does not entitle a user to keep both the refunded money and the corresponding paid digital value.',
-      'If a payment is refunded, reversed, charged back, cancelled, or found invalid after value has been credited, CK-Labs may, subject to applicable law, revoke the related entitlement, remove corresponding unspent virtual value, reverse related invalid game transactions, apply an equivalent balance correction where the refunded value has already been consumed or transferred, or temporarily restrict purchase/economy functions while a payment dispute is investigated.',
+      'A refund or payment reversal does not entitle a user to keep both the returned money and the corresponding paid digital value.',
+      'If a payment is refunded, reversed, charged back, cancelled, or found invalid after value was credited, CK-Labs may, subject to applicable law, revoke the related entitlement, remove unused Diamonds or virtual value, reverse directly related invalid game transactions, apply an equivalent balance correction where refunded value was already consumed or transferred, or temporarily restrict purchase/economy functions while a payment dispute is investigated.',
       'CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse a specific invalid transaction or as otherwise permitted by law.',
     ],
   },
   {
     title: 'Unauthorized or fraudulent purchases',
     body: [
-      'Users should promptly report suspected unauthorized purchases to the payment provider and TyconX Support.',
-      'CK-Labs may investigate purchase receipts, transaction identifiers, entitlement records, server logs, account activity, device/session information, and related security records to prevent fraud and duplicate delivery.',
-      'Fraudulent receipts, manipulated clients, payment abuse, chargeback abuse, or attempts to retain refunded digital value may lead to entitlement correction, purchase restrictions, account suspension, or termination in accordance with the TyconX Terms of Service and applicable law.',
+      'Users should promptly report suspected unauthorized purchases to the relevant payment provider and TyconX Support.',
+      'CK-Labs may investigate receipts, transaction identifiers, entitlement records, server logs, account activity, device/session information, payment-provider events, and related security records to prevent fraud and duplicate delivery.',
+      'Fraudulent receipts, manipulated clients, payment abuse, deliberate false fraud reports, abusive chargebacks, or attempts to retain refunded digital value may lead to entitlement correction, purchase restrictions, account suspension, or termination in accordance with the TyconX Terms and applicable law.',
     ],
   },
   {
-    title: 'EU and German consumer rights',
+    title: 'EU and German withdrawal rights',
     body: [
-      'Nothing in this Policy excludes statutory rights that cannot legally be waived. For consumers in Germany, paid digital content and digital services may be subject to Sections 327 et seq. of the German Civil Code (BGB), including rules on supply, conformity, updates, remedies, price reduction, termination, and certain modifications.',
-      'Consumers may also have a statutory right of withdrawal for distance contracts. For digital content that is not supplied on a physical medium, the withdrawal right only expires after supply begins if all legal requirements for that expiry are satisfied, including any required express consent, acknowledgement of loss of the right, and contractual confirmation.',
-      'Where a purchase is made through Apple, Apple’s purchase and refund process applies in addition to mandatory law.',
+      'Nothing in this Policy excludes statutory rights that cannot legally be waived. For German consumers, Sections 327 et seq. BGB may apply to paid digital content and digital services.',
+      'For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only if every legal requirement is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation. Accepting the general Terms is not intended to replace a separate consent where the law requires one.',
+      'A 30-Day VIP is supplied over a period of time. Immediate activation does not automatically eliminate every statutory withdrawal right merely because access has begun. Where applicable law allows early performance, the checkout may request the consumer’s express request for it, and any amount due after a valid withdrawal is determined only as permitted by law.',
+      'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds and 30-Day VIP because their legal treatment can differ.',
     ],
   },
   {
     title: 'Service discontinuation',
     body: [
       'If TyconX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.',
-      'Lifetime VIP is tied to the commercial lifetime of the TyconX Service, not the biological lifetime of the user or an unlimited promise that the Service will exist forever.',
-      'This does not waive any mandatory refund, price-reduction, termination, warranty, or other remedy that applies because of the circumstances or timing of discontinuation.',
-    ],
-  },
-  {
-    title: 'Changes to products',
-    body: [
-      'CK-Labs may rebalance or modify game mechanics and VIP features for valid game-design, economy, security, technical, platform, legal, or abuse-prevention reasons, subject to applicable law.',
-      'Where mandatory law requires advance notice, a valid contractual reason, continued access to an unchanged version, price reduction, termination, refund, or another remedy, those requirements remain applicable.',
+      'Lifetime VIP is tied to the commercial operating lifetime of TyconX for the purchasing account, not the biological lifetime of the user and not an unlimited promise that the Service will exist forever. Mandatory refund, price-reduction, termination, warranty, or other consumer remedies remain unaffected.',
     ],
   },
 ];
@@ -80,9 +90,11 @@ export default function TyconXPurchaseRefundPolicy() {
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TyconX · CK-Labs</span>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Purchases & Refunds Policy</h1>
+          <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Purchases & Refunds</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
-          <p className="text-zinc-400 text-sm leading-relaxed mt-6">This Policy applies to paid digital content and entitlements offered in TyconX by CK-Labs. It supplements the TyconX Terms of Service and does not reduce rights that cannot legally be waived.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mt-6">
+            This policy covers Diamonds, one-time 30-Day VIP, Lifetime VIP, Apple App Store purchases, Google Play purchases, and the official TyconX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
+          </p>
         </div>
       </div>
 
@@ -102,12 +114,13 @@ export default function TyconXPurchaseRefundPolicy() {
         ))}
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
-          <h2 className="text-white font-semibold mb-3">Contact</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TyconX is operated by CK-Labs. For delivery problems, purchase questions, suspected fraud, or entitlement disputes, use TyconX Support.</p>
+          <h2 className="text-white font-semibold mb-3">Legal & support</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TyconX is operated by CK-Labs. For delivery problems, purchase questions, suspected fraud, or entitlement disputes, use TyconX Support or email us.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-support" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">TyconX Support</a>
-            <a href="/tyconx-terms-of-service" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
+            <a href="/tyconx-terms-of-service" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
             <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Privacy Policy</a>
+            <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TyconX Support</a>
+            <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
         </section>
       </div>
