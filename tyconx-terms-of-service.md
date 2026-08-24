@@ -56,7 +56,15 @@ It provides the VIP features described at the time of purchase for **30 consecut
 
 ### 4.2 Lifetime VIP
 
-**Lifetime VIP** is a one-time digital entitlement intended to remain active for the **commercial operating lifetime of the TyconX Service for the purchasing account**, while TyconX continues to be operated and made available by CK-Labs and while the purchasing account remains eligible to use the Service.
+**Lifetime VIP** is a one-time digital entitlement that may be offered only during **limited promotional sales windows** selected by CK-Labs. It is not a permanently available product.
+
+CK-Labs may start, end, shorten, extend, or discontinue a Lifetime VIP sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.
+
+The fact that another user previously purchased Lifetime VIP, or that CK-Labs previously ran a Lifetime VIP sales window, does not create a right or expectation that the product will remain available or return later. Ending a sales window affects future availability only and does not by itself cancel or shorten an already valid Lifetime VIP entitlement.
+
+Any countdown, closing date, or other time-limited sales statement displayed for a Lifetime VIP offer should reflect the genuine sales window communicated for that offer. CK-Labs may later decide to run a separate future promotion, but a later promotion does not create a right to purchase during a closed sales window.
+
+A valid Lifetime VIP purchase is intended to remain active for the **commercial operating lifetime of the TyconX Service for the purchasing account**, while TyconX continues to be operated and made available by CK-Labs and while the purchasing account remains eligible to use the Service.
 
 "Lifetime" does **not** mean the biological lifetime of the purchaser, the lifetime of any owner, employee, company, device, platform, or server, and it is not a promise that TyconX will operate forever or for any fixed minimum number of years beyond what mandatory law requires or what a consumer may reasonably expect from the specific offer.
 
@@ -71,13 +79,15 @@ Lifetime VIP may end if:
 
 A device change, app reinstall, ordinary maintenance outage, or supported platform/server migration does not by itself terminate a valid Lifetime VIP entitlement. Where technically and legally feasible, CK-Labs will restore the valid entitlement after purchase verification.
 
-**The commercial-lifetime meaning above must also be disclosed clearly at or immediately before the Lifetime VIP purchase screen.** The name "Lifetime VIP" must not be presented in a way that suggests perpetual operation independent of the existence of TyconX.
+**The commercial-lifetime meaning and the limited-time nature of the current sales offer must be disclosed clearly at or immediately before the Lifetime VIP purchase screen.** The name "Lifetime VIP" must not be presented in a way that suggests perpetual operation independent of the existence of TyconX.
 
 Where applicable law gives you mandatory remedies because a paid digital service is discontinued, defective, materially changed, or no longer supplied, those rights remain unaffected.
 
 ### 4.3 VIP features may evolve
 
 VIP may include changing gameplay benefits, convenience features, cosmetics, limits, automation features, access privileges, or other benefits. CK-Labs may improve, replace, rebalance, add, or remove individual VIP features for valid reasons such as game balance, security, technical limitations, legal compliance, platform requirements, abuse prevention, or evolution of the Service.
+
+For a digital product supplied continuously over time, a change beyond what is necessary to keep the product contract-compliant will be made only on a contractual basis that provides a valid reason, without additional cost to the consumer, and with clear information where mandatory law requires this. If a change more than insignificantly impairs access or use, mandatory law may require advance notice on a durable medium and may give the consumer a time-limited right to terminate without charge.
 
 Where mandatory law requires advance information, a valid contractual reason, continued access to an unchanged version, price reduction, termination rights, or another remedy, we will respect those requirements.
 
@@ -120,7 +130,7 @@ Purchases made through the official TyconX web shop may be processed by **Xsolla
 
 Depending on the applicable Xsolla checkout arrangement, an Xsolla group company may act as the **merchant of record** for the transaction. When Xsolla acts as merchant of record, the applicable Xsolla entity is the seller/payment counterparty shown during checkout or on the receipt and may be responsible under its terms for payment processing, applicable transaction taxes/VAT, fraud screening, refunds, payment disputes, and chargebacks.
 
-The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information for a web-shop transaction are determined by the Xsolla checkout and receipt applicable to that transaction.
+The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information for a web-shop transaction are determined by the Xsolla checkout and receipt applicable to that transaction. Xsolla currently indicates which refund-policy type applies at checkout, and that transaction-specific policy applies together with mandatory consumer law.
 
 CK-Labs remains responsible for delivering the corresponding TyconX digital entitlement after CK-Labs receives valid confirmation of a successful transaction. CK-Labs may verify Xsolla transaction information before granting, restoring, changing, or removing an entitlement.
 
@@ -182,9 +192,15 @@ A 30-Day VIP is supplied over a period of time. Immediate activation does not au
 
 Where applicable law permits performance to begin during a withdrawal period, the checkout may request the consumer's express request for early performance. If the consumer validly withdraws while a statutory withdrawal right still exists, payment for service already supplied, if any, will be determined only as permitted by applicable law.
 
-CK-Labs will not use one blanket "no refunds" or "you waive all withdrawal rights" clause for Diamonds and 30-Day VIP because the legal treatment can differ.
+### 9.3 Ongoing entitlement such as Lifetime VIP
 
-### 9.3 Provider-operated refund flows
+Lifetime VIP is also an entitlement supplied over time. Its one-time purchase price and non-renewing nature do not by themselves eliminate statutory withdrawal rights or mandatory digital-service remedies.
+
+Any early-performance request, expiry of a withdrawal right, proportional payment following withdrawal, or other consequence applies only where the legal requirements for the specific transaction are satisfied.
+
+CK-Labs will not use one blanket "no refunds" or "you waive all withdrawal rights" clause for Diamonds, 30-Day VIP, and Lifetime VIP because the legal treatment can differ.
+
+### 9.4 Provider-operated refund flows
 
 Apple, Google, Xsolla, or another payment provider may administer some or all refund or withdrawal requests for purchases made through that provider. CK-Labs may require use of the provider's process where the provider controls the payment transaction, without reducing mandatory rights.
 
