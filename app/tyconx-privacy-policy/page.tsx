@@ -1,238 +1,136 @@
-export default function TyconXPrivacyPolicy() {
-  const sections = [
-    {
-      title: "Information We Collect",
-      content: (
-        <div className="space-y-4">
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Account and Profile Data</p>
-            <ul className="space-y-2">
-              {[
-                "Credentials and identifiers you provide or that are provided by third-party sign-in services (for example, your email, display name, or avatar).",
-                "Language preferences, time zone, and other settings you configure inside TyconX.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Gameplay and Economy Data</p>
-            <ul className="space-y-2">
-              {[
-                "Progress such as skills, levels, quests, inventory, virtual currency balances, contracts, loans, stock portfolios, and other in-game state.",
-                "Housing choices, company rosters, production queues, transaction history, chat participation, and support tickets.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Device and Technical Data</p>
-            <ul className="space-y-2">
-              {[
-                "Device type, operating system, app version, hardware identifiers exposed by the platform, IP address, crash logs, diagnostic data, and performance metrics.",
-                "Cookies or similar technologies on our website to maintain sessions and remember preferences.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Communications</p>
-            <ul className="space-y-2">
-              {[
-                "Messages, chat content, beg requests, support conversations, bug reports, and any attachments you submit.",
-                "Metadata about communications such as timestamps and participants to enforce community safety.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Usage and Analytics</p>
-            <ul className="space-y-2">
-              {[
-                "Aggregate engagement statistics (feature usage, retention, session counts), referral codes, and marketing campaign performance captured through analytics providers.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-zinc-300 mb-2">Information from Third Parties</p>
-            <ul className="space-y-2">
-              {[
-                "Platform stores (Apple App Store, Google Play), authentication providers, and payment processors may send us confirmation data (purchase receipts, entitlement status, token validation) needed to operate the Service.",
-              ].map((i) => (
-                <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "How We Use Information",
-      content: (
-        <ul className="space-y-2">
-          {[
-            "Create, maintain, and secure accounts; process logins; prevent unauthorized access.",
-            "Operate the TyconX simulation, store progress, synchronize data across devices, and power multiplayer interactions.",
-            "Balance the economy, detect exploits or fraud, monitor compliance with our Terms, and enforce community safety rules.",
-            "Provide customer support, respond to requests, and resolve disputes.",
-            "Send transactional messages such as security alerts, gameplay notifications, feature announcements, or required legal notices. You may opt out of non-essential communications through in-app settings where available.",
-            "Analyze usage to improve stability, performance, localization, accessibility, monetization experiments, and new gameplay systems.",
-            "Comply with legal obligations, enforce agreements, and protect our rights or the rights of players.",
-          ].map((i) => (
-            <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-          ))}
-        </ul>
-      ),
-    },
-    {
-      title: "Legal Bases",
-      content: (
-        <>
-          <p className="mb-3">Where required by law (such as the EU, UK, or Brazil), we process personal data under the following legal bases:</p>
-          <ul className="space-y-2">
-            {[
-              "Performance of a contract: Operating TyconX, providing gameplay features, and delivering support.",
-              "Legitimate interests: Securing the Service, analyzing engagement, preventing abuse, and communicating with players about TyconX.",
-              "Consent: Optional features like marketing emails, beta experiments, or cookies, where we request your consent.",
-              "Legal obligation: Responding to lawful requests, verifying age requirements, or maintaining transaction records.",
-            ].map((i) => (
-              <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-            ))}
-          </ul>
-        </>
-      ),
-    },
-    {
-      title: "How We Share Information",
-      content: (
-        <>
-          <p className="mb-3">We do not sell personal data. We share information only as needed with:</p>
-          <ul className="space-y-2">
-            {[
-              "Service providers that host infrastructure, authentication, databases (for example, Supabase), cloud storage, analytics, crash reporting, moderation, or push notification services. These providers are bound by confidentiality and data-processing agreements.",
-              "Platform partners (Apple, Google, or other sign-in/payment partners) to verify entitlements, purchases, or compliance with their policies.",
-              "Other players when you voluntarily participate in social features (chat, contracts, leaderboards, market listings, loan requests, or company rosters). Information you publish becomes visible to the community according to your privacy settings.",
-              "Law enforcement or authorities if we believe disclosure is reasonably necessary to comply with legal process, protect the rights or safety of players, or prevent fraud.",
-              "Business transfers if we engage in a merger, acquisition, asset sale, or financing. We will continue to protect your data and provide notice where required.",
-            ].map((i) => (
-              <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-            ))}
-          </ul>
-        </>
-      ),
-    },
-    {
-      title: "International Transfers",
-      content: (
-        <p>TyconX infrastructure may be hosted in the United States or other countries. By using the Service, you consent to the transfer and processing of your information outside your country of residence. Where required, we use contractual safeguards (such as Standard Contractual Clauses) or rely on adequacy decisions to protect data transferred internationally.</p>
-      ),
-    },
-    {
-      title: "Data Retention",
-      content: (
-        <p>We retain information for as long as your account is active or as needed to provide the Service. When you request deletion or when your account becomes inactive for an extended period, we will delete or anonymize data unless we must keep it for legal, tax, fraud-prevention, dispute resolution, or archival purposes. Backup copies may persist for a limited time before being purged.</p>
-      ),
-    },
-    {
-      title: "Your Choices & Rights",
-      content: (
-        <>
-          <p className="mb-3">Depending on your jurisdiction, you may have the right to:</p>
-          <ul className="space-y-2">
-            {[
-              "Access, correct, or update your account and gameplay data.",
-              "Request deletion of your account through the in-app Support Center. Deleting your account permanently removes progress and may take up to 30 days to complete.",
-              "Withdraw consent for optional communications or analytics where such consent was previously provided.",
-              "Object to or restrict certain processing, or request that we provide your data in a portable format (where technically feasible).",
-            ].map((i) => (
-              <li key={i} className="flex gap-3"><span className="text-indigo-500 mt-0.5">—</span><span>{i}</span></li>
-            ))}
-          </ul>
-          <p className="mt-3">You can exercise most controls inside the app (Profile → Support) or by contacting us using the details below. We may ask you to verify your identity before fulfilling a request. Certain data (for example, security logs or aggregated metrics) may be exempt from deletion where permitted by law.</p>
-        </>
-      ),
-    },
-    {
-      title: "Children",
-      content: (
-        <p>TyconX is not directed to children under 13 (or the minimum age required in your jurisdiction). We do not knowingly collect personal information from children. If we learn that a child provided personal data without verifiable parental consent, we will delete the information and may suspend the account. Parents or guardians who believe their child has provided data should contact us immediately.</p>
-      ),
-    },
-    {
-      title: "Security",
-      content: (
-        <p>We implement technical and organizational safeguards such as encryption in transit, role-based access controls, rate limiting, monitoring, and regular backups. Despite these efforts, no system is completely secure. You are responsible for keeping your login credentials confidential and for promptly notifying us of any suspected compromise.</p>
-      ),
-    },
-    {
-      title: "Third-Party Links & Content",
-      content: (
-        <p>TyconX may contain links to third-party sites, tools, or community resources. We do not control these third parties and are not responsible for their privacy practices. Review their policies before providing personal information.</p>
-      ),
-    },
-    {
-      title: "Changes to This Policy",
-      content: (
-        <p>We may update this Privacy Policy to reflect new features, legal requirements, or operational needs. We will revise the &quot;Last updated&quot; date and, where required, provide additional notice (such as in-app messaging or email). Continued use of TyconX after changes take effect constitutes acceptance of the revised Policy.</p>
-      ),
-    },
-  ];
+const sections = [
+  {
+    title: 'Information We Process',
+    body: [
+      'Account and profile data such as supported sign-in identifiers, email address, display name, avatar, language, time zone, settings, and account lifecycle events.',
+      'Gameplay and economy data needed to operate the persistent TyconX world, including progression, inventory, virtual currency and Diamond balances, companies, production, market activity, housing, jobs, contracts, loans, stocks, transactions, and VIP entitlement state.',
+      'Purchase and entitlement data such as payment platform, product identifier, transaction identifiers, signed transaction or receipt information, purchase/activation/expiry status, refund/revocation/chargeback status, and delivery or correction history. We generally do not receive your full payment-card number from platform stores or payment processors.',
+      'Security and fraud data such as login/session records, IP address, device/platform information made available to the Service, app version, diagnostics, suspicious access patterns, invalid purchase validations, exploit indicators, anti-abuse signals, and moderation/security logs.',
+      'Communications and community content such as chats, reports, profile/company content, support tickets, contact-form submissions, bug reports, appeals, attachments, timestamps, and moderation status.',
+      'Usage and analytics information such as feature usage, sessions, retention, performance, interaction events, and aggregated economy/balancing metrics.',
+    ],
+  },
+  {
+    title: 'Why We Process Information',
+    body: [
+      'We process information to create and secure accounts, operate and synchronize TyconX, deliver and restore valid purchases, prevent duplicate delivery and fraud, detect cheating or exploits, investigate incidents, correct invalid game state, provide support, moderate community features, enforce the Terms, diagnose technical problems, improve the Service, send operational/legal notices, and comply with legal obligations.',
+    ],
+  },
+  {
+    title: 'Legal Bases',
+    body: [
+      'Where the GDPR or similar law applies, we rely on the legal basis appropriate to the specific processing: performance of a contract for gameplay, account access, purchase delivery and support; legitimate interests for security, anti-fraud, game integrity, diagnostics and legal defense where those interests are not overridden; legal obligations for required recordkeeping and authority requests; and consent where the law requires it for optional processing.',
+      'Merely using TyconX is not treated as consent to processing that legally requires consent. Where consent is required, we ask for it separately and it can be withdrawn for future processing.',
+    ],
+  },
+  {
+    title: 'How We Share Information',
+    body: [
+      'We do not sell personal data. We may share only what is reasonably necessary with service providers supporting hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications or security; platform/payment partners such as Apple, Google, Xsolla or other authorized providers for purchase validation, refunds, revocations, fraud and disputes; other players where you intentionally use public/social game features; authorities where legally required; and parties involved in a lawful business transfer.',
+      'TyconX currently uses infrastructure such as Supabase for parts of its backend. Providers are subject to applicable contractual and legal safeguards.',
+    ],
+  },
+  {
+    title: 'International Transfers',
+    body: [
+      'TyconX and some providers may process information outside your country of residence. Where the GDPR or similar transfer restrictions apply, we use an appropriate legal transfer mechanism where required, such as an adequacy decision, Standard Contractual Clauses, or another recognized safeguard. International transfers are not based merely on a statement that use of TyconX equals consent.',
+    ],
+  },
+  {
+    title: 'Data Retention',
+    body: [
+      'We keep personal data only for as long as reasonably necessary for its purpose and for additional periods required or permitted by law. Active account/game data may be retained while the account is active; support records for reasonable follow-up and dispute periods; purchase, refund, accounting and tax records for legally required or dispute-related periods; and security, anti-fraud, exploit, moderation and audit records for a reasonable period needed to protect the Service, investigate incidents or defend claims.',
+      'Backups may remain for a limited backup lifecycle before deletion or overwrite. Anonymized or genuinely aggregated data may be retained where it no longer identifies a person.',
+    ],
+  },
+  {
+    title: 'Your Privacy Rights',
+    body: [
+      'Depending on applicable law, you may have rights to access, correct, delete, restrict, object, receive certain data in a portable format, withdraw consent where processing is consent-based, and lodge a complaint with a competent data-protection authority.',
+      'You can request account deletion through TyconX where available or contact TyconX Support. We may need to verify your identity. Certain records may still be retained where required or permitted for legal, tax, accounting, fraud-prevention, security, dispute-resolution, or legal-claims purposes.',
+    ],
+  },
+  {
+    title: 'Account Deletion and Paid Entitlements',
+    body: [
+      'Deleting your TyconX account is separate from requesting a payment refund. Account deletion may permanently remove access to account-linked progress, Diamonds, virtual items, and VIP entitlements. It does not automatically create a right to cash redemption or a refund. Refund rights remain governed by the payment provider and applicable mandatory law.',
+    ],
+  },
+  {
+    title: 'Children',
+    body: [
+      'TyconX is not directed to children below the minimum age permitted for independent use in the user’s jurisdiction. Where parental consent is legally required, the Service should not be used without the required authorization. If we learn that personal data was collected from a child in circumstances that do not satisfy applicable law, we may restrict the account and delete information as required.',
+    ],
+  },
+  {
+    title: 'Security',
+    body: [
+      'We use technical and organizational measures designed to protect TyconX data, such as access controls, authentication controls, encrypted network transport where applicable, monitoring, rate limiting, purchase validation, audit logging, backups, and other safeguards appropriate to the Service.',
+      'No online service can guarantee absolute security. If you believe your account has been compromised or discover a security vulnerability, contact TyconX Support promptly. This does not reduce CK-Labs obligations for security measures required by applicable law.',
+    ],
+  },
+  {
+    title: 'Automated Security and Moderation',
+    body: [
+      'TyconX may use automated rules, signals, or systems to identify suspicious activity, spam, fraud, abusive content, exploit patterns, invalid purchases, or other conduct that may threaten users or the Service. Automated signals may lead to review, temporary restrictions, moderation, or investigation. Rights concerning solely automated decisions remain unaffected where applicable law provides them.',
+    ],
+  },
+  {
+    title: 'Third-Party Links and Services',
+    body: [
+      'TyconX may link to or interoperate with third-party services. Those third parties may process information under their own privacy policies. CK-Labs is not responsible for independent third-party privacy practices except to the extent applicable law makes CK-Labs responsible.',
+    ],
+  },
+  {
+    title: 'Changes to This Policy',
+    body: [
+      'We may update this Policy to reflect changes to TyconX, data practices, providers, security measures, or legal requirements. We will update the Last updated date and provide additional notice where required. If a change requires consent, we will request that consent rather than treating continued use alone as consent.',
+    ],
+  },
+];
 
+export default function TyconXPrivacyPolicy() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* Hero */}
       <div className="border-b border-white/5 px-4 py-16">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wide">TyconX</span>
+            <span className="text-indigo-400 text-xs font-medium tracking-wide">TyconX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Privacy Policy</h1>
-          <p className="text-zinc-500 text-sm">Last updated November 30, 2025</p>
+          <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mt-6">
+            This Privacy Policy explains how CK-Labs, operator of TyconX, processes personal data when you use the TyconX mobile or web applications, websites, support services, and related online services.
+          </p>
         </div>
       </div>
 
-      {/* Sections */}
-      <div className="max-w-2xl mx-auto px-4 py-12 space-y-1">
+      <div className="max-w-3xl mx-auto px-4 py-12 space-y-2">
         {sections.map((section, i) => (
-          <div key={i} className="group rounded-xl p-6 hover:bg-white/[0.03] transition">
+          <section key={section.title} className="rounded-xl p-6 hover:bg-white/[0.03] transition">
             <div className="flex gap-4">
-              <span className="text-xs text-zinc-600 font-mono mt-1 w-5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span className="text-xs text-zinc-600 font-mono mt-1 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span>
               <div>
                 <h2 className="text-white font-semibold mb-3">{section.title}</h2>
-                <div className="text-zinc-400 text-sm leading-relaxed">{section.content}</div>
+                <div className="space-y-3 text-zinc-400 text-sm leading-relaxed">
+                  {section.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         ))}
 
-        {/* Contact */}
-        <div className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
-          <div className="flex gap-4">
-            <span className="text-xs text-zinc-600 font-mono mt-1 w-5 shrink-0">12</span>
-            <div>
-              <h2 className="text-white font-semibold mb-3">Contact Us</h2>
-              <p className="text-zinc-400 text-sm mb-4">
-                If you have questions, requests, or concerns about this Policy or our data practices, contact TyconX Support through the in-app Support Center or email us. Residents of the European Economic Area or the United Kingdom may also have the right to contact their local data protection authority.
-              </p>
-              <a
-                href="mailto:cevikdev@gmail.com"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg"
-              >
-                cevikdev@gmail.com
-              </a>
-            </div>
+        <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
+          <h2 className="text-white font-semibold mb-3">Contact</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TyconX is operated by CK-Labs. For privacy requests, account deletion, security reports, purchase-related privacy questions, or other data-protection concerns, use TyconX Support or email us.</p>
+          <div className="flex flex-wrap gap-3">
+            <a href="/tyconx-support" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">TyconX Support</a>
+            <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
+            <a href="/tyconx-terms-of-service" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
           </div>
-        </div>
-
-        <p className="text-zinc-600 text-xs text-center pt-4 pb-2">
-          By using TyconX, you acknowledge that you have read and understood this Privacy Policy.
-        </p>
+          <p className="text-zinc-600 text-xs leading-relaxed mt-4">Additional legally required operator details should be made available in the applicable legal notice or imprint for the Service.</p>
+        </section>
       </div>
     </main>
   );
