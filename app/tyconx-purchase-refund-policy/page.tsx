@@ -125,6 +125,15 @@ const sections = [
     ],
   },
   {
+    title: 'Required updates and supported versions',
+    body: [
+      'Paid TycoonX content does not include a promise that every historic app version, device, operating system, API, or platform integration will remain supported indefinitely.',
+      'Where German digital-product law applies, CK-Labs will provide and inform consumers about updates required to keep the relevant paid digital product in conformity during the legally relevant period, including required security updates.',
+      'If a required update has been provided and the user was clearly informed that it is available and of the consequences of not installing it, failure to install the update within a reasonable time may affect claims for a lack of conformity caused solely by the missing update to the extent applicable law provides. This applies only where CK-Labs provided adequate installation instructions and does not remove rights relating to an unrelated defect, non-supply, or invalid entitlement.',
+      'A valid paid entitlement should remain associated with the purchaser and be recognized on supported versions where required by the product terms, platform rules, or mandatory law. Requiring an update is not a basis to duplicate a purchase, erase a valid restorable Lifetime VIP, or avoid a remedy that remains legally due.',
+    ],
+  },
+  {
     title: 'Cross-platform access, Family Sharing, and duplicate entitlement records',
     body: [
       'A valid purchase may be recognized on another supported TycoonX device or platform only where TycoonX supports that access and the applicable store, payment-provider, country, and platform rules permit it. Cross-platform recognition does not itself create a new transaction or an additional paid grant.',
