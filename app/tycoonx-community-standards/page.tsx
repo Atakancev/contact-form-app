@@ -3,8 +3,10 @@ const sections = [
     title: 'Where this Policy applies',
     body: [
       'This Community Standards & Moderation Policy supplements the TycoonX Terms of Service and applies to user-generated content and social features made available through TycoonX, operated by CK-Labs.',
+      'For TycoonX community features, this Community Policy is the more specific rule. If a general provision of the Terms conflicts with this Community Policy about moderation, public/private user-generated-content handling, or user-generated-content licensing, this Community Policy controls for that subject to the extent permitted by law.',
       'It covers content or conduct submitted, transmitted, displayed, or made available through TycoonX community features, including public or group chat, direct messages, profile text, company or union content, names, descriptions, comments, reports, images, creative works, and other user-generated content.',
       'You are responsible for content you submit and must have the rights and permissions necessary to submit it.',
+      'Where platform rules require it, TycoonX may require users to accept the applicable Terms and/or this Community Policy before they can create or upload user-generated content.',
     ],
   },
   {
@@ -19,7 +21,7 @@ const sections = [
     title: 'Reporting, blocking, and safety tools',
     body: [
       'TycoonX may provide in-app tools to report content or users and to block or otherwise limit interaction with abusive users. Users should use those tools when available, especially for content that requires CK-Labs review.',
-      'Apple App Store and Google Play rules may require specific in-app reporting, filtering, blocking, and moderation functionality for user-generated-content features. This Policy does not replace those product-level safeguards.',
+      'Apple App Store and Google Play rules may require specific in-app reporting, filtering, blocking, terms-acceptance, age-safety, and moderation functionality for user-generated-content features. This Policy does not replace those product-level safeguards.',
       'Where a TycoonX feature qualifies as a hosting service under the EU Digital Services Act, CK-Labs will provide the legally required electronic notice-and-action mechanism for reporting specific information alleged to be illegal.',
       'Good-faith reporting is permitted. Knowingly false, malicious, repetitive, or abusive reports intended to harass another user, manipulate moderation, or overwhelm Support may themselves lead to proportionate restrictions.',
     ],
@@ -66,6 +68,14 @@ const sections = [
     ],
   },
   {
+    title: 'Age and minor-safety controls',
+    body: [
+      'TycoonX may restrict, disable, or alter access to community or social features based on declared or verified age, parental authorization, platform age controls, applicable law, App Store or Google Play requirements, or reasonable child-safety measures.',
+      'A user does not acquire a right to access a particular social feature merely because the underlying TycoonX game remains available. Where necessary for child safety or platform compliance, CK-Labs may make a social feature unavailable to an age group or require additional age or parental checks, subject to applicable law.',
+      'TycoonX does not permit child sexual abuse or exploitation content, grooming, or sexual exploitation of minors. CK-Labs may take immediate protective action and preserve or report relevant evidence where required by law.',
+    ],
+  },
+  {
     title: 'Intellectual-property complaints',
     body: [
       'Rights holders may report content they believe infringes their intellectual-property rights through TycoonX Support or another designated reporting route. A report should provide enough information to identify the content and the claimed right.',
@@ -75,8 +85,8 @@ const sections = [
   {
     title: 'Platform requirements',
     body: [
-      'TycoonX community features must also comply with the rules of the platform through which the app is distributed. Apple and Google may require in-app reporting, blocking, filtering, terms acceptance, contact information, and ongoing moderation independently of this Community Policy.',
-      'CK-Labs may change, restrict, or discontinue a community feature if necessary to comply with law, App Store or Google Play rules, safety requirements, technical constraints, or material abuse patterns. Paid digital-product rights remain subject to the separate TycoonX Terms and mandatory consumer law.',
+      'TycoonX community features must also comply with the rules of the platform through which the app is distributed. Apple and Google may require in-app reporting, blocking, filtering, terms acceptance, age-rating disclosures, age controls, contact information, and ongoing moderation independently of this Community Policy.',
+      'CK-Labs may change, restrict, age-gate, or discontinue a community feature if necessary to comply with law, App Store or Google Play rules, safety requirements, technical constraints, or material abuse patterns. Paid digital-product rights remain subject to the separate TycoonX Terms and mandatory consumer law.',
     ],
   },
   {
@@ -100,7 +110,7 @@ export default function TycoonXCommunityStandards() {
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Community Standards & Moderation</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            This Policy explains the rules for user-generated content, reporting, blocking, moderation, illegal-content notices, enforcement, and review in TycoonX community features.
+            This Policy explains the rules for user-generated content, reporting, blocking, moderation, illegal-content notices, age-safety, enforcement, and review in TycoonX community features.
           </p>
         </div>
       </div>
