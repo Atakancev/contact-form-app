@@ -30,14 +30,17 @@ Diamonds are virtual in-game currency.
 - CK-Labs maintains the entitlement state so a valid 30-Day VIP can be recognized across supported devices and after reinstalling the app where technically applicable.
 
 ### Lifetime VIP
-Lifetime VIP is a one-time premium entitlement.
+Lifetime VIP is a one-time premium entitlement that may be offered only during **limited promotional sales windows** selected by CK-Labs.
 
+- Lifetime VIP is **not a permanently available product**. CK-Labs may start, end, shorten, extend, or discontinue a Lifetime VIP sales window and may choose never to offer Lifetime VIP again, subject to applicable law and any specific offer already made to a consumer.
+- The fact that another user previously purchased Lifetime VIP does not create a right for any other user to purchase it later, and a previous sales window does not create a promise or expectation that the offer will return.
+- Ending a Lifetime VIP sales window affects only future availability for purchase. It does not cancel or shorten a valid Lifetime VIP entitlement that was already purchased, except as otherwise permitted by the TyconX Terms of Service and applicable law.
 - On Apple platforms it is intended to be a **Non-Consumable In-App Purchase**.
 - On Google Play it is intended to be a one-time non-consumable entitlement.
 - On the TyconX web shop it may be sold as a one-time Xsolla web purchase.
 - It is restorable or re-linked after verification where the applicable platform and CK-Labs account system support restoration.
 - **"Lifetime" means the commercial operating lifetime of the TyconX Service for the purchasing account while TyconX continues to be operated and made available by CK-Labs. It does not promise that TyconX will operate forever.**
-- This meaning must be disclosed clearly at or immediately before checkout wherever Lifetime VIP is sold.
+- The commercial-lifetime meaning and, where relevant, the limited-time nature of the current sales offer must be disclosed clearly at or immediately before checkout wherever Lifetime VIP is sold.
 - Mandatory consumer remedies remain available if discontinuation, defects, non-supply, or material changes give the user statutory rights.
 
 ## 2. Apple App Store purchases
