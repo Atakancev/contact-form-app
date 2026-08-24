@@ -58,7 +58,9 @@ A valid Lifetime VIP purchase is intended to remain active for the **commercial 
 
 "Lifetime" does not mean the biological lifetime of the purchaser, CK-Labs, any owner, device, platform, payment provider, server, or other company, and it is not a promise that TycoonX will operate forever or for a fixed minimum number of years beyond mandatory law and the reasonable expectations created by the specific offer.
 
-Lifetime VIP may end if TycoonX is permanently discontinued, the account is deleted at the user’s request, the account is lawfully terminated for a serious or repeated Terms violation, the purchase is refunded or invalid, or continued supply becomes prohibited or impossible because of law, platform rules, or another circumstance recognized by applicable law. Mandatory consumer remedies remain unaffected.
+Lifetime VIP may end if TycoonX is permanently discontinued, the purchase is refunded or invalid, the account is lawfully terminated for a serious or repeated Terms violation, or continued supply becomes prohibited or impossible because of law, platform rules, or another circumstance recognized by applicable law. Mandatory consumer remedies remain unaffected.
+
+Deleting a TycoonX account may permanently remove profile and gameplay data, but account deletion does not by itself extinguish a valid non-consumable or otherwise restorable platform entitlement where Apple, Google, another payment provider, or mandatory law requires that entitlement to remain restorable. Restoration may require reasonable proof that the same purchaser controls the relevant platform or payment account. Restoring the entitlement does not recreate deleted gameplay progress, consumed Diamonds, inventory, history, or transferred assets unless applicable law requires otherwise.
 
 Any countdown, closing date, limited-time statement, or price-advantage claim used for Lifetime VIP must reflect a genuine offer and must not be misleading.
 
@@ -68,7 +70,7 @@ The commercial-lifetime meaning and the limited-time nature of the current sales
 
 VIP may include changing gameplay benefits, convenience features, cosmetics, limits, automation features, access privileges, or other benefits. CK-Labs may improve, replace, rebalance, add, or remove individual features for valid reasons such as game balance, economy health, security, abuse prevention, technical compatibility, platform requirements, legal compliance, accessibility, or evolution of the Service.
 
-For a digital product supplied continuously over time, a change beyond what is necessary to maintain conformity will be made only where the contract and applicable law permit it. Where required, the change will have a valid contractual reason, will not impose additional cost on the consumer, and will be communicated clearly.
+For a digital product supplied continuously over time, a change beyond what is necessary to maintain conformity will be made only where the contract and applicable law permit it. Where required, the change will have a valid contractual reason, will not impose additional cost to the consumer, and will be communicated clearly.
 
 If a change more than insignificantly impairs access or use, CK-Labs will provide the advance notice, durable-medium information, termination right, unchanged-version option, refund, price reduction, or other remedy required by applicable law.
 
@@ -156,6 +158,8 @@ The electronic withdrawal function supplements rather than removes any other leg
 A paid entitlement is delivered only after the applicable payment channel reports a valid successful transaction and required validation is completed. Network interruptions, provider delays, fraud review, incomplete authentication, store outages, or service outages may delay delivery.
 
 Lifetime VIP should be restorable or recoverable after verification while valid. A valid 30-Day VIP should be restored from authoritative account or server records where applicable. Diamonds are consumable purchases and are not restored as a second purchase after consumption.
+
+If a TycoonX account has been deleted, a valid Lifetime VIP or other restorable non-consumable may still be restored where the platform or payment-provider record requires restoration. CK-Labs may require reasonable verification of the same purchaser and may attach the restored entitlement only to an eligible TycoonX account controlled by that purchaser. Restoring an entitlement does not restore deleted gameplay progress or consumable value.
 
 Where a client display conflicts with reliable authoritative server records, signed store records, provider transaction records, or verified backups, CK-Labs may use the reliable authoritative records to correct the account, subject to mandatory legal rights and the user’s ability to challenge an incorrect decision through Support.
 
