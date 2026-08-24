@@ -125,6 +125,16 @@ const sections = [
     ],
   },
   {
+    title: 'Cross-platform access, Family Sharing, and duplicate entitlement records',
+    body: [
+      'A valid purchase may be recognized on another supported TycoonX device or platform only where TycoonX supports that access and the applicable store, payment-provider, country, and platform rules permit it. Cross-platform recognition does not itself create a new transaction or an additional paid grant.',
+      'The same underlying purchase must not be multiplied through restore, account migration, cross-device use, cross-platform linking, webhook retries, or duplicate provider records. Unless a specific offer expressly says otherwise, recognizing the same Lifetime VIP more than once does not create multiple Lifetime VIP benefits, and recognizing the same 30-Day VIP more than once does not extend its original valid period.',
+      'Separately completed valid purchases that are not duplicates remain separate transactions. CK-Labs may consolidate technical entitlement records without cancelling a distinct valid purchase or removing a mandatory refund, warranty, or other consumer remedy.',
+      'Apple Family Sharing applies only where CK-Labs has enabled it for the relevant eligible In-App Purchase and Apple reports the purchase as shareable. If Family Sharing is offered, a family member’s access depends on the original purchaser’s valid shared entitlement and may end if Apple reports that sharing or the underlying entitlement has ended, been revoked, or been refunded. Shared access does not create a separate purchase or refund right for each family member beyond Apple’s rules and mandatory law.',
+      'If TycoonX does not expressly show an Apple product as Family Shareable, the purchase does not include a promise of Family Sharing.',
+    ],
+  },
+  {
     title: 'Service discontinuation',
     body: [
       'If TycoonX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.',
