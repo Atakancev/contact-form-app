@@ -21,6 +21,7 @@ const sections = [
     body: [
       'Google processes the transaction through the applicable Google Play billing arrangement and provides transaction or order information used to validate the purchase.',
       'Where Google Play policy requires Google Play Billing for in-app digital goods or services, TycoonX will use that system unless an applicable regional program, platform rule, or law permits an alternative.',
+      'Lifetime VIP is intended to use a one-time non-consumable Google Play product so the valid purchase remains associated with the purchasing Google Account. A one-time 30-Day VIP must be configured so that it does not silently create recurring billing and, if repeat purchases are intended, so the product configuration does not permanently block a later legitimate 30-Day purchase.',
       'Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules, CK-Labs policy, and applicable law.',
       'If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.',
     ],
@@ -67,6 +68,8 @@ const sections = [
     body: [
       'Lifetime VIP should be restorable or recoverable after verification while the entitlement remains valid. A valid 30-Day VIP should be restored from authoritative account or server records where required.',
       'Diamonds are consumable purchases and are not restored as a second purchase after consumption. The current TycoonX account balance is preserved through TycoonX account/server state where applicable. Restore operations never create duplicate paid value.',
+      'Deleting a TycoonX account may permanently delete profile and gameplay state, but it does not necessarily cancel or erase a separate valid Apple, Google, Xsolla, or other payment-provider transaction. Where a valid Lifetime VIP or other restorable entitlement remains associated with the purchaser, CK-Labs may require reasonable proof that the same purchaser controls the relevant platform or payment account before attaching that entitlement to an eligible TycoonX account.',
+      'Restoring a paid entitlement after account deletion does not recreate deleted gameplay progress, consumed Diamonds, inventory, social history, or transferred assets unless applicable law requires otherwise.',
     ],
   },
   {
