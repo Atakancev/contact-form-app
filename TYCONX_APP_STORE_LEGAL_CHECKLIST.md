@@ -78,6 +78,19 @@ Test this explicitly:
 
 Explain the consequence of account deletion before final confirmation where platform rules or applicable law require it.
 
+### Family Sharing decision gate
+Lifetime VIP is an Apple non-consumable and is therefore the kind of product for which Apple can support Family Sharing, but **do not enable Family Sharing casually**.
+
+Before enabling it in App Store Connect:
+- make an explicit product decision whether a single Lifetime VIP purchase should be shareable with eligible Apple family members;
+- remember that Apple says Family Sharing cannot be turned off for that In-App Purchase after it is enabled;
+- if enabled, display the shareable status accurately in TycoonX purchase UI;
+- process Apple shared/restored transactions and entitlement-revocation events so a family member does not retain access after Apple reports that sharing ended;
+- never convert shared access into a separately owned, transferable, or separately refundable TycoonX purchase; and
+- test refund, family-leave, share-disable, reinstall, and account-relink scenarios before launch.
+
+Until CK-Labs explicitly chooses and implements Family Sharing, do not market Lifetime VIP as family-shareable.
+
 ### Refunds
 - Do not promise “no refunds.”
 - Apple controls its App Store refund-request process.
@@ -90,11 +103,24 @@ Explain the consequence of account deletion before final confirmation where plat
 - Configure Lifetime VIP as a one-time **non-consumable** product if that remains the intended Google Play model. Google currently describes non-consumables as purchased once and permanently associated with the purchaser’s Google Account.
 - Configure one-time 30-Day VIP so it does not silently become recurring billing.
 - If players may legitimately buy another 30-Day VIP later, confirm the Google product configuration is repeatable after the prior entitlement is provisioned/expired; a non-consumable configuration would permanently block repurchase.
+- Use Google’s current one-time-product purchase-option/offer model deliberately; do not create overlapping purchase options or offers that accidentally produce duplicate entitlements or misleading regional promotion states.
 - Product metadata, price, duration, and promotional claims must be accurate and not misleading.
 - Regional prices may differ. Keep country/region eligibility and storefront rules separate from any truly personalized automated price.
 - Reconcile refunds, cancellations, chargebacks, and invalid purchases to the corresponding TycoonX entitlement or paid value.
 - If Google processes the refund, TycoonX should consume the resulting provider status rather than promise an independent contradictory refund outcome.
 - Test account deletion and later entitlement recovery so a still-valid non-consumable Lifetime VIP can be re-linked to the same verified purchaser without recreating deleted gameplay state or Diamond consumables.
+
+### Google Play EEA external offers / Xsolla linkouts
+Users may be able to consume TycoonX content purchased outside Google Play, but that does **not** mean TycoonX should insert an Xsolla web-shop link into the Google Play app without checking the current program rules.
+
+Before any EEA in-app Xsolla promotion or linkout:
+- verify the current Google Play external-offers rules for games;
+- enroll in the applicable program if required;
+- implement required user notices and transaction flow requirements;
+- account for current Google fees/reporting obligations where applicable; and
+- keep off-Play purchases and Play purchases idempotently mapped to the same TycoonX entitlement model.
+
+Off-app promotion by email, website, or other lawful channels should still be checked against the applicable platform/program and consumer-law rules, but it is legally and operationally different from an in-app linkout.
 
 ## 5. Official TycoonX web shop using Xsolla
 
@@ -107,6 +133,8 @@ CK-Labs remains responsible for correctly delivering the corresponding TycoonX e
 The web shop must not be linked or promoted inside Apple/Google apps in a way that violates the applicable platform, country, program, or law.
 
 For Lifetime VIP sold through the web shop, maintain enough lawful transaction/entitlement evidence to distinguish account deletion from cancellation/refund of the underlying purchase. Define a verified re-link process for a purchaser who deletes a TycoonX account and later proves control of the same purchase identity, subject to the Xsolla contract, privacy law, and mandatory consumer rights.
+
+Xsolla’s current public Refund Policy says the applicable refund-policy type is shown at checkout and the relevant Xsolla contracting company can depend on the payment method. Do not hard-code one universal Xsolla refund policy or entity into TycoonX legal copy unless the actual CK-Labs Xsolla setup makes that statement true.
 
 ## 6. Prices and promotions
 
@@ -291,7 +319,43 @@ Do not invent operator details. Confirm and publish, as applicable:
 
 The same legal trader identity must be consistent across the website, Terms, Privacy Policy, checkout, invoices/receipts where CK-Labs is the seller, and platform developer information.
 
-## 18. Release gate
+## 18. Cross-platform entitlements and duplicate-benefit prevention
+
+TycoonX may recognize one valid purchase across supported devices or platforms where platform rules allow, but recognition must remain idempotent.
+
+Test at least:
+- Apple purchase → same TycoonX account on another Apple device;
+- Google purchase → same TycoonX account on another Android device;
+- Xsolla web purchase → supported mobile account recognition where permitted;
+- platform reinstall and account re-link;
+- duplicate provider/webhook notifications;
+- same receipt replayed from multiple devices; and
+- multiple account-link attempts to one provider purchase.
+
+Expected result: the valid benefit follows the supported entitlement model, but the same underlying purchase never creates duplicate Diamonds, a second 30-Day period, or multiplied Lifetime VIP benefits.
+
+If a user genuinely completed two separate valid transactions, do not silently collapse them as a “duplicate” without determining the actual product semantics and preserving applicable refund/consumer rights.
+
+## 19. German consumer dispute resolution and discontinued EU ODR platform
+
+Do not add a stale EU Online Dispute Resolution link. Regulation (EU) 2024/3228 discontinued the European Commission ODR platform and repealed the old ODR Regulation with effect from 20 July 2025.
+
+For German VSBG compliance:
+- determine before launch whether the general §36 VSBG information duty applies to the actual CK-Labs business circumstances, including any applicable small-business exemption;
+- if §36 applies, clearly state whether CK-Labs is willing or legally obliged to participate in consumer conciliation and identify a competent body where required;
+- do **not** voluntarily promise general participation unless CK-Labs actually intends to make that commitment;
+- independently prepare a §37 VSBG post-dispute response workflow, because after an unresolved consumer-contract dispute the trader may need to identify the competent consumer conciliation body, give its address and website, and state in text form whether participation is voluntary or mandatory; and
+- keep this information consistent between the website, Terms, and support responses.
+
+The Terms may remain founder-protective by preserving court rights and not imposing mandatory arbitration, while avoiding an unnecessary voluntary ADR commitment.
+
+## 20. Future paid randomized items guardrail
+
+TycoonX currently does not need a random-paid-item rule merely because it sells Diamonds or VIP. If a future product lets users pay for a randomized virtual item or loot-box-like outcome, stop release until the applicable platform and consumer-law requirements are reviewed.
+
+At minimum, Apple currently requires apps offering paid randomized virtual-item mechanisms to disclose the odds of receiving each type of item before purchase. Do not add a paid random-reward mechanic without the required disclosures and a separate fairness/age/consumer-protection review.
+
+## 21. Release gate
 
 Do not treat paid TycoonX purchases as legally production-ready until all applicable items pass:
 
@@ -304,10 +368,13 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] Product type/configuration is correct per Apple/Google/Xsolla channel.
 - [ ] Google Lifetime VIP is non-consumable if sold under the intended permanent-benefit model.
 - [ ] Google 30-Day VIP repeat-purchase behavior is verified if users may buy another 30-day period later.
+- [ ] Google Play EEA Xsolla/external-offer linkouts are used only under the current applicable program/rules.
 - [ ] Purchased Diamonds do not expire solely because time passes.
 - [ ] Lifetime VIP limited-time and commercial-lifetime disclosure is visible before purchase.
 - [ ] Lifetime VIP restoration works after reinstall/new supported device where applicable.
 - [ ] Lifetime VIP restoration after TycoonX account deletion is tested for the same verified purchaser without restoring deleted gameplay/consumables.
+- [ ] Apple Family Sharing is either intentionally disabled/not promised, or intentionally enabled with accurate UI and revoke/refund/family-change handling tested.
+- [ ] Cross-platform entitlement recognition is idempotent and cannot multiply paid benefits.
 - [ ] Account deletion UI clearly explains the effect on gameplay data versus restorable paid entitlements where required.
 - [ ] Valid 30-Day VIP restores without extending/duplicating its period.
 - [ ] Refund/revocation/chargeback events reconcile server-side idempotently.
@@ -321,9 +388,12 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] Store privacy disclosures match actual code/SDK behavior.
 - [ ] Merchant-of-record and refund responsibility is verified for the actual Xsolla configuration.
 - [ ] Apple/Google external-payment linking is checked per current country/platform/program rules.
+- [ ] German VSBG §36 applicability/statement is verified and a §37 unresolved-dispute response process exists.
+- [ ] No current legal page links users to the discontinued EU ODR platform.
+- [ ] Any future paid randomized-item mechanic receives a fresh odds/fairness/age/platform review before release.
 - [ ] App review/release metadata accurately explains the paid product types.
 
-## 19. Current blockers
+## 22. Current blockers
 
 The strongest remaining blockers before calling the complete TycoonX legal/payment setup production-ready are:
 
@@ -331,5 +401,7 @@ The strongest remaining blockers before calling the complete TycoonX legal/payme
 2. **Checkout implementation evidence:** the legal documents cannot prove that the real Apple, Google, and Xsolla purchase screens provide every required disclosure and consent.
 3. **German §356a withdrawal function:** responsibility and implementation must be verified on the real web purchase interface for every covered transaction.
 4. **Withdrawal consent implementation for immediate Diamond delivery:** the transaction-specific flow must be verified, not only described in Terms.
-5. **Entitlement lifecycle testing:** account deletion, reinstall/new-device restoration, Google 30-Day repeat-purchase behavior, and the Apple limited-time Lifetime VIP sales-window implementation must be tested against the final store configuration.
-6. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
+5. **Entitlement lifecycle testing:** account deletion, reinstall/new-device restoration, cross-platform idempotency, Apple Family Sharing decision/status, Google 30-Day repeat-purchase behavior, and the Apple limited-time Lifetime VIP sales-window implementation must be tested against the final store configuration.
+6. **Google/Xsolla route compliance:** any EEA Google Play in-app external-offer/linkout must be verified against the current Google program before it is exposed.
+7. **German consumer-dispute process:** §36 VSBG applicability/statement and §37 post-dispute workflow need final operator-specific verification; do not use the discontinued EU ODR platform.
+8. **Store/privacy configuration parity:** App Store, Google Play, and Xsolla settings must be checked against the final public legal copy before launch.
