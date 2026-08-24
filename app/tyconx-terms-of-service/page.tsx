@@ -291,6 +291,26 @@ const sections = [
       'A failure by CK-Labs to enforce a provision once does not automatically waive the right to enforce that provision later.',
     ],
   },
+  {
+    title: 'Cross-platform access, Family Sharing, and entitlement stacking',
+    body: [
+      'A purchase made through Apple, Google, Xsolla, or another authorized channel may be recognized on another supported TycoonX platform only where TycoonX supports that cross-platform access and the applicable store, payment-provider, country, and platform rules permit it.',
+      'Recognizing the same valid purchase on another supported device or platform does not create a second purchase, duplicate entitlement, additional Diamond grant, additional 30-Day VIP period, or a second Lifetime VIP. Unless a specific offer expressly states that benefits are stackable, multiple records representing the same underlying purchase or the same already-active Lifetime VIP do not multiply the duration or benefits beyond what was validly purchased.',
+      'If a user separately completes multiple valid purchases that are not duplicates, each transaction remains subject to its own product terms and mandatory rights. CK-Labs may consolidate entitlement records for technical administration without cancelling a distinct valid purchase or removing a remedy required by law.',
+      'Apple Family Sharing applies only if CK-Labs has enabled it for the relevant eligible In-App Purchase and the purchase is shareable under Apple’s current rules. If Family Sharing is offered, shared access is derivative of the original purchaser’s valid Apple entitlement and may end when Apple reports that sharing or the underlying entitlement has ended, been revoked, or been refunded. Family Sharing does not transfer ownership of the purchase, create a separately refundable purchase for each family member, or make the entitlement transferable outside Apple’s supported sharing mechanism.',
+      'If TycoonX does not expressly display a product as Family Shareable, the purchase does not include a promise of Apple Family Sharing. Mandatory platform and consumer rights remain unaffected.',
+    ],
+  },
+  {
+    title: 'Consumer dispute resolution',
+    body: [
+      'CK-Labs aims to resolve account, purchase, entitlement, and consumer-contract disputes through TycoonX Support first.',
+      'To the extent German consumer-dispute law requires a general statement about participation in consumer conciliation, the applicable website and Terms will state whether CK-Labs is willing or legally obliged to participate in proceedings before a consumer conciliation body. Nothing in these Terms creates a voluntary general commitment to participate in such proceedings unless CK-Labs expressly makes that commitment or participation is required by law.',
+      'If a dispute concerning a consumer contract cannot be resolved directly and German Section 37 VSBG or another mandatory rule applies, CK-Labs will provide the legally required information in text form about the competent consumer conciliation body and state whether CK-Labs is willing or obliged to participate.',
+      'The former European Commission Online Dispute Resolution platform was discontinued in 2025. TycoonX does not rely on, or direct consumers to, that discontinued platform as a current dispute-resolution mechanism.',
+      'This section does not restrict a consumer’s right to use a competent court, statutory complaint mechanism, payment-provider process, or other mandatory remedy.',
+    ],
+  },
 ];
 
 export default function TycoonXTermsOfService() {
