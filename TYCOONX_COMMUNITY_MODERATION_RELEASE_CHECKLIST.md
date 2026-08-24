@@ -9,6 +9,7 @@ This checklist covers TycoonX user-generated content (UGC), chat, social/communi
 
 - [x] Public Community Standards & Moderation Policy exists at `/tycoonx-community-standards`.
 - [x] The rendered policy uses **TycoonX**, never `TyconX`.
+- [x] The Community Policy now states that its more specific UGC/moderation/public-private licensing rules control over a conflicting general Terms provision for that subject, to the extent permitted by law.
 - [ ] Link the Community Standards from the Terms of Service and relevant in-app community/reporting surfaces.
 - [ ] Ensure users can retrieve the applicable Terms/Community Standards before creating or uploading UGC.
 - [ ] Where Google Play policy applies, obtain Terms/User Policy acceptance before the user can create or upload UGC.
@@ -29,7 +30,7 @@ The public policy should prohibit, at minimum where relevant:
 
 Do not write the rule so broadly that normal criticism, disagreement, satire, competitive game talk, or isolated mild profanity automatically becomes a violation.
 
-## 3. Apple App Store UGC gate
+## 3. Apple App Store UGC and age-safety gate
 
 Apple App Review Guideline 1.2 currently requires UGC/social apps to include:
 - [ ] a method for filtering objectionable material from being posted;
@@ -43,6 +44,8 @@ Operational checks:
 - [ ] Verify user blocking actually prevents the intended interaction, especially direct messages and other 1:1 interactions.
 - [ ] Verify moderation queues/reports are actually reviewed and acted on.
 - [ ] Verify support/contact information is accurate in the app and Support URL.
+- [ ] Verify the App Store age-rating questionnaire accurately declares TycoonX social-media capabilities. Apple updated the questionnaire starting July 2026 and states that apps/games declaring social-media capabilities receive a minimum 13+ age rating; if social-media capabilities are disabled for users under 13, the Social Media Time Allowance category is not applied to those users under 13.
+- [ ] If TycoonX relies on age-based disabling of social features, verify the actual product gating matches the App Store declaration and does not merely rely on legal text.
 - [ ] If random or anonymous chat is ever introduced, perform a fresh App Review/age-safety audit before release. Apple clarified in February 2026 that random or anonymous chat is subject to Guideline 1.2.
 
 ## 4. Google Play UGC gate
@@ -57,6 +60,7 @@ Google Play currently requires robust, effective, and ongoing UGC moderation.
 - [ ] Reports lead to appropriate moderation action when justified.
 - [ ] Monetization does not encourage or reward objectionable UGC behavior.
 - [ ] Any incidental sexual content treatment, if such content can exist at all, follows Google Play’s then-current filtering and age-safety rules.
+- [ ] Re-check the July 15, 2026 child-safety/age-restricted-content policy changes before introducing anonymous or random chat. Do not add those modes without a dedicated policy and child-safety review.
 
 ## 5. EU DSA Article 14 terms transparency
 
@@ -66,7 +70,8 @@ Where a TycoonX community feature falls within the DSA intermediary-service fram
 - [x] Community Policy explains that moderation can use reports, filters, automated rules/classifiers, security signals, and human review.
 - [x] Community Policy explains possible moderation actions.
 - [x] Community Policy explains that users can challenge a decision through Support unless another route is provided.
-- [ ] Link the Community Policy from the main Terms so the restrictions and moderation process are incorporated into the contractual framework.
+- [x] Community Policy now states that its specific UGC/moderation rules control over a conflicting general Terms provision for that subject.
+- [ ] Link the Community Policy from the main Terms so the restrictions and moderation process are incorporated visibly into the contractual framework.
 - [ ] Keep significant Terms/community-policy changes appropriately communicated where required.
 
 ## 6. EU DSA Article 16 notice-and-action mechanism
@@ -116,7 +121,8 @@ The DSA contains exemptions from some additional online-platform duties for micr
 - [x] Community Policy limits the operational UGC license to what is reasonably necessary to host, store, format, translate, transmit, display, moderate, back up, secure, support, and improve TycoonX.
 - [x] Public UGC may be featured for TycoonX community/promotional purposes only where consistent with context, settings, law, and third-party rights.
 - [x] Private direct messages, private support communications, and non-public reports are not licensed for public promotional use merely because CK-Labs processes them.
-- [ ] Sync this narrower public/private UGC distinction into the main Terms of Service so the Terms do not appear broader than the Community Policy.
+- [x] Community Policy now expressly controls over a conflicting broader general Terms provision for UGC licensing, reducing ambiguity until the Terms wording itself is synchronized.
+- [ ] Synchronize the same narrow public/private distinction directly into the main Terms of Service for clarity and consistency.
 - [ ] Sync corresponding privacy wording if the final implementation or marketing workflow uses public UGC promotion.
 
 ## 10. Moderation records and privacy
@@ -137,6 +143,7 @@ The legal framework should preserve CK-Labs’ ability, subject to mandatory law
 - act on serious or repeated Terms violations;
 - preserve relevant evidence for lawful claims or authority requests;
 - reject abusive or malicious reporting behavior;
+- restrict or age-gate community features where law/platform rules or child-safety requirements justify it;
 - discontinue or redesign a community feature if platform rules, legal requirements, abuse patterns, or technical risks make it unreasonable to continue unchanged; and
 - avoid promising that every item is pre-screened or that every violation will be detected immediately.
 
@@ -144,9 +151,10 @@ Do not use these protections to remove unrelated legitimate paid digital value o
 
 ## 12. Current P0/P1 gaps
 
-1. **P0: Terms linkage and acceptance:** the new Community Standards page exists, but the main Terms and actual in-app UGC acceptance flow still need to be linked/verified.
+1. **P0: UGC acceptance implementation:** the legal policy exists, but the actual app flow must be verified to require Terms/User Policy acceptance before UGC creation where Google Play requires it.
 2. **P0: DSA Article 16 implementation evidence:** a compliant illegal-content notice-and-action flow must be verified for every TycoonX feature that qualifies as hosting under the DSA.
 3. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient. The production app must implement the required controls.
-4. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
-5. **P1: Terms UGC license sync:** replace the current broad Terms wording so private/direct/support content is not implicitly licensed for public promotion.
-6. **P1: Privacy parity:** verify the Privacy Policy and actual moderation data retention/automation match the final moderation implementation.
+4. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
+5. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
+6. **P1: Direct Terms wording sync:** the specific-policy precedence now protects the narrower public/private UGC rule, but the main Terms should still be rewritten to match it exactly.
+7. **P1: Privacy parity:** verify the Privacy Policy and actual moderation data retention/automation match the final moderation implementation.
