@@ -212,7 +212,19 @@ Its one-time purchase price and non-renewing nature do not by themselves elimina
 
 CK-Labs will not use one blanket “no refunds” or “waive all withdrawal rights” clause for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.
 
-## 15. Permanent service discontinuation
+## 15. Cross-platform access, Family Sharing, and duplicate entitlement records
+
+A valid purchase may be recognized on another supported TycoonX device or platform only where TycoonX supports that access and the applicable store, payment-provider, country, and platform rules permit it. Cross-platform recognition does not itself create a new transaction or an additional paid grant.
+
+The same underlying purchase must not be multiplied through restore, account migration, cross-device use, cross-platform linking, webhook retries, or duplicate provider records. Unless a specific offer expressly says otherwise, recognizing the same Lifetime VIP more than once does not create multiple Lifetime VIP benefits, and recognizing the same 30-Day VIP more than once does not extend its original valid period.
+
+Separately completed valid purchases that are not duplicates remain separate transactions. CK-Labs may consolidate technical entitlement records without cancelling a distinct valid purchase or removing a mandatory refund, warranty, or other consumer remedy.
+
+Apple Family Sharing applies only where CK-Labs has enabled it for the relevant eligible In-App Purchase and Apple reports the purchase as shareable. If Family Sharing is offered, a family member’s access depends on the original purchaser’s valid shared entitlement and may end if Apple reports that sharing or the underlying entitlement has ended, been revoked, or been refunded. Shared access does not create a separate purchase or refund right for each family member beyond Apple’s rules and mandatory law.
+
+If TycoonX does not expressly show an Apple product as Family Shareable, the purchase does not include a promise of Family Sharing.
+
+## 16. Permanent service discontinuation
 
 If TycoonX is permanently discontinued, online access to accounts, Diamonds, VIP, virtual items, and game data may also end. Virtual items do not automatically become redeemable for cash merely because the Service closes.
 
@@ -220,7 +232,7 @@ Lifetime VIP is tied to the commercial operating lifetime of TycoonX for the pur
 
 This does not waive any mandatory refund, price-reduction, termination, warranty, or other consumer remedy that applies because of the circumstances or timing of discontinuation.
 
-## 16. Contact
+## 17. Contact
 
 TycoonX is operated by **CK-Labs**.
 
