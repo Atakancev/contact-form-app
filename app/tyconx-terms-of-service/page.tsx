@@ -49,7 +49,9 @@ const sections = [
       'A valid Lifetime VIP purchase is intended to remain active for the commercial operating lifetime of the TycoonX Service for the purchasing account, while TycoonX continues to be operated and made available by CK-Labs and while the account remains eligible to use the Service.',
       'Lifetime does not mean the biological lifetime of the purchaser, CK-Labs, any owner, device, platform, payment provider, server, or other company, and it is not a promise that TycoonX will operate forever or for a fixed minimum number of years beyond mandatory law and the reasonable expectations created by the specific offer.',
       'Lifetime VIP may end if TycoonX is permanently discontinued, the purchase is refunded or invalid, the account is lawfully terminated for a serious or repeated Terms violation, or continued supply becomes prohibited or impossible because of law, platform rules, or another circumstance recognized by applicable law. Mandatory consumer remedies remain unaffected.',
-      'Deleting a TycoonX account may permanently remove profile and gameplay data, but account deletion does not by itself extinguish a valid non-consumable or otherwise restorable platform entitlement where Apple, Google, another payment provider, or mandatory law requires that entitlement to remain restorable. Restoration may require reasonable proof that the same purchaser controls the relevant platform or payment account, and restoration of the entitlement does not recreate deleted gameplay progress, Diamonds, inventory, transaction history, or transferred assets unless applicable law requires otherwise.',
+      'Deleting a TycoonX account may permanently remove profile and gameplay data, but account deletion does not by itself extinguish a valid non-consumable or otherwise restorable platform entitlement where Apple, Google, another payment provider, or mandatory law requires that entitlement to remain restorable. Restoration may require reasonable proof that the same purchaser controls the relevant platform or payment account, and restoration of the entitlement does not recreate deleted gameplay progress, consumed Diamonds, inventory, history, or transferred assets unless applicable law requires otherwise.',
+      'Any countdown, closing date, limited-time statement, or price-advantage claim used for Lifetime VIP must reflect a genuine offer and must not be misleading.',
+      'The commercial-lifetime meaning and the limited-time nature of the current sales offer must be disclosed clearly at or immediately before the Lifetime VIP purchase screen.',
       'Ending a Lifetime VIP sales window affects future availability only and does not by itself cancel or shorten a valid Lifetime VIP already purchased.',
     ],
   },
@@ -91,8 +93,9 @@ const sections = [
     body: [
       'Purchases made through the official TycoonX web shop may be processed by Xsolla. Depending on the checkout arrangement, an Xsolla group company may act as merchant of record.',
       'When Xsolla acts as merchant of record, the Xsolla entity shown during checkout or on the receipt may be responsible under its applicable terms for payment processing, applicable transaction taxes or VAT, fraud screening, refunds, payment disputes, and chargebacks.',
-      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for that transaction.',
+      'The exact Xsolla entity, payment method, price, taxes, refund policy, and legally required purchase information are determined by the checkout and receipt for that transaction. Transaction-specific Xsolla terms and mandatory consumer law apply where relevant.',
       'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the related TycoonX entitlement or virtual value.',
+      'A web-shop purchase does not create a right to advertise, link to, or complete the Xsolla purchase inside an Apple or Google app where the applicable platform rules, country rules, or law do not permit it.',
     ],
   },
   {
@@ -104,6 +107,26 @@ const sections = [
       'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price. A later price decrease does not automatically create a right to a refund, credit, partial refund, price match, additional Diamonds, or additional VIP time. A later price increase does not create an additional charge for an already completed one-time purchase, except where mandatory law requires otherwise.',
       'Lifetime VIP may be sold at different prices in different genuine sales windows. Purchasing during one sales window does not create a right to a later lower promotional price or a promise that any future sales window will use the same price.',
       'Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading.',
+      'Where a jurisdiction imposes a specific reference-price, price-history, or discount-disclosure rule on the particular product or offer, the applicable marketing and checkout must follow that rule.',
+      'If CK-Labs later introduces a recurring subscription or another recurring-charge product, the price-change, renewal, notice, consent, and cancellation rules applicable to that product apply separately. These one-time purchase rules do not authorize an undisclosed recurring charge.',
+    ],
+  },
+  {
+    title: 'Checkout information and payment confirmation',
+    body: [
+      'Before a consumer places a paid order, the applicable checkout must present legally required pre-contract information clearly and at the legally required point in the flow.',
+      'Depending on the transaction and applicable law, this can include the main characteristics of the product, the total price including mandatory taxes and charges, duration or termination information, delivery information, material functionality, compatibility or interoperability information for digital products, accepted payment methods, delivery restrictions, and the identity and contact information of the contracting trader.',
+      'Where German law applies to an online checkout creating a payment obligation, the final ordering step must make that payment obligation clear in the manner required by law. CK-Labs will not rely on hidden wording, preselected paid extras, or an ambiguous final-order control to create a payment obligation.',
+      'If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact, the applicable checkout or offer must disclose it before the order is placed. Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing merely because prices differ between regions.',
+    ],
+  },
+  {
+    title: 'German electronic withdrawal function',
+    body: [
+      'For covered distance contracts concluded through an online user interface, German law requires an electronic withdrawal function while the statutory withdrawal period is running.',
+      'Where that requirement applies to a TycoonX transaction and CK-Labs is the contracting trader responsible for the online interface, CK-Labs must provide the legally required clearly labelled, continuously available, prominently placed, easily accessible withdrawal function, confirmation step, and receipt confirmation on a durable medium.',
+      'Where Apple, Google, Xsolla, or another provider is the contracting merchant or controls the legally relevant purchase and withdrawal interface, that provider’s compliant withdrawal or refund flow may be the applicable route. This allocation of roles does not remove a mandatory withdrawal right.',
+      'The electronic withdrawal function supplements rather than removes any other legally valid way a consumer may exercise a withdrawal right.',
     ],
   },
   {
@@ -121,6 +144,7 @@ const sections = [
       'Promotions may be limited by time, country, platform, account, purchase history, eligibility, quantity, redemption count, or other clearly stated conditions. Unless the offer states otherwise, promotions cannot be combined and do not create entitlement to a future promotion.',
       'Users must not exploit technical errors, duplicate coupon redemption, manipulated region or identity information, automated purchase abuse, refund cycling, account farming, or other methods to obtain promotional value beyond the genuine offer.',
       'Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.',
+      'A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, beta benefit, or tester grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.',
     ],
   },
   {
@@ -139,6 +163,7 @@ const sections = [
       'If a payment is refunded, reversed, cancelled, charged back, or found invalid after value has been credited, CK-Labs may, subject to applicable law, revoke the related entitlement, remove the corresponding unused Diamonds or virtual value, reverse directly related invalid game transactions, apply an equivalent correction where refunded value was already consumed or transferred, or temporarily restrict purchase and economy functions while a payment dispute is investigated.',
       'CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse the specific invalid transaction or as otherwise permitted by law.',
       'Knowingly filing false fraud reports, abusive chargebacks, or repeated payment disputes for purchases that were authorized and received may lead to purchase restrictions or account enforcement after reasonable investigation, without limiting genuine fraud-reporting or consumer rights.',
+      'Refunds are ordinarily processed through the payment channel that handled the purchase and, where the provider requires it, to the original payment method. Currency conversion differences, bank fees, card-issuer fees, or exchange-rate movements outside CK-Labs control remain subject to provider rules and mandatory law.',
     ],
   },
   {
@@ -226,8 +251,12 @@ const sections = [
     title: 'User content and community features',
     body: [
       'If TycoonX allows you to submit messages, names, descriptions, images, creative works, or other content, you remain responsible for content you submit and must have the rights necessary to submit it.',
-      'You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, store, reproduce, display, format, translate, transmit, moderate, and technically adapt submitted content only as reasonably necessary to operate, secure, promote, and improve TycoonX, subject to applicable privacy and intellectual-property law.',
-      'CK-Labs may remove or restrict content that violates these Terms, community rules, law, third-party rights, platform rules, or reasonable safety requirements. Mandatory rights concerning user content remain unaffected.',
+      'You grant CK-Labs a non-exclusive, worldwide, royalty-free license to host, store, reproduce, format, translate, transmit, display, moderate, back up, and technically adapt submitted content only as reasonably necessary to operate, secure, moderate, support, and improve TycoonX, subject to applicable privacy and intellectual-property law.',
+      'For content you intentionally make public in TycoonX, the license also permits CK-Labs to display that public content as part of the Service and, where consistent with the context, your settings, applicable law, and third-party rights, to feature or reproduce public content for TycoonX community or promotional purposes.',
+      'Private direct messages, private support communications, and non-public reports are not licensed for public promotional use merely because CK-Labs must process them to provide, secure, moderate, or support the Service.',
+      'CK-Labs may remove or restrict content that violates these Terms, the TycoonX Community Standards & Moderation Policy, law, third-party rights, platform rules, or reasonable safety requirements. The Community Policy contains more specific rules for moderation, public/private user-generated-content handling, age-safety, reporting, blocking, and review, and controls for those specific subjects if a general provision of these Terms conflicts with it to the extent permitted by law.',
+      'The user-generated-content license ends when the relevant content is deleted from active systems except to the extent continued processing is reasonably necessary for backups, legal obligations, security, moderation evidence, dispute handling, or other lawful purposes, or where content has been lawfully shared by other users in a way that cannot reasonably be recalled.',
+      'Mandatory rights concerning user content remain unaffected.',
     ],
   },
   {
@@ -276,7 +305,7 @@ export default function TycoonXTermsOfService() {
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Terms of Service</h1>
           <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            These Terms govern TycoonX accounts, gameplay, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, purchases, pricing, Apple App Store, Google Play, the official Xsolla-powered web shop, security, service changes, outages, enforcement, and permanent discontinuation.
+            These Terms govern TycoonX accounts, gameplay, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, purchases, pricing, Apple App Store, Google Play, the official Xsolla-powered web shop, security, service changes, outages, enforcement, community features, and permanent discontinuation.
           </p>
         </div>
       </div>
@@ -297,11 +326,12 @@ export default function TycoonXTermsOfService() {
         ))}
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
-          <h2 className="text-white font-semibold mb-3">Purchases, privacy & support</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX is operated by CK-Labs. Use the detailed Purchases & Refunds Policy for payment-specific information and TycoonX Support for account, purchase, or enforcement questions.</p>
+          <h2 className="text-white font-semibold mb-3">Purchases, privacy, community & support</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX is operated by CK-Labs. Use the detailed Purchases & Refunds Policy for payment-specific information, the Community Standards for social and moderation rules, and TycoonX Support for account, purchase, or enforcement questions.</p>
           <div className="flex flex-wrap gap-3">
             <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Purchases & Refunds</a>
             <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Privacy Policy</a>
+            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Community Standards</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
