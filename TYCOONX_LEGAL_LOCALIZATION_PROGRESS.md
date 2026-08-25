@@ -25,28 +25,27 @@ Completed locale sets:
 - **Spanish (Mexico) (`es_MX`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Mexico-oriented QA completed.
 - **French (`fr`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. France-oriented QA completed.
 - **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
+- **Italian (`it`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 
-Italian localization is now in progress:
+Portuguese localization is next:
 
-- `/tycoonx-legal/it/terms` is complete and routed from the Italian legal hub.
-- `/tycoonx-legal/it/purchases` is complete and routed from the Italian legal hub.
-- `/tycoonx-legal/it/privacy` is complete and routed from the Italian legal hub.
-- Community Standards still fall back to the canonical English page until the Italian version is complete.
-- The Italian privacy wording uses native terminology such as `Informativa sulla privacy`, `titolare del trattamento`, `base giuridica`, `legittimo interesse`, `Clausole Contrattuali Standard`, `diritto di recesso`, `ripristino`, `chargeback`, `moderazione` and `protezione dei dati`, while preserving the full canonical legal scope.
-- The Italian Privacy Policy also states the current Apple-compatible requirement that third parties receiving user data from CK-Labs must provide equal or equivalent protection where platform rules require it.
+- The Portuguese legal hub already exists.
+- All four full Portuguese documents currently fall back to the canonical English pages until localized versions are completed.
+- The next document to create is `/tycoonx-legal/pt/terms`.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Italian (`it`) Community Standards**.
+The next unfinished locale/document is **Portuguese (`pt`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 25, 2026
 
+- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide filtering of objectionable material, an in-app reporting mechanism with timely responses, user blocking, and published developer contact information.
+- Apple clarified in February 2026 that random or anonymous chat is subject to Guideline 1.2. TycoonX does not gain a right to offer such a feature without satisfying applicable safety, age, moderation, and platform requirements.
+- Google Play continues to require robust and ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, in-app reporting and blocking appropriate to the interaction type, and action against objectionable UGC or users where appropriate.
+- Under the EU Digital Services Act, Article 16 continues to require an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content when the service qualifies as a hosting service, and Article 17 continues to require clear and specific statements of reasons for covered moderation restrictions.
 - German BGB §356a still requires, for covered online distance contracts, a clearly labelled, continuously available and easily accessible electronic withdrawal function, a confirmation step, and receipt confirmation on a durable medium.
-- Apple App Review Guideline 1.2 still requires UGC/social apps to provide filtering of objectionable material, an in-app reporting mechanism with timely responses, user blocking, and published developer contact information.
-- Google Play still requires robust and ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, in-app reporting and blocking appropriate to the interaction type, and safeguards preventing in-app monetization from encouraging objectionable user behavior.
-- Under the EU Digital Services Act, Article 16 still requires an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content when the service qualifies as a hosting service, and Article 17 still requires clear and specific statements of reasons for covered moderation restrictions.
 - Apple App Review Guideline 5.1.1 still requires an easily accessible privacy policy that identifies collected data, collection methods and uses, describes retention/deletion and consent withdrawal, and requires apps supporting account creation to offer account deletion within the app.
 - Apple App Review Guideline 5.1.1 also requires the privacy policy to confirm that third parties receiving user data from the app provide the same or equal protection stated in the app privacy policy and required by Apple’s guidelines.
 - Apple’s account-deletion guidance still requires deletion of the whole account and associated data that the developer is not legally required to retain, while allowing legally required retention and requiring users to be informed about purchase/subscription consequences.
@@ -71,8 +70,10 @@ Latest checkpoints:
 - Italian Purchases hub routing: `cdab78d`
 - Italian Privacy: `8ad97fa`
 - Italian Privacy hub routing: `e5c9631`
+- Italian Community Standards: `4c7d9ff`
+- Italian complete hub routing: `03cca57`
 
-Full-document localization progress: **27 / 100 complete (27%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **28 / 100 complete (28%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -82,7 +83,7 @@ Full-document localization progress: **27 / 100 complete (27%)** across the 25 r
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
-| 7 | it | Italiano | Ready | Ready | Ready | Ready | Pending |
+| 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
