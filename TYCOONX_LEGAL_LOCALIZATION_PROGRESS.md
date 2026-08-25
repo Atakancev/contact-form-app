@@ -30,12 +30,14 @@ Italian localization is now in progress:
 
 - `/tycoonx-legal/it/terms` is complete and routed from the Italian legal hub.
 - `/tycoonx-legal/it/purchases` is complete and routed from the Italian legal hub.
-- Privacy and Community Standards still fall back to the canonical English pages until their Italian versions are complete.
-- The Italian legal wording uses native terminology such as `Termini di Servizio`, `diritto di recesso`, `conformità`, `supporto durevole`, `chargeback`, `ripristino`, `risoluzione`, `negozio web`, `rimborso` and `controversie`, while preserving the full canonical legal scope.
+- `/tycoonx-legal/it/privacy` is complete and routed from the Italian legal hub.
+- Community Standards still fall back to the canonical English page until the Italian version is complete.
+- The Italian privacy wording uses native terminology such as `Informativa sulla privacy`, `titolare del trattamento`, `base giuridica`, `legittimo interesse`, `Clausole Contrattuali Standard`, `diritto di recesso`, `ripristino`, `chargeback`, `moderazione` and `protezione dei dati`, while preserving the full canonical legal scope.
+- The Italian Privacy Policy also states the current Apple-compatible requirement that third parties receiving user data from CK-Labs must provide equal or equivalent protection where platform rules require it.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Italian (`it`) Privacy Policy**.
+The next unfinished locale/document is **Italian (`it`) Community Standards**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -45,9 +47,11 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Apple App Review Guideline 1.2 still requires UGC/social apps to provide filtering of objectionable material, an in-app reporting mechanism with timely responses, user blocking, and published developer contact information.
 - Google Play still requires robust and ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, in-app reporting and blocking appropriate to the interaction type, and safeguards preventing in-app monetization from encouraging objectionable user behavior.
 - Under the EU Digital Services Act, Article 16 still requires an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content when the service qualifies as a hosting service, and Article 17 still requires clear and specific statements of reasons for covered moderation restrictions.
-- Apple App Review Guideline 5.1 still requires an easily accessible privacy policy that identifies collected data, collection methods and uses, describes retention/deletion and consent withdrawal, and requires apps supporting account creation to offer account deletion within the app.
+- Apple App Review Guideline 5.1.1 still requires an easily accessible privacy policy that identifies collected data, collection methods and uses, describes retention/deletion and consent withdrawal, and requires apps supporting account creation to offer account deletion within the app.
+- Apple App Review Guideline 5.1.1 also requires the privacy policy to confirm that third parties receiving user data from the app provide the same or equal protection stated in the app privacy policy and required by Apple’s guidelines.
 - Apple’s account-deletion guidance still requires deletion of the whole account and associated data that the developer is not legally required to retain, while allowing legally required retention and requiring users to be informed about purchase/subscription consequences.
-- Google Play still requires apps offering account creation to provide both an in-app account-deletion path and an external Web resource where users can request deletion of the app account and associated data.
+- Google Play still requires apps offering account creation to provide both an in-app account-deletion path and an external Web resource where users can request deletion of the app account and associated data; retained data for legitimate purposes such as security, fraud prevention, or regulatory compliance must be disclosed.
+- Google Play’s Data safety section must remain accurate and consistent with the app’s real privacy practices and privacy policy.
 - Apple App Review Guideline 3.1.1 still requires In-App Purchase for covered in-app digital unlocks, says purchased in-game currency may not expire, and requires a restore mechanism for restorable purchases.
 - Apple Family Sharing remains available only for eligible non-consumables and auto-renewable subscriptions when enabled by the developer. Once enabled for an eligible In-App Purchase in App Store Connect, it cannot be turned off, and entitlement revocation must be handled.
 - Google Play still requires entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged within three days to avoid automatic refund/revocation.
@@ -65,8 +69,10 @@ Latest checkpoints:
 - Italian Terms hub routing: `3c51c92`
 - Italian Purchases & Refunds: `be082e7`
 - Italian Purchases hub routing: `cdab78d`
+- Italian Privacy: `8ad97fa`
+- Italian Privacy hub routing: `e5c9631`
 
-Full-document localization progress: **26 / 100 complete (26%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **27 / 100 complete (27%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -76,7 +82,7 @@ Full-document localization progress: **26 / 100 complete (26%)** across the 25 r
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
-| 7 | it | Italiano | Ready | Ready | Ready | Pending | Pending |
+| 7 | it | Italiano | Ready | Ready | Ready | Ready | Pending |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
