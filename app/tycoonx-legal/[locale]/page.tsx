@@ -12,6 +12,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   de: new Set(['terms', 'purchases', 'privacy', 'community']),
   es: new Set(['terms', 'purchases', 'privacy', 'community']),
   es_MX: new Set(['terms', 'purchases', 'privacy', 'community']),
+  fr: new Set(['terms']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
@@ -19,6 +20,7 @@ const localizedOpenLabels: Record<string, string> = {
   de: 'Deutschen Text öffnen',
   es: 'Abrir texto en español',
   es_MX: 'Abrir texto en español (México)',
+  fr: 'Ouvrir le texte français',
 };
 
 function documentHref(locale: string, document: string, fallback: string) {
