@@ -26,8 +26,13 @@ export default async function LocalizedTycoonXLegalHub({
     {
       title: copy.termsTitle,
       summary: copy.termsSummary,
-      href: locale === 'tr' ? '/tycoonx-legal/tr/terms' : '/tyconx-terms-of-service',
-      localized: locale === 'tr',
+      href:
+        locale === 'tr'
+          ? '/tycoonx-legal/tr/terms'
+          : locale === 'de'
+            ? '/tycoonx-legal/de/terms'
+            : '/tyconx-terms-of-service',
+      localized: locale === 'tr' || locale === 'de',
     },
     {
       title: copy.purchasesTitle,
@@ -73,7 +78,11 @@ export default async function LocalizedTycoonXLegalHub({
                 href={card.href}
                 className="inline-flex border border-white/10 hover:bg-white/5 transition text-indigo-300 text-sm font-medium px-4 py-2 rounded-lg"
               >
-                {locale === 'tr' && card.localized ? 'Türkçe metni aç' : copy.openEnglish}
+                {locale === 'tr' && card.localized
+                  ? 'Türkçe metni aç'
+                  : locale === 'de' && card.localized
+                    ? 'Deutschen Text öffnen'
+                    : copy.openEnglish}
               </a>
             </section>
           ))}
