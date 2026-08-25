@@ -26,18 +26,15 @@ Completed locale sets:
 - **French (`fr`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. France-oriented QA completed.
 - **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
 
-Canadian French localized routes:
+Italian localization is now in progress:
 
-- `/tycoonx-legal/fr_CA/terms`
-- `/tycoonx-legal/fr_CA/purchases`
-- `/tycoonx-legal/fr_CA/privacy`
-- `/tycoonx-legal/fr_CA/community`
-
-The Canadian French copy uses Canada-oriented wording such as `Soutien TycoonX`, `admissibilité`, `renseignements`, `boutique Web`, `marchand officiel`, `bogues`, `réinitialisation`, `rétrofacturation`, `rabais`, `différends`, `clavardage` and `pourriel`, while preserving the same legal scope as the canonical English source.
+- `/tycoonx-legal/it/terms` is complete and routed from the Italian legal hub.
+- Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English pages until their Italian versions are complete.
+- The Italian Terms use native terminology such as `Termini di Servizio`, `diritto di recesso`, `conformità`, `supporto durevole`, `chargeback`, `ripristino`, `risoluzione`, `negozio web` and `controversie`, while preserving the full canonical legal scope.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Italian (`it`) Terms of Service**.
+The next unfinished locale/document is **Italian (`it`) Purchases & Refunds Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -52,8 +49,8 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Google Play still requires apps offering account creation to provide both an in-app account-deletion path and an external Web resource where users can request deletion of the app account and associated data.
 - Apple App Review Guideline 3.1.1 still requires In-App Purchase for covered in-app digital unlocks, says purchased in-game currency may not expire, and requires a restore mechanism for restorable purchases.
 - Apple Family Sharing remains available only for eligible non-consumables and auto-renewable subscriptions when enabled by the developer. Once enabled for an eligible In-App Purchase in App Store Connect, it cannot be turned off, and entitlement revocation must be handled.
-- Google Play still requires entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged within the applicable period to avoid automatic refund/revocation.
-- Xsolla’s Privacy Policy is listed as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**. Xsolla describes its own data-processing role, rights, international transfers, retention, security and automated decision-making separately from CK-Labs’s processing.
+- Google Play still requires entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged within three days to avoid automatic refund/revocation.
+- Xsolla’s Privacy Policy is listed as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**. Xsolla states that the applicable refund-policy type is shown in the checkout and describes its own data-processing role separately from CK-Labs’s processing.
 
 Latest checkpoints:
 
@@ -63,8 +60,10 @@ Latest checkpoints:
 - Canadian French Privacy: `d29d586`
 - Canadian French Community Standards: `9da20fc`
 - Canadian French complete hub routing: `86c167f`
+- Italian Terms: `943f337`
+- Italian Terms hub routing: `3c51c92`
 
-Full-document localization progress: **24 / 100 complete (24%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **25 / 100 complete (25%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -74,7 +73,7 @@ Full-document localization progress: **24 / 100 complete (24%)** across the 25 r
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
-| 7 | it | Italiano | Ready | Pending | Pending | Pending | Pending |
+| 7 | it | Italiano | Ready | Ready | Pending | Pending | Pending |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
