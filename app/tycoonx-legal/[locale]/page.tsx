@@ -37,8 +37,13 @@ export default async function LocalizedTycoonXLegalHub({
     {
       title: copy.purchasesTitle,
       summary: copy.purchasesSummary,
-      href: locale === 'tr' ? '/tycoonx-legal/tr/purchases' : '/tyconx-purchase-refund-policy',
-      localized: locale === 'tr',
+      href:
+        locale === 'tr'
+          ? '/tycoonx-legal/tr/purchases'
+          : locale === 'de'
+            ? '/tycoonx-legal/de/purchases'
+            : '/tyconx-purchase-refund-policy',
+      localized: locale === 'tr' || locale === 'de',
     },
     {
       title: copy.privacyTitle,
