@@ -36,22 +36,21 @@ The localized legal hub at `/tycoonx-legal/{locale}` is available for all target
 
 The Spanish wording consistently uses natural Spain-oriented legal language such as `Condiciones de uso`, `Compras y reembolsos`, `Política de privacidad`, `derecho de desistimiento`, `conformidad`, `reembolso`, `restauración` and `derechos digitales`, while protected product/platform names such as TycoonX, CK-Labs, Diamonds, 30-Day VIP, Lifetime VIP, Apple, Google Play, Xsolla and Family Sharing remain recognizable. The Spanish pages preserve the full canonical founder-protective scope, including price changes, genuine limited Lifetime VIP sales windows, regional pricing, pending/failed payments, duplicate grants, chargebacks, exploits, authoritative records, supported versions, provider changes, permanent service discontinuation, account deletion/restoration, moderation, privacy, and mandatory consumer rights.
 
-**Spanish (Mexico) (`es_MX`) Terms of Service, Purchases & Refunds Policy, and Privacy Policy are now complete**:
+**Spanish (Mexico) (`es_MX`) is now complete for all four full legal documents and has completed a native-language/full-release terminology pass**:
 - `/tycoonx-legal/es_MX/terms`
 - `/tycoonx-legal/es_MX/purchases`
 - `/tycoonx-legal/es_MX/privacy`
+- `/tycoonx-legal/es_MX/community`
 
-The Mexican Spanish wording is intentionally localized rather than copied from Spain Spanish, using natural Mexico-oriented wording such as `Términos de Servicio`, `rentar`, `costos`, `en línea`, `cuenta regresiva`, `fallas`, `cancelación`, `contracargo`, `proceso de pago`, `reembolso`, `tratamiento de datos`, `responsable`, `monitoreo` and `eliminación de cuenta`, while preserving the same canonical legal effect and the EU/German-specific legal concepts where those are actually applicable. The Privacy Policy preserves the complete canonical scope for account/profile data, gameplay/economy data, Apple/Google/Xsolla transaction data, security and exploit signals, public/private communications, GDPR legal bases, international transfers, retention, deletion, paid-entitlement restoration, minors, automated moderation, third-party services and mandatory privacy rights.
+The Mexican Spanish wording is intentionally localized rather than copied from Spain Spanish, using natural Mexico-oriented wording such as `Términos de Servicio`, `rentar`, `costos`, `en línea`, `cuenta regresiva`, `fallas`, `cancelación`, `contracargo`, `proceso de pago`, `reembolso`, `tratamiento de datos`, `responsable`, `monitoreo`, `eliminación de cuenta`, `reportes` and `bloqueos`, while preserving the same canonical legal effect and EU/German-specific legal concepts where those are actually applicable. The four pages preserve the complete canonical scope for account security, Diamonds, VIP, Lifetime VIP, prices, Apple/Google/Xsolla responsibilities, pending/failed payments, refunds, chargebacks, exploits, economy corrections, outages, account deletion/restoration, privacy, UGC/moderation, minors, platform rules, and mandatory consumer rights.
 
 The localized hub routing uses an explicit per-locale document map instead of hard-coded nested locale conditions, making partial and complete future locale rollouts safer and easier to maintain.
 
-The next unfinished locale/document is **Spanish (Mexico) (`es_MX`) Community Standards**.
+The next unfinished locale/document is **French (`fr`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording.
 
-A current-policy recheck on August 25, 2026 confirmed the localized privacy structure against current official sources: Apple still requires an accessible privacy policy that identifies collected data, uses, sharing, retention/deletion, consent withdrawal and account/data deletion, and account-creating apps must support in-app account deletion; Google Play still requires an accurate privacy policy and Data Safety disclosure and requires account deletion in-app plus an external web route for account-creating apps; Xsolla's current Privacy Policy remains dated June 3, 2026; BGB § 356a still requires an electronic withdrawal function for covered online distance contracts; and localized wording does not replace transaction-specific checkout disclosures, consent controls, Data Safety/App Privacy disclosures, moderation tooling, account-deletion implementation, or platform configuration.
-
-Google Play's announced expansion of its age-restricted content rules for apps whose core functionality is anonymous or random chat becomes effective **August 26, 2026**. TycoonX does not gain a promise to provide such functionality from these documents; any future anonymous/random-chat feature must undergo a fresh age-safety/platform review before release.
+A current-policy recheck on August 25, 2026 confirmed that Apple App Review Guideline 1.2 still requires filtering, reporting, blocking, timely moderation response, and published contact information for UGC/social apps; Google Play still requires robust ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, and in-app reporting/blocking appropriate to the experience. Google Play's announced expansion of its Age-Restricted Content and Functionality, Child Safety Standards, and Families rules for apps whose core functionality is anonymous or random chat becomes effective **August 26, 2026**. TycoonX does not gain a promise to provide anonymous or random chat from these documents, and any such future feature must undergo a fresh child-safety/platform review before release. The existing Community Standards already preserve CK-Labs' ability to age-gate, restrict, redesign, or discontinue social features where law, platform rules, safety, technical limits, or abuse patterns justify it.
 
 Current checkpoints:
 - English Terms rendered: `8e9913e`
@@ -78,13 +77,17 @@ Current checkpoints:
 - Mexican Spanish Purchases hub routing: `7e8a02a`
 - Mexican Spanish Privacy Policy: `8f4e6c5`
 - Mexican Spanish Privacy hub routing: `a02de5f`
+- Mexican Spanish Community Standards: `a396bfa`
+- Mexican Spanish complete hub routing: `22a4795`
+
+Full-document localization progress: **16 / 100 complete** across the 25 requested locales. All **25 / 25 localized legal hubs** exist.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
 | 1 | tr | Türkçe | Ready | Ready | Ready | Ready | Ready |
 | 2 | de | Deutsch | Ready | Ready | Ready | Ready | Ready |
 | 3 | es | Español | Ready | Ready | Ready | Ready | Ready |
-| 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Pending |
+| 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Pending | Pending | Pending | Pending |
 | 6 | fr_CA | Français (Canada) | Ready | Pending | Pending | Pending | Pending |
 | 7 | it | Italiano | Ready | Pending | Pending | Pending | Pending |
