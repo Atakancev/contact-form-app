@@ -34,23 +34,28 @@ The localized legal hub at `/tycoonx-legal/{locale}` is available for all target
 - `/tycoonx-legal/es/privacy`
 - `/tycoonx-legal/es/community`
 
-The Spanish wording consistently uses natural Spain-oriented legal language such as `Condiciones de uso`, `Compras y reembolsos`, `Política de privacidad`, `derecho de desistimiento`, `conformidad`, `reembolso`, `restauración` and `derechos digitales`, while protected product/platform names such as TycoonX, CK-Labs, Diamonds, 30-Day VIP, Lifetime VIP, Apple, Google Play, Xsolla and Family Sharing remain recognizable. The Spanish pages preserve the full canonical founder-protective scope, including price changes, genuine limited Lifetime VIP sales windows, regional pricing, pending/failed payments, duplicate grants, chargebacks, exploits, authoritative records, supported versions, provider changes, permanent service discontinuation, account deletion/restoration, moderation, privacy, and mandatory consumer rights.
+The Spanish wording consistently uses natural Spain-oriented legal language such as `Condiciones de uso`, `Compras y reembolsos`, `Política de privacidad`, `derecho de desistimiento`, `conformidad`, `reembolso`, `restauración` and `derechos digitales`, while protected product/platform names such as TycoonX, CK-Labs, Diamonds, 30-Day VIP, Lifetime VIP, Apple, Google Play, Xsolla and Family Sharing remain recognizable.
 
-**Spanish (Mexico) (`es_MX`) is now complete for all four full legal documents and has completed a native-language/full-release terminology pass**:
+**Spanish (Mexico) (`es_MX`) is complete for all four full legal documents and has completed a native-language/full-release terminology pass**:
 - `/tycoonx-legal/es_MX/terms`
 - `/tycoonx-legal/es_MX/purchases`
 - `/tycoonx-legal/es_MX/privacy`
 - `/tycoonx-legal/es_MX/community`
 
-The Mexican Spanish wording is intentionally localized rather than copied from Spain Spanish, using natural Mexico-oriented wording such as `Términos de Servicio`, `rentar`, `costos`, `en línea`, `cuenta regresiva`, `fallas`, `cancelación`, `contracargo`, `proceso de pago`, `reembolso`, `tratamiento de datos`, `responsable`, `monitoreo`, `eliminación de cuenta`, `reportes` and `bloqueos`, while preserving the same canonical legal effect and EU/German-specific legal concepts where those are actually applicable. The four pages preserve the complete canonical scope for account security, Diamonds, VIP, Lifetime VIP, prices, Apple/Google/Xsolla responsibilities, pending/failed payments, refunds, chargebacks, exploits, economy corrections, outages, account deletion/restoration, privacy, UGC/moderation, minors, platform rules, and mandatory consumer rights.
+The Mexican Spanish wording is intentionally localized rather than copied from Spain Spanish, while preserving the same canonical legal effect and the same EU/German-specific concepts where those rules are actually applicable.
+
+**French (`fr`) Terms of Service are now complete and routed from the French legal hub**:
+- `/tycoonx-legal/fr/terms`
+
+The French Terms use natural France-oriented legal language such as `Conditions d’utilisation`, `droit de rétractation`, `conformité`, `support durable`, `remboursement`, `rétrofacturation`, `résiliation`, `droits numériques` and `médiation de la consommation`. The full canonical scope is preserved, including account security, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, Apple/Google/Xsolla roles, regional and future price changes, obvious pricing/configuration errors, duplicate grants, pending/failed payments, chargebacks, exploits, authoritative records, economy corrections, supported versions, outages, provider changes, permanent discontinuation, business transfer, UGC, liability, cross-platform recognition, Family Sharing and mandatory consumer rights.
 
 The localized hub routing uses an explicit per-locale document map instead of hard-coded nested locale conditions, making partial and complete future locale rollouts safer and easier to maintain.
 
-The next unfinished locale/document is **French (`fr`) Terms of Service**.
+The next unfinished locale/document is **French (`fr`) Purchases & Refunds Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording.
 
-A current-policy recheck on August 25, 2026 confirmed that Apple App Review Guideline 1.2 still requires filtering, reporting, blocking, timely moderation response, and published contact information for UGC/social apps; Google Play still requires robust ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, and in-app reporting/blocking appropriate to the experience. Google Play's announced expansion of its Age-Restricted Content and Functionality, Child Safety Standards, and Families rules for apps whose core functionality is anonymous or random chat becomes effective **August 26, 2026**. TycoonX does not gain a promise to provide anonymous or random chat from these documents, and any such future feature must undergo a fresh child-safety/platform review before release. The existing Community Standards already preserve CK-Labs' ability to age-gate, restrict, redesign, or discontinue social features where law, platform rules, safety, technical limits, or abuse patterns justify it.
+A current-policy recheck on **August 25, 2026** confirmed that German BGB §356a still requires a clearly labelled, continuously available and easily accessible electronic withdrawal function for covered online distance contracts, together with a confirmation step and receipt confirmation on a durable medium. Apple still requires UGC/social apps to provide filtering, reporting, blocking and published contact information under App Review Guideline 1.2, and Apple Family Sharing for eligible non-consumable In-App Purchases still depends on CK-Labs enabling the feature in App Store Connect and handling revocations correctly. Google Play still requires its billing system for covered in-app digital goods unless an applicable exception/program applies. Xsolla's current legal index continues to list its Refund Policy as updated **June 16, 2026**, with the transaction-specific applicable refund-policy type shown through Xsolla checkout.
 
 Current checkpoints:
 - English Terms rendered: `8e9913e`
@@ -79,8 +84,10 @@ Current checkpoints:
 - Mexican Spanish Privacy hub routing: `a02de5f`
 - Mexican Spanish Community Standards: `a396bfa`
 - Mexican Spanish complete hub routing: `22a4795`
+- French Terms: `c5206be`
+- French Terms hub routing: `68434d4`
 
-Full-document localization progress: **16 / 100 complete** across the 25 requested locales. All **25 / 25 localized legal hubs** exist.
+Full-document localization progress: **17 / 100 complete** across the 25 requested locales. All **25 / 25 localized legal hubs** exist.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -88,7 +95,7 @@ Full-document localization progress: **16 / 100 complete** across the 25 request
 | 2 | de | Deutsch | Ready | Ready | Ready | Ready | Ready |
 | 3 | es | Español | Ready | Ready | Ready | Ready | Ready |
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
-| 5 | fr | Français | Ready | Pending | Pending | Pending | Pending |
+| 5 | fr | Français | Ready | Ready | Pending | Pending | Pending |
 | 6 | fr_CA | Français (Canada) | Ready | Pending | Pending | Pending | Pending |
 | 7 | it | Italiano | Ready | Pending | Pending | Pending | Pending |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
