@@ -27,17 +27,18 @@ Completed locale sets:
 
 Partially completed locale:
 
-- **French (Canada) (`fr_CA`) 1/4**: Terms Ready. Purchases & Refunds, Privacy, and Community Standards Pending.
+- **French (Canada) (`fr_CA`) 2/4**: Terms and Purchases & Refunds Ready. Privacy and Community Standards Pending.
 
-Canadian French Terms route:
+Canadian French localized routes:
 
 - `/tycoonx-legal/fr_CA/terms`
+- `/tycoonx-legal/fr_CA/purchases`
 
-The Canadian French Terms use Canada-oriented wording such as `Soutien TycoonX`, `admissibilité`, `renseignements`, `boutique Web`, `marchand officiel`, `bogues`, `réinitialisation`, `rétrofacturation` and `différends`, while preserving the same legal scope as the canonical English Terms. The localized page includes all canonical sections covering Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, future and regional price changes, Apple/Google/Xsolla roles, failed/pending payments, duplicate grants, chargebacks, account compromise, exploits, authoritative records, economy corrections, required updates, unsupported clients, provider changes, outages, permanent shutdown, business transfer, UGC, liability, cross-platform recognition, Family Sharing, German/EU withdrawal rules, and mandatory consumer protections.
+The Canadian French copy uses Canada-oriented wording such as `Soutien TycoonX`, `admissibilité`, `renseignements`, `boutique Web`, `marchand officiel`, `bogues`, `réinitialisation`, `rétrofacturation`, `rabais` and `différends`, while preserving the same legal scope as the canonical English source. The Purchases & Refunds page includes all canonical sections covering Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, Apple/Google/Xsolla roles, failed/pending payments, future and regional price changes, checkout information, German electronic withdrawal requirements, restore/cross-device recovery, duplicate grants, promotions, refunds, chargebacks, unauthorized purchases, EU/German withdrawal rights, cross-platform recognition, Family Sharing, and permanent service discontinuation.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **French (Canada) (`fr_CA`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **French (Canada) (`fr_CA`) Privacy Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -47,15 +48,17 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Apple App Review Guideline 3.1.1 still requires In-App Purchase for covered in-app digital unlocks, says purchased in-game currency may not expire, and requires a restore mechanism for restorable purchases.
 - Apple Family Sharing remains available only for eligible non-consumables and auto-renewable subscriptions when enabled by the developer. Once enabled for an eligible In-App Purchase in App Store Connect, it cannot be turned off, and entitlement revocation must be handled.
 - Google Play still requires entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged within the applicable period to avoid automatic refund/revocation.
-- Xsolla remains a transaction-specific checkout/payment provider whose exact merchant, taxes, refund rules, and receipt details depend on the applicable checkout arrangement.
+- Xsolla’s legal index lists its Refund Policy as updated **June 16, 2026**. The applicable Xsolla refund-policy type and contracting Xsolla company depend on the transaction-specific checkout/payment arrangement.
 
 Latest checkpoints:
 
 - French complete set routing: `1502af4`
 - Canadian French Terms: `0c80692`
 - Canadian French Terms hub routing: `7cf6a95`
+- Canadian French Purchases & Refunds: `baca7e1`
+- Canadian French Purchases hub routing: `3e7dcdd`
 
-Full-document localization progress: **21 / 100 complete (21%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **22 / 100 complete (22%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -64,7 +67,7 @@ Full-document localization progress: **21 / 100 complete (21%)** across the 25 r
 | 3 | es | Español | Ready | Ready | Ready | Ready | Ready |
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
-| 6 | fr_CA | Français (Canada) | Ready | Ready | Pending | Pending | Pending |
+| 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Pending | Pending |
 | 7 | it | Italiano | Ready | Pending | Pending | Pending | Pending |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
