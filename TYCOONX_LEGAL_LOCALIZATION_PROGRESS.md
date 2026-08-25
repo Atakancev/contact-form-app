@@ -40,15 +40,15 @@ The localized hub routing uses an explicit per-locale document map so partially 
 
 The next unfinished locale/document is **Portuguese (`pt`) Community Standards**.
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make the third-party data-protection safeguard required by current Apple privacy rules explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 26, 2026
 
 - Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy that identifies data collected, collection methods and uses, explains retention/deletion and consent withdrawal, and confirms that third parties receiving user data provide the same or equivalent protection required by Apple's rules. Apps supporting account creation must also offer account deletion within the app.
 - Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for legal, security, fraud-prevention or regulatory reasons must be disclosed.
 - Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026**. Xsolla's current Privacy Policy separately addresses its role in processing, legal bases, recipients, international transfers, retention, security, automated decision-making and data-subject rights.
-- The Portuguese Privacy localization preserves the canonical distinctions between CK-Labs processing and independent Apple, Google, Xsolla, bank, card-network or other provider processing, as well as GDPR legal bases, retention, account deletion, paid-entitlement restoration and international-transfer safeguards.
-- A canonical-English privacy hardening item remains under audit: the public English Privacy Policy should explicitly mirror Apple's same-or-equivalent third-party protection wording on its next canonical edit if not already present in the rendered source. This should then be synchronized to any completed localized Privacy pages that do not already contain an equivalent clause.
+- The canonical English rendered Privacy Policy and Markdown source now explicitly state that, where platform rules require it, third parties receiving user data from CK-Labs must provide the same or an equivalent level of protection. The Portuguese Privacy localization contains the same protection.
+- Previously completed localized Privacy pages should be checked for an equivalent clause during their next parity QA if not already present; Italian already contains one.
 
 Latest checkpoints:
 
@@ -72,6 +72,8 @@ Latest checkpoints:
 - Portuguese Purchases hub routing: `113a947`
 - Portuguese Privacy: `64566da`
 - Portuguese Privacy hub routing: `c3241db`
+- Canonical rendered Privacy hardening: `bb320b6`
+- Canonical Privacy Markdown sync: `9d08cb2`
 
 Full-document localization progress: **31 / 100 complete (31%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
