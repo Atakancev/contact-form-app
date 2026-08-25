@@ -7,6 +7,24 @@ import {
   rtlLocales,
 } from '../legal-locales';
 
+const localizedDocuments: Record<string, Set<string>> = {
+  tr: new Set(['terms', 'purchases', 'privacy', 'community']),
+  de: new Set(['terms', 'purchases', 'privacy', 'community']),
+  es: new Set(['terms', 'purchases', 'privacy', 'community']),
+};
+
+const localizedOpenLabels: Record<string, string> = {
+  tr: 'Türkçe metni aç',
+  de: 'Deutschen Text öffnen',
+  es: 'Abrir texto en español',
+};
+
+function documentHref(locale: string, document: string, fallback: string) {
+  return localizedDocuments[locale]?.has(document)
+    ? `/tycoonx-legal/${locale}/${document}`
+    : fallback;
+}
+
 export function generateStaticParams() {
   return localeOrder.map((locale) => ({ locale }));
 }
@@ -24,48 +42,28 @@ export default async function LocalizedTycoonXLegalHub({
 
   const cards = [
     {
+      document: 'terms',
       title: copy.termsTitle,
       summary: copy.termsSummary,
-      href:
-        locale === 'tr'
-          ? '/tycoonx-legal/tr/terms'
-          : locale === 'de'
-            ? '/tycoonx-legal/de/terms'
-            : '/tyconx-terms-of-service',
-      localized: locale === 'tr' || locale === 'de',
+      href: documentHref(locale, 'terms', '/tyconx-terms-of-service'),
     },
     {
+      document: 'purchases',
       title: copy.purchasesTitle,
       summary: copy.purchasesSummary,
-      href:
-        locale === 'tr'
-          ? '/tycoonx-legal/tr/purchases'
-          : locale === 'de'
-            ? '/tycoonx-legal/de/purchases'
-            : '/tyconx-purchase-refund-policy',
-      localized: locale === 'tr' || locale === 'de',
+      href: documentHref(locale, 'purchases', '/tyconx-purchase-refund-policy'),
     },
     {
+      document: 'privacy',
       title: copy.privacyTitle,
       summary: copy.privacySummary,
-      href:
-        locale === 'tr'
-          ? '/tycoonx-legal/tr/privacy'
-          : locale === 'de'
-            ? '/tycoonx-legal/de/privacy'
-            : '/tyconx-privacy-policy',
-      localized: locale === 'tr' || locale === 'de',
+      href: documentHref(locale, 'privacy', '/tyconx-privacy-policy'),
     },
     {
+      document: 'community',
       title: copy.communityTitle,
       summary: copy.communitySummary,
-      href:
-        locale === 'tr'
-          ? '/tycoonx-legal/tr/community'
-          : locale === 'de'
-            ? '/tycoonx-legal/de/community'
-            : '/tycoonx-community-standards',
-      localized: locale === 'tr' || locale === 'de',
+      href: documentHref(locale, 'community', '/tycoonx-community-standards'),
     },
   ];
 
@@ -85,22 +83,21 @@ export default async function LocalizedTycoonXLegalHub({
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {cards.map((card) => (
-            <section key={card.href} className="rounded-xl border border-white/10 bg-[#111111] p-6">
-              <h2 className="text-white font-semibold text-lg mb-3">{card.title}</h2>
-              <p className="text-zinc-400 text-sm leading-relaxed mb-5">{card.summary}</p>
-              <a
-                href={card.href}
-                className="inline-flex border border-white/10 hover:bg-white/5 transition text-indigo-300 text-sm font-medium px-4 py-2 rounded-lg"
-              >
-                {locale === 'tr' && card.localized
-                  ? 'Türkçe metni aç'
-                  : locale === 'de' && card.localized
-                    ? 'Deutschen Text öffnen'
-                    : copy.openEnglish}
-              </a>
-            </section>
-          ))}
+          {cards.map((card) => {
+            const localized = localizedDocuments[locale]?.has(card.document) ?? false;
+            return (
+              <section key={card.href} className="rounded-xl border border-white/10 bg-[#111111] p-6">
+                <h2 className="text-white font-semibold text-lg mb-3">{card.title}</h2>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-5">{card.summary}</p>
+                <a
+                  href={card.href}
+                  className="inline-flex border border-white/10 hover:bg-white/5 transition text-indigo-300 text-sm font-medium px-4 py-2 rounded-lg"
+                >
+                  {localized ? localizedOpenLabels[locale] ?? copy.openEnglish : copy.openEnglish}
+                </a>
+              </section>
+            );
+          })}
         </div>
 
         <div className="mt-10 rounded-xl border border-white/10 p-5">
