@@ -326,7 +326,7 @@ export default function TycoonXTermsTR() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Türkçe</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Hizmet Koşulları</h1>
-          <p className="text-zinc-500 text-sm">Türkçe sürüm: 25 Ağustos 2026 · Kanonik İngilizce sürüm: 24 Ağustos 2026</p>
+          <p className="text-zinc-500 text-sm">Türkçe sürüm: 25 Ağustos 2026 · Kanonik İngilizce sürüm: 25 Ağustos 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Bu Türkçe sürüm, kanonik İngilizce TycoonX Hizmet Koşullarının anlamını doğal ve açık Türkçeyle aktarmak için hazırlanmıştır. Çeviri farkları hiçbir zaman zorunlu tüketici haklarını daraltmaz. Maddi bir çeviri farkı tespit edilirse CK-Labs çeviriyi kanonik metinle uyumlu hale getirebilir.
           </p>
