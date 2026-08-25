@@ -42,6 +42,7 @@ const sections = [
     body: [
       'We do not sell personal data. We may share only what is reasonably necessary with service providers supporting hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications or security; platform/payment partners such as Apple, Google, Xsolla or other authorized providers for purchase validation, restoration, refunds, revocations, fraud and disputes; other players where you intentionally use public/social game features; authorities where legally required; and parties involved in a lawful business transfer.',
       'Apple, Google, Xsolla, banks, card networks, or other payment participants may act as independent controllers for parts of their own payment, fraud, tax, account, or platform processing. Their own privacy notices and legal obligations apply to that independent processing. TycoonX currently uses infrastructure such as Supabase for parts of its backend, and service providers are subject to applicable contractual and legal safeguards.',
+      'Where platform rules require it, third parties with whom CK-Labs shares user data must provide the same or an equivalent level of protection for the data they receive from CK-Labs as described in this Policy and required by the applicable platform rules.',
     ],
   },
   {
@@ -126,7 +127,7 @@ export default function TycoonXPrivacyPolicy() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Privacy Policy</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated August 26, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             This Privacy Policy explains how CK-Labs, operator of TycoonX, processes personal data when you use the TycoonX mobile or web applications, websites, support services, community features, and related online services.
           </p>
