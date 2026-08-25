@@ -16,17 +16,20 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It provides native-language navigation and a localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards.
 
-**Turkish is now complete for all four full legal documents** and has completed a terminology/full-release QA pass:
+**Turkish is complete for all four full legal documents** and has completed a terminology/full-release QA pass:
 - `/tycoonx-legal/tr/terms`
 - `/tycoonx-legal/tr/purchases`
 - `/tycoonx-legal/tr/privacy`
 - `/tycoonx-legal/tr/community`
 
-The Turkish hub now links directly to all four Turkish documents. The next unfinished locale/document is **German Terms of Service**.
+**German Terms of Service are now complete** at:
+- `/tycoonx-legal/de/terms`
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording.
+The German legal hub now links directly to the German Terms. The next unfinished locale/document is **German Purchases & Refunds Policy**.
 
-A current-policy recheck on August 25, 2026 confirmed that the privacy structure remains aligned with the current Apple App Review privacy disclosure requirements, Google Play User Data/Data Safety requirements, and Xsolla's Privacy Policy dated June 3, 2026. Localized wording does not replace platform-specific privacy disclosures or consent controls.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording in the canonical legal documents.
+
+A current-policy recheck on August 25, 2026 confirmed the German Terms structure against current official sources: BGB § 356a still requires the electronic withdrawal function for covered online distance contracts, BGB § 327f still governs required digital-product/security updates and the consequences of a consumer not installing a properly notified update, Apple still supports Family Sharing for eligible non-consumable In-App Purchases and states that it cannot be turned off after activation for an IAP, Google Play still requires entitlement to be granted only after a purchase reaches `PURCHASED`, and Xsolla's current legal index lists its Refund Policy as updated June 16, 2026. Localized wording does not replace transaction-specific checkout disclosures or platform configuration.
 
 Current checkpoints:
 - English Terms rendered: `8e9913e`
@@ -36,11 +39,13 @@ Current checkpoints:
 - Turkish Privacy Policy: `6417815`
 - Turkish Community Standards: `831d73e`
 - Turkish legal hub routing: `4271350`
+- German Terms: `a7f8ade`
+- German legal hub Terms routing: `def6dc4`
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
 | 1 | tr | Türkçe | Ready | Ready | Ready | Ready | Ready |
-| 2 | de | Deutsch | Ready | Pending | Pending | Pending | Pending |
+| 2 | de | Deutsch | Ready | Ready | Pending | Pending | Pending |
 | 3 | es | Español | Ready | Pending | Pending | Pending | Pending |
 | 4 | es_MX | Español (México) | Ready | Pending | Pending | Pending | Pending |
 | 5 | fr | Français | Ready | Pending | Pending | Pending | Pending |
