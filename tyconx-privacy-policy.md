@@ -1,6 +1,6 @@
 # TycoonX Privacy Policy
 
-**Last updated: August 24, 2026**
+**Last updated: August 26, 2026**
 
 This Privacy Policy explains how **CK-Labs**, operator of TycoonX ("CK-Labs", "TycoonX", "we", "us", or "our"), processes personal data when you use the TycoonX mobile or web applications, websites, support services, and related online services (together, the "Service").
 
@@ -106,6 +106,8 @@ We may disclose information only where reasonably necessary to:
 
 ### Service providers
 Providers that support hosting, databases, authentication, storage, analytics, diagnostics, moderation, communications, notifications, security, or other technical operations. Providers receive only the information reasonably necessary for their role and are subject to applicable contractual and legal safeguards.
+
+Where platform rules require it, third parties with whom CK-Labs shares user data must provide the same or an equivalent level of protection for the data they receive from CK-Labs as described in this Policy and required by the applicable platform rules.
 
 ### Platform and payment partners
 Apple, Google, Xsolla, or other authorized payment or platform providers where needed to validate purchases, restores, entitlement status, refunds, revocations, fraud, disputes, taxes, or compliance with their rules.
