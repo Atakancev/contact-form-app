@@ -11,12 +11,14 @@ const localizedDocuments: Record<string, Set<string>> = {
   tr: new Set(['terms', 'purchases', 'privacy', 'community']),
   de: new Set(['terms', 'purchases', 'privacy', 'community']),
   es: new Set(['terms', 'purchases', 'privacy', 'community']),
+  es_MX: new Set(['terms']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
   tr: 'Türkçe metni aç',
   de: 'Deutschen Text öffnen',
   es: 'Abrir texto en español',
+  es_MX: 'Abrir texto en español (México)',
 };
 
 function documentHref(locale: string, document: string, fallback: string) {
