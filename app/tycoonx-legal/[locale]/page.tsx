@@ -59,8 +59,13 @@ export default async function LocalizedTycoonXLegalHub({
     {
       title: copy.communityTitle,
       summary: copy.communitySummary,
-      href: locale === 'tr' ? '/tycoonx-legal/tr/community' : '/tycoonx-community-standards',
-      localized: locale === 'tr',
+      href:
+        locale === 'tr'
+          ? '/tycoonx-legal/tr/community'
+          : locale === 'de'
+            ? '/tycoonx-legal/de/community'
+            : '/tycoonx-community-standards',
+      localized: locale === 'tr' || locale === 'de',
     },
   ];
 
