@@ -14,11 +14,13 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 ## Current state
 
-The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It currently provides native-language navigation and a clear localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards. Full document-by-document legal translations are the next phase and must not be marked complete until every clause has parity with the canonical English source.
+The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It provides native-language navigation and a localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards.
+
+Full document-by-document localization is now underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms`; the next unfinished document is Turkish Purchases & Refunds.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
-| 1 | tr | Türkçe | Ready | Pending | Pending | Pending | Pending |
+| 1 | tr | Türkçe | Ready | Ready | Pending | Pending | Pending |
 | 2 | de | Deutsch | Ready | Pending | Pending | Pending | Pending |
 | 3 | es | Español | Ready | Pending | Pending | Pending | Pending |
 | 4 | es_MX | Español (México) | Ready | Pending | Pending | Pending | Pending |
