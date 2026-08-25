@@ -16,13 +16,19 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It provides native-language navigation and a localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards.
 
-Full document-by-document localization is underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms`; the next unfinished document is Turkish Purchases & Refunds.
+Full document-by-document localization is underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms` and Turkish Purchases & Refunds is complete at `/tycoonx-legal/tr/purchases`. The next unfinished document is Turkish Privacy Policy.
 
-The canonical English Terms were refreshed on **August 25, 2026** to remove the remaining stale beta wording. The Turkish Terms already use the corresponding full-release-safe wording. Current rendered-English Terms checkpoint: commit `8e9913e`. Turkish Terms checkpoint: commit `063ffbe`.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Turkish localized pages already use the corresponding full-release-safe wording.
+
+Current checkpoints:
+- English Terms rendered: `8e9913e`
+- Turkish Terms: `4907266`
+- English Purchases & Refunds source: `ca8ff53`
+- Turkish Purchases & Refunds: `ac38e4b`
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
-| 1 | tr | Türkçe | Ready | Ready | Pending | Pending | Pending |
+| 1 | tr | Türkçe | Ready | Ready | Ready | Pending | Pending |
 | 2 | de | Deutsch | Ready | Pending | Pending | Pending | Pending |
 | 3 | es | Español | Ready | Pending | Pending | Pending | Pending |
 | 4 | es_MX | Español (México) | Ready | Pending | Pending | Pending | Pending |
