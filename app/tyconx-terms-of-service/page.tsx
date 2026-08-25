@@ -28,7 +28,7 @@ const sections = [
     body: [
       'Diamonds and other virtual items are licensed digital game content or entitlements for use only inside TycoonX. Except where mandatory law requires otherwise, purchasing them does not transfer ownership of the underlying game data.',
       'Purchased Diamonds do not expire solely because time passes. CK-Labs may correct or remove Diamonds where the corresponding purchase is refunded, reversed, charged back, fraudulent, duplicated, technically erroneous, or otherwise invalid.',
-      'Promotional, gifted, event, beta, test, compensation, or free Diamonds and benefits may have separately disclosed conditions, limits, eligibility requirements, or expiry where permitted by law and platform rules. Free or promotional grants do not automatically create a right to equivalent future grants.',
+      'Promotional, gifted, event, test, review, compensation, or free Diamonds and benefits may have separately disclosed conditions, limits, eligibility requirements, or expiry where permitted by law and platform rules. Free or promotional grants do not automatically create a right to equivalent future grants.',
       'The gameplay utility of Diamonds and other virtual items may change for valid reasons such as balancing, economy stability, anti-inflation measures, security, abuse prevention, technical changes, new features, bug fixes, or legal requirements, subject to mandatory digital-product law.',
     ],
   },
@@ -144,7 +144,7 @@ const sections = [
       'Promotions may be limited by time, country, platform, account, purchase history, eligibility, quantity, redemption count, or other clearly stated conditions. Unless the offer states otherwise, promotions cannot be combined and do not create entitlement to a future promotion.',
       'Users must not exploit technical errors, duplicate coupon redemption, manipulated region or identity information, automated purchase abuse, refund cycling, account farming, or other methods to obtain promotional value beyond the genuine offer.',
       'Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.',
-      'A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, beta benefit, or tester grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.',
+      'A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, promotional benefit, or tester/review grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.',
     ],
   },
   {
@@ -326,7 +326,7 @@ export default function TycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Terms of Service</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated August 25, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             These Terms govern TycoonX accounts, gameplay, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, purchases, pricing, Apple App Store, Google Play, the official Xsolla-powered web shop, security, service changes, outages, enforcement, community features, and permanent discontinuation.
           </p>
