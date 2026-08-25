@@ -39,7 +39,7 @@ const sections = [
     body: [
       'Bağlam, ihlalin ağırlığı, tekrar sayısı, mevcut deliller ve yasal veya platform gerekliliklerine göre CK-Labs ölçülü önlemler alabilir. Bunlar; inceleme sonrası işlem yapmama, uyarı, belirli içeriği kaldırma veya kısıtlama, görünürlük ya da etkileşim sınırı, geçici sohbet susturma, özellik kısıtlaması, kötüye kullanımla bağlantılı belirli bir işlem veya aktarımı engelleme, ciddi bir güvenlik/dolandırıcılık/hukuk konusunu incelerken hesabı geçici askıya alma veya ciddi ya da tekrarlanan ihlallerde Hizmet Koşulları ve geçerli hukuk izin veriyorsa hesabı sonlandırma olabilir.',
       'Kullanıcıları, delilleri, ödemeleri, oyun bütünlüğünü veya altyapıyı korumak için makul ölçüde gerekli olduğunda tam inceleme tamamlanmadan geçici önlem alınabilir. Yeni bilgi değerlendirmeyi değiştirirse kısıtlama daha sonra kaldırılabilir veya değiştirilebilir.',
-      'Moderasyon önlemleri ilgili içerik veya davranışı hedeflemelidir. Ayrı ve hukuka uygun bir neden bulunmadıkça, moderasyon unrelated meşru ücretli dijital değere el koymak için kullanılmaz.',
+      'Moderasyon önlemleri ilgili içerik veya davranışı hedeflemelidir. Ayrı ve hukuka uygun bir neden bulunmadıkça, moderasyonla ilgisi olmayan meşru ücretli dijital değere el koymak için kullanılamaz.',
     ],
   },
   {
@@ -72,7 +72,7 @@ const sections = [
     body: [
       'TycoonX; beyan edilen veya doğrulanan yaş, ebeveyn onayı, platform yaş kontrolleri, geçerli hukuk, App Store veya Google Play gereklilikleri ya da makul çocuk güvenliği önlemleri nedeniyle topluluk veya sosyal özelliklere erişimi kısıtlayabilir, devre dışı bırakabilir veya değiştirebilir.',
       'TycoonX oyununun kendisi erişilebilir kalsa bile belirli bir sosyal özelliğe erişim hakkı otomatik olarak doğmaz. Çocuk güvenliği veya platform uyumu için gerektiğinde CK-Labs bir sosyal özelliği belirli yaş grubuna kapatabilir veya ek yaş/ebeveyn kontrolleri isteyebilir.',
-      'TycoonX; çocukların cinsel istismarı veya sömürüsü içeren materyale, grooming davranışına veya reşit olmayanların cinsel sömürüsüne izin vermez. CK-Labs gerekli olduğunda derhal koruyucu önlem alabilir ve kanunen gerekli delilleri koruyabilir veya bildirebilir.',
+      'TycoonX; çocukların cinsel istismarı veya sömürüsü içeren materyale, çocukların cinsel amaçla kandırılmasına (grooming) veya reşit olmayanların cinsel sömürüsüne izin vermez. CK-Labs gerekli olduğunda derhal koruyucu önlem alabilir ve kanunen gerekli delilleri koruyabilir veya bildirebilir.',
     ],
   },
   {
