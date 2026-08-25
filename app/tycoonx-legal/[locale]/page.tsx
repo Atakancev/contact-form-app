@@ -38,14 +38,14 @@ export default async function LocalizedTycoonXLegalHub({
     {
       title: copy.privacyTitle,
       summary: copy.privacySummary,
-      href: '/tyconx-privacy-policy',
-      localized: false,
+      href: locale === 'tr' ? '/tycoonx-legal/tr/privacy' : '/tyconx-privacy-policy',
+      localized: locale === 'tr',
     },
     {
       title: copy.communityTitle,
       summary: copy.communitySummary,
-      href: '/tycoonx-community-standards',
-      localized: false,
+      href: locale === 'tr' ? '/tycoonx-legal/tr/community' : '/tycoonx-community-standards',
+      localized: locale === 'tr',
     },
   ];
 
