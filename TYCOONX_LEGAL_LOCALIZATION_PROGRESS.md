@@ -16,19 +16,30 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It provides native-language navigation and a localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards.
 
-Full document-by-document localization is underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms` and Turkish Purchases & Refunds is complete at `/tycoonx-legal/tr/purchases`. The next unfinished document is Turkish Privacy Policy.
+**Turkish is now complete for all four full legal documents** and has completed a terminology/full-release QA pass:
+- `/tycoonx-legal/tr/terms`
+- `/tycoonx-legal/tr/purchases`
+- `/tycoonx-legal/tr/privacy`
+- `/tycoonx-legal/tr/community`
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Turkish localized pages already use the corresponding full-release-safe wording.
+The Turkish hub now links directly to all four Turkish documents. The next unfinished locale/document is **German Terms of Service**.
+
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording.
+
+A current-policy recheck on August 25, 2026 confirmed that the privacy structure remains aligned with the current Apple App Review privacy disclosure requirements, Google Play User Data/Data Safety requirements, and Xsolla's Privacy Policy dated June 3, 2026. Localized wording does not replace platform-specific privacy disclosures or consent controls.
 
 Current checkpoints:
 - English Terms rendered: `8e9913e`
 - Turkish Terms: `4907266`
 - English Purchases & Refunds source: `ca8ff53`
 - Turkish Purchases & Refunds: `ac38e4b`
+- Turkish Privacy Policy: `6417815`
+- Turkish Community Standards: `a26a9f3`
+- Turkish legal hub routing: `4271350`
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
-| 1 | tr | Türkçe | Ready | Ready | Ready | Pending | Pending |
+| 1 | tr | Türkçe | Ready | Ready | Ready | Ready | Ready |
 | 2 | de | Deutsch | Ready | Pending | Pending | Pending | Pending |
 | 3 | es | Español | Ready | Pending | Pending | Pending | Pending |
 | 4 | es_MX | Español (México) | Ready | Pending | Pending | Pending | Pending |
@@ -64,4 +75,4 @@ Complete full-document parity in the table order above. Within each locale, use 
 4. Community Standards
 5. Native-language QA and cross-document terminology check
 
-Do not advance a locale to `Ready` for a full document until the translated version has all canonical sections, preserves product/payment/legal distinctions, uses native punctuation and terminology, and has no stale English legal paragraphs except protected product/company names where appropriate.
+Do not advance a locale to `Ready` for a full document until the translated version has all canonical sections, preserves product/payment/legal distinctions, uses native punctuation and terminology, and has no stale English legal paragraphs except protected product/company/platform names where appropriate.
