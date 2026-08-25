@@ -34,7 +34,7 @@ Current checkpoints:
 - English Purchases & Refunds source: `ca8ff53`
 - Turkish Purchases & Refunds: `ac38e4b`
 - Turkish Privacy Policy: `6417815`
-- Turkish Community Standards: `a26a9f3`
+- Turkish Community Standards: `831d73e`
 - Turkish legal hub routing: `4271350`
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
