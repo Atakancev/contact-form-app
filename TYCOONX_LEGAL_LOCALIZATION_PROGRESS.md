@@ -31,31 +31,24 @@ Portuguese localization is in progress:
 
 - The Portuguese legal hub already exists.
 - Portuguese Terms of Service are complete and routed locally at `/tycoonx-legal/pt/terms`.
-- Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English pages until localized versions are completed.
-- The next document to create is `/tycoonx-legal/pt/purchases`.
+- Portuguese Purchases & Refunds Policy is complete and routed locally at `/tycoonx-legal/pt/purchases`.
+- Privacy and Community Standards still fall back to the canonical English pages until localized versions are completed.
+- The next document to create is `/tycoonx-legal/pt/privacy`.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Portuguese (`pt`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Portuguese (`pt`) Privacy Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
-## Current policy checkpoint, August 25, 2026
+## Current policy checkpoint, August 26, 2026
 
-- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide filtering of objectionable material, an in-app reporting mechanism with timely responses, user blocking, and published developer contact information.
-- Apple clarified in February 2026 that random or anonymous chat is subject to Guideline 1.2. TycoonX does not gain a right to offer such a feature without satisfying applicable safety, age, moderation, and platform requirements.
-- Google Play continues to require robust and ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, in-app reporting and blocking appropriate to the interaction type, and action against objectionable UGC or users where appropriate.
-- Under the EU Digital Services Act, Article 16 continues to require an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content when the service qualifies as a hosting service, and Article 17 continues to require clear and specific statements of reasons for covered moderation restrictions.
-- German BGB §356a still requires, for covered online distance contracts, a clearly labelled, continuously available and easily accessible electronic withdrawal function, a confirmation step, and receipt confirmation on a durable medium.
-- Apple App Review Guideline 5.1.1 still requires an easily accessible privacy policy that identifies collected data, collection methods and uses, describes retention/deletion and consent withdrawal, and requires apps supporting account creation to offer account deletion within the app.
-- Apple App Review Guideline 5.1.1 also requires the privacy policy to confirm that third parties receiving user data from the app provide the same or equal protection stated in the app privacy policy and required by Apple’s guidelines.
-- Apple’s account-deletion guidance still requires deletion of the whole account and associated data that the developer is not legally required to retain, while allowing legally required retention and requiring users to be informed about purchase/subscription consequences.
-- Google Play still requires apps offering account creation to provide both an in-app account-deletion path and an external Web resource where users can request deletion of the app account and associated data; retained data for legitimate purposes such as security, fraud prevention, or regulatory compliance must be disclosed.
-- Google Play’s Data safety section must remain accurate and consistent with the app’s real privacy practices and privacy policy.
-- Apple App Review Guideline 3.1.1 still requires In-App Purchase for covered in-app digital unlocks, says purchased in-game currency may not expire, and requires a restore mechanism for restorable purchases.
-- Apple Family Sharing remains available only for eligible non-consumables and auto-renewable subscriptions when enabled by the developer. Once enabled for an eligible In-App Purchase in App Store Connect, it cannot be turned off, and entitlement revocation must be handled.
-- Google Play still requires entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged within three days to avoid automatic refund/revocation.
-- Xsolla’s Privacy Policy is listed as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**. Xsolla states that the applicable refund-policy type is shown in the checkout and describes its own data-processing role separately from CK-Labs’s processing.
+- Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered in-app digital unlocks, states that purchased in-game currency may not expire, and requires a restore mechanism for restorable purchases.
+- Apple continues to support Family Sharing for eligible non-consumables and auto-renewable subscriptions when enabled by the developer. Once Family Sharing is enabled for an eligible In-App Purchase in App Store Connect, it cannot be turned off, and entitlement revocation must be handled.
+- Google Play continues to require entitlement to be withheld while a purchase is `PENDING`, granted only after a valid `PURCHASED` state, and completed purchases to be acknowledged promptly. Google documents automatic refund/revocation risk where completed purchases are not acknowledged within three days.
+- German BGB §356a continues to require, for covered online distance contracts, a clearly labelled, continuously available and easily accessible electronic withdrawal function, a confirmation step, and prompt receipt confirmation on a durable medium.
+- Xsolla's legal index lists its Refund Policy as updated **June 16, 2026**. Xsolla states that the applicable refund-policy type and the specific Xsolla contracting entity depend on the checkout/payment method and are shown in the checkout/receipt.
+- The current Portuguese Purchases & Refunds localization preserves these distinctions and does not replace mandatory consumer rights with a blanket no-refunds rule.
 
 Latest checkpoints:
 
@@ -75,8 +68,10 @@ Latest checkpoints:
 - Italian complete hub routing: `03cca57`
 - Portuguese Terms: `b03d281`
 - Portuguese Terms hub routing: `aab8554`
+- Portuguese Purchases & Refunds: `3c0e06d`
+- Portuguese Purchases hub routing: `113a947`
 
-Full-document localization progress: **29 / 100 complete (29%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **30 / 100 complete (30%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -87,7 +82,7 @@ Full-document localization progress: **29 / 100 complete (29%)** across the 25 r
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
-| 8 | pt | Português | Ready | Ready | Pending | Pending | Pending |
+| 8 | pt | Português | Ready | Ready | Ready | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
