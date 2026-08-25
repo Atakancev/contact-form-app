@@ -1,6 +1,6 @@
 # TycoonX Purchases & Refunds Policy
 
-**Last updated: August 24, 2026**
+**Last updated: August 25, 2026**
 
 This Purchases & Refunds Policy applies to paid digital content and entitlements offered in **TycoonX** by **CK-Labs**. It supplements the TycoonX Terms of Service and does not reduce any rights that cannot legally be waived.
 
@@ -18,7 +18,7 @@ Diamonds are virtual in-game currency.
 - On Google Play, purchased Diamonds are digital in-app products and use the applicable Google Play billing arrangement where required.
 - On the official TycoonX web shop, Diamond bundles may be sold through Xsolla checkout.
 - A Diamond purchase may be corrected or reversed if the underlying payment is refunded, reversed, charged back, duplicated, fraudulent, technically erroneous, or otherwise invalid.
-- Promotional, gifted, event, compensation, test, beta, or free Diamonds may have separate clearly disclosed conditions where permitted by law and platform rules.
+- Promotional, gifted, event, compensation, test, review, or free Diamonds may have separate clearly disclosed conditions where permitted by law and platform rules.
 
 ### One-time 30-Day VIP
 
@@ -178,7 +178,7 @@ Users must not exploit technical errors, duplicate coupon redemption, manipulate
 
 Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.
 
-A voluntary goodwill credit, free extension, discretionary refund, bonus, or compensation granted beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy will be offered in another case.
+A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, promotional benefit, or tester/review grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.
 
 ## 12. Refunds, reversals, and chargebacks
 
