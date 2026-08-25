@@ -27,15 +27,16 @@ Completed locale sets:
 - **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
 - **Italian (`it`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 
-Portuguese localization is next:
+Portuguese localization is in progress:
 
 - The Portuguese legal hub already exists.
-- All four full Portuguese documents currently fall back to the canonical English pages until localized versions are completed.
-- The next document to create is `/tycoonx-legal/pt/terms`.
+- Portuguese Terms of Service are complete and routed locally at `/tycoonx-legal/pt/terms`.
+- Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English pages until localized versions are completed.
+- The next document to create is `/tycoonx-legal/pt/purchases`.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Portuguese (`pt`) Terms of Service**.
+The next unfinished locale/document is **Portuguese (`pt`) Purchases & Refunds Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -72,8 +73,10 @@ Latest checkpoints:
 - Italian Privacy hub routing: `e5c9631`
 - Italian Community Standards: `4c7d9ff`
 - Italian complete hub routing: `03cca57`
+- Portuguese Terms: `b03d281`
+- Portuguese Terms hub routing: `aab8554`
 
-Full-document localization progress: **28 / 100 complete (28%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **29 / 100 complete (29%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -84,7 +87,7 @@ Full-document localization progress: **28 / 100 complete (28%)** across the 25 r
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
-| 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
+| 8 | pt | Português | Ready | Ready | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
