@@ -16,7 +16,9 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 The localized legal hub at `/tycoonx-legal/{locale}` is available for all target locales below. It provides native-language navigation and a localized overview of Terms, Purchases & Refunds, Privacy, and Community Standards.
 
-Full document-by-document localization is now underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms`; the next unfinished document is Turkish Purchases & Refunds.
+Full document-by-document localization is underway. Turkish Terms are complete at `/tycoonx-legal/tr/terms`; the next unfinished document is Turkish Purchases & Refunds.
+
+The canonical English Terms were refreshed on **August 25, 2026** to remove the remaining stale beta wording. The Turkish Terms already use the corresponding full-release-safe wording. Current rendered-English Terms checkpoint: commit `8e9913e`. Turkish Terms checkpoint: commit `063ffbe`.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
