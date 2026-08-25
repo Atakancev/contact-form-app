@@ -22,15 +22,21 @@ The localized legal hub at `/tycoonx-legal/{locale}` is available for all target
 - `/tycoonx-legal/tr/privacy`
 - `/tycoonx-legal/tr/community`
 
-**German now has two complete full legal documents**:
+**German is now complete for all four full legal documents and has completed a cross-document terminology/full-release QA pass**:
 - `/tycoonx-legal/de/terms`
 - `/tycoonx-legal/de/purchases`
+- `/tycoonx-legal/de/privacy`
+- `/tycoonx-legal/de/community`
 
-The German Terms include the canonical contact information as the final rendered section, and the German legal hub links directly to both localized documents. The next unfinished locale/document is **German Privacy Policy**.
+The German legal hub links directly to all four localized documents. The German wording consistently uses `Nutzungsbedingungen`, `Richtlinie zu Käufen & Erstattungen`, `Datenschutzrichtlinie`, `Berechtigung`, `Erstattung`, `Widerruf` and `Wiederherstellung`, while protected product/platform names such as TycoonX, CK-Labs, Diamonds, 30-Day VIP, Lifetime VIP, Apple, Google Play, Xsolla and Family Sharing remain recognizable. No stale Turkish legal paragraphs were introduced into the German pages.
+
+The next unfinished locale/document is **Spanish (`es`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove remaining stale beta wording without weakening the legal protections. Current repository search finds no exact displayed `TyconX` branding and no stale `beta` wording.
 
-A current-policy recheck on August 25, 2026 confirmed the German localization structure against current official sources: BGB § 356a still requires the electronic withdrawal function for covered online distance contracts, BGB § 327f still governs required digital-product/security updates and the consequences of a consumer not installing a properly notified update, Apple still supports Family Sharing for eligible non-consumable In-App Purchases and states that it cannot be turned off after activation for an IAP, Google Play still requires entitlement to be granted only after a purchase reaches `PURCHASED`, and Xsolla's current legal index lists its Refund Policy as updated June 16, 2026. Localized wording does not replace transaction-specific checkout disclosures, consent controls, or platform configuration.
+A current-policy recheck on August 25, 2026 confirmed the localized legal structure against current official sources: BGB § 356a still requires an electronic withdrawal function for covered online distance contracts, BGB § 327f still governs required digital-product/security updates and consequences of a consumer not installing a properly notified update, Apple still requires UGC apps to provide filtering, reporting, blocking and published contact information and still supports Family Sharing for eligible non-consumable In-App Purchases, Google Play still requires entitlement only after a purchase reaches `PURCHASED`, requires privacy disclosures/account-deletion handling, and requires robust UGC moderation/reporting/blocking, and Xsolla's current legal index lists its Refund Policy as updated June 16, 2026 and Privacy Policy as updated June 3, 2026. Localized wording does not replace transaction-specific checkout disclosures, consent controls, Data Safety/App Privacy disclosures, moderation tooling, or platform configuration.
+
+Google Play's announced expansion of its age-restricted content rules for apps whose core functionality is anonymous or random chat becomes effective **August 26, 2026**. TycoonX does not gain a promise to provide such functionality from these documents; any future anonymous/random-chat feature must undergo a fresh age-safety/platform review before release.
 
 Current checkpoints:
 - English Terms rendered: `8e9913e`
@@ -43,12 +49,14 @@ Current checkpoints:
 - German Terms: `a7f8ade`
 - German Terms contact parity: `5d166cb`
 - German Purchases & Refunds: `05df5f4`
-- German legal hub routing: `0bf3b94`
+- German Privacy Policy: `5e5b91f`
+- German Community Standards: `b35806e`
+- German legal hub routing: `31dfdda`
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
 | 1 | tr | Türkçe | Ready | Ready | Ready | Ready | Ready |
-| 2 | de | Deutsch | Ready | Ready | Ready | Pending | Pending |
+| 2 | de | Deutsch | Ready | Ready | Ready | Ready | Ready |
 | 3 | es | Español | Ready | Pending | Pending | Pending | Pending |
 | 4 | es_MX | Español (México) | Ready | Pending | Pending | Pending | Pending |
 | 5 | fr | Français | Ready | Pending | Pending | Pending | Pending |
