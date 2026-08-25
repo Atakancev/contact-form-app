@@ -24,28 +24,29 @@ Completed locale sets:
 - **Spanish (`es`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Spain-oriented QA completed.
 - **Spanish (Mexico) (`es_MX`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Mexico-oriented QA completed.
 - **French (`fr`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. France-oriented QA completed.
-
-Partially completed locale:
-
-- **French (Canada) (`fr_CA`) 3/4**: Terms, Purchases & Refunds, and Privacy Ready. Community Standards Pending.
+- **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
 
 Canadian French localized routes:
 
 - `/tycoonx-legal/fr_CA/terms`
 - `/tycoonx-legal/fr_CA/purchases`
 - `/tycoonx-legal/fr_CA/privacy`
+- `/tycoonx-legal/fr_CA/community`
 
-The Canadian French copy uses Canada-oriented wording such as `Soutien TycoonX`, `admissibilité`, `renseignements`, `boutique Web`, `marchand officiel`, `bogues`, `réinitialisation`, `rétrofacturation`, `rabais` and `différends`, while preserving the same legal scope as the canonical English source. The Canadian French Privacy Policy covers all canonical sections for account/profile data, gameplay and economy data, purchase and entitlement data, security/fraud signals, communications, analytics, GDPR-style legal bases, necessary versus optional processing, service-provider/payment sharing, public/private community content, international transfers, retention, privacy rights, account deletion versus paid-entitlement restoration, minors, security, automated moderation, third-party services, policy changes, controller identity, and support/contact routes.
+The Canadian French copy uses Canada-oriented wording such as `Soutien TycoonX`, `admissibilité`, `renseignements`, `boutique Web`, `marchand officiel`, `bogues`, `réinitialisation`, `rétrofacturation`, `rabais`, `différends`, `clavardage` and `pourriel`, while preserving the same legal scope as the canonical English source.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **French (Canada) (`fr_CA`) Community Standards**.
+The next unfinished locale/document is **Italian (`it`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 25, 2026
 
 - German BGB §356a still requires, for covered online distance contracts, a clearly labelled, continuously available and easily accessible electronic withdrawal function, a confirmation step, and receipt confirmation on a durable medium.
+- Apple App Review Guideline 1.2 still requires UGC/social apps to provide filtering of objectionable material, an in-app reporting mechanism with timely responses, user blocking, and published developer contact information.
+- Google Play still requires robust and ongoing UGC moderation, Terms/User Policy acceptance before users create or upload UGC, in-app reporting and blocking appropriate to the interaction type, and safeguards preventing in-app monetization from encouraging objectionable user behavior.
+- Under the EU Digital Services Act, Article 16 still requires an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content when the service qualifies as a hosting service, and Article 17 still requires clear and specific statements of reasons for covered moderation restrictions.
 - Apple App Review Guideline 5.1 still requires an easily accessible privacy policy that identifies collected data, collection methods and uses, describes retention/deletion and consent withdrawal, and requires apps supporting account creation to offer account deletion within the app.
 - Apple’s account-deletion guidance still requires deletion of the whole account and associated data that the developer is not legally required to retain, while allowing legally required retention and requiring users to be informed about purchase/subscription consequences.
 - Google Play still requires apps offering account creation to provide both an in-app account-deletion path and an external Web resource where users can request deletion of the app account and associated data.
@@ -60,9 +61,10 @@ Latest checkpoints:
 - Canadian French Terms: `0c80692`
 - Canadian French Purchases & Refunds: `baca7e1`
 - Canadian French Privacy: `d29d586`
-- Canadian French Privacy hub routing: `c466054`
+- Canadian French Community Standards: `9da20fc`
+- Canadian French complete hub routing: `86c167f`
 
-Full-document localization progress: **23 / 100 complete (23%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **24 / 100 complete (24%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -71,7 +73,7 @@ Full-document localization progress: **23 / 100 complete (23%)** across the 25 r
 | 3 | es | Español | Ready | Ready | Ready | Ready | Ready |
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
-| 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Pending |
+| 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
 | 7 | it | Italiano | Ready | Pending | Pending | Pending | Pending |
 | 8 | pt | Português | Ready | Pending | Pending | Pending | Pending |
 | 9 | pt_BR | Português (Brasil) | Ready | Pending | Pending | Pending | Pending |
