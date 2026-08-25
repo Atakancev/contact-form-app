@@ -48,8 +48,13 @@ export default async function LocalizedTycoonXLegalHub({
     {
       title: copy.privacyTitle,
       summary: copy.privacySummary,
-      href: locale === 'tr' ? '/tycoonx-legal/tr/privacy' : '/tyconx-privacy-policy',
-      localized: locale === 'tr',
+      href:
+        locale === 'tr'
+          ? '/tycoonx-legal/tr/privacy'
+          : locale === 'de'
+            ? '/tycoonx-legal/de/privacy'
+            : '/tyconx-privacy-policy',
+      localized: locale === 'tr' || locale === 'de',
     },
     {
       title: copy.communityTitle,
