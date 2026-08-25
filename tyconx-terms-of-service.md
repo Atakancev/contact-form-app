@@ -1,6 +1,6 @@
 # TycoonX Terms of Service
 
-**Last updated: August 24, 2026**
+**Last updated: August 25, 2026**
 
 These Terms of Service ("Terms") govern use of **TycoonX**, including the mobile and web applications, websites, support services, payment entitlements, community features, and related online services (together, the "Service"). TycoonX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
 
@@ -32,7 +32,7 @@ Diamonds and other virtual items are licensed digital game content or entitlemen
 
 **Purchased Diamonds do not expire solely because time passes.** CK-Labs may correct or remove Diamonds where the corresponding purchase is refunded, reversed, charged back, fraudulent, duplicated, technically erroneous, or otherwise invalid.
 
-Promotional, gifted, event, beta, test, compensation, or free Diamonds and benefits may have separately disclosed conditions, limits, eligibility requirements, or expiry where permitted by law and platform rules. Free or promotional grants do not automatically create a right to equivalent future grants.
+Promotional, gifted, event, test, review, compensation, or free Diamonds and benefits may have separately disclosed conditions, limits, eligibility requirements, or expiry where permitted by law and platform rules. Free or promotional grants do not automatically create a right to equivalent future grants.
 
 The gameplay utility of Diamonds and other virtual items may change for valid reasons such as balancing, economy stability, anti-inflation measures, security, abuse prevention, technical changes, new features, bug fixes, or legal requirements, subject to mandatory digital-product law.
 
@@ -181,7 +181,7 @@ Users must not exploit technical errors, duplicate coupon redemption, manipulate
 
 Where a promotion or discount was obtained through fraud, technical abuse, duplicate redemption, or another invalid method, CK-Labs may reject the purchase, revoke only the invalid promotional value, or refund and unwind the affected transaction where permitted by law. Unrelated legitimately purchased value will not be removed merely because another promotion was invalid.
 
-A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, beta benefit, or tester grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.
+A voluntary goodwill credit, free extension, discretionary refund, bonus, compensation, promotional benefit, or tester/review grant provided beyond a mandatory legal obligation does not by itself admit liability or create a promise that the same remedy or benefit will be offered in another case.
 
 ## 17. Refunds, reversals, and chargebacks
 
