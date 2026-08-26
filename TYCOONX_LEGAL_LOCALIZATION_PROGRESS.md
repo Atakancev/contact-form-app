@@ -20,89 +20,57 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all 25 target lo
 
 Completed locale sets:
 
-- **Turkish (`tr`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
-- **German (`de`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
-- **Spanish (`es`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Spain-oriented QA completed.
-- **Spanish (Mexico) (`es_MX`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Mexico-oriented QA completed.
-- **French (`fr`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. France-oriented QA completed.
-- **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
-- **Italian (`it`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
-- **Portuguese (`pt`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. European-Portuguese/full-release QA completed.
-- **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
-- **Russian (`ru`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
-- **Japanese (`ja`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
-- **Korean (`ko`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
+- **Turkish (`tr`) 4/4**
+- **German (`de`) 4/4**
+- **Spanish (`es`) 4/4**
+- **Spanish (Mexico) (`es_MX`) 4/4**
+- **French (`fr`) 4/4**
+- **French (Canada) (`fr_CA`) 4/4**
+- **Italian (`it`) 4/4**
+- **Portuguese (`pt`) 4/4**
+- **Portuguese (Brazil) (`pt_BR`) 4/4**
+- **Russian (`ru`) 4/4**
+- **Japanese (`ja`) 4/4**
+- **Korean (`ko`) 4/4**
+- **Chinese (`zh`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed on August 26, 2026.
 
 Current in-progress locale:
 
-- **Chinese (`zh`) 1/4**: Terms Ready. Purchases & Refunds, Privacy, and Community Standards Pending.
+- **Chinese Simplified (`zh_Hans`) 0/4**: Terms, Purchases & Refunds, Privacy, and Community Standards Pending.
 
-The next unfinished locale/document is **Chinese (`zh`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Chinese Simplified (`zh_Hans`) Terms of Service**.
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
+
+Repository QA on August 26, 2026 continues to return no displayed `TyconX` branding and no stale `beta` wording.
 
 ## Current policy checkpoint, August 26, 2026
 
-- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide objectionable-content filtering, in-app reporting with timely responses, blocking of abusive users, and published developer contact information.
-- Apple clarified on **February 6, 2026** that random or anonymous chat is subject to Guideline 1.2.
-- Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, sharing, retention/deletion and consent withdrawal, and apps supporting account creation must offer account deletion within the app.
-- Apple App Review Guideline 5.1.2 continues to require clear disclosure of where personal data is shared with third parties, including third-party AI, and explicit permission before sharing where required by the guideline.
-- Apple App Review Guideline 3.1.1 continues to state that purchased in-game currencies may not expire and that restorable In-App Purchases need a restore mechanism. Family Sharing for eligible purchases must be explicitly enabled and revocation handled correctly.
-- Google Play's UGC policy continues to require users to accept the app's Terms/User Policy before they create or upload UGC, robust ongoing moderation, in-app reporting, and blocking appropriate to the feature.
-- Effective **August 26, 2026**, Google Play expands Age-Restricted Content and Functionality and Child Safety Standards requirements to anonymous/random chat apps and requires qualifying apps to use Play Console tools to block minors. The Families policy also prohibits anonymous chat apps from targeting children. TycoonX must re-review these rules before introducing any anonymous or random-chat feature.
-- Google Play's Child Safety Standards continue to require covered social apps to publish standards prohibiting child sexual abuse and exploitation, provide an in-app reporting mechanism, take appropriate action on known CSAM, and comply with applicable reporting laws.
-- Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for security, fraud prevention or regulatory reasons must be disclosed.
-- Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
-- Google Play Billing continues to require entitlement only after a transaction reaches `PURCHASED`, not while it is `PENDING`, and completed purchases must be acknowledged promptly to avoid automatic refund/revocation.
-- Google Play's current billing-security guidance also warns not to use `orderId` as the duplicate-purchase key or database primary key because not every valid purchase has an `orderId`, including certain promo-code purchases. Entitlement reconciliation should rely on the authoritative purchase token/provider transaction identity and verified entitlement state rather than assuming `orderId` is universal.
-- Google Play Developer API release notes dated **July 6, 2026** add a collaborative chargeback-review flow. A `PendingRefundReviewNotification` can require developer review, and the `orders.reviewrefund` API expects a response within **24 hours** with an `APPROVE`, `DECLINE`, or `NEUTRAL` preference plus relevant purchase-usage evidence where available. TycoonX payment operations should preserve lawful usage evidence and ensure any implemented Google chargeback-review workflow does not miss that provider deadline.
-- The EU Digital Services Act Article 16 continues to require covered hosting services to provide an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content; Article 17 requires clear and specific statements of reasons for covered moderation restrictions.
-- German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
-- German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
-- German BGB § 327r continues to require a contractual basis and valid reason for changes beyond what is needed to maintain conformity for continuously supplied digital products, without additional consumer cost and with the notices/remedies required when use or access is adversely affected.
-- Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in the Xsolla checkout.
-- The Brazilian Portuguese Privacy localization also reflects LGPD/ANPD rights such as confirmation/access, correction, anonymization/blocking/deletion where applicable, portability, consent withdrawal, information on sharing and review of qualifying automated decisions.
-- Previously completed localized Privacy pages should be checked for equivalent third-party AI and third-party-protection wording during parity QA if not already present.
+- Apple App Review Guideline 3.1.1 still states that purchased credits or in-game currencies may not expire and that restorable In-App Purchases need a restore mechanism. Apple also continues to require current entitlement handling for valid past purchases.
+- Google Play Billing still requires entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; current Google guidance warns that failure to acknowledge within three days can result in automatic refund/revocation.
+- Google also currently warns not to use `orderId` as a universal duplicate-purchase key or database primary key because not every valid purchase receives one, including certain promo-code purchases. Purchase-token/provider-transaction identity and verified entitlement state are the safer authoritative basis.
+- Effective **August 26, 2026**, Google Play expands Age-Restricted Content and Functionality and Child Safety Standards requirements to anonymous/random-chat apps. Qualifying apps must use Play Console controls to block minors; the Families policy also prohibits anonymous-chat apps from targeting children. TycoonX must re-review these rules before any future anonymous/random-chat feature ships.
+- Google Play Child Safety Standards for covered apps require published standards against child sexual abuse and exploitation, an in-app reporting mechanism, appropriate action on known CSAM, compliance with applicable reporting laws, and a child-safety contact.
+- German BGB § 356a continues to require, for covered online distance contracts, a clearly labelled electronic withdrawal function that remains continuously available during the withdrawal period, a confirmation function, and prompt receipt confirmation on a durable medium.
+- German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by a consumer's failure to install a properly supplied and properly explained update where all legal conditions are met.
+- German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
+- Xsolla's current legal index lists its **Privacy Policy as updated June 3, 2026** and **Refund Policy as updated June 16, 2026**. Transaction-specific Xsolla checkout information remains the safer source for the applicable Xsolla entity and refund-policy variant.
+- No new canonical English wording change was required by this run's policy recheck.
 
 ## Latest checkpoints
 
-- Brazilian Portuguese Terms: `3639545`
-- Brazilian Portuguese Terms hub routing: `59e27da`
-- Brazilian Portuguese Purchases & Refunds: `5f96375`
-- Brazilian Portuguese Purchases hub routing: `ac9bc05`
-- Brazilian Portuguese Privacy: `73d0f99`
-- Brazilian Portuguese Privacy hub routing: `652bd82`
-- Brazilian Portuguese Privacy AI safeguard sync: `0b1518c`
-- Brazilian Portuguese Community Standards: `b88a75b`
-- Brazilian Portuguese Community hub routing: `02e43ab`
-- Canonical rendered Privacy AI hardening: `90b0d70`
-- Canonical Privacy Markdown AI sync: `0ed9286`
-- Russian Terms: `e46e9d8`
-- Russian Terms hub routing: `dc6ce11`
-- Russian Purchases & Refunds: `5aab453`
-- Russian Privacy: `910cb2c`
-- Russian Community Standards: `6292b46`
-- Russian complete hub routing: `3d86ae7`
-- Japanese Terms: `c2bc8e9`
-- Japanese Terms hub routing: `c825379`
-- Japanese Purchases & Refunds: `df982bd`
-- Japanese Purchases hub routing: `1eda460`
-- Japanese Privacy: `5328e13`
-- Japanese Community Standards: `b5bfda3`
-- Japanese complete hub routing: `ed460b9`
-- Canonical Community child-safety hardening: `b73903c`
-- Canonical Community Markdown sync: `0215590`
-- Korean Terms: `a41dabf`
-- Korean Terms hub routing: `6b8cbd4`
-- Korean Purchases & Refunds: `3deb64d`
-- Korean Purchases hub routing: `eedd306`
-- Korean Privacy: `5c06287`
-- Korean Community Standards: `82a4430`
-- Korean complete hub routing: `dc85999`
 - Chinese Terms: `40d35f7`
 - Chinese Terms hub routing: `28749fa`
+- Chinese Purchases & Refunds: `e187e936`
+- Chinese Privacy Policy: `d81d2605`
+- Chinese Community Standards: `8df7db3d`
+- Chinese complete hub routing: `a50a7f62`
+- Canonical rendered Privacy AI hardening: `90b0d70`
+- Canonical Privacy Markdown AI sync: `0ed9286`
+- Canonical Community child-safety hardening: `b73903c`
+- Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **49 / 100 complete (49%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **52 / 100 complete (52%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -118,7 +86,7 @@ Full-document localization progress: **49 / 100 complete (49%)** across the 25 r
 | 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
 | 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
 | 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
-| 13 | zh | 中文 | Ready | Ready | Pending | Pending | Pending |
+| 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
 | 14 | zh_Hans | 简体中文 | Ready | Pending | Pending | Pending | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
 | 16 | ar | العربية | Ready | Pending | Pending | Pending | Pending |
