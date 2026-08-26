@@ -20,7 +20,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   ru: new Set(['terms', 'purchases', 'privacy', 'community']),
   ja: new Set(['terms', 'purchases', 'privacy', 'community']),
   ko: new Set(['terms', 'purchases', 'privacy', 'community']),
-  zh: new Set(['terms']),
+  zh: new Set(['terms', 'purchases', 'privacy', 'community']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
