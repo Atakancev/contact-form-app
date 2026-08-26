@@ -25,6 +25,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   zh_Hant: new Set(['terms', 'purchases', 'privacy', 'community']),
   ar: new Set(['terms', 'purchases', 'privacy', 'community']),
   nl: new Set(['terms', 'purchases', 'privacy', 'community']),
+  sv: new Set(['terms']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
@@ -45,6 +46,7 @@ const localizedOpenLabels: Record<string, string> = {
   zh_Hant: '開啟繁體中文全文',
   ar: 'فتح النص العربي الكامل',
   nl: 'Nederlandse tekst openen',
+  sv: 'Öppna svensk fulltext',
 };
 
 function documentHref(locale: string, document: string, fallback: string) {
