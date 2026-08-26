@@ -34,26 +34,27 @@ Portuguese (Brazil) localization is in progress:
 - The Brazilian Portuguese legal hub exists at `/tycoonx-legal/pt_BR`.
 - **Terms of Use is Ready** at `/tycoonx-legal/pt_BR/terms` with Brazilian-Portuguese wording and full canonical section parity.
 - **Purchases & Refunds is Ready** at `/tycoonx-legal/pt_BR/purchases` with Brazilian-Portuguese wording and all canonical purchase-policy sections preserved.
-- **Privacy Policy is Ready** at `/tycoonx-legal/pt_BR/privacy` with Brazilian-Portuguese wording, full canonical privacy section parity, Apple-equivalent third-party data protection language, and locally appropriate references to the LGPD/ANPD where relevant without reducing EU/German rights.
+- **Privacy Policy is Ready** at `/tycoonx-legal/pt_BR/privacy` with Brazilian-Portuguese wording, full canonical privacy section parity, Apple-equivalent third-party data protection language, third-party AI disclosure/permission safeguards, and locally appropriate references to the LGPD/ANPD where relevant without reducing EU/German rights.
 - Community Standards continues to fall back to the canonical English page until the localized version is completed.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
 The next unfinished locale/document is **Portuguese (Brazil) (`pt_BR`) Community Standards**.
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make the third-party data-protection safeguard required by current Apple privacy rules explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 26, 2026
 
 - Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, sharing, retention/deletion and consent withdrawal, and apps supporting account creation must offer account deletion within the app.
+- Apple App Review Guideline 5.1.2 continues to require clear disclosure of where personal data is shared with third parties, including third-party AI, and explicit permission before sharing where required by the guideline.
 - Apple account-deletion guidance continues to expect deletion of account-associated user data, including user-generated content, except where retention is legally required and disclosed.
 - Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for security, fraud prevention or regulatory reasons must be disclosed.
 - Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
 - German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
 - German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
 - Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**.
-- The canonical English Privacy Policy explicitly states that, where platform rules require it, third parties receiving user data from CK-Labs must provide the same or an equivalent level of protection. The Brazilian Portuguese Privacy localization contains the same protection.
-- Previously completed localized Privacy pages should be checked for equivalent third-party-protection wording during parity QA if not already present.
+- The Brazilian Portuguese Privacy localization also reflects LGPD/ANPD rights such as confirmation/access, correction, anonymization/blocking/deletion where applicable, portability, consent withdrawal, information on sharing and review of qualifying automated decisions.
+- Previously completed localized Privacy pages should be checked for equivalent third-party AI and third-party-protection wording during parity QA if not already present.
 
 ## Latest checkpoints
 
@@ -63,8 +64,9 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Brazilian Portuguese Purchases hub routing: `ac9bc05`
 - Brazilian Portuguese Privacy: `73d0f99`
 - Brazilian Portuguese Privacy hub routing: `652bd82`
-- Canonical rendered Privacy hardening: `bb320b6`
-- Canonical Privacy Markdown sync: `9d08cb2`
+- Brazilian Portuguese Privacy AI safeguard sync: `0b1518c`
+- Canonical rendered Privacy AI hardening: `90b0d70`
+- Canonical Privacy Markdown AI sync: `0ed9286`
 
 Full-document localization progress: **35 / 100 complete (35%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
