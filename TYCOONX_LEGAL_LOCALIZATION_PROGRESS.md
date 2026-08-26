@@ -12,7 +12,7 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 - English remains canonical during localization. Refresh localized versions whenever the canonical meaning changes materially.
 - Arabic uses RTL layout.
 - Continue in locale order and, within each locale, in this order: Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
-- Do not mark a localized document `Ready` until it contains every canonical section, preserves product/payment/legal distinctions, uses native punctuation and terminology, and contains no stale English legal paragraphs except protected product, company, platform, and legal-proper names where appropriate.
+- Do not mark a localized document `Ready` until the corresponding page exists, contains every canonical section, preserves product/payment/legal distinctions, uses native punctuation and terminology, and contains no stale English legal paragraphs except protected product, company, platform, and legal-proper names where appropriate.
 
 ## Current state
 
@@ -32,14 +32,18 @@ Completed locale sets:
 - **Russian (`ru`) 4/4**
 - **Japanese (`ja`) 4/4**
 - **Korean (`ko`) 4/4**
-- **Chinese (`zh`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed on August 26, 2026.
-- **Chinese Simplified (`zh_Hans`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed on August 26, 2026.
+- **Chinese (`zh`) 4/4**
+- **Chinese Simplified (`zh_Hans`) 4/4**
 
 Current in-progress locale:
 
-- **Chinese Traditional (`zh_Hant`) 1/4**: Terms Ready. Purchases & Refunds, Privacy, and Community Standards Pending.
+- **Chinese Traditional (`zh_Hant`) 2/4**: Terms and Purchases & Refunds Ready. Privacy and Community Standards Pending.
 
-The next unfinished locale/document is **Chinese Traditional (`zh_Hant`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Chinese Traditional (`zh_Hant`) Privacy Policy**.
+
+### Reconciliation note, August 26, 2026
+
+The prior tracker incorrectly marked `zh_Hant` Terms as Ready even though the repository did not contain `app/tycoonx-legal/zh_Hant/terms/page.tsx`, and the aggregate count still showed 56/100. This run reconciled tracker state against the actual repository, created the missing full Traditional Chinese Terms page, added the full Traditional Chinese Purchases & Refunds page, and enabled both routes in the localized legal hub. The accurate full-document count is now **58/100**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 
@@ -47,43 +51,29 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 
 ## Current policy checkpoint, August 26, 2026
 
-- Apple App Review Guideline 1.2 still requires apps with user-generated content or social networking functionality to provide objectionable-content filtering, a reporting mechanism with timely responses, the ability to block abusive users, and published contact information. Apple also continues to state that apps used primarily for Chatroulette-style, random, or anonymous chat experiences do not belong on the App Store.
-- Apple App Review Guideline 5.1.1 still requires a privacy policy to identify collected data and uses, confirm same/equivalent protection by third parties receiving user data, explain retention/deletion, and describe consent revocation and deletion requests. Guideline 5.1.2 continues to require clear disclosure of personal-data sharing with third parties, including third-party AI, and explicit permission where required.
-- Google Play User Generated Content policy still requires robust, effective, ongoing moderation, user acceptance of the Terms/User Policy before creating or uploading UGC, clear definitions of objectionable content/behavior, in-app reporting, and blocking appropriate to the interaction type.
-- Google Play User Data policy still requires a comprehensive in-app and Play Console privacy policy that accurately matches actual data practices. Apps that permit account creation must provide a readily discoverable account-deletion path both in-app and through an external web resource, with associated user data deleted subject to legitimate disclosed retention exceptions.
-- Google Play Billing still requires entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; current Google guidance warns that failure to acknowledge within three days can result in automatic refund/revocation.
-- Google also currently warns not to use `orderId` as a universal duplicate-purchase key or database primary key because not every valid purchase receives one, including certain promo-code purchases. Purchase-token/provider-transaction identity and verified entitlement state are the safer authoritative basis.
-- Effective **August 26, 2026**, Google Play expands Age-Restricted Content and Functionality and Child Safety Standards requirements to anonymous/random-chat apps. Qualifying apps must use Play Console controls to block minors; the Families policy also prohibits anonymous-chat apps from targeting children. TycoonX must re-review these rules before any future anonymous/random-chat feature ships.
-- Google Play Child Safety Standards for covered apps require published standards against child sexual abuse and exploitation, an in-app reporting mechanism, appropriate action on known CSAM, compliance with applicable reporting laws, and a child-safety contact.
-- EU Digital Services Act Article 16 still requires covered hosting services to provide an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal information, acknowledge qualifying notices where contact details are supplied, notify the notifier of the decision, and process notices in a timely, diligent, non-arbitrary, and objective manner. Article 17 continues to require clear and specific statements of reasons for covered restrictions based on illegality or incompatibility with terms.
+- Apple App Review Guideline 3.1.1 continues to state that purchased in-game currencies may not expire and that apps should provide a restore mechanism for restorable In-App Purchases.
+- Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; current Google guidance states that failure to acknowledge within three days can result in automatic refund and entitlement revocation. The three-day period starts only after a pending purchase becomes `PURCHASED`.
 - German BGB § 356a continues to require, for covered online distance contracts, a clearly labelled electronic withdrawal function that remains continuously available during the withdrawal period, a confirmation function, and prompt receipt confirmation on a durable medium.
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by a consumer's failure to install a properly supplied and properly explained update where all legal conditions are met.
-- German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
-- Xsolla's current legal index lists its **Privacy Policy as updated June 3, 2026** and **Refund Policy as updated June 16, 2026**. Transaction-specific Xsolla checkout information remains the safer source for the applicable Xsolla entity and refund-policy variant.
-- The August 26, 2026 recheck of current Apple, Google Play, EU DSA, Xsolla, and German BGB sources did not require another canonical English wording change.
+- German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity, including valid-reason, no-extra-cost, clear-information, and where applicable durable-medium advance-notice requirements.
+- Xsolla's current legal index lists its **Privacy Policy as updated June 3, 2026** and **Refund Policy as updated June 16, 2026**. Xsolla's current Refund Policy states that the applicable refund-policy type is shown at checkout.
+- The August 26, 2026 recheck of current Apple, Google Play, Xsolla, and German BGB sources did not require another canonical English wording change.
 
 ## Latest checkpoints
 
-- Chinese Terms: `40d35f7`
-- Chinese Terms hub routing: `28749fa`
-- Chinese Purchases & Refunds: `e187e936`
-- Chinese Privacy Policy: `d81d2605`
-- Chinese Community Standards: `8df7db3d`
-- Chinese complete hub routing: `a50a7f62`
+- Traditional Chinese Terms: `6cce800`
+- Traditional Chinese Purchases & Refunds: `19c87e0`
+- Traditional Chinese Terms/Purchases hub routing: `04c995a`
 - Simplified Chinese Terms: `d4c76de`
-- Simplified Chinese Terms hub routing: `3c23793`
 - Simplified Chinese Purchases & Refunds: `e6d04a9`
-- Simplified Chinese Purchases hub routing: `60ffaaf`
 - Simplified Chinese Privacy Policy: `084610d`
-- Simplified Chinese Privacy hub routing: `5a5185c`
 - Simplified Chinese Community Standards: `395997b`
-- Simplified Chinese complete hub routing: `e92b268`
 - Canonical rendered Privacy AI hardening: `90b0d70`
 - Canonical Privacy Markdown AI sync: `0ed9286`
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **56 / 100 complete (56%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **58 / 100 complete (58%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -101,7 +91,7 @@ Full-document localization progress: **56 / 100 complete (56%)** across the 25 r
 | 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
 | 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
 | 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Ready | Ready |
-| 15 | zh_Hant | 繁體中文 | Ready | Ready | Pending | Pending | Pending |
+| 15 | zh_Hant | 繁體中文 | Ready | Ready | Ready | Pending | Pending |
 | 16 | ar | العربية | Ready | Pending | Pending | Pending | Pending |
 | 17 | nl | Nederlands | Ready | Pending | Pending | Pending | Pending |
 | 18 | sv | Svenska | Ready | Pending | Pending | Pending | Pending |
