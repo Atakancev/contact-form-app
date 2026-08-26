@@ -30,12 +30,13 @@ Completed locale sets:
 - **Portuguese (`pt`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. European-Portuguese/full-release QA completed.
 - **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
 - **Russian (`ru`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
+- **Japanese (`ja`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
 
-Japanese (`ja`) now has full Terms and Purchases & Refunds routes at `/tycoonx-legal/ja/terms` and `/tycoonx-legal/ja/purchases`. The Japanese legal hub routes both cards directly to localized pages; Privacy and Community Standards still fall back to the canonical English documents until translated.
+Korean (`ko`) now has a full Terms route at `/tycoonx-legal/ko/terms`. The Korean legal hub routes the Terms card directly to the localized page; Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English documents until translated.
 
-The next unfinished locale/document is **Japanese (`ja`) Privacy Policy**.
+The next unfinished locale/document is **Korean (`ko`) Purchases & Refunds Policy**.
 
-The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
+The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 26, 2026
 
@@ -82,8 +83,15 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Japanese Terms hub routing: `c825379`
 - Japanese Purchases & Refunds: `df982bd`
 - Japanese Purchases hub routing: `1eda460`
+- Japanese Privacy: `5328e13`
+- Japanese Community Standards: `b5bfda3`
+- Japanese complete hub routing: `ed460b9`
+- Canonical Community child-safety hardening: `b73903c`
+- Canonical Community Markdown sync: `0215590`
+- Korean Terms: `a41dabf`
+- Korean Terms hub routing: `6b8cbd4`
 
-Full-document localization progress: **42 / 100 complete (42%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **45 / 100 complete (45%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -97,8 +105,8 @@ Full-document localization progress: **42 / 100 complete (42%)** across the 25 r
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
 | 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
-| 11 | ja | 日本語 | Ready | Ready | Ready | Pending | Pending |
-| 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
+| 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
+| 12 | ko | 한국어 | Ready | Ready | Pending | Pending | Pending |
 | 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
 | 14 | zh_Hans | 简体中文 | Ready | Pending | Pending | Pending | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
