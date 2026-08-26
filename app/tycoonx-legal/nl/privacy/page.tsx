@@ -64,7 +64,7 @@ const sections = [
   {
     title: "Bewaartermijnen",
     body: [
-      "We bewaren persoonsgegevens alleen zolang als redelijkerwijs nodig is voor het doel ervan en gedurende aanvullende perioden die wettelijk verplicht of toegestaan zijn. Actieve account- en gamedata kunnen worden bewaard zolang het account actief is; supportgegevens gedurende een redelijke periode voor opvolging en geschillen; aankoop-, terugbetalings-, recht-, herstel-, boekhoud- en belastinggegevens gedurende wettelijk vereiste, contractuele, fraudepreventie- of geschilgerelateerde perioden; en beveiligings-, ant fraude-, exploit-, moderatie- en auditgegevens gedurende een redelijke periode die nodig is om de dienst te beschermen, incidenten te onderzoeken of aanspraken te verdedigen.",
+      "We bewaren persoonsgegevens alleen zolang als redelijkerwijs nodig is voor het doel ervan en gedurende aanvullende perioden die wettelijk verplicht of toegestaan zijn. Actieve account- en gamedata kunnen worden bewaard zolang het account actief is; supportgegevens gedurende een redelijke periode voor opvolging en geschillen; aankoop-, terugbetalings-, recht-, herstel-, boekhoud- en belastinggegevens gedurende wettelijk vereiste, contractuele, fraudepreventie- of geschilgerelateerde perioden; en beveiligings-, antifraude-, exploit-, moderatie- en auditgegevens gedurende een redelijke periode die nodig is om de dienst te beschermen, incidenten te onderzoeken of aanspraken te verdedigen.",
       "Privécommunicatie wordt niet onbeperkt bewaard alleen omdat die ooit voor moderatie is bekeken. Langere bewaring moet een afzonderlijke rechtmatige reden hebben, zoals een lopend geschil, veiligheidsonderzoek, juridische aanspraak of wettelijke verplichting. Back-ups kunnen gedurende een beperkte back-upcyclus blijven bestaan voordat ze worden verwijderd of overschreven. Geanonimiseerde of daadwerkelijk geaggregeerde gegevens kunnen worden bewaard wanneer ze geen persoon meer identificeren.",
     ],
   },
@@ -72,14 +72,14 @@ const sections = [
     title: "Jouw privacyrechten",
     body: [
       "Afhankelijk van toepasselijk recht kun je rechten hebben op inzage, correctie, verwijdering, beperking, bezwaar, ontvangst van bepaalde gegevens in een overdraagbaar formaat, intrekking van toestemming wanneer de verwerking daarop is gebaseerd en het indienen van een klacht bij een bevoegde gegevensbeschermingsautoriteit.",
-      "Je kunt accountverwijdering aanvragen via TycoonX waar die mogelijkheid beschikbaar is, of contact opnemen met TycoonX Support. We kunnen je identiteit moeten verifiëren. Bepaalde gegevens mogen nog worden bewaard wanneer dat verplicht of toegestaan is voor juridische, fiscale, boekhoudkundige, contractuele, fraudepreventie-, beveiligings-, geschiloplossings-, recht-herstel- of rechtsvorderingsdoeleinden.",
+      "Je kunt accountverwijdering aanvragen via TycoonX waar die mogelijkheid beschikbaar is, of contact opnemen met TycoonX Support. We kunnen je identiteit moeten verifiëren. Bepaalde gegevens mogen nog worden bewaard wanneer dat verplicht of toegestaan is voor juridische, fiscale, boekhoudkundige, contractuele, fraudepreventie-, beveiligings-, geschiloplossings-, herstel- of rechtsvorderingsdoeleinden.",
     ],
   },
   {
     title: "Accountverwijdering en betaalde rechten",
     body: [
       "Het verwijderen van je TycoonX-account staat los van het aanvragen van een terugbetaling. Accountverwijdering kan accountgebonden gameplayvoortgang, Diamonds, verbruikbare waarde, inventaris, sociale gegevens en andere profielstatus permanent verwijderen. Het geeft niet automatisch recht op uitbetaling in geld of terugbetaling.",
-      "Het verwijderen van het TycoonX-account wist of ongeldig maakt niet noodzakelijk een afzonderlijk transactierecord van Apple, Google, Xsolla of een andere betaalprovider. Wanneer een geldige Lifetime VIP of een ander niet-verbruikbaar of herstelbaar recht volgens platformregels, providergegevens, de overeenkomst of dwingend recht aan de koper gekoppeld blijft, mag CK-Labs de minimale transactie- en rechtgegevens bewaren die redelijkerwijs nodig zijn om dat recht te verifiëren en te herstellen.",
+      "Het verwijderen van het TycoonX-account wist een afzonderlijk transactierecord van Apple, Google, Xsolla of een andere betaalprovider niet noodzakelijk en maakt zo'n transactie ook niet automatisch ongeldig. Wanneer een geldige Lifetime VIP of een ander niet-verbruikbaar of herstelbaar recht volgens platformregels, providergegevens, de overeenkomst of dwingend recht aan de koper gekoppeld blijft, mag CK-Labs de minimale transactie- en rechtgegevens bewaren die redelijkerwijs nodig zijn om dat recht te verifiëren en te herstellen.",
       "Bij een later herstel kan redelijk bewijs nodig zijn dat dezelfde koper het relevante platform- of betaalaccount beheert. Herstel van een betaald recht herstelt geen verwijderde gameplayvoortgang, verbruikte Diamonds, inventaris, geschiedenis of overgedragen bezittingen, tenzij toepasselijk recht anders vereist. Terugbetalingsrechten blijven vallen onder het proces van de betaalprovider en dwingend recht.",
     ],
   },
