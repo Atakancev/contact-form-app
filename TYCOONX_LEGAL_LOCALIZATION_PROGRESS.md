@@ -33,7 +33,11 @@ Completed locale sets:
 - **Japanese (`ja`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
 - **Korean (`ko`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
 
-The next unfinished locale/document is **Chinese (`zh`) Terms of Service**.
+Current in-progress locale:
+
+- **Chinese (`zh`) 1/4**: Terms Ready. Purchases & Refunds, Privacy, and Community Standards Pending.
+
+The next unfinished locale/document is **Chinese (`zh`) Purchases & Refunds Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -51,6 +55,7 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
 - Google Play Billing continues to require entitlement only after a transaction reaches `PURCHASED`, not while it is `PENDING`, and completed purchases must be acknowledged promptly to avoid automatic refund/revocation.
 - Google Play's current billing-security guidance also warns not to use `orderId` as the duplicate-purchase key or database primary key because not every valid purchase has an `orderId`, including certain promo-code purchases. Entitlement reconciliation should rely on the authoritative purchase token/provider transaction identity and verified entitlement state rather than assuming `orderId` is universal.
+- Google Play Developer API release notes dated **July 6, 2026** add a collaborative chargeback-review flow. A `PendingRefundReviewNotification` can require developer review, and the `orders.reviewrefund` API expects a response within **24 hours** with an `APPROVE`, `DECLINE`, or `NEUTRAL` preference plus relevant purchase-usage evidence where available. TycoonX payment operations should preserve lawful usage evidence and ensure any implemented Google chargeback-review workflow does not miss that provider deadline.
 - The EU Digital Services Act Article 16 continues to require covered hosting services to provide an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content; Article 17 requires clear and specific statements of reasons for covered moderation restrictions.
 - German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
 - German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
@@ -94,8 +99,10 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Korean Privacy: `5c06287`
 - Korean Community Standards: `82a4430`
 - Korean complete hub routing: `dc85999`
+- Chinese Terms: `40d35f7`
+- Chinese Terms hub routing: `28749fa`
 
-Full-document localization progress: **48 / 100 complete (48%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **49 / 100 complete (49%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -111,7 +118,7 @@ Full-document localization progress: **48 / 100 complete (48%)** across the 25 r
 | 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
 | 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
 | 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
-| 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
+| 13 | zh | 中文 | Ready | Ready | Pending | Pending | Pending |
 | 14 | zh_Hans | 简体中文 | Ready | Pending | Pending | Pending | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
 | 16 | ar | العربية | Ready | Pending | Pending | Pending | Pending |
