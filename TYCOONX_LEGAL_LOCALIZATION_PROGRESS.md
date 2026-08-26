@@ -35,16 +35,15 @@ Completed locale sets:
 - **Chinese (`zh`) 4/4**
 - **Chinese Simplified (`zh_Hans`) 4/4**
 - **Chinese Traditional (`zh_Hant`) 4/4**
+- **Arabic (`ar`) 4/4**
 
-Arabic (`ar`) is now **2/4**: Terms and Purchases & Refunds Ready; Privacy and Community Standards Pending.
-
-The next unfinished locale/document is **Arabic (`ar`) Privacy Policy**.
+The next unfinished locale/document is **Dutch (`nl`) Terms of Service**.
 
 ### Repository reconciliation, August 26, 2026
 
-The tracker previously contained two kinds of stale state. First, it marked `zh_Hant` Terms as Ready even though `app/tycoonx-legal/zh_Hant/terms/page.tsx` did not exist. Second, its table marked Terms as Ready for later locales even though the corresponding full legal pages were not present and were not routed as localized documents. This run continues to keep tracker state reconciled against the actual repository.
+The tracker previously contained two kinds of stale state. First, it marked `zh_Hant` Terms as Ready even though `app/tycoonx-legal/zh_Hant/terms/page.tsx` did not exist. Second, its table marked Terms as Ready for later locales even though the corresponding full legal pages were not present and were not routed as localized documents. Tracker state is now kept reconciled against the actual repository.
 
-The full Traditional Chinese Terms, Purchases & Refunds, Privacy Policy, and Community Standards now exist and the localized hub routes all four `zh_Hant` cards to those pages. Arabic Terms exists at `app/tycoonx-legal/ar/terms/page.tsx` with explicit `dir="rtl"`, and Arabic Purchases & Refunds now exists at `app/tycoonx-legal/ar/purchases/page.tsx` with the same RTL treatment. The Arabic hub routes both documents to localized pages. Spot checks previously confirmed missing full Terms pages for `nl`, `sv`, `nb`, `pl`, `th`, `vi`, `uk`, `hi`, and `id`, so those cells remain Pending until corresponding pages actually exist.
+The full Traditional Chinese Terms, Purchases & Refunds, Privacy Policy, and Community Standards now exist and the localized hub routes all four `zh_Hant` cards to those pages. Arabic now also has full Terms, Purchases & Refunds, Privacy Policy, and Community Standards at `app/tycoonx-legal/ar/...`, all rendered with explicit RTL treatment, and the Arabic hub routes all four cards to localized pages. Spot checks previously confirmed missing full Terms pages for `nl`, `sv`, `nb`, `pl`, `th`, `vi`, `uk`, `hi`, and `id`, so those cells remain Pending until corresponding pages actually exist.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 
@@ -63,6 +62,9 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 
 ## Latest checkpoints
 
+- Arabic Community Standards: `693893b`
+- Complete Arabic hub routing: `12aa024`
+- Arabic Privacy Policy: `d981d17`
 - Arabic Purchases & Refunds: `bd350e4`
 - Arabic Purchases hub routing: `b298763`
 - Arabic Terms: `c90d54d`
@@ -81,7 +83,7 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **62 / 100 complete (62%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **64 / 100 complete (64%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -100,7 +102,7 @@ Full-document localization progress: **62 / 100 complete (62%)** across the 25 r
 | 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
 | 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Ready | Ready |
 | 15 | zh_Hant | 繁體中文 | Ready | Ready | Ready | Ready | Ready |
-| 16 | ar | العربية | Ready | Ready | Ready | Pending | Pending |
+| 16 | ar | العربية | Ready | Ready | Ready | Ready | Ready |
 | 17 | nl | Nederlands | Ready | Pending | Pending | Pending | Pending |
 | 18 | sv | Svenska | Ready | Pending | Pending | Pending | Pending |
 | 19 | nb | Norsk bokmål | Ready | Pending | Pending | Pending | Pending |
