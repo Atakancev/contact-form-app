@@ -32,9 +32,9 @@ Completed locale sets:
 - **Russian (`ru`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 - **Japanese (`ja`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release and canonical-parity QA completed.
 
-Korean (`ko`) now has a full Terms route at `/tycoonx-legal/ko/terms`. The Korean legal hub routes the Terms card directly to the localized page; Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English documents until translated.
+Korean (`ko`) now has full localized Terms and Purchases & Refunds routes at `/tycoonx-legal/ko/terms` and `/tycoonx-legal/ko/purchases`. The Korean legal hub routes those two cards directly to localized pages; Privacy and Community Standards still fall back to the canonical English documents until translated.
 
-The next unfinished locale/document is **Korean (`ko`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Korean (`ko`) Privacy Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -90,8 +90,10 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Canonical Community Markdown sync: `0215590`
 - Korean Terms: `a41dabf`
 - Korean Terms hub routing: `6b8cbd4`
+- Korean Purchases & Refunds: `3deb64d`
+- Korean Purchases hub routing: `eedd306`
 
-Full-document localization progress: **45 / 100 complete (45%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **46 / 100 complete (46%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -106,7 +108,7 @@ Full-document localization progress: **45 / 100 complete (45%)** across the 25 r
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
 | 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
 | 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
-| 12 | ko | 한국어 | Ready | Ready | Pending | Pending | Pending |
+| 12 | ko | 한국어 | Ready | Ready | Ready | Pending | Pending |
 | 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
 | 14 | zh_Hans | 简体中文 | Ready | Pending | Pending | Pending | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
