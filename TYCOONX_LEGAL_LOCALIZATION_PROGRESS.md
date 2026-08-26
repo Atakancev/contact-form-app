@@ -36,9 +36,9 @@ Completed locale sets:
 
 Current in-progress locale:
 
-- **Chinese Simplified (`zh_Hans`) 1/4**: Terms Ready. Purchases & Refunds, Privacy, and Community Standards Pending.
+- **Chinese Simplified (`zh_Hans`) 2/4**: Terms and Purchases & Refunds Ready. Privacy and Community Standards Pending.
 
-The next unfinished locale/document is **Chinese Simplified (`zh_Hans`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Chinese Simplified (`zh_Hans`) Privacy Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 
@@ -67,12 +67,14 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 - Chinese complete hub routing: `a50a7f62`
 - Simplified Chinese Terms: `d4c76de`
 - Simplified Chinese Terms hub routing: `3c23793`
+- Simplified Chinese Purchases & Refunds: `e6d04a9`
+- Simplified Chinese Purchases hub routing: `60ffaaf`
 - Canonical rendered Privacy AI hardening: `90b0d70`
 - Canonical Privacy Markdown AI sync: `0ed9286`
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **53 / 100 complete (53%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **54 / 100 complete (54%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -89,7 +91,7 @@ Full-document localization progress: **53 / 100 complete (53%)** across the 25 r
 | 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
 | 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
 | 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
-| 14 | zh_Hans | 简体中文 | Ready | Ready | Pending | Pending | Pending |
+| 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Pending | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
 | 16 | ar | العربية | Ready | Pending | Pending | Pending | Pending |
 | 17 | nl | Nederlands | Ready | Pending | Pending | Pending | Pending |
