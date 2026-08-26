@@ -1,6 +1,6 @@
 # TycoonX Community Moderation & DSA Release Checklist
 
-Last reviewed: 2026-08-24  
+Last reviewed: 2026-08-26  
 Operator/business name used in player-facing documents: **CK-Labs**
 
 This checklist covers TycoonX user-generated content (UGC), chat, social/community features, Apple App Store UGC requirements, Google Play UGC requirements, and EU Digital Services Act (DSA) obligations that may apply to hosting/intermediary features. It is an operational checklist, not a substitute for qualified legal advice.
@@ -49,7 +49,7 @@ Operational checks:
 - [ ] If TycoonX relies on age-based disabling of social features, verify the actual product gating matches the App Store declaration and does not merely rely on legal text.
 - [ ] If random or anonymous chat is ever introduced, perform a fresh App Review/age-safety audit before release. Apple clarified in February 2026 that random or anonymous chat is subject to Guideline 1.2.
 
-## 4. Google Play UGC gate
+## 4. Google Play UGC and child-safety gate
 
 Google Play currently requires robust, effective, and ongoing UGC moderation.
 
@@ -61,7 +61,9 @@ Google Play currently requires robust, effective, and ongoing UGC moderation.
 - [ ] Reports lead to appropriate moderation action when justified.
 - [ ] Monetization does not encourage or reward objectionable UGC behavior.
 - [ ] Any incidental sexual content treatment, if such content can exist at all, follows Google Play’s then-current filtering and age-safety rules.
-- [ ] Re-check the July 15, 2026 child-safety/age-restricted-content policy changes before introducing anonymous or random chat. Do not add those modes without a dedicated policy and child-safety review.
+- [ ] **Effective August 26, 2026:** if TycoonX ever becomes an app whose core functionality is anonymous chat or random chat, use the required Play Console age-restriction functionality to block minors and complete a dedicated child-safety review before release. Do not treat legal text alone as compliance.
+- [ ] If anonymous/random chat is ever added even as a non-core feature, re-check the then-current Age-Restricted Content and Functionality, Families, Child Safety Standards, Target Audience, and content-rating rules before shipping it.
+- [ ] Verify whether TycoonX falls within Google Play’s Child Safety Standards scope for social apps and, if so, complete the required self-certifications: published standards expressly prohibiting child sexual abuse/exploitation, in-app user feedback/reporting, appropriate action on known CSAM, and compliance with applicable reporting laws.
 
 ## 5. EU DSA Article 14 terms transparency
 
@@ -155,6 +157,7 @@ Do not use these protections to remove unrelated legitimate paid digital value o
 1. **P0: UGC acceptance implementation:** verify the actual app flow requires Terms/User Policy acceptance before UGC creation where Google Play requires it.
 2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA.
 3. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient; the production app must implement the required controls.
-4. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
-5. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
-6. **P1: Privacy implementation parity:** verify actual retention periods, reviewer access, reporter confidentiality, and automated-decision safeguards match the now-synchronized Privacy Policy.
+4. **P0: Google August 26 child-safety classification:** verify whether TycoonX falls within Google Play’s Child Safety Standards scope as a social app. Confirm TycoonX does not have anonymous/random chat as a core function; if that changes, use required Play Console age-restriction tools to block minors and complete the applicable child-safety requirements before release.
+5. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
+6. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
+7. **P1: Privacy implementation parity:** verify actual retention periods, reviewer access, reporter confidentiality, and automated-decision safeguards match the now-synchronized Privacy Policy.
