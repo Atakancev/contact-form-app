@@ -28,28 +28,28 @@ Completed locale sets:
 - **French (Canada) (`fr_CA`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Canadian-French QA completed.
 - **Italian (`it`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 - **Portuguese (`pt`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. European-Portuguese/full-release QA completed.
+- **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
 
-Portuguese (Brazil) localization is in progress:
-
-- The Brazilian Portuguese legal hub exists at `/tycoonx-legal/pt_BR`.
-- **Terms of Use is Ready** at `/tycoonx-legal/pt_BR/terms` with Brazilian-Portuguese wording and full canonical section parity.
-- **Purchases & Refunds is Ready** at `/tycoonx-legal/pt_BR/purchases` with Brazilian-Portuguese wording and all canonical purchase-policy sections preserved.
-- **Privacy Policy is Ready** at `/tycoonx-legal/pt_BR/privacy` with Brazilian-Portuguese wording, full canonical privacy section parity, Apple-equivalent third-party data protection language, third-party AI disclosure/permission safeguards, and locally appropriate references to the LGPD/ANPD where relevant without reducing EU/German rights.
-- Community Standards continues to fall back to the canonical English page until the localized version is completed.
+The Brazilian Portuguese Community Standards are available at `/tycoonx-legal/pt_BR/community` with natural Brazilian wording and full canonical parity for prohibited content, reporting/blocking, automated and human moderation, proportionate enforcement, appeals, DSA illegal-content notices, public/private UGC licensing, minor safety, IP complaints, platform requirements, and lawful community-feature changes.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Portuguese (Brazil) (`pt_BR`) Community Standards**.
+The next unfinished locale/document is **Russian (`ru`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 26, 2026
 
+- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide objectionable-content filtering, in-app reporting with timely responses, blocking of abusive users, and published developer contact information.
+- Apple clarified on **February 6, 2026** that random or anonymous chat is subject to Guideline 1.2.
 - Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, sharing, retention/deletion and consent withdrawal, and apps supporting account creation must offer account deletion within the app.
 - Apple App Review Guideline 5.1.2 continues to require clear disclosure of where personal data is shared with third parties, including third-party AI, and explicit permission before sharing where required by the guideline.
-- Apple account-deletion guidance continues to expect deletion of account-associated user data, including user-generated content, except where retention is legally required and disclosed.
+- Google Play's UGC policy continues to require users to accept the app's Terms/User Policy before they create or upload UGC, robust ongoing moderation, in-app reporting, and blocking appropriate to the feature.
+- Effective **August 26, 2026**, Google Play expands Age-Restricted Content and Functionality and Child Safety Standards requirements to anonymous/random chat apps and requires qualifying apps to use Play Console tools to block minors. The Families policy also prohibits anonymous chat apps from targeting children. TycoonX must re-review these rules before introducing any anonymous or random-chat feature.
+- Google Play's Child Safety Standards continue to require covered social apps to publish standards prohibiting child sexual abuse and exploitation, provide an in-app reporting mechanism, take appropriate action on known CSAM, and comply with applicable reporting laws.
 - Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for security, fraud prevention or regulatory reasons must be disclosed.
 - Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
+- The EU Digital Services Act Article 16 continues to require covered hosting services to provide an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content; Article 17 requires clear and specific statements of reasons for covered moderation restrictions.
 - German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
 - German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
 - Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**.
@@ -65,10 +65,12 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Brazilian Portuguese Privacy: `73d0f99`
 - Brazilian Portuguese Privacy hub routing: `652bd82`
 - Brazilian Portuguese Privacy AI safeguard sync: `0b1518c`
+- Brazilian Portuguese Community Standards: `b88a75b`
+- Brazilian Portuguese Community hub routing: `02e43ab`
 - Canonical rendered Privacy AI hardening: `90b0d70`
 - Canonical Privacy Markdown AI sync: `0ed9286`
 
-Full-document localization progress: **35 / 100 complete (35%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **36 / 100 complete (36%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -80,7 +82,7 @@ Full-document localization progress: **35 / 100 complete (35%)** across the 25 r
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
-| 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Pending |
+| 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
 | 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
