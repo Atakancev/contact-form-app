@@ -1,6 +1,6 @@
 # TycoonX Community Standards & Moderation Policy
 
-**Last updated: August 24, 2026**
+**Last updated: August 26, 2026**
 
 This Community Standards & Moderation Policy ("Community Policy") supplements the TycoonX Terms of Service and applies to user-generated content and social features made available through **TycoonX**, operated by **CK-Labs**.
 
@@ -101,6 +101,8 @@ TycoonX may restrict, disable, or alter access to community or social features b
 A user does not acquire a right to access a particular social feature merely because the underlying TycoonX game remains available. Where necessary for child safety or platform compliance, CK-Labs may make a social feature unavailable to an age group or require additional age or parental checks, subject to applicable law.
 
 TycoonX does not permit child sexual abuse or exploitation content, grooming, or sexual exploitation of minors. CK-Labs may take immediate protective action and preserve or report relevant evidence where required by law.
+
+If CK-Labs considers introducing anonymous or random-chat functionality in the future, it will re-evaluate the applicable platform and child-safety rules before release. Where Google Play or another platform classifies the feature or app as subject to age-restricted or child-safety controls, CK-Labs may block minors, apply required age controls, prevent child targeting, or decline to offer the feature rather than release it without the required safeguards.
 
 ## 10. Intellectual-property complaints
 
