@@ -73,6 +73,7 @@ const sections = [
       'TycoonX may restrict, disable, or alter access to community or social features based on declared or verified age, parental authorization, platform age controls, applicable law, App Store or Google Play requirements, or reasonable child-safety measures.',
       'A user does not acquire a right to access a particular social feature merely because the underlying TycoonX game remains available. Where necessary for child safety or platform compliance, CK-Labs may make a social feature unavailable to an age group or require additional age or parental checks, subject to applicable law.',
       'TycoonX does not permit child sexual abuse or exploitation content, grooming, or sexual exploitation of minors. CK-Labs may take immediate protective action and preserve or report relevant evidence where required by law.',
+      'If CK-Labs considers introducing anonymous or random-chat functionality in the future, it will re-evaluate the applicable platform and child-safety rules before release. Where Google Play or another platform classifies the feature or app as subject to age-restricted or child-safety controls, CK-Labs may block minors, apply required age controls, prevent child targeting, or decline to offer the feature rather than release it without the required safeguards.',
     ],
   },
   {
@@ -108,7 +109,7 @@ export default function TycoonXCommunityStandards() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Community Standards & Moderation</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated August 26, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             This Policy explains the rules for user-generated content, reporting, blocking, moderation, illegal-content notices, age-safety, enforcement, and review in TycoonX community features.
           </p>
