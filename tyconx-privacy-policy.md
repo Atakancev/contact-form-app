@@ -109,6 +109,8 @@ Providers that support hosting, databases, authentication, storage, analytics, d
 
 Where platform rules require it, third parties with whom CK-Labs shares user data must provide the same or an equivalent level of protection for the data they receive from CK-Labs as described in this Policy and required by the applicable platform rules.
 
+Third-party AI services are not exempt from these rules. If TycoonX uses a third-party AI service in a way that involves sharing personal data, CK-Labs will disclose that sharing and obtain explicit permission before transmitting or sharing the data where applicable platform rules or law require it. Any such provider must be limited to authorized purposes and appropriate privacy and security safeguards.
+
 ### Platform and payment partners
 Apple, Google, Xsolla, or other authorized payment or platform providers where needed to validate purchases, restores, entitlement status, refunds, revocations, fraud, disputes, taxes, or compliance with their rules.
 
