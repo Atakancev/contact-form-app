@@ -29,12 +29,11 @@ Completed locale sets:
 - **Italian (`it`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 - **Portuguese (`pt`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. European-Portuguese/full-release QA completed.
 - **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
+- **Russian (`ru`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 
-The Russian Terms of Service are available at `/tycoonx-legal/ru/terms` with full canonical parity for all substantive Terms areas. The Russian Purchases & Refunds Policy is now available at `/tycoonx-legal/ru/purchases` with all 17 canonical purchase-policy sections, including Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, regional/future pricing, Apple/Google/Xsolla roles, pending and failed payments, obvious errors, duplicate grants, promotions, refunds, chargebacks, fraud, restore/re-link behavior, German/EU withdrawal rights, required updates, cross-platform recognition, Family Sharing and permanent service discontinuation.
+The Russian set now has full-document routes at `/tycoonx-legal/ru/terms`, `/tycoonx-legal/ru/purchases`, `/tycoonx-legal/ru/privacy`, and `/tycoonx-legal/ru/community`. The localized hub routes all four Russian cards directly to the Russian documents.
 
-The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
-
-The next unfinished locale/document is **Russian (`ru`) Privacy Policy**.
+The next unfinished locale/document is **Japanese (`ja`) Terms of Service**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -75,9 +74,11 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Russian Terms: `e46e9d8`
 - Russian Terms hub routing: `dc6ce11`
 - Russian Purchases & Refunds: `5aab453`
-- Russian Purchases hub routing: `67e2316`
+- Russian Privacy: `910cb2c`
+- Russian Community Standards: `6292b46`
+- Russian complete hub routing: `3d86ae7`
 
-Full-document localization progress: **38 / 100 complete (38%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **40 / 100 complete (40%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -90,7 +91,7 @@ Full-document localization progress: **38 / 100 complete (38%)** across the 25 r
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
-| 10 | ru | Русский | Ready | Ready | Ready | Pending | Pending |
+| 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
 | 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
 | 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
