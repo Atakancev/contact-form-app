@@ -92,7 +92,7 @@ const sections = [
     title: "TycoonX-webshop met Xsolla",
     body: [
       "Aankopen in de officiële TycoonX-webshop kunnen door Xsolla worden verwerkt. Afhankelijk van de checkoutconstructie kan een onderneming uit de Xsolla-groep optreden als merchant of record.",
-      "Wanneer Xsolla als merchant of record optreedt, kan de Xsolla-entiteit die tijdens checkout of op het betalingsbewijs wordt genoemd volgens haar toepasselijke voorwaarden verantwoordelijk zijn voor betalingsverwerking, toepasselijke transactieb belastingen of btw, fraudefiltering, terugbetalingen, betalingsgeschillen en chargebacks.",
+      "Wanneer Xsolla als merchant of record optreedt, kan de Xsolla-entiteit die tijdens checkout of op het betalingsbewijs wordt genoemd volgens haar toepasselijke voorwaarden verantwoordelijk zijn voor betalingsverwerking, toepasselijke transactiebelastingen of btw, fraudefiltering, terugbetalingen, betalingsgeschillen en chargebacks.",
       "De exacte Xsolla-entiteit, betaalmethode, prijs, belastingen, terugbetalingsregeling en wettelijk vereiste aankoopinformatie worden bepaald door de checkout en het betalingsbewijs van die transactie. Transactiespecifieke Xsolla-voorwaarden en dwingend consumentenrecht zijn van toepassing waar relevant.",
       "CK-Labs blijft verantwoordelijk voor de levering van het bijbehorende TycoonX-recht nadat een geldige bevestiging van een geslaagde betaling is ontvangen. Als Xsolla een transactie terugbetaalt, terugdraait, annuleert, via een chargeback terugboekt of ongeldig verklaart, mag CK-Labs het bijbehorende TycoonX-recht of de virtuele waarde intrekken of corrigeren.",
       "Een aankoop via de webshop geeft geen recht om in een Apple- of Google-app naar de Xsolla-aankoop te verwijzen, ervoor te adverteren of deze daar af te ronden wanneer platformregels, landregels of toepasselijk recht dit niet toestaan.",
@@ -142,9 +142,9 @@ const sections = [
     title: "Promoties, coupons en misbruik van aanbiedingen",
     body: [
       "Promoties kunnen worden beperkt op basis van tijd, land, platform, account, aankoopgeschiedenis, geschiktheid, hoeveelheid, aantal verzilveringen of andere duidelijk vermelde voorwaarden. Tenzij het aanbod anders aangeeft, zijn promoties niet combineerbaar en geven ze geen recht op een toekomstige promotie.",
-      "Gebruikers mogen technische fouten, dubbele couponverzilvering, gemanipuleerde regio- of identiteitsgegevens, geautomatiseerd aankoopmisbruik, refund cycling, account farming of andere methoden niet gebruiken om meer promotionele waarde te verkrijgen dan het echte aanbod bedoeld heeft.",
+      "Gebruikers mogen technische fouten, dubbele couponverzilvering, gemanipuleerde regio- of identiteitsgegevens, geautomatiseerd aankoopmisbruik, stelselmatig kopen en terugbetalen om voordeel te behalen, massaal accounts aanmaken of andere methoden niet gebruiken om meer promotionele waarde te verkrijgen dan het echte aanbod bedoeld heeft.",
       "Wanneer een promotie of korting is verkregen door fraude, technisch misbruik, dubbele verzilvering of een andere ongeldige methode, mag CK-Labs de aankoop weigeren, alleen de ongeldige promotionele waarde intrekken of de betrokken transactie terugbetalen en terugdraaien waar de wet dat toestaat. Andere rechtmatig gekochte waarde wordt niet verwijderd alleen omdat een andere promotie ongeldig was.",
-      "Een vrijwillige goodwilltegoed, gratis verlenging, discretionaire terugbetaling, bonus, compensatie, promotioneel voordeel of test-/reviewtoekenning bovenop een verplichte wettelijke verplichting houdt op zichzelf geen erkenning van aansprakelijkheid in en is geen belofte dat dezelfde oplossing of hetzelfde voordeel in een andere situatie wordt aangeboden.",
+      "Een vrijwillig goodwilltegoed, gratis verlenging, discretionaire terugbetaling, bonus, compensatie, promotioneel voordeel of test-/reviewtoekenning bovenop een verplichte wettelijke verplichting houdt op zichzelf geen erkenning van aansprakelijkheid in en is geen belofte dat dezelfde oplossing of hetzelfde voordeel in een andere situatie wordt aangeboden.",
     ],
   },
   {
