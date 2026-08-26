@@ -19,6 +19,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   pt_BR: new Set(['terms', 'purchases', 'privacy', 'community']),
   ru: new Set(['terms', 'purchases', 'privacy', 'community']),
   ja: new Set(['terms', 'purchases', 'privacy', 'community']),
+  ko: new Set(['terms']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
@@ -33,6 +34,7 @@ const localizedOpenLabels: Record<string, string> = {
   pt_BR: 'Abrir texto em português (Brasil)',
   ru: 'Открыть текст на русском',
   ja: '日本語版を開く',
+  ko: '한국어 전문 열기',
 };
 
 function documentHref(locale: string, document: string, fallback: string) {
