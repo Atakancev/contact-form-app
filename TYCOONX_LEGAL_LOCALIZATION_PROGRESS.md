@@ -31,9 +31,9 @@ Completed locale sets:
 - **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
 - **Russian (`ru`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Native-language/full-release QA completed.
 
-The Russian set now has full-document routes at `/tycoonx-legal/ru/terms`, `/tycoonx-legal/ru/purchases`, `/tycoonx-legal/ru/privacy`, and `/tycoonx-legal/ru/community`. The localized hub routes all four Russian cards directly to the Russian documents.
+Japanese (`ja`) now has a full Terms route at `/tycoonx-legal/ja/terms`. The Japanese legal hub routes its Terms card directly to that localized page; Purchases & Refunds, Privacy, and Community Standards still fall back to the canonical English documents until translated.
 
-The next unfinished locale/document is **Japanese (`ja`) Terms of Service**.
+The next unfinished locale/document is **Japanese (`ja`) Purchases & Refunds Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -54,6 +54,7 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - The EU Digital Services Act Article 16 continues to require covered hosting services to provide an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content; Article 17 requires clear and specific statements of reasons for covered moderation restrictions.
 - German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
 - German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
+- German BGB § 327r continues to require a contractual basis and valid reason for changes beyond what is needed to maintain conformity for continuously supplied digital products, without additional consumer cost and with the notices/remedies required when use or access is adversely affected.
 - Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in the Xsolla checkout.
 - The Brazilian Portuguese Privacy localization also reflects LGPD/ANPD rights such as confirmation/access, correction, anonymization/blocking/deletion where applicable, portability, consent withdrawal, information on sharing and review of qualifying automated decisions.
 - Previously completed localized Privacy pages should be checked for equivalent third-party AI and third-party-protection wording during parity QA if not already present.
@@ -77,8 +78,10 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Russian Privacy: `910cb2c`
 - Russian Community Standards: `6292b46`
 - Russian complete hub routing: `3d86ae7`
+- Japanese Terms: `c2bc8e9`
+- Japanese Terms hub routing: `c825379`
 
-Full-document localization progress: **40 / 100 complete (40%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **41 / 100 complete (41%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -92,7 +95,7 @@ Full-document localization progress: **40 / 100 complete (40%)** across the 25 r
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
 | 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
-| 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
+| 11 | ja | 日本語 | Ready | Ready | Pending | Pending | Pending |
 | 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
 | 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
 | 14 | zh_Hans | 简体中文 | Ready | Pending | Pending | Pending | Pending |
