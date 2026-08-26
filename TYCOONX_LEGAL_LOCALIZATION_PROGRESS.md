@@ -12,6 +12,7 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 - English remains canonical during localization. Refresh localized versions whenever the canonical meaning changes materially.
 - Arabic uses RTL layout.
 - Continue in locale order and, within each locale, in this order: Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
+- Do not mark a localized document `Ready` until it contains every canonical section, preserves product/payment/legal distinctions, uses native punctuation and terminology, and contains no stale English legal paragraphs except protected product, company, platform, and legal-proper names where appropriate.
 
 ## Current state
 
@@ -31,53 +32,41 @@ Completed locale sets:
 Portuguese (Brazil) localization is in progress:
 
 - The Brazilian Portuguese legal hub exists at `/tycoonx-legal/pt_BR`.
-- **Terms of Service is Ready** at `/tycoonx-legal/pt_BR/terms` with Brazilian-Portuguese wording and full canonical section parity.
-- **Purchases & Refunds is Ready** at `/tycoonx-legal/pt_BR/purchases` with Brazilian-Portuguese wording and all 17 canonical purchase-policy sections preserved.
-- Privacy and Community Standards continue to fall back to the canonical English pages until localized versions are completed.
-- The next document to create is `/tycoonx-legal/pt_BR/privacy`.
+- **Terms of Use is Ready** at `/tycoonx-legal/pt_BR/terms` with Brazilian-Portuguese wording and full canonical section parity.
+- **Purchases & Refunds is Ready** at `/tycoonx-legal/pt_BR/purchases` with Brazilian-Portuguese wording and all canonical purchase-policy sections preserved.
+- **Privacy Policy is Ready** at `/tycoonx-legal/pt_BR/privacy` with Brazilian-Portuguese wording, full canonical privacy section parity, Apple-equivalent third-party data protection language, and locally appropriate references to the LGPD/ANPD where relevant without reducing EU/German rights.
+- Community Standards continues to fall back to the canonical English page until the localized version is completed.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Portuguese (Brazil) (`pt_BR`) Privacy Policy**.
+The next unfinished locale/document is **Portuguese (Brazil) (`pt_BR`) Community Standards**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make the third-party data-protection safeguard required by current Apple privacy rules explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
 ## Current policy checkpoint, August 26, 2026
 
-- Apple App Review Guideline 3.1.1 continues to state that purchased in-game currency may not expire and that restorable In-App Purchases need an appropriate restore mechanism. Apple Family Sharing remains available only for eligible products when configured by the developer, and Apple states that the developer cannot turn Family Sharing off for an In-App Purchase after enabling it.
-- Google Play Billing guidance continues to require entitlement to be granted only when a purchase is in the `PURCHASED` state, not while it remains `PENDING`, and completed purchases must be acknowledged in time to avoid automatic refund and revocation.
-- German BGB § 356a continues to require the electronic withdrawal function, confirmation function, and prompt receipt confirmation on a durable medium for covered online distance contracts.
-- German BGB § 327f continues to require updates, including security updates, that are necessary to keep covered digital products in conformity during the legally relevant period. Where the statutory conditions are met, the trader is not liable for a defect caused solely by the consumer's failure to install a properly supplied and explained update.
-- Apple App Review Guideline 1.2 continues to require user-generated-content and social apps to provide filtering of objectionable material, a mechanism to report offensive content with timely responses, the ability to block abusive users, and published developer contact information. Apple clarified on February 6, 2026 that random or anonymous chat is subject to Guideline 1.2.
-- Google Play's current User Generated Content policy continues to require users to accept the app's Terms/User Policy before creating or uploading UGC, robust and ongoing moderation appropriate to the feature, in-app reporting and blocking, and safeguards preventing in-app monetization from encouraging objectionable user behavior.
-- EU Digital Services Act Article 16 requires covered hosting services to provide an easy-to-access electronic notice-and-action mechanism for specific allegedly illegal content and to process notices in a timely, diligent, non-arbitrary and objective manner. Article 17 requires clear and specific reasons for covered restrictions based on content being illegal or incompatible with the terms.
-- Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy that identifies data collected, collection methods and uses, explains retention/deletion and consent withdrawal, and confirms that third parties receiving user data provide the same or equivalent protection required by Apple's rules. Apps supporting account creation must also offer account deletion within the app.
-- Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for legal, security, fraud-prevention or regulatory reasons must be disclosed.
-- Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**. Xsolla states that the applicable refund-policy type is shown in checkout.
-- The canonical English rendered Privacy Policy and Markdown source explicitly state that, where platform rules require it, third parties receiving user data from CK-Labs must provide the same or an equivalent level of protection. The Portuguese Privacy localization contains the same protection.
-- Previously completed localized Privacy pages should be checked for an equivalent clause during their next parity QA if not already present; Italian already contains one.
+- Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, sharing, retention/deletion and consent withdrawal, and apps supporting account creation must offer account deletion within the app.
+- Apple account-deletion guidance continues to expect deletion of account-associated user data, including user-generated content, except where retention is legally required and disclosed.
+- Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for security, fraud prevention or regulatory reasons must be disclosed.
+- Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
+- German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
+- German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
+- Xsolla's legal index lists its Privacy Policy as updated **June 3, 2026** and its Refund Policy as updated **June 16, 2026**.
+- The canonical English Privacy Policy explicitly states that, where platform rules require it, third parties receiving user data from CK-Labs must provide the same or an equivalent level of protection. The Brazilian Portuguese Privacy localization contains the same protection.
+- Previously completed localized Privacy pages should be checked for equivalent third-party-protection wording during parity QA if not already present.
 
-Latest checkpoints:
+## Latest checkpoints
 
-- French complete set routing: `1502af4`
-- Canadian French complete hub routing: `86c167f`
-- Italian complete hub routing: `03cca57`
-- Portuguese Terms: `b03d281`
-- Portuguese Terms hub routing: `aab8554`
-- Portuguese Purchases & Refunds: `3c0e06d`
-- Portuguese Purchases hub routing: `113a947`
-- Portuguese Privacy: `64566da`
-- Portuguese Privacy hub routing: `c3241db`
-- Portuguese Community Standards: `9eaca0f`
-- Portuguese complete hub routing: `37e538a`
 - Brazilian Portuguese Terms: `3639545`
 - Brazilian Portuguese Terms hub routing: `59e27da`
 - Brazilian Portuguese Purchases & Refunds: `5f96375`
 - Brazilian Portuguese Purchases hub routing: `ac9bc05`
+- Brazilian Portuguese Privacy: `73d0f99`
+- Brazilian Portuguese Privacy hub routing: `652bd82`
 - Canonical rendered Privacy hardening: `bb320b6`
 - Canonical Privacy Markdown sync: `9d08cb2`
 
-Full-document localization progress: **34 / 100 complete (34%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **35 / 100 complete (35%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -89,7 +78,7 @@ Full-document localization progress: **34 / 100 complete (34%)** across the 25 r
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
-| 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Pending | Pending |
+| 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Pending |
 | 10 | ru | Русский | Ready | Pending | Pending | Pending | Pending |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
 | 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
@@ -106,7 +95,3 @@ Full-document localization progress: **34 / 100 complete (34%)** across the 25 r
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
 | 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
-
-## Translation completion rule
-
-Do not mark a localized document `Ready` until it contains every canonical section, preserves product/payment/legal distinctions, uses native punctuation and terminology, and contains no stale English legal paragraphs except protected product, company, platform, and legal-proper names where appropriate.
