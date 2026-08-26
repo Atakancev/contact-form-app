@@ -36,9 +36,9 @@ Completed locale sets:
 
 Current in-progress locale:
 
-- **Chinese Simplified (`zh_Hans`) 2/4**: Terms and Purchases & Refunds Ready. Privacy and Community Standards Pending.
+- **Chinese Simplified (`zh_Hans`) 3/4**: Terms, Purchases & Refunds, and Privacy Ready. Community Standards Pending.
 
-The next unfinished locale/document is **Chinese Simplified (`zh_Hans`) Privacy Policy**.
+The next unfinished locale/document is **Chinese Simplified (`zh_Hans`) Community Standards**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 
@@ -46,7 +46,8 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 
 ## Current policy checkpoint, August 26, 2026
 
-- Apple App Review Guideline 3.1.1 still states that purchased credits or in-game currencies may not expire and that restorable In-App Purchases need a restore mechanism. Apple also continues to require current entitlement handling for valid past purchases.
+- Apple App Review Guideline 5.1.1 still requires a privacy policy to identify collected data and uses, confirm same/equivalent protection by third parties receiving user data, explain retention/deletion, and describe consent revocation and deletion requests. Guideline 5.1.2 continues to require clear disclosure of personal-data sharing with third parties, including third-party AI, and explicit permission where required.
+- Google Play User Data policy still requires a comprehensive in-app and Play Console privacy policy that accurately matches actual data practices. Apps that permit account creation must provide a readily discoverable account-deletion path both in-app and through an external web resource, with associated user data deleted subject to legitimate disclosed retention exceptions.
 - Google Play Billing still requires entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; current Google guidance warns that failure to acknowledge within three days can result in automatic refund/revocation.
 - Google also currently warns not to use `orderId` as a universal duplicate-purchase key or database primary key because not every valid purchase receives one, including certain promo-code purchases. Purchase-token/provider-transaction identity and verified entitlement state are the safer authoritative basis.
 - Effective **August 26, 2026**, Google Play expands Age-Restricted Content and Functionality and Child Safety Standards requirements to anonymous/random-chat apps. Qualifying apps must use Play Console controls to block minors; the Families policy also prohibits anonymous-chat apps from targeting children. TycoonX must re-review these rules before any future anonymous/random-chat feature ships.
@@ -69,12 +70,14 @@ Repository QA on August 26, 2026 continues to return no displayed `TyconX` brand
 - Simplified Chinese Terms hub routing: `3c23793`
 - Simplified Chinese Purchases & Refunds: `e6d04a9`
 - Simplified Chinese Purchases hub routing: `60ffaaf`
+- Simplified Chinese Privacy Policy: `084610d`
+- Simplified Chinese Privacy hub routing: `5a5185c`
 - Canonical rendered Privacy AI hardening: `90b0d70`
 - Canonical Privacy Markdown AI sync: `0ed9286`
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **54 / 100 complete (54%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **55 / 100 complete (55%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -91,7 +94,7 @@ Full-document localization progress: **54 / 100 complete (54%)** across the 25 r
 | 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
 | 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
 | 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
-| 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Pending | Pending |
+| 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Ready | Pending |
 | 15 | zh_Hant | 繁體中文 | Ready | Pending | Pending | Pending | Pending |
 | 16 | ar | العربية | Ready | Pending | Pending | Pending | Pending |
 | 17 | nl | Nederlands | Ready | Pending | Pending | Pending | Pending |
