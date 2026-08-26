@@ -30,11 +30,11 @@ Completed locale sets:
 - **Portuguese (`pt`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. European-Portuguese/full-release QA completed.
 - **Portuguese (Brazil) (`pt_BR`) 4/4**: Terms, Purchases & Refunds, Privacy, Community Standards. Brazilian-Portuguese/full-release QA completed.
 
-The Russian Terms of Service are now available at `/tycoonx-legal/ru/terms` with full canonical parity for all substantive Terms areas, including Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, regional/future pricing, Apple/Google/Xsolla roles, obvious errors, failed and pending payments, duplicate grants, chargebacks, exploits, account compromise, economy corrections/resets, supported versions, third-party/provider changes, outages, force majeure, permanent shutdown, business transfer, UGC, liability, cross-platform recognition, Family Sharing, German/EU mandatory rights and consumer-dispute handling.
+The Russian Terms of Service are available at `/tycoonx-legal/ru/terms` with full canonical parity for all substantive Terms areas. The Russian Purchases & Refunds Policy is now available at `/tycoonx-legal/ru/purchases` with all 17 canonical purchase-policy sections, including Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, regional/future pricing, Apple/Google/Xsolla roles, pending and failed payments, obvious errors, duplicate grants, promotions, refunds, chargebacks, fraud, restore/re-link behavior, German/EU withdrawal rights, required updates, cross-platform recognition, Family Sharing and permanent service discontinuation.
 
 The localized hub routing uses an explicit per-locale document map so partially completed locales route only completed localized documents and safely fall back to canonical English for unfinished documents.
 
-The next unfinished locale/document is **Russian (`ru`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Russian (`ru`) Privacy Policy**.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. Repository QA continues to require no displayed `TyconX` branding and no stale wording implying the live service is a beta.
 
@@ -51,6 +51,7 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Google Play's User Data policy continues to require a comprehensive privacy policy consistent with the Data safety section. Apps that allow account creation must provide account deletion both in-app and through an external web resource; legitimate retention for security, fraud prevention or regulatory reasons must be disclosed.
 - Google Play's July 15, 2026 policy announcement clarifies that User Data requirements also apply to third-party AI integrations and developers remain responsible for limited use, disclosure and consent compliance.
 - Google Play Billing continues to require entitlement only after a transaction reaches `PURCHASED`, not while it is `PENDING`, and completed purchases must be acknowledged promptly to avoid automatic refund/revocation.
+- Google Play's current billing-security guidance also warns not to use `orderId` as the duplicate-purchase key or database primary key because not every valid purchase has an `orderId`, including certain promo-code purchases. Entitlement reconciliation should rely on the authoritative purchase token/provider transaction identity and verified entitlement state rather than assuming `orderId` is universal.
 - The EU Digital Services Act Article 16 continues to require covered hosting services to provide an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content; Article 17 requires clear and specific statements of reasons for covered moderation restrictions.
 - German BGB § 356a continues to require the electronic withdrawal function, confirmation function and prompt receipt confirmation on a durable medium for covered online distance contracts.
 - German BGB § 327f continues to require updates, including security updates, necessary to keep covered digital products in conformity during the legally relevant period, with the statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all conditions are met.
@@ -73,8 +74,10 @@ The canonical English Terms and Purchases & Refunds source were refreshed on **A
 - Canonical Privacy Markdown AI sync: `0ed9286`
 - Russian Terms: `e46e9d8`
 - Russian Terms hub routing: `dc6ce11`
+- Russian Purchases & Refunds: `5aab453`
+- Russian Purchases hub routing: `67e2316`
 
-Full-document localization progress: **37 / 100 complete (37%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **38 / 100 complete (38%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -87,7 +90,7 @@ Full-document localization progress: **37 / 100 complete (37%)** across the 25 r
 | 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
-| 10 | ru | Русский | Ready | Ready | Pending | Pending | Pending |
+| 10 | ru | Русский | Ready | Ready | Ready | Pending | Pending |
 | 11 | ja | 日本語 | Ready | Pending | Pending | Pending | Pending |
 | 12 | ko | 한국어 | Ready | Pending | Pending | Pending | Pending |
 | 13 | zh | 中文 | Ready | Pending | Pending | Pending | Pending |
