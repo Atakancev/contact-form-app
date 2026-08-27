@@ -41,11 +41,11 @@ Completed locale sets:
 - **Norwegian Bokmål (`nb`) 4/4**
 - **Polish (`pl`) 4/4**
 
-Polish (`pl`) is now **4/4 complete**. The Terms, Purchases & Refunds Policy, Privacy Policy, and Community Standards all exist as full Polish pages and all four cards in the Polish legal hub route to their localized versions.
+Thai (`th`) is now **1/4 complete**. The full Thai Terms of Service exists and the Thai legal hub routes the Terms card to that localized page. Purchases & Refunds, Privacy, and Community Standards remain Pending.
 
-The next unfinished locale/document is **Thai (`th`) Terms of Service**.
+The next unfinished locale/document is **Thai (`th`) Purchases & Refunds Policy**.
 
-Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
+Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
 ## Canonical source status
 
@@ -72,6 +72,8 @@ Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full doc
 
 ## Latest checkpoints
 
+- Thai Terms: `8d306858`
+- Thai Terms hub routing: `d592afd`
 - Polish Purchases & Refunds Policy: `96a1363`
 - Polish Privacy Policy: `d39d8b1`
 - Polish Community Standards: `2c240ec`
@@ -87,7 +89,7 @@ Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full doc
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **80 / 100 complete (80%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **81 / 100 complete (81%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -111,7 +113,7 @@ Full-document localization progress: **80 / 100 complete (80%)** across the 25 r
 | 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
-| 21 | th | ไทย | Ready | Pending | Pending | Pending | Pending |
+| 21 | th | ไทย | Ready | Ready | Pending | Pending | Pending |
 | 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
