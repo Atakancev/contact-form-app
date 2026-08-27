@@ -32,6 +32,7 @@ const REQUIRED_RELEASE_FILES = [
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
   'TYCOONX_ACCOUNT_DELETION_RELEASE_GATE.md',
+  'TYCOONX_AI_TRANSPARENCY_RELEASE_GATE.md',
   'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
 ];
 
@@ -110,6 +111,20 @@ if (!(await exists(deletionForm))) {
   }
   if (!text.includes('/api/contact')) {
     fail('TycoonX deletion form no longer submits through the configured request endpoint.');
+  }
+}
+
+const aiGate = path.join(ROOT, 'TYCOONX_AI_TRANSPARENCY_RELEASE_GATE.md');
+if (await exists(aiGate)) {
+  const text = await readFile(aiGate, 'utf8');
+  if (!text.includes('Article 50') || !text.includes('August 2, 2026')) {
+    fail('TycoonX AI transparency gate is missing the current EU AI Act Article 50 applicability checkpoint.');
+  }
+  if (!/interact(?:ing|ion)? directly|directly with a natural person/i.test(text)) {
+    fail('TycoonX AI transparency gate no longer clearly covers direct human-AI interaction disclosure.');
+  }
+  if (!/third-party AI/i.test(text)) {
+    fail('TycoonX AI transparency gate no longer covers third-party AI data-sharing requirements.');
   }
 }
 
