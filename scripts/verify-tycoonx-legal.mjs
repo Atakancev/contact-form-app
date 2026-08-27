@@ -23,6 +23,7 @@ const REQUIRED_PUBLIC_ROUTES = [
   'tyconx-support',
   'tycoonx-eula',
   'tycoonx-impressum',
+  'tycoonx-delete-account',
 ];
 const REQUIRED_RELEASE_FILES = [
   'TYCOONX_APPLE_CUSTOM_EULA.md',
@@ -30,6 +31,7 @@ const REQUIRED_RELEASE_FILES = [
   'TYCOONX_GERMAN_LEGAL_NOTICE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
+  'TYCOONX_ACCOUNT_DELETION_RELEASE_GATE.md',
   'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
 ];
 
@@ -96,6 +98,19 @@ for (const route of REQUIRED_PUBLIC_ROUTES) {
 for (const fileName of REQUIRED_RELEASE_FILES) {
   const file = path.join(ROOT, fileName);
   if (!(await exists(file))) fail(`Missing TycoonX legal release source/checklist: ${fileName}`);
+}
+
+const deletionForm = path.join(APP, 'tycoonx-delete-account', 'DeleteAccountForm.tsx');
+if (!(await exists(deletionForm))) {
+  fail('Missing TycoonX public account deletion request form.');
+} else {
+  const text = await readFile(deletionForm, 'utf8');
+  if (!text.includes('TycoonX Account Deletion Request')) {
+    fail('TycoonX deletion form no longer clearly identifies account-deletion requests.');
+  }
+  if (!text.includes('/api/contact')) {
+    fail('TycoonX deletion form no longer submits through the configured request endpoint.');
+  }
 }
 
 const formatter = path.join(LEGAL_ROOT, 'LegalInlineFormatting.tsx');
