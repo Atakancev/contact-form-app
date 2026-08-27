@@ -123,7 +123,23 @@ TycoonX must:
 - keep negative-balance or equivalent-value corrections proportionate and tied to the invalid transaction; and
 - maintain support evidence showing which provider handled the payment/refund and which system changed the TycoonX entitlement.
 
-### 9. App Review / Play review evidence
+### 9. Google collaborative chargeback review: 24-hour operational deadline
+
+Google's July 6, 2026 Developer API update introduced a collaborative chargeback-review flow. A `PendingRefundReviewNotification` can be sent when a chargeback requires developer review, and Google's `orders.reviewrefund` flow allows a response with the developer's refund preference and relevant usage evidence. Google states that the developer response window is 24 hours.
+
+For TycoonX Google Play purchases:
+
+- route `PendingRefundReviewNotification` events into an operational queue that is checked often enough to meet the 24-hour response window;
+- fetch authoritative purchase/account usage state before responding;
+- respond only with accurate evidence already lawfully held for fraud, security, entitlement, support, or transaction purposes;
+- never fabricate IP, geography, consumption, login, gameplay, or entitlement evidence simply to oppose a chargeback;
+- where Google permits it and the evidence supports it, include relevant purchase-use information such as whether Diamonds were consumed/transferred or whether VIP was activated and used;
+- keep evidence proportionate and avoid sending unrelated private chat, support content, or other excessive personal data;
+- record the Google review outcome and reconcile any later refund/reversal against the matching TycoonX entitlement;
+- do not punish an account merely because a user initiated a good-faith payment dispute; enforcement should target fraud, abusive chargebacks, false claims, or retained refunded value only when supported by evidence and the TycoonX Terms; and
+- if the 24-hour window cannot be met reliably, do not rely on the collaborative review process as the sole fraud-loss control.
+
+### 10. App Review / Play review evidence
 
 Maintain a short internal review packet containing:
 
@@ -131,7 +147,8 @@ Maintain a short internal review packet containing:
 - screenshots of the current Play Console enrollment state;
 - the exact Android UI shown for Google Play Billing, alternative billing, and external web links;
 - backend mapping fields for Google reporting token <-> Xsolla transaction <-> TycoonX entitlement;
-- sample success, refund, chargeback, and duplicate-report reconciliations; and
+- sample success, refund, chargeback, and duplicate-report reconciliations;
+- one sample `PendingRefundReviewNotification` handling path if the collaborative review flow is enabled; and
 - the current public TycoonX Terms/Purchases sections describing channel-specific payment responsibilities.
 
 ## Manual verification
