@@ -29,6 +29,7 @@ const REQUIRED_RELEASE_FILES = [
   'TYCOONX_APPLE_CUSTOM_EULA.md',
   'TYCOONX_APPLE_CUSTOM_EULA_RELEASE_CHECKLIST.md',
   'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md',
+  'TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
@@ -146,6 +147,29 @@ if (await exists(appleEuGate)) {
   }
   if (!/parental gate/i.test(text)) {
     fail('Apple EU transition gate no longer covers child-safety parental-gate requirements.');
+  }
+}
+
+const googlePaymentGate = path.join(ROOT, 'TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md');
+if (await exists(googlePaymentGate)) {
+  const text = await readFile(googlePaymentGate, 'utf8');
+  if (!text.includes('June 30, 2026') || !/new install/i.test(text) || !/existing install/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing the June 30 install-cohort checkpoint.');
+  }
+  if (!text.includes('October 1, 2026') || !/United States external content links/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing the October 1 US external-link reporting/fee checkpoint.');
+  }
+  if (!/24-hour external-link attribution/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing the 24-hour external-link attribution checkpoint.');
+  }
+  if (!/Externaltransactions APIs/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing external transaction backend reporting.');
+  }
+  if (!text.includes('September 30, 2026') || !/Australia and Japan/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing the September 30 Australia/Japan rollout checkpoint.');
+  }
+  if (!/Xsolla transaction ID/i.test(text) || !/Google external transaction/i.test(text)) {
+    fail('Google Play 2026 payment gate no longer requires Xsolla/Google/TycoonX reconciliation.');
   }
 }
 
