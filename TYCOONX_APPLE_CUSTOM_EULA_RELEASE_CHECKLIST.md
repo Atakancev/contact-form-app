@@ -55,6 +55,16 @@ Keep the dedicated App Store fields and public legal links consistent:
 
 The App Store description may include a short legal/support footer for transparency, but the Privacy Policy and Support URLs still belong in their dedicated App Store Connect fields, and the Custom EULA must still be configured in the License Agreement field.
 
+## P0 live App Store metadata drift
+
+A public App Store recheck on **August 27, 2026** still surfaced historical version-history text from version 1.0.2 using the old `TyconX` spelling and describing that release as an open beta. This is outside the legal repository but remains player-visible in at least some storefronts.
+
+Before the September 1, 2026 full release:
+
+- if App Store Connect permits editing that released version metadata, replace the stale spelling with `TycoonX` and remove language implying the current service is a beta;
+- if released version-history metadata is immutable, do not reuse the old wording anywhere and ensure the current app description, promotional text, screenshots, subtitle, keywords, support copy, EULA, legal pages, and new release notes consistently use `TycoonX` and full-release language;
+- recheck the major localized App Store storefronts after the next release so stale copy is not accidentally copied forward.
+
 ## Release QA
 
 Before the September 1, 2026 full release:
