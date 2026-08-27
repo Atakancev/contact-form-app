@@ -108,6 +108,23 @@ The existence of the official TycoonX Xsolla webshop does not create a universal
 - Do not show a paid feature in metadata in a way that reasonably suggests it is included free with the base download when it is not.
 - Keep current prices out of screenshots/descriptions unless there is a deliberate localization/update process for every affected storefront; stale public prices create avoidable review and consumer-law risk.
 
+### 11. Apple EU October 1, 2026 transition
+
+Apple updated the Developer Program License Agreement on August 18, 2026 and announced new unified EU business terms effective October 1, 2026. TycoonX must not assume the pre-October EU external-purchase rules continue unchanged after that date.
+
+Before October 1, 2026:
+
+- have the Apple Developer Program Account Holder review and accept the updated agreement containing Attachment 14;
+- deliberately choose and document the TycoonX EU payment model, because Apple states that the selected EU payment options must be maintained for 12 months;
+- if TycoonX uses alternative in-app processing or promotes out-of-app digital offers in EU storefronts, configure the StoreKit External Purchases or Offers Entitlement required by the new framework;
+- when an actionable out-of-app link or alternative in-app processor is used, implement Apple’s ExternalPurchaseCustomLink API and required disclosure-sheet flow rather than a plain custom link;
+- implement the applicable transaction-reporting path to Apple for qualifying alternative-payment transactions and reconcile retries, refunds, chargebacks, Xsolla transaction IDs, TycoonX entitlements, and Apple invoices;
+- apply Apple’s new child-safety rules to alternative payment flows, including parental-gate and out-of-app-offer restrictions for minors according to the user’s applicable storefront age rules;
+- keep alternative-payment UI conditional on supported OS/API/entitlement availability; and
+- ensure TycoonX Support handles Xsolla/alternative-payment refund and purchase-history issues rather than incorrectly sending those users to Apple.
+
+The detailed operational checklist is maintained in `TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md`.
+
 ## Apple Custom EULA gate
 
 Before release, verify in App Store Connect that the custom TycoonX EULA is actually saved and assigned to every intended country/region. Apple states that its Standard EULA applies in countries/regions not covered by the custom agreement.
