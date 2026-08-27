@@ -75,6 +75,39 @@ Do not use fake countdowns, fake scarcity, or misleading crossed-out prices.
 - Users must not falsify region, tax location, account identity, or payment eligibility to obtain a price or promotion for which they are not eligible.
 - Corrections must target invalid or duplicated value and must not confiscate unrelated legitimate purchases.
 
+### 8. Storefront-specific external purchase and Xsolla linking
+
+The existence of the official TycoonX Xsolla webshop does not create a universal right to advertise or link to it from the mobile apps.
+
+**Apple / iOS:**
+
+- Current Apple App Review Guideline 3.1.1(a) allows buttons, external links, or calls to action to other purchase methods in United States storefront apps without the StoreKit external-purchase-link entitlement.
+- Outside the United States storefront, do not assume the same rule applies. Where Apple requires a StoreKit External Purchase Link Entitlement or another regional program, use the applicable entitlement and follow its terms before showing a webshop purchase link or call to action.
+- In storefronts where no applicable permission exists, do not put buttons, external links, or calls to action in the app or its metadata that direct users to Xsolla or another non-IAP purchase mechanism.
+- Cross-platform access to a legitimately purchased TycoonX entitlement must remain consistent with Apple rules. If an item bought elsewhere is usable in the iOS app, verify that the corresponding item is also offered through IAP where Apple requires that parity.
+- App Review notes must explain the TycoonX business model and paid-product mapping clearly enough that a reviewer can find and test Diamonds, 30-Day VIP, Lifetime VIP, restore behavior, and any permitted external-purchase behavior.
+
+**Google Play / Android:**
+
+- Do not assume the Xsolla webshop may be promoted from the Google Play app globally without program enrollment or reporting duties.
+- If TycoonX offers alternative billing inside the Play-distributed app or sends users to an external web purchase flow for in-app digital goods, verify the applicable country/program eligibility and enroll in the required Google Play billing-choice or external-offers program before release.
+- Where Google requires alternative-billing or external-transaction APIs, report qualifying transactions through the required APIs and preserve the required transaction identifiers and reconciliation state.
+- Keep the app behavior, Play Console enrollment, checkout wording, service-fee/reporting treatment, and public TycoonX legal wording consistent for the user’s storefront.
+
+### 9. EU personalized-price disclosure
+
+- Regional pricing by country, storefront, currency, tax, or a generally available promotion is not automatically a personalized price.
+- If TycoonX ever personalizes an individual consumer’s price through automated decision-making, verify whether EU consumer law requires disclosure before the order is placed.
+- On Google Play, when the price is personalized in this sense, use the Play Billing `setIsOfferPersonalized(true)` mechanism so Google’s purchase UI includes the disclosure.
+- Do not set the personalized-price flag merely because ordinary regional pricing differs between countries, but do not leave it false when an actual automated individualized price is being used.
+- Keep enough configuration/audit evidence to explain why a price was classified as regional/general or personalized if a consumer, platform, or authority questions it.
+
+### 10. App Store marketing and paid-feature disclosure
+
+- If App Store descriptions, screenshots, previews, or promotional text feature Diamonds, VIP functionality, premium automation, or another item that requires an additional purchase, make that paid nature clear enough to satisfy Apple App Review Guideline 2.3.2.
+- Do not show a paid feature in metadata in a way that reasonably suggests it is included free with the base download when it is not.
+- Keep current prices out of screenshots/descriptions unless there is a deliberate localization/update process for every affected storefront; stale public prices create avoidable review and consumer-law risk.
+
 ## Apple Custom EULA gate
 
 Before release, verify in App Store Connect that the custom TycoonX EULA is actually saved and assigned to every intended country/region. Apple states that its Standard EULA applies in countries/regions not covered by the custom agreement.
@@ -92,7 +125,7 @@ Before release, compare the live purchase UI and provider configuration against:
 - TycoonX Apple Custom EULA; and
 - TycoonX Impressum / Legal Notice.
 
-A legal clause is not an implementation. If the actual checkout, restore, refund, deletion, withdrawal, or entitlement flow differs materially from the public wording, fix the implementation or the wording before release.
+A legal clause is not an implementation. If the actual checkout, restore, refund, deletion, withdrawal, external-purchase-link, personalized-pricing, or entitlement flow differs materially from the public wording, fix the implementation or the wording before release.
 
 ## Manual regression command
 
