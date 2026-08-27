@@ -42,12 +42,13 @@ Completed locale sets:
 - **Polish (`pl`) 4/4**
 - **Thai (`th`) 4/4**
 - **Vietnamese (`vi`) 4/4**
+- **Ukrainian (`uk`) 4/4**
 
-Vietnamese (`vi`) is now fully localized. Full Terms, Purchases & Refunds, Privacy Policy, and Community Standards pages exist, and all four cards on the Vietnamese legal hub route to those localized documents.
+Ukrainian (`uk`) is now fully localized. Full Terms, Purchases & Refunds, Privacy Policy, and Community Standards pages exist, and all four cards on the Ukrainian legal hub route to those localized documents.
 
-The next unfinished locale/document is **Ukrainian (`uk`) Terms of Service**.
+The next unfinished locale/document is **Hindi (`hi`) Terms of Service**.
 
-Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
+Rows for `hi` and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
 ## Canonical source status
 
@@ -67,10 +68,15 @@ Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
 - Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in Xsolla checkout.
-- The August 27, 2026 recheck of Apple privacy rules, Google Play User Data/AI rules, Xsolla policy dates, and the existing German/EU consumer-law framework did not require a new canonical English wording change.
+- The August 27, 2026 recheck of current Apple App Review and Google Play Billing guidance remains consistent with the existing canonical purchase wording; no new canonical English change was required in this run.
 
 ## Latest checkpoints
 
+- Ukrainian Terms: `13983f3`
+- Ukrainian Purchases & Refunds: `d6e8d7b`
+- Ukrainian Privacy Policy: `24c7565`
+- Ukrainian Community Standards: `ef2404d`
+- Complete Ukrainian hub routing: `1b0a591`
 - Vietnamese Privacy Policy: `8f64fd8`
 - Vietnamese Community Standards: `ed49640`
 - Complete Vietnamese hub routing: `94388ed`
@@ -86,7 +92,7 @@ Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **88 / 100 complete (88%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **92 / 100 complete (92%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -112,6 +118,6 @@ Full-document localization progress: **88 / 100 complete (88%)** across the 25 r
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
 | 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
 | 22 | vi | Tiếng Việt | Ready | Ready | Ready | Ready | Ready |
-| 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
+| 23 | uk | Українська | Ready | Ready | Ready | Ready | Ready |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
 | 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
