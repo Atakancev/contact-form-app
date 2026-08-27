@@ -15,6 +15,24 @@ const LOCALES = [
 ];
 
 const DOCS = ['terms', 'purchases', 'privacy', 'community'];
+const REQUIRED_PUBLIC_ROUTES = [
+  'tyconx-terms-of-service',
+  'tyconx-purchase-refund-policy',
+  'tyconx-privacy-policy',
+  'tycoonx-community-standards',
+  'tyconx-support',
+  'tycoonx-eula',
+  'tycoonx-impressum',
+];
+const REQUIRED_RELEASE_FILES = [
+  'TYCOONX_APPLE_CUSTOM_EULA.md',
+  'TYCOONX_APPLE_CUSTOM_EULA_RELEASE_CHECKLIST.md',
+  'TYCOONX_GERMAN_LEGAL_NOTICE.md',
+  'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
+  'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
+  'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
+];
+
 const errors = [];
 const warnings = [];
 
@@ -68,6 +86,16 @@ for (const locale of LOCALES) {
 }
 if (presentDocs !== expectedDocs) {
   fail(`Localized document count is ${presentDocs}/${expectedDocs}, expected ${expectedDocs}/${expectedDocs}.`);
+}
+
+for (const route of REQUIRED_PUBLIC_ROUTES) {
+  const page = path.join(APP, route, 'page.tsx');
+  if (!(await exists(page))) fail(`Missing public TycoonX legal/support route: ${rel(page)}`);
+}
+
+for (const fileName of REQUIRED_RELEASE_FILES) {
+  const file = path.join(ROOT, fileName);
+  if (!(await exists(file))) fail(`Missing TycoonX legal release source/checklist: ${fileName}`);
 }
 
 const formatter = path.join(LEGAL_ROOT, 'LegalInlineFormatting.tsx');
@@ -136,6 +164,8 @@ for (const file of localizedFiles) {
 console.log(`TycoonX legal QA`);
 console.log(`Localized full documents: ${presentDocs}/${expectedDocs}`);
 console.log(`Localized hubs: ${LOCALES.length}/${LOCALES.length}`);
+console.log(`Required public legal/support routes: ${REQUIRED_PUBLIC_ROUTES.length}/${REQUIRED_PUBLIC_ROUTES.length}`);
+console.log(`Required legal release files: ${REQUIRED_RELEASE_FILES.length}/${REQUIRED_RELEASE_FILES.length}`);
 console.log(`Localized **...** emphasis markers covered by shared formatter: ${markerCount}`);
 
 if (warnings.length > 0) {
