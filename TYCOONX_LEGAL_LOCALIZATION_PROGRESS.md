@@ -40,10 +40,11 @@ Completed locale sets:
 - **Swedish (`sv`) 4/4**
 - **Norwegian Bokmål (`nb`) 4/4**
 - **Polish (`pl`) 4/4**
+- **Thai (`th`) 4/4**
 
-Thai (`th`) is now **2/4 complete**. The full Thai Terms of Service and Purchases & Refunds Policy exist and the Thai legal hub routes both cards to localized pages. Privacy and Community Standards remain Pending.
+Thai (`th`) is now fully localized. Terms, Purchases & Refunds, Privacy Policy, and Community Standards all exist as full Thai pages, and all four cards on the Thai legal hub route to those localized documents.
 
-The next unfinished locale/document is **Thai (`th`) Privacy Policy**.
+The next unfinished locale/document is **Vietnamese (`vi`) Terms of Service**.
 
 Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
@@ -68,19 +69,18 @@ Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
 - EU Digital Services Act Articles 16 and 17 continue to require, where applicable, accessible notice-and-action handling for sufficiently precise illegal-content notices and clear reasons for covered content, payment, service, or account restrictions.
 - Xsolla's Refund Policy remains updated **June 16, 2026**, identifies the applicable refund-policy type at checkout, and Xsolla's Privacy Policy remains updated **June 3, 2026**.
-- The August 27, 2026 recheck of Apple, Google Play, Xsolla, German consumer law, and DSA requirements did not require another canonical English wording change.
+- The August 27, 2026 recheck of Apple privacy/AI disclosure rules, Google Play account-deletion requirements, Xsolla policy dates, and German BGB §§ 356a and 327r did not require another canonical English wording change.
 
 ## Latest checkpoints
 
+- Thai Privacy Policy: `d1960722`
+- Thai Community Standards: `6c3881f9`
+- Complete Thai hub routing: `5c833e64`
 - Thai Purchases & Refunds Policy: `7b9fd1de`
 - Thai Purchases hub routing: `2b248233`
 - Thai Terms: `8d306858`
 - Thai Terms hub routing: `d592afd`
-- Polish Purchases & Refunds Policy: `96a1363`
-- Polish Privacy Policy: `d39d8b1`
-- Polish Community Standards: `2c240ec`
 - Complete Polish hub routing: `4702080`
-- Polish Terms: `baf0d74`
 - Complete Norwegian Bokmål hub routing: `8c51827`
 - Complete Swedish hub routing: `db6cc19`
 - Complete Dutch hub routing: `f5cfaa4`
@@ -91,7 +91,7 @@ Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **82 / 100 complete (82%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **84 / 100 complete (84%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -115,7 +115,7 @@ Full-document localization progress: **82 / 100 complete (82%)** across the 25 r
 | 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
-| 21 | th | ไทย | Ready | Ready | Ready | Pending | Pending |
+| 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
 | 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
