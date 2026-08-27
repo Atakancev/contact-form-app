@@ -42,6 +42,27 @@ The current EULA also preserves, subject to mandatory law:
 - Security emergencies, unsupported versions, third-party-provider replacement, lawful feature changes, and permanent service discontinuation are covered without waiving mandatory consumer remedies.
 - Community moderation, suspension/termination, privacy, third-party AI safeguards, and user-content obligations are cross-referenced consistently with the broader TycoonX legal framework.
 
+## Storefront-specific external purchase gate
+
+TycoonX has an official Xsolla-powered webshop, but the iOS app and App Store metadata must not treat that webshop as globally linkable.
+
+- Apple’s current Guideline 3.1.1(a) permits buttons, external links, or other calls to action to alternative purchase methods in **United States storefront** apps without the StoreKit External Purchase Link Entitlement.
+- For storefronts outside the United States, use an applicable StoreKit external-purchase-link entitlement or other Apple-authorized regional program where required before exposing a webshop purchase link or call to action.
+- In storefronts where the applicable permission is unavailable or not enabled for TycoonX, do not include in the app **or its metadata** buttons, external links, or calls to action that direct users to Xsolla or another non-IAP purchasing mechanism.
+- Do not assume that a website link that is allowed in one storefront is automatically lawful or Apple-compliant in every other storefront.
+- If TycoonX lets an iOS user access a digital entitlement bought on another platform or on the web, verify the applicable cross-platform-service rule and whether the same item must also be offered through Apple IAP.
+- App Review notes must state truthfully whether any external-purchase link exists, in which storefronts it can appear, and which entitlement/program supports it.
+
+## App Store metadata and review disclosure gate
+
+Apple App Review Guidelines require clear, accurate metadata and enough information for reviewers to understand paid functionality.
+
+- If screenshots, previews, descriptions, promotional text, or feature callouts show Diamonds, VIP benefits, premium automation, or another feature that requires an additional purchase, clearly indicate that the item or feature requires an additional purchase where necessary under Guideline 2.3.2.
+- Do not present Lifetime VIP, Diamonds, or another paid benefit as though it is included free with the base download when it is not.
+- Keep stale or hard-coded prices out of screenshots and descriptions unless CK-Labs is prepared to maintain them accurately across storefronts, currencies, taxes, and genuine future promotions.
+- In App Review notes, explain the TycoonX business model and where the reviewer can test Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, restore behavior, and any storefront-specific external-purchase behavior.
+- If an IAP is configured but intentionally unavailable in the submitted build or storefront, explain the reason to App Review rather than leaving a reviewer unable to find it.
+
 ## Public App Store metadata/legal links
 
 Keep the dedicated App Store fields and public legal links consistent:
@@ -55,6 +76,8 @@ Keep the dedicated App Store fields and public legal links consistent:
 - German Legal Notice / Impressum: `/tycoonx-impressum`
 
 The App Store description may include a short legal/support footer for transparency, but the Privacy Policy and Support URLs still belong in their dedicated App Store Connect fields, and the Custom EULA must still be configured in the License Agreement field.
+
+Legal/support URLs are not the same thing as a purchase call to action. A Terms, Privacy, Support, Community, EULA, or Impressum link may be appropriate for transparency, but do not turn those legal links into indirect wording that steers users to an external digital-goods checkout in storefronts where Apple does not permit that behavior.
 
 ## P0 live App Store metadata drift
 
@@ -78,4 +101,6 @@ Before the September 1, 2026 full release:
 - verify there is no stale pre-release or beta wording in the current EULA;
 - verify the public EULA links to Terms, Purchases & Refunds, Privacy, Community Standards, and Support;
 - verify App Review notes explain TycoonX paid products clearly enough for review, including Diamonds, one-time 30-Day VIP, and limited-time Lifetime VIP;
-- recheck Apple’s current minimum-EULA terms immediately before a material EULA update or new release.
+- verify any iOS link or call to action to the Xsolla webshop is enabled only for storefronts where the actual Apple rules/entitlements permit it;
+- verify App Store descriptions/screenshots/previews do not imply that paid VIP or Diamond features are free with the base download;
+- recheck Apple’s current minimum-EULA terms and payment-link rules immediately before a material EULA update or new release.
