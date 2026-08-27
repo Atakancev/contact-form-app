@@ -38,22 +38,21 @@ Completed locale sets:
 - **Arabic (`ar`) 4/4**
 - **Dutch (`nl`) 4/4**
 - **Swedish (`sv`) 4/4**
+- **Norwegian Bokmål (`nb`) 4/4**
 
-Norwegian Bokmål (`nb`) is now **2/4**: Terms and Purchases & Refunds are Ready; Privacy and Community Standards remain Pending.
-
-The next unfinished locale/document is **Norwegian Bokmål (`nb`) Privacy Policy**.
+The next unfinished locale/document is **Polish (`pl`) Terms of Service**.
 
 ### Repository reconciliation, August 27, 2026
 
 Tracker state is reconciled against actual repository pages rather than presumed completion. Full pages exist and are routed for every completed locale above.
 
-Norwegian Bokmål Terms now exist at `app/tycoonx-legal/nb/terms/page.tsx` and preserve the complete 35-section canonical framework, including Diamonds, 30-Day VIP, limited-time Lifetime VIP, Apple/Google/Xsolla roles, pricing, checkout, withdrawal, errors, chargebacks, exploits, economy corrections, updates, outages, shutdown, UGC, liability, Family Sharing, and mandatory consumer protections. Norwegian Bokmål Purchases & Refunds now exist at `app/tycoonx-legal/nb/purchases/page.tsx` with all 17 canonical purchase-policy sections. Both pages are routed from the `nb` legal hub.
+Norwegian Bokmål is now complete. Terms and Purchases & Refunds were already Ready. Privacy now exists at `app/tycoonx-legal/nb/privacy/page.tsx` with full canonical parity for account/gameplay data, Apple/Google/Xsolla transaction records, fraud and exploit signals, legal bases, international transfers, retention, account deletion versus entitlement restoration, minors, automated moderation, equivalent third-party protection, and third-party AI disclosure/permission safeguards. Community Standards now exist at `app/tycoonx-legal/nb/community/page.tsx` with full parity for reporting, blocking, moderation, DSA notices, public/private UGC, child safety, IP complaints, platform rules, and future anonymous/random-chat controls. All four Norwegian Bokmål pages are routed from the `nb` legal hub.
 
 Rows for `pl`, `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
 The canonical English Terms and Purchases & Refunds source were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections. The canonical English Privacy Policy was refreshed on **August 26, 2026** to make current third-party data protection and third-party AI disclosure/permission safeguards explicit. The canonical English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 
-Repository QA continues to require zero displayed `TyconX` branding and zero stale `beta` wording in player-facing legal copy.
+Repository QA continues to require zero displayed `TyconX` branding and zero stale `beta` wording in player-facing legal copy. The August 27, 2026 Norwegian Bokmål QA found no `TyconX` match and no TycoonX `beta` wording.
 
 ## Current policy checkpoint, August 27, 2026
 
@@ -73,10 +72,11 @@ Repository QA continues to require zero displayed `TyconX` branding and zero sta
 
 ## Latest checkpoints
 
+- Norwegian Bokmål Privacy Policy: `f420e6e`
+- Norwegian Bokmål Community Standards: `f54b952`
+- Complete Norwegian Bokmål hub routing: `8c51827`
 - Norwegian Bokmål Terms: `faee0a0`
 - Norwegian Bokmål Purchases & Refunds: `100f336`
-- Norwegian Bokmål Terms routing: `0ac60b4`
-- Norwegian Bokmål Purchases routing: `9532443`
 - Swedish Privacy Policy: `8b6c8dc`
 - Swedish Community Standards: `6bb80c7`
 - Complete Swedish hub routing: `db6cc19`
@@ -90,7 +90,7 @@ Repository QA continues to require zero displayed `TyconX` branding and zero sta
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **74 / 100 complete (74%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **76 / 100 complete (76%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -112,7 +112,7 @@ Full-document localization progress: **74 / 100 complete (74%)** across the 25 r
 | 16 | ar | العربية | Ready | Ready | Ready | Ready | Ready |
 | 17 | nl | Nederlands | Ready | Ready | Ready | Ready | Ready |
 | 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
-| 19 | nb | Norsk bokmål | Ready | Ready | Ready | Pending | Pending |
+| 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Pending | Pending | Pending | Pending |
 | 21 | th | ไทย | Ready | Pending | Pending | Pending | Pending |
 | 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
