@@ -61,8 +61,12 @@ There is **no unfinished locale/document** in the requested localization queue. 
 ## Current policy checkpoint, August 27, 2026
 
 - Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered digital unlocks, states that purchased in-game currencies may not expire, and requires a restore mechanism for restorable In-App Purchases.
+- Apple App Review Guideline 3.1.1(a) now receives an explicit TycoonX release gate: United States storefront apps may include external purchase buttons/links/calls to action without the StoreKit external-purchase-link entitlement, while other storefronts remain subject to the applicable StoreKit entitlement/regional-program rules. TycoonX must not assume its Xsolla webshop can be linked from every iOS storefront or from App Store metadata globally.
+- Apple App Review Guideline 2.3.2 is now an explicit metadata gate: if descriptions, screenshots, previews, or promotional text feature Diamonds, VIP, premium automation, or other functionality requiring an additional purchase, the paid nature must be made clear and metadata must not imply those items are included free with the base download.
 - Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases must be acknowledged promptly; Google states that an unacknowledged purchase can be automatically refunded after three days, and the three-day window starts only after a pending transaction becomes `PURCHASED`.
 - Google Play guidance recommends secure-backend verification and checking that a purchase token has not already been used before granting entitlement again.
+- Google Play storefront/payment hardening now explicitly covers the official Xsolla webshop: if the Play-distributed TycoonX app offers alternative billing in-app or sends users to an external web purchase flow for in-app digital goods, CK-Labs must verify the applicable country/program eligibility, enroll in the required Google billing-choice/external-offers program, and use required external-transaction reporting APIs instead of assuming that web checkout promotion is globally permitted.
+- Google Play's current Billing Library guidance says that where an EU price is personalized using automated decision-making, the billing flow should use `setIsOfferPersonalized(true)` so the Play UI discloses it. Ordinary country/storefront/currency/tax/regional pricing is not automatically individualized personalized pricing.
 - German BGB § 356a continues to require, for covered online distance contracts, an electronic withdrawal function that is continuously available during the withdrawal period, a clear confirmation function, and prompt confirmation on a durable medium.
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for a defect caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity, including advance durable-medium information and termination rights for certain more-than-insignificant impairments.
@@ -70,10 +74,17 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - German DDG § 5 provider-information requirements were hardened with a dedicated public TycoonX legal notice at `/tycoonx-impressum`, linked from Support and the legal-language hub. The legal notice uses the current CK-Labs provider address, telephone, and email already used in the Apple Custom EULA.
 - The legal notice includes a conditional DSA Articles 11/12 contact point for TycoonX functionality to which the intermediary-service contact-point duties apply, with German and English communication and a Support route that does not rely solely on automated tools.
 - Regulation (EU) 2024/3228 repealed the former EU ODR regime with effect from **July 20, 2025**. TycoonX therefore does not publish an obsolete EU ODR-platform link. VSBG §§ 36 and 37 remain separately relevant where their conditions are met.
-- The August 27, 2026 recheck remains consistent with the canonical English legal framework. No new canonical English Terms, Purchases, Privacy, or Community wording change was required in this run; the public German provider-information/compliance surface was strengthened instead.
+- The manual legal verifier now also checks the required public Terms, Purchases, Privacy, Community, Support, Apple EULA, and Impressum routes plus the core release-source/checklist files, in addition to all 100 localized documents, 25 hubs, brand/release wording, Arabic RTL, and shared inline formatting.
+- The August 27, 2026 recheck remains consistent with the canonical English legal framework. The existing public Terms/Purchases wording already makes external-purchase availability conditional on platform, country, program, and law, so no new canonical English public clause was required. The release gates were strengthened instead.
 
 ## Latest checkpoints
 
+- Storefront/Xsolla/payment release hardening: `decfd7e`
+- Apple external-purchase and metadata release gates: `4ebc8b5`
+- Expanded manual public legal-surface verifier: `24a64af`
+- Payment and entitlement release gates baseline: `f803f0c`
+- Manual legal regression verifier baseline: `5c483c0`
+- Shared legal inline-formatting pre-paint fix: `ba9d43a`
 - German legal-notice source: `9e14c46`
 - Public `/tycoonx-impressum` page: `816eb435`
 - Support → Impressum routing: `62e727e`
