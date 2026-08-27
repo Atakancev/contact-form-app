@@ -80,13 +80,14 @@ export default function TycoonXImpressum() {
               <a href="/tyconx-privacy-policy" className="text-indigo-400 hover:text-indigo-300 transition">Privacy Policy</a>
               <a href="/tycoonx-community-standards" className="text-indigo-400 hover:text-indigo-300 transition">Community Standards</a>
               <a href="/tycoonx-eula" className="text-indigo-400 hover:text-indigo-300 transition">Apple Custom EULA</a>
+              <a href="/tycoonx-security" className="text-indigo-400 hover:text-indigo-300 transition">Security & Vulnerability Reporting</a>
               <a href="/tyconx-support" className="text-indigo-400 hover:text-indigo-300 transition">Support</a>
               <a href="/tycoonx-legal" className="text-indigo-400 hover:text-indigo-300 transition">Legal Languages</a>
             </div>
           </section>
         </div>
 
-        <p className="text-zinc-600 text-xs mt-8">Stand: 27. August 2026</p>
+        <p className="text-zinc-600 text-xs mt-8">Stand: 28. August 2026</p>
       </div>
     </main>
   );
