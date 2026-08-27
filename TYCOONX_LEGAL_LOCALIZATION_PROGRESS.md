@@ -67,10 +67,19 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for a defect caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity, including advance durable-medium information and termination rights for certain more-than-insignificant impairments.
 - Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in Xsolla checkout.
-- The August 27, 2026 recheck remains consistent with the canonical English legal framework. No new canonical English wording change was required in this run.
+- German DDG § 5 provider-information requirements were hardened with a dedicated public TycoonX legal notice at `/tycoonx-impressum`, linked from Support and the legal-language hub. The legal notice uses the current CK-Labs provider address, telephone, and email already used in the Apple Custom EULA.
+- The legal notice includes a conditional DSA Articles 11/12 contact point for TycoonX functionality to which the intermediary-service contact-point duties apply, with German and English communication and a Support route that does not rely solely on automated tools.
+- Regulation (EU) 2024/3228 repealed the former EU ODR regime with effect from **July 20, 2025**. TycoonX therefore does not publish an obsolete EU ODR-platform link. VSBG §§ 36 and 37 remain separately relevant where their conditions are met.
+- The August 27, 2026 recheck remains consistent with the canonical English legal framework. No new canonical English Terms, Purchases, Privacy, or Community wording change was required in this run; the public German provider-information/compliance surface was strengthened instead.
 
 ## Latest checkpoints
 
+- German legal-notice source: `9e14c46`
+- Public `/tycoonx-impressum` page: `816eb435`
+- Support → Impressum routing: `62e727e`
+- Legal hub → Impressum routing: `28981d6`
+- German legal-notice release checklist: `bf2a6f3`
+- Apple EULA release-checklist Impressum parity: `e7fb40e`
 - Hindi Purchases & Refunds: `869de5d`
 - Hindi Privacy Policy: `292a8c9`
 - Hindi Community Standards: `3f26d5c`
