@@ -13,6 +13,7 @@ This is an operational App Store release checklist for the TycoonX Custom End Us
 - Keep the public `/tycoonx-eula` page synchronized with the App Store Connect text whenever the legal meaning changes.
 - A public EULA URL is useful for transparency, support, and external legal navigation, but the App Store Connect Custom License Agreement field remains the mechanism that makes the custom EULA apply to the App Store license.
 - When a Custom EULA is configured, Apple displays a License Agreement link on the App Store product page. Do not rely on an App Store description URL as the mechanism that creates the license agreement.
+- **Live storefront evidence:** on August 27, 2026 the public French TycoonX App Store page displays a `Contrat de licence` link. Apple states that the License Agreement link is not shown when only Apple’s Standard EULA applies, so this is strong evidence that a Custom EULA is active for that storefront. It does **not** prove that every intended country/region is selected or that the live App Store Connect text is byte-for-byte/substantively identical to the repository source; those checks remain required.
 
 ## Apple minimum-term parity gate
 
