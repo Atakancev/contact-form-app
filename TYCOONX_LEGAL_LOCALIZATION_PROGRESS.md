@@ -42,56 +42,47 @@ Completed locale sets:
 - **Polish (`pl`) 4/4**
 - **Thai (`th`) 4/4**
 
-Thai (`th`) is now fully localized. Terms, Purchases & Refunds, Privacy Policy, and Community Standards all exist as full Thai pages, and all four cards on the Thai legal hub route to those localized documents.
+Vietnamese (`vi`) is now **2/4**. Full Terms and Purchases & Refunds pages exist and both cards on the Vietnamese legal hub route to those localized documents. Privacy Policy and Community Standards remain pending.
 
-The next unfinished locale/document is **Vietnamese (`vi`) Terms of Service**.
+The next unfinished locale/document is **Vietnamese (`vi`) Privacy Policy**.
 
-Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
+Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
 ## Canonical source status
 
 - English Terms and Purchases & Refunds were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
 - English Privacy Policy was refreshed on **August 26, 2026** to make third-party data protection and third-party AI disclosure/permission safeguards explicit.
 - English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
-- Repository QA requires zero displayed `TyconX` branding and zero stale `beta` wording in player-facing legal copy.
+- Repository QA requires zero displayed `TyconX` branding and zero stale `beta` wording in player-facing TycoonX legal copy.
 
 ## Current policy checkpoint, August 27, 2026
 
 - Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered digital unlocks, states that purchased in-game currencies may not expire, and requires a restore mechanism for restorable In-App Purchases.
-- Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, retention/deletion, and equal or equivalent protection by third parties receiving user data. Guideline 5.1.2 continues to require clear disclosure and explicit permission before sharing personal data with third parties, including third-party AI, where the rule applies.
-- Apple App Review Guideline 1.2 continues to require filtering, reporting, timely response, user blocking, and published contact information for user-generated-content and social apps.
+- Apple currently advises using StoreKit/current-entitlement records to restore prior restorable purchases when users reinstall or change devices.
 - Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; failure to acknowledge within three days can result in automatic refund and revocation, and the three-day period starts only after a pending purchase becomes `PURCHASED`.
 - Google Play anti-fraud guidance continues to say not to use `orderId` as the universal duplicate-purchase identifier because some valid purchases, including certain promo-code purchases, do not generate one.
-- Google Play User Data requirements continue to require account deletion both in-app and through an external web resource for apps that allow account creation, with legally necessary retention disclosed accurately.
-- Google Play UGC requirements continue to require clear Terms or user policy acceptance before creating UGC, robust ongoing moderation, in-app reporting, and blocking appropriate to the interaction type.
-- German BGB § 356a continues to require, for covered online distance contracts, a clearly labelled electronic withdrawal function that remains continuously available during the withdrawal period, a confirmation function, and prompt receipt confirmation on a durable medium.
-- German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all legal conditions are met.
+- German BGB § 356a continues to require, for covered online distance contracts, the electronic withdrawal function, a clear confirmation function, and prompt receipt confirmation on a durable medium.
+- German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
-- EU Digital Services Act Articles 16 and 17 continue to require, where applicable, accessible notice-and-action handling for sufficiently precise illegal-content notices and clear reasons for covered content, payment, service, or account restrictions.
-- Xsolla's Refund Policy remains updated **June 16, 2026**, identifies the applicable refund-policy type at checkout, and Xsolla's Privacy Policy remains updated **June 3, 2026**.
-- The August 27, 2026 recheck of Apple privacy/AI disclosure rules, Google Play account-deletion requirements, Xsolla policy dates, and German BGB §§ 356a and 327r did not require another canonical English wording change.
+- Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**.
+- The August 27, 2026 recheck of Apple purchase/restore rules, Google Play pending/acknowledgement/duplicate guidance, German BGB § 356a, and Xsolla policy dates did not require a new canonical English wording change.
 
 ## Latest checkpoints
 
-- Thai Privacy Policy: `d1960722`
-- Thai Community Standards: `6c3881f9`
+- Vietnamese Terms: `7f1282d`
+- Vietnamese Purchases & Refunds: `8c2e6c9`
+- Vietnamese Terms/Purchases hub routing: `fcc3969`
 - Complete Thai hub routing: `5c833e64`
-- Thai Purchases & Refunds Policy: `7b9fd1de`
-- Thai Purchases hub routing: `2b248233`
-- Thai Terms: `8d306858`
-- Thai Terms hub routing: `d592afd`
 - Complete Polish hub routing: `4702080`
 - Complete Norwegian Bokmål hub routing: `8c51827`
 - Complete Swedish hub routing: `db6cc19`
 - Complete Dutch hub routing: `f5cfaa4`
-- Complete Arabic hub routing: `12aa024`
-- Complete Traditional Chinese hub routing: `2059a93`
 - Canonical rendered Privacy AI hardening: `90b0d70`
 - Canonical Privacy Markdown AI sync: `0ed9286`
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **84 / 100 complete (84%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **86 / 100 complete (86%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -116,7 +107,7 @@ Full-document localization progress: **84 / 100 complete (84%)** across the 25 r
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
 | 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
-| 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
+| 22 | vi | Tiếng Việt | Ready | Ready | Ready | Pending | Pending |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
 | 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
