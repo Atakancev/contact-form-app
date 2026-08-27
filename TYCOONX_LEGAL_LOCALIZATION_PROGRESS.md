@@ -44,11 +44,11 @@ Completed locale sets:
 - **Vietnamese (`vi`) 4/4**
 - **Ukrainian (`uk`) 4/4**
 
-Ukrainian (`uk`) is now fully localized. Full Terms, Purchases & Refunds, Privacy Policy, and Community Standards pages exist, and all four cards on the Ukrainian legal hub route to those localized documents.
+Hindi (`hi`) is now **1/4** localized. The full Terms page exists and its legal-hub card routes to the Hindi document. Purchases & Refunds, Privacy Policy, and Community Standards remain Pending.
 
-The next unfinished locale/document is **Hindi (`hi`) Terms of Service**.
+The next unfinished locale/document is **Hindi (`hi`) Purchases & Refunds Policy**.
 
-Rows for `hi` and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
+The `id` row remains `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
 ## Canonical source status
 
@@ -68,10 +68,12 @@ Rows for `hi` and `id` remain `Pending` for all four full documents until actual
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
 - Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in Xsolla checkout.
-- The August 27, 2026 recheck of current Apple App Review and Google Play Billing guidance remains consistent with the existing canonical purchase wording; no new canonical English change was required in this run.
+- The August 27, 2026 recheck of Apple App Review Guideline 3.1.1, Google Play Billing/anti-fraud guidance, German BGB §§ 356a, 327f and 327r, and Xsolla's current legal index remains consistent with the canonical English Terms; no new canonical English change was required in this run.
 
 ## Latest checkpoints
 
+- Hindi Terms: `a45a7fa`
+- Hindi Terms hub routing: `f3ea3e4`
 - Ukrainian Terms: `13983f3`
 - Ukrainian Purchases & Refunds: `d6e8d7b`
 - Ukrainian Privacy Policy: `24c7565`
@@ -92,7 +94,7 @@ Rows for `hi` and `id` remain `Pending` for all four full documents until actual
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **92 / 100 complete (92%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **93 / 100 complete (93%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -119,5 +121,5 @@ Full-document localization progress: **92 / 100 complete (92%)** across the 25 r
 | 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
 | 22 | vi | Tiếng Việt | Ready | Ready | Ready | Ready | Ready |
 | 23 | uk | Українська | Ready | Ready | Ready | Ready | Ready |
-| 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
+| 24 | hi | हिन्दी | Ready | Ready | Pending | Pending | Pending |
 | 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
