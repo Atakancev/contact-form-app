@@ -28,6 +28,7 @@ const REQUIRED_PUBLIC_ROUTES = [
 const REQUIRED_RELEASE_FILES = [
   'TYCOONX_APPLE_CUSTOM_EULA.md',
   'TYCOONX_APPLE_CUSTOM_EULA_RELEASE_CHECKLIST.md',
+  'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
@@ -125,6 +126,26 @@ if (await exists(aiGate)) {
   }
   if (!/third-party AI/i.test(text)) {
     fail('TycoonX AI transparency gate no longer covers third-party AI data-sharing requirements.');
+  }
+}
+
+const appleEuGate = path.join(ROOT, 'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md');
+if (await exists(appleEuGate)) {
+  const text = await readFile(appleEuGate, 'utf8');
+  if (!text.includes('October 1, 2026') || !text.includes('Attachment 14')) {
+    fail('Apple EU transition gate is missing the October 1, 2026 Attachment 14 checkpoint.');
+  }
+  if (!text.includes('StoreKit External Purchases or Offers Entitlement')) {
+    fail('Apple EU transition gate is missing the current alternative-payment entitlement checkpoint.');
+  }
+  if (!text.includes('ExternalPurchaseCustomLink API')) {
+    fail('Apple EU transition gate is missing the ExternalPurchaseCustomLink API requirement.');
+  }
+  if (!text.includes('12 months')) {
+    fail('Apple EU transition gate no longer records the 12-month payment-option commitment.');
+  }
+  if (!/parental gate/i.test(text)) {
+    fail('Apple EU transition gate no longer covers child-safety parental-gate requirements.');
   }
 }
 
