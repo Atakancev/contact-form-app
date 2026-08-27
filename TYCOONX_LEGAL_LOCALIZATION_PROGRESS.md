@@ -41,10 +41,11 @@ Completed locale sets:
 - **Norwegian Bokmål (`nb`) 4/4**
 - **Polish (`pl`) 4/4**
 - **Thai (`th`) 4/4**
+- **Vietnamese (`vi`) 4/4**
 
-Vietnamese (`vi`) is now **2/4**. Full Terms and Purchases & Refunds pages exist and both cards on the Vietnamese legal hub route to those localized documents. Privacy Policy and Community Standards remain pending.
+Vietnamese (`vi`) is now fully localized. Full Terms, Purchases & Refunds, Privacy Policy, and Community Standards pages exist, and all four cards on the Vietnamese legal hub route to those localized documents.
 
-The next unfinished locale/document is **Vietnamese (`vi`) Privacy Policy**.
+The next unfinished locale/document is **Ukrainian (`uk`) Terms of Service**.
 
 Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
@@ -58,20 +59,23 @@ Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until
 ## Current policy checkpoint, August 27, 2026
 
 - Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered digital unlocks, states that purchased in-game currencies may not expire, and requires a restore mechanism for restorable In-App Purchases.
-- Apple currently advises using StoreKit/current-entitlement records to restore prior restorable purchases when users reinstall or change devices.
+- Apple privacy rules continue to require an accessible privacy policy that explains collected data, uses, retention/deletion, and same-or-equivalent protection by third parties receiving user data.
+- Google Play User Data rules continue to require accurate disclosure of collection/use/sharing and apply to third-party SDKs and third-party AI integrations; developers remain responsible for limited use, disclosure, consent, and compliance.
 - Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; failure to acknowledge within three days can result in automatic refund and revocation, and the three-day period starts only after a pending purchase becomes `PURCHASED`.
 - Google Play anti-fraud guidance continues to say not to use `orderId` as the universal duplicate-purchase identifier because some valid purchases, including certain promo-code purchases, do not generate one.
 - German BGB § 356a continues to require, for covered online distance contracts, the electronic withdrawal function, a clear confirmation function, and prompt receipt confirmation on a durable medium.
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
-- Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**.
-- The August 27, 2026 recheck of Apple purchase/restore rules, Google Play pending/acknowledgement/duplicate guidance, German BGB § 356a, and Xsolla policy dates did not require a new canonical English wording change.
+- Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in Xsolla checkout.
+- The August 27, 2026 recheck of Apple privacy rules, Google Play User Data/AI rules, Xsolla policy dates, and the existing German/EU consumer-law framework did not require a new canonical English wording change.
 
 ## Latest checkpoints
 
+- Vietnamese Privacy Policy: `8f64fd8`
+- Vietnamese Community Standards: `ed49640`
+- Complete Vietnamese hub routing: `94388ed`
 - Vietnamese Terms: `7f1282d`
 - Vietnamese Purchases & Refunds: `8c2e6c9`
-- Vietnamese Terms/Purchases hub routing: `fcc3969`
 - Complete Thai hub routing: `5c833e64`
 - Complete Polish hub routing: `4702080`
 - Complete Norwegian Bokmål hub routing: `8c51827`
@@ -82,7 +86,7 @@ Rows for `uk`, `hi`, and `id` remain `Pending` for all four full documents until
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **86 / 100 complete (86%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **88 / 100 complete (88%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -107,7 +111,7 @@ Full-document localization progress: **86 / 100 complete (86%)** across the 25 r
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
 | 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
-| 22 | vi | Tiếng Việt | Ready | Ready | Ready | Pending | Pending |
+| 22 | vi | Tiếng Việt | Ready | Ready | Ready | Ready | Ready |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
 | 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
