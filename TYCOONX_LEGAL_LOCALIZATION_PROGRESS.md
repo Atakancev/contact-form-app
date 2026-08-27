@@ -81,8 +81,24 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - The manual legal verifier now checks the required public Terms, Purchases, Privacy, Community, Support, Apple EULA, Impressum and account-deletion routes plus the core release-source/checklist files, including the AI transparency gate, in addition to all 100 localized documents, 25 hubs, brand/release wording, Arabic RTL, and shared inline formatting.
 - The August 27, 2026 recheck remains consistent with the canonical English legal framework. The existing public Terms/Purchases wording already makes external-purchase availability conditional on platform, country, program, and law. The current Privacy wording already makes third-party AI personal-data disclosure/permission explicit. No material canonical English public clause was required in this run; implementation release gates were strengthened instead.
 
+## Current policy checkpoint, August 28, 2026
+
+- Google Play's current service-fee framework for users in the **EEA, UK, and US** distinguishes relevant transactions by whether the user's first-time install or first update from Google Play occurred before or on/after **June 30, 2026**. TycoonX must not derive this cohort from account creation, first purchase, device age, or Xsolla customer creation.
+- Google Play's current United States external content links program states that enrolled developers must begin reporting qualifying transactions and successful downloads and paying the relevant Play service fee from **October 1, 2026** following Google's July 22 update.
+- Current Google external-link/billing-choice documentation applies service-fee treatment to qualifying transactions completed within **24 hours** after following an eligible external web/content link. TycoonX must preserve the required Google reporting/attribution context instead of treating a browser/Xsolla checkout as unrelated to the Play linkout.
+- Google backend guidance, last updated **August 14, 2026**, says alternative-billing/external-offer integrations should use the `Externaltransactions` APIs to report and manage completed external transactions. TycoonX must maintain idempotent mapping between Google reporting context, Xsolla transaction IDs, TycoonX orders, and entitlement ledger events.
+- Google's current rollout timeline identifies **September 30, 2026** for Australia and Japan, **December 31, 2026** for South Korea, and **September 30, 2027** for the rest of the world. These dates are recheck gates, not permanent assumptions about future program details.
+- Google Play's July 6, 2026 Developer API update introduced collaborative chargeback review. `PendingRefundReviewNotification` can require developer review and `orders.reviewrefund` allows a response with relevant usage evidence; Google states a **24-hour** response window. TycoonX must use only accurate, proportionate, lawfully held evidence and must not fabricate or over-share private data when disputing chargebacks.
+- A dedicated `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` now protects Google Play -> Xsolla program enrollment, install-cohort treatment, US October reporting, 24-hour external-link attribution, external transaction reporting, service-fee margin modeling, rollout dates, refund/chargeback reconciliation, and collaborative chargeback review.
+- The main manual legal verifier now requires the Google Play 2026 gate and checks the June 30 cohort, October 1 US link-reporting start, 24-hour attribution, `Externaltransactions` reporting, September 30 Australia/Japan transition, Xsolla/Google/TycoonX reconciliation, and collaborative chargeback-review safeguards.
+- Current Xsolla legal materials still identify the applicable Refund Policy type in checkout, and the Refund Policy remains dated **June 16, 2026**. The public TycoonX policy correctly leaves transaction-specific Xsolla refund conditions subject to the actual checkout/provider terms plus mandatory consumer law.
+- The canonical English Terms, Purchases & Refunds, and Privacy Policy already cover refunds, abusive chargebacks, provider/payment disputes, authoritative transaction records, and sharing reasonably necessary information with platform/payment partners for fraud and disputes. No material public-clause change was justified by this Google operational update, so the 100 completed translations remain in parity.
+
 ## Latest checkpoints
 
+- Google Play 2026 payment transition gate baseline: `756c104`
+- Google Play collaborative chargeback hardening: `d419437`
+- Google Play transition regression checks: `4cc5fd7`
 - EU AI Act / Apple / Google AI transparency release gate: `55edf86`
 - AI transparency regression verification: `2dc023a`
 - Storefront/Xsolla/payment release hardening: `decfd7e`
