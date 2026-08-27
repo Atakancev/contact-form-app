@@ -25,7 +25,7 @@ Before every submission after a material EULA change, verify that the Custom EUL
 5. **Product Claims**: CK-Labs, not Apple, is responsible for product, regulatory, consumer, privacy, and similar claims concerning TycoonX.
 6. **Intellectual Property Claims**: CK-Labs, not Apple, handles third-party infringement claims concerning the Licensed Application.
 7. **Legal Compliance**: required U.S. embargo and prohibited/restricted-party representation is present.
-8. **Developer Identity and Contact**: legal provider name, postal address, phone number, and email are present and match the current App Store trader information.
+8. **Developer Identity and Contact**: legal provider name, postal address, phone number, and email are present and match the current App Store trader information and `/tycoonx-impressum`.
 9. **Third-Party Terms**: users must comply with applicable third-party terms, including Apple Media Services Terms and Usage Rules.
 10. **Apple Third-Party Beneficiary**: Apple and its subsidiaries are expressly identified as third-party beneficiaries with enforcement rights.
 
@@ -52,6 +52,7 @@ Keep the dedicated App Store fields and public legal links consistent:
 - Purchases & Refunds: `/tyconx-purchase-refund-policy`
 - Community Standards: `/tycoonx-community-standards`
 - Apple Custom EULA public mirror: `/tycoonx-eula`
+- German Legal Notice / Impressum: `/tycoonx-impressum`
 
 The App Store description may include a short legal/support footer for transparency, but the Privacy Policy and Support URLs still belong in their dedicated App Store Connect fields, and the Custom EULA must still be configured in the License Agreement field.
 
@@ -70,9 +71,10 @@ Before the September 1, 2026 full release:
 Before the September 1, 2026 full release:
 
 - confirm App Store Connect contains the same substantive EULA as `TYCOONX_APPLE_CUSTOM_EULA.md`;
-- confirm the legal provider identity/contact details still match the App Store trader information;
+- confirm the legal provider identity/contact details still match both the App Store trader information and `/tycoonx-impressum`;
 - confirm all intended countries/regions are selected for the Custom EULA;
 - open the public `/tycoonx-eula` route and verify every rendered brand reference says `TycoonX`;
+- open `/tycoonx-impressum` and verify the legal provider address, phone, email, and any applicable register/VAT/business-identification disclosures are current;
 - verify there is no stale pre-release or beta wording in the current EULA;
 - verify the public EULA links to Terms, Purchases & Refunds, Privacy, Community Standards, and Support;
 - verify App Review notes explain TycoonX paid products clearly enough for review, including Diamonds, one-time 30-Day VIP, and limited-time Lifetime VIP;
