@@ -30,6 +30,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   pl: new Set(['terms', 'purchases', 'privacy', 'community']),
   th: new Set(['terms', 'purchases', 'privacy', 'community']),
   vi: new Set(['terms', 'purchases', 'privacy', 'community']),
+  uk: new Set(['terms', 'purchases', 'privacy', 'community']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
@@ -55,6 +56,7 @@ const localizedOpenLabels: Record<string, string> = {
   pl: 'Otwórz pełny tekst po polsku',
   th: 'เปิดข้อความภาษาไทยฉบับเต็ม',
   vi: 'Mở toàn văn tiếng Việt',
+  uk: 'Відкрити повний текст українською',
 };
 
 function documentHref(locale: string, document: string, fallback: string) {
