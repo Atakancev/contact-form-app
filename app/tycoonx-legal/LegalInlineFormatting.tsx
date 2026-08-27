@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const BOLD_PATTERN = /\*\*([^*\n]+?)\*\*/g;
 const SKIP_TAGS = new Set(['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA']);
@@ -54,7 +54,7 @@ function renderMarkdownBold(root: HTMLElement) {
 }
 
 export default function LegalInlineFormatting() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.querySelector<HTMLElement>('[data-tycoonx-legal-root]');
     if (!root) return;
 
