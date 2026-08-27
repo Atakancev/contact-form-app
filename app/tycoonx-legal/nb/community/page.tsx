@@ -39,7 +39,7 @@ const sections = [
     body: [
       "Avhengig av sammenheng, alvor, gjentakelse, bevis og rettslige eller plattformbaserte krav kan CK-Labs treffe forholdsmessige tiltak, blant annet ingen tiltak etter gjennomgang, advarsler, fjerning av innhold, begrensning av synlighet eller samhandling, midlertidig chat-sperre, funksjonsbegrensninger, beskyttende suspensjon eller avslutning av konto ved alvorlige eller gjentatte brudd når vilkårene og gjeldende lov tillater det.",
       "Midlertidige tiltak kan treffes umiddelbart før full gjennomgang når det med rimelighet er nødvendig for å beskytte brukere, bevis, betalinger, spillintegritet eller infrastruktur. CK-Labs kan senere oppheve eller endre en begrensning dersom ny informasjon endrer vurderingen.",
-      "Modereringstiltak bør rette seg mot det relevante innholdet eller den relevante atferden og skal ikke brukes til å konfiskere unrelated legitimate paid digital value med mindre det finnes et eget lovlig grunnlag for det.",
+      "Modereringstiltak bør rette seg mot det relevante innholdet eller den relevante atferden og skal ikke brukes til å inndra legitim betalt digital verdi som ikke har sammenheng med saken, med mindre det finnes et eget lovlig grunnlag for det.",
     ],
   },
   {
