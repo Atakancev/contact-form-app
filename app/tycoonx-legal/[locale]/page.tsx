@@ -28,7 +28,7 @@ const localizedDocuments: Record<string, Set<string>> = {
   sv: new Set(['terms', 'purchases', 'privacy', 'community']),
   nb: new Set(['terms', 'purchases', 'privacy', 'community']),
   pl: new Set(['terms', 'purchases', 'privacy', 'community']),
-  th: new Set(['terms', 'purchases']),
+  th: new Set(['terms', 'purchases', 'privacy', 'community']),
 };
 
 const localizedOpenLabels: Record<string, string> = {
@@ -50,7 +50,7 @@ const localizedOpenLabels: Record<string, string> = {
   ar: 'فتح النص العربي الكامل',
   nl: 'Nederlandse tekst openen',
   sv: 'Öppna svensk fulltext',
-  nb: 'Åpne norsk fulltekst',
+  nb: 'Åpne norsk fulltext',
   pl: 'Otwórz pełny tekst po polsku',
   th: 'เปิดข้อความภาษาไทยฉบับเต็ม',
 };
