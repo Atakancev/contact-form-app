@@ -9,14 +9,17 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 - Translate for meaning, not word-for-word.
 - Localized legal copy must sound natural to a native speaker while preserving the legal effect of the English source.
 - Do not omit mandatory-rights language, CK-Labs protections, payment-channel responsibilities, refund/chargeback rules, price-change rules, Lifetime VIP limitations, security clauses, privacy rights, community-safety obligations, or service-discontinuation language.
-- English remains canonical during localization. Refresh localized versions whenever the canonical meaning changes materially.
+- English remains canonical. Refresh localized versions whenever the canonical meaning changes materially.
 - Arabic uses RTL layout.
-- Continue in locale order and, within each locale, in this order: Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
+- Locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
+- Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
 - Do not mark a localized document `Ready` until the corresponding page exists, contains every canonical section, preserves product/payment/legal distinctions, uses native punctuation and terminology, and contains no stale English legal paragraphs except protected product, company, platform, and legal-proper names where appropriate.
 
 ## Current state
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all 25 target locales and provides native-language navigation plus localized summaries.
+
+**All 25 locale sets are now 4/4 complete.**
 
 Completed locale sets:
 
@@ -43,12 +46,10 @@ Completed locale sets:
 - **Thai (`th`) 4/4**
 - **Vietnamese (`vi`) 4/4**
 - **Ukrainian (`uk`) 4/4**
+- **Hindi (`hi`) 4/4**
+- **Indonesian (`id`) 4/4**
 
-Hindi (`hi`) is now **1/4** localized. The full Terms page exists and its legal-hub card routes to the Hindi document. Purchases & Refunds, Privacy Policy, and Community Standards remain Pending.
-
-The next unfinished locale/document is **Hindi (`hi`) Purchases & Refunds Policy**.
-
-The `id` row remains `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
+There is **no unfinished locale/document** in the requested localization queue. Future runs should first check for canonical English changes, platform/legal changes, broken localized routing, brand/release wording drift, or localization parity regressions before making edits.
 
 ## Canonical source status
 
@@ -60,30 +61,27 @@ The `id` row remains `Pending` for all four full documents until actual localize
 ## Current policy checkpoint, August 27, 2026
 
 - Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered digital unlocks, states that purchased in-game currencies may not expire, and requires a restore mechanism for restorable In-App Purchases.
-- Apple privacy rules continue to require an accessible privacy policy that explains collected data, uses, retention/deletion, and same-or-equivalent protection by third parties receiving user data.
-- Google Play User Data rules continue to require accurate disclosure of collection/use/sharing and apply to third-party SDKs and third-party AI integrations; developers remain responsible for limited use, disclosure, consent, and compliance.
-- Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; failure to acknowledge within three days can result in automatic refund and revocation, and the three-day period starts only after a pending purchase becomes `PURCHASED`.
-- Google Play anti-fraud guidance continues to say not to use `orderId` as the universal duplicate-purchase identifier because some valid purchases, including certain promo-code purchases, do not generate one.
-- German BGB § 356a continues to require, for covered online distance contracts, the electronic withdrawal function, a clear confirmation function, and prompt receipt confirmation on a durable medium.
-- German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
-- German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
+- Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases must be acknowledged promptly; Google states that an unacknowledged purchase can be automatically refunded after three days, and the three-day window starts only after a pending transaction becomes `PURCHASED`.
+- Google Play guidance recommends secure-backend verification and checking that a purchase token has not already been used before granting entitlement again.
+- German BGB § 356a continues to require, for covered online distance contracts, an electronic withdrawal function that is continuously available during the withdrawal period, a clear confirmation function, and prompt confirmation on a durable medium.
+- German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for a defect caused solely by failure to install a properly supplied and explained update when all statutory conditions are met.
+- German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity, including advance durable-medium information and termination rights for certain more-than-insignificant impairments.
 - Xsolla's legal index continues to show its Privacy Policy as updated **June 3, 2026** and Refund Policy as updated **June 16, 2026**; the applicable refund-policy type is identified in Xsolla checkout.
-- The August 27, 2026 recheck of Apple App Review Guideline 3.1.1, Google Play Billing/anti-fraud guidance, German BGB §§ 356a, 327f and 327r, and Xsolla's current legal index remains consistent with the canonical English Terms; no new canonical English change was required in this run.
+- The August 27, 2026 recheck remains consistent with the canonical English legal framework. No new canonical English wording change was required in this run.
 
 ## Latest checkpoints
 
+- Hindi Purchases & Refunds: `869de5d`
+- Hindi Privacy Policy: `292a8c9`
+- Hindi Community Standards: `3f26d5c`
+- Indonesian Terms: `d01595d`
+- Indonesian Purchases & Refunds: `17b507f`
+- Indonesian Privacy Policy: `b0e1793`
+- Indonesian Community Standards: `6d379c4`
+- Complete Hindi + Indonesian hub routing: `8e64489`
 - Hindi Terms: `a45a7fa`
-- Hindi Terms hub routing: `f3ea3e4`
-- Ukrainian Terms: `13983f3`
-- Ukrainian Purchases & Refunds: `d6e8d7b`
-- Ukrainian Privacy Policy: `24c7565`
-- Ukrainian Community Standards: `ef2404d`
 - Complete Ukrainian hub routing: `1b0a591`
-- Vietnamese Privacy Policy: `8f64fd8`
-- Vietnamese Community Standards: `ed49640`
 - Complete Vietnamese hub routing: `94388ed`
-- Vietnamese Terms: `7f1282d`
-- Vietnamese Purchases & Refunds: `8c2e6c9`
 - Complete Thai hub routing: `5c833e64`
 - Complete Polish hub routing: `4702080`
 - Complete Norwegian Bokmål hub routing: `8c51827`
@@ -94,7 +92,7 @@ The `id` row remains `Pending` for all four full documents until actual localize
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **93 / 100 complete (93%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **100 / 100 complete (100%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -121,5 +119,5 @@ Full-document localization progress: **93 / 100 complete (93%)** across the 25 r
 | 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
 | 22 | vi | Tiếng Việt | Ready | Ready | Ready | Ready | Ready |
 | 23 | uk | Українська | Ready | Ready | Ready | Ready | Ready |
-| 24 | hi | हिन्दी | Ready | Ready | Pending | Pending | Pending |
-| 25 | id | Bahasa Indonesia | Ready | Pending | Pending | Pending | Pending |
+| 24 | hi | हिन्दी | Ready | Ready | Ready | Ready | Ready |
+| 25 | id | Bahasa Indonesia | Ready | Ready | Ready | Ready | Ready |
