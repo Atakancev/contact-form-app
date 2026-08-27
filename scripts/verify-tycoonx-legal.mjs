@@ -171,6 +171,12 @@ if (await exists(googlePaymentGate)) {
   if (!/Xsolla transaction ID/i.test(text) || !/Google external transaction/i.test(text)) {
     fail('Google Play 2026 payment gate no longer requires Xsolla/Google/TycoonX reconciliation.');
   }
+  if (!text.includes('PendingRefundReviewNotification') || !text.includes('orders.reviewrefund') || !/24-hour response window/i.test(text)) {
+    fail('Google Play 2026 payment gate is missing the collaborative chargeback-review 24-hour safeguard.');
+  }
+  if (!/never fabricate/i.test(text) || !/excessive personal data/i.test(text)) {
+    fail('Google Play chargeback gate is missing evidence-integrity/privacy safeguards.');
+  }
 }
 
 const formatter = path.join(LEGAL_ROOT, 'LegalInlineFormatting.tsx');
