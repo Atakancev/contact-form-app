@@ -39,10 +39,11 @@ Completed locale sets:
 - **Dutch (`nl`) 4/4**
 - **Swedish (`sv`) 4/4**
 - **Norwegian Bokmål (`nb`) 4/4**
+- **Polish (`pl`) 4/4**
 
-Polish (`pl`) is now **1/4**. The full Polish Terms page exists at `app/tycoonx-legal/pl/terms/page.tsx`, preserves all 35 canonical Terms sections, and is routed from the Polish legal hub.
+Polish (`pl`) is now **4/4 complete**. The Terms, Purchases & Refunds Policy, Privacy Policy, and Community Standards all exist as full Polish pages and all four cards in the Polish legal hub route to their localized versions.
 
-The next unfinished locale/document is **Polish (`pl`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Thai (`th`) Terms of Service**.
 
 Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
@@ -56,23 +57,27 @@ Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full doc
 ## Current policy checkpoint, August 27, 2026
 
 - Apple App Review Guideline 3.1.1 continues to require In-App Purchase for covered digital unlocks, states that purchased in-game currencies may not expire, and requires a restore mechanism for restorable In-App Purchases.
+- Apple App Review Guideline 5.1.1 continues to require an accessible privacy policy explaining collected data, uses, retention/deletion, and equal or equivalent protection by third parties receiving user data. Guideline 5.1.2 continues to require clear disclosure and explicit permission before sharing personal data with third parties, including third-party AI, where the rule applies.
+- Apple App Review Guideline 1.2 continues to require filtering, reporting, timely response, user blocking, and published contact information for user-generated-content and social apps.
 - Google Play Billing guidance continues to require entitlement only after a transaction reaches `PURCHASED`, never while it remains `PENDING`. Completed purchases should be acknowledged promptly; failure to acknowledge within three days can result in automatic refund and revocation, and the three-day period starts only after a pending purchase becomes `PURCHASED`.
 - Google Play anti-fraud guidance continues to say not to use `orderId` as the universal duplicate-purchase identifier because some valid purchases, including certain promo-code purchases, do not generate one.
+- Google Play User Data requirements continue to require account deletion both in-app and through an external web resource for apps that allow account creation, with legally necessary retention disclosed accurately.
+- Google Play UGC requirements continue to require clear Terms or user policy acceptance before creating UGC, robust ongoing moderation, in-app reporting, and blocking appropriate to the interaction type.
 - German BGB § 356a continues to require, for covered online distance contracts, a clearly labelled electronic withdrawal function that remains continuously available during the withdrawal period, a confirmation function, and prompt receipt confirmation on a durable medium.
 - German BGB § 327f continues to require necessary updates, including security updates, during the legally relevant period and preserves the limited statutory protection for defects caused solely by a consumer's failure to install a properly supplied and explained update where all legal conditions are met.
 - German BGB § 327r continues to govern qualifying changes to continuously supplied digital products beyond what is necessary to maintain conformity.
-- Xsolla's current documentation continues to provide transaction-specific refund flows and an EU withdrawal-from-contract form for purchases with a valid withdrawal right. Current Xsolla privacy materials remain updated in June 2026.
-- The August 27, 2026 recheck of Apple, Google Play, Xsolla, and German/EU requirements did not require another canonical English wording change.
+- EU Digital Services Act Articles 16 and 17 continue to require, where applicable, accessible notice-and-action handling for sufficiently precise illegal-content notices and clear reasons for covered content, payment, service, or account restrictions.
+- Xsolla's Refund Policy remains updated **June 16, 2026**, identifies the applicable refund-policy type at checkout, and Xsolla's Privacy Policy remains updated **June 3, 2026**.
+- The August 27, 2026 recheck of Apple, Google Play, Xsolla, German consumer law, and DSA requirements did not require another canonical English wording change.
 
 ## Latest checkpoints
 
+- Polish Purchases & Refunds Policy: `96a1363`
+- Polish Privacy Policy: `d39d8b1`
+- Polish Community Standards: `2c240ec`
+- Complete Polish hub routing: `4702080`
 - Polish Terms: `baf0d74`
-- Polish Terms hub routing: `7f16f0b`
 - Complete Norwegian Bokmål hub routing: `8c51827`
-- Norwegian Bokmål Privacy Policy: `f420e6e`
-- Norwegian Bokmål Community Standards: `f54b952`
-- Norwegian Bokmål Terms: `faee0a0`
-- Norwegian Bokmål Purchases & Refunds: `100f336`
 - Complete Swedish hub routing: `db6cc19`
 - Complete Dutch hub routing: `f5cfaa4`
 - Complete Arabic hub routing: `12aa024`
@@ -82,7 +87,7 @@ Rows for `th`, `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full doc
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **77 / 100 complete (77%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **80 / 100 complete (80%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -105,7 +110,7 @@ Full-document localization progress: **77 / 100 complete (77%)** across the 25 r
 | 17 | nl | Nederlands | Ready | Ready | Ready | Ready | Ready |
 | 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
-| 20 | pl | Polski | Ready | Ready | Pending | Pending | Pending |
+| 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
 | 21 | th | ไทย | Ready | Pending | Pending | Pending | Pending |
 | 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
