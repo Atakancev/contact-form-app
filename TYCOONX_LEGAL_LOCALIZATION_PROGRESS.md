@@ -41,9 +41,9 @@ Completed locale sets:
 - **Norwegian Bokmål (`nb`) 4/4**
 - **Polish (`pl`) 4/4**
 
-Thai (`th`) is now **1/4 complete**. The full Thai Terms of Service exists and the Thai legal hub routes the Terms card to that localized page. Purchases & Refunds, Privacy, and Community Standards remain Pending.
+Thai (`th`) is now **2/4 complete**. The full Thai Terms of Service and Purchases & Refunds Policy exist and the Thai legal hub routes both cards to localized pages. Privacy and Community Standards remain Pending.
 
-The next unfinished locale/document is **Thai (`th`) Purchases & Refunds Policy**.
+The next unfinished locale/document is **Thai (`th`) Privacy Policy**.
 
 Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents until actual localized pages exist. Do not infer readiness from localized hub summaries alone.
 
@@ -72,6 +72,8 @@ Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents
 
 ## Latest checkpoints
 
+- Thai Purchases & Refunds Policy: `7b9fd1de`
+- Thai Purchases hub routing: `2b248233`
 - Thai Terms: `8d306858`
 - Thai Terms hub routing: `d592afd`
 - Polish Purchases & Refunds Policy: `96a1363`
@@ -89,7 +91,7 @@ Rows for `vi`, `uk`, `hi`, and `id` remain `Pending` for all four full documents
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **81 / 100 complete (81%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **82 / 100 complete (82%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -113,7 +115,7 @@ Full-document localization progress: **81 / 100 complete (81%)** across the 25 r
 | 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
 | 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
 | 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
-| 21 | th | ไทย | Ready | Ready | Pending | Pending | Pending |
+| 21 | th | ไทย | Ready | Ready | Ready | Pending | Pending |
 | 22 | vi | Tiếng Việt | Ready | Pending | Pending | Pending | Pending |
 | 23 | uk | Українська | Ready | Pending | Pending | Pending | Pending |
 | 24 | hi | हिन्दी | Ready | Pending | Pending | Pending | Pending |
