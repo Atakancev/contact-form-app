@@ -16,6 +16,7 @@ export default function TycoonXSupport() {
             <a href="/tyconx-privacy-policy" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Privacy Policy</a>
             <a href="/tycoonx-community-standards" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Community Standards</a>
             <a href="/tycoonx-eula" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Apple Custom EULA</a>
+            <a href="/tycoonx-impressum" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Impressum / Legal Notice</a>
             <a href="/tycoonx-legal" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Legal Languages</a>
           </div>
         </div>
