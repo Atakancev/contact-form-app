@@ -19,41 +19,53 @@ Canonical legal source: English TycoonX Terms of Service, Purchases & Refunds Po
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all 25 target locales and provides native-language navigation plus localized summaries.
 
-**All 25 locale sets are now 4/4 complete.**
+On **August 28, 2026**, the canonical English Purchases & Refunds Policy materially changed after a fresh audit of the CPC Network's March 21, 2025 *Key Principles on In-Game Virtual Currencies*. The old Diamond withdrawal wording treated a Diamond bundle as immediately supplied digital content. The current CPC position expressly warns against applying the digital-content withdrawal exception to the purchase of in-game virtual currency itself and against denying withdrawal within 14 days for unused purchased virtual currency.
 
-Completed locale sets:
+The canonical English Purchases & Refunds Policy now:
+
+- does not treat the mere crediting of purchased Diamonds as automatically extinguishing an EU/EEA statutory withdrawal right;
+- preserves any applicable 14-day withdrawal right for unused purchased Diamonds;
+- keeps provider/merchant refund-routing responsibilities without using them to remove a mandatory right;
+- adds EU/EEA real-money price-transparency protection for paid Diamonds and content/services offered for purchasable Diamonds; and
+- rejects virtual-currency layers or package design used to obscure real cost or force materially unwanted surplus currency where applicable law prohibits that practice.
+
+**Turkish (`tr`) Purchases & Refunds has been refreshed to the August 28 canonical meaning. The remaining 24 localized Purchases & Refunds pages require refresh in the prescribed locale order.**
+
+Current fully aligned locale sets:
 
 - **Turkish (`tr`) 4/4**
-- **German (`de`) 4/4**
-- **Spanish (`es`) 4/4**
-- **Spanish (Mexico) (`es_MX`) 4/4**
-- **French (`fr`) 4/4**
-- **French (Canada) (`fr_CA`) 4/4**
-- **Italian (`it`) 4/4**
-- **Portuguese (`pt`) 4/4**
-- **Portuguese (Brazil) (`pt_BR`) 4/4**
-- **Russian (`ru`) 4/4**
-- **Japanese (`ja`) 4/4**
-- **Korean (`ko`) 4/4**
-- **Chinese (`zh`) 4/4**
-- **Chinese Simplified (`zh_Hans`) 4/4**
-- **Chinese Traditional (`zh_Hant`) 4/4**
-- **Arabic (`ar`) 4/4**
-- **Dutch (`nl`) 4/4**
-- **Swedish (`sv`) 4/4**
-- **Norwegian Bokmål (`nb`) 4/4**
-- **Polish (`pl`) 4/4**
-- **Thai (`th`) 4/4**
-- **Vietnamese (`vi`) 4/4**
-- **Ukrainian (`uk`) 4/4**
-- **Hindi (`hi`) 4/4**
-- **Indonesian (`id`) 4/4**
 
-There is **no unfinished locale/document** in the requested localization queue. Future runs should first check for canonical English changes, platform/legal changes, broken localized routing, brand/release wording drift, or localization parity regressions before making edits.
+Current localization refresh queue:
+
+1. German (`de`) — Purchases & Refunds
+2. Spanish (`es`) — Purchases & Refunds
+3. Spanish (Mexico) (`es_MX`) — Purchases & Refunds
+4. French (`fr`) — Purchases & Refunds
+5. French (Canada) (`fr_CA`) — Purchases & Refunds
+6. Italian (`it`) — Purchases & Refunds
+7. Portuguese (`pt`) — Purchases & Refunds
+8. Portuguese (Brazil) (`pt_BR`) — Purchases & Refunds
+9. Russian (`ru`) — Purchases & Refunds
+10. Japanese (`ja`) — Purchases & Refunds
+11. Korean (`ko`) — Purchases & Refunds
+12. Chinese (`zh`) — Purchases & Refunds
+13. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
+14. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
+15. Arabic (`ar`) — Purchases & Refunds
+16. Dutch (`nl`) — Purchases & Refunds
+17. Swedish (`sv`) — Purchases & Refunds
+18. Norwegian Bokmål (`nb`) — Purchases & Refunds
+19. Polish (`pl`) — Purchases & Refunds
+20. Thai (`th`) — Purchases & Refunds
+21. Vietnamese (`vi`) — Purchases & Refunds
+22. Ukrainian (`uk`) — Purchases & Refunds
+23. Hindi (`hi`) — Purchases & Refunds
+24. Indonesian (`id`) — Purchases & Refunds
 
 ## Canonical source status
 
-- English Terms and Purchases & Refunds were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
+- English Terms were refreshed on **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
+- English Purchases & Refunds was materially refreshed on **August 28, 2026** for EU/EEA purchased-Diamond withdrawal rights and virtual-currency real-money price transparency.
 - English Privacy Policy was refreshed on **August 26, 2026** to make third-party data protection and third-party AI disclosure/permission safeguards explicit.
 - English Community Standards were refreshed on **August 26, 2026** to preserve age-gating and child-safety flexibility for any future anonymous/random-chat feature under current Google Play rules.
 - Repository QA requires zero displayed `TyconX` branding and zero stale `beta` wording in player-facing TycoonX legal copy.
@@ -78,8 +90,7 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - German DDG § 5 provider-information requirements were hardened with a dedicated public TycoonX legal notice at `/tycoonx-impressum`, linked from Support and the legal-language hub. The legal notice uses the current CK-Labs provider address, telephone, and email already used in the Apple Custom EULA.
 - The legal notice includes a conditional DSA Articles 11/12 contact point for TycoonX functionality to which the intermediary-service contact-point duties apply, with German and English communication and a Support route that does not rely solely on automated tools.
 - Regulation (EU) 2024/3228 repealed the former EU ODR regime with effect from **July 20, 2025**. TycoonX therefore does not publish an obsolete EU ODR-platform link. VSBG §§ 36 and 37 remain separately relevant where their conditions are met.
-- The manual legal verifier now checks the required public Terms, Purchases, Privacy, Community, Support, Apple EULA, Impressum and account-deletion routes plus the core release-source/checklist files, including the AI transparency gate, in addition to all 100 localized documents, 25 hubs, brand/release wording, Arabic RTL, and shared inline formatting.
-- The August 27, 2026 recheck remains consistent with the canonical English legal framework. The existing public Terms/Purchases wording already makes external-purchase availability conditional on platform, country, program, and law. The current Privacy wording already makes third-party AI personal-data disclosure/permission explicit. No material canonical English public clause was required in this run; implementation release gates were strengthened instead.
+- The manual legal verifier now checks the required public Terms, Purchases, Privacy, Community, Support, Apple EULA, Impressum and account-deletion routes plus the core release-source/checklist files, including the AI transparency gate, in addition to all localized documents, hubs, brand/release wording, Arabic RTL, and shared inline formatting.
 
 ## Current policy checkpoint, August 28, 2026
 
@@ -89,13 +100,18 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - Google backend guidance, last updated **August 14, 2026**, says alternative-billing/external-offer integrations should use the `Externaltransactions` APIs to report and manage completed external transactions. TycoonX must maintain idempotent mapping between Google reporting context, Xsolla transaction IDs, TycoonX orders, and entitlement ledger events.
 - Google's current rollout timeline identifies **September 30, 2026** for Australia and Japan, **December 31, 2026** for South Korea, and **September 30, 2027** for the rest of the world. These dates are recheck gates, not permanent assumptions about future program details.
 - Google Play's July 6, 2026 Developer API update introduced collaborative chargeback review. `PendingRefundReviewNotification` can require developer review and `orders.reviewrefund` allows a response with relevant usage evidence; Google states a **24-hour** response window. TycoonX must use only accurate, proportionate, lawfully held evidence and must not fabricate or over-share private data when disputing chargebacks.
-- A dedicated `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` now protects Google Play -> Xsolla program enrollment, install-cohort treatment, US October reporting, 24-hour external-link attribution, external transaction reporting, service-fee margin modeling, rollout dates, refund/chargeback reconciliation, and collaborative chargeback review.
-- The main manual legal verifier now requires the Google Play 2026 gate and checks the June 30 cohort, October 1 US link-reporting start, 24-hour attribution, `Externaltransactions` reporting, September 30 Australia/Japan transition, Xsolla/Google/TycoonX reconciliation, and collaborative chargeback-review safeguards.
+- A dedicated `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` protects Google Play -> Xsolla program enrollment, install-cohort treatment, US October reporting, 24-hour external-link attribution, external transaction reporting, service-fee margin modeling, rollout dates, refund/chargeback reconciliation, and collaborative chargeback review.
 - Current Xsolla legal materials still identify the applicable Refund Policy type in checkout, and the Refund Policy remains dated **June 16, 2026**. The public TycoonX policy correctly leaves transaction-specific Xsolla refund conditions subject to the actual checkout/provider terms plus mandatory consumer law.
-- The canonical English Terms, Purchases & Refunds, and Privacy Policy already cover refunds, abusive chargebacks, provider/payment disputes, authoritative transaction records, and sharing reasonably necessary information with platform/payment partners for fraud and disputes. No material public-clause change was justified by this Google operational update, so the 100 completed translations remain in parity.
+- The CPC Network's March 21, 2025 *Key Principles on In-Game Virtual Currencies* now receives a dedicated TycoonX release gate. The CPC position says paid in-game virtual currency itself should not be exempted from withdrawal as though it were digital content, warns against denying withdrawal within 14 days for unused purchased virtual currency, expects real-world-money price transparency for purchasable virtual currency and content/services bought with it, and warns against virtual-currency designs that obscure real cost or force unwanted surplus currency.
+- Canonical rendered Purchases & Refunds and the canonical Markdown source were corrected on August 28. Turkish Purchases & Refunds was refreshed in the same run. Remaining localized Purchases pages must now be updated in locale order before they return to `Ready` parity.
 
 ## Latest checkpoints
 
+- Canonical rendered Purchases EU virtual-currency hardening: `d349400`
+- Canonical Purchases Markdown EU virtual-currency sync: `6631b7e`
+- Turkish Purchases EU virtual-currency refresh: `6a81c2a`
+- EU/EEA virtual-currency release gate: `852989d`
+- EU virtual-currency regression verifier: `2b9e77f`
 - Google Play 2026 payment transition gate baseline: `756c104`
 - Google Play collaborative chargeback hardening: `d419437`
 - Google Play transition regression checks: `4cc5fd7`
@@ -134,32 +150,34 @@ There is **no unfinished locale/document** in the requested localization queue. 
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **100 / 100 complete (100%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **76 / 100 current (76%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
 | 1 | tr | Türkçe | Ready | Ready | Ready | Ready | Ready |
-| 2 | de | Deutsch | Ready | Ready | Ready | Ready | Ready |
-| 3 | es | Español | Ready | Ready | Ready | Ready | Ready |
-| 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
-| 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
-| 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
-| 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
-| 8 | pt | Português | Ready | Ready | Ready | Ready | Ready |
-| 9 | pt_BR | Português (Brasil) | Ready | Ready | Ready | Ready | Ready |
-| 10 | ru | Русский | Ready | Ready | Ready | Ready | Ready |
-| 11 | ja | 日本語 | Ready | Ready | Ready | Ready | Ready |
-| 12 | ko | 한국어 | Ready | Ready | Ready | Ready | Ready |
-| 13 | zh | 中文 | Ready | Ready | Ready | Ready | Ready |
-| 14 | zh_Hans | 简体中文 | Ready | Ready | Ready | Ready | Ready |
-| 15 | zh_Hant | 繁體中文 | Ready | Ready | Ready | Ready | Ready |
-| 16 | ar | العربية | Ready | Ready | Ready | Ready | Ready |
-| 17 | nl | Nederlands | Ready | Ready | Ready | Ready | Ready |
-| 18 | sv | Svenska | Ready | Ready | Ready | Ready | Ready |
-| 19 | nb | Norsk bokmål | Ready | Ready | Ready | Ready | Ready |
-| 20 | pl | Polski | Ready | Ready | Ready | Ready | Ready |
-| 21 | th | ไทย | Ready | Ready | Ready | Ready | Ready |
-| 22 | vi | Tiếng Việt | Ready | Ready | Ready | Ready | Ready |
-| 23 | uk | Українська | Ready | Ready | Ready | Ready | Ready |
-| 24 | hi | हिन्दी | Ready | Ready | Ready | Ready | Ready |
-| 25 | id | Bahasa Indonesia | Ready | Ready | Ready | Ready | Ready |
+| 2 | de | Deutsch | Ready | Ready | Refresh needed | Ready | Ready |
+| 3 | es | Español | Ready | Ready | Refresh needed | Ready | Ready |
+| 4 | es_MX | Español (México) | Ready | Ready | Refresh needed | Ready | Ready |
+| 5 | fr | Français | Ready | Ready | Refresh needed | Ready | Ready |
+| 6 | fr_CA | Français (Canada) | Ready | Ready | Refresh needed | Ready | Ready |
+| 7 | it | Italiano | Ready | Ready | Refresh needed | Ready | Ready |
+| 8 | pt | Português | Ready | Ready | Refresh needed | Ready | Ready |
+| 9 | pt_BR | Português (Brasil) | Ready | Ready | Refresh needed | Ready | Ready |
+| 10 | ru | Русский | Ready | Ready | Refresh needed | Ready | Ready |
+| 11 | ja | 日本語 | Ready | Ready | Refresh needed | Ready | Ready |
+| 12 | ko | 한국어 | Ready | Ready | Refresh needed | Ready | Ready |
+| 13 | zh | 中文 | Ready | Ready | Refresh needed | Ready | Ready |
+| 14 | zh_Hans | 简体中文 | Ready | Ready | Refresh needed | Ready | Ready |
+| 15 | zh_Hant | 繁體中文 | Ready | Ready | Refresh needed | Ready | Ready |
+| 16 | ar | العربية | Ready | Ready | Refresh needed | Ready | Ready |
+| 17 | nl | Nederlands | Ready | Ready | Refresh needed | Ready | Ready |
+| 18 | sv | Svenska | Ready | Ready | Refresh needed | Ready | Ready |
+| 19 | nb | Norsk bokmål | Ready | Ready | Refresh needed | Ready | Ready |
+| 20 | pl | Polski | Ready | Ready | Refresh needed | Ready | Ready |
+| 21 | th | ไทย | Ready | Ready | Refresh needed | Ready | Ready |
+| 22 | vi | Tiếng Việt | Ready | Ready | Refresh needed | Ready | Ready |
+| 23 | uk | Українська | Ready | Ready | Refresh needed | Ready | Ready |
+| 24 | hi | हिन्दी | Ready | Ready | Refresh needed | Ready | Ready |
+| 25 | id | Bahasa Indonesia | Ready | Ready | Refresh needed | Ready | Ready |
+
+**Exact next unfinished locale/document: German (`de`) — Purchases & Refunds.**
