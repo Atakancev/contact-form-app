@@ -125,7 +125,39 @@ const checks = [
       'TycoonX',
     ],
     mustNotInclude: [
-      'Pour un contenu numérique fourni immédiatement, comme un lot de Diamonds',
+      'Pour un contenu numérique fourni immédiatement, come un lot de Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
+    file: 'app/tycoonx-legal/it/purchases/page.tsx',
+    mustInclude: [
+      'Versione italiana: 28 agosto 2026',
+      'Versione canonica inglese: 28 agosto 2026',
+      'diritto legale di recesso di 14 giorni',
+      'Diamonds acquistati e non utilizzati',
+      'prezzo in denaro reale',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Per i contenuti digitali forniti immediatamente, come un pacchetto di Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
+    file: 'app/tycoonx-legal/pt/purchases/page.tsx',
+    mustInclude: [
+      'Versão portuguesa: 28 de agosto de 2026',
+      'Versão canónica em inglês: 28 de agosto de 2026',
+      'direito legal de livre resolução de 14 dias',
+      'Diamonds comprados e não utilizados',
+      'preço em dinheiro real',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Para conteúdos digitais fornecidos imediatamente, como um pacote de Diamonds',
       'TyconX',
       'beta',
     ],
