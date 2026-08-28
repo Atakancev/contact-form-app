@@ -18,7 +18,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first nineteen locales below, bringing the current total to **94/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first twenty locales below, bringing the current total to **95/100**.
 
 ### Fully aligned locale sets
 
@@ -41,17 +41,17 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Dutch (`nl`) 4/4**
 - **Swedish (`sv`) 4/4**
 - **Norwegian Bokmål (`nb`) 4/4**
+- **Polish (`pl`) 4/4**
 
 ### Current localization refresh queue
 
-1. Polish (`pl`) — Purchases & Refunds
-2. Thai (`th`) — Purchases & Refunds
-3. Vietnamese (`vi`) — Purchases & Refunds
-4. Ukrainian (`uk`) — Purchases & Refunds
-5. Hindi (`hi`) — Purchases & Refunds
-6. Indonesian (`id`) — Purchases & Refunds
+1. Thai (`th`) — Purchases & Refunds
+2. Vietnamese (`vi`) — Purchases & Refunds
+3. Ukrainian (`uk`) — Purchases & Refunds
+4. Hindi (`hi`) — Purchases & Refunds
+5. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Polish (`pl`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Thai (`th`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
@@ -185,6 +185,21 @@ On **August 29, 2026**, `app/tycoonx-legal/nb/purchases/page.tsx` was refreshed 
 
 Norwegian Bokmål refresh commit: `48d13fa`.
 
+### Polish (`pl`) checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/pl/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
+
+- preserves any applicable 14-day statutory withdrawal right for purchased and unused Diamonds instead of treating mere account crediting as immediate digital-content supply that automatically ends the right;
+- explains that Diamonds already used, transferred, or exchanged for digital content/services are handled under mandatory law and the circumstances of the specific transaction rather than a blanket no-refunds rule;
+- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal or refund route where applicable without allowing that allocation to remove mandatory rights;
+- adds clear real-money price transparency for paid Diamonds and digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
+- rejects virtual-currency layers or bundle structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
+- keeps the existing Apple App Store, Google Play, Xsolla, one-time 30-Day VIP, limited-window Lifetime VIP, pricing, promotion, entitlement, obvious-error, required-update/supported-version, Family Sharing, chargeback, security, and permanent-service-discontinuation protections;
+- remains naturally localized in Polish (`pl`) and preserves the exact `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Polish version and canonical English Purchases policy.
+
+Polish refresh commit: `00a2e88`. Polish regression coverage commit: `45445c1`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -208,9 +223,9 @@ The canonical legal documents and release gates cover the main current TycoonX c
 
 ## Progress snapshot
 
-- **Localized full documents:** 94/100 (94%)
+- **Localized full documents:** 95/100 (95%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 98%
-- **Next:** Polish (`pl`) — Purchases & Refunds
+- **Overall project completion:** 98.3%
+- **Next:** Thai (`th`) — Purchases & Refunds
