@@ -1,6 +1,6 @@
 # TycoonX Purchases & Refunds Policy
 
-**Last updated: August 25, 2026**
+**Last updated: August 28, 2026**
 
 This Purchases & Refunds Policy applies to paid digital content and entitlements offered in **TycoonX** by **CK-Labs**. It supplements the TycoonX Terms of Service and does not reduce any rights that cannot legally be waived.
 
@@ -121,6 +121,8 @@ Depending on the transaction and applicable law, this can include:
 - accepted payment methods and any delivery restrictions; and
 - the identity and contact information of the contracting trader.
 
+Where EU/EEA consumer-law rules apply to purchasable in-game virtual currency, TycoonX will provide the required real-world monetary price information for paid Diamonds and for in-game digital content or services offered for purchasable Diamonds in a clear and comprehensible way. CK-Labs will not use virtual-currency layers or bundle design to obscure the real cost or to force consumers to buy materially unwanted surplus currency where applicable law prohibits that practice.
+
 Where German law applies to an online checkout creating a payment obligation, the final ordering step must make that payment obligation clear in the manner required by law. CK-Labs will not rely on hidden wording, preselected paid extras, or an ambiguous final-order control to create a payment obligation.
 
 If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact, the applicable offer or checkout must disclose it before the order is placed. Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing merely because prices differ between regions.
@@ -210,9 +212,11 @@ Fraudulent receipts, manipulated clients, payment abuse, deliberate false fraud 
 
 Nothing in this Policy excludes statutory rights that cannot legally be waived. For German consumers, Sections 327 et seq. BGB may apply to paid digital content and digital services.
 
-### Immediately supplied digital content such as Diamonds
+### Purchased Diamonds and EU/EEA withdrawal rights
 
-A statutory withdrawal right may expire after supply begins only if every legally required condition is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation. Accepting general Terms is not intended to replace a separate consent where the law requires one.
+For EU/EEA consumers, CK-Labs does not treat the mere crediting of purchased Diamonds as immediately supplied digital content that automatically removes the statutory withdrawal right. Where a **14-day statutory withdrawal right** applies to purchased in-game virtual currency, unused purchased Diamonds remain subject to that right during the statutory period.
+
+If Diamonds have already been spent, transferred, or exchanged for digital content or services, the consequences of withdrawal are determined by mandatory law and the specific transaction rather than by a blanket no-refunds rule. The applicable contracting merchant or payment channel may control how a withdrawal request is submitted or processed, but that allocation does not remove a mandatory right.
 
 ### Time-limited digital service such as 30-Day VIP
 
