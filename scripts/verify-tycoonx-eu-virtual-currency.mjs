@@ -125,7 +125,7 @@ const checks = [
       'TycoonX',
     ],
     mustNotInclude: [
-      'Pour un contenu numérique fourni immédiatement, come un lot de Diamonds',
+      'Pour un contenu numérique fourni immédiatement, comme un lot de Diamonds',
       'TyconX',
       'beta',
     ],
