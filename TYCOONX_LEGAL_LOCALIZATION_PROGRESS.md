@@ -18,7 +18,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first thirteen locales below, bringing the current total to **88/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first fourteen locales below, bringing the current total to **89/100**.
 
 ### Fully aligned locale sets
 
@@ -35,23 +35,23 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Japanese (`ja`) 4/4**
 - **Korean (`ko`) 4/4**
 - **Chinese (`zh`) 4/4**
+- **Chinese Simplified (`zh_Hans`) 4/4**
 
 ### Current localization refresh queue
 
-1. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
-2. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
-3. Arabic (`ar`) — Purchases & Refunds
-4. Dutch (`nl`) — Purchases & Refunds
-5. Swedish (`sv`) — Purchases & Refunds
-6. Norwegian Bokmål (`nb`) — Purchases & Refunds
-7. Polish (`pl`) — Purchases & Refunds
-8. Thai (`th`) — Purchases & Refunds
-9. Vietnamese (`vi`) — Purchases & Refunds
-10. Ukrainian (`uk`) — Purchases & Refunds
-11. Hindi (`hi`) — Purchases & Refunds
-12. Indonesian (`id`) — Purchases & Refunds
+1. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
+2. Arabic (`ar`) — Purchases & Refunds
+3. Dutch (`nl`) — Purchases & Refunds
+4. Swedish (`sv`) — Purchases & Refunds
+5. Norwegian Bokmål (`nb`) — Purchases & Refunds
+6. Polish (`pl`) — Purchases & Refunds
+7. Thai (`th`) — Purchases & Refunds
+8. Vietnamese (`vi`) — Purchases & Refunds
+9. Ukrainian (`uk`) — Purchases & Refunds
+10. Hindi (`hi`) — Purchases & Refunds
+11. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Chinese Simplified (`zh_Hans`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Chinese Traditional (`zh_Hant`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
@@ -95,6 +95,21 @@ On **August 28, 2026**, `app/tycoonx-legal/zh/purchases/page.tsx` was refreshed 
 
 Chinese refresh commit: `6c3a48e`. Chinese regression coverage commit: `7a9d0af`.
 
+### Chinese Simplified (`zh_Hans`) checkpoint
+
+On **August 28, 2026**, `app/tycoonx-legal/zh_Hans/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
+
+- preserves any applicable 14-day statutory withdrawal right for purchased and unused Diamonds instead of treating the mere account credit as automatic immediate digital-content supply;
+- explains that already used, transferred, or exchanged Diamonds are handled under mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal or refund route where applicable without allowing that role allocation to remove mandatory rights;
+- adds real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
+- rejects multi-layer virtual currencies, bundle design, or conversion structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
+- keeps the existing Apple App Store, Google Play, Xsolla, 30-Day VIP, limited-window Lifetime VIP, pricing, promotion, entitlement, obvious-error, update/support-version, Family Sharing, chargeback, security, and permanent-service-discontinuation protections;
+- remains naturally localized in Simplified Chinese (`zh-Hans`) and preserves the exact `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Simplified Chinese version and canonical English version.
+
+Chinese Simplified refresh commit: `cfe8e3a`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -118,9 +133,9 @@ The canonical legal documents and release gates cover the main current TycoonX c
 
 ## Progress snapshot
 
-- **Localized full documents:** 88/100 (88%)
+- **Localized full documents:** 89/100 (89%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 95%
-- **Next:** Chinese Simplified (`zh_Hans`) — Purchases & Refunds
+- **Overall project completion:** 95.5%
+- **Next:** Chinese Traditional (`zh_Hant`) — Purchases & Refunds
