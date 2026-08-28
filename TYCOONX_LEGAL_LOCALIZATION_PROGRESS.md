@@ -19,7 +19,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is current in the first nine locales below, bringing the current total to **84/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is current in the first ten locales below, bringing the current total to **85/100**.
 
 ### Fully aligned locale sets
 
@@ -32,27 +32,27 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Italian (`it`) 4/4**
 - **Portuguese (`pt`) 4/4**
 - **Portuguese (Brazil) (`pt_BR`) 4/4**
+- **Russian (`ru`) 4/4**
 
 ### Current localization refresh queue
 
-1. Russian (`ru`) — Purchases & Refunds
-2. Japanese (`ja`) — Purchases & Refunds
-3. Korean (`ko`) — Purchases & Refunds
-4. Chinese (`zh`) — Purchases & Refunds
-5. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
-6. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
-7. Arabic (`ar`) — Purchases & Refunds
-8. Dutch (`nl`) — Purchases & Refunds
-9. Swedish (`sv`) — Purchases & Refunds
-10. Norwegian Bokmål (`nb`) — Purchases & Refunds
-11. Polish (`pl`) — Purchases & Refunds
-12. Thai (`th`) — Purchases & Refunds
-13. Vietnamese (`vi`) — Purchases & Refunds
-14. Ukrainian (`uk`) — Purchases & Refunds
-15. Hindi (`hi`) — Purchases & Refunds
-16. Indonesian (`id`) — Purchases & Refunds
+1. Japanese (`ja`) — Purchases & Refunds
+2. Korean (`ko`) — Purchases & Refunds
+3. Chinese (`zh`) — Purchases & Refunds
+4. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
+5. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
+6. Arabic (`ar`) — Purchases & Refunds
+7. Dutch (`nl`) — Purchases & Refunds
+8. Swedish (`sv`) — Purchases & Refunds
+9. Norwegian Bokmål (`nb`) — Purchases & Refunds
+10. Polish (`pl`) — Purchases & Refunds
+11. Thai (`th`) — Purchases & Refunds
+12. Vietnamese (`vi`) — Purchases & Refunds
+13. Ukrainian (`uk`) — Purchases & Refunds
+14. Hindi (`hi`) — Purchases & Refunds
+15. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Russian (`ru`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Japanese (`ja`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
@@ -66,17 +66,17 @@ The canonical English Purchases & Refunds Policy materially changed after review
 
 The refreshed localized Purchases pages must preserve those points while keeping the existing distinctions among Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP, together with Apple App Store, Google Play, Xsolla, refund, chargeback, pricing, promotion, entitlement, update, security, and permanent-discontinuation rules.
 
-### Portuguese (Brazil) checkpoint
+### Russian checkpoint
 
-On **August 28, 2026**, `app/tycoonx-legal/pt_BR/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
+On **August 28, 2026**, `app/tycoonx-legal/ru/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
 
 - preserves an applicable 14-day withdrawal right for purchased and unused Diamonds instead of classifying a Diamond pack as immediately supplied digital content;
-- explains that Diamonds already used, transferred, or exchanged are handled according to mandatory law and the circumstances of the transaction;
-- adds real-money price transparency for paid Diamonds and content/services priced in purchasable Diamonds where EU/EEA rules require it;
-- rejects use of virtual-currency layers or bundle formats to hide real cost or force materially unwanted surplus currency where prohibited;
-- remains clearly localized in Brazilian Portuguese (`pt-BR`), not copied from European Portuguese;
-- keeps the canonical required-updates/supported-versions section and all existing Apple, Google Play, Xsolla, Lifetime VIP, 30-Day VIP, refund, chargeback, entitlement, error, pricing, promotion, and permanent-service-discontinuation protections; and
-- is synchronized to **August 28, 2026** for both the Brazilian Portuguese version and the canonical English version.
+- explains that Diamonds already spent, transferred, or exchanged are handled according to mandatory law and the circumstances of the specific transaction;
+- adds clear real-money price transparency for paid Diamonds and digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
+- rejects virtual-currency layers or bundle structures used to hide the real cost or force materially unwanted surplus currency where prohibited;
+- remains naturally localized in Russian (`ru`) while preserving the exact `TycoonX` brand;
+- keeps the canonical required-updates/supported-versions section and the existing Apple, Google Play, Xsolla, Lifetime VIP, 30-Day VIP, refund, chargeback, entitlement, error, pricing, promotion, Family Sharing, and permanent-service-discontinuation protections; and
+- is synchronized to **August 28, 2026** for both the Russian version and the canonical English version.
 
 ## Canonical source status
 
@@ -101,6 +101,7 @@ The repository's canonical legal documents and release gates cover the main curr
 
 ## Latest checkpoints
 
+- Russian Purchases EU virtual-currency refresh: `3240234`
 - Portuguese (Brazil) Purchases EU virtual-currency refresh: `710cf4c`
 - Portuguese (Brazil) EU virtual-currency regression coverage: `a127a90`
 - Portuguese Purchases EU virtual-currency refresh: `a487161`
@@ -117,9 +118,9 @@ The repository's canonical legal documents and release gates cover the main curr
 
 ## Progress snapshot
 
-- **Localized full documents:** 84/100 (84%)
+- **Localized full documents:** 85/100 (85%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 93%
-- **Next:** Russian (`ru`) — Purchases & Refunds
+- **Overall project completion:** 93.5%
+- **Next:** Japanese (`ja`) — Purchases & Refunds
