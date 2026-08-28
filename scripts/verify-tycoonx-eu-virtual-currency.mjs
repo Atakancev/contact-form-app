@@ -179,6 +179,23 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/ja/purchases/page.tsx',
+    mustInclude: [
+      '日本語版：2026年8月28日',
+      '英語正本：2026年8月28日',
+      '14日間の法定撤回権',
+      '未使用の購入済みDiamonds',
+      '実際の通貨による価格情報',
+      '必要なアップデートと対応バージョン',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Diamondバンドルのように即時提供されるデジタルコンテンツについて',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
