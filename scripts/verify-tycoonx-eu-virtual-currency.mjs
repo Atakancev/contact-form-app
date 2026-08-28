@@ -265,6 +265,22 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/nl/purchases/page.tsx',
+    mustInclude: [
+      'Nederlandse versie: 28 augustus 2026',
+      'Canonieke Engelse versie: 28 augustus 2026',
+      'wettelijk herroepingsrecht van 14 dagen',
+      'gekochte en ongebruikte Diamonds',
+      'prijsinformatie in echt geld',
+      'Verplichte updates en ondersteunde versies',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Bij direct geleverde digitale inhoud, zoals een Diamond-bundel',
+      'TyconX',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
