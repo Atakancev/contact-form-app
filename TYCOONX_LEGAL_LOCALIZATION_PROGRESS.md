@@ -18,7 +18,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first seventeen locales below, bringing the current total to **92/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first eighteen locales below, bringing the current total to **93/100**.
 
 ### Fully aligned locale sets
 
@@ -39,19 +39,19 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Chinese Traditional (`zh_Hant`) 4/4**
 - **Arabic (`ar`) 4/4**
 - **Dutch (`nl`) 4/4**
+- **Swedish (`sv`) 4/4**
 
 ### Current localization refresh queue
 
-1. Swedish (`sv`) — Purchases & Refunds
-2. Norwegian Bokmål (`nb`) — Purchases & Refunds
-3. Polish (`pl`) — Purchases & Refunds
-4. Thai (`th`) — Purchases & Refunds
-5. Vietnamese (`vi`) — Purchases & Refunds
-6. Ukrainian (`uk`) — Purchases & Refunds
-7. Hindi (`hi`) — Purchases & Refunds
-8. Indonesian (`id`) — Purchases & Refunds
+1. Norwegian Bokmål (`nb`) — Purchases & Refunds
+2. Polish (`pl`) — Purchases & Refunds
+3. Thai (`th`) — Purchases & Refunds
+4. Vietnamese (`vi`) — Purchases & Refunds
+5. Ukrainian (`uk`) — Purchases & Refunds
+6. Hindi (`hi`) — Purchases & Refunds
+7. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Swedish (`sv`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Norwegian Bokmål (`nb`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
@@ -155,6 +155,21 @@ On **August 28, 2026**, `app/tycoonx-legal/nl/purchases/page.tsx` was refreshed 
 
 Dutch refresh commit: `7f31175`.
 
+### Swedish (`sv`) checkpoint
+
+On **August 28, 2026**, `app/tycoonx-legal/sv/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
+
+- preserves any applicable 14-day statutory withdrawal right for purchased and unused Diamonds instead of treating account crediting as immediate digital-content supply that automatically ends the right;
+- explains that Diamonds already used, transferred, or exchanged for digital content/services are handled under mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- preserves the contracting merchant or applicable payment channel as the procedural withdrawal or refund route without allowing that allocation to remove mandatory rights;
+- adds clear real-money price transparency for paid Diamonds and digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
+- rejects virtual-currency layers or bundle structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
+- keeps the existing Apple App Store, Google Play, Xsolla, one-time 30-Day VIP, limited-window Lifetime VIP, pricing, promotion, entitlement, obvious-error, required-update/supported-version, Family Sharing, chargeback, security, and permanent-service-discontinuation protections;
+- remains naturally localized in Swedish (`sv`) and preserves the exact `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Swedish version and canonical English version.
+
+Swedish refresh commit: `9f8466a`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -178,9 +193,9 @@ The canonical legal documents and release gates cover the main current TycoonX c
 
 ## Progress snapshot
 
-- **Localized full documents:** 92/100 (92%)
+- **Localized full documents:** 93/100 (93%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 97%
-- **Next:** Swedish (`sv`) — Purchases & Refunds
+- **Overall project completion:** 97.5%
+- **Next:** Norwegian Bokmål (`nb`) — Purchases & Refunds
