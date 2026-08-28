@@ -133,6 +133,15 @@ const sections = [
     ],
   },
   {
+    title: 'Mises à jour nécessaires et versions prises en charge',
+    body: [
+      'Le contenu payant de TycoonX n’inclut aucune promesse selon laquelle toutes les anciennes versions de l’application, tous les appareils, systèmes d’exploitation, API ou intégrations de plateforme resteront pris en charge indéfiniment.',
+      'Lorsque le droit allemand relatif aux produits numériques s’applique, CK-Labs fournit les mises à jour nécessaires pour maintenir le produit numérique payant concerné en conformité pendant la période légalement pertinente et informe les consommateurs de leur disponibilité, y compris pour les mises à jour de sécurité requises.',
+      'Lorsqu’une mise à jour nécessaire a été fournie et que l’utilisateur a été clairement informé de sa disponibilité ainsi que des conséquences de sa non-installation, le fait de ne pas l’installer dans un délai raisonnable peut affecter les recours fondés sur un défaut de conformité causé exclusivement par l’absence de cette mise à jour, dans la mesure prévue par le droit applicable. Cela ne vaut que si CK-Labs a fourni des instructions d’installation adéquates et ne supprime aucun droit concernant un défaut distinct, une absence de fourniture ou un droit invalide.',
+      'Un droit payant valide doit rester associé à l’acheteur et être reconnu sur les versions prises en charge lorsque les conditions du produit, les règles de plateforme ou le droit impératif l’exigent. Exiger une mise à jour ne justifie pas de facturer deux fois un achat, d’effacer un Lifetime VIP valide et restaurable ni d’éviter un recours qui reste légalement dû.',
+    ],
+  },
+  {
     title: 'Accès multiplateforme, Family Sharing et doublons de droits',
     body: [
       'Un achat valide peut être reconnu sur un autre appareil ou une autre plateforme TycoonX pris en charge uniquement lorsque TycoonX permet cet accès et que les règles de boutique, de prestataire de paiement, de pays et de plateforme l’autorisent. Cette reconnaissance multiplateforme ne crée pas, à elle seule, une nouvelle transaction ni une attribution payante supplémentaire.',
