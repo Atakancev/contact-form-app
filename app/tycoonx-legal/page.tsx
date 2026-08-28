@@ -32,6 +32,8 @@ export default function TycoonXLegalLanguages() {
           <a href="/tyconx-purchase-refund-policy" className="text-indigo-400 hover:text-indigo-300 transition">English Purchases & Refunds</a>
           <a href="/tyconx-privacy-policy" className="text-indigo-400 hover:text-indigo-300 transition">English Privacy</a>
           <a href="/tycoonx-community-standards" className="text-indigo-400 hover:text-indigo-300 transition">English Community Standards</a>
+          <a href="/tycoonx-delete-account" className="text-indigo-400 hover:text-indigo-300 transition">Delete Account</a>
+          <a href="/tycoonx-security" className="text-indigo-400 hover:text-indigo-300 transition">Security Reporting</a>
           <a href="/tycoonx-eula" className="text-indigo-400 hover:text-indigo-300 transition">Apple Custom EULA</a>
           <a href="/tycoonx-impressum" className="text-indigo-400 hover:text-indigo-300 transition">Impressum / Legal Notice</a>
           <a href="/tyconx-support" className="text-indigo-400 hover:text-indigo-300 transition">Support</a>
