@@ -230,6 +230,23 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/zh_Hant/purchases/page.tsx',
+    mustInclude: [
+      '繁體中文版本：2026 年 8 月 28 日',
+      '英語正本：2026 年 8 月 28 日',
+      '14 天法定撤回權',
+      '尚未使用的已購買 Diamonds',
+      '真實貨幣價格資訊',
+      '必要更新與受支援版本',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      '對 Diamonds 等立即提供的數位內容',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
