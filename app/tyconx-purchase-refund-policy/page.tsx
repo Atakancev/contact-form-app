@@ -56,6 +56,7 @@ const sections = [
     title: 'Checkout information and payment confirmation',
     body: [
       'Before a consumer places a paid order, the applicable checkout must present the legally required pre-contract information clearly and in the required place. Depending on the transaction, this can include the main characteristics of the product, total price including mandatory taxes and charges, duration or termination conditions, delivery information, material functionality, compatibility or interoperability information, and the identity of the contracting trader.',
+      'Where EU/EEA consumer-law rules apply to purchasable in-game virtual currency, TycoonX will provide the required real-world monetary price information for paid Diamonds and for in-game digital content or services offered for purchasable Diamonds in a clear and comprehensible way. CK-Labs will not use virtual-currency layers or bundle design to obscure the real cost or to force consumers to buy materially unwanted surplus currency where applicable law prohibits that practice.',
       'Where German law applies to an online checkout that creates a payment obligation, the ordering step must make the payment obligation clear in the manner required by law. CK-Labs will not rely on hidden wording, preselected paid extras, or an ambiguous final-order control to create a payment obligation.',
       'If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact, the applicable checkout or offer must disclose it before the order is placed. Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing merely because prices differ between regions.',
     ],
@@ -125,7 +126,7 @@ const sections = [
     title: 'EU and German withdrawal rights',
     body: [
       'Nothing in this Policy excludes statutory rights that cannot legally be waived. For German consumers, Sections 327 et seq. BGB may apply to paid digital content and digital services.',
-      'For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only if every legal requirement is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation. Accepting the general Terms is not intended to replace a separate consent where the law requires one.',
+      'For EU/EEA consumers, CK-Labs does not treat the mere crediting of purchased Diamonds as immediately supplied digital content that automatically removes the statutory withdrawal right. Where a 14-day statutory withdrawal right applies to purchased in-game virtual currency, unused purchased Diamonds remain subject to that right during the statutory period. If Diamonds have already been spent, transferred, or exchanged for digital content or services, the consequences of withdrawal are determined by mandatory law and the specific transaction rather than by a blanket no-refunds rule. The applicable contracting merchant or payment channel may control how a withdrawal request is submitted or processed, but that allocation does not remove a mandatory right.',
       'A 30-Day VIP is supplied over a period of time. Immediate activation does not automatically eliminate every statutory withdrawal right merely because access has begun. Where applicable law allows early performance, the checkout may request the consumer’s express request for it, and any amount due after a valid withdrawal is determined only as permitted by law.',
       'Lifetime VIP is also an entitlement supplied over time. Its one-time purchase price and non-renewing nature do not by themselves eliminate statutory withdrawal rights or mandatory digital-service remedies. Any early-performance request, expiry of a withdrawal right, proportional payment following withdrawal, or other consequence applies only where the legal requirements for that transaction are satisfied.',
       'CK-Labs will not use one blanket no-refunds or waive-all-withdrawal-rights clause for Diamonds, 30-Day VIP, and Lifetime VIP because their legal treatment can differ.',
@@ -169,7 +170,7 @@ export default function TycoonXPurchaseRefundPolicy() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Purchases & Refunds</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 24, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated August 28, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             This policy covers Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP offers, price changes, Apple App Store purchases, Google Play purchases, and the official TycoonX web shop powered by Xsolla. It supplements the Terms of Service and does not reduce mandatory consumer rights.
           </p>
