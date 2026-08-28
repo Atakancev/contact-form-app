@@ -24,17 +24,22 @@ const REQUIRED_PUBLIC_ROUTES = [
   'tycoonx-eula',
   'tycoonx-impressum',
   'tycoonx-delete-account',
+  'tycoonx-security',
 ];
 const REQUIRED_RELEASE_FILES = [
   'TYCOONX_APPLE_CUSTOM_EULA.md',
   'TYCOONX_APPLE_CUSTOM_EULA_RELEASE_CHECKLIST.md',
   'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md',
+  'TYCOONX_APPLE_SOCIAL_MEDIA_AGE_RELEASE_GATE.md',
   'TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
   'TYCOONX_ACCOUNT_DELETION_RELEASE_GATE.md',
   'TYCOONX_AI_TRANSPARENCY_RELEASE_GATE.md',
+  'TYCOONX_ACCESSIBILITY_BFSG_RELEASE_GATE.md',
+  'TYCOONX_EU_CYBER_RESILIENCE_ACT_2026_REPORTING_GATE.md',
+  'TYCOONX_XSOLLA_REFUND_CHARGEBACK_RELEASE_GATE.md',
   'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
 ];
 
@@ -101,6 +106,28 @@ for (const route of REQUIRED_PUBLIC_ROUTES) {
 for (const fileName of REQUIRED_RELEASE_FILES) {
   const file = path.join(ROOT, fileName);
   if (!(await exists(file))) fail(`Missing TycoonX legal release source/checklist: ${fileName}`);
+}
+
+const supportPage = path.join(APP, 'tyconx-support', 'page.tsx');
+if (await exists(supportPage)) {
+  const text = await readFile(supportPage, 'utf8');
+  if (!text.includes('href="/tycoonx-delete-account"')) {
+    fail('TycoonX Support no longer exposes the dedicated public account-deletion route.');
+  }
+  if (!text.includes('href="/tycoonx-security"')) {
+    fail('TycoonX Support no longer exposes the dedicated security/vulnerability reporting route.');
+  }
+}
+
+const legalHubPage = path.join(LEGAL_ROOT, 'page.tsx');
+if (await exists(legalHubPage)) {
+  const text = await readFile(legalHubPage, 'utf8');
+  if (!text.includes('href="/tycoonx-delete-account"')) {
+    fail('TycoonX legal hub no longer links to account deletion.');
+  }
+  if (!text.includes('href="/tycoonx-security"')) {
+    fail('TycoonX legal hub no longer links to security reporting.');
+  }
 }
 
 const deletionForm = path.join(APP, 'tycoonx-delete-account', 'DeleteAccountForm.tsx');
