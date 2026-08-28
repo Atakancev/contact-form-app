@@ -6,8 +6,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 - Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display `TyconX`.
 - TycoonX goes to full release on **September 1, 2026**. Do not describe the live service, users, purchases, VIP, Diamonds, rewards, or legal terms as beta.
-- Translate for legal meaning, not word-for-word.
-- Localized legal copy must sound natural to a native speaker while preserving the legal effect of the English source.
+- Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving the legal effect of the English source.
 - Do not omit mandatory-rights language, CK-Labs protections, payment-channel responsibilities, refund/chargeback rules, price-change rules, Lifetime VIP limitations, security clauses, privacy rights, community-safety obligations, or service-discontinuation language.
 - English remains canonical. Refresh localized versions whenever the canonical meaning changes materially.
 - Arabic uses RTL layout.
@@ -19,7 +18,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is current in the first eleven locales below, bringing the current total to **86/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first twelve locales below, bringing the current total to **87/100**.
 
 ### Fully aligned locale sets
 
@@ -34,29 +33,29 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Portuguese (Brazil) (`pt_BR`) 4/4**
 - **Russian (`ru`) 4/4**
 - **Japanese (`ja`) 4/4**
+- **Korean (`ko`) 4/4**
 
 ### Current localization refresh queue
 
-1. Korean (`ko`) — Purchases & Refunds
-2. Chinese (`zh`) — Purchases & Refunds
-3. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
-4. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
-5. Arabic (`ar`) — Purchases & Refunds
-6. Dutch (`nl`) — Purchases & Refunds
-7. Swedish (`sv`) — Purchases & Refunds
-8. Norwegian Bokmål (`nb`) — Purchases & Refunds
-9. Polish (`pl`) — Purchases & Refunds
-10. Thai (`th`) — Purchases & Refunds
-11. Vietnamese (`vi`) — Purchases & Refunds
-12. Ukrainian (`uk`) — Purchases & Refunds
-13. Hindi (`hi`) — Purchases & Refunds
-14. Indonesian (`id`) — Purchases & Refunds
+1. Chinese (`zh`) — Purchases & Refunds
+2. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
+3. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
+4. Arabic (`ar`) — Purchases & Refunds
+5. Dutch (`nl`) — Purchases & Refunds
+6. Swedish (`sv`) — Purchases & Refunds
+7. Norwegian Bokmål (`nb`) — Purchases & Refunds
+8. Polish (`pl`) — Purchases & Refunds
+9. Thai (`th`) — Purchases & Refunds
+10. Vietnamese (`vi`) — Purchases & Refunds
+11. Ukrainian (`uk`) — Purchases & Refunds
+12. Hindi (`hi`) — Purchases & Refunds
+13. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Korean (`ko`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Chinese (`zh`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
-The canonical English Purchases & Refunds Policy materially changed after review of the CPC Network's March 21, 2025 *Key Principles on In-Game Virtual Currencies*. The earlier Diamond withdrawal wording treated a Diamond bundle as immediately supplied digital content. The current canonical policy instead:
+The canonical English Purchases & Refunds Policy materially changed after review of the CPC Network's March 21, 2025 *Key Principles on In-Game Virtual Currencies*. The current canonical policy:
 
 - does not treat the mere crediting of purchased Diamonds as automatically extinguishing an EU/EEA statutory withdrawal right;
 - preserves any applicable 14-day withdrawal right for unused purchased Diamonds;
@@ -66,30 +65,20 @@ The canonical English Purchases & Refunds Policy materially changed after review
 
 The refreshed localized Purchases pages must preserve those points while keeping the existing distinctions among Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP, together with Apple App Store, Google Play, Xsolla, refund, chargeback, pricing, promotion, entitlement, update, security, and permanent-discontinuation rules.
 
-### Japanese checkpoint
+### Korean checkpoint
 
-On **August 28, 2026**, `app/tycoonx-legal/ja/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
+On **August 28, 2026**, `app/tycoonx-legal/ko/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
 
-- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds instead of classifying a Diamond pack as immediately supplied digital content;
-- explains that Diamonds already spent, transferred, or exchanged are handled according to mandatory law and the circumstances of the specific transaction;
-- preserves Apple, Google, Xsolla, or another merchant/payment provider as the procedural refund or withdrawal route where applicable without allowing that allocation to remove a mandatory right;
+- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds instead of characterizing a Diamond bundle as immediately supplied digital content;
+- explains that Diamonds already spent, transferred, or exchanged for digital content/services are handled according to mandatory law and the circumstances of the specific transaction;
+- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal or refund route where applicable without allowing that allocation to remove a mandatory right;
 - adds clear real-money price transparency for paid Diamonds and digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
-- rejects virtual-currency layers or bundle structures used to hide the real cost or force materially unwanted surplus currency where prohibited;
-- remains naturally localized in Japanese (`ja`) while preserving the exact `TycoonX` brand;
-- keeps the canonical required-updates/supported-versions section and the existing Apple, Google Play, Xsolla, Lifetime VIP, 30-Day VIP, refund, chargeback, entitlement, error, pricing, promotion, Family Sharing, and permanent-service-discontinuation protections; and
-- is synchronized to **August 28, 2026** for both the Japanese version and the canonical English version.
+- rejects virtual-currency layers or bundle structures used to hide real cost or force materially unwanted surplus currency where prohibited;
+- keeps the canonical required-updates/supported-versions section and the existing Apple, Google Play, Xsolla, Lifetime VIP, 30-Day VIP, refund, chargeback, entitlement, obvious-error, pricing, promotion, Family Sharing, and permanent-service-discontinuation protections;
+- remains naturally localized in Korean (`ko`) while preserving the exact `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Korean version and canonical English version.
 
-### Russian checkpoint
-
-On **August 28, 2026**, `app/tycoonx-legal/ru/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
-
-- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds instead of classifying a Diamond pack as immediately supplied digital content;
-- explains that Diamonds already spent, transferred, or exchanged are handled according to mandatory law and the circumstances of the specific transaction;
-- adds clear real-money price transparency for paid Diamonds and digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
-- rejects virtual-currency layers or bundle structures used to hide the real cost or force materially unwanted surplus currency where prohibited;
-- remains naturally localized in Russian (`ru`) while preserving the exact `TycoonX` brand;
-- keeps the canonical required-updates/supported-versions section and the existing Apple, Google Play, Xsolla, Lifetime VIP, 30-Day VIP, refund, chargeback, entitlement, error, pricing, promotion, Family Sharing, and permanent-service-discontinuation protections; and
-- is synchronized to **August 28, 2026** for both the Russian version and the canonical English version.
+Korean refresh commit: `2e07a6b`. Korean regression coverage commit: `1c76e2d`.
 
 ## Canonical source status
 
@@ -101,7 +90,7 @@ On **August 28, 2026**, `app/tycoonx-legal/ru/purchases/page.tsx` was refreshed 
 
 ## Commercial/legal/payment checkpoints already covered
 
-The repository's canonical legal documents and release gates cover the main current TycoonX commercial risks, including:
+The canonical legal documents and release gates cover the main current TycoonX commercial risks, including:
 
 - Apple App Store In-App Purchase, non-expiring purchased in-game currency, restoration of restorable purchases, storefront-specific external-purchase linking, and paid-feature metadata clarity;
 - Google Play `PENDING` versus `PURCHASED`, acknowledgement, secure backend verification, alternative-billing/external-offer program requirements, external-transaction reporting, and refund/chargeback reconciliation;
@@ -112,30 +101,11 @@ The repository's canonical legal documents and release gates cover the main curr
 - German/EU mandatory withdrawal, conformity, update, modification, liability, notice, consent, price-display, and digital-product remedies; and
 - GDPR/security-incident and EU Cyber Resilience Act release gates.
 
-## Latest checkpoints
-
-- Japanese Purchases EU virtual-currency refresh: `e9fcb24`
-- Japanese EU virtual-currency regression coverage: `f0c26cd`
-- Russian Purchases EU virtual-currency refresh: `3240234`
-- Portuguese (Brazil) Purchases EU virtual-currency refresh: `710cf4c`
-- Portuguese (Brazil) EU virtual-currency regression coverage: `a127a90`
-- Portuguese Purchases EU virtual-currency refresh: `a487161`
-- Italian + Portuguese EU virtual-currency regression coverage: `abcfa8d`
-- Italian Purchases EU virtual-currency refresh: `6e573b2`
-- French (Canada) Purchases EU virtual-currency and supported-version refresh: `d46cf71`
-- French Purchases EU virtual-currency and supported-version refresh: `7f36140`, `9b3acf4`
-- Spanish (Mexico) Purchases EU virtual-currency refresh: `fbacb96`
-- Spanish Purchases EU virtual-currency refresh: `50f42fc`
-- German Purchases EU virtual-currency refresh: `e556ac9`
-- Turkish Purchases EU virtual-currency refresh: `6a81c2a`
-- Canonical rendered/Markdown Purchases EU virtual-currency hardening: `d349400`, `6631b7e`
-- EU/EEA virtual-currency release gate: `852989d`
-
 ## Progress snapshot
 
-- **Localized full documents:** 86/100 (86%)
+- **Localized full documents:** 87/100 (87%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 94%
-- **Next:** Korean (`ko`) — Purchases & Refunds
+- **Overall project completion:** 94.5%
+- **Next:** Chinese (`zh`) — Purchases & Refunds
