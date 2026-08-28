@@ -65,6 +65,22 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/es/purchases/page.tsx',
+    mustInclude: [
+      'Versión en español: 28 de agosto de 2026',
+      'Versión canónica en inglés: 28 de agosto de 2026',
+      'derecho legal de desistimiento de 14 días',
+      'Diamonds comprados que no se hayan utilizado',
+      'precio en dinero real',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Para contenido digital suministrado de inmediato, como un paquete de Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
