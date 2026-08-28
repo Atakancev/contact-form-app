@@ -58,6 +58,7 @@ const sections = [
     title: 'Ödeme öncesi bilgiler ve satın alma onayı',
     body: [
       'Tüketici ücretli sipariş vermeden önce, ilgili ödeme ekranı kanunen gerekli sözleşme öncesi bilgileri açık biçimde ve hukukun gerektirdiği aşamada göstermelidir. İşleme göre bu bilgiler ürünün temel özelliklerini, zorunlu vergi ve ücretler dahil toplam fiyatı, süre/yenileme/sona erme bilgilerini, teslim veya aktivasyon bilgisini, dijital ürünün önemli işlevlerini, uyumluluk ve birlikte çalışabilirlik bilgisini, kabul edilen ödeme yöntemlerini, teslimat kısıtlarını ve sözleşme tarafı satıcının kimlik ve iletişim bilgilerini içerebilir.',
+      'AB/AEA tüketici hukuku satın alınabilen oyun içi sanal paralara uygulanıyorsa, ücretli Elmasların ve satın alınabilen Elmaslarla sunulan oyun içi dijital içerik veya hizmetlerin gerçek para karşılığı, tüketicinin gerçek maliyeti anlayabileceği açık ve anlaşılır biçimde gösterilir. CK-Labs, uygulanabilir hukukun yasakladığı ölçüde gerçek maliyeti gizlemek için sanal para katmanları kullanmaz veya tüketiciyi ihtiyacından belirgin biçimde fazla sanal para almaya zorlayan paket tasarımına dayanmaz.',
       'Alman hukuku ödeme yükümlülüğü doğuran çevrim içi satın almaya uygulanıyorsa son sipariş adımı bu ödeme yükümlülüğünü yasanın istediği açıklıkta göstermelidir. CK-Labs gizli ifadeler, önceden seçilmiş ücretli ekler veya belirsiz son sipariş düğmesiyle ödeme yükümlülüğü oluşturmaya dayanmaz.',
       'Fiyat otomatik karar verme temelinde kişiye özel belirleniyorsa ve hukuk bunun açıklanmasını gerektiriyorsa teklif veya ödeme ekranı bu durumu sipariş verilmeden önce açıklar. Ülke, mağaza, para birimi, vergi veya genel bölgesel fiyatlandırmanın farklı olması yalnızca bölgeler arasında fiyat farkı bulunduğu için kişiselleştirilmiş fiyat sayılmaz.',
     ],
@@ -128,7 +129,7 @@ const sections = [
     title: 'AB ve Almanya cayma ve dijital ürün hakları',
     body: [
       'Bu Politika kanunen vazgeçilemeyen yasal hakları ortadan kaldırmaz. Almanya’daki tüketiciler için ücretli dijital içerik ve hizmetlere BGB § 327 ve devamı hükümler uygulanabilir.',
-      'Elmas paketi gibi hemen sağlanan dijital içerikte yasal cayma hakkı, ifa başladıktan sonra ancak kanunen gerekli tüm şartlar sağlanmışsa sona erebilir. Buna işlem özelinde erken ifaya açık rıza, cayma hakkının kaybedileceğinin kabulü ve gerekli sözleşme teyidi dahil olabilir. Genel Koşulları kabul etmek, hukuk ayrıca ayrı onay istiyorsa bu onayın yerine geçmez.',
+      'AB/AEA tüketicileri bakımından CK-Labs, satın alınmış Elmasların hesaba tanımlanmasını tek başına hemen sağlanan dijital içerik teslimi sayarak yasal cayma hakkını otomatik biçimde ortadan kaldırmaz. Oyun içi sanal para satın alımına 14 günlük yasal cayma hakkı uygulanıyorsa, kullanılmamış satın alınmış Elmaslar bu yasal süre boyunca cayma hakkına tabi kalır. Elmaslar harcanmış, devredilmiş veya dijital içerik ya da hizmet edinmek için kullanılmışsa caymanın sonuçları genel bir “iade yok” kuralıyla değil, zorunlu hukuk ve ilgili işlemin özelliklerine göre belirlenir. Cayma talebinin nasıl iletileceği veya işleneceği ilgili sözleşme tarafı satıcı ya da ödeme kanalı tarafından yönetilebilir; bu görev dağılımı zorunlu hakkı ortadan kaldırmaz.',
       '30-Day VIP zamanla sınırlı bir dijital hizmettir. Erişimin hemen başlaması, sırf kullanım başladığı için tüm yasal cayma haklarını otomatik olarak ortadan kaldırmaz. Hukuk erken ifaya izin veriyorsa ödeme ekranı tüketicinin açık talebini isteyebilir; geçerli cayma sonrası ödenecek olası tutar yalnızca hukukun izin verdiği şekilde belirlenir.',
       'Lifetime VIP zaman içinde sağlanan devam eden bir haktır. Tek seferlik fiyatı ve otomatik yenilenmemesi, yasal cayma haklarını veya zorunlu dijital hizmet başvuru yollarını kendiliğinden ortadan kaldırmaz. Erken ifa talebi, cayma hakkının sona ermesi, cayma sonrası orantılı ödeme, fesih veya başka sonuçlar yalnızca o işlem için yasal şartlar sağlanmışsa uygulanır.',
       'CK-Labs Elmaslar, 30-Day VIP ve Lifetime VIP için tek bir genel “iade yok” veya “tüm cayma haklarından vazgeçilir” maddesi kullanmaz; çünkü bu ürünlerin hukuki değerlendirmesi farklı olabilir.',
@@ -180,7 +181,7 @@ export default function TycoonXPurchasesTR() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Türkçe</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Satın Alımlar ve İadeler Politikası</h1>
-          <p className="text-zinc-500 text-sm">Türkçe sürüm: 25 Ağustos 2026 · Kanonik İngilizce sürüm: 25 Ağustos 2026</p>
+          <p className="text-zinc-500 text-sm">Türkçe sürüm: 28 Ağustos 2026 · Kanonik İngilizce sürüm: 28 Ağustos 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Bu politika Elmasları, tek seferlik 30-Day VIP’yi, sınırlı süreli Lifetime VIP tekliflerini, fiyat değişikliklerini, Apple App Store ve Google Play satın alımlarını ve Xsolla destekli resmi TycoonX web mağazasını kapsar. Hizmet Koşullarını tamamlar ve vazgeçilemeyen tüketici haklarını azaltmaz.
           </p>
