@@ -49,6 +49,22 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/de/purchases/page.tsx',
+    mustInclude: [
+      'Deutsche Fassung: 28. August 2026',
+      'Kanonische englische Fassung: 28. August 2026',
+      '14-tägiges gesetzliches Widerrufsrecht',
+      'ungenutzte gekaufte Diamonds',
+      'Preisangaben in realer Währung',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Bei sofort bereitgestellten digitalen Inhalten wie einem Diamond-Paket',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
