@@ -247,6 +247,24 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/ar/purchases/page.tsx',
+    mustInclude: [
+      'النسخة العربية: 28 أغسطس 2026',
+      'النسخة الإنجليزية المعتمدة: 28 أغسطس 2026',
+      'حق انسحاب قانوني لمدة 14 يومًا',
+      'Diamonds المشتراة وغير المستخدمة',
+      'السعر النقدي الحقيقي',
+      'التحديثات المطلوبة والإصدارات المدعومة',
+      'dir="rtl" lang="ar"',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'بالنسبة إلى المحتوى الرقمي الذي يتم توفيره فورًا، مثل حزمة Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
