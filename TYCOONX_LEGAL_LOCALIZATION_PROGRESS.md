@@ -29,7 +29,7 @@ The canonical English Purchases & Refunds Policy now:
 - adds EU/EEA real-money price-transparency protection for paid Diamonds and content/services offered for purchasable Diamonds; and
 - rejects virtual-currency layers or package design used to obscure real cost or force materially unwanted surplus currency where applicable law prohibits that practice.
 
-**Turkish (`tr`), German (`de`), Spanish (`es`), Spanish (Mexico) (`es_MX`), French (`fr`), and French (Canada) (`fr_CA`) Purchases & Refunds have been refreshed to the August 28 canonical meaning. The remaining 19 localized Purchases & Refunds pages require refresh in the prescribed locale order.**
+**Turkish (`tr`), German (`de`), Spanish (`es`), Spanish (Mexico) (`es_MX`), French (`fr`), French (Canada) (`fr_CA`), and Italian (`it`) Purchases & Refunds have been refreshed to the August 28 canonical meaning. The remaining 18 localized Purchases & Refunds pages require refresh in the prescribed locale order.**
 
 Current fully aligned locale sets:
 
@@ -39,28 +39,28 @@ Current fully aligned locale sets:
 - **Spanish (Mexico) (`es_MX`) 4/4**
 - **French (`fr`) 4/4**
 - **French (Canada) (`fr_CA`) 4/4**
+- **Italian (`it`) 4/4**
 
 Current localization refresh queue:
 
-1. Italian (`it`) — Purchases & Refunds
-2. Portuguese (`pt`) — Purchases & Refunds
-3. Portuguese (Brazil) (`pt_BR`) — Purchases & Refunds
-4. Russian (`ru`) — Purchases & Refunds
-5. Japanese (`ja`) — Purchases & Refunds
-6. Korean (`ko`) — Purchases & Refunds
-7. Chinese (`zh`) — Purchases & Refunds
-8. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
-9. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
-10. Arabic (`ar`) — Purchases & Refunds
-11. Dutch (`nl`) — Purchases & Refunds
-12. Swedish (`sv`) — Purchases & Refunds
-13. Norwegian Bokmål (`nb`) — Purchases & Refunds
-14. Polish (`pl`) — Purchases & Refunds
-15. Thai (`th`) — Purchases & Refunds
-16. Vietnamese (`vi`) — Purchases & Refunds
-17. Ukrainian (`uk`) — Purchases & Refunds
-18. Hindi (`hi`) — Purchases & Refunds
-19. Indonesian (`id`) — Purchases & Refunds
+1. Portuguese (`pt`) — Purchases & Refunds
+2. Portuguese (Brazil) (`pt_BR`) — Purchases & Refunds
+3. Russian (`ru`) — Purchases & Refunds
+4. Japanese (`ja`) — Purchases & Refunds
+5. Korean (`ko`) — Purchases & Refunds
+6. Chinese (`zh`) — Purchases & Refunds
+7. Chinese Simplified (`zh_Hans`) — Purchases & Refunds
+8. Chinese Traditional (`zh_Hant`) — Purchases & Refunds
+9. Arabic (`ar`) — Purchases & Refunds
+10. Dutch (`nl`) — Purchases & Refunds
+11. Swedish (`sv`) — Purchases & Refunds
+12. Norwegian Bokmål (`nb`) — Purchases & Refunds
+13. Polish (`pl`) — Purchases & Refunds
+14. Thai (`th`) — Purchases & Refunds
+15. Vietnamese (`vi`) — Purchases & Refunds
+16. Ukrainian (`uk`) — Purchases & Refunds
+17. Hindi (`hi`) — Purchases & Refunds
+18. Indonesian (`id`) — Purchases & Refunds
 
 ## Canonical source status
 
@@ -103,10 +103,12 @@ Current localization refresh queue:
 - A dedicated `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` protects Google Play -> Xsolla program enrollment, install-cohort treatment, US October reporting, 24-hour external-link attribution, external transaction reporting, service-fee margin modeling, rollout dates, refund/chargeback reconciliation, and collaborative chargeback review.
 - Current Xsolla legal materials still identify the applicable Refund Policy type in checkout, and the Refund Policy remains dated **June 16, 2026**. The public TycoonX policy correctly leaves transaction-specific Xsolla refund conditions subject to the actual checkout/provider terms plus mandatory consumer law.
 - The CPC Network's March 21, 2025 *Key Principles on In-Game Virtual Currencies* now receives a dedicated TycoonX release gate. The CPC position says paid in-game virtual currency itself should not be exempted from withdrawal as though it were digital content, warns against denying withdrawal within 14 days for unused purchased virtual currency, expects real-world-money price transparency for purchasable virtual currency and content/services bought with it, and warns against virtual-currency designs that obscure real cost or force unwanted surplus currency.
-- Canonical rendered Purchases & Refunds and the canonical Markdown source were corrected on August 28. Turkish, German, Spanish, Spanish (Mexico), French, and French (Canada) Purchases & Refunds have now been refreshed. During the French and French (Canada) refreshes, pre-existing parity gaps were also corrected by restoring the canonical required-updates/supported-versions section. Remaining localized Purchases pages must be updated in locale order before they return to `Ready` parity.
+- Canonical rendered Purchases & Refunds and the canonical Markdown source were corrected on August 28. Turkish, German, Spanish, Spanish (Mexico), French, French (Canada), and Italian Purchases & Refunds have now been refreshed. During the French and French (Canada) refreshes, pre-existing parity gaps were also corrected by restoring the canonical required-updates/supported-versions section. Italian already contained that canonical section and was refreshed for Diamond withdrawal treatment, real-money price transparency, and source-date parity. Remaining localized Purchases pages must be updated in locale order before they return to `Ready` parity.
+- A fresh August 28 verification still shows Apple requiring purchased in-game currency not to expire and restore support for restorable purchases, while Xsolla continues to identify the transaction-specific Refund Policy at checkout and its legal index lists the Refund Policy dated June 16, 2026.
 
 ## Latest checkpoints
 
+- Italian Purchases EU virtual-currency refresh: `6e573b2`
 - French (Canada) Purchases EU virtual-currency and supported-version refresh: `d46cf71`
 - French (Canada) EU virtual-currency regression coverage: `453315e`
 - French Purchases EU virtual-currency refresh: `7f36140`
@@ -160,7 +162,7 @@ Current localization refresh queue:
 - Canonical Community child-safety hardening: `b73903c`
 - Canonical Community Markdown sync: `0215590`
 
-Full-document localization progress: **81 / 100 current (81%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
+Full-document localization progress: **82 / 100 current (82%)** across the 25 requested locales. All **25 / 25 localized legal hubs exist (100%)**.
 
 | Order | Locale | Language | Legal hub | Full Terms | Purchases & Refunds | Privacy | Community Standards |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
@@ -170,7 +172,7 @@ Full-document localization progress: **81 / 100 current (81%)** across the 25 re
 | 4 | es_MX | Español (México) | Ready | Ready | Ready | Ready | Ready |
 | 5 | fr | Français | Ready | Ready | Ready | Ready | Ready |
 | 6 | fr_CA | Français (Canada) | Ready | Ready | Ready | Ready | Ready |
-| 7 | it | Italiano | Ready | Ready | Refresh needed | Ready | Ready |
+| 7 | it | Italiano | Ready | Ready | Ready | Ready | Ready |
 | 8 | pt | Português | Ready | Ready | Refresh needed | Ready | Ready |
 | 9 | pt_BR | Português (Brasil) | Ready | Ready | Refresh needed | Ready | Ready |
 | 10 | ru | Русский | Ready | Ready | Refresh needed | Ready | Ready |
@@ -190,4 +192,4 @@ Full-document localization progress: **81 / 100 current (81%)** across the 25 re
 | 24 | hi | हिन्दी | Ready | Ready | Refresh needed | Ready | Ready |
 | 25 | id | Bahasa Indonesia | Ready | Ready | Refresh needed | Ready | Ready |
 
-**Exact next unfinished locale/document: Italian (`it`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Portuguese (`pt`) — Purchases & Refunds.**
