@@ -8,13 +8,15 @@ export default function TycoonXSupport() {
           <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">TycoonX · CK-Labs</p>
           <h1 className="text-xl font-semibold text-white mb-2">Support & Legal</h1>
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-            For account, purchase, security, privacy, moderation, community-safety, or gameplay issues, use the form below or email cevikdev@gmail.com.
+            For account, purchase, security, privacy, moderation, community-safety, or gameplay issues, use the form below or email cevikdev@gmail.com. Dedicated account-deletion and security-reporting pages are also available below.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="/tyconx-terms-of-service" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Terms of Service</a>
             <a href="/tyconx-purchase-refund-policy" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Purchases & Refunds</a>
             <a href="/tyconx-privacy-policy" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Privacy Policy</a>
             <a href="/tycoonx-community-standards" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Community Standards</a>
+            <a href="/tycoonx-delete-account" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Delete Account</a>
+            <a href="/tycoonx-security" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Security & Vulnerability Reporting</a>
             <a href="/tycoonx-eula" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Apple Custom EULA</a>
             <a href="/tycoonx-impressum" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Impressum / Legal Notice</a>
             <a href="/tycoonx-legal" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Legal Languages</a>
