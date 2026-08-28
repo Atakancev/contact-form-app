@@ -281,6 +281,24 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/pl/purchases/page.tsx',
+    mustInclude: [
+      'Ostatnia aktualizacja: 28 sierpnia 2026 r.',
+      'Polska wersja: 28 sierpnia 2026 r.',
+      'Kanoniczna wersja angielska: 28 sierpnia 2026 r.',
+      '14-dniowe ustawowe prawo odstąpienia',
+      'niewykorzystane zakupione Diamonds',
+      'cenie wyrażonej w rzeczywistej walucie',
+      'Wymagane aktualizacje i wspierane wersje',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'W przypadku treści cyfrowej dostarczanej natychmiast, takiej jak pakiet Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
