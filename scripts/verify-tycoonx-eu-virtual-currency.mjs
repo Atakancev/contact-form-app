@@ -196,6 +196,23 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/ko/purchases/page.tsx',
+    mustInclude: [
+      '한국어 버전: 2026년 8월 28일',
+      '영어 정본: 2026년 8월 28일',
+      '14일의 법정 철회권',
+      '사용하지 않은 구매 Diamonds',
+      '실제 통화 기준으로 명확하고 이해하기 쉽게 표시',
+      '필수 업데이트 및 지원 버전',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Diamond 번들과 같이 즉시 제공되는 디지털 콘텐츠의 법정 철회권',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
