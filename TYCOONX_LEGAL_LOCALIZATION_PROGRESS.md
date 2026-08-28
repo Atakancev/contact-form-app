@@ -18,7 +18,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides native-language navigation plus localized summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first sixteen locales below, bringing the current total to **91/100**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. That accounts for **75 current localized full documents**. Purchases & Refunds is now current in the first seventeen locales below, bringing the current total to **92/100**.
 
 ### Fully aligned locale sets
 
@@ -38,20 +38,20 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. That
 - **Chinese Simplified (`zh_Hans`) 4/4**
 - **Chinese Traditional (`zh_Hant`) 4/4**
 - **Arabic (`ar`) 4/4**
+- **Dutch (`nl`) 4/4**
 
 ### Current localization refresh queue
 
-1. Dutch (`nl`) — Purchases & Refunds
-2. Swedish (`sv`) — Purchases & Refunds
-3. Norwegian Bokmål (`nb`) — Purchases & Refunds
-4. Polish (`pl`) — Purchases & Refunds
-5. Thai (`th`) — Purchases & Refunds
-6. Vietnamese (`vi`) — Purchases & Refunds
-7. Ukrainian (`uk`) — Purchases & Refunds
-8. Hindi (`hi`) — Purchases & Refunds
-9. Indonesian (`id`) — Purchases & Refunds
+1. Swedish (`sv`) — Purchases & Refunds
+2. Norwegian Bokmål (`nb`) — Purchases & Refunds
+3. Polish (`pl`) — Purchases & Refunds
+4. Thai (`th`) — Purchases & Refunds
+5. Vietnamese (`vi`) — Purchases & Refunds
+6. Ukrainian (`uk`) — Purchases & Refunds
+7. Hindi (`hi`) — Purchases & Refunds
+8. Indonesian (`id`) — Purchases & Refunds
 
-**Exact next unfinished locale/document: Dutch (`nl`) — Purchases & Refunds.**
+**Exact next unfinished locale/document: Swedish (`sv`) — Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh
 
@@ -140,6 +140,21 @@ On **August 28, 2026**, `app/tycoonx-legal/ar/purchases/page.tsx` was refreshed 
 
 Arabic refresh commit: `96ec33b`. Arabic regression coverage commit: `42bddea`.
 
+### Dutch (`nl`) checkpoint
+
+On **August 28, 2026**, `app/tycoonx-legal/nl/purchases/page.tsx` was refreshed to the canonical meaning. The page now:
+
+- preserves any applicable 14-day statutory withdrawal right for purchased and unused Diamonds instead of treating the mere account credit as automatically extinguishing withdrawal rights;
+- explains that Diamonds already spent, transferred, or exchanged for digital content/services are handled under mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal or refund route where applicable without allowing that allocation to remove mandatory rights;
+- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it;
+- rejects virtual-currency layers or bundle structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
+- keeps the existing Apple App Store, Google Play, Xsolla, one-time 30-Day VIP, limited-window Lifetime VIP, pricing, promotion, entitlement, obvious-error, required-update/supported-version, Family Sharing, chargeback, security, and permanent-service-discontinuation protections;
+- remains naturally localized in Dutch (`nl`) and preserves the exact `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Dutch version and canonical English version.
+
+Dutch refresh commit: `7f31175`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -163,9 +178,9 @@ The canonical legal documents and release gates cover the main current TycoonX c
 
 ## Progress snapshot
 
-- **Localized full documents:** 91/100 (91%)
+- **Localized full documents:** 92/100 (92%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 96.5%
-- **Next:** Dutch (`nl`) — Purchases & Refunds
+- **Overall project completion:** 97%
+- **Next:** Swedish (`sv`) — Purchases & Refunds
