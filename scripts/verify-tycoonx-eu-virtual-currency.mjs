@@ -114,6 +114,23 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/fr_CA/purchases/page.tsx',
+    mustInclude: [
+      'Version française (Canada) : 28 août 2026',
+      'Version canonique anglaise : 28 août 2026',
+      'droit légal de rétractation de 14 jours',
+      'Diamonds achetés et non utilisés',
+      'prix en monnaie réelle',
+      'Mises à jour nécessaires et versions prises en charge',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Pour un contenu numérique fourni immédiatement, comme un lot de Diamonds',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
     mustInclude: [
       'March 21, 2025',
