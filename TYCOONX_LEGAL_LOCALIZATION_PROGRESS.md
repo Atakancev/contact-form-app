@@ -17,45 +17,66 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides localized navigation and summaries.
 
-All **25 locales** now have current Terms, Purchases & Refunds, Privacy Policy, and Community Standards. This brings the localization program to **100/100 localized full documents**.
+On **August 29, 2026**, repository-wide QA found that the canonical Terms and at least the Turkish Terms still used the older formulation that treated a Diamond bundle as immediately supplied digital content for withdrawal purposes. This conflicts with the August 28 Purchases treatment and the European Commission/CPC Network principle that purchased in-game virtual currency should not be treated as digital content merely to remove the withdrawal right.
+
+The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages are conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
+
+This means **75/100 localized full documents are currently confirmed current**. The drop from 100/100 is intentional and prevents stale localized Terms from being incorrectly counted as complete.
 
 ### Locale status
 
-| Locale | Terms | Purchases & Refunds | Privacy | Community | Total |
+| Locale | Terms | Purchases & Refunds | Privacy | Community | Total current |
 | --- | --- | --- | --- | --- | --- |
-| tr | Ready | Ready | Ready | Ready | 4/4 |
-| de | Ready | Ready | Ready | Ready | 4/4 |
-| es | Ready | Ready | Ready | Ready | 4/4 |
-| es_MX | Ready | Ready | Ready | Ready | 4/4 |
-| fr | Ready | Ready | Ready | Ready | 4/4 |
-| fr_CA | Ready | Ready | Ready | Ready | 4/4 |
-| it | Ready | Ready | Ready | Ready | 4/4 |
-| pt | Ready | Ready | Ready | Ready | 4/4 |
-| pt_BR | Ready | Ready | Ready | Ready | 4/4 |
-| ru | Ready | Ready | Ready | Ready | 4/4 |
-| ja | Ready | Ready | Ready | Ready | 4/4 |
-| ko | Ready | Ready | Ready | Ready | 4/4 |
-| zh | Ready | Ready | Ready | Ready | 4/4 |
-| zh_Hans | Ready | Ready | Ready | Ready | 4/4 |
-| zh_Hant | Ready | Ready | Ready | Ready | 4/4 |
-| ar | Ready | Ready | Ready | Ready | 4/4 |
-| nl | Ready | Ready | Ready | Ready | 4/4 |
-| sv | Ready | Ready | Ready | Ready | 4/4 |
-| nb | Ready | Ready | Ready | Ready | 4/4 |
-| pl | Ready | Ready | Ready | Ready | 4/4 |
-| th | Ready | Ready | Ready | Ready | 4/4 |
-| vi | Ready | Ready | Ready | Ready | 4/4 |
-| uk | Ready | Ready | Ready | Ready | 4/4 |
-| hi | Ready | Ready | Ready | Ready | 4/4 |
-| id | Ready | Ready | Ready | Ready | 4/4 |
+| tr | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| de | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| es | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| es_MX | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| fr | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| fr_CA | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| it | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| pt | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| pt_BR | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ru | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ja | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ko | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| zh | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| zh_Hans | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| zh_Hant | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ar | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| nl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| sv | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| nb | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| pl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| th | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| vi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| uk | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| hi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| id | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 
 ## Localization queue
 
-The prescribed locale/document queue is complete.
+A material canonical Terms change on August 29 reopened the Terms localization queue.
 
-**Exact next unfinished locale/document: none. All 25 locales and all four required documents are current.**
+**Exact next unfinished locale/document: Turkish (`tr`) Terms of Service.**
 
-The next work item is repository-wide legal QA and commercial/payment readiness hardening against the canonical English documents, platform rules, and German/EU mandatory consumer law. If the canonical English meaning changes materially, reopen the localization queue in the required locale order for the affected document.
+Continue Terms synchronization in exactly this order: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
+
+## August 29, 2026 Terms withdrawal invariant
+
+Every canonical and localized Terms page must preserve all of the following:
+
+- purchased in-game virtual currency such as TycoonX Diamonds must not be characterized as digital content merely to remove an applicable EU/EEA statutory withdrawal right;
+- merely crediting purchased Diamonds to a TycoonX account does not automatically extinguish an applicable withdrawal right;
+- where a **14-day statutory withdrawal right** applies to purchased in-game virtual currency, purchased and unused Diamonds remain subject to that right during the statutory period;
+- if purchased Diamonds have already been spent, transferred, or exchanged, the consequences of withdrawal are determined under mandatory law and the circumstances of the specific transaction rather than a blanket no-refunds rule;
+- a separate purchase of digital content or a digital service may lose a withdrawal right after early performance only where every legally required condition for that transaction is satisfied, including any required transaction-specific request or consent, acknowledgement, and contractual confirmation;
+- the contracting merchant or payment channel may control how a withdrawal request is submitted or processed without that role allocation removing a mandatory right; and
+- 30-Day VIP and Lifetime VIP remain separately treated ongoing/time-limited digital entitlements whose immediate activation or one-time price does not by itself eliminate all withdrawal or digital-service remedies.
+
+Canonical English Terms correction commits:
+
+- `7e6bbc70eab68417246620f6f8a93ed322c8adfd` for `tyconx-terms-of-service.md`;
+- `18a655b9dbe9c204345a9128a99942d5a59e75ee` for `app/tyconx-terms-of-service/page.tsx`.
 
 ## August 28, 2026 Purchases invariants
 
@@ -72,26 +93,15 @@ Every localized Purchases page must continue to preserve all of the following:
 - Apple App Store, Google Play, Xsolla, refund, chargeback, regional pricing, tax/VAT/FX, promotion, entitlement, obvious-error, security, supported-version/update, Family Sharing, and permanent-service-discontinuation protections remain intact; and
 - mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights remain intact.
 
-## Indonesian (`id`) completion checkpoint
+## Indonesian (`id`) Purchases completion checkpoint
 
-On **August 29, 2026**, `app/tycoonx-legal/id/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
-
-- states that merely crediting purchased Diamonds to a TycoonX account does not automatically extinguish an applicable EU/EEA statutory withdrawal right;
-- preserves an applicable **14-day statutory withdrawal right** for purchased and unused Diamonds during the statutory period;
-- handles spent, transferred, or exchanged Diamonds under mandatory law and the circumstances of the transaction rather than a blanket no-refunds rule;
-- keeps Apple, Google, Xsolla, or another contracting merchant/payment provider as the procedural withdrawal/refund route where applicable without allowing that role allocation to remove mandatory rights;
-- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it, and rejects virtual-currency layers, conversion structures, or bundle design used to hide real cost or force materially unwanted surplus virtual currency where prohibited;
-- preserves Apple consumable/non-consumable treatment, Google Play `PENDING`/`PURCHASED`, Xsolla merchant/payment roles, refunds, reversals, chargebacks, authoritative records, obvious errors, promotions, regional pricing, VAT/FX, supported versions, entitlement restoration, Family Sharing, account compromise/fraud, and permanent-service-discontinuation protections;
-- keeps 30-Day VIP as a one-time non-renewing 30-day entitlement and Lifetime VIP as a limited-window promotional offering that may be withdrawn from sale, may never return, may have different prices in different genuine sales windows, and means the commercial operating lifetime of TycoonX rather than perpetual service;
-- uses more natural Indonesian legal and commerce wording instead of unnecessary English loan phrases where a clear Indonesian equivalent exists;
-- uses `lang="id"`, preserves the exact displayed `TycoonX` brand, and keeps the legacy technical `/tyconx-support` route unchanged; and
-- is synchronized to **August 28, 2026** for both the Indonesian version and canonical English Purchases policy.
+On **August 29, 2026**, `app/tycoonx-legal/id/purchases/page.tsx` was refreshed to the canonical August 28 Purchases meaning. The Purchases page remains current while the Indonesian Terms page is separately reopened for the August 29 Terms change.
 
 Indonesian Purchases refresh commit: `37fbaf738607a1cb6db047de5b73f7d5b8913d85`.
 
 ## Canonical source status
 
-- English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
+- English Terms: materially refreshed **August 29, 2026** to align purchased-Diamond withdrawal treatment with the August 28 Purchases policy and the EU/CPC virtual-currency principles. It no longer treats a Diamond bundle as immediately supplied digital content that can automatically lose withdrawal rights merely because it was credited.
 - English Purchases & Refunds: materially refreshed **August 28, 2026** for EU/EEA purchased-Diamond withdrawal rights and virtual-currency real-money price transparency.
 - English Privacy Policy: refreshed **August 26, 2026** for third-party data protection and third-party AI disclosure/permission safeguards.
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
@@ -101,19 +111,20 @@ Indonesian Purchases refresh commit: `37fbaf738607a1cb6db047de5b73f7d5b8913d85`.
 
 As of **August 29, 2026**, the scoped official-source audit remains consistent with the canonical English approach:
 
-- the European Commission/CPC Network continues to identify clear and transparent pricing and pre-contractual information, avoidance of practices that hide in-game digital costs or force virtual-currency purchases, respect for withdrawal rights, and protection of vulnerable consumers as core principles for in-game virtual currencies;
+- the European Commission/CPC Network's in-game virtual-currency principles state that consumers' withdrawal rights should be respected, identify purchased in-game virtual currency as distinct from digital content for this purpose, and identify as practices to avoid both exempting purchased in-game virtual currency from withdrawal on a digital-content theory and denying withdrawal within 14 days for unused purchased virtual currency;
+- the same principles call for clear and transparent real-money pricing and pre-contractual information and avoidance of practices that hide in-game digital costs or force virtual-currency purchases;
 - Apple continues to state that purchased in-game currency may not expire and that restorable In-App Purchases need a restore mechanism;
 - Google Play continues to require verification and a `PURCHASED` state before entitlement, not `PENDING`, followed by timely acknowledgement or consumption; and
-- Xsolla's current Refund Policy remains transaction-specific and includes EU/EEA 14-day withdrawal treatment plus refund eligibility for unused or unredeemed in-game currency in relevant cases.
+- Xsolla's current Refund Policy remains transaction-specific and includes EU/EEA withdrawal treatment plus refund eligibility for unused or unredeemed in-game currency in relevant cases.
 
-Germany's electronic withdrawal-function requirement has been in force since **June 19, 2026**. The canonical Purchases policy allocates that obligation according to the contracting trader and legally relevant purchase interface without attempting to remove mandatory rights.
+Germany's electronic withdrawal-function requirement has been in force since **June 19, 2026**. The canonical Terms and Purchases policy allocate that obligation according to the contracting trader and legally relevant purchase interface without attempting to remove mandatory rights.
 
 ## Progress snapshot
 
-- **Localized full documents:** 100/100 (100%)
+- **Localized full documents:** 75/100 (75%)
 - **Localized hubs:** 25/25 (100%)
-- **Canonical English legal wording:** 99.5%
+- **Canonical English legal wording:** 99.7%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 99.6%
-- **Exact next unfinished locale/document:** none
-- **Next hardening task:** final repository-wide legal QA and commercial/payment readiness audit; reopen affected localizations only if canonical English meaning changes materially.
+- **Overall project completion:** 89%
+- **Exact next unfinished locale/document:** Turkish (`tr`) Terms of Service
+- **Next hardening task:** propagate the August 29 Terms withdrawal correction through all 25 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
