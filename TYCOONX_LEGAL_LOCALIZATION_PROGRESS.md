@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), and Dutch (`nl`) are now synchronized. This means **92/100 localized full documents are currently confirmed current**. The remaining **8 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), and Swedish (`sv`) are now synchronized. This means **93/100 localized full documents are currently confirmed current**. The remaining **7 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -46,7 +46,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | zh_Hant | Ready | Ready | Ready | Ready | 4/4 |
 | ar | Ready | Ready | Ready | Ready | 4/4 |
 | nl | Ready | Ready | Ready | Ready | 4/4 |
-| sv | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| sv | Ready | Ready | Ready | Ready | 4/4 |
 | nb | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | pl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | th | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Swedish (`sv`) Terms of Service.**
+**Exact next unfinished locale/document: Norwegian Bokmål (`nb`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,13 +99,13 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Dutch (`nl`) Terms completion checkpoint
+## Swedish (`sv`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/nl/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Dutch.
+On **August 30, 2026**, `app/tycoonx-legal/sv/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Swedish.
 
 The refreshed page now:
 
-- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
+- describes Diamonds as licensed digital game elements or usage rights without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
 - states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
 - preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
 - treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
@@ -113,10 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Dutch Purchases, Privacy, and Community pages; and
-- displays **Nederlandse versie: 29 augustus 2026 · Canonieke Engelse versie: 29 augustus 2026** with the brand exactly as `TycoonX`.
+- links directly to the completed Swedish Purchases, Privacy, and Community pages plus the Swedish legal hub; and
+- displays **Svensk version: 29 augusti 2026 · Kanonisk engelsk version: 29 augusti 2026** with the brand exactly as `TycoonX`.
 
-Dutch Terms refresh commit: `c2c23a09bfd86b5e366d12b99cb692fd905e2139`.
+Swedish Terms refresh commit: `035c263c56c0132d34a22306ad5a1f7f7a4d4b53`.
 
 ## Current official-source checks
 
@@ -130,9 +130,9 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 92/100, **92%**
+- **Localized full documents:** 93/100, **93%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **95.8%**
-- **Exact next unfinished locale/document:** Swedish (`sv`) Terms of Service
+- **Overall project completion:** **96.2%**
+- **Exact next unfinished locale/document:** Norwegian Bokmål (`nb`) Terms of Service
