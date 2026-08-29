@@ -17,7 +17,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides localized navigation and summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. Purchases & Refunds is now current in the first **22 locales**, bringing the current total to **97/100 localized full documents**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. Purchases & Refunds is now current in the first **23 locales**, bringing the current total to **98/100 localized full documents**.
 
 ### Locale status
 
@@ -45,17 +45,16 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. Purc
 | pl | Ready | Ready | Ready | Ready | 4/4 |
 | th | Ready | Ready | Ready | Ready | 4/4 |
 | vi | Ready | Ready | Ready | Ready | 4/4 |
-| uk | Ready | Refresh needed | Ready | Ready | 3/4 |
+| uk | Ready | Ready | Ready | Ready | 4/4 |
 | hi | Ready | Refresh needed | Ready | Ready | 3/4 |
 | id | Ready | Refresh needed | Ready | Ready | 3/4 |
 
 ### Current localization refresh queue
 
-1. Ukrainian (`uk`) - Purchases & Refunds
-2. Hindi (`hi`) - Purchases & Refunds
-3. Indonesian (`id`) - Purchases & Refunds
+1. Hindi (`hi`) - Purchases & Refunds
+2. Indonesian (`id`) - Purchases & Refunds
 
-**Exact next unfinished locale/document: Ukrainian (`uk`) - Purchases & Refunds.**
+**Exact next unfinished locale/document: Hindi (`hi`) - Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh requirements
 
@@ -88,6 +87,24 @@ On **August 29, 2026**, `app/tycoonx-legal/vi/purchases/page.tsx` was refreshed 
 
 Vietnamese Purchases refresh commit: `3e0f552b3a2b93d7edde2a8828a66f8504229530`.
 
+## Ukrainian (`uk`) checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/uk/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
+
+- no longer treats the mere crediting of purchased Diamonds as automatically extinguishing an applicable EU/EEA withdrawal right;
+- preserves an applicable **14-day statutory withdrawal right** for purchased and unused Diamonds during the statutory period;
+- handles spent, transferred, or exchanged Diamonds under mandatory law and the circumstances of the particular transaction rather than a blanket no-refunds rule;
+- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal/refund route where applicable without allowing that role allocation to remove mandatory rights;
+- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it, and rejects virtual-currency layers or bundle structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
+- preserves Apple consumable/non-consumable treatment, Google Play `PENDING`/`PURCHASED` verification and authoritative purchase-token logic, Xsolla merchant/payment roles, and entitlement correction after refunds, reversals, chargebacks, fraud, duplicate grants, or invalid transactions;
+- preserves future and regional pricing, tax/VAT/FX changes, genuine promotional sales windows, no automatic retroactive repricing or price matching, obvious catalog/configuration-error correction, supported versions and required updates, entitlement restoration, Family Sharing, and permanent-service-discontinuation protections;
+- keeps 30-Day VIP as a one-time non-renewing 30-day entitlement and Lifetime VIP as a limited-window promotional product that may be withdrawn from sale, may never return, may have different prices in different genuine sales windows, and means the commercial operating lifetime of TycoonX rather than a promise of perpetual service;
+- preserves mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights;
+- uses natural Ukrainian legal wording, `lang="uk"`, and the exact displayed `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Ukrainian version and canonical English Purchases policy.
+
+Ukrainian Purchases refresh commit: `4b58e08db742536e5d9adeba266f580563cd64f4`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -109,9 +126,9 @@ Germany's electronic withdrawal-function requirement under § 356a BGB has been 
 
 ## Progress snapshot
 
-- **Localized full documents:** 97/100 (97%)
+- **Localized full documents:** 98/100 (98%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 98.9%
-- **Next:** Ukrainian (`uk`) - Purchases & Refunds
+- **Overall project completion:** 99.2%
+- **Next:** Hindi (`hi`) - Purchases & Refunds
