@@ -34,6 +34,39 @@ const checks = [
     ],
   },
   {
+    file: 'app/tycoonx-legal/tr/terms/page.tsx',
+    mustInclude: [
+      'Türkçe sürüm: 29 Ağustos 2026',
+      'Kanonik İngilizce sürüm: 29 Ağustos 2026',
+      '14 günlük yasal cayma hakkı',
+      'satın alınmış ve kullanılmamış Elmaslar',
+      'Sözleşme tarafı satıcı veya ödeme kanalı',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Elmas paketi gibi hemen sağlanan dijital içerikte',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
+    file: 'app/tycoonx-legal/de/terms/page.tsx',
+    mustInclude: [
+      'Deutsche Fassung: 29. August 2026',
+      'Kanonische englische Fassung: 29. August 2026',
+      '14-tägiges gesetzliches Widerrufsrecht',
+      'gekaufte und noch nicht verwendete Diamonds',
+      'Der vertragsschließende Händler oder Zahlungskanal',
+      'Diese Beschreibung legt nicht fest, wie gekaufte In-Game-Währung',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'Bei sofort bereitgestellten digitalen Inhalten wie einem Diamond-Paket',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'app/tyconx-purchase-refund-policy/page.tsx',
     mustInclude: [
       'Last updated August 28, 2026',
