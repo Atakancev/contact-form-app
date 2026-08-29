@@ -19,7 +19,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, and Japanese are now synchronized. This means **86/100 localized full documents are currently confirmed current**. The remaining **14 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, and Korean are now synchronized. This means **87/100 localized full documents are currently confirmed current**. The remaining **13 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -36,7 +36,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | pt_BR | Ready | Ready | Ready | Ready | 4/4 |
 | ru | Ready | Ready | Ready | Ready | 4/4 |
 | ja | Ready | Ready | Ready | Ready | 4/4 |
-| ko | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ko | Ready | Ready | Ready | Ready | 4/4 |
 | zh | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | zh_Hans | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | zh_Hant | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -53,9 +53,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Korean (`ko`) Terms of Service.**
+**Exact next unfinished locale/document: Chinese (`zh`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -151,6 +151,27 @@ The refreshed page now:
 
 Japanese Terms refresh commit: `99f7757e0391c2f254476971e920b51b1fa8ba7c`.
 
+## Korean (`ko`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/ko/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Korean.
+
+The refreshed page now:
+
+- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
+- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
+- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
+- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- requires every transaction-specific legal condition before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
+- keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
+- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment, and clarifies that ending a sales window does not itself cancel or shorten an already valid Lifetime VIP;
+- restores the canonical general rule that promotional claims, countdowns, crossed-out prices, stated savings and limited-time price claims must reflect a genuine offer and not mislead consumers;
+- restores the mandatory-law caveat for the rule that a later price increase does not add a charge to an already completed one-time purchase;
+- retains payment-channel, regional-pricing, VAT/FX, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
+- links directly to the completed Korean Purchases, Privacy, and Community pages; and
+- displays **한국어 버전: 2026년 8월 29일 · 영문 정본: 2026년 8월 29일** with the brand exactly as `TycoonX`.
+
+Korean Terms refresh commit: `52570cd09b8cce0fe3d06b42caf23767b974373b`.
+
 ## August 28, 2026 Purchases invariants
 
 Every localized Purchases page remains required to preserve the following:
@@ -184,8 +205,8 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- Localized full documents: **86/100 (86%)**
+- Localized full documents: **87/100 (87%)**
 - Localized hubs: **25/25 (100%)**
 - Canonical English legal wording: **99.7%**
 - Full commercial/legal/payment readiness: **95%**
-- Overall project completion: **93.4%**
+- Overall project completion: **93.8%**
