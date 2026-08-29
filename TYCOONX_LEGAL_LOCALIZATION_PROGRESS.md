@@ -21,14 +21,14 @@ On **August 29, 2026**, repository-wide QA found that the canonical Terms and at
 
 The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages were conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Turkish Terms were synchronized on August 29. This means **76/100 localized full documents are currently confirmed current**. The remaining 24 Terms pages stay reopened until individually audited and refreshed.
+The Turkish and German Terms were synchronized on August 29. This means **77/100 localized full documents are currently confirmed current**. The remaining 23 Terms pages stay reopened until individually audited and refreshed.
 
 ### Locale status
 
 | Locale | Terms | Purchases & Refunds | Privacy | Community | Total current |
 | --- | --- | --- | --- | --- | --- |
 | tr | Ready | Ready | Ready | Ready | 4/4 |
-| de | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| de | Ready | Ready | Ready | Ready | 4/4 |
 | es | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | es_MX | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | fr | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Turkish Terms were synchronized on August 29. This means **76/100 localized 
 
 A material canonical Terms change on August 29 reopened the Terms localization queue.
 
-**Exact next unfinished locale/document: German (`de`) Terms of Service.**
+**Exact next unfinished locale/document: Spanish (`es`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
+Continue Terms synchronization in exactly this order: es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -85,6 +85,14 @@ On **August 29, 2026**, `app/tycoonx-legal/tr/terms/page.tsx` was synchronized t
 The Turkish page date is synchronized to **29 Ağustos 2026**, and the one-time 30-Day VIP and limited-window Lifetime VIP treatment remains intact.
 
 Turkish Terms refresh commit: `b1fd1ad8653fbdb3de31e814459c4729a7468023`.
+
+## German (`de`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/de/terms/page.tsx` was synchronized to the August 29 canonical Terms withdrawal meaning. The German page now states that merely crediting purchased Diamonds does not automatically remove an applicable EU/EEA withdrawal right, preserves the applicable 14-day right for purchased and unused Diamonds, handles spent/transferred/exchanged Diamonds under mandatory law and the specific transaction, preserves transaction-specific early-performance requirements for separate digital content/services, and keeps the contracting merchant/payment-channel procedure separate from the existence of mandatory rights.
+
+The German virtual-items description was also clarified so that calling Diamonds digital game elements or entitlements does not itself determine their classification for a mandatory statutory withdrawal right. The page date is synchronized to **29. August 2026**, and the one-time 30-Day VIP and limited-window Lifetime VIP treatment remains intact.
+
+German Terms refresh commit: `e8406bbc1f1a9a67eece14cb795633c72ee0331f`.
 
 ## August 28, 2026 Purchases invariants
 
@@ -129,10 +137,10 @@ Germany's electronic withdrawal-function requirement has been in force since **J
 
 ## Progress snapshot
 
-- **Localized full documents:** 76/100 (76%)
+- **Localized full documents:** 77/100 (77%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.7%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 89.4%
-- **Exact next unfinished locale/document:** German (`de`) Terms of Service
-- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 24 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
+- **Overall project completion:** 89.8%
+- **Exact next unfinished locale/document:** Spanish (`es`) Terms of Service
+- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 23 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
