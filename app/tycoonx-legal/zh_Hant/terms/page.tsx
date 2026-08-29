@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds 與其他虛擬物品',
     body: [
-      'Diamonds 與其他虛擬物品是僅供在 TycoonX 內使用的數位遊戲內容或數位權益。除非強制性法律另有規定，購買這些內容不會轉移底層遊戲資料的所有權。',
+      'Diamonds 與其他虛擬物品是僅供在 TycoonX 內使用的授權數位遊戲元素或數位權益。除非強制性法律另有規定，購買這些內容不會轉移底層遊戲資料的所有權。此處的契約用語本身並不決定已購買虛擬貨幣在強制性撤回權規則下的法定分類。',
       '已購買的 Diamonds 不會僅因時間經過而失效。如果相關購買被退款、撤銷、拒付、認定為詐欺、重複發放、因技術錯誤產生或因其他原因無效，CK-Labs 可以更正或移除相應 Diamonds。',
       '透過促銷、贈送、活動、測試、審核、補償或免費方式取得的 Diamonds 與其他福利，可在法律及平台規則允許的範圍內適用另行揭露的條件、限制、資格要求或有效期限。免費或促銷發放不會自動產生未來獲得同等福利的權利。',
       '基於遊戲平衡、經濟穩定、防通膨、安全、防濫用、技術調整、新功能、漏洞修正或法律要求等合理原因，Diamonds 與其他虛擬物品的遊戲內用途或效果可能調整，但強制性數位產品法律規定的權利不受影響。',
@@ -58,7 +58,7 @@ const sections = [
   {
     title: 'VIP 功能與數位產品變更',
     body: [
-      'VIP 可以包含會隨遊戲發展調整的玩法福利、便利功能、外觀內容、限制、自动化功能、存取權限或其他權益。基於遊戲平衡、經濟健康、安全、防濫用、技術相容、平台要求、法律合規、無障礙或服務演進等合理原因，CK-Labs 可以改進、替換、重新平衡、新增或移除個別功能。',
+      'VIP 可以包含會隨遊戲發展調整的玩法福利、便利功能、外觀內容、限制、自動化功能、存取權限或其他權益。基於遊戲平衡、經濟健康、安全、防濫用、技術相容、平台要求、法律合規、無障礙或服務演進等合理原因，CK-Labs 可以改進、替換、重新平衡、新增或移除個別功能。',
       '對於持續一段時間提供的數位產品，超出維持契約符合性所必要範圍的變更，只會在契約及適用法律允許時進行。法律要求時，該變更必須具有有效的契約理由、不向消費者收取額外費用，並以清楚方式說明。',
       '如果變更對存取或使用造成並非輕微的不利影響，CK-Labs 將依適用法律提供所需的提前通知、可長期保存媒介上的資訊、解除權、繼續使用未變更版本的選擇、退款、減價或其他法定救濟。',
     ],
@@ -170,7 +170,9 @@ const sections = [
     title: '歐盟及德國的撤回權與數位產品權利',
     body: [
       '本條款不會排除任何依法不得放棄的撤回、符合性、更新、瑕疵擔保、減價、解除、退款或其他法定權利。',
-      '對於 Diamonds 套餐等立即提供的數位內容，法定撤回權只有在所有法律條件均符合時，才可能在開始履行後消滅，其中可能包括針對該筆交易明確同意提前履行、確認知悉撤回權因此喪失，以及取得相應契約確認。',
+      '對於歐盟或歐洲經濟區消費者，CK-Labs 不會僅因已購買的 Diamonds 已記入 TycoonX 帳戶，就將此視為立即提供數位內容並自動使法定撤回權消滅。如果已購買的遊戲內虛擬貨幣依法享有 14 天法定撤回權，則已購買且尚未使用的 Diamonds 在該法定期間內仍受該撤回權保障。',
+      '如果已購買的 Diamonds 已被使用、轉移，或兌換為數位內容或數位服務，撤回的法律後果應依強制性法律及該筆具體交易判斷，而不是一概適用「不退款」規則。對於另行購買的數位內容或數位服務，如果法律允許其在提前履行後喪失撤回權，也只有在該筆交易符合全部法定條件時才會發生，包括法律要求的針對該交易明確提出提前履行請求或同意、確認知悉相關後果，以及提供所需的契約確認。',
+      '契約交易方或付款管道可以決定撤回申請應以何種方式提交或處理，但這種角色分配不會消除消費者依法享有的強制性撤回權。',
       '30-Day VIP 與 Lifetime VIP 都是在一段期間內持續提供的權益。立即啟用或一次性付款本身，不會自動消滅所有法定撤回權或數位服務救濟。任何提前履行請求、撤回後的比例付款、解除或其他後果，僅在該筆交易符合相應法律條件時適用。',
       '接受本通用服務條款，不會取代法律要求針對具體交易另行作出的同意。',
     ],
@@ -326,7 +328,7 @@ export default function TraditionalChineseTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · 繁體中文</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">服務條款</h1>
-          <p className="text-zinc-500 text-sm">最後更新：2026 年 8 月 26 日</p>
+          <p className="text-zinc-500 text-sm">繁體中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             本條款涵蓋 TycoonX 帳戶、遊戲玩法、虛擬資產、Diamonds、一次性 30-Day VIP、限時 Lifetime VIP、購買與定價、Apple App Store、Google Play、由 Xsolla 提供付款支援的官方網頁商店、安全、服務變更、故障中斷、帳戶處置、社群功能以及永久停止服務。
           </p>
@@ -352,9 +354,9 @@ export default function TraditionalChineseTycoonXTermsOfService() {
           <h2 className="text-white font-semibold mb-3">購買、隱私、社群與客服</h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX 由 CK-Labs 營運。付款相關細節請查看購買與退款政策；個人資料處理請查看隱私政策；社群與審核規則請查看社群標準；帳戶、購買或帳戶處置問題可聯絡 TycoonX 客服。</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">購買與退款政策</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">隱私政策</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">社群標準</a>
+            <a href="/tycoonx-legal/zh_Hant/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">購買與退款政策</a>
+            <a href="/tycoonx-legal/zh_Hant/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">隱私政策</a>
+            <a href="/tycoonx-legal/zh_Hant/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">社群標準</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX 客服</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
