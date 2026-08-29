@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds och andra virtuella föremål",
     body: [
-      "Diamonds och andra virtuella föremål är licensierat digitalt spelinnehåll eller digitala rättigheter som endast får användas i TycoonX. Om inte tvingande lag kräver något annat överför ett köp inte äganderätt till underliggande speldata.",
+      "Diamonds och andra virtuella föremål är licensierade digitala spelelement eller nyttjanderätter som endast får användas i TycoonX. Denna avtalsmässiga beskrivning avgör inte i sig hur köpt virtuell valuta rättsligt klassificeras i fråga om tvingande lagstadgad ångerrätt. Om inte tvingande lag kräver något annat överför ett köp inte äganderätt till underliggande speldata.",
       "Köpta Diamonds upphör inte enbart på grund av att tid går. CK-Labs får korrigera eller ta bort Diamonds när det motsvarande köpet har återbetalats, återförts, blivit föremål för chargeback, varit bedrägligt, duplicerats, skapats genom tekniskt fel eller annars är ogiltigt.",
       "Kampanj-, gåvo-, event-, test-, gransknings-, kompensations- eller gratis-Diamonds och förmåner kan ha separat angivna villkor, gränser, behörighetskrav eller utgångstid när lag och plattformsregler tillåter det. En kostnadsfri eller kampanjbaserad tilldelning skapar inte automatiskt rätt till motsvarande framtida tilldelningar.",
       "Funktionen eller nyttan av Diamonds och andra virtuella föremål i spelet kan ändras av giltiga skäl, exempelvis spelbalans, ekonomisk stabilitet, inflationskontroll, säkerhet, förebyggande av missbruk, tekniska ändringar, nya funktioner, felrättningar eller lagkrav, med förbehåll för tvingande regler om digitala produkter.",
@@ -170,7 +170,9 @@ const sections = [
     title: "EU:s och Tysklands ånger- och digitalprodukträttigheter",
     body: [
       "Ingenting i dessa villkor utesluter lagstadgad ångerrätt, avtalsenlighet, uppdateringsrätt, garanti, prisavdrag, uppsägning, återbetalning eller annan rättighet som inte får avtalas bort.",
-      "För digitalt innehåll som levereras omedelbart, exempelvis ett Diamond-paket, kan en lagstadgad ångerrätt upphöra efter att leveransen har börjat endast när alla lagstadgade villkor är uppfyllda, inklusive eventuellt transaktionsspecifikt uttryckligt samtycke till tidig prestation, bekräftelse av att ångerrätten går förlorad och avtalsbekräftelse.",
+      "För konsumenter inom EU/EES behandlar CK-Labs inte enbart krediteringen av köpta Diamonds som omedelbart levererat digitalt innehåll som automatiskt gör att den lagstadgade ångerrätten upphör. När en lagstadgad ångerfrist på 14 dagar gäller för köpt virtuell valuta i spelet omfattas köpta och oanvända Diamonds fortsatt av den rätten under den lagstadgade fristen.",
+      "Om köpta Diamonds redan har använts, överförts eller växlats in mot digitalt innehåll eller digitala tjänster bestäms följderna av en ånger enligt tvingande lag och omständigheterna i den specifika transaktionen, inte genom en generell regel om att återbetalning aldrig sker. Om ett separat köp av digitalt innehåll eller en digital tjänst lagligen kan förlora ångerrätten efter tidig prestation gäller det endast när samtliga lagstadgade villkor är uppfyllda, inklusive där så krävs en transaktionsspecifik uttrycklig begäran eller ett samtycke, ett erkännande och en avtalsbekräftelse.",
+      "Den avtalsslutande näringsidkaren eller betalningskanalen kan avgöra hur en begäran om att utöva ångerrätten ska lämnas in eller behandlas, men denna rollfördelning tar inte bort en tvingande ångerrätt.",
       "30-Day VIP och Lifetime VIP tillhandahålls över tid. Omedelbar aktivering eller ett engångspris tar inte i sig bort alla lagstadgade ånger- eller digitaltjänsträttigheter. Begäran om tidig prestation, proportionell betalning efter ånger, uppsägning eller annan följd gäller endast när de rättsliga kraven för den aktuella transaktionen är uppfyllda.",
       "Godkännande av dessa allmänna villkor är inte avsett att ersätta ett separat transaktionsspecifikt samtycke när lagen kräver ett sådant.",
     ],
@@ -326,7 +328,7 @@ export default function SwedishTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Svenska</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Användarvillkor</h1>
-          <p className="text-zinc-500 text-sm">Senast uppdaterad 27 augusti 2026</p>
+          <p className="text-zinc-500 text-sm">Svensk version: 29 augusti 2026 · Kanonisk engelsk version: 29 augusti 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Dessa villkor reglerar TycoonX-konton, spel, virtuella tillgångar, Diamonds, engångsköp av 30-Day VIP, tidsbegränsat Lifetime VIP, köp och priser, Apple App Store, Google Play, den officiella Xsolla-drivna webbshoppen, säkerhet, tjänsteändringar, avbrott, verkställighet, communityfunktioner och permanent nedläggning.
           </p>
@@ -350,11 +352,12 @@ export default function SwedishTycoonXTermsOfService() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Köp, integritet, community och support</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX drivs av CK-Labs. Använd den detaljerade policyn för köp och återbetalningar för betalningsfrågor, Community Standards för sociala regler och moderering samt TycoonX Support för frågor om konto, köp eller verkställighet.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX drivs av CK-Labs. Läs de fullständiga svenska sidorna för köp och återbetalningar, integritet och communityregler, använd den svenska juridiska hubben för att navigera mellan dem och kontakta TycoonX Support för frågor om konto, köp eller verkställighet.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Köp och återbetalningar</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Integritetspolicy</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Community Standards</a>
+            <a href="/tycoonx-legal/sv/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Köp och återbetalningar</a>
+            <a href="/tycoonx-legal/sv/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Integritetspolicy</a>
+            <a href="/tycoonx-legal/sv/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Communityregler</a>
+            <a href="/tycoonx-legal/sv" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Svensk juridisk hubb</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
