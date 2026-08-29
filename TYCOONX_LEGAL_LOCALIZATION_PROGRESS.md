@@ -21,7 +21,7 @@ On **August 29, 2026**, repository-wide QA found that the canonical Terms and at
 
 The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages were conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Turkish and German Terms were synchronized on August 29. This means **77/100 localized full documents are currently confirmed current**. The remaining 23 Terms pages stay reopened until individually audited and refreshed.
+The Turkish, German, and Spanish Terms were synchronized on August 29. This means **78/100 localized full documents are currently confirmed current**. The remaining 22 Terms pages stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -29,7 +29,7 @@ The Turkish and German Terms were synchronized on August 29. This means **77/100
 | --- | --- | --- | --- | --- | --- |
 | tr | Ready | Ready | Ready | Ready | 4/4 |
 | de | Ready | Ready | Ready | Ready | 4/4 |
-| es | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| es | Ready | Ready | Ready | Ready | 4/4 |
 | es_MX | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | fr | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | fr_CA | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Turkish and German Terms were synchronized on August 29. This means **77/100
 
 A material canonical Terms change on August 29 reopened the Terms localization queue.
 
-**Exact next unfinished locale/document: Spanish (`es`) Terms of Service.**
+**Exact next unfinished locale/document: Spanish (Mexico) (`es_MX`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
+Continue Terms synchronization in exactly this order: es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -93,6 +93,14 @@ On **August 29, 2026**, `app/tycoonx-legal/de/terms/page.tsx` was synchronized t
 The German virtual-items description was also clarified so that calling Diamonds digital game elements or entitlements does not itself determine their classification for a mandatory statutory withdrawal right. The page date is synchronized to **29. August 2026**, and the one-time 30-Day VIP and limited-window Lifetime VIP treatment remains intact.
 
 German Terms refresh commit: `e8406bbc1f1a9a67eece14cb795633c72ee0331f`.
+
+## Spanish (`es`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/es/terms/page.tsx` was synchronized to the August 29 canonical Terms withdrawal meaning. It now states that merely crediting purchased Diamonds to a TycoonX account does not automatically remove an applicable EU/EEA withdrawal right, preserves an applicable 14-day right for purchased and unused Diamonds, handles spent/transferred/exchanged Diamonds under mandatory law and the specific transaction, preserves transaction-specific early-performance requirements for separate digital content/services, and keeps the contracting merchant/payment-channel procedure separate from the existence of mandatory rights.
+
+The Spanish virtual-items description was also clarified so that its contractual description of Diamonds does not itself determine the statutory legal classification of purchased virtual currency for a mandatory withdrawal right. The page date is synchronized to **29 de agosto de 2026**, and the one-time 30-Day VIP and limited-window Lifetime VIP treatment remains intact.
+
+Spanish Terms refresh commit: `fa844f5a19f40bc832b55ca85f5ba094b5af86b9`.
 
 ## August 28, 2026 Purchases invariants
 
@@ -137,10 +145,10 @@ Germany's electronic withdrawal-function requirement has been in force since **J
 
 ## Progress snapshot
 
-- **Localized full documents:** 77/100 (77%)
+- **Localized full documents:** 78/100 (78%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.7%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 89.8%
-- **Exact next unfinished locale/document:** Spanish (`es`) Terms of Service
-- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 23 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
+- **Overall project completion:** 90.2%
+- **Exact next unfinished locale/document:** Spanish (Mexico) (`es_MX`) Terms of Service
+- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 22 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
