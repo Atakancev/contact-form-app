@@ -2,6 +2,38 @@ import fs from 'node:fs';
 
 const checks = [
   {
+    file: 'app/tyconx-terms-of-service/page.tsx',
+    mustInclude: [
+      'Last updated August 29, 2026',
+      'does not treat the mere crediting of purchased Diamonds as immediately supplied digital content',
+      'purchased and unused Diamonds remain subject to that right',
+      '14-day statutory withdrawal right',
+      'The contracting merchant or payment channel may control how a withdrawal request is submitted or processed',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'For immediately supplied digital content such as a Diamond bundle',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
+    file: 'tyconx-terms-of-service.md',
+    mustInclude: [
+      'Last updated: August 29, 2026',
+      'does not treat the mere crediting of purchased Diamonds as immediately supplied digital content',
+      'purchased and unused Diamonds remain subject to that right',
+      '14-day statutory withdrawal right',
+      'The contracting merchant or payment channel may control how a withdrawal request is submitted or processed',
+      'TycoonX',
+    ],
+    mustNotInclude: [
+      'For immediately supplied digital content such as a Diamond bundle',
+      'TyconX',
+      'beta',
+    ],
+  },
+  {
     file: 'app/tyconx-purchase-refund-policy/page.tsx',
     mustInclude: [
       'Last updated August 28, 2026',
