@@ -46,6 +46,7 @@ const sections = [
       "कीमतें Apple App Store, Google Play, आधिकारिक TycoonX web shop, देशों, क्षेत्रों, currencies और अलग-अलग promotional sales windows में अलग हो सकती हैं। Platform pricing systems, taxes, VAT, currency conversion, foreign-exchange movements, local pricing conventions या payment-provider rules भी local prices बदल सकते हैं।",
       "उपयोगकर्ता के खरीद की पुष्टि करने से पहले लागू checkout पर दिखाई गई अंतिम कुल कीमत और currency उस transaction पर लागू होती है, जहाँ कानून अनुमति दे वहाँ स्पष्ट pricing error के correction के अधीन। Product page खोलना, checkout में जाना या confirmation से पहले cached या पुरानी कीमत देखना भविष्य के transaction के लिए उस कीमत को lock नहीं करता। Completed order के provider-confirmed transaction record और कानूनी रूप से binding checkout information, mandatory law के अधीन, नियंत्रक होंगे।",
       "जर्मनी और जहाँ अन्य कानून माँगता है, वहाँ mandatory taxes और unavoidable price components को लागू price-display law के अनुसार शामिल या प्रस्तुत किया जाएगा।",
+      "जहाँ EU/EEA उपभोक्ता नियम लागू होते हैं, खरीदे जा सकने वाले Diamonds और ऐसे digital content या services जिन्हें खरीदे गए Diamonds से लिया जा सकता है, उनके लिए कानून द्वारा आवश्यक वास्तविक मुद्रा में कीमत की जानकारी स्पष्ट और समझने योग्य तरीके से दिखाई जाएगी। CK-Labs virtual-currency layers, conversion structures या bundle design का उपयोग वास्तविक लागत छिपाने या उपभोक्ता को ऐसी अतिरिक्त virtual currency खरीदने के लिए मजबूर करने के लिए नहीं करेगा जिसकी उसे वास्तविक रूप से जरूरत नहीं है, जहाँ लागू कानून ऐसी प्रथा को निषिद्ध करता है।",
       "एक बार पूरी हो चुकी खरीद को केवल इसलिए पिछली तारीख से repricing नहीं किया जाएगा क्योंकि CK-Labs बाद में कीमत बदल देता है। बाद की price decrease अपने-आप refund, credit, partial refund, price match या अतिरिक्त Diamonds/VIP time का अधिकार नहीं बनाती, और बाद की price increase पहले से completed one-time purchase पर अतिरिक्त charge नहीं बनाती, जब तक mandatory law कुछ और न माँगे।",
       "Lifetime VIP अलग-अलग वास्तविक promotional sales windows में अलग कीमतों पर बेचा जा सकता है। किसी एक sales window में खरीदने से भविष्य के कम promotional price का अधिकार नहीं बनता और भविष्य की बिक्री CK-Labs को पुरानी कीमत match करने के लिए बाध्य नहीं करती।",
       "Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements और अन्य price-advantage claims वास्तविक ऑफ़र को सही रूप में दिखाने चाहिए और भ्रामक नहीं होने चाहिए। जहाँ किसी jurisdiction में specific product या offer के लिए reference price, discount disclosure या price-history rule आवश्यक हो, वहाँ marketing और checkout को उस नियम का पालन करना होगा।",
@@ -122,10 +123,11 @@ const sections = [
     ],
   },
   {
-    title: "EU और जर्मन withdrawal rights",
+    title: "EU/EEA और जर्मन withdrawal rights",
     body: [
       "इस Policy की कोई भी बात ऐसे statutory rights को समाप्त नहीं करती जिन्हें कानूनन waive नहीं किया जा सकता। German consumers के लिए BGB की Sections 327 et seq. paid digital content और digital services पर लागू हो सकती हैं।",
-      "Diamond bundle जैसी तुरंत दी जाने वाली digital content के लिए statutory withdrawal right supply शुरू होने के बाद केवल तभी समाप्त हो सकती है जब सभी legal requirements पूरी हों, जिसमें जहाँ आवश्यक हो early performance के लिए transaction-specific express consent, withdrawal right खोने की acknowledgement और contractual confirmation शामिल हैं। General Terms स्वीकार करना वहाँ separate consent का विकल्प नहीं है जहाँ कानून separate consent माँगता है।",
+      "केवल खरीदे गए Diamonds को TycoonX account में credit कर देना किसी लागू EU/EEA statutory withdrawal right को अपने-आप समाप्त नहीं करता। जहाँ खरीदी गई in-game virtual currency पर 14 दिन का statutory withdrawal right लागू होता है, खरीदे गए और अप्रयुक्त Diamonds उस statutory period के दौरान covered रहते हैं। यदि Diamonds पहले ही खर्च, transfer या digital content/services के लिए exchange हो चुके हैं, तो withdrawal या refund के परिणाम mandatory law और उस specific transaction की परिस्थितियों के अनुसार तय होंगे, किसी blanket no-refunds rule से नहीं। Apple, Google, Xsolla या कोई अन्य contracting merchant/payment provider procedural withdrawal या refund route हो सकता है, लेकिन यह role allocation किसी mandatory right को समाप्त नहीं करता।",
+      "अन्य तुरंत supplied digital content के लिए statutory withdrawal right supply शुरू होने के बाद केवल तभी समाप्त हो सकता है जब सभी legal requirements पूरी हों, जिसमें जहाँ आवश्यक हो early performance के लिए transaction-specific express consent, withdrawal right खोने की acknowledgement और contractual confirmation शामिल हैं। General Terms स्वीकार करना वहाँ separate consent का विकल्प नहीं है जहाँ कानून separate consent माँगता है।",
       "30-Day VIP एक अवधि में supply होता है। केवल access शुरू हो जाने से immediate activation अपने-आप हर statutory withdrawal right समाप्त नहीं करता। जहाँ applicable law early performance की अनुमति देता है, checkout consumer से इसका express request माँग सकता है, और valid withdrawal के बाद देय किसी amount का निर्धारण केवल कानून की अनुमति के अनुसार होगा।",
       "Lifetime VIP भी समय के साथ supply होने वाला entitlement है। इसकी one-time purchase price और non-renewing nature अपने-आप statutory withdrawal rights या mandatory digital-service remedies समाप्त नहीं करती। Early-performance request, withdrawal right का expiry, withdrawal के बाद proportional payment या अन्य consequence केवल तब लागू होगी जब उस transaction की legal requirements पूरी हों।",
       "CK-Labs Diamonds, 30-Day VIP और Lifetime VIP के लिए एक ही blanket no-refunds या waive-all-withdrawal-rights clause का उपयोग नहीं करेगा, क्योंकि उनकी legal treatment अलग हो सकती है।",
@@ -168,9 +170,9 @@ export default function HindiTycoonXPurchaseRefundPolicy() {
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">खरीद और Refund Policy</h1>
-          <p className="text-zinc-500 text-sm">अंतिम अपडेट: 27 अगस्त 2026</p>
-          <p className="text-zinc-400 text-sm leading-relaxed mt-6">यह Policy बताती है कि TycoonX में Diamonds, एक बार मिलने वाला 30-Day VIP, सीमित समय का Lifetime VIP और Apple App Store, Google Play तथा Xsolla द्वारा संचालित आधिकारिक TycoonX web shop से की गई अन्य paid purchases कैसे संभाली जाती हैं।</p>
+          <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">खरीद और रिफंड नीति</h1>
+          <p className="text-zinc-500 text-sm">हिंदी संस्करण: 28 अगस्त 2026 · आधिकारिक अंग्रेज़ी मूल: 28 अगस्त 2026</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mt-6">यह नीति बताती है कि TycoonX में Diamonds, एक बार मिलने वाला 30-Day VIP, सीमित बिक्री अवधि वाला Lifetime VIP और Apple App Store, Google Play तथा Xsolla द्वारा संचालित आधिकारिक TycoonX वेब शॉप से की गई अन्य भुगतान वाली खरीदें कैसे संभाली जाती हैं।</p>
         </div>
       </div>
 
@@ -194,7 +196,7 @@ export default function HindiTycoonXPurchaseRefundPolicy() {
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX का संचालन CK-Labs करता है। Entitlement delivery, transaction questions, suspected fraud या entitlement disputes के लिए TycoonX Support का उपयोग करें या हमें email करें।</p>
           <div className="flex flex-wrap gap-3">
             <a href="/tycoonx-legal/hi/terms" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">सेवा की शर्तें</a>
-            <a href="/tycoonx-legal/hi/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Privacy Policy</a>
+            <a href="/tycoonx-legal/hi/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">गोपनीयता नीति</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
