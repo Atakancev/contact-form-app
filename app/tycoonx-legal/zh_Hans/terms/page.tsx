@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds 与其他虚拟物品',
     body: [
-      'Diamonds 与其他虚拟物品是仅供在 TycoonX 内使用的数字游戏内容或数字权益。除非强制性法律另有规定，购买这些内容不会转移底层游戏数据的所有权。',
+      'Diamonds 与其他虚拟物品是仅供在 TycoonX 内使用的受许可数字游戏元素或数字权益。除非强制性法律另有规定，购买这些内容不会转移底层游戏数据的所有权。此处的合同表述本身并不决定已购买虚拟货币在强制性撤回权规则下的法定分类。',
       '已购买的 Diamonds 不会仅因时间经过而失效。如果相关购买被退款、撤销、拒付、认定为欺诈、重复发放、技术错误或因其他原因无效，CK-Labs 可以更正或移除相应 Diamonds。',
       '通过促销、赠送、活动、测试、审核、补偿或免费方式获得的 Diamonds 与其他福利，可以在法律和平台规则允许的范围内适用另行披露的条件、限制、资格要求或有效期。免费或促销发放不会自动产生未来获得同等福利的权利。',
       '出于游戏平衡、经济稳定、防通胀、安全、防滥用、技术调整、新功能、漏洞修复或法律要求等合理原因，Diamonds 与其他虚拟物品的游戏内用途或效果可能调整，但强制性数字产品法律规定的权利不受影响。',
@@ -170,7 +170,9 @@ const sections = [
     title: '欧盟及德国的撤回权与数字产品权利',
     body: [
       '本条款不会排除任何依法不得放弃的撤回、符合性、更新、瑕疵担保、减价、解除、退款或其他法定权利。',
-      '对于 Diamonds 套餐等立即提供的数字内容，法定撤回权只有在所有法律条件均得到满足时，才可能在开始履行后消灭，其中可能包括针对该笔交易明确同意提前履行、确认知悉撤回权因此丧失，以及获得相应合同确认。',
+      '对于欧盟或欧洲经济区消费者，CK-Labs 不会仅因为已购买的 Diamonds 已记入 TycoonX 账户，就把该行为视为立即提供数字内容并自动消灭法定撤回权。如果已购买游戏内虚拟货币依法享有 14 天法定撤回权，则已购买且尚未使用的 Diamonds 在该法定期限内仍受该撤回权保护。',
+      '如果已购买的 Diamonds 已经被消费、转移，或兑换为数字内容或数字服务，撤回的法律后果应根据强制性法律和该笔具体交易判断，而不是适用一概“不退款”的规则。对于单独购买的数字内容或数字服务，如法律允许其在提前履行后丧失撤回权，也只有在该笔交易满足全部法定条件时才会发生，包括法律要求的针对该交易明确提出提前履行请求或同意、确认知悉相关后果，以及提供所需的合同确认。',
+      '合同交易方或支付渠道可以决定撤回申请应通过何种方式提交或处理，但这种角色分配不会消除消费者依法享有的强制性撤回权。',
       '30-Day VIP 与 Lifetime VIP 都是在一段时间内持续提供的权益。立即激活或一次性付款本身，并不会自动消灭所有法定撤回权或数字服务救济。任何提前履行请求、撤回后的比例付款、解除或其他后果，仅在该笔交易符合相应法律条件时适用。',
       '接受本通用服务条款并不替代法律要求的、针对具体交易单独作出的同意。',
     ],
@@ -326,7 +328,7 @@ export default function SimplifiedChineseTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · 简体中文</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">服务条款</h1>
-          <p className="text-zinc-500 text-sm">最后更新：2026 年 8 月 26 日</p>
+          <p className="text-zinc-500 text-sm">简体中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             本条款涵盖 TycoonX 账户、游戏玩法、虚拟资产、Diamonds、一次性 30-Day VIP、限时 Lifetime VIP、购买与定价、Apple App Store、Google Play、由 Xsolla 提供支付支持的官方网页商店、安全、服务变更、故障中断、账户处置、社区功能以及永久停止服务。
           </p>
@@ -352,9 +354,9 @@ export default function SimplifiedChineseTycoonXTermsOfService() {
           <h2 className="text-white font-semibold mb-3">购买、隐私、社区与客服</h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX 由 CK-Labs 运营。支付相关细节请查看购买与退款政策；个人数据处理请查看隐私政策；社交与审核规则请查看社区标准；账户、购买或账户处置问题可联系 TycoonX 客服。</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">购买与退款政策</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">隐私政策</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">社区标准</a>
+            <a href="/tycoonx-legal/zh_Hans/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">购买与退款政策</a>
+            <a href="/tycoonx-legal/zh_Hans/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">隐私政策</a>
+            <a href="/tycoonx-legal/zh_Hans/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">社区标准</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX 客服</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
