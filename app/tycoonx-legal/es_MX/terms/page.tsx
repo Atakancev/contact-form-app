@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds y otros objetos virtuales',
     body: [
-      'Los Diamonds y otros objetos virtuales son contenido digital o derechos de uso licenciados exclusivamente para TycoonX. Salvo que una norma obligatoria indique lo contrario, comprarlos no transfiere la propiedad de los datos subyacentes del juego.',
+      'Los Diamonds y otros objetos virtuales son elementos digitales o derechos de uso licenciados exclusivamente para TycoonX. Esta descripción contractual no determina por sí sola la clasificación jurídica de la moneda virtual comprada a efectos de un derecho de desistimiento obligatorio. Salvo que una norma obligatoria indique lo contrario, comprarlos no transfiere la propiedad de los datos subyacentes del juego.',
       'Los Diamonds comprados no vencen únicamente por el paso del tiempo. CK-Labs puede corregir o retirar Diamonds cuando la compra correspondiente sea reembolsada, revertida, objeto de chargeback, fraudulenta, duplicada, técnicamente errónea o inválida por otro motivo.',
       'Los Diamonds y beneficios gratuitos, regalados, de eventos, pruebas, revisión, compensación o promociones pueden quedar sujetos a condiciones, límites, requisitos de elegibilidad o vigencia informados por separado, cuando la ley y las reglas de plataforma lo permitan. Recibir algo gratis o como promoción no crea automáticamente derecho a recibir algo equivalente después.',
       'La utilidad dentro del juego de Diamonds y otros objetos virtuales puede cambiar por motivos válidos como balance, estabilidad de la economía, medidas contra inflación, seguridad, prevención de abuso, cambios técnicos, nuevas funciones, correcciones o requisitos legales, siempre respetando los derechos obligatorios aplicables a productos digitales.',
@@ -170,9 +170,11 @@ const sections = [
     title: 'Derecho de desistimiento y derechos digitales en la UE y Alemania',
     body: [
       'Nada de estos Términos excluye derechos legales de desistimiento, conformidad, actualizaciones, garantía, reducción de precio, terminación, reembolso u otros derechos que no puedan renunciarse legalmente.',
-      'Para contenido digital suministrado de inmediato, como un paquete de Diamonds, el derecho legal de desistimiento solo puede extinguirse después de comenzar la prestación cuando se hayan cumplido todas las condiciones exigidas, incluido cualquier consentimiento expreso y específico de la transacción para comenzar anticipadamente, el reconocimiento de la pérdida del derecho y la confirmación contractual necesaria.',
+      'Para consumidores de la UE/EEE, el simple hecho de acreditar Diamonds comprados a una cuenta de TycoonX no constituye por sí solo un suministro inmediato de contenido digital que extinga automáticamente el derecho legal de desistimiento. Cuando resulte aplicable un derecho legal de desistimiento de 14 días a moneda virtual de juego comprada, los Diamonds comprados y no utilizados siguen sujetos a ese derecho durante el plazo legal.',
+      'Si los Diamonds comprados ya se gastaron, transfirieron o canjearon por contenido o servicios digitales, las consecuencias del desistimiento se determinan conforme a la ley obligatoria y a la transacción específica, y no mediante una regla general de no reembolso. Cuando una compra separada de contenido digital o de un servicio digital pueda perder legalmente el derecho de desistimiento tras el inicio anticipado de la prestación, ese resultado solo aplica si se cumplieron todos los requisitos legales de esa transacción, incluida cualquier solicitud o consentimiento expreso y específico de la transacción, reconocimiento y confirmación contractual exigidos.',
+      'El comerciante contratante o el canal de pago puede determinar cómo se presenta o procesa una solicitud de desistimiento, pero esa distribución de funciones no elimina un derecho de desistimiento obligatorio.',
       'El VIP de 30 días y Lifetime VIP se prestan durante un periodo de tiempo. La activación inmediata o el hecho de pagarse una sola vez no elimina por sí solo todos los derechos de desistimiento o remedios relativos a servicios digitales. Cualquier solicitud de prestación anticipada, pago proporcional después del desistimiento, terminación u otra consecuencia solo aplica si se cumplen los requisitos legales de esa transacción.',
-      'Aceptar estos Términos generales no sustituye un consentimiento separado y específico cuando la ley lo exija.',
+      'Aceptar estos Términos generales no sustituye un consentimiento separado y específico de la transacción cuando la ley lo exija.',
     ],
   },
   {
@@ -326,7 +328,7 @@ export default function MexicanSpanishTycoonXTerms() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Español (México)</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Términos de Servicio</h1>
-          <p className="text-zinc-500 text-sm">Última actualización: 25 de agosto de 2026</p>
+          <p className="text-zinc-500 text-sm">Última actualización: 29 de agosto de 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Estos Términos regulan las cuentas de TycoonX, juego, activos virtuales, Diamonds, VIP de 30 días de pago único, Lifetime VIP por tiempo limitado, compras, precios, Apple App Store, Google Play, la tienda web oficial con Xsolla, seguridad, cambios del Servicio, caídas, medidas sobre cuentas, funciones de comunidad y cierre permanente.
           </p>
