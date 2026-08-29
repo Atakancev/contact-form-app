@@ -19,15 +19,15 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, repository-wide QA found that the canonical Terms and at least the Turkish Terms still used the older formulation that treated a Diamond bundle as immediately supplied digital content for withdrawal purposes. This conflicts with the August 28 Purchases treatment and the European Commission/CPC Network principle that purchased in-game virtual currency should not be treated as digital content merely to remove the withdrawal right.
 
-The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages are conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
+The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages were conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-This means **75/100 localized full documents are currently confirmed current**. The drop from 100/100 is intentional and prevents stale localized Terms from being incorrectly counted as complete.
+The Turkish Terms were synchronized on August 29. This means **76/100 localized full documents are currently confirmed current**. The remaining 24 Terms pages stay reopened until individually audited and refreshed.
 
 ### Locale status
 
 | Locale | Terms | Purchases & Refunds | Privacy | Community | Total current |
 | --- | --- | --- | --- | --- | --- |
-| tr | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| tr | Ready | Ready | Ready | Ready | 4/4 |
 | de | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | es | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | es_MX | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ This means **75/100 localized full documents are currently confirmed current**. 
 
 A material canonical Terms change on August 29 reopened the Terms localization queue.
 
-**Exact next unfinished locale/document: Turkish (`tr`) Terms of Service.**
+**Exact next unfinished locale/document: German (`de`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
+Continue Terms synchronization in exactly this order: de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -77,6 +77,14 @@ Canonical English Terms correction commits:
 
 - `7e6bbc70eab68417246620f6f8a93ed322c8adfd` for `tyconx-terms-of-service.md`;
 - `18a655b9dbe9c204345a9128a99942d5a59e75ee` for `app/tyconx-terms-of-service/page.tsx`.
+
+## Turkish (`tr`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/tr/terms/page.tsx` was synchronized to the August 29 canonical Terms withdrawal meaning. It now states that merely crediting purchased Diamonds does not automatically remove an applicable EU/EEA withdrawal right, preserves the applicable 14-day right for purchased and unused Diamonds, handles spent/transferred/exchanged Diamonds under mandatory law and the specific transaction, preserves transaction-specific early-performance requirements for separate digital content/services, and keeps the contracting merchant/payment-channel procedure separate from the existence of mandatory rights.
+
+The Turkish page date is synchronized to **29 Ağustos 2026**, and the one-time 30-Day VIP and limited-window Lifetime VIP treatment remains intact.
+
+Turkish Terms refresh commit: `b1fd1ad8653fbdb3de31e814459c4729a7468023`.
 
 ## August 28, 2026 Purchases invariants
 
@@ -115,16 +123,16 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 - the same principles call for clear and transparent real-money pricing and pre-contractual information and avoidance of practices that hide in-game digital costs or force virtual-currency purchases;
 - Apple continues to state that purchased in-game currency may not expire and that restorable In-App Purchases need a restore mechanism;
 - Google Play continues to require verification and a `PURCHASED` state before entitlement, not `PENDING`, followed by timely acknowledgement or consumption; and
-- Xsolla's current Refund Policy remains transaction-specific and includes EU/EEA withdrawal treatment plus refund eligibility for unused or unredeemed in-game currency in relevant cases.
+- Xsolla's current Refund Policy, listed as updated **June 16, 2026**, remains transaction-specific and includes EU/EEA withdrawal treatment plus refund eligibility for unused or unredeemed in-game currency in relevant cases.
 
 Germany's electronic withdrawal-function requirement has been in force since **June 19, 2026**. The canonical Terms and Purchases policy allocate that obligation according to the contracting trader and legally relevant purchase interface without attempting to remove mandatory rights.
 
 ## Progress snapshot
 
-- **Localized full documents:** 75/100 (75%)
+- **Localized full documents:** 76/100 (76%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.7%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 89%
-- **Exact next unfinished locale/document:** Turkish (`tr`) Terms of Service
-- **Next hardening task:** propagate the August 29 Terms withdrawal correction through all 25 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
+- **Overall project completion:** 89.4%
+- **Exact next unfinished locale/document:** German (`de`) Terms of Service
+- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 24 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
