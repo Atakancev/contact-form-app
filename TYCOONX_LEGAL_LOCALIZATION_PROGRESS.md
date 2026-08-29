@@ -2,7 +2,7 @@
 
 Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository.
 
-Last synchronized: **August 29, 2026**.
+Last synchronized: **August 30, 2026**.
 
 ## Rules
 
@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), and Traditional Chinese (`zh_Hant`) are now synchronized. This means **90/100 localized full documents are currently confirmed current**. The remaining **10 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), and Arabic (`ar`) are now synchronized. This means **91/100 localized full documents are currently confirmed current**. The remaining **9 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -44,7 +44,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | zh | Ready | Ready | Ready | Ready | 4/4 |
 | zh_Hans | Ready | Ready | Ready | Ready | 4/4 |
 | zh_Hant | Ready | Ready | Ready | Ready | 4/4 |
-| ar | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ar | Ready | Ready | Ready | Ready | 4/4 |
 | nl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | sv | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | nb | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Arabic (`ar`) Terms of Service.**
+**Exact next unfinished locale/document: Dutch (`nl`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Traditional Chinese (`zh_Hant`) Terms completion checkpoint
+## Arabic (`ar`) Terms completion checkpoint
 
-On **August 29, 2026**, `app/tycoonx-legal/zh_Hant/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Traditional Chinese.
+On **August 30, 2026**, `app/tycoonx-legal/ar/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Arabic while preserving its RTL presentation.
 
 The refreshed page now:
 
@@ -113,15 +113,15 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- fixes a stray Simplified Chinese character sequence in the VIP feature wording so the page consistently uses Traditional Chinese;
-- links directly to the completed Traditional Chinese Purchases, Privacy, and Community pages; and
-- displays **繁體中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日** with the brand exactly as `TycoonX`.
+- retains `dir="rtl"` and `lang="ar"` for proper Arabic page direction and language metadata;
+- links directly to the completed Arabic Purchases, Privacy, and Community pages; and
+- displays **النسخة العربية: 29 أغسطس 2026 · النص الإنجليزي المعتمد: 29 أغسطس 2026** with the brand exactly as `TycoonX`.
 
-Traditional Chinese Terms refresh commit: `5278ff23dced302f673e86d715c4112a1e073685`.
+Arabic Terms refresh commit: `a571fe6d0cf0ec69cc5d61669a21cc3abd81b882`.
 
 ## Current official-source checks
 
-As of **August 29, 2026**, the scoped official-source audit remains consistent with the canonical approach:
+As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical approach:
 
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, and respect for withdrawal rights: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
 - Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
@@ -131,9 +131,9 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 90/100, **90%**
+- **Localized full documents:** 91/100, **91%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **95.0%**
-- **Exact next unfinished locale/document:** Arabic (`ar`) Terms of Service
+- **Overall project completion:** **95.4%**
+- **Exact next unfinished locale/document:** Dutch (`nl`) Terms of Service
