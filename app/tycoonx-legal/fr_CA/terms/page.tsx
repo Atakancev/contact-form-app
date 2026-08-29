@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds et autres objets virtuels',
     body: [
-      'Les Diamonds et autres objets virtuels sont des contenus numériques ou des droits d’utilisation sous licence destinés uniquement à TycoonX. Sauf disposition impérative contraire, leur achat ne transfère pas la propriété des données sous-jacentes du jeu.',
+      'Les Diamonds et autres objets virtuels sont des éléments numériques ou des droits d’utilisation sous licence destinés uniquement à TycoonX. Sauf disposition impérative contraire, leur achat ne transfère pas la propriété des données sous-jacentes du jeu. Cette description contractuelle ne détermine pas à elle seule la qualification juridique des monnaies virtuelles achetées aux fins d’un droit impératif de rétractation.',
       'Les Diamonds achetés n’expirent pas uniquement parce que du temps s’écoule. CK-Labs peut corriger ou retirer des Diamonds lorsque l’achat correspondant est remboursé, annulé, rétrofacturé, frauduleux, dupliqué, techniquement erroné ou autrement invalide.',
       'Les Diamonds et avantages promotionnels, cadeaux, liés à un événement, à un test, à une évaluation, à une compensation ou gratuits peuvent être assujettis à des conditions, limites, critères d’admissibilité ou dates d’expiration communiqués séparément lorsque la loi et les règles de plateforme le permettent. Une attribution gratuite ou promotionnelle ne crée pas automatiquement un droit à une attribution équivalente plus tard.',
       'L’utilité des Diamonds et autres objets virtuels dans le jeu peut évoluer pour des raisons valables comme l’équilibrage, la stabilité de l’économie, les mesures anti-inflation, la sécurité, la prévention des abus, les changements techniques, les nouvelles fonctions, les corrections de bogues ou les exigences légales, sous réserve des règles impératives applicables aux produits numériques.',
@@ -170,8 +170,12 @@ const sections = [
     title: 'Droit de rétractation et droits sur les produits numériques dans l’UE et en Allemagne',
     body: [
       'Aucune disposition des présentes Conditions n’exclut les droits légaux de rétractation, de conformité, de mise à jour, de garantie, de réduction de prix, de résiliation, de remboursement ou autres droits qui ne peuvent pas légalement être écartés.',
-      'Pour un contenu numérique fourni immédiatement, comme un ensemble de Diamonds, le droit légal de rétractation ne peut s’éteindre après le début de la fourniture que lorsque toutes les conditions légales requises sont remplies, notamment tout consentement exprès et propre à la transaction pour commencer l’exécution avant la fin du délai, la reconnaissance de la perte du droit de rétractation et la confirmation contractuelle requise.',
-      'Le VIP 30 jours et Lifetime VIP sont fournis dans la durée. Une activation immédiate ou un prix payé en une seule fois n’élimine pas, à lui seul, tous les droits de rétractation ou recours liés à un service numérique. Toute demande d’exécution anticipée, tout paiement proportionnel après rétractation, toute résiliation ou autre conséquence ne s’applique que si les conditions légales de la transaction sont remplies.',
+      'Le simple fait de créditer des Diamonds achetés au compte TycoonX ne fait pas automatiquement disparaître un droit de rétractation applicable dans l’Union européenne ou l’Espace économique européen.',
+      'Lorsqu’un droit légal de rétractation de 14 jours s’applique à une monnaie virtuelle achetée dans le jeu, les Diamonds achetés et non utilisés demeurent assujettis à ce droit pendant le délai légal.',
+      'Si des Diamonds achetés ont déjà été dépensés, transférés ou échangés, les conséquences d’une rétractation sont déterminées selon les règles impératives et les circonstances propres à la transaction, et non par une règle générale de non-remboursement.',
+      'Pour un achat distinct de contenu numérique ou de service numérique dont l’exécution commence avant la fin du délai de rétractation, le droit de rétractation ne peut s’éteindre que si toutes les conditions légales propres à cette transaction sont réellement remplies, notamment toute demande ou tout consentement exprès requis, la reconnaissance requise et la confirmation contractuelle exigée.',
+      'Le marchand contractant ou le canal de paiement peut déterminer la façon dont une demande de rétractation doit être présentée ou traitée, sans que cette répartition des rôles supprime un droit impératif.',
+      'Le VIP 30 jours et Lifetime VIP sont des droits numériques distincts fournis dans la durée. Une activation immédiate ou un prix payé en une seule fois n’élimine pas, à lui seul, tous les droits de rétractation ou recours liés à un service numérique. Toute demande d’exécution anticipée, tout paiement proportionnel après rétractation, toute résiliation ou autre conséquence ne s’applique que si les conditions légales de la transaction sont remplies.',
       'L’acceptation des présentes Conditions générales n’est pas destinée à remplacer un consentement propre à la transaction lorsqu’un tel consentement est exigé par la loi.',
     ],
   },
@@ -326,7 +330,7 @@ export default function CanadianFrenchTycoonXTerms() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Français (Canada)</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Conditions d’utilisation</h1>
-          <p className="text-zinc-500 text-sm">Dernière mise à jour : 25 août 2026</p>
+          <p className="text-zinc-500 text-sm">Dernière mise à jour : 29 août 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Ces Conditions couvrent les comptes TycoonX, le jeu, les actifs virtuels, les Diamonds, le VIP 30 jours à paiement unique, Lifetime VIP offert pour une durée limitée, les achats, les prix, l’Apple App Store, Google Play, la boutique Web officielle avec Xsolla, la sécurité, les changements au Service, les pannes, les mesures sur les comptes, les fonctions communautaires et l’arrêt définitif du Service.
           </p>
@@ -350,11 +354,11 @@ export default function CanadianFrenchTycoonXTerms() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Achats, confidentialité, communauté et soutien</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX est exploité par CK-Labs. Les autres politiques complètes sont encore en cours de localisation en français canadien; leurs versions anglaises demeurent la source canonique jusqu’à leur publication en français canadien.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX est exploité par CK-Labs. Les politiques complètes sur les achats et remboursements, la confidentialité et les règles communautaires sont également disponibles en français canadien. La version anglaise demeure canonique en cas d’écart de sens juridique, sans limiter les droits impératifs applicables.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Achats et remboursements</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Politique de confidentialité</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Règles communautaires</a>
+            <a href="/tycoonx-legal/fr_CA/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Achats et remboursements</a>
+            <a href="/tycoonx-legal/fr_CA/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Politique de confidentialité</a>
+            <a href="/tycoonx-legal/fr_CA/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Règles communautaires</a>
             <a href="/tycoonx-legal/fr_CA" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Portail juridique français (Canada)</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Soutien TycoonX</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
