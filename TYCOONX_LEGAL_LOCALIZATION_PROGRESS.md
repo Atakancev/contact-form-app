@@ -17,7 +17,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides localized navigation and summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. Purchases & Refunds is now current in the first **24 locales**, bringing the current total to **99/100 localized full documents**.
+All **25 locales** now have current Terms, Purchases & Refunds, Privacy Policy, and Community Standards. This brings the localization program to **100/100 localized full documents**.
 
 ### Locale status
 
@@ -47,17 +47,19 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. Purc
 | vi | Ready | Ready | Ready | Ready | 4/4 |
 | uk | Ready | Ready | Ready | Ready | 4/4 |
 | hi | Ready | Ready | Ready | Ready | 4/4 |
-| id | Ready | Refresh needed | Ready | Ready | 3/4 |
+| id | Ready | Ready | Ready | Ready | 4/4 |
 
-### Current localization refresh queue
+## Localization queue
 
-1. Indonesian (`id`) - Purchases & Refunds
+The prescribed locale/document queue is complete.
 
-**Exact next unfinished locale/document: Indonesian (`id`) - Purchases & Refunds.**
+**Exact next unfinished locale/document: none. All 25 locales and all four required documents are current.**
 
-## August 28, 2026 Purchases refresh requirements
+The next work item is repository-wide legal QA and commercial/payment readiness hardening against the canonical English documents, platform rules, and German/EU mandatory consumer law. If the canonical English meaning changes materially, reopen the localization queue in the required locale order for the affected document.
 
-Every refreshed localized Purchases page must preserve all of the following:
+## August 28, 2026 Purchases invariants
+
+Every localized Purchases page must continue to preserve all of the following:
 
 - merely crediting purchased Diamonds to the TycoonX account does not automatically extinguish an applicable EU/EEA statutory withdrawal right;
 - where a **14-day statutory withdrawal right** applies to purchased in-game virtual currency, purchased and unused Diamonds remain covered during that statutory period;
@@ -70,43 +72,9 @@ Every refreshed localized Purchases page must preserve all of the following:
 - Apple App Store, Google Play, Xsolla, refund, chargeback, regional pricing, tax/VAT/FX, promotion, entitlement, obvious-error, security, supported-version/update, Family Sharing, and permanent-service-discontinuation protections remain intact; and
 - mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights remain intact.
 
-## Vietnamese (`vi`) checkpoint
+## Indonesian (`id`) completion checkpoint
 
-On **August 29, 2026**, `app/tycoonx-legal/vi/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
-
-- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds instead of treating account crediting as automatically ending that right;
-- handles already spent, transferred, or exchanged Diamonds under mandatory law and the circumstances of the specific transaction rather than a blanket no-refunds rule;
-- preserves Apple, Google, Xsolla, or another contracting merchant/payment provider as the procedural withdrawal/refund route where applicable without allowing that allocation to remove mandatory rights;
-- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA consumer rules require it;
-- rejects virtual-currency layers, conversion structures, or bundle design used to obscure real cost or force materially unwanted surplus currency where prohibited;
-- preserves the one-time non-renewing 30-Day VIP distinction and the limited-window Lifetime VIP model, including the rule that Lifetime VIP may be withdrawn from sale, may never return, may use different genuine sales-window prices, and means the commercial operating lifetime of TycoonX rather than a promise that the Service will exist forever;
-- keeps Apple App Store, Google Play `PENDING`/`PURCHASED`, Xsolla merchant/payment roles, future and regional pricing, taxes/VAT/FX, promotion abuse, obvious pricing/configuration errors, duplicate grants, failed/reversed payments, authoritative records, account compromise/fraud, chargebacks, entitlement recovery, required updates/supported versions, Family Sharing, and permanent-service-discontinuation protections;
-- uses natural Vietnamese legal wording and preserves the exact displayed `TycoonX` brand; and
-- is synchronized to **August 28, 2026** for both the Vietnamese version and canonical English Purchases policy.
-
-Vietnamese Purchases refresh commit: `3e0f552b3a2b93d7edde2a8828a66f8504229530`.
-
-## Ukrainian (`uk`) checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/uk/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
-
-- no longer treats the mere crediting of purchased Diamonds as automatically extinguishing an applicable EU/EEA withdrawal right;
-- preserves an applicable **14-day statutory withdrawal right** for purchased and unused Diamonds during the statutory period;
-- handles spent, transferred, or exchanged Diamonds under mandatory law and the circumstances of the particular transaction rather than a blanket no-refunds rule;
-- preserves Apple, Google, Xsolla, or another contracting merchant/payment channel as the procedural withdrawal/refund route where applicable without allowing that role allocation to remove mandatory rights;
-- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it, and rejects virtual-currency layers or bundle structures used to obscure real cost or force materially unwanted surplus currency where prohibited;
-- preserves Apple consumable/non-consumable treatment, Google Play `PENDING`/`PURCHASED` verification and authoritative purchase-token logic, Xsolla merchant/payment roles, and entitlement correction after refunds, reversals, chargebacks, fraud, duplicate grants, or invalid transactions;
-- preserves future and regional pricing, tax/VAT/FX changes, genuine promotional sales windows, no automatic retroactive repricing or price matching, obvious catalog/configuration-error correction, supported versions and required updates, entitlement restoration, Family Sharing, and permanent-service-discontinuation protections;
-- keeps 30-Day VIP as a one-time non-renewing 30-day entitlement and Lifetime VIP as a limited-window promotional product that may be withdrawn from sale, may never return, may have different prices in different genuine sales windows, and means the commercial operating lifetime of TycoonX rather than a promise of perpetual service;
-- preserves mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights;
-- uses natural Ukrainian legal wording, `lang="uk"`, and the exact displayed `TycoonX` brand; and
-- is synchronized to **August 28, 2026** for both the Ukrainian version and canonical English Purchases policy.
-
-Ukrainian Purchases refresh commit: `4b58e08db742536e5d9adeba266f580563cd64f4`.
-
-## Hindi (`hi`) checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/hi/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
+On **August 29, 2026**, `app/tycoonx-legal/id/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
 
 - states that merely crediting purchased Diamonds to a TycoonX account does not automatically extinguish an applicable EU/EEA statutory withdrawal right;
 - preserves an applicable **14-day statutory withdrawal right** for purchased and unused Diamonds during the statutory period;
@@ -115,11 +83,11 @@ On **August 29, 2026**, `app/tycoonx-legal/hi/purchases/page.tsx` was refreshed 
 - adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it, and rejects virtual-currency layers, conversion structures, or bundle design used to hide real cost or force materially unwanted surplus virtual currency where prohibited;
 - preserves Apple consumable/non-consumable treatment, Google Play `PENDING`/`PURCHASED`, Xsolla merchant/payment roles, refunds, reversals, chargebacks, authoritative records, obvious errors, promotions, regional pricing, VAT/FX, supported versions, entitlement restoration, Family Sharing, account compromise/fraud, and permanent-service-discontinuation protections;
 - keeps 30-Day VIP as a one-time non-renewing 30-day entitlement and Lifetime VIP as a limited-window promotional offering that may be withdrawn from sale, may never return, may have different prices in different genuine sales windows, and means the commercial operating lifetime of TycoonX rather than perpetual service;
-- preserves mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights;
-- uses `lang="hi"`, naturalized the visible Hindi title and privacy link, and preserves the exact displayed `TycoonX` brand; and
-- is synchronized to **August 28, 2026** for both the Hindi version and canonical English Purchases policy.
+- uses more natural Indonesian legal and commerce wording instead of unnecessary English loan phrases where a clear Indonesian equivalent exists;
+- uses `lang="id"`, preserves the exact displayed `TycoonX` brand, and keeps the legacy technical `/tyconx-support` route unchanged; and
+- is synchronized to **August 28, 2026** for both the Indonesian version and canonical English Purchases policy.
 
-Hindi Purchases refresh commit: `7fce8f0af0a765db2a3889a57a7adea88a4f507c`.
+Indonesian Purchases refresh commit: `37fbaf738607a1cb6db047de5b73f7d5b8913d85`.
 
 ## Canonical source status
 
@@ -133,18 +101,19 @@ Hindi Purchases refresh commit: `7fce8f0af0a765db2a3889a57a7adea88a4f507c`.
 
 As of **August 29, 2026**, the scoped official-source audit remains consistent with the canonical English approach:
 
-- the European Commission/CPC Network continues to identify clear real-money pricing, avoidance of hidden or forced virtual-currency costs, respect for withdrawal rights, and protection of vulnerable consumers as core principles for in-game virtual currencies;
+- the European Commission/CPC Network continues to identify clear and transparent pricing and pre-contractual information, avoidance of practices that hide in-game digital costs or force virtual-currency purchases, respect for withdrawal rights, and protection of vulnerable consumers as core principles for in-game virtual currencies;
 - Apple continues to state that purchased in-game currency may not expire and that restorable In-App Purchases need a restore mechanism;
-- Google Play continues to require verification and a `PURCHASED` state before entitlement, not `PENDING`, followed by timely acknowledgement/consumption; and
-- Xsolla's current Refund Policy remains transaction-specific and includes EU/EEA 14-day withdrawal treatment plus refund eligibility for unused/unredeemed in-game currency in relevant cases.
+- Google Play continues to require verification and a `PURCHASED` state before entitlement, not `PENDING`, followed by timely acknowledgement or consumption; and
+- Xsolla's current Refund Policy remains transaction-specific and includes EU/EEA 14-day withdrawal treatment plus refund eligibility for unused or unredeemed in-game currency in relevant cases.
 
-Germany's electronic withdrawal-function requirement under § 356a BGB has been in force since **June 19, 2026**. The canonical Purchases policy allocates that obligation according to the contracting trader and legally relevant purchase interface without attempting to remove mandatory rights.
+Germany's electronic withdrawal-function requirement has been in force since **June 19, 2026**. The canonical Purchases policy allocates that obligation according to the contracting trader and legally relevant purchase interface without attempting to remove mandatory rights.
 
 ## Progress snapshot
 
-- **Localized full documents:** 99/100 (99%)
+- **Localized full documents:** 100/100 (100%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 99.4%
-- **Next:** Indonesian (`id`) - Purchases & Refunds
+- **Overall project completion:** 99.6%
+- **Exact next unfinished locale/document:** none
+- **Next hardening task:** final repository-wide legal QA and commercial/payment readiness audit; reopen affected localizations only if canonical English meaning changes materially.
