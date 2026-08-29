@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamondsその他の仮想アイテム',
     body: [
-      'Diamondsその他の仮想アイテムは、TycoonX内でのみ利用できるライセンスされたデジタルゲームコンテンツまたは利用権です。強行法により別途定められる場合を除き、購入によって基礎となるゲームデータ自体の所有権が移転するものではありません。',
+      'Diamondsその他の仮想アイテムは、TycoonX内でのみ利用できる、ライセンスされたデジタル要素または利用権です。この契約上の表現は、購入されたゲーム内仮想通貨について、強行法上の撤回権に関する法的分類をそれ自体で決定するものではありません。強行法により別途定められる場合を除き、購入によって基礎となるゲームデータ自体の所有権が移転するものではありません。',
       '購入したDiamondsは、単に時間が経過したことだけを理由に失効しません。対応する購入が返金、取消し、チャージバック、不正、重複、技術的誤り、その他の理由で無効となった場合、CK-Labsは該当するDiamondsを修正または削除することがあります。',
       'キャンペーン、ギフト、イベント、テスト、レビュー、補償、その他無料で付与されたDiamondsや特典には、法律およびプラットフォーム規則で認められる範囲で、別途条件、上限、参加資格、または有効期限が設定される場合があります。無料またはキャンペーン上の付与は、将来も同等の付与を受けられる権利を当然に生じさせるものではありません。',
       'Diamondsその他の仮想アイテムのゲーム内での用途や効果は、ゲームバランス、経済の安定、インフレ対策、セキュリティ、不正利用防止、技術変更、新機能、バグ修正、法令対応などの正当な理由により変更される場合があります。ただし、デジタル製品に関する強行法上の権利は維持されます。',
@@ -170,8 +170,11 @@ const sections = [
     title: 'EU・ドイツの撤回権とデジタル製品の権利',
     body: [
       '本規約のいかなる内容も、法令上放棄できない撤回、契約適合性、アップデート、保証、代金減額、契約終了、返金その他の権利を排除するものではありません。',
-      'Diamondバンドルのように即時提供されるデジタルコンテンツについて、法定撤回権が提供開始後に消滅するのは、早期履行への取引ごとの明示的同意、撤回権を失うことの確認、契約確認など、法律が求めるすべての条件が満たされた場合に限られます。',
-      '30-Day VIPとLifetime VIPは一定期間にわたり提供される権利です。即時有効化や1回限りの購入価格だけを理由に、すべての法定撤回権またはデジタルサービス上の救済が当然に消滅するものではありません。早期履行の申込み、撤回後の比例支払、契約終了その他の効果は、各取引について法的要件が満たされる場合に限り適用されます。',
+      '購入したDiamondsがTycoonXアカウントに付与されたという事実だけで、適用されるEU・EEAの法定撤回権が自動的に消滅するものではありません。購入されたゲーム内仮想通貨に14日間の法定撤回権が適用される場合、その期間中、購入済みかつ未使用のDiamondsはその権利の対象となります。',
+      '購入したDiamondsがすでに使用、移転、または交換されている場合、撤回の効果は、包括的な「返金不可」ルールではなく、強行法および個別の取引事情に従って判断されます。',
+      'Diamondsとは別個のデジタルコンテンツまたはデジタルサービスの購入について、早期履行後に撤回権が消滅するのは、取引ごとに必要とされる早期履行の申込みまたは明示的同意、撤回権への影響についての確認、契約確認その他、法律上必要なすべての条件が満たされた場合に限られます。',
+      '30-Day VIPとLifetime VIPは一定期間にわたり提供される別個のデジタル権利です。即時有効化や1回限りの購入価格だけを理由に、すべての法定撤回権またはデジタルサービス上の救済が当然に消滅するものではありません。早期履行の申込み、撤回後の比例支払、契約終了その他の効果は、各取引について法的要件が満たされる場合に限り適用されます。',
+      'Apple、Google、Xsollaその他の契約上の販売事業者または決済チャネルが、撤回申請の提出先や処理方法を定める場合がありますが、その役割分担によって強行法上の撤回権が失われることはありません。',
       '本規約への一般的な同意は、法律が取引ごとの別個の同意を求める場合、その同意に代わるものではありません。',
     ],
   },
@@ -326,7 +329,7 @@ export default function JapaneseTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · 日本語</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">利用規約</h1>
-          <p className="text-zinc-500 text-sm">最終更新日：2026年8月26日</p>
+          <p className="text-zinc-500 text-sm">日本語版：2026年8月29日 · 英語版（正文）：2026年8月29日</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             本規約は、TycoonXのアカウント、ゲームプレイ、仮想資産、Diamonds、買い切り型30-Day VIP、期間限定Lifetime VIP、購入、価格、Apple App Store、Google Play、Xsollaを利用した公式Webショップ、セキュリティ、サービス変更、障害、アカウント措置、コミュニティ機能、サービスの恒久的終了に適用されます。
           </p>
@@ -350,11 +353,11 @@ export default function JapaneseTycoonXTermsOfService() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">購入・プライバシー・コミュニティ・サポート</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonXはCK-Labsが運営しています。購入に関する詳細は「購入・返金ポリシー」、ソーシャル機能とモデレーションは「コミュニティ基準」、アカウント・購入・措置に関するお問い合わせはTycoonXサポートをご確認ください。</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonXはCK-Labsが運営しています。日本語の「購入・返金ポリシー」「プライバシーポリシー」「コミュニティ基準」もあわせてご確認ください。法的な意味に相違がある場合は英語版を正文としますが、強行法上の権利が制限されることはありません。アカウント、購入、措置に関するお問い合わせはTycoonXサポートをご利用ください。</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">購入・返金ポリシー</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">プライバシーポリシー</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">コミュニティ基準</a>
+            <a href="/tycoonx-legal/ja/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">購入・返金ポリシー</a>
+            <a href="/tycoonx-legal/ja/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">プライバシーポリシー</a>
+            <a href="/tycoonx-legal/ja/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">コミュニティ基準</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonXサポート</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
