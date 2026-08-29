@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), and Arabic (`ar`) are now synchronized. This means **91/100 localized full documents are currently confirmed current**. The remaining **9 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), and Dutch (`nl`) are now synchronized. This means **92/100 localized full documents are currently confirmed current**. The remaining **8 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -45,7 +45,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | zh_Hans | Ready | Ready | Ready | Ready | 4/4 |
 | zh_Hant | Ready | Ready | Ready | Ready | 4/4 |
 | ar | Ready | Ready | Ready | Ready | 4/4 |
-| nl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| nl | Ready | Ready | Ready | Ready | 4/4 |
 | sv | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | nb | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | pl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Dutch (`nl`) Terms of Service.**
+**Exact next unfinished locale/document: Swedish (`sv`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Arabic (`ar`) Terms completion checkpoint
+## Dutch (`nl`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/ar/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Arabic while preserving its RTL presentation.
+On **August 30, 2026**, `app/tycoonx-legal/nl/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Dutch.
 
 The refreshed page now:
 
@@ -113,11 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- retains `dir="rtl"` and `lang="ar"` for proper Arabic page direction and language metadata;
-- links directly to the completed Arabic Purchases, Privacy, and Community pages; and
-- displays **النسخة العربية: 29 أغسطس 2026 · النص الإنجليزي المعتمد: 29 أغسطس 2026** with the brand exactly as `TycoonX`.
+- links directly to the completed Dutch Purchases, Privacy, and Community pages; and
+- displays **Nederlandse versie: 29 augustus 2026 · Canonieke Engelse versie: 29 augustus 2026** with the brand exactly as `TycoonX`.
 
-Arabic Terms refresh commit: `a571fe6d0cf0ec69cc5d61669a21cc3abd81b882`.
+Dutch Terms refresh commit: `c2c23a09bfd86b5e366d12b99cb692fd905e2139`.
 
 ## Current official-source checks
 
@@ -131,9 +130,9 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 91/100, **91%**
+- **Localized full documents:** 92/100, **92%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **95.4%**
-- **Exact next unfinished locale/document:** Dutch (`nl`) Terms of Service
+- **Overall project completion:** **95.8%**
+- **Exact next unfinished locale/document:** Swedish (`sv`) Terms of Service
