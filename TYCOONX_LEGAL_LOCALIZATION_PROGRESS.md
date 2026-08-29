@@ -17,7 +17,7 @@ Canonical legal source: the English TycoonX Terms of Service, Purchases & Refund
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales and provides localized navigation and summaries.
 
-All 25 locales have current Terms, Privacy Policy, and Community Standards. Purchases & Refunds is now current in the first **23 locales**, bringing the current total to **98/100 localized full documents**.
+All 25 locales have current Terms, Privacy Policy, and Community Standards. Purchases & Refunds is now current in the first **24 locales**, bringing the current total to **99/100 localized full documents**.
 
 ### Locale status
 
@@ -46,15 +46,14 @@ All 25 locales have current Terms, Privacy Policy, and Community Standards. Purc
 | th | Ready | Ready | Ready | Ready | 4/4 |
 | vi | Ready | Ready | Ready | Ready | 4/4 |
 | uk | Ready | Ready | Ready | Ready | 4/4 |
-| hi | Ready | Refresh needed | Ready | Ready | 3/4 |
+| hi | Ready | Ready | Ready | Ready | 4/4 |
 | id | Ready | Refresh needed | Ready | Ready | 3/4 |
 
 ### Current localization refresh queue
 
-1. Hindi (`hi`) - Purchases & Refunds
-2. Indonesian (`id`) - Purchases & Refunds
+1. Indonesian (`id`) - Purchases & Refunds
 
-**Exact next unfinished locale/document: Hindi (`hi`) - Purchases & Refunds.**
+**Exact next unfinished locale/document: Indonesian (`id`) - Purchases & Refunds.**
 
 ## August 28, 2026 Purchases refresh requirements
 
@@ -105,6 +104,23 @@ On **August 29, 2026**, `app/tycoonx-legal/uk/purchases/page.tsx` was refreshed 
 
 Ukrainian Purchases refresh commit: `4b58e08db742536e5d9adeba266f580563cd64f4`.
 
+## Hindi (`hi`) checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/hi/purchases/page.tsx` was refreshed to the canonical August 28 meaning. The page now:
+
+- states that merely crediting purchased Diamonds to a TycoonX account does not automatically extinguish an applicable EU/EEA statutory withdrawal right;
+- preserves an applicable **14-day statutory withdrawal right** for purchased and unused Diamonds during the statutory period;
+- handles spent, transferred, or exchanged Diamonds under mandatory law and the circumstances of the transaction rather than a blanket no-refunds rule;
+- keeps Apple, Google, Xsolla, or another contracting merchant/payment provider as the procedural withdrawal/refund route where applicable without allowing that role allocation to remove mandatory rights;
+- adds clear real-money price transparency for paid Diamonds and for digital content/services offered for purchasable Diamonds where EU/EEA rules require it, and rejects virtual-currency layers, conversion structures, or bundle design used to hide real cost or force materially unwanted surplus virtual currency where prohibited;
+- preserves Apple consumable/non-consumable treatment, Google Play `PENDING`/`PURCHASED`, Xsolla merchant/payment roles, refunds, reversals, chargebacks, authoritative records, obvious errors, promotions, regional pricing, VAT/FX, supported versions, entitlement restoration, Family Sharing, account compromise/fraud, and permanent-service-discontinuation protections;
+- keeps 30-Day VIP as a one-time non-renewing 30-day entitlement and Lifetime VIP as a limited-window promotional offering that may be withdrawn from sale, may never return, may have different prices in different genuine sales windows, and means the commercial operating lifetime of TycoonX rather than perpetual service;
+- preserves mandatory consumer remedies, withdrawal, conformity, update, notice, consent, termination, price reduction, liability, and other non-waivable rights;
+- uses `lang="hi"`, naturalized the visible Hindi title and privacy link, and preserves the exact displayed `TycoonX` brand; and
+- is synchronized to **August 28, 2026** for both the Hindi version and canonical English Purchases policy.
+
+Hindi Purchases refresh commit: `7fce8f0af0a765db2a3889a57a7adea88a4f507c`.
+
 ## Canonical source status
 
 - English Terms: refreshed **August 25, 2026** to remove stale pre-release wording without weakening legal protections.
@@ -126,9 +142,9 @@ Germany's electronic withdrawal-function requirement under § 356a BGB has been 
 
 ## Progress snapshot
 
-- **Localized full documents:** 98/100 (98%)
+- **Localized full documents:** 99/100 (99%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.5%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 99.2%
-- **Next:** Hindi (`hi`) - Purchases & Refunds
+- **Overall project completion:** 99.4%
+- **Next:** Indonesian (`id`) - Purchases & Refunds
