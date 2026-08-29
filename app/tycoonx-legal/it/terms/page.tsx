@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds e altri oggetti virtuali",
     body: [
-      "I Diamonds e gli altri oggetti virtuali sono contenuti digitali o diritti d’uso concessi in licenza esclusivamente per TycoonX. Salvo quanto previsto da norme inderogabili, il loro acquisto non trasferisce la proprietà dei dati di gioco sottostanti.",
+      "I Diamonds e gli altri oggetti virtuali sono elementi digitali o diritti d’uso concessi in licenza esclusivamente per TycoonX. Questa descrizione contrattuale non determina, da sola, la qualificazione giuridica della valuta virtuale acquistata ai fini di un eventuale diritto di recesso inderogabile. Salvo quanto previsto da norme inderogabili, il loro acquisto non trasferisce la proprietà dei dati di gioco sottostanti.",
       "I Diamonds acquistati non scadono per il solo trascorrere del tempo. CK-Labs può correggere o rimuovere Diamonds quando il relativo acquisto è stato rimborsato, annullato, soggetto a chargeback, fraudolento, duplicato, tecnicamente errato o altrimenti invalido.",
       "Diamonds e vantaggi promozionali, regalati, legati a eventi, test, revisioni, compensazioni o concessi gratuitamente possono essere soggetti a condizioni, limiti, requisiti di idoneità o scadenze comunicati separatamente, quando consentito dalla legge e dalle regole della piattaforma. Una concessione gratuita o promozionale non crea automaticamente il diritto a ricevere lo stesso vantaggio in futuro.",
       "L’utilità nel gioco dei Diamonds e di altri oggetti virtuali può cambiare per ragioni valide come bilanciamento, stabilità dell’economia, misure anti-inflazione, sicurezza, prevenzione degli abusi, modifiche tecniche, nuove funzioni, correzioni di bug o obblighi di legge, nel rispetto delle norme inderogabili sui prodotti digitali.",
@@ -170,7 +170,9 @@ const sections = [
     title: "Diritto di recesso e diritti sui prodotti digitali nell’UE e in Germania",
     body: [
       "Nessuna disposizione dei presenti Termini esclude diritti legali di recesso, conformità, aggiornamento, garanzia, riduzione del prezzo, risoluzione, rimborso o altri diritti che non possono essere validamente esclusi.",
-      "Per contenuti digitali forniti immediatamente, come un pacchetto Diamonds, il diritto legale di recesso può estinguersi dopo l’inizio della fornitura solo quando sono soddisfatte tutte le condizioni previste dalla legge, compresi gli eventuali consensi espressi e specifici alla transazione per iniziare l’esecuzione prima della scadenza del termine, il riconoscimento della perdita del diritto di recesso e la conferma contrattuale richiesta.",
+      "Per i consumatori dell’UE/SEE, CK-Labs non considera il semplice accredito dei Diamonds acquistati come fornitura immediata di contenuto digitale che faccia automaticamente venir meno il diritto legale di recesso. Quando alla valuta virtuale di gioco acquistata si applica un diritto legale di recesso di 14 giorni, i Diamonds acquistati e non utilizzati restano soggetti a tale diritto durante il periodo previsto dalla legge.",
+      "Se i Diamonds acquistati sono già stati spesi, trasferiti o scambiati con contenuti o servizi digitali, le conseguenze del recesso sono determinate dalle norme inderogabili e dalla specifica transazione, anziché da una regola generale di non rimborso. Quando un acquisto separato di contenuti digitali o di un servizio digitale può legittimamente perdere il diritto di recesso dopo l’avvio anticipato dell’esecuzione, ciò avviene solo se sono soddisfatte tutte le condizioni richieste dalla legge, compresi eventuali richiesta o consenso espresso specifici per la transazione, presa d’atto e conferma contrattuale.",
+      "Il professionista contraente o il canale di pagamento può determinare come una richiesta di recesso debba essere presentata o trattata, ma questa ripartizione dei ruoli non elimina un diritto inderogabile di recesso.",
       "VIP 30 giorni e Lifetime VIP sono forniti nel tempo. L’attivazione immediata o il pagamento una tantum non eliminano da soli tutti i diritti di recesso o i rimedi relativi a un servizio digitale. Qualsiasi richiesta di esecuzione anticipata, pagamento proporzionale dopo il recesso, risoluzione o altra conseguenza si applica solo quando sono soddisfatti i requisiti legali della specifica transazione.",
       "L’accettazione dei presenti Termini generali non sostituisce un consenso specifico alla transazione quando tale consenso è richiesto dalla legge.",
     ],
@@ -326,7 +328,7 @@ export default function ItalianTycoonXTerms() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Italiano</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Termini di Servizio</h1>
-          <p className="text-zinc-500 text-sm">Ultimo aggiornamento: 25 agosto 2026</p>
+          <p className="text-zinc-500 text-sm">Ultimo aggiornamento: 29 agosto 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Questi Termini coprono account TycoonX, gameplay, beni virtuali, Diamonds, VIP 30 giorni con pagamento una tantum, Lifetime VIP a disponibilità limitata, acquisti, prezzi, Apple App Store, Google Play, il negozio web ufficiale con Xsolla, sicurezza, modifiche del Servizio, interruzioni, misure sugli account, funzioni della community e cessazione definitiva del Servizio.
           </p>
@@ -350,11 +352,11 @@ export default function ItalianTycoonXTerms() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Acquisti, privacy, community e supporto</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX è gestito da CK-Labs. Le altre politiche complete sono ancora in fase di localizzazione in italiano; fino alla loro pubblicazione in italiano, le versioni inglesi restano la fonte canonica.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX è gestito da CK-Labs. Le politiche complete in italiano su acquisti e rimborsi, privacy e community sono disponibili ai link qui sotto. In caso di divergenza di significato giuridico, la versione inglese canonica resta il riferimento, senza limitare alcun diritto inderogabile.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Acquisti e rimborsi</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Informativa sulla privacy</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Regole della community</a>
+            <a href="/tycoonx-legal/it/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Acquisti e rimborsi</a>
+            <a href="/tycoonx-legal/it/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Informativa sulla privacy</a>
+            <a href="/tycoonx-legal/it/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Regole della community</a>
             <a href="/tycoonx-legal/it" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Portale legale italiano</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Supporto TycoonX</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
