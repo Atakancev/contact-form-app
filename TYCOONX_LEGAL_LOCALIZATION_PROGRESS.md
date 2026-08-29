@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, and Chinese (`zh`) are now synchronized. This means **88/100 localized full documents are currently confirmed current**. The remaining **12 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), and Simplified Chinese (`zh_Hans`) are now synchronized. This means **89/100 localized full documents are currently confirmed current**. The remaining **11 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -42,7 +42,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | ja | Ready | Ready | Ready | Ready | 4/4 |
 | ko | Ready | Ready | Ready | Ready | 4/4 |
 | zh | Ready | Ready | Ready | Ready | 4/4 |
-| zh_Hans | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| zh_Hans | Ready | Ready | Ready | Ready | 4/4 |
 | zh_Hant | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | ar | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | nl | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Simplified Chinese (`zh_Hans`) Terms of Service.**
+**Exact next unfinished locale/document: Traditional Chinese (`zh_Hant`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Chinese (`zh`) Terms completion checkpoint
+## Simplified Chinese (`zh_Hans`) Terms completion checkpoint
 
-On **August 29, 2026**, `app/tycoonx-legal/zh/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Chinese.
+On **August 29, 2026**, `app/tycoonx-legal/zh_Hans/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Simplified Chinese.
 
 The refreshed page now:
 
@@ -113,10 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Chinese Purchases, Privacy, and Community pages; and
-- displays **中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日** with the brand exactly as `TycoonX`.
+- links directly to the completed Simplified Chinese Purchases, Privacy, and Community pages; and
+- displays **简体中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日** with the brand exactly as `TycoonX`.
 
-Chinese Terms refresh commit: `fe8d7095ed0a9c915b1e4003e7fc6092080c4bbf`.
+Simplified Chinese Terms refresh commit: `0f750e977717f3494733e68a626fc97ddbbbf663`.
 
 ## Current official-source checks
 
@@ -130,9 +130,9 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 88/100, **88%**
+- **Localized full documents:** 89/100, **89%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **94.2%**
-- **Exact next unfinished locale/document:** Simplified Chinese (`zh_Hans`) Terms of Service
+- **Overall project completion:** **94.6%**
+- **Exact next unfinished locale/document:** Traditional Chinese (`zh_Hant`) Terms of Service
