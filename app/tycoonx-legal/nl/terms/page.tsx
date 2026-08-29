@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds en andere virtuele items",
     body: [
-      "Diamonds en andere virtuele items zijn gelicentieerde digitale content of digitale rechten die alleen binnen TycoonX mogen worden gebruikt. Behalve wanneer dwingend recht anders vereist, draagt een aankoop geen eigendom van de onderliggende gamedata over.",
+      "Diamonds en andere virtuele items zijn gelicentieerde digitale spelelementen of gebruiksrechten die alleen binnen TycoonX mogen worden gebruikt. Deze contractuele omschrijving bepaalt op zichzelf niet hoe gekochte virtuele valuta juridisch wordt gekwalificeerd voor dwingende wettelijke herroepingsrechten. Behalve wanneer dwingend recht anders vereist, draagt een aankoop geen eigendom van de onderliggende gamedata over.",
       "Gekochte Diamonds verlopen niet alleen doordat tijd verstrijkt. CK-Labs mag Diamonds corrigeren of verwijderen wanneer de bijbehorende aankoop is terugbetaald, teruggedraaid, via een chargeback is teruggeboekt, frauduleus, dubbel toegekend, technisch onjuist of anderszins ongeldig is.",
       "Promotionele, cadeau-, evenement-, test-, review-, compensatie- of gratis Diamonds en voordelen kunnen afzonderlijk bekendgemaakte voorwaarden, limieten, geschiktheidseisen of een vervaldatum hebben wanneer wet en platformregels dat toestaan. Gratis of promotionele toekenningen geven niet automatisch recht op vergelijkbare toekomstige toekenningen.",
       "De functie of het nut van Diamonds en andere virtuele items in de gameplay kan om geldige redenen veranderen, bijvoorbeeld voor gamebalans, een gezonde economie, inflatiebeheersing, beveiliging, misbruikpreventie, technische wijzigingen, nieuwe functies, bugfixes of wettelijke vereisten. Dwingend recht voor digitale producten blijft van toepassing.",
@@ -170,7 +170,9 @@ const sections = [
     title: "EU- en Duitse herroepings- en digitaleproductrechten",
     body: [
       "Niets in deze voorwaarden sluit wettelijke herroepingsrechten, conformiteitsrechten, updateverplichtingen, garantierechten, prijsvermindering, beëindiging, terugbetaling of andere rechten uit die wettelijk niet kunnen worden weggecontracteerd.",
-      "Bij direct geleverde digitale inhoud, zoals een Diamond-bundel, kan een wettelijk herroepingsrecht na het begin van de levering alleen vervallen wanneer aan alle wettelijke voorwaarden is voldaan. Daaronder vallen, waar vereist, uitdrukkelijke toestemming per transactie voor vroege uitvoering, erkenning dat het herroepingsrecht daardoor verloren gaat en de vereiste contractbevestiging.",
+      "Voor consumenten in de EU/EER behandelt CK-Labs het enkele bijschrijven van gekochte Diamonds niet als onmiddellijk geleverde digitale inhoud waardoor het wettelijke herroepingsrecht automatisch vervalt. Wanneer op gekochte virtuele valuta in de game een wettelijk herroepingsrecht van 14 dagen van toepassing is, blijven gekochte en ongebruikte Diamonds gedurende die wettelijke termijn onder dat recht vallen.",
+      "Als gekochte Diamonds al zijn besteed, overgedragen of ingewisseld voor digitale inhoud of diensten, worden de gevolgen van herroeping bepaald door dwingend recht en de specifieke transactie, en niet door een algemene regel dat geen terugbetaling mogelijk is. Wanneer een afzonderlijke aankoop van digitale inhoud of een digitale dienst na vroege uitvoering het herroepingsrecht rechtsgeldig kan verliezen, geldt dat alleen als aan alle wettelijk vereiste voorwaarden is voldaan, waaronder waar vereist een transactiespecifiek uitdrukkelijk verzoek of toestemming, erkenning en contractbevestiging.",
+      "De contracterende handelaar of het betaalkanaal kan bepalen hoe een herroepingsverzoek wordt ingediend of verwerkt, maar die rolverdeling neemt een verplicht herroepingsrecht niet weg.",
       "30-Day VIP en Lifetime VIP worden gedurende een periode geleverd. Directe activering of een eenmalige aankoopprijs beëindigt op zichzelf niet automatisch elk wettelijk herroepingsrecht of rechtsmiddel voor digitale diensten. Een verzoek om vroege uitvoering, evenredige betaling na herroeping, beëindiging of ander gevolg geldt alleen wanneer aan de wettelijke voorwaarden voor die transactie is voldaan.",
       "Aanvaarding van deze algemene voorwaarden is niet bedoeld als vervanging voor afzonderlijke, transactiespecifieke toestemming wanneer de wet die vereist.",
     ],
@@ -326,7 +328,7 @@ export default function TycoonXDutchTerms() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Nederlands</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Gebruiksvoorwaarden</h1>
-          <p className="text-zinc-500 text-sm">Laatst bijgewerkt: 26 augustus 2026</p>
+          <p className="text-zinc-500 text-sm">Nederlandse versie: 29 augustus 2026 · Canonieke Engelse versie: 29 augustus 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Deze voorwaarden regelen TycoonX-accounts, gameplay, virtuele bezittingen, Diamonds, eenmalige 30-Day VIP, tijdelijke Lifetime VIP-aanbiedingen, aankopen, prijzen, Apple App Store, Google Play, de officiële Xsolla-webshop, beveiliging, wijzigingen aan de dienst, storingen, handhaving, communityfuncties en permanente beëindiging.
           </p>
@@ -350,9 +352,12 @@ export default function TycoonXDutchTerms() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Aankopen, privacy, community en support</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX wordt geëxploiteerd door CK-Labs. Gebruik de Nederlandstalige juridische hub voor het aankoop- en terugbetalingsbeleid, privacybeleid en communityregels, en neem contact op met TycoonX Support voor vragen over accounts, aankopen of handhavingsmaatregelen.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX wordt geëxploiteerd door CK-Labs. Raadpleeg de volledige Nederlandstalige pagina's voor aankopen en terugbetalingen, privacy en communitystandaarden, gebruik de Nederlandstalige juridische hub om ertussen te navigeren en neem contact op met TycoonX Support voor vragen over accounts, aankopen of handhavingsmaatregelen.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tycoonx-legal/nl" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Nederlandse juridische hub</a>
+            <a href="/tycoonx-legal/nl/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Aankopen & terugbetalingen</a>
+            <a href="/tycoonx-legal/nl/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Privacybeleid</a>
+            <a href="/tycoonx-legal/nl/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Communitystandaarden</a>
+            <a href="/tycoonx-legal/nl" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Nederlandse juridische hub</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
