@@ -19,7 +19,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, and Portuguese are now synchronized. This means **83/100 localized full documents are currently confirmed current**. The remaining **17 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, and Brazilian Portuguese are now synchronized. This means **84/100 localized full documents are currently confirmed current**. The remaining **16 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -33,7 +33,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | fr_CA | Ready | Ready | Ready | Ready | 4/4 |
 | it | Ready | Ready | Ready | Ready | 4/4 |
 | pt | Ready | Ready | Ready | Ready | 4/4 |
-| pt_BR | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| pt_BR | Ready | Ready | Ready | Ready | 4/4 |
 | ru | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | ja | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | ko | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -53,9 +53,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Portuguese (Brazil) (`pt_BR`) Terms of Service.**
+**Exact next unfinished locale/document: Russian (`ru`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -93,6 +93,25 @@ The refreshed page now:
 
 Portuguese Terms refresh commit: `56658219eb576a7d2a1b033a010d4861280e961e`.
 
+## Portuguese (Brazil) (`pt_BR`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/pt_BR/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Brazilian Portuguese.
+
+The refreshed page now:
+
+- describes Diamonds as licensed digital elements or usage rights without treating that contractual description as determinative of their statutory classification for withdrawal rights;
+- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
+- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds;
+- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- requires all transaction-specific legal conditions before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
+- keeps Apple, Google, Xsolla and other contracting merchant/payment-channel procedures separate from the existence of mandatory rights;
+- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
+- retains pricing, regional pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate entitlement, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
+- links directly to the completed Brazilian Portuguese Purchases, Privacy, and Community pages; and
+- displays **29 de agosto de 2026** and the brand exactly as `TycoonX`.
+
+Brazilian Portuguese Terms refresh commit: `35089678fb3cfdf8bf4932794dea2e65c050ea20`.
+
 ## August 28, 2026 Purchases invariants
 
 Every localized Purchases page remains required to preserve the following:
@@ -122,12 +141,12 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 - Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism;
 - Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, plus timely acknowledgement/consumption;
 - Xsolla's current Refund Policy continues to distinguish in-game currency and provides relevant refund/withdrawal treatment, including a 14-day EU/EEA framework in the applicable policy; and
-- Germany's electronic withdrawal-function requirement has been in force since **June 19, 2026**.
+- Germany's electronic withdrawal-function requirement under § 356a BGB remains in force.
 
 ## Progress metrics
 
-- Localized full documents: **83/100 (83%)**
+- Localized full documents: **84/100 (84%)**
 - Localized hubs: **25/25 (100%)**
 - Canonical English legal wording: **99.7%**
 - Full commercial/legal/payment readiness: **95%**
-- Overall project completion: **92.2%**
+- Overall project completion: **92.6%**
