@@ -91,7 +91,7 @@ The refreshed page now:
 - links directly to the completed Portuguese Purchases, Privacy, and Community pages; and
 - displays **29 de agosto de 2026** and the brand exactly as `TycoonX`.
 
-Portuguese Terms refresh commit: `0f5460d83ef872a858ed37a637b0edb938a031fb`.
+Portuguese Terms refresh commit: `56658219eb576a7d2a1b033a010d4861280e961e`.
 
 ## August 28, 2026 Purchases invariants
 
