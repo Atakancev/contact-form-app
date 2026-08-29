@@ -19,7 +19,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, and Brazilian Portuguese are now synchronized. This means **84/100 localized full documents are currently confirmed current**. The remaining **16 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, and Russian are now synchronized. This means **85/100 localized full documents are currently confirmed current**. The remaining **15 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -34,7 +34,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | it | Ready | Ready | Ready | Ready | 4/4 |
 | pt | Ready | Ready | Ready | Ready | 4/4 |
 | pt_BR | Ready | Ready | Ready | Ready | 4/4 |
-| ru | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| ru | Ready | Ready | Ready | Ready | 4/4 |
 | ja | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | ko | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | zh | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -53,9 +53,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Russian (`ru`) Terms of Service.**
+**Exact next unfinished locale/document: Japanese (`ja`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -112,6 +112,26 @@ The refreshed page now:
 
 Brazilian Portuguese Terms refresh commit: `35089678fb3cfdf8bf4932794dea2e65c050ea20`.
 
+## Russian (`ru`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/ru/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Russian.
+
+The refreshed page now:
+
+- describes Diamonds as licensed digital elements or rights without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
+- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
+- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
+- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction instead of a blanket no-refunds rule;
+- requires transaction-specific legal conditions before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
+- keeps the contracting merchant/payment channel responsible for the applicable procedure without allowing that role allocation to remove a mandatory right;
+- retains one-time non-renewing 30-Day VIP and limited-window Lifetime VIP distinctions;
+- retains payment-channel, regional-pricing, VAT/FX, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
+- restores the canonical rule that promotional claims, countdowns, crossed-out prices, stated savings and limited-time price claims must reflect a genuine offer and not mislead consumers;
+- links directly to the completed Russian Purchases, Privacy, and Community pages; and
+- displays **Русская версия: 29 августа 2026 г. · Каноническая английская версия: 29 августа 2026 г.** with the brand exactly as `TycoonX`.
+
+Russian Terms refresh commits: `cb3c1ecade6794102dd3bd13da1d13eb1853bd7c` and `ea9e5a706676d264a44d32c310d825e08bd61a9f`.
+
 ## August 28, 2026 Purchases invariants
 
 Every localized Purchases page remains required to preserve the following:
@@ -145,8 +165,8 @@ As of **August 29, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- Localized full documents: **84/100 (84%)**
+- Localized full documents: **85/100 (85%)**
 - Localized hubs: **25/25 (100%)**
 - Canonical English legal wording: **99.7%**
 - Full commercial/legal/payment readiness: **95%**
-- Overall project completion: **92.6%**
+- Overall project completion: **93.0%**
