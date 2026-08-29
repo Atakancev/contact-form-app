@@ -1,6 +1,6 @@
 # TycoonX Terms of Service
 
-**Last updated: August 25, 2026**
+**Last updated: August 29, 2026**
 
 These Terms of Service ("Terms") govern use of **TycoonX**, including the mobile and web applications, websites, support services, payment entitlements, community features, and related online services (together, the "Service"). TycoonX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
 
@@ -205,7 +205,11 @@ Refunds are ordinarily processed through the payment channel that handled the pu
 
 Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.
 
-For immediately supplied digital content such as a Diamond bundle, a statutory withdrawal right may expire after supply begins only when every legally required condition is satisfied, including any required transaction-specific express consent to early performance, acknowledgement of the loss of the withdrawal right, and contractual confirmation.
+For EU/EEA consumers, CK-Labs does not treat the mere crediting of purchased Diamonds as immediately supplied digital content that automatically removes the statutory withdrawal right. Where a **14-day statutory withdrawal right** applies to purchased in-game virtual currency, purchased and unused Diamonds remain subject to that right during the statutory period.
+
+If purchased Diamonds have already been spent, transferred, or exchanged for digital content or services, the consequences of withdrawal are determined by mandatory law and the specific transaction rather than by a blanket no-refunds rule. Where a separate purchase of digital content or a digital service can lawfully lose a withdrawal right after early performance, that result applies only when every legally required condition is satisfied, including any required transaction-specific express request or consent, acknowledgement, and contractual confirmation.
+
+The contracting merchant or payment channel may control how a withdrawal request is submitted or processed, but that allocation of roles does not remove a mandatory withdrawal right.
 
 A 30-Day VIP and Lifetime VIP are supplied over time. Immediate activation or a one-time purchase price does not by itself eliminate every statutory withdrawal or digital-service remedy. Any early-performance request, proportional payment after withdrawal, termination, or other consequence applies only where the legal requirements for that transaction are satisfied.
 
