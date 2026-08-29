@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds 및 기타 가상 아이템',
     body: [
-      'Diamonds 및 기타 가상 아이템은 TycoonX 안에서만 사용할 수 있도록 허가된 디지털 게임 콘텐츠 또는 이용 권리입니다. 강행법이 달리 요구하지 않는 한 구매로 인해 기반 게임 데이터의 소유권이 이전되는 것은 아닙니다.',
+      'Diamonds 및 기타 가상 아이템은 TycoonX 안에서만 사용할 수 있도록 허가된 디지털 게임 요소 또는 이용 권리입니다. 강행법이 달리 요구하지 않는 한 구매로 인해 기반 게임 데이터의 소유권이 이전되는 것은 아닙니다. 이러한 계약상 표현만으로 구매한 게임 내 가상 통화가 강행 철회권 적용을 위해 어떤 법적 범주에 속하는지가 결정되는 것은 아닙니다.',
       '구매한 Diamonds는 단순히 시간이 지났다는 이유만으로 만료되지 않습니다. 해당 구매가 환불, 취소, 차지백, 사기, 중복, 기술적 오류 또는 기타 사유로 무효가 된 경우 CK-Labs는 관련 Diamonds를 수정하거나 제거할 수 있습니다.',
       '프로모션, 선물, 이벤트, 테스트, 리뷰, 보상 또는 무료로 제공된 Diamonds와 혜택에는 법률 및 플랫폼 규칙이 허용하는 범위에서 별도로 고지된 조건, 한도, 자격 요건 또는 만료일이 적용될 수 있습니다. 무료 또는 프로모션 지급은 향후 동일한 지급을 받을 권리를 자동으로 만들지 않습니다.',
       'Diamonds 및 기타 가상 아이템의 게임 내 용도나 효과는 게임 밸런스, 경제 안정, 인플레이션 방지, 보안, 악용 방지, 기술 변경, 신규 기능, 버그 수정 또는 법적 요구와 같은 정당한 이유로 변경될 수 있으며, 강행 디지털 제품 법률에 따른 권리는 유지됩니다.',
@@ -52,6 +52,7 @@ const sections = [
       'TycoonX 계정을 삭제하면 프로필 및 게임 진행 데이터가 영구적으로 삭제될 수 있지만, Apple, Google, 다른 결제 제공자 또는 강행법상 복원이 필요한 유효한 비소모성 또는 복원 가능한 권리까지 계정 삭제만으로 소멸하는 것은 아닙니다. 복원 시 동일한 구매자가 관련 플랫폼 또는 결제 계정을 통제하고 있다는 합리적인 증명을 요구할 수 있습니다. 권리 복원은 삭제된 게임 진행, 소비된 Diamonds, 인벤토리, 기록 또는 이전된 자산을 되살리지 않습니다. 다만 강행법이 달리 요구하는 경우는 예외입니다.',
       'Lifetime VIP와 관련된 카운트다운, 마감일, 기간 한정 문구 또는 가격 혜택 표시는 실제 제안을 반영해야 하며 오해를 유발해서는 안 됩니다.',
       'Lifetime의 상업적 운영기간 의미와 현재 판매가 기간 한정이라는 점은 구매 화면 또는 그 직전에 명확히 고지됩니다.',
+      'Lifetime VIP 판매 기간의 종료는 향후 구매 가능 여부에만 영향을 주며, 그 자체만으로 이미 유효하게 구매한 Lifetime VIP를 취소하거나 기간을 단축하지 않습니다.',
     ],
   },
   {
@@ -104,8 +105,9 @@ const sections = [
       '현재의 가격, 번들, 할인 또는 상품은 같은 제안이 계속 유지된다는 약속이 아닙니다.',
       '가격은 Apple App Store, Google Play, 공식 TycoonX 웹숍, 국가, 지역, 통화 및 별도의 프로모션 판매 기간에 따라 다를 수 있습니다. 플랫폼 가격 시스템, 세금 또는 VAT 변경, 환율 변동, 현지 가격 관행 또는 결제 제공자 규칙으로 인해 현지 가격이 변경될 수 있습니다.',
       '결제 확정 전에 해당 결제 화면에 표시되는 최종 총액과 통화가 해당 거래에 적용됩니다. 다만 법이 허용하는 명백한 가격 또는 설정 오류의 정정은 예외입니다. 강제 세금 및 피할 수 없는 가격 구성요소는 적용 법률이 요구하는 방식으로 표시됩니다.',
-      'CK-Labs가 이후 가격을 변경했다는 이유만으로 이미 완료된 1회성 구매 가격이 소급 변경되지 않습니다. 이후 가격이 내려가더라도 자동으로 환불, 크레딧, 부분 환불, 가격 맞춤, 추가 Diamonds 또는 추가 VIP 기간을 받을 권리가 생기지 않습니다. 이후 가격이 올라가더라도 이미 완료된 1회성 구매에 추가 요금이 부과되지 않습니다.',
+      'CK-Labs가 이후 가격을 변경했다는 이유만으로 이미 완료된 1회성 구매 가격이 소급 변경되지 않습니다. 이후 가격이 내려가더라도 자동으로 환불, 크레딧, 부분 환불, 가격 맞춤, 추가 Diamonds 또는 추가 VIP 기간을 받을 권리가 생기지 않습니다. 이후 가격이 올라가더라도 이미 완료된 1회성 구매에 추가 요금이 부과되지 않습니다. 다만 강행법이 달리 요구하는 경우는 예외입니다.',
       'Lifetime VIP는 서로 다른 실제 판매 기간에 서로 다른 가격으로 판매될 수 있습니다. 한 판매 기간에 구매했다는 사실은 이후 더 낮은 프로모션 가격을 받을 권리나 미래 판매 기간의 동일 가격을 보장하지 않습니다.',
+      '프로모션 문구, 카운트다운, 취소선 가격, 표시된 할인액, 기간 한정 문구 및 그 밖의 가격 혜택 표시는 실제 제안을 정확히 반영해야 하며 소비자를 오도해서는 안 됩니다.',
       '특정 국가에서 특정 상품 또는 제안에 기준가격, 가격 이력 또는 할인 표시 규칙이 적용되는 경우 해당 마케팅 및 결제 화면은 그 규칙을 따라야 합니다.',
       '향후 CK-Labs가 정기 구독 또는 기타 반복 결제 상품을 도입하는 경우 해당 상품에 적용되는 가격 변경, 갱신, 통지, 동의 및 해지 규칙이 별도로 적용됩니다. 본 1회성 구매 규칙은 고지되지 않은 반복 결제를 허용하지 않습니다.',
     ],
@@ -169,7 +171,9 @@ const sections = [
     title: 'EU 및 독일의 철회권과 디지털 제품 권리',
     body: [
       '본 약관의 어떠한 내용도 법적으로 포기할 수 없는 철회, 계약 적합성, 업데이트, 하자보증, 가격 감액, 계약 종료, 환불 또는 기타 법정 권리를 배제하지 않습니다.',
-      'Diamond 번들과 같이 즉시 제공되는 디지털 콘텐츠의 법정 철회권은 법률상 필요한 모든 조건이 충족된 경우에만 제공 개시 후 소멸할 수 있습니다. 여기에는 필요한 경우 조기 이행에 대한 거래별 명시적 동의, 철회권 상실에 대한 확인 및 계약 확인이 포함됩니다.',
+      'EU/EEA 소비자에 대해 CK-Labs는 구매한 Diamonds가 TycoonX 계정에 지급되었다는 사실만으로 이를 즉시 제공된 디지털 콘텐츠로 보아 법정 철회권이 자동으로 소멸하는 것으로 취급하지 않습니다. 구매한 게임 내 가상 통화에 14일의 법정 철회권이 적용되는 경우, 구매 후 사용하지 않은 Diamonds는 그 법정 기간 동안 해당 철회권의 적용을 받습니다.',
+      '구매한 Diamonds를 이미 사용, 이전하거나 디지털 콘텐츠 또는 서비스로 교환한 경우, 철회의 효과는 일률적인 환불 불가 규정이 아니라 강행법과 해당 거래의 구체적인 사정에 따라 결정됩니다. 별도로 구매한 디지털 콘텐츠 또는 디지털 서비스의 철회권이 조기 이행 후 적법하게 소멸할 수 있는 경우에도, 필요한 거래별 명시적 요청 또는 동의, 철회권 상실에 대한 확인, 계약 확인을 포함하여 법률이 요구하는 모든 조건이 충족된 경우에만 그러한 결과가 발생합니다.',
+      '계약상 판매자 또는 결제 채널이 철회 요청의 제출·처리 방법을 정할 수 있지만, 이러한 역할 분담만으로 강행 철회권이 없어지는 것은 아닙니다.',
       '30-Day VIP 및 Lifetime VIP는 일정 기간에 걸쳐 제공되는 권리입니다. 즉시 활성화되거나 1회성 구매가격이라는 이유만으로 모든 법정 철회권 또는 디지털 서비스 구제수단이 자동으로 사라지는 것은 아닙니다. 조기 이행 요청, 철회 후 비례 지급, 계약 종료 또는 기타 결과는 해당 거래에 대한 법적 요건이 충족된 경우에만 적용됩니다.',
       '본 일반 약관에 동의하는 것만으로 법률상 별도의 거래별 동의가 필요한 경우 이를 대체하는 것은 아닙니다.',
     ],
@@ -329,7 +333,7 @@ export default function KoreanTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · 한국어</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">이용약관</h1>
-          <p className="text-zinc-500 text-sm">최종 업데이트: 2026년 8월 26일</p>
+          <p className="text-zinc-500 text-sm">한국어 버전: 2026년 8월 29일 · 영문 정본: 2026년 8월 29일</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             본 약관은 TycoonX 계정, 게임플레이, 가상 자산, Diamonds, 1회성 30-Day VIP, 기간 한정 Lifetime VIP, 구매, 가격, Apple App Store, Google Play, Xsolla 기반 공식 웹숍, 보안, 서비스 변경, 장애, 계정 조치, 커뮤니티 기능 및 서비스의 영구 종료에 적용됩니다.
           </p>
@@ -355,9 +359,9 @@ export default function KoreanTycoonXTermsOfService() {
           <h2 className="text-white font-semibold mb-3">구매, 개인정보, 커뮤니티 및 지원</h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX는 CK-Labs가 운영합니다. 구매 관련 세부사항은 구매 및 환불 정책, 개인정보 처리는 개인정보 처리방침, 소셜 기능과 모더레이션은 커뮤니티 기준, 계정·구매·조치 관련 문의는 TycoonX 지원을 확인해 주세요.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">구매 및 환불 정책</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">개인정보 처리방침</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">커뮤니티 기준</a>
+            <a href="/tycoonx-legal/ko/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">구매 및 환불 정책</a>
+            <a href="/tycoonx-legal/ko/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">개인정보 처리방침</a>
+            <a href="/tycoonx-legal/ko/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">커뮤니티 기준</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX 지원</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
