@@ -144,7 +144,7 @@ const sections = [
       'Promosyonlar; süre, ülke, platform, hesap, satın alma geçmişi, uygunluk, miktar, kullanım sayısı veya açıkça belirtilen başka koşullarla sınırlandırılabilir. Teklif aksini söylemedikçe promosyonlar birleştirilemez ve gelecekteki bir promosyon için hak oluşturmaz.',
       'Kullanıcılar teknik hataları, aynı kuponun birden çok kez kullanılmasını, bölge ya da kimlik bilgilerinin manipüle edilmesini, otomatik satın alma kötüye kullanımını, iade döngülerini, hesap çiftçiliğini veya gerçek teklifin ötesinde promosyon değeri elde etmeye yönelik başka yöntemleri kullanamaz.',
       'Bir promosyon veya indirim dolandırıcılık, teknik kötüye kullanım, mükerrer kullanım veya başka geçersiz bir yöntemle elde edilmişse CK-Labs hukuken izin verildiği ölçüde satın almayı reddedebilir, yalnızca geçersiz promosyon değerini geri alabilir veya etkilenen işlemi iade ederek geri çevirebilir. Başka bir promosyon geçersiz diye ilgisiz ve meşru şekilde satın alınmış değer kaldırılmaz.',
-      'Zorunlu bir hukuki yükümlülüğün ötesinde gönüllü olarak verilen iyi niyet kredisi, ücretsiz süre uzatımı, isteğe bağlı iade, bonus, telafi, promosyon avantajı veya test/inceleme hakkı; tek başına sorumluluğun kabulü anlamına gelmez ve aynı çözümün başka bir olayda da verileceği sözünü oluşturmaz.',
+      'Zorunlu bir hukuki yükümlülüğün ötesinde gönüllü olarak verilen iyi niyet kredisi, ücretsiz süre uzatımı, isteğe bağlı iade, bonus, telafi, promosyon avantajı veya test/inceleme hakkı; tek başına sorumluluğun kabulü anlamına gelmez ve aynı çözümün başka bir olayda da verileceği sözü oluşturmaz.',
     ],
   },
   {
@@ -170,7 +170,9 @@ const sections = [
     title: 'AB ve Almanya cayma ve dijital ürün hakları',
     body: [
       'Bu Koşullardaki hiçbir hüküm, kanunen vazgeçilemeyen yasal cayma, sözleşmeye uygunluk, güncelleme, garanti, fiyat indirimi, fesih, iade veya diğer tüketici haklarını ortadan kaldırmaz.',
-      'Elmas paketi gibi hemen sağlanan dijital içerikte yasal cayma hakkı, ifa başladıktan sonra ancak kanunen gerekli tüm şartlar sağlanmışsa sona erebilir. Buna işlem özelinde erken ifaya açık rıza, cayma hakkının kaybedileceğinin kabulü ve gerekli sözleşme teyidi dahil olabilir.',
+      'AB/AEA tüketicileri bakımından CK-Labs, satın alınan Elmasların yalnızca TycoonX hesabına yüklenmiş olmasını, yasal cayma hakkını otomatik olarak ortadan kaldıran ve hemen sağlanmış dijital içerik olarak değerlendirmez. Satın alınan oyun içi sanal para için 14 günlük yasal cayma hakkının geçerli olduğu durumlarda, satın alınmış ve kullanılmamış Elmaslar bu yasal süre boyunca cayma hakkına tabidir.',
+      'Satın alınan Elmaslar dijital içerik veya hizmetler için harcanmış, devredilmiş ya da takas edilmişse, caymanın sonuçları genel bir iade yok kuralına göre değil, zorunlu hukuk ve ilgili işlemin koşullarına göre belirlenir. Ayrı bir dijital içerik veya dijital hizmet satın alımında erken ifa başladıktan sonra cayma hakkı hukuken sona erebiliyorsa, bu sonuç yalnızca işlem özelinde gerekli açık talep veya rıza, gerekli kabul ve bilgilendirme ile sözleşme teyidi dahil kanunen gereken tüm şartlar yerine getirildiğinde uygulanır.',
+      'Sözleşme tarafı satıcı veya ödeme kanalı cayma talebinin nasıl gönderileceğini ya da işleneceğini belirleyebilir; ancak görevlerin bu şekilde dağıtılması zorunlu bir cayma hakkını ortadan kaldırmaz.',
       '30-Day VIP ve Lifetime VIP zaman içinde sağlanan haklardır. Hemen etkinleştirilmesi veya tek seferlik fiyatla alınması, tüm yasal cayma veya dijital hizmet başvuru yollarını kendiliğinden ortadan kaldırmaz. Erken ifa talebi, cayma sonrası orantılı ödeme, fesih veya başka sonuçlar yalnızca o işlem için yasal şartlar sağlanmışsa uygulanır.',
       'Bu genel Koşulların kabulü, hukukun ayrıca işlem özelinde onay istediği durumlarda o ayrı onayın yerine geçmez.',
     ],
@@ -326,7 +328,7 @@ export default function TycoonXTermsTR() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Türkçe</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Hizmet Koşulları</h1>
-          <p className="text-zinc-500 text-sm">Türkçe sürüm: 25 Ağustos 2026 · Kanonik İngilizce sürüm: 25 Ağustos 2026</p>
+          <p className="text-zinc-500 text-sm">Türkçe sürüm: 29 Ağustos 2026 · Kanonik İngilizce sürüm: 29 Ağustos 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Bu Türkçe sürüm, kanonik İngilizce TycoonX Hizmet Koşullarının anlamını doğal ve açık Türkçeyle aktarmak için hazırlanmıştır. Çeviri farkları hiçbir zaman zorunlu tüketici haklarını daraltmaz. Maddi bir çeviri farkı tespit edilirse CK-Labs çeviriyi kanonik metinle uyumlu hale getirebilir.
           </p>
