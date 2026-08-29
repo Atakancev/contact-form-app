@@ -2,16 +2,20 @@
 
 Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository.
 
+Last synchronized: **August 29, 2026**.
+
 ## Rules
 
 - Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display `TyconX`.
 - TycoonX goes to full release on **September 1, 2026**. Do not describe the live service, users, purchases, VIP, Diamonds, rewards, or legal terms as beta.
 - Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving the legal effect of the English source.
 - English remains canonical. Refresh localized versions whenever the canonical meaning changes materially.
+- Locale variants must remain genuinely localized, including `es`/`es_MX`, `fr`/`fr_CA`, `pt`/`pt_BR`, and `zh`/`zh_Hans`/`zh_Hant`.
 - Arabic uses RTL layout.
 - Locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
 - Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
 - Do not mark a localized document `Ready` until the page exists, preserves the canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed `TyconX` or live-service `beta` wording.
+- Do not use GitHub Actions or paid services for this project. Do not change any database.
 
 ## Current state
 
@@ -19,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, and Korean are now synchronized. This means **87/100 localized full documents are currently confirmed current**. The remaining **13 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, and Chinese (`zh`) are now synchronized. This means **88/100 localized full documents are currently confirmed current**. The remaining **12 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -37,7 +41,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | ru | Ready | Ready | Ready | Ready | 4/4 |
 | ja | Ready | Ready | Ready | Ready | 4/4 |
 | ko | Ready | Ready | Ready | Ready | 4/4 |
-| zh | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| zh | Ready | Ready | Ready | Ready | 4/4 |
 | zh_Hans | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | zh_Hant | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | ar | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -53,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Chinese (`zh`) Terms of Service.**
+**Exact next unfinished locale/document: Simplified Chinese (`zh_Hans`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -73,104 +77,6 @@ Canonical English Terms correction commits:
 
 - `7e6bbc70eab68417246620f6f8a93ed322c8adfd` for `tyconx-terms-of-service.md`;
 - `18a655b9dbe9c204345a9128a99942d5a59e75ee` for `app/tyconx-terms-of-service/page.tsx`.
-
-## Portuguese (`pt`) Terms completion checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/pt/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural European Portuguese.
-
-The refreshed page now:
-
-- avoids classifying purchased Diamonds as digital content merely for withdrawal purposes;
-- states that crediting Diamonds does not automatically extinguish an applicable withdrawal right;
-- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction;
-- keeps transaction-specific early-performance requirements for separate digital content/services;
-- keeps Apple, Google, Xsolla and other merchant/payment-channel procedures separate from the existence of mandatory rights;
-- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
-- retains pricing, regional pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate entitlement, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Portuguese Purchases, Privacy, and Community pages; and
-- displays **29 de agosto de 2026** and the brand exactly as `TycoonX`.
-
-Portuguese Terms refresh commit: `56658219eb576a7d2a1b033a010d4861280e961e`.
-
-## Portuguese (Brazil) (`pt_BR`) Terms completion checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/pt_BR/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Brazilian Portuguese.
-
-The refreshed page now:
-
-- describes Diamonds as licensed digital elements or usage rights without treating that contractual description as determinative of their statutory classification for withdrawal rights;
-- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
-- preserves an applicable 14-day withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
-- requires all transaction-specific legal conditions before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
-- keeps Apple, Google, Xsolla and other contracting merchant/payment-channel procedures separate from the existence of mandatory rights;
-- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
-- retains pricing, regional pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate entitlement, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Brazilian Portuguese Purchases, Privacy, and Community pages; and
-- displays **29 de agosto de 2026** and the brand exactly as `TycoonX`.
-
-Brazilian Portuguese Terms refresh commit: `35089678fb3cfdf8bf4932794dea2e65c050ea20`.
-
-## Russian (`ru`) Terms completion checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/ru/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Russian.
-
-The refreshed page now:
-
-- describes Diamonds as licensed digital elements or rights without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
-- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
-- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction instead of a blanket no-refunds rule;
-- requires transaction-specific legal conditions before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
-- keeps the contracting merchant/payment channel responsible for the applicable procedure without allowing that role allocation to remove a mandatory right;
-- retains one-time non-renewing 30-Day VIP and limited-window Lifetime VIP distinctions;
-- retains payment-channel, regional-pricing, VAT/FX, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- restores the canonical rule that promotional claims, countdowns, crossed-out prices, stated savings and limited-time price claims must reflect a genuine offer and not mislead consumers;
-- links directly to the completed Russian Purchases, Privacy, and Community pages; and
-- displays **Русская версия: 29 августа 2026 г. · Каноническая английская версия: 29 августа 2026 г.** with the brand exactly as `TycoonX`.
-
-Russian Terms refresh commits: `cb3c1ecade6794102dd3bd13da1d13eb1853bd7c` and `ea9e5a706676d264a44d32c310d825e08bd61a9f`.
-
-## Japanese (`ja`) Terms completion checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/ja/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Japanese.
-
-The refreshed page now:
-
-- describes Diamonds as licensed digital elements or usage rights without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
-- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
-- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
-- requires all transaction-specific legal conditions before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
-- keeps Apple, Google, Xsolla and other contracting merchant/payment-channel procedures separate from the existence of mandatory rights;
-- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
-- retains pricing, regional pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate entitlement, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Japanese Purchases, Privacy, and Community pages; and
-- displays **日本語版：2026年8月29日 · 英語版（正文）：2026年8月29日** with the brand exactly as `TycoonX`.
-
-Japanese Terms refresh commit: `99f7757e0391c2f254476971e920b51b1fa8ba7c`.
-
-## Korean (`ko`) Terms completion checkpoint
-
-On **August 29, 2026**, `app/tycoonx-legal/ko/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Korean.
-
-The refreshed page now:
-
-- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
-- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
-- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
-- requires every transaction-specific legal condition before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
-- keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
-- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment, and clarifies that ending a sales window does not itself cancel or shorten an already valid Lifetime VIP;
-- restores the canonical general rule that promotional claims, countdowns, crossed-out prices, stated savings and limited-time price claims must reflect a genuine offer and not mislead consumers;
-- restores the mandatory-law caveat for the rule that a later price increase does not add a charge to an already completed one-time purchase;
-- retains payment-channel, regional-pricing, VAT/FX, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Korean Purchases, Privacy, and Community pages; and
-- displays **한국어 버전: 2026년 8월 29일 · 영문 정본: 2026년 8월 29일** with the brand exactly as `TycoonX`.
-
-Korean Terms refresh commit: `52570cd09b8cce0fe3d06b42caf23767b974373b`.
 
 ## August 28, 2026 Purchases invariants
 
@@ -193,20 +99,40 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Current reference checks
+## Chinese (`zh`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/zh/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Chinese.
+
+The refreshed page now:
+
+- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
+- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
+- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
+- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
+- requires every transaction-specific legal condition before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
+- keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
+- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
+- retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
+- links directly to the completed Chinese Purchases, Privacy, and Community pages; and
+- displays **中文版：2026 年 8 月 29 日 · 英文正本：2026 年 8 月 29 日** with the brand exactly as `TycoonX`.
+
+Chinese Terms refresh commit: `fe8d7095ed0a9c915b1e4003e7fc6092080c4bbf`.
+
+## Current official-source checks
 
 As of **August 29, 2026**, the scoped official-source audit remains consistent with the canonical approach:
 
-- European Commission/CPC Network principles on in-game virtual currencies continue to require transparent pricing, avoidance of hidden/forced virtual-currency costs, and respect for withdrawal rights;
-- Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism;
-- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, plus timely acknowledgement/consumption;
-- Xsolla's current Refund Policy continues to distinguish in-game currency and provides relevant refund/withdrawal treatment, including a 14-day EU/EEA framework in the applicable policy; and
-- Germany's electronic withdrawal-function requirement under § 356a BGB remains in force.
+- European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, and respect for withdrawal rights: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
+- Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
+- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption: https://developer.android.com/google/play/billing/integrate
+- Xsolla's Refund Policy, last updated **June 16, 2026**, continues to cover in-game currency, transaction-specific refund handling, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
+- German BGB § 356a continues to require a clearly labelled, continuously available, prominently placed, easily accessible electronic withdrawal function for covered online distance contracts, with a confirmation step and durable-medium receipt confirmation: https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
 
-- Localized full documents: **87/100 (87%)**
-- Localized hubs: **25/25 (100%)**
-- Canonical English legal wording: **99.7%**
-- Full commercial/legal/payment readiness: **95%**
-- Overall project completion: **93.8%**
+- **Localized full documents:** 88/100, **88%**
+- **Localized hubs:** 25/25, **100%**
+- **Canonical English legal wording:** **99.7%**
+- **Full commercial/legal/payment readiness:** **95%**
+- **Overall project completion:** **94.2%**
+- **Exact next unfinished locale/document:** Simplified Chinese (`zh_Hans`) Terms of Service
