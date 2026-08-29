@@ -21,7 +21,7 @@ On **August 29, 2026**, repository-wide QA found that the canonical Terms and at
 
 The canonical English Terms were corrected on August 29. Because this is a material legal-meaning change, all 25 localized Terms pages were conservatively reopened until each is audited and synchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Turkish, German, Spanish, Mexican Spanish, and French Terms were synchronized on August 29. This means **80/100 localized full documents are currently confirmed current**. The remaining 20 Terms pages stay reopened until individually audited and refreshed.
+The Turkish, German, Spanish, Mexican Spanish, French, and French (Canada) Terms were synchronized on August 29. This means **81/100 localized full documents are currently confirmed current**. The remaining 19 Terms pages stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -32,7 +32,7 @@ The Turkish, German, Spanish, Mexican Spanish, and French Terms were synchronize
 | es | Ready | Ready | Ready | Ready | 4/4 |
 | es_MX | Ready | Ready | Ready | Ready | 4/4 |
 | fr | Ready | Ready | Ready | Ready | 4/4 |
-| fr_CA | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| fr_CA | Ready | Ready | Ready | Ready | 4/4 |
 | it | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | pt | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | pt_BR | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Turkish, German, Spanish, Mexican Spanish, and French Terms were synchronize
 
 A material canonical Terms change on August 29 reopened the Terms localization queue.
 
-**Exact next unfinished locale/document: French (Canada) (`fr_CA`) Terms of Service.**
+**Exact next unfinished locale/document: Italian (`it`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
+Continue Terms synchronization in exactly this order: it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id. Do not duplicate already refreshed Terms pages once they are marked Ready again.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -118,6 +118,14 @@ The French virtual-items description was also clarified so that describing Diamo
 
 French Terms refresh commit: `70e873cbac2243c7aec6d637c0332de892da2aa8`.
 
+## French (Canada) (`fr_CA`) Terms completion checkpoint
+
+On **August 29, 2026**, `app/tycoonx-legal/fr_CA/terms/page.tsx` was synchronized to the August 29 canonical Terms withdrawal meaning in Canadian French. It now states that merely crediting purchased Diamonds to a TycoonX account does not automatically extinguish an applicable EU/EEA withdrawal right, preserves an applicable 14-day right for purchased and unused Diamonds, handles spent/transferred/exchanged Diamonds under mandatory law and the specific transaction, preserves transaction-specific early-performance requirements for separate digital content/services, and keeps the contracting merchant/payment-channel procedure separate from the existence of mandatory rights.
+
+The Canadian French virtual-items description was clarified so that describing Diamonds as digital elements or licensed usage rights does not itself determine their statutory classification for mandatory withdrawal rights. The visible date is synchronized to **29 août 2026**. The page now links directly to the completed Canadian French Purchases, Privacy, and Community documents instead of incorrectly saying those localizations are still pending.
+
+French (Canada) Terms refresh commit: `701c28e06683eebcfc5dcfceb1ee4f868cc660a0`.
+
 ## August 28, 2026 Purchases invariants
 
 Every localized Purchases page must continue to preserve all of the following:
@@ -161,10 +169,10 @@ Germany's electronic withdrawal-function requirement has been in force since **J
 
 ## Progress snapshot
 
-- **Localized full documents:** 80/100 (80%)
+- **Localized full documents:** 81/100 (81%)
 - **Localized hubs:** 25/25 (100%)
 - **Canonical English legal wording:** 99.7%
 - **Full commercial/legal/payment readiness:** 95%
-- **Overall project completion:** 91.0%
-- **Exact next unfinished locale/document:** French (Canada) (`fr_CA`) Terms of Service
-- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 20 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
+- **Overall project completion:** 91.4%
+- **Exact next unfinished locale/document:** Italian (`it`) Terms of Service
+- **Next hardening task:** propagate the August 29 Terms withdrawal correction through the remaining 19 locales in the required locale order, then resume final repository-wide legal QA and commercial/payment readiness audit.
