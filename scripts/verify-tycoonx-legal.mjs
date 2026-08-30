@@ -295,6 +295,41 @@ if (await exists(googlePaymentGate)) {
   }
 }
 
+const paymentEntitlementGate = path.join(ROOT, 'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md');
+if (await exists(paymentEntitlementGate)) {
+  const text = await readFile(paymentEntitlementGate, 'utf8');
+  const googleRecoveryRequirements = [
+    'ProductDetails',
+    'queryPurchasesAsync()',
+    'obfuscatedAccountId',
+    'obfuscatedProfileId',
+  ];
+  for (const required of googleRecoveryRequirements) {
+    if (!text.includes(required)) {
+      fail(`TycoonX payment gate lost Google Play recovery/attribution safeguard: "${required}".`);
+    }
+  }
+
+  const germanWithdrawalRequirements = [
+    'Vertrag widerrufen',
+    'Widerruf bestätigen',
+    'electronic communication method',
+    'date and time of receipt',
+  ];
+  for (const required of germanWithdrawalRequirements) {
+    if (!text.includes(required)) {
+      fail(`TycoonX payment gate lost German BGB § 356a implementation safeguard: "${required}".`);
+    }
+  }
+
+  if (!/Xsolla entity shown as the contracting party\/merchant/i.test(text)) {
+    fail('TycoonX payment gate no longer requires transaction-specific Xsolla merchant evidence.');
+  }
+  if (!/dated release-evidence sample/i.test(text)) {
+    fail('TycoonX payment gate no longer requires dated checkout/entitlement parity evidence.');
+  }
+}
+
 const formatter = path.join(LEGAL_ROOT, 'LegalInlineFormatting.tsx');
 const layout = path.join(LEGAL_ROOT, 'layout.tsx');
 if (!(await exists(formatter))) fail('Missing shared legal inline formatter. Raw **...** markers may leak to users.');
