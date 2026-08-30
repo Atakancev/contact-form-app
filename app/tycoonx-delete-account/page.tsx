@@ -21,9 +21,28 @@ export default function TycoonXDeleteAccountPage() {
           <section className="rounded-xl border border-white/10 bg-[#111111] p-6">
             <h2 className="text-lg font-semibold text-white mb-3">What deletion does</h2>
             <div className="space-y-3 text-zinc-400 text-sm leading-relaxed">
-              <p>Deleting your account may permanently remove account-linked profile data, gameplay progress, social data, inventory, consumed or account-held virtual value, and other account state associated with TycoonX.</p>
-              <p>Account deletion is separate from a payment refund. Deleting an account does not automatically refund Apple App Store, Google Play, Xsolla, or other purchases.</p>
-              <p>CK-Labs may retain the minimum records that law permits or requires for tax, accounting, fraud prevention, security, dispute handling, legal claims, or verification and restoration of a valid non-consumable paid entitlement. The TycoonX Privacy Policy explains these retention rules in more detail.</p>
+              <p>Deleting your account may permanently remove account-linked profile data, gameplay progress, social data, inventory, Diamonds and other virtual value, VIP state, and other account data associated with TycoonX.</p>
+              <p>CK-Labs may retain only the minimum records that law permits or requires for purposes such as tax, accounting, fraud prevention, security, dispute handling, legal claims, or verification and restoration of a valid restorable paid entitlement. The TycoonX Privacy Policy explains these retention rules in more detail.</p>
+              <p>Deleting your account does not waive any refund, statutory withdrawal, conformity, or other mandatory consumer right that applicable law gives you.</p>
+            </div>
+          </section>
+
+          <section className="rounded-xl border border-white/10 bg-[#111111] p-6">
+            <h2 className="text-lg font-semibold text-white mb-3">Purchases, VIP, and refunds</h2>
+            <div className="space-y-3 text-zinc-400 text-sm leading-relaxed">
+              <p>Account deletion is separate from a payment refund or statutory withdrawal request. Deleting a TycoonX account does not itself cancel, reverse, or refund an Apple App Store, Google Play, Xsolla, or other completed payment.</p>
+              <p>TycoonX currently sells Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP as one-time purchases. They are not recurring subscriptions.</p>
+              <p>A valid restorable Lifetime VIP entitlement may remain restorable after account deletion where platform records, the purchase contract, or mandatory law supports restoration. Restoring such an entitlement does not recreate deleted gameplay progress, consumed Diamonds, inventory, social history, companies, assets, or transferred value.</p>
+              <p>If you want a refund or want to exercise a statutory withdrawal right, use the applicable payment-provider or TycoonX support process. Where practical, submit that request before deleting the account so the transaction can be identified more easily.</p>
+              <p>If TycoonX introduces a recurring product in the future, deleting the TycoonX account will not by itself cancel provider billing. Any recurring product would require a separate cancellation route and compliant notice.</p>
+            </div>
+          </section>
+
+          <section className="rounded-xl border border-white/10 bg-[#111111] p-6">
+            <h2 className="text-lg font-semibold text-white mb-3">Timing and confirmation</h2>
+            <div className="space-y-3 text-zinc-400 text-sm leading-relaxed">
+              <p>We normally aim to complete a verified account-deletion request within 30 days. If additional verification or a legally permitted extension is reasonably necessary, CK-Labs will tell you.</p>
+              <p>When deletion is complete, CK-Labs will send confirmation to the contact address used for the request. Limited records that must lawfully remain are not treated as an active TycoonX account.</p>
             </div>
           </section>
 
@@ -31,7 +50,7 @@ export default function TycoonXDeleteAccountPage() {
             <h2 className="text-lg font-semibold text-white mb-3">Before submitting</h2>
             <div className="space-y-3 text-zinc-400 text-sm leading-relaxed">
               <p>Use an email address that you can access. CK-Labs may ask for reasonable verification to make sure the request relates to the correct account and does not allow another person to delete your account.</p>
-              <p>If you have a payment dispute or want a refund instead of account deletion, use the payment provider's refund process or TycoonX Support.</p>
+              <p>If you have a payment dispute or want a refund instead of account deletion, use the payment provider&apos;s refund process or TycoonX Support.</p>
             </div>
           </section>
         </div>
