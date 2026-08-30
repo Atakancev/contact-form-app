@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'Diamonds और अन्य वर्चुअल आइटम',
     body: [
-      'Diamonds और अन्य वर्चुअल आइटम केवल TycoonX के भीतर उपयोग के लिए लाइसेंस प्राप्त डिजिटल गेम सामग्री या डिजिटल अधिकार हैं। जहाँ अनिवार्य कानून कुछ और न कहे, इन्हें खरीदने से गेम के अंतर्निहित डेटा का स्वामित्व उपयोगकर्ता को नहीं मिलता।',
+      'Diamonds और अन्य वर्चुअल आइटम केवल TycoonX के भीतर उपयोग के लिए लाइसेंस प्राप्त डिजिटल गेम तत्व या अधिकार हैं। यह संविदात्मक वर्णन अपने आप यह तय नहीं करता कि अनिवार्य वैधानिक withdrawal अधिकारों के लिए खरीदी गई इन-गेम वर्चुअल करेंसी को कानून के तहत कैसे वर्गीकृत किया जाएगा। जहाँ अनिवार्य कानून कुछ और न कहे, इन्हें खरीदने से गेम के अंतर्निहित डेटा का स्वामित्व उपयोगकर्ता को नहीं मिलता।',
       'खरीदे गए Diamonds केवल समय बीतने से समाप्त नहीं होते। यदि संबंधित खरीद का रिफंड हो जाए, भुगतान उलट जाए, चार्जबैक हो, खरीद धोखाधड़ी वाली हो, डुप्लिकेट हो, तकनीकी त्रुटि से बनी हो या किसी अन्य कारण से अमान्य हो, तो CK-Labs संबंधित Diamonds को ठीक या हटा सकता है।',
       'प्रमोशनल, उपहार, इवेंट, टेस्ट, समीक्षा, मुआवज़े या मुफ्त में दिए गए Diamonds और लाभों पर कानून और प्लेटफ़ॉर्म नियमों के अनुसार अलग शर्तें, सीमाएँ, पात्रता नियम या समाप्ति अवधि लागू हो सकती है। मुफ्त या प्रमोशनल लाभ मिलने से भविष्य में उसी तरह का लाभ पाने का स्वतः अधिकार नहीं बनता।',
       'गेम बैलेंस, अर्थव्यवस्था की स्थिरता, महँगाई नियंत्रण, सुरक्षा, दुरुपयोग रोकने, तकनीकी बदलाव, नए फीचर, बग फिक्स या कानूनी आवश्यकताओं जैसे वैध कारणों से Diamonds और अन्य वर्चुअल आइटम की गेमप्ले उपयोगिता बदल सकती है, लेकिन अनिवार्य डिजिटल-प्रोडक्ट कानून लागू रहेगा।',
@@ -170,7 +170,9 @@ const sections = [
     title: 'EU और जर्मन withdrawal तथा digital-product rights',
     body: [
       'इन शर्तों की कोई बात statutory withdrawal, conformity, update, warranty, price reduction, termination, refund या अन्य ऐसे rights को exclude नहीं करती जिन्हें legally waive नहीं किया जा सकता।',
-      'Diamond bundle जैसे तुरंत supply किए गए digital content के लिए statutory withdrawal right supply शुरू होने के बाद तभी समाप्त हो सकता है जब सभी कानूनी conditions पूरी हों, जिसमें जहाँ required हो वहाँ early performance के लिए transaction-specific express consent, withdrawal right के loss की acknowledgement और contractual confirmation शामिल हैं।',
+      'EU/EEA उपभोक्ताओं के लिए CK-Labs केवल खरीदे गए Diamonds को TycoonX अकाउंट में क्रेडिट किए जाने को ऐसी तुरंत सप्लाई की गई डिजिटल सामग्री नहीं मानता जिससे वैधानिक withdrawal अधिकार अपने आप समाप्त हो जाए। जहाँ खरीदी गई इन-गेम वर्चुअल करेंसी पर 14-दिन का वैधानिक withdrawal अधिकार लागू होता है, वहाँ खरीदे गए और इस्तेमाल न किए गए Diamonds उस वैधानिक अवधि के दौरान इस अधिकार के दायरे में रहते हैं।',
+      'यदि खरीदे गए Diamonds पहले ही खर्च, ट्रांसफर या डिजिटल सामग्री या सेवाओं के बदले एक्सचेंज किए जा चुके हैं, तो withdrawal के परिणाम किसी blanket no-refunds नियम से नहीं, बल्कि अनिवार्य कानून और संबंधित ट्रांज़ैक्शन की परिस्थितियों से तय होंगे। यदि डिजिटल सामग्री या डिजिटल सेवा की कोई अलग खरीद early performance के बाद कानूनन withdrawal अधिकार खो सकती है, तो ऐसा केवल तभी होगा जब उस ट्रांज़ैक्शन के लिए कानून की हर जरूरी शर्त पूरी हो, जिसमें जहाँ आवश्यक हो transaction-specific स्पष्ट अनुरोध या सहमति, परिणाम की acknowledgement और contractual confirmation शामिल हैं।',
+      'अनुबंध करने वाला व्यापारी या भुगतान चैनल यह तय कर सकता है कि withdrawal request कहाँ और कैसे जमा या process की जाएगी, लेकिन जिम्मेदारियों का यह बँटवारा किसी अनिवार्य withdrawal अधिकार को समाप्त नहीं करता।',
       '30-Day VIP और Lifetime VIP समय के साथ supply किए जाते हैं। Immediate activation या one-time purchase price अपने आप हर statutory withdrawal या digital-service remedy खत्म नहीं करती। Early-performance request, withdrawal के बाद proportional payment, termination या अन्य consequence केवल तब लागू होगा जब उस transaction के legal requirements पूरे हों।',
       'इन general Terms को स्वीकार करना किसी अलग transaction-specific consent की जगह नहीं लेता जहाँ law अलग consent require करता है।',
     ],
@@ -222,7 +224,7 @@ const sections = [
     body: [
       'Maintenance, updates, security events, hosting failures, network failures, third-party outages, cyberattacks, emergency fixes, capacity issues, natural disasters, governmental action, labor disruption, war, widespread infrastructure failure या reasonable control के बाहर अन्य events के कारण Service कभी-कभी unavailable हो सकती है।',
       'Users, payment integrity, data या infrastructure protect करने के लिए reasonably necessary होने पर CK-Labs purchases, markets, transfers, multiplayer functions, logins या अन्य features temporarily disable कर सकता है।',
-      'Serious incident के बाद CK-Labs backups, snapshots, transaction logs या अन्य recovery methods use कर सकता है, including forced reauthentication, sessions invalidate करना, affected transactions freeze करना या demonstrably corrupted game state rollback करना। Paid digital products से जुड़े mandatory rights unaffected रहेंगे।',
+      'Serious incident के बाद CK-Labs backups, snapshots, transaction logs या other recovery methods use कर सकता है, including forced reauthentication, sessions invalidate करना, affected transactions freeze करना या demonstrably corrupted game state rollback करना। Paid digital products से जुड़े mandatory rights unaffected रहेंगे।',
       'इन Terms की कोई clause liability को वहाँ exclude नहीं करती जहाँ law ऐसा exclusion prohibit करता है।',
     ],
   },
@@ -326,7 +328,7 @@ export default function HindiTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · हिन्दी</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">सेवा की शर्तें</h1>
-          <p className="text-zinc-500 text-sm">अंतिम अपडेट: 27 अगस्त 2026</p>
+          <p className="text-zinc-500 text-sm">हिन्दी संस्करण: 29 अगस्त 2026 · मानक अंग्रेज़ी संस्करण: 29 अगस्त 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             ये शर्तें TycoonX अकाउंट, गेमप्ले, वर्चुअल एसेट, Diamonds, एक बार मिलने वाले 30-Day VIP, सीमित समय के Lifetime VIP, खरीद, कीमत, Apple App Store, Google Play, Xsolla द्वारा संचालित आधिकारिक वेब शॉप, सुरक्षा, सेवा में बदलाव, outages, enforcement, community features और स्थायी बंद होने से जुड़े नियम तय करती हैं।
           </p>
@@ -350,11 +352,12 @@ export default function HindiTycoonXTermsOfService() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">खरीद, गोपनीयता, समुदाय और सहायता</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX का संचालन CK-Labs करता है। भुगतान से जुड़ी विस्तृत जानकारी के लिए Purchases & Refunds Policy, सामाजिक और moderation नियमों के लिए Community Standards और अकाउंट, खरीद या enforcement से जुड़े सवालों के लिए TycoonX Support देखें।</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX का संचालन CK-Labs करता है। भुगतान से जुड़ी विस्तृत जानकारी के लिए खरीद और रिफंड नीति, सामाजिक और मॉडरेशन नियमों के लिए सामुदायिक मानक और अकाउंट, खरीद या enforcement से जुड़े सवालों के लिए TycoonX Support देखें।</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">खरीद और रिफंड</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">गोपनीयता नीति</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Community Standards</a>
+            <a href="/tycoonx-legal/hi/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">खरीद और रिफंड</a>
+            <a href="/tycoonx-legal/hi/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">गोपनीयता नीति</a>
+            <a href="/tycoonx-legal/hi/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">सामुदायिक मानक</a>
+            <a href="/tycoonx-legal/hi" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX कानूनी केंद्र</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
