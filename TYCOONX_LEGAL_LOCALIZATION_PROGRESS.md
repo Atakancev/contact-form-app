@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), and Vietnamese (`vi`) are now synchronized. This means **97/100 localized full documents are currently confirmed current**. The remaining **3 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), and Ukrainian (`uk`) are now synchronized. This means **98/100 localized full documents are currently confirmed current**. The remaining **2 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -51,15 +51,15 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | pl | Ready | Ready | Ready | Ready | 4/4 |
 | th | Ready | Ready | Ready | Ready | 4/4 |
 | vi | Ready | Ready | Ready | Ready | 4/4 |
-| uk | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| uk | Ready | Ready | Ready | Ready | 4/4 |
 | hi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | id | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Ukrainian (`uk`) Terms of Service.**
+**Exact next unfinished locale/document: Hindi (`hi`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,13 +99,13 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Vietnamese (`vi`) Terms completion checkpoint
+## Ukrainian (`uk`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/vi/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Vietnamese.
+On **August 30, 2026**, `app/tycoonx-legal/uk/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Ukrainian.
 
 The refreshed page now:
 
-- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased virtual currency for withdrawal purposes;
+- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased in-game virtual currency for withdrawal purposes;
 - states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
 - preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
 - treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
@@ -113,10 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Vietnamese Purchases, Privacy, and Community pages plus the Vietnamese legal hub; and
-- displays **Bản tiếng Việt: 29 tháng 8 năm 2026 · Bản tiếng Anh chuẩn: 29 tháng 8 năm 2026** with the brand exactly as `TycoonX`.
+- links directly to the completed Ukrainian Purchases, Privacy, and Community pages plus the Ukrainian legal hub; and
+- displays **Українська версія: 29 серпня 2026 року · Канонічна англійська версія: 29 серпня 2026 року** with the brand exactly as `TycoonX`.
 
-Vietnamese Terms refresh commit: `9f7eaeb98a83bfebf48a0c1145e015e56188a9e0`.
+Ukrainian Terms refresh commit: `651e67560ec6899e2666fd2da49675ce1da02130`.
 
 ## Current official-source checks
 
@@ -130,9 +130,9 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 97/100, **97%**
+- **Localized full documents:** 98/100, **98%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **97.8%**
-- **Exact next unfinished locale/document:** Ukrainian (`uk`) Terms of Service
+- **Overall project completion:** **98.2%**
+- **Exact next unfinished locale/document:** Hindi (`hi`) Terms of Service
