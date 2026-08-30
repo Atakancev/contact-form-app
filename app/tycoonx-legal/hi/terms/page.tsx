@@ -224,7 +224,7 @@ const sections = [
     body: [
       'Maintenance, updates, security events, hosting failures, network failures, third-party outages, cyberattacks, emergency fixes, capacity issues, natural disasters, governmental action, labor disruption, war, widespread infrastructure failure या reasonable control के बाहर अन्य events के कारण Service कभी-कभी unavailable हो सकती है।',
       'Users, payment integrity, data या infrastructure protect करने के लिए reasonably necessary होने पर CK-Labs purchases, markets, transfers, multiplayer functions, logins या अन्य features temporarily disable कर सकता है।',
-      'Serious incident के बाद CK-Labs backups, snapshots, transaction logs या other recovery methods use कर सकता है, including forced reauthentication, sessions invalidate करना, affected transactions freeze करना या demonstrably corrupted game state rollback करना। Paid digital products से जुड़े mandatory rights unaffected रहेंगे।',
+      'Serious incident के बाद CK-Labs backups, snapshots, transaction logs या अन्य recovery methods use कर सकता है, including forced reauthentication, sessions invalidate करना, affected transactions freeze करना या demonstrably corrupted game state rollback करना। Paid digital products से जुड़े mandatory rights unaffected रहेंगे।',
       'इन Terms की कोई clause liability को वहाँ exclude नहीं करती जहाँ law ऐसा exclusion prohibit करता है।',
     ],
   },
