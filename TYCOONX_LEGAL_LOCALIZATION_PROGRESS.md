@@ -201,11 +201,31 @@ The gate now requires:
 Apple pending/interrupted-purchase gate commit: `14a66f215762ef453e2afe174da3c54a0d8021a1`.
 Apple pending-purchase verifier commit: `6ef8a5fdf63e2d22e614376c8b9bce35d568d326`.
 
+## August 30, 2026 DSA moderation / emergency escalation checkpoint
+
+`TYCOONX_COMMUNITY_MODERATION_RELEASE_CHECKLIST.md` was hardened against the current text of Regulation (EU) 2022/2065 and current European Commission/Bundesnetzagentur guidance. This did **not** change the public canonical Community Standards meaning, so no localized Community page was reopened.
+
+The gate now records and requires:
+
+- the complete Article 16 notice-and-action data path, including sufficiently substantiated illegality reasons, precise content location, required reporter contact fields/exceptions, good-faith accuracy statement, receipt/decision notices, automation disclosure and objective processing;
+- Article 17 statements of reasons **at the latest when a covered restriction is imposed**, with restriction type, duration/territorial scope where relevant, facts/circumstances, strict-necessity protection for notifier identity, automation use, specific legal or contractual ground, explanation, and applicable redress rather than generic `policy violation` text;
+- a dedicated Article 18 emergency path where hosted information gives rise to suspicion of a criminal offence involving a threat to life or safety, with prompt competent-authority escalation, authority-selection logic, evidence preservation, audit trail, data minimization and no unnecessary disclosure;
+- a feature-by-feature distinction between hosting functions, public online-platform functions and finite-person private messaging;
+- documented Recommendation 2003/361/EC micro/small-enterprise status instead of assuming that every DSA obligation disappears for an indie operator;
+- Article 24(5) Transparency Database onboarding/submission if the Article 19 Section 3 exemption is unavailable, with personal data stripped from public submissions and user-specific redress fields kept out of the public database payload; and
+- the current German **Digital Services Coordinator at the Bundesnetzagentur** recorded as the central DSA coordination/supervision authority for a Germany-established provider, without confusing the DSC with the competent criminal-law authority for every Article 18 report.
+
+DSA moderation gate commit: `5f226c03dfd7959523e5c63cb93be70eb1f88e84`.
+Dedicated DSA regression verifier commit: `2467a713d9df6645abd8713b9917332b0302fd98`.
+
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical public approach:
 
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, respect for withdrawal rights, and particular care for children: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
+- Regulation (EU) 2022/2065 remains in force. Article 16 sets the hosting notice-and-action fields/processing rules; Article 17 requires clear and specific statements of reasons at the latest when covered restrictions are imposed; Article 18 requires prompt competent-authority notification for suspected criminal offences involving threats to life or safety; Article 19 provides the micro/small Section 3 exemption and transition; and Article 24(5) requires covered online platforms to submit decisions/statements to the Commission's public machine-readable database without personal data: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2065
+- The European Commission's current DSA Transparency Database guidance confirms that Article 17 statements are a hosting-service duty, the public database is for online-platform statements, personal data must be removed before submission, and redress options are not included in the public database payload: https://digital-strategy.ec.europa.eu/en/faqs/dsa-transparency-database-questions-and-answers
+- The German Digital Services Coordinator remains located at the Bundesnetzagentur; its April 30, 2026 activity report identifies Articles 16 and 17 implementation as active enforcement priorities: https://www.bundesnetzagentur.de/dsc and https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/DE/2026/20260430_TB_DSC.html
 - Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
 - Apple's current StoreKit guidance treats `Product.PurchaseResult.pending` as requiring further customer action, routes later completion through transaction updates, provides Ask to Buy testing for pending approval, and describes Strong Customer Authentication as an interrupted flow that must be recovered rather than treated as an immediate completed purchase: https://developer.apple.com/documentation/storekit/product/purchaseresult, https://developer.apple.com/documentation/storekit/testing-ask-to-buy-in-xcode and https://developer.apple.com/support/sca/
 - Apple's updated EU payment-option framework announced August 18, 2026 moves participating accounts to the unified Attachment 14 framework from October 1, 2026 or later agreement date as applicable and adds 12-month payment-option elections, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations and developer support responsibility: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/ and https://developer.apple.com/support/apps-in-the-eu/
