@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), and Ukrainian (`uk`) are now synchronized. This means **98/100 localized full documents are currently confirmed current**. The remaining **2 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), Ukrainian (`uk`), and Hindi (`hi`) are now synchronized. This means **99/100 localized full documents are currently confirmed current**. The remaining **1 Terms page** stays reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -52,14 +52,14 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | th | Ready | Ready | Ready | Ready | 4/4 |
 | vi | Ready | Ready | Ready | Ready | 4/4 |
 | uk | Ready | Ready | Ready | Ready | 4/4 |
-| hi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| hi | Ready | Ready | Ready | Ready | 4/4 |
 | id | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Hindi (`hi`) Terms of Service.**
+**Exact next unfinished locale/document: Indonesian (`id`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization with `id`. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Ukrainian (`uk`) Terms completion checkpoint
+## Hindi (`hi`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/uk/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Ukrainian.
+On **August 30, 2026**, `app/tycoonx-legal/hi/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Hindi.
 
 The refreshed page now:
 
@@ -113,10 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Ukrainian Purchases, Privacy, and Community pages plus the Ukrainian legal hub; and
-- displays **Українська версія: 29 серпня 2026 року · Канонічна англійська версія: 29 серпня 2026 року** with the brand exactly as `TycoonX`.
+- links directly to the completed Hindi Purchases, Privacy, and Community pages plus the Hindi legal hub; and
+- displays **हिन्दी संस्करण: 29 अगस्त 2026 · मानक अंग्रेज़ी संस्करण: 29 अगस्त 2026** with the brand exactly as `TycoonX`.
 
-Ukrainian Terms refresh commit: `651e67560ec6899e2666fd2da49675ce1da02130`.
+Hindi Terms refresh commit: `0b16abc445ca2d99113312a2da085d55ca32022a`.
 
 ## Current official-source checks
 
@@ -126,13 +126,13 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 - Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
 - Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption: https://developer.android.com/google/play/billing/integrate
 - Xsolla's current Refund Policy continues to cover in-game currency, transaction-specific refund handling, refunds for some unredeemed mistaken in-game-currency purchases, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
-- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services, including the requirements reflected in the canonical Terms: https://www.gesetze-im-internet.de/bgb/__355.html and https://www.gesetze-im-internet.de/bgb/__356.html
+- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services, including the requirements reflected in the canonical Terms: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
 
-- **Localized full documents:** 98/100, **98%**
+- **Localized full documents:** 99/100, **99%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **98.2%**
-- **Exact next unfinished locale/document:** Hindi (`hi`) Terms of Service
+- **Overall project completion:** **98.6%**
+- **Exact next unfinished locale/document:** Indonesian (`id`) Terms of Service
