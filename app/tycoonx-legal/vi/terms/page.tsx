@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds và các vật phẩm ảo khác",
     body: [
-      "Diamonds và các vật phẩm ảo khác là nội dung game kỹ thuật số hoặc quyền lợi được cấp phép để sử dụng riêng trong TycoonX. Trừ khi pháp luật bắt buộc quy định khác, việc mua không chuyển quyền sở hữu đối với dữ liệu trò chơi nền tảng.",
+      "Diamonds và các vật phẩm ảo khác là các thành phần trò chơi kỹ thuật số hoặc quyền lợi được cấp phép để chỉ sử dụng trong TycoonX. Cách mô tả theo hợp đồng này không tự nó quyết định cách pháp luật phân loại tiền ảo trong game đã mua cho mục đích áp dụng các quyền rút khỏi hợp đồng bắt buộc. Trừ khi pháp luật bắt buộc quy định khác, việc mua không chuyển quyền sở hữu đối với dữ liệu trò chơi nền tảng.",
       "Diamonds đã mua không hết hạn chỉ vì thời gian trôi qua. CK-Labs có thể sửa hoặc xóa Diamonds nếu giao dịch tương ứng được hoàn tiền, đảo ngược, chargeback, gian lận, cấp trùng, phát sinh do lỗi kỹ thuật hoặc không hợp lệ vì lý do khác.",
       "Diamonds hoặc quyền lợi được tặng theo khuyến mại, quà tặng, sự kiện, thử nghiệm, đánh giá, bồi hoàn hoặc miễn phí có thể có điều kiện, giới hạn, tiêu chí đủ điều kiện hoặc thời hạn riêng được công bố trước, nếu pháp luật và quy tắc nền tảng cho phép. Việc từng nhận miễn phí hoặc khuyến mại không tự động tạo ra quyền được nhận quyền lợi tương đương trong tương lai.",
       "Công dụng trong game của Diamonds và các vật phẩm ảo khác có thể thay đổi vì những lý do hợp lý như cân bằng, ổn định nền kinh tế trong game, chống lạm phát, bảo mật, ngăn lạm dụng, thay đổi kỹ thuật, tính năng mới, sửa lỗi hoặc yêu cầu pháp lý, tùy thuộc các quy định bắt buộc về sản phẩm kỹ thuật số.",
@@ -170,7 +170,11 @@ const sections = [
     title: "Quyền rút khỏi hợp đồng và quyền đối với sản phẩm kỹ thuật số tại EU và Đức",
     body: [
       "Không nội dung nào trong các Điều khoản này loại trừ quyền rút khỏi hợp đồng, quyền về sự phù hợp, cập nhật, bảo hành, giảm giá, chấm dứt, hoàn tiền hoặc quyền khác theo luật mà pháp luật không cho phép từ bỏ.",
-      "Đối với nội dung kỹ thuật số được cung cấp ngay như một gói Diamonds, quyền rút khỏi hợp đồng theo luật định chỉ có thể chấm dứt sau khi bắt đầu cung cấp nếu mọi điều kiện pháp lý áp dụng đã được đáp ứng, bao gồm sự đồng ý rõ ràng theo từng giao dịch đối với việc thực hiện sớm, xác nhận về việc mất quyền rút khỏi hợp đồng và xác nhận hợp đồng theo yêu cầu của luật.",
+      "Tiền ảo trong game đã mua, bao gồm TycoonX Diamonds, không được xem đơn thuần là nội dung kỹ thuật số chỉ để loại bỏ một quyền rút khỏi hợp đồng bắt buộc có thể áp dụng. Việc Diamonds đã mua được ghi có vào tài khoản TycoonX không tự động làm quyền rút khỏi hợp đồng đó chấm dứt.",
+      "Khi pháp luật áp dụng trao quyền rút khỏi hợp đồng trong 14 ngày đối với tiền ảo trong game đã mua, Diamonds đã mua và chưa sử dụng vẫn thuộc phạm vi quyền đó trong thời hạn theo luật định.",
+      "Nếu Diamonds đã mua đã được sử dụng, chuyển cho người khác hoặc đổi sang giá trị khác, hậu quả của việc rút khỏi hợp đồng được xác định theo pháp luật bắt buộc và hoàn cảnh của giao dịch cụ thể, thay vì theo một quy tắc chung rằng mọi giao dịch đều không được hoàn tiền.",
+      "Đối với một giao dịch riêng biệt về nội dung kỹ thuật số hoặc dịch vụ kỹ thuật số, quyền rút khỏi hợp đồng chỉ có thể chấm dứt sau khi bắt đầu thực hiện sớm nếu mọi điều kiện pháp lý áp dụng cho chính giao dịch đó đã được đáp ứng, bao gồm mọi yêu cầu hoặc sự đồng ý riêng theo giao dịch, xác nhận nhận biết hậu quả và xác nhận hợp đồng mà pháp luật yêu cầu.",
+      "Apple, Google, Xsolla hoặc thương nhân hay kênh thanh toán ký hợp đồng khác có thể quyết định cách thức gửi hoặc xử lý yêu cầu rút khỏi hợp đồng đối với giao dịch thuộc trách nhiệm của họ, nhưng việc phân bổ vai trò đó không làm mất một quyền bắt buộc.",
       "30-Day VIP và Lifetime VIP được cung cấp theo thời gian. Việc kích hoạt ngay hoặc thanh toán một lần không tự nó loại bỏ mọi quyền rút khỏi hợp đồng hoặc biện pháp khắc phục dành cho dịch vụ kỹ thuật số theo luật. Yêu cầu thực hiện sớm, thanh toán theo tỷ lệ sau khi rút, chấm dứt hoặc hậu quả khác chỉ áp dụng khi các yêu cầu pháp lý đối với giao dịch đó được đáp ứng.",
       "Việc chấp nhận các Điều khoản chung này không nhằm thay thế sự đồng ý riêng theo từng giao dịch khi pháp luật yêu cầu phải có sự đồng ý đó.",
     ],
@@ -326,7 +330,7 @@ export default function VietnameseTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Tiếng Việt</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Điều khoản Dịch vụ</h1>
-          <p className="text-zinc-500 text-sm">Cập nhật lần cuối: 27 tháng 8, 2026</p>
+          <p className="text-zinc-500 text-sm">Bản tiếng Việt: 29 tháng 8 năm 2026 · Bản tiếng Anh chuẩn: 29 tháng 8 năm 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Các Điều khoản này áp dụng cho tài khoản và gameplay TycoonX, tài sản ảo, Diamonds, 30-Day VIP mua một lần, Lifetime VIP mở bán có thời hạn, mua hàng và định giá qua Apple App Store, Google Play và cửa hàng web chính thức do Xsolla hỗ trợ, bảo mật, thay đổi dịch vụ, gián đoạn, thực thi quy tắc, tính năng cộng đồng và việc ngừng dịch vụ vĩnh viễn.
           </p>
@@ -352,9 +356,10 @@ export default function VietnameseTycoonXTermsOfService() {
           <h2 className="text-white font-semibold mb-3">Mua hàng, quyền riêng tư, cộng đồng và hỗ trợ</h2>
           <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX do CK-Labs vận hành. Xem Chính sách Mua hàng & Hoàn tiền để biết thông tin riêng về thanh toán, Tiêu chuẩn Cộng đồng để biết quy tắc xã hội và kiểm duyệt, và TycoonX Support cho các câu hỏi về tài khoản, giao dịch hoặc thực thi quy tắc.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Mua hàng & Hoàn tiền</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Chính sách Quyền riêng tư</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Tiêu chuẩn Cộng đồng</a>
+            <a href="/tycoonx-legal/vi/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Mua hàng & Hoàn tiền</a>
+            <a href="/tycoonx-legal/vi/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Chính sách Quyền riêng tư</a>
+            <a href="/tycoonx-legal/vi/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Tiêu chuẩn Cộng đồng</a>
+            <a href="/tycoonx-legal/vi" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Trung tâm pháp lý</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
