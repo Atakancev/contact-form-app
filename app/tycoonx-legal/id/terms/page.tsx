@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds dan item virtual lainnya",
     body: [
-      "Diamonds dan item virtual lainnya adalah konten game digital atau hak penggunaan berlisensi yang hanya dapat digunakan di TycoonX. Kecuali hukum wajib mengharuskan lain, pembelian tidak memindahkan kepemilikan atas data game yang mendasarinya.",
+      "Diamonds dan item virtual lainnya adalah elemen game digital atau hak berlisensi yang hanya dapat digunakan di TycoonX. Penyebutan kontraktual ini tidak dengan sendirinya menentukan klasifikasi hukum Diamonds yang dibeli sebagai mata uang virtual dalam game untuk tujuan hak penarikan wajib. Kecuali hukum wajib mengharuskan lain, pembelian tidak memindahkan kepemilikan atas data game yang mendasarinya.",
       "Diamonds yang dibeli tidak kedaluwarsa hanya karena berlalunya waktu. CK-Labs dapat mengoreksi atau menghapus Diamonds apabila pembelian terkait direfund, dibalik, terkena chargeback, bersifat curang, terduplikasi, timbul karena kesalahan teknis, atau tidak sah karena alasan lain.",
       "Diamonds dan manfaat yang diberikan melalui promosi, hadiah, event, pengujian, review, kompensasi, atau secara gratis dapat memiliki syarat, batas, persyaratan kelayakan, atau masa berlaku yang diberitahukan secara terpisah apabila diizinkan hukum dan aturan platform. Pemberian gratis atau promosi tidak otomatis menciptakan hak untuk menerima manfaat yang sama di masa depan.",
       "Kegunaan Diamonds dan item virtual dalam gameplay dapat berubah karena alasan yang sah seperti balancing, stabilitas ekonomi, pengendalian inflasi, keamanan, pencegahan penyalahgunaan, perubahan teknis, fitur baru, perbaikan bug, atau persyaratan hukum, dengan tetap tunduk pada hukum wajib mengenai produk digital.",
@@ -167,11 +167,13 @@ const sections = [
     ],
   },
   {
-    title: "Hak withdrawal dan produk digital EU/Jerman",
+    title: "Hak penarikan dan produk digital di UE/Jerman",
     body: [
-      "Tidak ada bagian dari Ketentuan ini yang mengecualikan hak statutory withdrawal, conformity, update, warranty, pengurangan harga, termination, refund, atau hak lain yang tidak dapat dikesampingkan secara hukum.",
-      "Untuk digital content yang diberikan segera, seperti bundle Diamonds, statutory withdrawal right hanya dapat berakhir setelah supply dimulai jika seluruh kondisi hukum terpenuhi, termasuk jika diwajibkan, persetujuan tegas khusus transaksi untuk memulai performance lebih awal, acknowledgment mengenai hilangnya withdrawal right, dan contractual confirmation.",
-      "30-Day VIP dan Lifetime VIP disediakan selama suatu periode. Aktivasi segera atau harga sekali bayar tidak dengan sendirinya menghilangkan semua statutory withdrawal atau digital-service remedies. Permintaan early performance, pembayaran proporsional setelah withdrawal, termination, atau konsekuensi lain hanya berlaku jika persyaratan hukum untuk transaksi tersebut terpenuhi.",
+      "Tidak ada bagian dari Ketentuan ini yang mengecualikan hak penarikan berdasarkan undang-undang, kesesuaian, pembaruan, garansi, pengurangan harga, pengakhiran, refund, atau hak lain yang tidak dapat dikesampingkan secara hukum.",
+      "Untuk konsumen di UE/EEA, CK-Labs tidak memperlakukan sekadar pengkreditan Diamonds yang dibeli sebagai penyerahan langsung konten digital yang otomatis menghapus hak penarikan berdasarkan undang-undang. Jika hak penarikan 14 hari berlaku atas mata uang virtual dalam game yang dibeli, Diamonds yang dibeli dan belum digunakan tetap tunduk pada hak tersebut selama periode yang ditetapkan undang-undang.",
+      "Jika Diamonds yang dibeli telah digunakan, dipindahkan, atau ditukar dengan konten atau layanan digital, konsekuensi penarikan ditentukan oleh hukum wajib dan transaksi tertentu, bukan oleh aturan tanpa-refund yang berlaku secara menyeluruh. Jika pembelian terpisah atas konten digital atau layanan digital secara sah dapat kehilangan hak penarikan setelah pelaksanaan dimulai lebih awal, hal tersebut hanya berlaku apabila setiap syarat hukum untuk transaksi itu terpenuhi, termasuk permintaan atau persetujuan tegas khusus transaksi, pengakuan, dan konfirmasi kontraktual jika diwajibkan.",
+      "Merchant yang terikat kontrak atau saluran pembayaran dapat menentukan cara permintaan penarikan diajukan atau diproses, tetapi pembagian peran tersebut tidak menghapus hak penarikan yang bersifat wajib.",
+      "30-Day VIP dan Lifetime VIP disediakan selama suatu periode. Aktivasi segera atau harga sekali bayar tidak dengan sendirinya menghilangkan semua hak penarikan berdasarkan undang-undang atau upaya hukum untuk layanan digital. Permintaan pelaksanaan lebih awal, pembayaran proporsional setelah penarikan, pengakhiran, atau konsekuensi lain hanya berlaku jika persyaratan hukum untuk transaksi tersebut terpenuhi.",
       "Penerimaan Ketentuan umum ini tidak dimaksudkan menggantikan persetujuan terpisah khusus transaksi apabila hukum mengharuskannya.",
     ],
   },
@@ -257,6 +259,7 @@ const sections = [
       "Anda memberi CK-Labs non-exclusive, worldwide, royalty-free license untuk host, store, reproduce, format, translate, transmit, display, moderate, back up, dan technically adapt submitted content hanya sejauh reasonably necessary untuk operate, secure, moderate, support, dan improve TycoonX, tunduk pada applicable privacy dan intellectual-property law.",
       "Untuk content yang sengaja Anda jadikan public di TycoonX, license juga mengizinkan CK-Labs menampilkannya sebagai bagian Service dan, jika sesuai dengan context, settings, applicable law, dan third-party rights, feature atau reproduce public content untuk TycoonX community atau promotional purposes.",
       "Private direct messages, private support communications, dan non-public reports tidak dilisensikan untuk public promotional use hanya karena CK-Labs perlu memprosesnya untuk provide, secure, moderate, atau support Service.",
+      "CK-Labs dapat menghapus atau membatasi konten yang melanggar Ketentuan ini, Standar Komunitas & Kebijakan Moderasi TycoonX, hukum, hak pihak ketiga, aturan platform, atau persyaratan keselamatan yang wajar. Kebijakan Komunitas memuat aturan yang lebih spesifik tentang moderasi, penanganan konten buatan pengguna yang bersifat publik atau pribadi, keselamatan berdasarkan usia, pelaporan, pemblokiran, dan peninjauan, serta berlaku untuk topik-topik khusus tersebut jika ada konflik dengan ketentuan umum ini sejauh diizinkan hukum.",
       "User-generated-content license berakhir ketika relevant content dihapus dari active systems kecuali continued processing reasonably necessary untuk backups, legal obligations, security, moderation evidence, dispute handling, atau lawful purposes lain, atau content telah lawfully shared oleh users lain dengan cara yang tidak reasonably dapat ditarik kembali.",
       "Mandatory rights terkait user content tetap berlaku.",
     ],
@@ -310,6 +313,7 @@ const sections = [
       "Sejauh German consumer-dispute law mengharuskan general statement tentang participation dalam consumer conciliation, website dan Terms yang applicable akan menyatakan apakah CK-Labs bersedia atau legally obliged ikut proceedings di consumer conciliation body. Terms ini tidak menciptakan voluntary general commitment untuk ikut kecuali CK-Labs expressly membuat commitment tersebut atau participation required by law.",
       "Jika dispute mengenai consumer contract tidak dapat diselesaikan langsung dan German Section 37 VSBG atau mandatory rule lain berlaku, CK-Labs akan memberikan legally required information dalam text form mengenai competent consumer conciliation body dan menyatakan apakah CK-Labs willing atau obliged untuk participate.",
       "Platform Online Dispute Resolution Komisi Eropa yang lama dihentikan pada 2025. TycoonX tidak mengandalkan atau mengarahkan konsumen ke platform yang sudah dihentikan itu sebagai mekanisme penyelesaian sengketa saat ini.",
+      "Bagian ini tidak membatasi hak konsumen untuk menggunakan pengadilan yang berwenang, mekanisme pengaduan berdasarkan undang-undang, proses penyedia pembayaran, atau upaya hukum wajib lainnya.",
     ],
   },
 ];
@@ -321,11 +325,11 @@ export default function IndonesianTycoonXTerms() {
         <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
+            <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Bahasa Indonesia</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Ketentuan Layanan</h1>
-          <p className="text-zinc-500 text-sm">Terakhir diperbarui 27 Agustus 2026</p>
-          <p className="text-zinc-400 text-sm leading-relaxed mt-6">Ketentuan ini mengatur penggunaan TycoonX dan hubungan Anda dengan CK-Labs. Dengan menggunakan Layanan, Anda menyetujui Ketentuan ini, dengan tetap mempertahankan seluruh hak konsumen wajib yang berlaku.</p>
+          <p className="text-zinc-500 text-sm">Versi bahasa Indonesia: 29 Agustus 2026 · Versi bahasa Inggris kanonis: 29 Agustus 2026</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mt-6">Ketentuan ini mengatur akun TycoonX, gameplay, aset virtual, Diamonds, 30-Day VIP sekali beli, Lifetime VIP yang ditawarkan secara terbatas, pembelian, harga, Apple App Store, Google Play, web shop resmi yang didukung Xsolla, keamanan, perubahan layanan, gangguan, penegakan, fitur komunitas, dan penghentian permanen.</p>
         </div>
       </div>
 
@@ -345,15 +349,17 @@ export default function IndonesianTycoonXTerms() {
         ))}
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
-          <h2 className="text-white font-semibold mb-3">Legal dan dukungan</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX dioperasikan oleh CK-Labs. Untuk pertanyaan akun, pembelian, entitlement, keamanan, atau Ketentuan ini, hubungi TycoonX Support.</p>
+          <h2 className="text-white font-semibold mb-3">Pembelian, privasi, komunitas & dukungan</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX dioperasikan oleh CK-Labs. Gunakan Kebijakan Pembelian & Refund untuk informasi khusus pembayaran, Standar Komunitas untuk aturan sosial dan moderasi, dan TycoonX Support untuk pertanyaan akun, pembelian, atau penegakan.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-support" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
-            <a href="/tycoonx-legal/id/purchases" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Pembelian & Refund</a>
+            <a href="/tycoonx-legal/id/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Pembelian & Refund</a>
             <a href="/tycoonx-legal/id/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Kebijakan Privasi</a>
             <a href="/tycoonx-legal/id/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Standar Komunitas</a>
+            <a href="/tycoonx-legal/id" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Pusat Legal TycoonX</a>
+            <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
+          <p className="text-zinc-600 text-xs leading-relaxed mt-4">Jika diwajibkan hukum, rincian tambahan mengenai identitas dan alamat operator tersedia dalam pemberitahuan hukum atau imprint yang berlaku untuk Layanan.</p>
         </section>
       </div>
     </main>
