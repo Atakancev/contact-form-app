@@ -21,9 +21,9 @@ Last synchronized: **August 30, 2026**.
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales.
 
-On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
+On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remained current throughout that refresh.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), Ukrainian (`uk`), and Hindi (`hi`) are now synchronized. This means **99/100 localized full documents are currently confirmed current**. The remaining **1 Terms page** stays reopened until individually audited and refreshed.
+All Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), Ukrainian (`uk`), Hindi (`hi`), and Indonesian (`id`) are now synchronized. This means **100/100 localized full documents are currently confirmed current**.
 
 ### Locale status
 
@@ -53,13 +53,13 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | vi | Ready | Ready | Ready | Ready | 4/4 |
 | uk | Ready | Ready | Ready | Ready | 4/4 |
 | hi | Ready | Ready | Ready | Ready | 4/4 |
-| id | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| id | Ready | Ready | Ready | Ready | 4/4 |
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Indonesian (`id`) Terms of Service.**
+**Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Continue Terms synchronization with `id`. Do not duplicate Terms pages already marked Ready.
+Future runs must not duplicate completed localization. Continue with repository-wide legal QA, stale-brand/stale-beta checks, canonical-English drift checks, and remaining commercial/legal/payment-readiness hardening. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize in the required locale order.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Hindi (`hi`) Terms completion checkpoint
+## Indonesian (`id`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/hi/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Hindi.
+On **August 30, 2026**, `app/tycoonx-legal/id/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Indonesian and the reopened localization queue was completed.
 
 The refreshed page now:
 
@@ -112,11 +112,12 @@ The refreshed page now:
 - requires every transaction-specific legal condition before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
+- restores the canonical Community Standards/moderation precedence clause and the consumer-dispute non-restriction clause that were missing from the older Indonesian Terms;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Hindi Purchases, Privacy, and Community pages plus the Hindi legal hub; and
-- displays **हिन्दी संस्करण: 29 अगस्त 2026 · मानक अंग्रेज़ी संस्करण: 29 अगस्त 2026** with the brand exactly as `TycoonX`.
+- links directly to the completed Indonesian Purchases, Privacy, Community pages and Indonesian legal hub; and
+- displays **Versi bahasa Indonesia: 29 Agustus 2026 · Versi bahasa Inggris kanonis: 29 Agustus 2026** with the brand exactly as `TycoonX`.
 
-Hindi Terms refresh commit: `0b16abc445ca2d99113312a2da085d55ca32022a`.
+Indonesian Terms refresh commit: `c2b625a76854b211cf9cbc14fc1b42b4b36179d8`.
 
 ## Current official-source checks
 
@@ -130,9 +131,9 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 
 ## Progress metrics
 
-- **Localized full documents:** 99/100, **99%**
+- **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **98.6%**
-- **Exact next unfinished locale/document:** Indonesian (`id`) Terms of Service
+- **Overall project completion:** **99.0%**
+- **Exact next unfinished locale/document:** None — all target locale documents are current
