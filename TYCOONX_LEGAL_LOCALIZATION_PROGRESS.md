@@ -218,6 +218,23 @@ The gate now records and requires:
 DSA moderation gate commit: `5f226c03dfd7959523e5c63cb93be70eb1f88e84`.
 Dedicated DSA regression verifier commit: `2467a713d9df6645abd8713b9917332b0302fd98`.
 
+## August 30, 2026 promotional pricing / personalization checkpoint
+
+`TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md` was hardened against current German/EU promotional-pricing rules without changing the canonical public Purchases & Refunds meaning. No localized Purchases page was reopened.
+
+The gate now records that:
+
+- German PAngV § 11 currently applies its 30-day lowest-prior-total-price rule to announced price reductions for **Waren**, so TycoonX must classify the actual product/claim rather than mechanically asserting that every Diamond or VIP digital-entitlement promotion is subject to that exact rule;
+- where the statutory 30-day rule or an equivalent jurisdictional rule does apply, the qualifying price-reduction claim must use the legally required prior-price basis rather than a convenient higher reference price;
+- the Court of Justice's **September 26, 2024 C-330/23 Aldi Süd** judgment confirms that an in-scope percentage reduction or promotional price-advantage statement must be determined from the statutory prior price;
+- PAngV § 11(4)(1)'s individual-price-reduction exception is not a general permission for deceptive personalized pricing and does not remove separate pre-contract information duties;
+- German EGBGB Art. 246a § 1(1) no. 6 and Consumer Rights Directive Article 6(1)(ea) require disclosure, where applicable, that a price was personalized on the basis of automated decision-making;
+- ordinary country, storefront, currency, tax, platform or generally available regional pricing is not automatically individualized automated pricing, while user-specific automated pricing based on behavior/profile/purchase-history signals must follow its separate disclosure path; and
+- canonical Purchases markdown and the rendered Purchases page are now both regression-checked for truthful promotion claims, jurisdiction-specific discount rules, automated-personalized-pricing disclosure, and the regional-vs-personalized pricing distinction.
+
+Promotion gate hardening commit: `9ce10d31b40019f3f48d54dba05fcf7000f9ecc7`.
+Promotion verifier final hardening commit: `b029b531527327032dbf5c7b93703bcb398f5342`.
+
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical public approach:
@@ -226,6 +243,9 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 - Regulation (EU) 2022/2065 remains in force. Article 16 sets the hosting notice-and-action fields/processing rules; Article 17 requires clear and specific statements of reasons at the latest when covered restrictions are imposed; Article 18 requires prompt competent-authority notification for suspected criminal offences involving threats to life or safety; Article 19 provides the micro/small Section 3 exemption and transition; and Article 24(5) requires covered online platforms to submit decisions/statements to the Commission's public machine-readable database without personal data: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2065
 - The European Commission's current DSA Transparency Database guidance confirms that Article 17 statements are a hosting-service duty, the public database is for online-platform statements, personal data must be removed before submission, and redress options are not included in the public database payload: https://digital-strategy.ec.europa.eu/en/faqs/dsa-transparency-database-questions-and-answers
 - The German Digital Services Coordinator remains located at the Bundesnetzagentur; its April 30, 2026 activity report identifies Articles 16 and 17 implementation as active enforcement priorities: https://www.bundesnetzagentur.de/dsc and https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/DE/2026/20260430_TB_DSC.html
+- German PAngV § 11 currently requires the lowest total price used in the prior 30 days for in-scope announced price reductions for goods, while § 11(4)(1) excludes individual price reductions from that specific rule: https://www.gesetze-im-internet.de/pangv_2022/__11.html
+- German EGBGB Art. 246a § 1(1) no. 6 and Consumer Rights Directive 2011/83/EU Article 6(1)(ea) currently require, where applicable, pre-contract disclosure that a price was personalized on the basis of automated decision-making: https://www.gesetze-im-internet.de/bgbeg/art_246a__1.html and https://eur-lex.europa.eu/eli/dir/2011/83/2022-05-28/eng
+- The Court of Justice's September 26, 2024 judgment in C-330/23, Aldi Süd confirms that an in-scope percentage price reduction or promotional price-advantage statement under Article 6a of Directive 98/6/EC must be determined using the statutory prior price: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62023CA0330
 - Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
 - Apple's current StoreKit guidance treats `Product.PurchaseResult.pending` as requiring further customer action, routes later completion through transaction updates, provides Ask to Buy testing for pending approval, and describes Strong Customer Authentication as an interrupted flow that must be recovered rather than treated as an immediate completed purchase: https://developer.apple.com/documentation/storekit/product/purchaseresult, https://developer.apple.com/documentation/storekit/testing-ask-to-buy-in-xcode and https://developer.apple.com/support/sca/
 - Apple's updated EU payment-option framework announced August 18, 2026 moves participating accounts to the unified Attachment 14 framework from October 1, 2026 or later agreement date as applicable and adds 12-month payment-option elections, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations and developer support responsibility: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/ and https://developer.apple.com/support/apps-in-the-eu/
