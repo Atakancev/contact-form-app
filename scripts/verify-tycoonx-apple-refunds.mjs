@@ -14,6 +14,13 @@ const required = [
   'signedDate',
   'ONE_TIME_CHARGE',
   'May 27, 2025',
+  'Product.PurchaseResult.pending',
+  'Transaction.updates',
+  'Ask to Buy',
+  'Strong Customer Authentication',
+  'userCancelled',
+  'unverified',
+  'Transaction.finish()',
   'Get Notification History',
   'Get Transaction History',
   'Get Refund History',
@@ -46,6 +53,34 @@ if (!/consumables do \*\*not\*\* appear in `currentEntitlements`/i.test(text)) {
 
 if (!/latest transaction for a non-renewing subscription can appear even when the time-limited service has already finished/i.test(text)) {
   failures.push('Non-renewing subscription finished-state warning is missing.');
+}
+
+if (!/`pending` is \*\*not\*\* a paid transaction and must grant no Diamonds, 30-Day VIP time, or Lifetime VIP access/i.test(text)) {
+  failures.push('Pending Apple purchase must grant no paid value.');
+}
+
+if (!/keep a `Transaction\.updates` listener active from app launch, not only while the store screen is visible/i.test(text)) {
+  failures.push('Persistent StoreKit transaction listener requirement is missing.');
+}
+
+if (!/do not grant an `unverified` StoreKit transaction/i.test(text)) {
+  failures.push('Unverified StoreKit transaction rejection safeguard is missing.');
+}
+
+if (!/do not start the 30-Day VIP clock while a purchase is pending/i.test(text)) {
+  failures.push('Pending purchase must not start 30-Day VIP time.');
+}
+
+if (!/Finish a verified transaction only after TycoonX has durably completed the fulfillment work/i.test(text)) {
+  failures.push('Finish-after-durable-fulfillment safeguard is missing.');
+}
+
+if (!/Ask to Buy decline or `userCancelled` proving no entitlement is granted and no fake refund\/clawback event is created/i.test(text)) {
+  failures.push('Ask to Buy decline/userCancelled regression test is missing.');
+}
+
+if (!/interrupted\/SCA-style purchase.*later completes after backgrounding or relaunch/is.test(text)) {
+  failures.push('Interrupted/SCA relaunch recovery test is missing.');
 }
 
 if (!/do not revoke paid value merely because a refund was \*\*requested\*\*/i.test(text)) {
