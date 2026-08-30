@@ -149,6 +149,39 @@ The gate now explicitly records that:
 Apple EU gate hardening commit: `5a1330fd7aa700ac933a727a486146a23e1bbba1`.
 Apple EU verifier hardening commit: `ff39c4bc1d1249f1cb5580d8f799a2c79501daaa`.
 
+## August 30, 2026 Xsolla webhook / refund reconciliation checkpoint
+
+`TYCOONX_XSOLLA_REFUND_CHARGEBACK_RELEASE_GATE.md` was hardened against Xsolla's current Store/Payments webhook and refund documentation. This did **not** change public canonical legal meaning, so no localization was reopened.
+
+The gate now records that:
+
+- newer Publisher Account projects can use combined `order_paid` / `order_canceled` Store webhooks, while older configurations can use separate `payment` / `refund` plus order webhooks; the actual CK-Labs project configuration must be verified rather than inferred;
+- webhook signatures must be verified against the raw request body, successful handling must be idempotent, and missed/retried notifications must reconcile to authoritative Xsolla transaction state;
+- Xsolla's current documented retry behavior differs by webhook type, so TycoonX must not assume one universal retry window;
+- returning an error response does not safely veto an Xsolla-initiated refund, so entitlement state must reconcile after provider-side refund/reversal events;
+- issued refunds can be non-cancelable and the consumer's bank/payment method can take additional banking days to show the money; and
+- partial refunds require transaction/payment-method eligibility checks and must not remove unrelated legitimately purchased value.
+
+Xsolla gate hardening commit: `ed50e9fb0274d64798682b2da52739d09bfd46ab`.
+Xsolla verifier hardening commit: `b2c06b95e5b3705d9e47b0700117e24456ba0a7d`.
+
+## August 30, 2026 Google Play RTDN / voided-purchase checkpoint
+
+`TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was further hardened so Google Play refunds, cancellations and chargebacks are not dependent on the Android client being open or on one notification arriving successfully. This did **not** change public canonical legal meaning, so no localized document was reopened.
+
+The gate now requires:
+
+- applicable **Real-time Developer Notifications (RTDN)** for one-time purchases and voided purchases to be handled as state-change signals, with authoritative Google Play Developer API verification where needed before final entitlement action;
+- Pub/Sub `messageId` deduplication and idempotent entitlement correction so duplicate notifications cannot remove the same value twice;
+- durable mapping of `purchaseToken`, `orderId`, product/account/order references, refund type and resulting entitlement-ledger action;
+- separate treatment of `VoidedPurchaseNotification` versus `ONE_TIME_PRODUCT_CANCELED`, so a pending purchase that never completed is not confused with a later refund/chargeback of value that may already have been delivered;
+- periodic server-side recovery through `purchases.voidedpurchases.list`, rather than relying only on the client, `queryPurchasesAsync()` or deprecated client-side purchase-history behavior;
+- exact handling of `REFUND_TYPE_FULL_REFUND` versus `REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND`, using `purchases.productsv2` / `refundableQuantity` where multi-quantity products are actually enabled; and
+- release evidence proving successful purchase, pending cancellation, full void/refund after delivery, duplicate RTDN idempotency and, if applicable, partial-quantity refund behavior.
+
+Google Play RTDN/voided-purchase gate commit: `93615393b0a7d93e32c6a43cff77746d93c537f2`.
+Dedicated Google Play refund verifier commit: `853c5064d0cc8336c0bdbb31c8dbffa4374e5f3c`.
+
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical public approach:
@@ -157,7 +190,7 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 - Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
 - Apple's updated EU payment-option framework announced August 18, 2026 moves participating accounts to the unified Attachment 14 framework from October 1, 2026 or later agreement date as applicable and adds 12-month payment-option elections, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations and developer support responsibility: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/ and https://developer.apple.com/support/apps-in-the-eu/
 - Apple App Store Connect currently requires an EU-specific VAT ID for developers using alternative payment options on EU storefronts and requires monthly external-purchase reporting within 15 days after month-end, including relevant tokens that did not produce a completed transaction: https://developer.apple.com/help/app-store-connect/manage-tax-information/provide-tax-information-for-commissions-and-fees-related-to-external-purchases-and-alternative-distribution and https://developer.apple.com/help/app-store-connect/making-payments-to-apple/reporting-tokens-and-transactions
-- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Billing Choice and the EEA External Offers Program remain distinct programs with separate eligibility, API and reporting requirements: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice and https://support.google.com/googleplay/android-developer/answer/14372887
+- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Billing Choice and the EEA External Offers Program remain distinct programs with separate eligibility, API and reporting requirements. Current RTDN guidance also distinguishes pending purchase cancellation from voided purchases and documents full versus quantity-based partial refund notifications; the Voided Purchases API remains the server-side pull source for canceled, refunded and charged-back purchases: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice, https://developer.android.com/google/play/billing/rtdn-reference, https://developer.android.com/google/play/billing/query-purchase-history and https://support.google.com/googleplay/android-developer/answer/14372887
 - Xsolla's current Refund Policy is dated June 16, 2026 and continues to use transaction-specific refund-policy types, cover in-game currency and some unredeemed mistaken purchases, and preserve an EU/EEA/UK 14-day withdrawal framework in the applicable policy: https://xsolla.com/refund-policy
 - German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services. BGB § 356a requires the continuously available and prominently accessible withdrawal function, consumer/contract/confirmation-channel information, separate confirmation control, immediate durable-medium receipt with date/time, and timely-submission effect reflected in the operational release gate: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
 
