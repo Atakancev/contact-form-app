@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Diamonds i inne wirtualne przedmioty",
     body: [
-      "Diamonds i inne wirtualne przedmioty są licencjonowaną cyfrową zawartością gry lub uprawnieniami przeznaczonymi wyłącznie do używania w TycoonX. Z wyjątkiem sytuacji wymaganych przez bezwzględnie obowiązujące prawo ich zakup nie przenosi własności danych gry stanowiących ich podstawę.",
+      "Diamonds i inne wirtualne przedmioty są licencjonowanymi cyfrowymi elementami gry lub uprawnieniami do korzystania wyłącznie w TycoonX. Sam ten opis umowny nie rozstrzyga, jak zakupiona waluta wirtualna jest kwalifikowana prawnie na potrzeby bezwzględnie obowiązującego ustawowego prawa odstąpienia od umowy. Z wyjątkiem sytuacji, w których bezwzględnie obowiązujące prawo stanowi inaczej, zakup nie przenosi własności danych gry stanowiących ich podstawę.",
       "Zakupione Diamonds nie wygasają wyłącznie z upływem czasu. CK-Labs może skorygować lub usunąć Diamonds, jeżeli odpowiadający im zakup został zwrócony, cofnięty, objęty chargebackiem, dokonany w wyniku oszustwa, zduplikowany, błędny technicznie lub w inny sposób nieważny.",
       "Promocyjne, podarowane, eventowe, testowe, recenzenckie, kompensacyjne lub bezpłatne Diamonds i korzyści mogą podlegać odrębnie ujawnionym warunkom, limitom, kryteriom kwalifikacji lub terminom ważności, o ile zezwalają na to prawo i zasady platformy. Bezpłatne lub promocyjne przyznanie korzyści nie tworzy automatycznie prawa do podobnych korzyści w przyszłości.",
       "Użyteczność Diamonds i innych wirtualnych przedmiotów w rozgrywce może ulec zmianie z uzasadnionych powodów, takich jak balans gry, stabilność gospodarki, przeciwdziałanie inflacji, bezpieczeństwo, zapobieganie nadużyciom, zmiany techniczne, nowe funkcje, poprawki błędów lub wymagania prawne, z zachowaniem bezwzględnie obowiązujących przepisów dotyczących produktów cyfrowych.",
@@ -170,8 +170,10 @@ const sections = [
     title: "Prawo odstąpienia i prawa dotyczące produktów cyfrowych w UE i Niemczech",
     body: [
       "Żadne postanowienie niniejszych Warunków nie wyłącza ustawowego prawa odstąpienia, praw z tytułu zgodności produktu cyfrowego z umową, aktualizacji, gwarancji, obniżenia ceny, rozwiązania, zwrotu ani innych praw, których zgodnie z prawem nie można się zrzec.",
-      "W przypadku treści cyfrowych dostarczanych natychmiast, takich jak pakiet Diamonds, ustawowe prawo odstąpienia może wygasnąć po rozpoczęciu świadczenia tylko wtedy, gdy spełniono wszystkie wymagane prawem warunki, w tym każdą wymaganą dla danej transakcji wyraźną zgodę na rozpoczęcie wykonania przed upływem terminu, przyjęcie do wiadomości utraty prawa odstąpienia oraz potwierdzenie umowy.",
-      "30-Day VIP i Lifetime VIP są świadczeniami dostarczanymi w czasie. Natychmiastowa aktywacja lub jednorazowa cena zakupu same w sobie nie eliminują wszystkich ustawowych praw odstąpienia ani środków ochrony dotyczących usługi cyfrowej. Żądanie wcześniejszego rozpoczęcia świadczenia, proporcjonalna płatność po odstąpieniu, rozwiązanie lub inna konsekwencja mają zastosowanie wyłącznie po spełnieniu wymogów prawnych dotyczących konkretnej transakcji.",
+      "W przypadku konsumentów w UE/EOG CK-Labs nie traktuje samego zaksięgowania zakupionych Diamonds na koncie TycoonX jako natychmiastowego dostarczenia treści cyfrowych, które automatycznie powoduje utratę ustawowego prawa odstąpienia. Jeżeli do zakupionej waluty wirtualnej w grze ma zastosowanie ustawowe 14-dniowe prawo odstąpienia, zakupione i niewykorzystane Diamonds pozostają objęte tym prawem przez ustawowy okres.",
+      "Jeżeli zakupione Diamonds zostały już wydane, przeniesione lub wymienione na treści albo usługi cyfrowe, skutki odstąpienia określają bezwzględnie obowiązujące przepisy i okoliczności konkretnej transakcji, a nie ogólna zasada wyłączająca zwroty. Jeżeli w przypadku odrębnego zakupu treści cyfrowej lub usługi cyfrowej prawo odstąpienia może zgodnie z prawem wygasnąć po wcześniejszym rozpoczęciu dostarczania lub wykonywania, następuje to wyłącznie po spełnieniu wszystkich wymaganych prawem warunków dotyczących danej transakcji, w tym, gdy jest to wymagane, po wyraźnym żądaniu lub zgodzie dotyczącej tej konkretnej transakcji, potwierdzeniu przyjęcia do wiadomości utraty prawa odstąpienia oraz przekazaniu wymaganego potwierdzenia umowy.",
+      "Przedsiębiorca będący stroną umowy lub właściwy kanał płatności może określać sposób złożenia lub obsługi oświadczenia o odstąpieniu, lecz taki podział ról nie usuwa bezwzględnie obowiązującego prawa odstąpienia.",
+      "30-Day VIP i Lifetime VIP są uprawnieniami cyfrowymi dostarczanymi w czasie. Natychmiastowa aktywacja lub jednorazowa cena zakupu same w sobie nie eliminują wszystkich ustawowych praw odstąpienia ani środków ochrony dotyczących usługi cyfrowej. Żądanie wcześniejszego rozpoczęcia świadczenia, proporcjonalna płatność po odstąpieniu, rozwiązanie lub inna konsekwencja mają zastosowanie wyłącznie po spełnieniu wymogów prawnych dotyczących konkretnej transakcji.",
       "Akceptacja niniejszych ogólnych Warunków nie zastępuje odrębnej zgody dotyczącej konkretnej transakcji, jeżeli prawo wymaga takiej odrębnej zgody.",
     ],
   },
@@ -326,7 +328,7 @@ export default function PolishTycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Polski</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Warunki korzystania z usługi</h1>
-          <p className="text-zinc-500 text-sm">Ostatnia aktualizacja: 27 sierpnia 2026 r.</p>
+          <p className="text-zinc-500 text-sm">Wersja polska: 29 sierpnia 2026 r. · Kanoniczna wersja angielska: 29 sierpnia 2026 r.</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             Niniejsze Warunki regulują konta i rozgrywkę TycoonX, wirtualne aktywa, Diamonds, jednorazowy 30-Day VIP, dostępny okresowo Lifetime VIP, zakupy i ceny, Apple App Store, Google Play, oficjalny sklep internetowy obsługiwany przez Xsolla, bezpieczeństwo, zmiany Usługi, awarie, egzekwowanie zasad, funkcje społecznościowe i trwałe zakończenie Usługi.
           </p>
@@ -350,11 +352,12 @@ export default function PolishTycoonXTermsOfService() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Zakupy, prywatność, społeczność i pomoc</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX jest prowadzony przez CK-Labs. Szczegółowe informacje dotyczące płatności znajdują się w Polityce zakupów i zwrotów, zasady funkcji społecznościowych i moderacji w Community Standards, a pytania dotyczące kont, zakupów lub działań egzekucyjnych można kierować do TycoonX Support.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">TycoonX jest prowadzony przez CK-Labs. Pełne polskie informacje o zakupach i zwrotach, prywatności oraz zasadach społeczności znajdziesz na odpowiednich stronach poniżej. Polski hub prawny ułatwia przechodzenie między dokumentami, a pytania dotyczące kont, zakupów lub działań egzekucyjnych można kierować do TycoonX Support.</p>
           <div className="flex flex-wrap gap-3">
-            <a href="/tyconx-purchase-refund-policy" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Zakupy i zwroty</a>
-            <a href="/tyconx-privacy-policy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Polityka prywatności</a>
-            <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Standardy społeczności</a>
+            <a href="/tycoonx-legal/pl/purchases" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">Zakupy i zwroty</a>
+            <a href="/tycoonx-legal/pl/privacy" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Polityka prywatności</a>
+            <a href="/tycoonx-legal/pl/community" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Standardy społeczności</a>
+            <a href="/tycoonx-legal/pl" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Polski hub prawny</a>
             <a href="/tyconx-support" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
           </div>
