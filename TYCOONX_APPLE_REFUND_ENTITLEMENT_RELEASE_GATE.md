@@ -60,7 +60,28 @@ However:
 - a retry or replay must not duplicate Diamonds or restart a 30-Day VIP period; and
 - a later refund or revocation must reconcile against the same transaction record.
 
-### 4. Do not rely on notification delivery alone
+### 4. Treat pending, deferred, and interrupted purchases as unpaid until verified completion
+
+StoreKit 2 can return `Product.PurchaseResult.pending` when the purchase still requires action from the customer. Apple explicitly uses **Ask to Buy** as one example. Strong Customer Authentication and other interrupted purchase flows can likewise complete after the original purchase UI has ended.
+
+For TycoonX:
+
+- `pending` is **not** a paid transaction and must grant no Diamonds, 30-Day VIP time, or Lifetime VIP access;
+- do not start the 30-Day VIP clock while a purchase is pending;
+- do not mark an order as successfully paid merely because the Apple confirmation sheet was shown or the app received a pending result;
+- `userCancelled` must grant nothing and must not create a fake refund, reversal, fraud event, or entitlement correction;
+- an Ask to Buy decline may result in no completed transaction being delivered at all, so absence of a later transaction must not trigger a clawback for value that was never granted;
+- do not grant an `unverified` StoreKit transaction merely because its product identifier and local UI look plausible;
+- keep a `Transaction.updates` listener active from app launch, not only while the store screen is visible, so an approved Ask to Buy or otherwise interrupted purchase can be processed when it completes later;
+- if the app restarts, backgrounds, loses network connectivity, or the original purchase view disappears while approval/authentication is pending, the later verified transaction must still reconcile correctly;
+- a later verified success can arrive through the direct purchase result, `Transaction.updates`, `ONE_TIME_CHARGE`, or server reconciliation, but the entitlement must be granted exactly once across all paths; and
+- let the player continue using the app while approval/authentication is pending rather than blocking normal gameplay behind a spinner that implies payment already succeeded.
+
+Finish a verified transaction only after TycoonX has durably completed the fulfillment work required for that transaction. Do not call `Transaction.finish()` before the entitlement/ledger action is safely recorded. If CK-Labs intentionally manages finishing from the server with Apple's Finish Transaction endpoint, use one consistent ownership model so the app and server do not race to finish before fulfillment.
+
+For consumable Diamonds this sequencing is especially important: a replayed unfinished transaction must not grant the same Diamond bundle twice, while a prematurely finished transaction must not disappear before TycoonX has durably recorded the grant.
+
+### 5. Do not rely on notification delivery alone
 
 Apple currently documents the following retry behavior for **production** V2 notifications after an unsuccessful attempt: five retries at approximately **1, 12, 24, 48, and 72 hours** after the previous attempt. Sandbox does not provide the same retry behavior and may attempt delivery only once.
 
@@ -77,7 +98,7 @@ Apple currently makes notification history available for up to **180 days in pro
 
 Run Apple's test-notification flow during release QA and after any infrastructure, domain, TLS, routing, proxy, or webhook-secret/certificate change.
 
-### 5. Distinguish refund request, refund decision, and entitlement correction
+### 6. Distinguish refund request, refund decision, and entitlement correction
 
 Do not revoke paid value merely because a refund was **requested**.
 
@@ -96,7 +117,7 @@ Corrections must stay transaction-specific:
 
 Never classify a lawful consumer refund request as fraud merely because the entitlement must be corrected after Apple grants the refund.
 
-### 6. `CONSUMPTION_REQUEST` data requires separate customer consent
+### 7. `CONSUMPTION_REQUEST` data requires separate customer consent
 
 Apple's current **Send Consumption Information V2** endpoint supports refund-request information for consumables, non-consumables, non-renewing subscriptions, and auto-renewable subscriptions.
 
@@ -114,7 +135,7 @@ The optional developer `refundPreference` is input to Apple's refund decision pr
 
 **Release blocker:** do not enable Send Consumption Information in production until the CK-Labs implementation has a lawful consent flow, privacy-disclosure parity, and a verified 12-hour response path.
 
-### 7. Keep 30-Day VIP time logic server-authoritative
+### 8. Keep 30-Day VIP time logic server-authoritative
 
 If 30-Day VIP uses Apple's non-renewing subscription type, Apple states that the app/developer is responsible for determining the active period and making the purchase available across devices.
 
@@ -131,7 +152,7 @@ Presence in `currentEntitlements` is not enough because Apple can return finishe
 
 A restore must recover the valid remaining/recorded period. It must not restart an expired 30-Day VIP merely because the historical Apple transaction is visible again.
 
-### 8. Lifetime VIP restore and Family Sharing state
+### 9. Lifetime VIP restore and Family Sharing state
 
 Keep a visible restore mechanism for restorable purchases and test Lifetime VIP after reinstall, device change, sign-out/sign-in, and TycoonX account relinking.
 
@@ -141,7 +162,7 @@ If Family Sharing is intentionally enabled, handle Apple's purchaser-versus-fami
 
 Do not let Family Sharing behavior silently contradict TycoonX account-transfer restrictions or the public Lifetime VIP wording.
 
-### 9. Support and order reconciliation
+### 10. Support and order reconciliation
 
 For Apple purchase support, preserve enough non-excessive transaction evidence to match:
 
@@ -157,21 +178,24 @@ A screenshot or local success screen is supporting evidence, not final transacti
 
 Where Apple has already refunded a purchase, support must not manually grant the same paid entitlement again merely because the client still displays stale local state.
 
-### 10. Minimum release evidence
+### 11. Minimum release evidence
 
 Before declaring the Apple IAP path fully payment-ready, retain dated QA evidence for at least:
 
 1. successful Diamond purchase with one and only one grant even if both the client and `ONE_TIME_CHARGE` are received;
 2. successful Lifetime VIP purchase, reinstall, Restore Purchases, and idempotent recovery;
 3. successful 30-Day VIP purchase with the correct 30-day start/end calculation and a restore that does not restart the period;
-4. deferred/pending purchase that grants nothing before verified completion;
-5. duplicate V2 notification replay proving no duplicate grant or duplicate clawback;
-6. missed-webhook recovery using Notification History / transaction reconciliation;
-7. `CONSUMPTION_REQUEST` with consent and without consent, proving no consumption data is sent in the no-consent case;
-8. `REFUND_DECLINED` proving the entitlement is not wrongly removed;
-9. confirmed `REFUND` proving only the matching paid value is corrected;
-10. Lifetime VIP restore after refund proving refunded entitlement is not resurrected; and
-11. Family Sharing revocation behavior if Family Sharing is enabled for any relevant non-consumable.
+4. Ask to Buy pending purchase that grants nothing before approval, then grants exactly once after a later verified completion through `Transaction.updates` even if the original store screen is gone;
+5. Ask to Buy decline or `userCancelled` proving no entitlement is granted and no fake refund/clawback event is created;
+6. interrupted/SCA-style purchase that leaves the original flow and later completes after backgrounding or relaunch, proving recovery through the persistent transaction listener/reconciliation path;
+7. duplicate direct-purchase / `Transaction.updates` / `ONE_TIME_CHARGE` delivery proving one fulfillment only;
+8. duplicate V2 notification replay proving no duplicate grant or duplicate clawback;
+9. missed-webhook recovery using Notification History / transaction reconciliation;
+10. `CONSUMPTION_REQUEST` with consent and without consent, proving no consumption data is sent in the no-consent case;
+11. `REFUND_DECLINED` proving the entitlement is not wrongly removed;
+12. confirmed `REFUND` proving only the matching paid value is corrected;
+13. Lifetime VIP restore after refund proving refunded entitlement is not resurrected; and
+14. Family Sharing revocation behavior if Family Sharing is enabled for any relevant non-consumable.
 
 ## Public-legal parity check
 
@@ -188,6 +212,11 @@ If CK-Labs actually enables Apple's Send Consumption Information data flow, the 
 - App Store Server API: https://developer.apple.com/documentation/appstoreserverapi/
 - Send Consumption Information: https://developer.apple.com/documentation/appstoreserverapi/send-consumption-information
 - `Transaction.currentEntitlements`: https://developer.apple.com/documentation/storekit/transaction/currententitlements
+- `Product.PurchaseResult`: https://developer.apple.com/documentation/storekit/product/purchaseresult
+- `Transaction.updates`: https://developer.apple.com/documentation/storekit/transaction/updates
+- Testing Ask to Buy in Xcode: https://developer.apple.com/documentation/storekit/testing-ask-to-buy-in-xcode
+- Preparing for Strong Customer Authentication: https://developer.apple.com/support/sca/
+- Finish Transaction: https://developer.apple.com/documentation/appstoreserverapi/finish-transaction
 - In-App Purchase overview: https://developer.apple.com/in-app-purchase/
 
 ## Manual regression command
