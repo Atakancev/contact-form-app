@@ -59,9 +59,17 @@ export default function DeleteAccountForm() {
     return (
       <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-6">
         <h2 className="text-lg font-semibold text-white mb-2">Deletion request received</h2>
-        <p className="text-sm leading-relaxed text-zinc-300">
-          CK-Labs will review the request and may contact you at <span className="text-white font-medium">{email}</span> if reasonable identity verification is needed before deletion.
-        </p>
+        <div className="space-y-2 text-sm leading-relaxed text-zinc-300">
+          <p>
+            CK-Labs will review the request and may contact you at <span className="text-white font-medium">{email}</span> if reasonable identity verification is needed before deletion.
+          </p>
+          <p>
+            We normally aim to complete a verified deletion request within 30 days. If additional verification or a legally permitted extension is reasonably necessary, CK-Labs will let you know.
+          </p>
+          <p>
+            CK-Labs will send a completion confirmation when the TycoonX account has been deleted. Keep access to this email address until that confirmation arrives.
+          </p>
+        </div>
       </div>
     );
   }
