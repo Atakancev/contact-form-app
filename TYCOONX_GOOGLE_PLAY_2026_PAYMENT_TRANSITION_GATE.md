@@ -1,6 +1,6 @@
 # TycoonX Google Play 2026 Payment Transition Gate
 
-Last reviewed: August 28, 2026
+Last reviewed: August 30, 2026
 
 This is an operational/commercial release gate for the Google Play build of TycoonX. It complements the public TycoonX Terms of Service and Purchases & Refunds Policy. It does not replace Google Play program terms, mandatory law, or transaction-specific Xsolla/Google obligations.
 
@@ -23,6 +23,33 @@ TycoonX must determine, per user/storefront and per payment flow, whether the tr
 - Verify that the user is in a market covered by the applicable Google Play program and that CK-Labs/TycoonX is enrolled for that exact program and market.
 - Keep Play Console enrollment state, app behavior, backend reporting, customer support, and public legal wording aligned.
 - If Google requires user choice between Google Play Billing and an alternative method, do not suppress or visually disadvantage the required Google Play option.
+
+### 1A. Billing Choice versus EEA External Offers: do not mix program rules
+
+Google currently exposes multiple monetization-outside-Play programs with materially different requirements. A generic "external checkout" flag is not enough to decide what TycoonX may show.
+
+**Billing Choice program:**
+
+- Use it only where CK-Labs/TycoonX is enrolled and the user/storefront is eligible for that program.
+- Google currently requires Play Billing Library **9.1 or higher** for Billing Choice.
+- If external web links are enabled through Billing Choice, update the choice-screen preference and external-web-links preference in Play Console before implementing the flow.
+- Billing Choice requires the user to be given a choice between Google Play Billing and either the approved alternative in-app billing option or the approved external web-link option. Do not remove Google Play Billing from a Billing Choice screen.
+- If CK-Labs renders its own choice screen, follow Google's current UX requirements and invoke the Play Billing APIs needed for the mandatory information/parental-control flow. For Google-rendered choice screens, verify that the Google-provided flow is actually used rather than imitating it with custom UI.
+- Supervised users must receive the mandatory parental controls and information screens required by Google. Do not bypass those controls merely because the destination is the TycoonX webshop.
+- Every alternative Billing Choice transaction, including an external-link transaction, must be securely reported to Google using the required external transaction token and the correct `DeveloperBillingType` classification.
+
+**EEA External Offers Program:**
+
+- Treat this as a distinct program rather than as another name for Billing Choice.
+- Current Google eligibility states that the app may be an app or game, must not target only children, the developer must be registered as a business, and external offers must be limited to EEA users. Verify CK-Labs/TycoonX satisfies those conditions before relying on this route.
+- Current Google program requirements state that an enrolled Play-managed app using this EEA External Offers Program is eligible for alternative billing without user choice for in-app purchases and may **not** simultaneously use Google Play Billing or user choice billing under that program. Do not combine mutually incompatible program modes on the same storefront merely because both can eventually reach Xsolla.
+- Use Google's current external-offers APIs so Google can surface the required information screen and user protections. Do not replace those APIs with a plain browser URL.
+- Provide direct customer support for external transactions, including a process to dispute unauthorized transactions and an appropriate refund route. A checkout statement that something is "non-refundable" must never be treated as overriding a mandatory EU/EEA withdrawal, conformity, refund, price-reduction, or other non-waivable consumer right.
+- Inform the user in-app about the destination and purpose before linking out. Do not place unsecured personally identifiable information in the external URL, and do not redirect or mislead the user to a materially different destination from the one presented.
+- Google currently requires applicable authorized External Offers transactions to be reported within **24 hours of the external transaction**. Treat this as an operational deadline with retry/idempotency monitoring, not a best-effort batch job.
+- Keep Play Store listing metadata free of off-Play purchase promotion where the applicable External Offers program rules prohibit it.
+
+**Release rule:** maintain a storefront/program decision table showing, at minimum, market, enrolled Google program, whether Google Play Billing is shown, whether alternative in-app billing is allowed, whether an external web link is allowed, required Play Billing Library/API version, parental-control behavior, reporting API/token type, reporting deadline, and customer-support/refund owner. If the row is unknown or conflicting, do not expose the Xsolla steering flow for that storefront.
 
 ### 2. June 30, 2026 new-install / existing-install cohort
 
@@ -145,9 +172,13 @@ Maintain a short internal review packet containing:
 
 - the Google Play programs/markets TycoonX is enrolled in;
 - screenshots of the current Play Console enrollment state;
+- the storefront/program decision table required above;
 - the exact Android UI shown for Google Play Billing, alternative billing, and external web links;
+- evidence of the Play Billing Library version and relevant Play Console choice/external-link preferences where Billing Choice is used;
 - backend mapping fields for Google reporting token <-> Xsolla transaction <-> TycoonX entitlement;
 - sample success, refund, chargeback, and duplicate-report reconciliations;
+- evidence that applicable External Offers transactions are reported within the current program deadline;
+- one sample supervised-user/parental-control path for any enabled alternative-payment program;
 - one sample `PendingRefundReviewNotification` handling path if the collaborative review flow is enabled; and
 - the current public TycoonX Terms/Purchases sections describing channel-specific payment responsibilities.
 
