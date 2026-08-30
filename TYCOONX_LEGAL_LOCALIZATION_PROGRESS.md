@@ -14,7 +14,7 @@ Last synchronized: **August 30, 2026**.
 - Arabic uses RTL layout.
 - Locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
 - Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
-- Do not mark a localized document `Ready` until the page exists, preserves the canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed `TyconX` or live-service `beta` wording.
+- Do not mark a localized document `Ready` until the page exists, preserves the canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed `TyconX` or live-service beta wording.
 - Do not use GitHub Actions or paid services for this project. Do not change any database.
 
 ## Current state
@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remained current throughout that refresh.
 
-All Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), Thai (`th`), Vietnamese (`vi`), Ukrainian (`uk`), Hindi (`hi`), and Indonesian (`id`) are now synchronized. This means **100/100 localized full documents are currently confirmed current**.
+All 25 Terms pages are now synchronized. This means **100/100 localized full documents are currently confirmed current**.
 
 ### Locale status
 
@@ -59,7 +59,7 @@ All Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Future runs must not duplicate completed localization. Continue with repository-wide legal QA, stale-brand/stale-beta checks, canonical-English drift checks, and remaining commercial/legal/payment-readiness hardening. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize in the required locale order.
+Future runs must not duplicate completed localization. Continue with repository-wide legal QA, stale-brand/stale-release-status checks, canonical-English drift checks, and remaining commercial/legal/payment-readiness hardening. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize in the required locale order.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -97,25 +97,11 @@ Every localized Purchases page remains required to preserve the following:
 - English Purchases & Refunds: materially refreshed **August 28, 2026** for purchased-Diamond withdrawal rights and real-money virtual-currency price transparency.
 - English Privacy Policy: refreshed **August 26, 2026** for third-party data-protection and third-party AI disclosure/permission safeguards.
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
-- Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
+- Repository QA requires zero displayed `TyconX` branding and zero stale live-service release-status wording in player-facing TycoonX legal copy.
 
-## Indonesian (`id`) Terms completion checkpoint
+## Completed localization checkpoint
 
 On **August 30, 2026**, `app/tycoonx-legal/id/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Indonesian and the reopened localization queue was completed.
-
-The refreshed page now:
-
-- describes Diamonds as licensed digital game elements or entitlements without treating that contractual description as determinative of the statutory classification of purchased in-game virtual currency for withdrawal purposes;
-- states that merely crediting purchased Diamonds does not automatically extinguish an applicable EU/EEA withdrawal right;
-- preserves an applicable 14-day statutory withdrawal right for purchased and unused Diamonds;
-- treats spent, transferred, or exchanged Diamonds according to mandatory law and the specific transaction rather than a blanket no-refunds rule;
-- requires every transaction-specific legal condition before a separate digital-content or digital-service purchase can lose withdrawal rights after early performance;
-- keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
-- retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
-- restores the canonical Community Standards/moderation precedence clause and the consumer-dispute non-restriction clause that were missing from the older Indonesian Terms;
-- retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Indonesian Purchases, Privacy, Community pages and Indonesian legal hub; and
-- displays **Versi bahasa Indonesia: 29 Agustus 2026 · Versi bahasa Inggris kanonis: 29 Agustus 2026** with the brand exactly as `TycoonX`.
 
 Indonesian Terms refresh commit: `c2b625a76854b211cf9cbc14fc1b42b4b36179d8`.
 
@@ -125,25 +111,40 @@ Repository-wide localization remains closed because this checkpoint did not chan
 
 `TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md` was hardened for release implementation parity:
 
-- Google Play now explicitly requires fresh eligible `ProductDetails` near checkout instead of relying on long-lived cached product/offer state, `queryPurchasesAsync()` reconciliation on launch/foreground/reconnection, and secure use of `obfuscatedAccountId` / `obfuscatedProfileId` where appropriate without rejecting valid purchases merely because those identifiers are absent;
-- Xsolla release evidence now records the transaction-specific contracting Xsolla entity/merchant, price/currency/tax presentation, transaction state and applicable refund-policy configuration rather than assuming one universal Xsolla merchant or refund setup;
-- German BGB § 356a implementation now explicitly gates the required `Vertrag widerrufen`-equivalent function, consumer name, contract identification, electronic communication method for confirmation, separate `Widerruf bestätigen`-equivalent confirmation control, immediate durable-medium receipt containing the submitted withdrawal information plus date/time of receipt, and timely-submission treatment; and
-- each purchase channel now requires a dated release-evidence sample covering visible product/price/tax presentation, one-time versus recurring status, merchant/payment channel, confirmation, entitlement delivery, restoration/reconciliation where applicable, and the correct refund/withdrawal route. Limited-window Lifetime VIP evidence must also show that scarcity/countdown/discount claims were genuine.
-
-The repository verifier was extended so these payment-recovery, transaction-specific Xsolla, German § 356a, and dated release-evidence safeguards cannot silently disappear from the release gate.
+- Google Play requires fresh eligible `ProductDetails` near checkout, `queryPurchasesAsync()` reconciliation on launch/foreground/reconnection, and secure use of `obfuscatedAccountId` / `obfuscatedProfileId` where appropriate without rejecting otherwise valid purchases merely because those identifiers are absent;
+- Xsolla release evidence records the transaction-specific contracting Xsolla entity/merchant, price/currency/tax presentation, transaction state and applicable refund-policy configuration rather than assuming one universal Xsolla merchant or refund setup;
+- German BGB § 356a implementation explicitly gates the required `Vertrag widerrufen`-equivalent function, consumer name, contract identification, electronic communication method for confirmation, separate `Widerruf bestätigen`-equivalent confirmation control, immediate durable-medium receipt containing the submitted withdrawal information plus date/time of receipt, and timely-submission treatment; and
+- each purchase channel requires a dated release-evidence sample covering visible product/price/tax presentation, one-time versus recurring status, merchant/payment channel, confirmation, entitlement delivery, restoration/reconciliation where applicable, and the correct refund/withdrawal route. Limited-window Lifetime VIP evidence must also show that scarcity/countdown/discount claims were genuine.
 
 Payment/withdrawal gate commit: `2b4ba8cfc482d94a897edd1e6b41303736012de3`.
 Verifier hardening commit: `431d08bf5e5e898cc9424948b550bef09594d897`.
+
+## August 30, 2026 Google Play Billing Choice / External Offers checkpoint
+
+`TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was refreshed against Google Play's current 2026 program documentation so TycoonX does not treat all Xsolla steering as one generic external-payment mode.
+
+The gate now records that:
+
+- Google's current **Billing Choice** program requires enrollment, Play Billing Library **9.1 or higher**, the applicable choice-screen/external-web-link preferences in Play Console, a user choice between Google Play Billing and the approved alternative, mandatory supervised-user/parental-control handling, and secure reporting of alternative transactions with the required external transaction token;
+- the current **EEA External Offers Program** is a distinct program with different eligibility and configuration requirements, including EEA-only offers, business-registration eligibility, child-targeting restrictions, use of the External Offers APIs and required information screen, customer support/unauthorized-transaction handling, and destination/link safeguards;
+- Google currently states that an enrolled Play-managed app using the EEA External Offers Program may not simultaneously use Google Play Billing or user choice billing under that program, so mutually incompatible program modes must not be mixed on the same storefront;
+- applicable authorized External Offers transactions currently have a **24-hour reporting deadline** after the external transaction; and
+- TycoonX must maintain a storefront/program decision table and keep Xsolla steering disabled when market/program eligibility or required behavior is unknown or conflicting.
+
+Google Play gate hardening commit: `6b4396b329f2e879e41a23b746f520a8282aff46`.
+
+This checkpoint did **not** change public canonical legal meaning, so no localized document was reopened.
 
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical approach:
 
-- European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, and respect for withdrawal rights: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
-- Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
-- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. It also recommends current eligible `ProductDetails`, warns against stale cached product details, recommends backend purchase-token verification, supports `obfuscatedAccountId` / `obfuscatedProfileId` for attribution/fraud reduction, and recommends `queryPurchasesAsync()` reconciliation for purchases completed while the app was unavailable or on another device: https://developer.android.com/google/play/billing/integrate
-- Xsolla's current Refund Policy continues to cover in-game currency, transaction-specific merchant identity, price-error handling, transaction-specific refund handling, refunds for some unredeemed mistaken in-game-currency purchases, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
-- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services. BGB § 356a specifically requires the continuously available and prominently accessible withdrawal function, consumer/contract/confirmation-channel information, separate confirmation control, immediate durable-medium receipt with date/time, and timely-submission effect reflected in the operational release gate: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
+- European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, respect for withdrawal rights, and particular care for children: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
+- Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
+- Apple's updated EU payment-option framework announced August 18, 2026 takes effect October 1, 2026 and introduces the unified Attachment 14 framework, 12-month payment-option election, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations, and developer support responsibility for alternative payments: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/
+- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Current Billing Choice documentation requires Play Billing Library 9.1 or higher and transaction reporting, while the EEA External Offers Program has its own distinct eligibility, API, support, destination, and reporting requirements: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice and https://support.google.com/googleplay/android-developer/answer/14372887
+- Xsolla's current Refund Policy is dated June 16, 2026 and continues to use transaction-specific refund-policy types, covers in-game currency and some unredeemed mistaken purchases, and preserves an EU/EEA/UK 14-day withdrawal framework in the applicable policy: https://xsolla.com/refund-policy
+- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services. BGB § 356a requires the continuously available and prominently accessible withdrawal function, consumer/contract/confirmation-channel information, separate confirmation control, immediate durable-medium receipt with date/time, and timely-submission effect reflected in the operational release gate: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
 
