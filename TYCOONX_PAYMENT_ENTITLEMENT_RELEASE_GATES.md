@@ -1,6 +1,6 @@
 # TycoonX Payment & Entitlement Release Gates
 
-Last reviewed: August 27, 2026
+Last reviewed: August 30, 2026
 
 This is an operational release gate for TycoonX purchases through Apple App Store, Google Play, and the official CK-Labs TycoonX webshop using Xsolla. It complements the public legal documents and does not replace mandatory law, platform rules, or the transaction-specific payment-provider terms.
 
@@ -12,9 +12,12 @@ This is an operational release gate for TycoonX purchases through Apple App Stor
 - Grant only after the purchase reaches `PURCHASED` and server-side verification succeeds.
 - Treat the Google purchase token as the important idempotency/verification identity. Do not use `orderId` as the universal duplicate-purchase key or database primary key because Google states that not every valid purchase receives an `orderId`, including some promo-code purchases.
 - Before granting value, verify that the purchase token has not already been used for the same entitlement delivery.
+- Query current eligible `ProductDetails` close to the purchase flow and do not rely on long-lived cached product or offer objects as authoritative price, eligibility, or catalog state. Google warns that stale `ProductDetails` can cause billing-flow failures. The Google purchase UI and the verified transaction record control the completed Play purchase, subject to mandatory law.
+- When the app launches, returns to the foreground, or re-establishes the Billing connection, use `queryPurchasesAsync()` so purchases completed during a network interruption, on another device, outside the app, or after a `PENDING` transition are reconciled. Real-time Developer Notifications are useful backend signals but must not be the only recovery path.
+- Where technically appropriate, attach `obfuscatedAccountId` or `obfuscatedProfileId` to help attribute purchases and reduce fraud/mis-linking. Verify those identifiers on the secure backend before using them for entitlement attribution. Do not reject an otherwise valid purchase solely because such identifiers are absent, because some out-of-app or promotional purchases may not contain them.
 - For consumables, consume through the correct Google flow after valid delivery. For non-consumables, acknowledge after valid delivery.
 - Acknowledge or consume promptly. Google states that an unacknowledged completed purchase can be automatically refunded after three days; the three-day window starts only after a pending purchase becomes `PURCHASED`.
-- Test duplicate callbacks, duplicate Real-time Developer Notifications, app restart, delayed payment completion, refund, chargeback, cancellation, and entitlement reconciliation.
+- Test duplicate callbacks, duplicate Real-time Developer Notifications, app restart, foreground reconciliation, delayed payment completion, multi-device completion, refund, chargeback, cancellation, and entitlement reconciliation.
 
 ### 2. Apple restore and transaction authority
 
@@ -32,8 +35,10 @@ This is an operational release gate for TycoonX purchases through Apple App Stor
 - Grant paid value only after the configured Xsolla server-side payment confirmation is valid.
 - Verify webhook authenticity/signatures and make fulfillment idempotent so retries cannot duplicate Diamonds or VIP.
 - Reconcile refunds, reversals, chargebacks, and invalid transactions against the same authoritative transaction identity.
+- Preserve enough transaction evidence to identify the Xsolla entity shown as the contracting party/merchant for that payment method, the checkout price and currency, applicable taxes, transaction ID, payment status, and the refund-policy type presented for the transaction. Do not assume every Xsolla payment has the same merchant entity or refund configuration.
 - Do not hard-code one universal Xsolla refund policy. Xsolla currently states that the applicable refund-policy type is shown in checkout.
 - Do not hard-code one Xsolla group company as merchant of record unless the actual CK-Labs checkout configuration makes that statement true for the transaction.
+- Account suspension, bans, fraud controls, or provider terms must not be treated as a blanket waiver of a mandatory statutory withdrawal, conformity, refund, price-reduction, or other non-waivable consumer remedy. Fraudulent or invalid transactions may still be investigated and corrected to the extent permitted by law.
 
 ### 4. Germany: electronic withdrawal function
 
@@ -41,12 +46,16 @@ For covered online distance contracts where CK-Labs is the contracting trader re
 
 The release is not fully ready merely because the legal text mentions the right. The live interface must, where the rule applies:
 
-- keep the withdrawal function clearly labelled and continuously available during the applicable withdrawal period;
-- provide the legally required confirmation step;
-- allow the consumer to submit an unambiguous withdrawal declaration electronically; and
-- provide prompt confirmation on a durable medium where required.
+- keep the withdrawal function continuously available during the applicable withdrawal period, prominently placed, easy to access, and clearly labelled `Vertrag widerrufen` or with another equally clear equivalent formulation;
+- allow the consumer to provide or confirm, without unnecessary friction, the consumer's name, information identifying the contract or part of the contract being withdrawn, and the electronic communication method to which the receipt confirmation should be sent;
+- after those details are provided or confirmed, provide a distinct confirmation control clearly labelled `Widerruf bestätigen` or with another equally clear equivalent formulation;
+- allow the consumer to submit an unambiguous withdrawal declaration electronically without forcing a support conversation, telephone call, account-login detour, or other unnecessary barrier where the statutory function itself is required;
+- immediately send a receipt confirmation on a durable medium containing at least the withdrawal information/declaration submitted and the date and time of receipt; and
+- treat a withdrawal submitted through the function before expiry of the withdrawal period as received in time, subject to the statutory rule.
 
 Where Apple, Google, or Xsolla is the contracting merchant/controller of the relevant purchase interface, verify the provider route that actually satisfies the applicable withdrawal/refund requirement instead of creating a conflicting CK-Labs flow.
+
+The § 356a function supplements other legally valid ways to exercise withdrawal rights. Do not design the interface or support process in a way that falsely suggests the electronic function is the consumer's only lawful route.
 
 ### 5. Lifetime VIP checkout wording
 
@@ -143,6 +152,8 @@ Before release, compare the live purchase UI and provider configuration against:
 - TycoonX Impressum / Legal Notice.
 
 A legal clause is not an implementation. If the actual checkout, restore, refund, deletion, withdrawal, external-purchase-link, personalized-pricing, or entitlement flow differs materially from the public wording, fix the implementation or the wording before release.
+
+For each purchase channel, keep a dated release-evidence sample that can be reviewed without relying on memory: the visible product name, price/currency/tax presentation, one-time versus recurring status, merchant/payment channel, order confirmation, entitlement grant, restore/reconciliation behavior where applicable, and the correct refund/withdrawal route. For limited-window Lifetime VIP, preserve evidence that the sales window and any countdown/discount claim were genuine. This is internal release evidence, not a requirement to retain unnecessary personal data.
 
 ## Manual regression command
 
