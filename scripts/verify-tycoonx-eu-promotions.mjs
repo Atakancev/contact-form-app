@@ -6,7 +6,8 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const gatePath = path.join(ROOT, 'TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md');
-const purchasesPath = path.join(ROOT, 'app', 'tyconx-purchase-refund-policy', 'page.tsx');
+const purchasesPagePath = path.join(ROOT, 'app', 'tyconx-purchase-refund-policy', 'page.tsx');
+const purchasesMarkdownPath = path.join(ROOT, 'tyconx-purchase-refund-policy.md');
 
 const errors = [];
 
@@ -15,7 +16,8 @@ function requireMatch(text, pattern, message) {
 }
 
 const gate = await readFile(gatePath, 'utf8');
-const purchases = await readFile(purchasesPath, 'utf8');
+const purchasesPage = await readFile(purchasesPagePath, 'utf8');
+const purchasesMarkdown = await readFile(purchasesMarkdownPath, 'utf8');
 
 requireMatch(gate, /Lifetime VIP windows must be real/i, 'Missing genuine Lifetime VIP window requirement.');
 requireMatch(gate, /countdown must not automatically reset/i, 'Missing fake-countdown reset protection.');
@@ -44,16 +46,25 @@ requireMatch(gate, /authoritative|provider-confirmed pending transactions/i, 'Mi
 requireMatch(gate, /completed prior purchases are not retroactively repriced/i, 'Missing completed-purchase repricing protection.');
 requireMatch(gate, /may never return/i, 'Missing accurate limited-sale future-availability wording.');
 
-requireMatch(purchases, /Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading/i, 'Canonical Purchases policy lost truthful promotion/countdown protection.');
-requireMatch(purchases, /Where a jurisdiction requires a (?:specific|particular) reference price, (?:price-history disclosure, or other discount rule|discount disclosure, or price-history rule) for the (?:particular|specific) product or offer/i, 'Canonical Purchases policy lost jurisdiction-specific discount-rule safeguard.');
-requireMatch(purchases, /If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact/i, 'Canonical Purchases policy lost personalized-pricing disclosure safeguard.');
-requireMatch(purchases, /Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing/i, 'Canonical Purchases policy lost regional-vs-personalized pricing distinction.');
-requireMatch(purchases, /final total price and currency displayed by the applicable checkout/i, 'Canonical Purchases policy lost final checkout price rule.');
-requireMatch(purchases, /preselected paid extras/i, 'Canonical Purchases policy lost extra-payment protection.');
-requireMatch(purchases, /Lifetime VIP may be sold at different prices in different genuine promotional sales windows/i, 'Canonical Purchases policy lost Lifetime VIP multi-window pricing rule.');
-requireMatch(purchases, /Unrelated legitimately purchased value will not be removed merely because another promotion was invalid/i, 'Canonical Purchases policy lost narrow promotion-abuse correction protection.');
+for (const [name, purchases] of [
+  ['canonical purchases markdown', purchasesMarkdown],
+  ['rendered canonical purchases page', purchasesPage],
+]) {
+  requireMatch(purchases, /Promotional claims, countdowns, crossed-out prices, stated savings, (?:limited-time statements, and )?other price-advantage claims must reflect the genuine offer and must not be misleading/i, `${name} lost truthful promotion/countdown protection.`);
+  requireMatch(purchases, /Where a jurisdiction requires a (?:specific|particular) reference price, (?:price-history disclosure, or other discount rule|discount disclosure, or price-history rule) for the (?:particular|specific) product or offer/i, `${name} lost jurisdiction-specific discount-rule safeguard.`);
+  requireMatch(purchases, /If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact/i, `${name} lost personalized-pricing disclosure safeguard.`);
+  requireMatch(purchases, /Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing/i, `${name} lost regional-vs-personalized pricing distinction.`);
+  requireMatch(purchases, /final total price and currency displayed by the applicable checkout/i, `${name} lost final checkout price rule.`);
+  requireMatch(purchases, /preselected paid extras/i, `${name} lost extra-payment protection.`);
+  requireMatch(purchases, /Lifetime VIP may be sold at different prices in different genuine promotional sales windows/i, `${name} lost Lifetime VIP multi-window pricing rule.`);
+  requireMatch(purchases, /Unrelated legitimately purchased value will not be removed merely because another promotion was invalid/i, `${name} lost narrow promotion-abuse correction protection.`);
+}
 
-for (const [name, text] of [['promotion gate', gate], ['canonical purchases', purchases]]) {
+for (const [name, text] of [
+  ['promotion gate', gate],
+  ['canonical purchases markdown', purchasesMarkdown],
+  ['rendered canonical purchases page', purchasesPage],
+]) {
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
   if (/\bbeta\b/i.test(text)) errors.push(`Stale beta wording found in ${name}.`);
 }
@@ -65,5 +76,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: promotion, countdown, prior-price, personalized-pricing, extra-payment and child-directed purchase safeguards are present.');
+  console.log('PASS: promotion, countdown, prior-price, personalized-pricing, extra-payment and child-directed purchase safeguards are present in both canonical surfaces.');
 }
