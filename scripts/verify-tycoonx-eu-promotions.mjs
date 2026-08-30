@@ -45,7 +45,7 @@ requireMatch(gate, /completed prior purchases are not retroactively repriced/i, 
 requireMatch(gate, /may never return/i, 'Missing accurate limited-sale future-availability wording.');
 
 requireMatch(purchases, /Promotional claims, countdowns, crossed-out prices, stated savings, limited-time statements, and other price-advantage claims must reflect the genuine offer and must not be misleading/i, 'Canonical Purchases policy lost truthful promotion/countdown protection.');
-requireMatch(purchases, /Where a jurisdiction requires a specific reference price, price-history disclosure, or other discount rule for the particular product or offer/i, 'Canonical Purchases policy lost jurisdiction-specific discount-rule safeguard.');
+requireMatch(purchases, /Where a jurisdiction requires a (?:specific|particular) reference price, (?:price-history disclosure, or other discount rule|discount disclosure, or price-history rule) for the (?:particular|specific) product or offer/i, 'Canonical Purchases policy lost jurisdiction-specific discount-rule safeguard.');
 requireMatch(purchases, /If a price is personalized on the basis of automated decision-making and applicable law requires disclosure of that fact/i, 'Canonical Purchases policy lost personalized-pricing disclosure safeguard.');
 requireMatch(purchases, /Ordinary country-based, storefront-based, currency-based, tax-based, or generally available regional pricing is not described as personalized pricing/i, 'Canonical Purchases policy lost regional-vs-personalized pricing distinction.');
 requireMatch(purchases, /final total price and currency displayed by the applicable checkout/i, 'Canonical Purchases policy lost final checkout price rule.');
