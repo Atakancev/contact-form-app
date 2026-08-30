@@ -39,8 +39,78 @@ const REQUIRED_RELEASE_FILES = [
   'TYCOONX_AI_TRANSPARENCY_RELEASE_GATE.md',
   'TYCOONX_ACCESSIBILITY_BFSG_RELEASE_GATE.md',
   'TYCOONX_EU_CYBER_RESILIENCE_ACT_2026_REPORTING_GATE.md',
+  'TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md',
+  'TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md',
   'TYCOONX_XSOLLA_REFUND_CHARGEBACK_RELEASE_GATE.md',
   'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
+];
+
+const CANONICAL_PUBLIC_FILES = [
+  'tyconx-terms-of-service.md',
+  'tyconx-purchase-refund-policy.md',
+  'tyconx-privacy-policy.md',
+  'tycoonx-community-standards.md',
+  'TYCOONX_APPLE_CUSTOM_EULA.md',
+  'TYCOONX_GERMAN_LEGAL_NOTICE.md',
+];
+
+const CRITICAL_ENGLISH_SURFACES = [
+  {
+    label: 'canonical Terms Markdown',
+    path: path.join(ROOT, 'tyconx-terms-of-service.md'),
+    required: [
+      'mere crediting of purchased Diamonds',
+      '14-day statutory withdrawal right',
+      'purchased and unused Diamonds',
+      'limited promotional sales windows',
+      'commercial operating lifetime',
+      'later price decrease does not automatically',
+      'permanently discontinue',
+    ],
+  },
+  {
+    label: 'rendered Terms page',
+    path: path.join(APP, 'tyconx-terms-of-service', 'page.tsx'),
+    required: [
+      'mere crediting of purchased Diamonds',
+      '14-day statutory withdrawal right',
+      'purchased and unused Diamonds',
+      'limited promotional sales windows',
+      'commercial operating lifetime',
+      'later price decrease does not automatically',
+      'permanently discontinue',
+    ],
+  },
+  {
+    label: 'canonical Purchases Markdown',
+    path: path.join(ROOT, 'tyconx-purchase-refund-policy.md'),
+    required: [
+      'mere crediting of purchased Diamonds',
+      '14-day statutory withdrawal right',
+      'unused purchased Diamonds',
+      'selected limited promotional sales windows',
+      'real-world monetary price information',
+      'later price decrease does not automatically',
+      'electronic withdrawal function',
+      'PENDING',
+      'PURCHASED',
+    ],
+  },
+  {
+    label: 'rendered Purchases page',
+    path: path.join(APP, 'tyconx-purchase-refund-policy', 'page.tsx'),
+    required: [
+      'mere crediting of purchased Diamonds',
+      '14-day statutory withdrawal right',
+      'unused purchased Diamonds',
+      'selected limited promotional sales windows',
+      'real-world monetary price information',
+      'later price decrease does not automatically',
+      'electronic withdrawal function',
+      'PENDING',
+      'PURCHASED',
+    ],
+  },
 ];
 
 const errors = [];
@@ -106,6 +176,25 @@ for (const route of REQUIRED_PUBLIC_ROUTES) {
 for (const fileName of REQUIRED_RELEASE_FILES) {
   const file = path.join(ROOT, fileName);
   if (!(await exists(file))) fail(`Missing TycoonX legal release source/checklist: ${fileName}`);
+}
+
+for (const fileName of CANONICAL_PUBLIC_FILES) {
+  const file = path.join(ROOT, fileName);
+  if (!(await exists(file))) fail(`Missing canonical TycoonX public legal document: ${fileName}`);
+}
+
+for (const surface of CRITICAL_ENGLISH_SURFACES) {
+  if (!(await exists(surface.path))) {
+    fail(`Missing critical English legal surface: ${surface.label} (${rel(surface.path)})`);
+    continue;
+  }
+
+  const text = await readFile(surface.path, 'utf8');
+  for (const required of surface.required) {
+    if (!text.includes(required)) {
+      fail(`${surface.label} lost critical legal invariant: "${required}".`);
+    }
+  }
 }
 
 const supportPage = path.join(APP, 'tyconx-support', 'page.tsx');
@@ -262,6 +351,20 @@ for (const file of appFiles) {
   }
 }
 
+for (const fileName of CANONICAL_PUBLIC_FILES) {
+  const file = path.join(ROOT, fileName);
+  if (!(await exists(file))) continue;
+  const text = await readFile(file, 'utf8');
+
+  if (/TyconX/.test(text)) {
+    fail(`Displayed brand typo "TyconX" found in canonical public legal document: ${fileName}`);
+  }
+
+  if (/\bbeta\b/i.test(text)) {
+    fail(`Stale beta wording found in canonical public TycoonX legal document: ${fileName}`);
+  }
+}
+
 const localizedFiles = (await walk(LEGAL_ROOT)).filter((file) => /page\.tsx$/.test(file));
 let markerCount = 0;
 for (const file of localizedFiles) {
@@ -274,6 +377,8 @@ console.log(`Localized full documents: ${presentDocs}/${expectedDocs}`);
 console.log(`Localized hubs: ${LOCALES.length}/${LOCALES.length}`);
 console.log(`Required public legal/support routes: ${REQUIRED_PUBLIC_ROUTES.length}/${REQUIRED_PUBLIC_ROUTES.length}`);
 console.log(`Required legal release files: ${REQUIRED_RELEASE_FILES.length}/${REQUIRED_RELEASE_FILES.length}`);
+console.log(`Canonical public legal documents scanned: ${CANONICAL_PUBLIC_FILES.length}/${CANONICAL_PUBLIC_FILES.length}`);
+console.log(`Critical English legal invariant surfaces: ${CRITICAL_ENGLISH_SURFACES.length}/${CRITICAL_ENGLISH_SURFACES.length}`);
 console.log(`Localized **...** emphasis markers covered by shared formatter: ${markerCount}`);
 
 if (warnings.length > 0) {
