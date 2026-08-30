@@ -182,12 +182,32 @@ The gate now requires:
 Google Play RTDN/voided-purchase gate commit: `93615393b0a7d93e32c6a43cff77746d93c537f2`.
 Dedicated Google Play refund verifier commit: `853c5064d0cc8336c0bdbb31c8dbffa4374e5f3c`.
 
+## August 30, 2026 Apple refund / pending-purchase checkpoint
+
+`TYCOONX_APPLE_REFUND_ENTITLEMENT_RELEASE_GATE.md` is now hardened for both post-purchase reconciliation and purchase flows that complete later than the original StoreKit screen. This did **not** change public canonical legal meaning, so no localized document was reopened.
+
+The gate now requires:
+
+- App Store Server Notifications V2, verified signed payloads, `notificationUUID` deduplication, idempotent fulfillment, missed-notification recovery, and transaction-specific refund/revocation handling;
+- 30-Day VIP to use server-authoritative start/end logic because a historical non-renewing transaction must not restart another 30-day period during restoration;
+- `CONSUMPTION_REQUEST` to remain a refund request rather than proof of refund, with Apple's consumption-information data sharing disabled unless CK-Labs has the required customer consent and privacy-disclosure parity;
+- StoreKit `Product.PurchaseResult.pending` to grant no Diamonds, 30-Day VIP time, or Lifetime VIP access before verified completion;
+- Ask to Buy decline and `userCancelled` to grant nothing and create no artificial refund, fraud, reversal, or clawback event;
+- a persistent `Transaction.updates` listener from app launch so Ask to Buy, Strong Customer Authentication, backgrounded, relaunched, or otherwise interrupted purchases can complete later without being lost;
+- unverified StoreKit transactions to remain non-authoritative for entitlement delivery;
+- later verified completion arriving through the direct purchase result, `Transaction.updates`, `ONE_TIME_CHARGE`, or server reconciliation to fulfill exactly once; and
+- `Transaction.finish()` or server-side Finish Transaction to happen only after the corresponding entitlement/ledger fulfillment is durably recorded.
+
+Apple pending/interrupted-purchase gate commit: `14a66f215762ef453e2afe174da3c54a0d8021a1`.
+Apple pending-purchase verifier commit: `6ef8a5fdf63e2d22e614376c8b9bce35d568d326`.
+
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical public approach:
 
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, respect for withdrawal rights, and particular care for children: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
 - Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
+- Apple's current StoreKit guidance treats `Product.PurchaseResult.pending` as requiring further customer action, routes later completion through transaction updates, provides Ask to Buy testing for pending approval, and describes Strong Customer Authentication as an interrupted flow that must be recovered rather than treated as an immediate completed purchase: https://developer.apple.com/documentation/storekit/product/purchaseresult, https://developer.apple.com/documentation/storekit/testing-ask-to-buy-in-xcode and https://developer.apple.com/support/sca/
 - Apple's updated EU payment-option framework announced August 18, 2026 moves participating accounts to the unified Attachment 14 framework from October 1, 2026 or later agreement date as applicable and adds 12-month payment-option elections, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations and developer support responsibility: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/ and https://developer.apple.com/support/apps-in-the-eu/
 - Apple App Store Connect currently requires an EU-specific VAT ID for developers using alternative payment options on EU storefronts and requires monthly external-purchase reporting within 15 days after month-end, including relevant tokens that did not produce a completed transaction: https://developer.apple.com/help/app-store-connect/manage-tax-information/provide-tax-information-for-commissions-and-fees-related-to-external-purchases-and-alternative-distribution and https://developer.apple.com/help/app-store-connect/making-payments-to-apple/reporting-tokens-and-transactions
 - Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Billing Choice and the EEA External Offers Program remain distinct programs with separate eligibility, API and reporting requirements. Current RTDN guidance also distinguishes pending purchase cancellation from voided purchases and documents full versus quantity-based partial refund notifications; the Voided Purchases API remains the server-side pull source for canceled, refunded and charged-back purchases: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice, https://developer.android.com/google/play/billing/rtdn-reference, https://developer.android.com/google/play/billing/query-purchase-history and https://support.google.com/googleplay/android-developer/answer/14372887
