@@ -23,7 +23,7 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 On **August 29, 2026**, the canonical Terms were corrected so purchased TycoonX Diamonds are not treated as immediately supplied digital content merely to remove an applicable EU/EEA withdrawal right. Because this materially changed the canonical Terms meaning, all 25 localized Terms pages were reopened and are being resynchronized in the required locale order. Purchases & Refunds, Privacy, and Community Standards remain current.
 
-The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), and Polish (`pl`) are now synchronized. This means **95/100 localized full documents are currently confirmed current**. The remaining **5 Terms pages** stay reopened until individually audited and refreshed.
+The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada), Italian, Portuguese, Brazilian Portuguese, Russian, Japanese, Korean, Chinese (`zh`), Simplified Chinese (`zh_Hans`), Traditional Chinese (`zh_Hant`), Arabic (`ar`), Dutch (`nl`), Swedish (`sv`), Norwegian Bokmål (`nb`), Polish (`pl`), and Thai (`th`) are now synchronized. This means **96/100 localized full documents are currently confirmed current**. The remaining **4 Terms pages** stay reopened until individually audited and refreshed.
 
 ### Locale status
 
@@ -49,7 +49,7 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 | sv | Ready | Ready | Ready | Ready | 4/4 |
 | nb | Ready | Ready | Ready | Ready | 4/4 |
 | pl | Ready | Ready | Ready | Ready | 4/4 |
-| th | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
+| th | Ready | Ready | Ready | Ready | 4/4 |
 | vi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | uk | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
 | hi | Needs Aug 29 Terms refresh | Ready | Ready | Ready | 3/4 |
@@ -57,9 +57,9 @@ The Terms for Turkish, German, Spanish, Mexican Spanish, French, French (Canada)
 
 ## Localization queue
 
-**Exact next unfinished locale/document: Thai (`th`) Terms of Service.**
+**Exact next unfinished locale/document: Vietnamese (`vi`) Terms of Service.**
 
-Continue Terms synchronization in exactly this order: th, vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
+Continue Terms synchronization in exactly this order: vi, uk, hi, id. Do not duplicate Terms pages already marked Ready.
 
 ## August 29, 2026 Terms withdrawal invariant
 
@@ -99,9 +99,9 @@ Every localized Purchases page remains required to preserve the following:
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 - Repository QA requires zero displayed `TyconX` branding and zero stale live-service `beta` wording in player-facing TycoonX legal copy.
 
-## Polish (`pl`) Terms completion checkpoint
+## Thai (`th`) Terms completion checkpoint
 
-On **August 30, 2026**, `app/tycoonx-legal/pl/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Polish.
+On **August 30, 2026**, `app/tycoonx-legal/th/terms/page.tsx` was synchronized to the August 29 canonical Terms meaning in natural Thai.
 
 The refreshed page now:
 
@@ -113,10 +113,10 @@ The refreshed page now:
 - keeps the contracting merchant/payment channel responsible for the applicable withdrawal procedure without allowing that role allocation to remove a mandatory right;
 - retains the one-time non-renewing 30-Day VIP distinction and limited-window Lifetime VIP treatment;
 - retains pricing, regional-pricing, VAT/FX, promotion, obvious-error, failed/pending/reversed payment, duplicate grant, chargeback, security, exploit, economy correction/reset, outage, provider-change, supported-version, suspension/termination, business-transfer and permanent-shutdown protections;
-- links directly to the completed Polish Purchases, Privacy, and Community pages plus the Polish legal hub; and
-- displays **Wersja polska: 29 sierpnia 2026 r. · Kanoniczna wersja angielska: 29 sierpnia 2026 r.** with the brand exactly as `TycoonX`.
+- links directly to the completed Thai Purchases, Privacy, and Community pages plus the Thai legal hub; and
+- displays **เวอร์ชันภาษาไทย: 29 สิงหาคม 2026 · เวอร์ชันภาษาอังกฤษฉบับหลัก: 29 สิงหาคม 2026** with the brand exactly as `TycoonX`.
 
-Polish Terms refresh commit: `d2aac7db150253d245af8eb47a1269d0c2a7fd5e`.
+Thai Terms refresh commit: `f75ac09b1451eeeb6fb6c8f538db47f51d77c19e`.
 
 ## Current official-source checks
 
@@ -125,14 +125,14 @@ As of **August 30, 2026**, the scoped official-source audit remains consistent w
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, and respect for withdrawal rights: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
 - Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
 - Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption: https://developer.android.com/google/play/billing/integrate
-- Xsolla's Refund Policy, last updated **June 16, 2026**, continues to cover in-game currency, transaction-specific refund handling, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
+- Xsolla's current Refund Policy continues to cover in-game currency, transaction-specific refund handling, refunds for some unredeemed mistaken in-game-currency purchases, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
 - German BGB § 356a continues to require a clearly labelled, continuously available, prominently placed, easily accessible electronic withdrawal function for covered online distance contracts, with a confirmation step and durable-medium receipt confirmation: https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
 
-- **Localized full documents:** 95/100, **95%**
+- **Localized full documents:** 96/100, **96%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
 - **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **97.0%**
-- **Exact next unfinished locale/document:** Thai (`th`) Terms of Service
+- **Overall project completion:** **97.4%**
+- **Exact next unfinished locale/document:** Vietnamese (`vi`) Terms of Service
