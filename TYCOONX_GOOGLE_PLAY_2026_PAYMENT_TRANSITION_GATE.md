@@ -42,7 +42,7 @@ Google currently exposes multiple monetization-outside-Play programs with materi
 
 - Treat this as a distinct program rather than as another name for Billing Choice.
 - Current Google eligibility states that the app may be an app or game, must not target only children, the developer must be registered as a business, and external offers must be limited to EEA users. Verify CK-Labs/TycoonX satisfies those conditions before relying on this route.
-- Current Google program requirements state that an enrolled Play-managed app using this EEA External Offers Program is eligible for alternative billing without user choice for in-app purchases and may **not** simultaneously use Google Play Billing or user choice billing under that program. Do not combine mutually incompatible program modes on the same storefront merely because both can eventually reach Xsolla.
+- Current Google program requirements state that an enrolled Play-managed app using the EEA External Offers Program is eligible for alternative billing without user choice for in-app purchases and may **not** simultaneously use Google Play Billing or user choice billing under that program. Do not combine mutually incompatible program modes on the same storefront merely because both can eventually reach Xsolla.
 - Use Google's current external-offers APIs so Google can surface the required information screen and user protections. Do not replace those APIs with a plain browser URL.
 - Provide direct customer support for external transactions, including a process to dispute unauthorized transactions and an appropriate refund route. A checkout statement that something is "non-refundable" must never be treated as overriding a mandatory EU/EEA withdrawal, conformity, refund, price-reduction, or other non-waivable consumer right.
 - Inform the user in-app about the destination and purpose before linking out. Do not place unsecured personally identifiable information in the external URL, and do not redirect or mislead the user to a materially different destination from the one presented.
@@ -150,6 +150,26 @@ TycoonX must:
 - keep negative-balance or equivalent-value corrections proportionate and tied to the invalid transaction; and
 - maintain support evidence showing which provider handled the payment/refund and which system changed the TycoonX entitlement.
 
+### 8A. Google Play RTDN and voided-purchase reconciliation
+
+Google Play refunds, cancellations, and chargebacks must not depend on the Android client being open or on a single webhook-like notification arriving successfully.
+
+For Google Play Billing purchases, TycoonX must:
+
+- enable and securely process the applicable **Real-time Developer Notifications (RTDN)** for one-time purchases and voided purchases where supported by the configured Play integration;
+- treat an RTDN as a state-change signal, not as the complete purchase record. After receiving a relevant notification, query the Google Play Developer API where needed to obtain the authoritative current purchase/refund state before making a final entitlement decision;
+- deduplicate RTDN processing using the Pub/Sub `messageId` and make entitlement corrections idempotent so a retried or duplicate notification cannot remove the same value twice;
+- persist the Google `purchaseToken`, `orderId`, product identifier, TycoonX account/order reference, event time, refund type, and resulting entitlement-ledger action needed to explain and replay the reconciliation;
+- handle `VoidedPurchaseNotification` separately from a pending-purchase cancellation. A voided purchase can represent a purchase that was canceled, refunded, or charged back after value may already have been granted, while `ONE_TIME_PRODUCT_CANCELED` can represent a pending purchase that never completed and therefore should not be treated as already delivered value;
+- run a periodic server-side pull reconciliation using the **Voided Purchases API (`purchases.voidedpurchases.list`)** to recover missed RTDN events, outages, subscription failures, Pub/Sub delivery problems, or other gaps. Do not rely solely on `queryPurchasesAsync()` or the device's local purchase history to discover refunds/chargebacks;
+- keep durable backend purchase history because Google has deprecated client-side `queryPurchaseHistory()` for this purpose and recommends server-side voided-purchase handling for canceled/refunded purchases;
+- distinguish `REFUND_TYPE_FULL_REFUND` from `REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND`. For a quantity-based partial refund, correct only the refunded quantity/value actually tied to that transaction and do not revoke an entire unrelated entitlement merely because part of a multi-quantity purchase was voided;
+- where multi-quantity purchases are used, check the current `purchases.productsv2` state, including `refundableQuantity` where relevant, before calculating a partial clawback. If TycoonX is not using Google multi-quantity purchase options for the product, do not invent a synthetic partial-refund model that the underlying transaction does not support;
+- keep full-refund, partial-refund, chargeback, fraud, and pending-cancellation reasons distinct in support/admin tooling so a lawful refund is not mislabeled as fraud; and
+- preserve mandatory consumer remedies and unrelated legitimate purchases. A Google void/refund event authorizes reconciliation of the affected paid entitlement, not arbitrary account punishment or removal of unrelated value.
+
+**Release evidence:** before launch, keep at least one dated test or sandbox evidence set showing (1) a normal successful one-time purchase, (2) a pending purchase canceled before completion, (3) a fully voided/refunded purchase after entitlement delivery, (4) a duplicate RTDN replay proving idempotency, and, if multi-quantity purchases are enabled, (5) a quantity-based partial refund that removes only the refunded quantity/value.
+
 ### 9. Google collaborative chargeback review: 24-hour operational deadline
 
 Google's July 6, 2026 Developer API update introduced a collaborative chargeback-review flow. A `PendingRefundReviewNotification` can be sent when a chargeback requires developer review, and Google's `orders.reviewrefund` flow allows a response with the developer's refund preference and relevant usage evidence. Google states that the developer response window is 24 hours.
@@ -179,6 +199,7 @@ Maintain a short internal review packet containing:
 - sample success, refund, chargeback, and duplicate-report reconciliations;
 - evidence that applicable External Offers transactions are reported within the current program deadline;
 - one sample supervised-user/parental-control path for any enabled alternative-payment program;
+- one sample `VoidedPurchaseNotification` plus Voided Purchases API reconciliation showing that a refunded/charged-back entitlement is corrected exactly once;
 - one sample `PendingRefundReviewNotification` handling path if the collaborative review flow is enabled; and
 - the current public TycoonX Terms/Purchases sections describing channel-specific payment responsibilities.
 
@@ -188,6 +209,12 @@ Run the main local legal verifier:
 
 ```bash
 node scripts/verify-tycoonx-legal.mjs
+```
+
+Also run the dedicated Google Play refund/reconciliation verifier:
+
+```bash
+node scripts/verify-tycoonx-google-refunds.mjs
 ```
 
 Before any Google Play -> Xsolla production launch, also manually verify the current official Google Play program pages because eligibility, fees, reporting, and rollout dates can change.
