@@ -123,27 +123,42 @@ Verifier hardening commit: `431d08bf5e5e898cc9424948b550bef09594d897`.
 
 `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was refreshed against Google Play's current 2026 program documentation so TycoonX does not treat all Xsolla steering as one generic external-payment mode.
 
-The gate now records that:
+The gate records that:
 
 - Google's current **Billing Choice** program requires enrollment, Play Billing Library **9.1 or higher**, the applicable choice-screen/external-web-link preferences in Play Console, a user choice between Google Play Billing and the approved alternative, mandatory supervised-user/parental-control handling, and secure reporting of alternative transactions with the required external transaction token;
-- the current **EEA External Offers Program** is a distinct program with different eligibility and configuration requirements, including EEA-only offers, business-registration eligibility, child-targeting restrictions, use of the External Offers APIs and required information screen, customer support/unauthorized-transaction handling, and destination/link safeguards;
-- Google currently states that an enrolled Play-managed app using the EEA External Offers Program may not simultaneously use Google Play Billing or user choice billing under that program, so mutually incompatible program modes must not be mixed on the same storefront;
+- the current **EEA External Offers Program** is distinct, with different eligibility and configuration requirements, including EEA-only offers, business-registration eligibility, child-targeting restrictions, External Offers APIs, required information screens, customer support, destination safeguards and unauthorized-transaction handling;
+- an enrolled Play-managed app using the EEA External Offers Program may not mix mutually incompatible Google Play Billing/user-choice modes for that storefront;
 - applicable authorized External Offers transactions currently have a **24-hour reporting deadline** after the external transaction; and
-- TycoonX must maintain a storefront/program decision table and keep Xsolla steering disabled when market/program eligibility or required behavior is unknown or conflicting.
+- TycoonX must keep a storefront/program decision table and keep Xsolla steering disabled where market/program eligibility or required behavior is unknown or conflicting.
 
 Google Play gate hardening commit: `6b4396b329f2e879e41a23b746f520a8282aff46`.
 
-This checkpoint did **not** change public canonical legal meaning, so no localized document was reopened.
+## August 30, 2026 Apple EU unified-terms / VAT checkpoint
+
+`TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md` was refreshed against Apple's current August 2026 EU guidance. This did **not** change public canonical legal meaning, so no localized document was reopened.
+
+The gate now explicitly records that:
+
+- the unified EU terms apply to the developer account on **October 1, 2026 or the date the Account Holder agrees, whichever is later**;
+- if TycoonX chooses an **alternative-only** payment configuration and also presents out-of-app offers, users must have a **genuine opportunity to choose alternative payment processing within the app**, and that option must be **viewable and selectable on the same screen as any out-of-app offers** rather than obscured by an Xsolla web-link-only design;
+- qualifying EU external-purchase tokens must be reported even where they do not produce a completed purchase, with the current **26.4+ External Purchase Server API / pre-26.4 prescribed manual-reporting split** preserved in the implementation gate;
+- Apple currently requires developers using alternative payment options on EU storefronts to provide an **EU-specific VAT ID demonstrating VAT registration**, with one EU VAT ID sufficient for all EU storefronts; unresolved VAT registration/Apple tax setup is therefore a release blocker for enabling that alternative-payment path rather than something to guess around;
+- qualifying Apple commission/fee invoices are currently payable **within 30 days of receipt**; and
+- Xsolla merchant-of-record status does not by itself eliminate separate Apple entitlement, reporting, tax-information, commission, invoice, child-safety or App Review duties.
+
+Apple EU gate hardening commit: `5a1330fd7aa700ac933a727a486146a23e1bbba1`.
+Apple EU verifier hardening commit: `ff39c4bc1d1249f1cb5580d8f799a2c79501daaa`.
 
 ## Current official-source checks
 
-As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical approach:
+As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical public approach:
 
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, respect for withdrawal rights, and particular care for children: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
 - Apple App Review Guidelines continue to require In-App Purchase for digital unlocks where no exception applies, while current regional external-purchase permissions remain storefront/program specific: https://developer.apple.com/app-store/review/guidelines/
-- Apple's updated EU payment-option framework announced August 18, 2026 takes effect October 1, 2026 and introduces the unified Attachment 14 framework, 12-month payment-option election, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations, and developer support responsibility for alternative payments: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/
-- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Current Billing Choice documentation requires Play Billing Library 9.1 or higher and transaction reporting, while the EEA External Offers Program has its own distinct eligibility, API, support, destination, and reporting requirements: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice and https://support.google.com/googleplay/android-developer/answer/14372887
-- Xsolla's current Refund Policy is dated June 16, 2026 and continues to use transaction-specific refund-policy types, covers in-game currency and some unredeemed mistaken purchases, and preserves an EU/EEA/UK 14-day withdrawal framework in the applicable policy: https://xsolla.com/refund-policy
+- Apple's updated EU payment-option framework announced August 18, 2026 moves participating accounts to the unified Attachment 14 framework from October 1, 2026 or later agreement date as applicable and adds 12-month payment-option elections, alternative-payment entitlement/API requirements, child-safety requirements, reporting/commission obligations and developer support responsibility: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu/ and https://developer.apple.com/support/apps-in-the-eu/
+- Apple App Store Connect currently requires an EU-specific VAT ID for developers using alternative payment options on EU storefronts and requires monthly external-purchase reporting within 15 days after month-end, including relevant tokens that did not produce a completed transaction: https://developer.apple.com/help/app-store-connect/manage-tax-information/provide-tax-information-for-commissions-and-fees-related-to-external-purchases-and-alternative-distribution and https://developer.apple.com/help/app-store-connect/making-payments-to-apple/reporting-tokens-and-transactions
+- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. Billing Choice and the EEA External Offers Program remain distinct programs with separate eligibility, API and reporting requirements: https://developer.android.com/google/play/billing/integrate, https://developer.android.com/google/play/billing/billingchoice and https://support.google.com/googleplay/android-developer/answer/14372887
+- Xsolla's current Refund Policy is dated June 16, 2026 and continues to use transaction-specific refund-policy types, cover in-game currency and some unredeemed mistaken purchases, and preserve an EU/EEA/UK 14-day withdrawal framework in the applicable policy: https://xsolla.com/refund-policy
 - German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services. BGB § 356a requires the continuously available and prominently accessible withdrawal function, consumer/contract/confirmation-channel information, separate confirmation control, immediate durable-medium receipt with date/time, and timely-submission effect reflected in the operational release gate: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
