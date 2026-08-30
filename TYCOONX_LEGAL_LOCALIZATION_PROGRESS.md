@@ -119,15 +119,31 @@ The refreshed page now:
 
 Indonesian Terms refresh commit: `c2b625a76854b211cf9cbc14fc1b42b4b36179d8`.
 
+## August 30, 2026 payment and withdrawal QA checkpoint
+
+Repository-wide localization remains closed because this checkpoint did not change the canonical public Terms, Purchases & Refunds, Privacy, or Community meaning.
+
+`TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md` was hardened for release implementation parity:
+
+- Google Play now explicitly requires fresh eligible `ProductDetails` near checkout instead of relying on long-lived cached product/offer state, `queryPurchasesAsync()` reconciliation on launch/foreground/reconnection, and secure use of `obfuscatedAccountId` / `obfuscatedProfileId` where appropriate without rejecting valid purchases merely because those identifiers are absent;
+- Xsolla release evidence now records the transaction-specific contracting Xsolla entity/merchant, price/currency/tax presentation, transaction state and applicable refund-policy configuration rather than assuming one universal Xsolla merchant or refund setup;
+- German BGB § 356a implementation now explicitly gates the required `Vertrag widerrufen`-equivalent function, consumer name, contract identification, electronic communication method for confirmation, separate `Widerruf bestätigen`-equivalent confirmation control, immediate durable-medium receipt containing the submitted withdrawal information plus date/time of receipt, and timely-submission treatment; and
+- each purchase channel now requires a dated release-evidence sample covering visible product/price/tax presentation, one-time versus recurring status, merchant/payment channel, confirmation, entitlement delivery, restoration/reconciliation where applicable, and the correct refund/withdrawal route. Limited-window Lifetime VIP evidence must also show that scarcity/countdown/discount claims were genuine.
+
+The repository verifier was extended so these payment-recovery, transaction-specific Xsolla, German § 356a, and dated release-evidence safeguards cannot silently disappear from the release gate.
+
+Payment/withdrawal gate commit: `2b4ba8cfc482d94a897edd1e6b41303736012de3`.
+Verifier hardening commit: `431d08bf5e5e898cc9424948b550bef09594d897`.
+
 ## Current official-source checks
 
 As of **August 30, 2026**, the scoped official-source audit remains consistent with the canonical approach:
 
 - European Commission/CPC Network principles on in-game virtual currencies continue to require transparent real-money pricing, avoidance of hidden or forced virtual-currency costs, and respect for withdrawal rights: https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/enforcement-consumer-protection/coordinated-actions/social-media-online-games-and-search-engines_en
 - Apple App Review Guidelines continue to state that purchased in-game currency may not expire and that restorable in-app purchases need a restore mechanism: https://developer.apple.com/app-store/review/guidelines/
-- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption: https://developer.android.com/google/play/billing/integrate
-- Xsolla's current Refund Policy continues to cover in-game currency, transaction-specific refund handling, refunds for some unredeemed mistaken in-game-currency purchases, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
-- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services, including the requirements reflected in the canonical Terms: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
+- Google Play Billing guidance continues to require verification and `PURCHASED` state before entitlement, not `PENDING`, followed by acknowledgement or consumption. It also recommends current eligible `ProductDetails`, warns against stale cached product details, recommends backend purchase-token verification, supports `obfuscatedAccountId` / `obfuscatedProfileId` for attribution/fraud reduction, and recommends `queryPurchasesAsync()` reconciliation for purchases completed while the app was unavailable or on another device: https://developer.android.com/google/play/billing/integrate
+- Xsolla's current Refund Policy continues to cover in-game currency, transaction-specific merchant identity, price-error handling, transaction-specific refund handling, refunds for some unredeemed mistaken in-game-currency purchases, and an EU/EEA 14-day withdrawal framework: https://xsolla.com/refund-policy
+- German BGB withdrawal rules continue to preserve the statutory 14-day framework and transaction-specific conditions for early performance of digital content/services. BGB § 356a specifically requires the continuously available and prominently accessible withdrawal function, consumer/contract/confirmation-channel information, separate confirmation control, immediate durable-medium receipt with date/time, and timely-submission effect reflected in the operational release gate: https://www.gesetze-im-internet.de/bgb/__355.html, https://www.gesetze-im-internet.de/bgb/__356.html and https://www.gesetze-im-internet.de/bgb/__356a.html
 
 ## Progress metrics
 
