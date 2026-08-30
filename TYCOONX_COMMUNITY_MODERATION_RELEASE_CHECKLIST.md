@@ -1,6 +1,6 @@
 # TycoonX Community Moderation & DSA Release Checklist
 
-Last reviewed: 2026-08-26  
+Last reviewed: 2026-08-30  
 Operator/business name used in player-facing documents: **CK-Labs**
 
 This checklist covers TycoonX user-generated content (UGC), chat, social/community features, Apple App Store UGC requirements, Google Play UGC requirements, and EU Digital Services Act (DSA) obligations that may apply to hosting/intermediary features. It is an operational checklist, not a substitute for qualified legal advice.
@@ -82,44 +82,91 @@ Where a TycoonX community feature falls within the DSA intermediary-service fram
 If a TycoonX feature qualifies as a hosting service under the DSA, Article 16 requires an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content.
 
 The production mechanism should be able to collect, as applicable:
-- [ ] identification/location of the specific content, such as message/post ID or direct link/context;
-- [ ] an explanation of why the reporter considers the content illegal;
-- [ ] reporter name/contact details where legally required or appropriate, while respecting exceptions;
-- [ ] a good-faith accuracy statement where required by the legal notice format;
+- [ ] a sufficiently substantiated explanation of why the reporter considers the specific information illegal;
+- [ ] the exact electronic location of the information, such as a direct link, message/post ID, or other sufficiently precise locator adapted to the TycoonX feature;
+- [ ] reporter name and email where Article 16 requires them, while respecting the statutory exception for notices concerning offences covered by Articles 3 to 7 of Directive 2011/93/EU;
+- [ ] the reporter's good-faith statement that the information and allegations are accurate and complete; and
 - [ ] enough data to investigate without asking for unnecessary personal information.
 
 Operational behavior:
 - [ ] send receipt confirmation without undue delay when legally required and contact details are available;
 - [ ] process notices in a timely, diligent, non-arbitrary, and objective manner;
-- [ ] tell the reporter the decision and available redress where legally required;
-- [ ] if automated means materially process/decide the notice, provide the legally required information about that use;
-- [ ] preserve evidence only for lawful, necessary periods.
-
-A generic support mailbox alone should not be assumed sufficient without checking whether the real flow meets Article 16 requirements.
+- [ ] tell the reporter the decision and available redress without undue delay where legally required;
+- [ ] if automated means materially process or decide the notice, provide the legally required information about that use;
+- [ ] preserve evidence only for lawful, necessary periods; and
+- [ ] do not assume a generic support mailbox is sufficient unless the real flow satisfies Article 16's notice fields and processing behavior.
 
 ## 7. EU DSA Article 17 statement of reasons
 
-Where Article 17 applies and the required electronic contact information is known, affected users may need a clear and specific statement of reasons when CK-Labs restricts UGC because it is illegal or incompatible with the Terms.
+Article 17 is a **hosting-service duty**, not merely an additional large-platform duty. Where it applies and CK-Labs knows the affected recipient's electronic contact details, the statement of reasons must be sent **at the latest when the restriction is imposed**, regardless of whether the restriction came from a user report, CK-Labs' own investigation, automation, or another moderation route. The statutory exception for deceptive high-volume commercial content must not be generalized to ordinary spam, ordinary users, or other moderation cases.
 
-Verify the moderation system can produce a reason for relevant actions such as:
-- [ ] content removal or access restriction;
-- [ ] visibility reduction/demotion where used;
-- [ ] suspension or restriction of monetization/payment connected to the UGC decision, if applicable;
-- [ ] suspension/termination of a service or feature; and
-- [ ] account suspension/termination.
+The production reason object/template must be capable of recording and communicating, as applicable:
 
-Reasons should be specific enough to identify the decision basis without exposing security-sensitive anti-abuse internals or another user’s private data.
+- [ ] the exact type of restriction: removal, disabling access, demotion/visibility restriction, monetary-payment restriction, service restriction/suspension/termination, or account suspension/termination;
+- [ ] territorial scope and duration where relevant;
+- [ ] the facts and circumstances relied on, including whether the decision followed an Article 16 notice or a voluntary own-initiative investigation;
+- [ ] notifier identity only where its disclosure is **strictly necessary** and otherwise protect reporter/privacy information;
+- [ ] whether automated means were used in the decision and whether automated means detected or identified the affected content;
+- [ ] for allegedly illegal content, the legal ground relied on and an explanation of why the information is considered illegal on that ground;
+- [ ] for a Terms/Community Policy decision, the specific contractual/policy ground and an explanation of why the content is incompatible with that ground; and
+- [ ] clear, user-friendly information about available redress, including applicable internal complaint, certified out-of-court dispute settlement, and judicial redress routes.
 
-## 8. DSA size-status review
+Quality gate:
+
+- [ ] Do not send a generic reason such as `policy violation`, `illegal content`, `spam`, or `automated moderation` by itself when Article 17 requires a more specific explanation.
+- [ ] Generate reasons that are clear, easily comprehensible, and as precise and specific as reasonably possible while still protecting security-sensitive anti-abuse details and third-party personal data.
+- [ ] Preserve an immutable/auditable copy of the reason actually sent and the decision timestamp so CK-Labs can prove what the affected user was told.
+- [ ] A voluntary Support appeal does not replace a mandatory Article 17 statement or any Article 20/21 route that actually applies.
+
+## 8. DSA Article 18 serious-criminal-offence escalation gate
+
+Where a TycoonX feature qualifies as a hosting service and CK-Labs becomes aware of information giving rise to a suspicion that a criminal offence **involving a threat to the life or safety of a person** has taken place, is taking place, or is likely to take place, Article 18 requires prompt escalation to the appropriate law-enforcement or judicial authority and provision of the relevant available information.
+
+Operational requirements:
+
+- [ ] Create a documented emergency escalation route for moderators/support rather than leaving these cases in an ordinary moderation queue.
+- [ ] Train reviewers to distinguish the Article 18 threshold from ordinary Terms violations, insults, game threats, or low-severity reports.
+- [ ] Preserve the relevant content, account identifiers, timestamps, technical evidence, and decision trail only to the extent lawful and reasonably necessary.
+- [ ] Identify the Member State concerned using the Article 18 criteria. If CK-Labs cannot identify it with reasonable certainty, use the authority route specified by Article 18 rather than guessing.
+- [ ] Keep a dated record of the basis for the escalation, the authority contacted, what information was provided, and the time of transmission.
+- [ ] Do not promise a suspected offender or reporter advance notice where doing so would conflict with law, evidence preservation, safety, or a lawful authority request.
+- [ ] Keep GDPR/data-minimization, confidentiality, and security controls around the escalation; Article 18 is not a blanket permission to disclose unrelated account data.
+
+For CK-Labs as a Germany-established operator, the **Digital Services Coordinator at the Bundesnetzagentur** is the central German DSA coordination/supervision authority. This does not mean every Article 18 criminal-offence report is sent to the DSC: the Article itself points to competent law-enforcement or judicial authorities (or Europol in the specified fallback situation). Keep the DSC contact available for DSA-compliance questions and supervisory coordination.
+
+## 9. DSA Article 24(5) Transparency Database gate
+
+Do not confuse the user-facing Article 17 statement with the separate Commission database duty.
+
+- Article 17 can apply to a hosting service even when the online-platform Section 3 duties are exempt because CK-Labs qualifies as a micro or small enterprise.
+- Article 24(5) is an additional **online-platform** duty in Section 3. Under Article 19, Section 3 generally does not apply while the provider qualifies as a micro or small enterprise, subject to the Regulation's stated exceptions and transition after loss of that status.
+- Public/private feature classification matters. A feature that stores user information and disseminates it to a potentially unlimited number of recipients can fall within the online-platform definition, while finite-person private messaging does not become an online platform merely because messages are stored.
+
+Before release and whenever the business/service changes:
+
+- [ ] document, per TycoonX social feature, whether it is merely a hosting function or also an online-platform function under the DSA;
+- [ ] document CK-Labs' current micro/small-enterprise status under Recommendation 2003/361/EC and the date/evidence used for that assessment;
+- [ ] if the Article 19 exemption is unavailable or ceases to apply, onboard the applicable online-platform service for the Commission DSA Transparency Database through the German DSC process;
+- [ ] submit covered Article 17 decisions/statements **without undue delay** as Article 24(5) requires;
+- [ ] strip all personal data before database submission, even where individualized data was legitimately present in the user-facing reason;
+- [ ] do not copy user-specific redress options into the public database payload; the Commission's current guidance says those are not included in the Transparency Database;
+- [ ] map moderation categories to the Commission's current taxonomy and keep the mapping version/date in release evidence; and
+- [ ] choose and document the operational submission method (API or Commission webform) and recovery procedure for failed or delayed submissions.
+
+A future growth event, restructuring, or loss of micro/small status must trigger a fresh Article 19/20-28 assessment rather than relying on an old founder/headcount assumption.
+
+## 10. DSA size-status review
 
 The DSA contains exemptions from some additional online-platform duties for micro and small enterprises, but those exemptions do **not** mean all DSA hosting/intermediary duties disappear.
 
-- [ ] Confirm CK-Labs’ current enterprise-size status for the relevant year.
+- [ ] Confirm CK-Labs' current enterprise-size status for the relevant year and preserve the supporting calculation.
 - [ ] Re-check obligations if CK-Labs grows beyond the micro/small thresholds or the service changes materially.
-- [ ] Do not assume Article 14, Article 16, or Article 17 can be ignored solely because CK-Labs is small.
-- [ ] If size/status changes, re-audit complaint handling, transparency reporting, trusted flaggers, recommender/ad rules, minor-safety obligations, and other DSA sections that may become applicable.
+- [ ] Do not assume Articles 14, 16, 17, or 18 can be ignored solely because CK-Labs is small.
+- [ ] Treat Article 20 through most of Section 3, including Article 24(5), as conditionally exempt only after a documented Article 19 analysis rather than a generic `small developer` assumption.
+- [ ] Remember the 12-month transition language in Article 19 after loss of micro/small status, and re-check immediately if TycoonX were ever designated a very large online platform.
+- [ ] If size/status changes, re-audit complaint handling, out-of-court redress, Transparency Database reporting, trusted flaggers, recommender/ad rules, minor-safety obligations, and other DSA sections that may become applicable.
 
-## 9. Public vs private UGC licensing
+## 11. Public vs private UGC licensing
 
 - [x] Community Policy limits the operational UGC license to what is reasonably necessary to host, store, format, translate, transmit, display, moderate, back up, secure, support, and improve TycoonX.
 - [x] Public UGC may be featured for TycoonX community/promotional purposes only where consistent with context, settings, law, and third-party rights.
@@ -127,19 +174,20 @@ The DSA contains exemptions from some additional online-platform duties for micr
 - [x] The main Terms now use the same narrow public/private UGC distinction and incorporate the Community Policy for specific moderation/UGC rules.
 - [x] The Privacy Policy now explains the same public/private distinction, requires an appropriate legal basis for public promotional use, and states that consent will be requested where legally required.
 
-## 10. Moderation records and privacy
+## 12. Moderation records and privacy
 
 - [x] Privacy Policy identifies chats, reports, support content, moderation status, anti-abuse signals, and automated security/moderation as processed data or purposes.
 - [x] Privacy Policy now states that private communications are not retained indefinitely merely because moderation once occurred; longer retention requires a separate lawful need.
 - [x] Privacy Policy now limits moderation/legal-review access to private communications to reasonably necessary and lawful circumstances.
 - [ ] Verify actual production retention periods match the policy and are proportionate to safety, fraud/security, dispute, legal-claim, or mandatory-law needs.
-- [ ] Verify production tooling does not expose reporter identity to the reported user unless legally required or necessary under a valid process.
+- [ ] Verify production tooling does not expose reporter identity to the reported user unless legally required or strictly necessary under a valid process.
 - [ ] Verify human reviewers see only data reasonably necessary for their moderation role.
 - [ ] Verify automated moderation with significant legal/similarly significant effects receives GDPR safeguards where required.
+- [ ] Ensure the public DSA Transparency Database path, if it becomes applicable, receives no personal data from moderation records.
 
-## 11. Founder-protective moderation wording
+## 13. Founder-protective moderation wording
 
-The legal framework preserves CK-Labs’ ability, subject to mandatory law, to:
+The legal framework preserves CK-Labs' ability, subject to mandatory law, to:
 - use proportionate automated and human moderation;
 - take temporary protective action before a full review where serious safety/security risk exists;
 - reverse or modify a moderation decision if later evidence changes the assessment;
@@ -150,14 +198,16 @@ The legal framework preserves CK-Labs’ ability, subject to mandatory law, to:
 - discontinue or redesign a community feature if platform rules, legal requirements, abuse patterns, or technical risks make it unreasonable to continue unchanged; and
 - avoid promising that every item is pre-screened or that every violation will be detected immediately.
 
-Do not use these protections to remove unrelated legitimate paid digital value or to waive mandatory redress rights.
+Do not use these protections to remove unrelated legitimate paid digital value, expose reporter/private data unnecessarily, evade a mandatory statement of reasons, or waive mandatory redress rights.
 
-## 12. Current P0/P1 gaps
+## 14. Current P0/P1 gaps
 
 1. **P0: UGC acceptance implementation:** verify the actual app flow requires Terms/User Policy acceptance before UGC creation where Google Play requires it.
-2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA.
-3. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient; the production app must implement the required controls.
-4. **P0: Google August 26 child-safety classification:** verify whether TycoonX falls within Google Play’s Child Safety Standards scope as a social app. Confirm TycoonX does not have anonymous/random chat as a core function; if that changes, use required Play Console age-restriction tools to block minors and complete the applicable child-safety requirements before release.
-5. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
-6. **P1: Article 17 reason generation:** verify moderation/admin tooling can send specific reasons for covered restrictions without leaking security/private information.
-7. **P1: Privacy implementation parity:** verify actual retention periods, reviewer access, reporter confidentiality, and automated-decision safeguards match the now-synchronized Privacy Policy.
+2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA, including the Article 16 notice fields and reporter good-faith statement.
+3. **P0: DSA Article 17 reason-generation evidence:** verify moderation/admin tooling can generate the complete Article 17 reason object at or before the restriction, including specific legal/contract ground, facts, automation use, duration/scope where relevant, and user redress without leaking security/private information.
+4. **P0: DSA Article 18 emergency escalation:** implement and test the serious-criminal-offence/life-or-safety escalation path, authority-selection logic, evidence preservation, and audit trail.
+5. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient; the production app must implement the required controls.
+6. **P0: Google August 26 child-safety classification:** verify whether TycoonX falls within Google Play's Child Safety Standards scope as a social app. Confirm TycoonX does not have anonymous/random chat as a core function; if that changes, use required Play Console age-restriction tools to block minors and complete the applicable child-safety requirements before release.
+7. **P1: DSA feature/size classification:** document which TycoonX features are hosting services versus online platforms, document current Recommendation 2003/361/EC micro/small status, and determine whether Article 24(5) Transparency Database onboarding is currently exempt or required.
+8. **P1: App Store age-rating/social configuration:** verify the July 2026 social-media questionnaire answer and any under-13 feature gating match real TycoonX behavior.
+9. **P1: Privacy implementation parity:** verify actual retention periods, reviewer access, reporter confidentiality, DSA public-database sanitization, and automated-decision safeguards match the synchronized Privacy Policy and this gate.
