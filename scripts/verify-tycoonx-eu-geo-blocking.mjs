@@ -27,7 +27,7 @@ requireText(gate, 'Article 5', 'geo-blocking gate');
 requireText(gate, 'Do not automatically force an EU customer', 'geo-blocking gate');
 requireText(gate, 'originally requested version accessible', 'geo-blocking gate');
 requireText(gate, 'Viewing another regional price is not the same as being eligible to purchase it', 'geo-blocking gate');
-requireText(gate, 'using an IP address that differs from the account/storefront country', 'geo-blocking gate');
+requireText(gate, 'having an IP address that differs from the account/storefront country', 'geo-blocking gate');
 requireText(gate, 'future Diamond bundles, 30-Day VIP, or Lifetime VIP sales windows may use the currently applicable regional price', 'geo-blocking gate');
 requireText(gate, 'a completed one-time purchase is not retroactively repriced', 'geo-blocking gate');
 requireText(gate, 'Lifetime VIP may have different prices in different genuine regional sales windows', 'geo-blocking gate');
