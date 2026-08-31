@@ -38,7 +38,7 @@ for (const token of [
   'significant number',
   'Digital Services Coordinator',
   'Article 24(1)(b)',
-  'Purchased **Diamonds**',
+  'purchased **Diamonds**',
   'one-time **30-Day VIP**',
   '**Lifetime VIP**',
   'Apple, Google Play, or Xsolla',
