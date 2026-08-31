@@ -23,22 +23,30 @@ function requirePageText(value, message) {
 
 requireGateText('September 11, 2026', 'Missing CRA Article 14 application date.');
 requireGateText('December 11, 2027', 'Missing distinction from the CRA general application date.');
+requireGateText('July 27, 2026', 'Missing current Commission CRA implementation-guidance checkpoint.');
 requireGateText('within 24 hours', 'Missing 24-hour early-warning deadline.');
 requireGateText('within 72 hours', 'Missing 72-hour notification deadline.');
 requireGateText('14 days after a corrective or mitigating measure becomes available', 'Missing actively exploited vulnerability final-report deadline.');
 requireGateText('one month after the 72-hour incident notification', 'Missing severe-incident final-report deadline.');
 requireGateText('Single Reporting Platform', 'Missing CRA Single Reporting Platform requirement.');
 requireGateText('CSIRT designated as coordinator', 'Missing CSIRT coordinator routing requirement.');
+requireGateText('ENISA', 'Missing ENISA reporting/platform reference.');
 requireGatePattern(/actively exploited vulnerability/i, 'Missing actively exploited vulnerability trigger.');
 requireGatePattern(/reliable evidence.*malicious actor.*exploited/i, 'Missing CRA active-exploitation threshold.');
 requireGatePattern(/severe incident/i, 'Missing severe-incident trigger.');
-requireGatePattern(/inform impacted users/i, 'Missing Article 14 impacted-user notification requirement.');
+requireGatePattern(/Article 14\(8\).*inform impacted users/is, 'Missing Article 14(8) impacted-user notification requirement.');
+requireGatePattern(/not the same threshold as GDPR Article 34/i, 'Missing CRA-versus-GDPR user-notice distinction.');
 requireGatePattern(/awareness timestamp/i, 'Missing incident-awareness timestamp preservation.');
 requireGatePattern(/main establishment/i, 'Missing manufacturer main-establishment routing check.');
-requireGatePattern(/microenterprise/i, 'Missing microenterprise treatment warning.');
+requireGatePattern(/multiple.*legal\/process clock|more than one legal\/process clock/i, 'Missing multi-regime incident-clock warning.');
+requireGatePattern(/mere act.*notification.*does.*not itself.*increased liability/is, 'Missing CRA notification/no-increased-liability safeguard.');
+requireGatePattern(/microenterprises and small enterprises.*not subject.*administrative fines.*24-hour early-warning/is, 'Missing narrow micro/small 24-hour fine exception.');
+requireGatePattern(/does not erase:[\s\S]*72-hour[\s\S]*final-report[\s\S]*impacted-user/i, 'Missing warning that micro/small status does not erase remaining Article 14 duties.');
 requireGatePattern(/not treat small size as a blanket CRA exemption/i, 'Missing warning against assuming a small-business reporting exemption.');
 requireGatePattern(/GDPR data minimisation/i, 'Missing privacy minimisation safeguard for security evidence.');
 requireGatePattern(/human-reachable vulnerability intake/i, 'Missing human-reachable vulnerability intake gate.');
+requireGatePattern(/mobile applications and computer games/i, 'Missing current Commission default-category product example.');
+requireGatePattern(/cessation-of-operations plan/i, 'Missing later CRA cessation-of-operations roadmap item.');
 requireGatePattern(/TycoonX/g, 'TycoonX brand is missing from CRA gate.');
 
 requirePageText('Security & Vulnerability Reporting', 'Public TycoonX security page is missing its security-reporting heading.');
