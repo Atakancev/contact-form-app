@@ -72,9 +72,9 @@ for (const [needle, label] of [
 }
 
 for (const [needle, label] of [
-  ['Full hubs: **25/25**', 'localized hub completion'],
-  ['Full localized docs: **100/100**', 'localized document completion'],
-  ['Exact next unfinished locale/document: **None.', 'no unfinished localization'],
+  ['exists for all **25/25** target locales', 'localized hub completion'],
+  ['**100/100 localized full documents are currently confirmed current**', 'localized document completion'],
+  ['**Exact next unfinished locale/document: None.', 'no unfinished localization'],
 ]) {
   assertIncludes(progress, needle, label);
 }
