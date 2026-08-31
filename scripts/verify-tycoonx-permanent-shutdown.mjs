@@ -27,7 +27,7 @@ requireMatch(gate, /BGB § 327n/i, 'Missing BGB § 327n price-reduction/refund c
 requireMatch(gate, /BGB §§ 327o and 327p/i, 'Missing BGB §§ 327o/327p termination consequences.');
 requireMatch(gate, /BGB § 327r/i, 'Missing BGB § 327r digital-product modification checkpoint.');
 requireMatch(gate, /Directive \(EU\) 2019\/770 Article 16/i, 'Missing Directive 2019/770 Article 16 checkpoint.');
-requireMatch(gate, /does \*\*not\*\* assume that announcing a permanent closure converts every affected contract/i, 'Missing shutdown-versus-modification classification safeguard.');
+requireMatch(gate, /Do \*\*not\*\* assume that announcing a permanent closure converts every affected contract/i, 'Missing shutdown-versus-modification classification safeguard.');
 requireMatch(gate, /force majeure = no refund/i, 'Missing force-majeure no-blanket-waiver safeguard.');
 
 // Commercial exposure and entitlement isolation.
