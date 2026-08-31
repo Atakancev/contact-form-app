@@ -35,7 +35,6 @@ const gateRequired = [
   'Google Play',
   'Xsolla',
   'reopen all 25 localized Privacy documents',
-  'September 1, 2026',
 ];
 
 for (const token of gateRequired) {
@@ -84,6 +83,9 @@ if (!progress.includes('100/100 localized full documents are currently confirmed
 }
 if (!progress.includes('Exact next unfinished locale/document: None')) {
   failures.push('Localization progress now has unfinished work; continue locale/document queue before new duplicate localization.');
+}
+if (!progress.includes('September 1, 2026')) {
+  failures.push('Release-status invariant lost: progress file must preserve the September 1, 2026 full-release rule.');
 }
 
 for (const [label, text] of [
