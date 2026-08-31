@@ -24,6 +24,7 @@ function requirePageText(value, message) {
 requireGateText('September 11, 2026', 'Missing CRA Article 14 application date.');
 requireGateText('December 11, 2027', 'Missing distinction from the CRA general application date.');
 requireGateText('July 27, 2026', 'Missing current Commission CRA implementation-guidance checkpoint.');
+requireGateText('August 3, 2026', 'Missing current ENISA SRP FAQ checkpoint.');
 requireGateText('within 24 hours', 'Missing 24-hour early-warning deadline.');
 requireGateText('within 72 hours', 'Missing 72-hour notification deadline.');
 requireGateText('14 days after a corrective or mitigating measure becomes available', 'Missing actively exploited vulnerability final-report deadline.');
@@ -31,6 +32,17 @@ requireGateText('one month after the 72-hour incident notification', 'Missing se
 requireGateText('Single Reporting Platform', 'Missing CRA Single Reporting Platform requirement.');
 requireGateText('CSIRT designated as coordinator', 'Missing CSIRT coordinator routing requirement.');
 requireGateText('ENISA', 'Missing ENISA reporting/platform reference.');
+requireGateText('EU Login', 'Missing current SRP EU Login access requirement.');
+requireGatePattern(/validation.*CSIRT designated as coordinator.*after first access.*parallel with.*reporting/is, 'Missing current SRP representative-validation workflow.');
+requireGatePattern(/no reporting API will be provided at this stage/i, 'Missing current no-SRP-API implementation constraint.');
+requireGatePattern(/one SRP submission.*CSIRT designated as coordinator.*ENISA/is, 'Missing single-submission SRP routing model.');
+requireGatePattern(/voluntary-reporting functionality.*later SRP phase/i, 'Missing distinction between mandatory September 2026 reporting and later voluntary reporting.');
+requireGatePattern(/manufacturer\/operator legal name[\s\S]*product name \*\*TycoonX\*\*[\s\S]*awareness timestamp/is, 'Missing minimum internal SRP incident packet.');
+requireGatePattern(/Member States where TycoonX is available/i, 'Missing SRP Member-State availability field.');
+requireGatePattern(/unlawful or malicious acts are suspected/i, 'Missing severe-incident malicious-act reporting field.');
+requireGatePattern(/submitted 24-hour, 72-hour and final-report versions as immutable evidence/i, 'Missing immutable SRP submission evidence requirement.');
+requireGatePattern(/sensitive-notification handling is not a self-created secrecy veto/i, 'Missing sensitive-report dissemination safeguard.');
+requireGatePattern(/unilaterally prevent.*CSIRT.*ENISA.*market-surveillance authorities/is, 'Missing warning against treating sensitivity as a unilateral dissemination veto.');
 requireGatePattern(/actively exploited vulnerability/i, 'Missing actively exploited vulnerability trigger.');
 requireGatePattern(/reliable evidence.*malicious actor.*exploited/i, 'Missing CRA active-exploitation threshold.');
 requireGatePattern(/severe incident/i, 'Missing severe-incident trigger.');
