@@ -29,7 +29,7 @@ for (const token of [
   'Article 21',
   'easily accessible on the online interface, clear, and user-friendly',
   'engage with that body **in good faith**',
-  'not a mandatory arbitration',
+  'mandatory arbitration;',
   '90 calendar days',
   'maximum total of **180 days**',
   'free of charge or at a nominal fee',
@@ -52,7 +52,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /does not have power under Article 21 to impose a binding settlement/i,
+  /does \*\*not\*\* have power under Article 21 to impose a binding settlement/i,
   'Missing Article 21 non-binding outcome safeguard.',
 );
 
