@@ -83,10 +83,10 @@ for (const token of privacyRequired) {
 
 const deletionRequired = [
   'Retain only the minimum data still supported by a valid legal basis',
-  'Do not use an erasure exception as a reason to keep unrelated gameplay, profile, chat, social, marketing, analytics, or gameplay data',
+  'Do not use an erasure exception as a reason to keep unrelated gameplay, profile, chat, social, or marketing data',
   '30-Day VIP is a one-time time-limited entitlement',
   'valid Lifetime VIP purchase may remain restorable after deletion',
-  'minimum transaction/entitlement evidence retained for restoration',
+  'Minimum transaction/entitlement evidence retained for restoration',
 ];
 
 for (const token of deletionRequired) {
