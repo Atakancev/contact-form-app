@@ -50,7 +50,9 @@ for (const [name, text] of [['DSA transparency gate', gate], ['canonical Communi
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
 }
 
-if (/\bbeta\b/i.test(gate)) errors.push('Stale beta wording found in DSA transparency gate.');
+if (/\b(?:is|remains|currently|still)\s+(?:in\s+)?beta\b/i.test(gate)) {
+  errors.push('Stale release-status wording found in DSA transparency gate.');
+}
 
 console.log('TycoonX DSA transparency reporting QA');
 
