@@ -14,7 +14,7 @@ TycoonX is network-connected software made available commercially. Under the CRA
 
 Do not assume that being a solo developer, microenterprise, mobile app, game, free download, or App Store/Google Play-distributed product removes the September 11 reporting obligation. The Commission's current conformity-assessment guidance lists mobile applications and computer games as examples in the default CRA product category, normally eligible for manufacturer self-assessment under the later conformity regime.
 
-The Commission published practical CRA implementation guidance on **July 27, 2026**, and its current CRA reporting page and ENISA Single Reporting Platform materials continue to state that Article 14 reporting begins on September 11, 2026. As of August 31, 2026, ENISA says the Single Reporting Platform is being prepared for operation by that date. CK-Labs should therefore finish the legal/operational setup before September 11 rather than treating platform launch day as the start of preparation.
+The Commission published practical CRA implementation guidance on **July 27, 2026**. ENISA's CRA Single Reporting Platform FAQ was updated on **August 3, 2026** and confirms that the platform is scheduled to be operational by September 11, 2026. As of August 31, 2026, functional and security testing is still under way. CK-Labs should therefore finish the legal and operational setup before September 11 rather than treating platform launch day as the start of preparation.
 
 ## Official references
 
@@ -25,7 +25,7 @@ The Commission published practical CRA implementation guidance on **July 27, 202
 - European Commission CRA conformity-assessment guidance: https://digital-strategy.ec.europa.eu/en/policies/cra-conformity-assessment
 - European Commission July 27, 2026 implementation guidance announcement: https://digital-strategy.ec.europa.eu/en/library/commission-publishes-new-guidance-support-timely-cyber-resilience-act-implementation
 - ENISA CRA Single Reporting Platform: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp
-- ENISA Single Reporting Platform FAQ: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
+- ENISA Single Reporting Platform FAQ, updated August 3, 2026: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
 
 ## P0 gate 1: Confirm TycoonX CRA role and reporting endpoint
 
@@ -33,13 +33,58 @@ Before September 11, 2026:
 
 - [ ] Record the legal person or natural person that places TycoonX on the EU market under the relevant name/trademark and confirm who is the CRA "manufacturer" for TycoonX.
 - [ ] Record the Member State of the manufacturer's main establishment for CRA reporting purposes. CRA Article 14 uses where cybersecurity decisions for the product are predominantly taken as the primary test.
-- [ ] Identify the CSIRT designated as coordinator and the correct electronic notification endpoint for that Member State.
-- [ ] Confirm access to ENISA's CRA Single Reporting Platform as soon as the platform permits production use.
-- [ ] Record a fallback responsible person who can file a report if the primary operator is unavailable.
-- [ ] Keep a simple list of EU Member States in which TycoonX is made available, because Article 14 notices can require that information.
+- [ ] Identify the CSIRT designated as coordinator for that Member State and preserve the then-current official reporting guidance.
+- [ ] Create or confirm access to an **EU Login** account that the responsible CK-Labs representative can use for the CRA Single Reporting Platform. ENISA says the EU Login account can be created in advance.
+- [ ] Do **not** treat advance EU Login creation as proof that the SRP representative is already validated. ENISA says the designated CSIRT validates whether a representative may submit for a manufacturer after first access, in parallel with the reporting process.
+- [ ] Follow ENISA's current advice not to initiate manufacturer-representative validation merely for pre-registration unless a specific notification needs to be submitted, unless later official guidance changes this process.
+- [ ] Record a fallback responsible person who can file a report if the primary operator is unavailable and make sure that person can obtain the required company/product facts without needing production secrets they do not otherwise need.
+- [ ] Keep a simple list of EU Member States in which TycoonX is made available, because the SRP template can require this information where available and the receiving CSIRT can disseminate the notification to relevant Member States.
 - [ ] Save the current official CRA/ENISA reporting instructions and the date they were checked, because the SRP is still being operationalised immediately before the September 11 start date.
 
 Do not wait for the December 2027 general compliance date before doing this setup.
+
+## P0 gate 1A: Prepare for the actual August 2026 SRP workflow
+
+ENISA's August 3, 2026 FAQ adds implementation details that should be reflected in the incident runbook:
+
+- the SRP will use a dedicated public URL to be published by ENISA before go-live;
+- manufacturer/open-source-steward representatives will use **EU Login**;
+- representative validation is performed by the selected CSIRT designated as coordinator and runs after first access in parallel with reporting, so validation must not be treated as a reason to miss a statutory deadline;
+- ENISA currently says **no reporting API will be provided at this stage**. CK-Labs may automate its internal incident evidence collection, but the September 2026 plan must still support a human completing the SRP submission;
+- one SRP submission is routed to the selected CSIRT designated as coordinator and, absent the CRA's exceptional confidentiality route, made available simultaneously to ENISA. The initial CSIRT then disseminates it to other relevant CSIRTs where the product is available and to market-surveillance authorities as needed;
+- voluntary-reporting functionality is a later SRP phase. Do not confuse a future voluntary report with the mandatory Article 14 workflow that starts September 11, 2026.
+
+### Minimum incident packet to have ready internally
+
+ENISA has now published the reporting-template fields. CK-Labs does not need every final-report fact at the 24-hour stage, but it should be able to assemble the minimum packet without searching ad hoc through production systems:
+
+- manufacturer/operator legal name;
+- product name **TycoonX** and product classification where known;
+- notification type: actively exploited vulnerability or severe incident;
+- a short factual title;
+- first reliable awareness timestamp;
+- Member States where TycoonX is available, where that information is available;
+- for a severe incident, whether unlawful or malicious acts are suspected;
+- known nature of the vulnerability/incident and initial impact assessment;
+- corrective or mitigating measures already taken;
+- corrective or mitigating measures users can take;
+- whether submitted information is particularly sensitive;
+- for later stages, known CVE/EUVD identifiers where applicable, severity/impact, root cause/threat type, date a corrective measure became available, and the security update/corrective-measure details.
+
+- [ ] Maintain a one-page incident worksheet with these fields so a 24-hour report does not depend on memory.
+- [ ] Record which fields are confirmed, unknown, estimated, or not applicable instead of inventing certainty.
+- [ ] Preserve the submitted 24-hour, 72-hour and final-report versions as immutable evidence, together with later corrections or supplements.
+
+## P0 gate 1B: Sensitive-notification handling is not a self-created secrecy veto
+
+ENISA's current FAQ says a receiving CSIRT can delay or withhold dissemination to other Member States only in exceptional security-related circumstances under the CRA and the December 11, 2025 delegated rules. In particularly exceptional cases, the manufacturer can flag at the 72-hour stage that Article 16(2) conditions may apply, which can limit what ENISA initially receives until the receiving CSIRT decides on disclosure.
+
+For TycoonX:
+
+- [ ] Do not omit a mandatory CRA report merely because it contains sensitive exploit information.
+- [ ] Clearly identify sensitive fields and explain the concrete dissemination risk where the CRA mechanism allows this.
+- [ ] Do not assume CK-Labs can unilaterally prevent the CSIRT, ENISA, other CSIRTs, or market-surveillance authorities from receiving information that the CRA requires them to receive.
+- [ ] Do not put credentials, secret keys, reusable tokens, full payment credentials, or unnecessary player personal data into the report just because the SRP is designed to protect confidentiality.
 
 ## P0 gate 2: Know what triggers mandatory reporting
 
@@ -205,9 +250,12 @@ The CRA issue is primarily a **security incident detection, clock, reporting and
 
 1. CRA manufacturer/role assessment recorded.
 2. Responsible CSIRT / Single Reporting Platform route recorded.
-3. 24h / 72h / final-report incident procedure exists.
-4. Article 14(8) impacted-user security-notification path exists.
-5. Security evidence and GDPR-minimisation rules exist.
-6. A human-reachable vulnerability intake exists.
-7. A server-side emergency mitigation/update path exists.
-8. Micro/small status is documented without being treated as a blanket reporting exemption.
+3. EU Login access exists and the team understands that CSIRT representative validation occurs after first access in parallel with reporting.
+4. The incident runbook does not depend on a non-existent SRP API and contains the current ENISA reporting-template fields.
+5. 24h / 72h / final-report incident procedure exists.
+6. Article 14(8) impacted-user security-notification path exists.
+7. Security evidence and GDPR-minimisation rules exist.
+8. A human-reachable vulnerability intake exists.
+9. A server-side emergency mitigation/update path exists.
+10. Micro/small status is documented without being treated as a blanket reporting exemption.
+11. Sensitive-notification handling is understood as a regulated CSIRT/CRA process, not a unilateral CK-Labs secrecy veto.
