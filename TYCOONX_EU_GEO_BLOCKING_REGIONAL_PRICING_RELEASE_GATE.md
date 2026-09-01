@@ -51,6 +51,25 @@ Operational consequence for TycoonX:
 - Do **not** overread that carve-out. It is not a blanket exemption from Article 3 online-interface rules, Article 5 payment rules, unfair-commercial-practice rules, competition law, tax law, sanctions, platform requirements, or mandatory consumer rights.
 - The phrase "regional pricing is allowed" must always mean "allowed where lawful for this product, interface, payment method, country, and provider configuration."
 
+### 3A. Services Directive Article 20(2) and German § 22c DDG require a separate discrimination check
+
+The copyright-content carve-out in Geo-Blocking Regulation Article 4(1)(b) is **not** a blanket permission to publish public access conditions that discriminate by nationality or residence. Directive 2006/123/EC Article 20(2) separately requires Member States to ensure that publicly available general conditions of access to a service do not contain discriminatory provisions relating to the recipient's nationality or place of residence, while allowing differences that are directly justified by objective criteria.
+
+Germany now reflects this rule in § 22c(2) DDG. Since **1 July 2026**, the Bundesnetzagentur is also the German authority responsible for enforcing Article 20(2) of the Services Directive alongside the Geo-Blocking Regulation. The Bundesnetzagentur can issue orders and impose fines in the German enforcement framework.
+
+Operational consequence for TycoonX:
+
+- Never mark a regional-pricing rule compliant merely because Geo-Blocking Regulation Article 4(1)(b) applies to online-game copyright content. Run the Article 20(2) / § 22c DDG check separately where applicable.
+- Before publishing a general TycoonX access, price, eligibility, or promotion condition that directly differentiates recipients by nationality or residence, identify the **objective criteria** that directly justify the difference and retain a short written assessment.
+- Do not use labels such as "regional pricing", "fraud prevention", "commercial policy", or "security" as automatic legal justifications. Record the real criterion, why it matters to the particular condition, and why nationality or residence is not merely being used as a convenient proxy.
+- Relevant objective circumstances may include a concrete legal obligation, tax treatment, provider/storefront rule, transaction risk that is assessed on evidence other than nationality alone, or another case-specific factor, but no category is automatically sufficient in every case. The justification must fit the actual condition.
+- Distinguish a region-wide price table from a public condition that says a person is ineligible solely because of nationality or residence. Regional prices may remain possible where lawful, but the public eligibility language and implementation still need the separate Article 20(2) assessment.
+- The Bundesnetzagentur states that Article 20(2) can also address unjustified **domestic** discrimination based on nationality or residence, not only classic cross-border treatment. Test German-facing rules accordingly.
+- The Services Directive concept of a recipient is not limited to the exact end-use business definition used by the Geo-Blocking Regulation. Do not assume that a business recipient is outside Article 20(2) merely because it would fall outside one Geo-Blocking Regulation customer category.
+- A user's residence, nationality, travel, foreign payment account, or access to another regional page is not by itself evidence of regional-price fraud.
+
+Founder-protective outcome: CK-Labs does not promise one EU-wide TycoonX price. The protection is instead to preserve lawful pricing flexibility while documenting the actual objective basis for any nationality/residence-linked public condition, so the Article 4 copyright carve-out is never used as an overbroad compliance shortcut.
+
 ### 4. Accepted payment methods cannot be discriminated against merely by EU origin
 
 Within the range of payment means that the trader has chosen to accept, Regulation (EU) 2018/302 Article 5 restricts different payment conditions based on nationality, residence, establishment, payment-account location, payment-service-provider location, or place of issue of the payment instrument within the Union when the statutory conditions are met.
@@ -281,6 +300,12 @@ Before changing regional price logic or provider country routing, retain evidenc
    - the final confirmed transaction total/currency is preserved;
    - later FX movement does not create a debit, credit, price match, or entitlement change for the completed purchase.
 
+13. **German Article 20(2) public access condition**
+   - any condition directly linked to nationality or residence has a recorded objective-criteria assessment;
+   - the Article 4(1)(b) online-game carve-out is not treated as an automatic pass;
+   - unjustified domestic nationality/residence discrimination is tested as well as cross-border treatment;
+   - unrelated Diamonds, 30-Day VIP, and Lifetime VIP remain isolated from any correction or complaint.
+
 ## Evidence to retain
 
 For each material regional-pricing configuration, retain a lightweight record of:
@@ -294,6 +319,7 @@ For each material regional-pricing configuration, retain a lightweight record of
 - accepted payment brands/categories/currencies for CK-Labs-controlled checkout;
 - region-eligibility rule if a promotion is restricted;
 - objective reason for any country/payment restriction;
+- Article 20(2) / § 22c DDG assessment where a public access condition differentiates by nationality or residence, including the objective criteria relied on;
 - screenshots or test evidence for the affected interface;
 - entitlement reconciliation result for refunds/reversals;
 - Apple base country/region and whether each material storefront price is Apple-managed or manually managed;
@@ -310,6 +336,8 @@ Reviewed against the law and official guidance available on 2026-09-01:
 
 - Regulation (EU) 2018/302 on unjustified geo-blocking, especially Articles 3, 4, and 5;
 - Article 4(1)(b), which excludes electronically supplied copyright-content services from that specific equal-general-conditions rule;
+- Directive 2006/123/EC Article 20(2), which separately addresses discriminatory publicly available general conditions of access based on nationality or residence while permitting differences directly justified by objective criteria;
+- German § 22c DDG and the Bundesnetzagentur's enforcement responsibility for Article 20(2) since 1 July 2026, including the authority's current guidance that unjustified domestic discrimination may also be covered;
 - European Commission guidance stating that non-audiovisual copyright-content services such as software and online games remain subject to the Regulation's online-interface access rule even though the Article 4 price/general-conditions treatment is different;
 - Article 5 payment non-discrimination within accepted payment means where its statutory conditions are satisfied;
 - current Apple App Store Connect guidance on IAP availability, Apple Account storefront selection, base-country pricing, automatic tax/FX adjustments, and manual storefront pricing;
@@ -319,6 +347,9 @@ Reviewed against the law and official guidance available on 2026-09-01:
 Primary references:
 
 - https://eur-lex.europa.eu/eli/reg/2018/302/oj
+- https://eur-lex.europa.eu/eli/dir/2006/123/oj
+- https://www.gesetze-im-internet.de/ddg/__22c.html
+- https://www.bundesnetzagentur.de/EN/Areas/Digitalisation/Internet/Geoblocking/start.html
 - https://digital-strategy.ec.europa.eu/en/policies/geoblocking
 - https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-a-price-for-an-in-app-purchase
 - https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases
@@ -331,5 +362,7 @@ Primary references:
 ## Founder-protective interpretation
 
 Nothing here requires CK-Labs to charge the same TycoonX price in every EU country, maintain cross-channel price parity, accept every payment method, sell every promotion everywhere, ignore tax/storefront/provider restrictions, or permit deliberate region falsification. Apple/Google/Xsolla tax, FX, pricing-tier, storefront, and country-resolution mechanics can lawfully produce different future prices where the underlying setup and consumer presentation are compliant.
+
+The Article 4(1)(b) copyright-content carve-out also must not be used as a shortcut around Article 20(2) / § 22c DDG. Where a public TycoonX access condition differentiates directly by nationality or residence, retain the actual objective-criteria analysis rather than assuming that "regional pricing" is self-justifying.
 
 The protection comes from keeping the evidence straight: platform-generated future price changes are not retroactive repricing, an IP-derived country is not automatically residence or fraud, a stale Google catalog value is not price authority, a manually managed Apple storefront needs its own QA, Xsolla country-source selection must be reproducible, and any correction must remain tied to the actually invalid transaction while preserving mandatory consumer rights and unrelated legitimate purchases.
