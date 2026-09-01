@@ -21,7 +21,7 @@ function assertNotIncludes(text, needle, label) {
 
 const gate = read('TYCOONX_EU_GERMAN_PRICE_PROMOTION_PERSONALIZATION_RELEASE_GATE.md');
 const terms = read('tyconx-terms-of-service.md');
-const purchases = read('tyconx-purchases-refunds.md');
+const purchases = read('tyconx-purchase-refund-policy.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
 const gateChecks = [
