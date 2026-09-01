@@ -35,7 +35,37 @@ requireText(gate, 'Apple and Google storefront restrictions must be classified c
 requireText(gate, 'Xsolla merchant/payment role does not remove CK-Labs interface obligations', 'geo-blocking gate');
 requireText(gate, 'No entitlement over-correction', 'geo-blocking gate');
 requireText(gate, 'unrelated purchased Diamonds, active 30-Day VIP, or valid Lifetime VIP', 'geo-blocking gate');
-requireText(gate, 'Reviewed against the law and official guidance available on 2026-08-31', 'geo-blocking gate');
+requireText(gate, 'Reviewed against the law and official guidance available on 2026-09-01', 'geo-blocking gate');
+
+// Apple storefront/price authority
+requireText(gate, "customer's Apple Account country or region setting determine the storefront", 'Apple storefront authority');
+requireText(gate, 'Apple-managed from the base price or manually managed by CK-Labs', 'Apple pricing mode');
+requireText(gate, 'Apple may periodically update non-base storefront prices for taxes and foreign-exchange changes', 'Apple tax/FX adjustments');
+requireText(gate, 'manually managed storefront becomes CK-Labs\' responsibility', 'Apple manual storefront ownership');
+requireText(gate, "Do not compare today's App Store tier to an old purchase", 'Apple no retrospective comparison');
+
+// Google Play current-price authority
+requireText(gate, 'queryProductDetailsAsync', 'Google ProductDetails query');
+requireText(gate, 'Do not treat cached ProductDetails as long-term price authority', 'Google stale catalog');
+requireText(gate, 'selected eligible offer', 'Google offer selection');
+requireText(gate, 'offer token', 'Google offer token evidence');
+requireText(gate, 'tax-inclusive markets such as Germany', 'Google tax-inclusive pricing');
+
+// Xsolla country/currency authority
+requireText(gate, 'Xsolla country-source hierarchy and local-price safety', 'Xsolla country hierarchy');
+requireText(gate, 'user.country.value', 'Xsolla explicit country');
+requireText(gate, 'X-User-Ip', 'Xsolla IP source');
+requireText(gate, 'IP-based country detection is not proof of residence', 'Xsolla IP limitation');
+requireText(gate, 'catalog visibility and order creation', 'Xsolla regional restriction stages');
+requireText(gate, 'later FX movement does not reprice the historical purchase', 'Xsolla no retrospective FX');
+
+// Cross-channel pricing and transaction isolation
+requireText(gate, 'Cross-channel price parity is not promised', 'cross-channel pricing');
+requireText(gate, 'transaction-time provider, merchant, price, currency, tax treatment, and entitlement mapping', 'transaction-time evidence');
+requireText(gate, 'Apple automatic tax/FX storefront update', 'regional test matrix');
+requireText(gate, 'Google Play price changed since the last app session', 'regional test matrix');
+requireText(gate, 'Xsolla explicit country value vs IP fallback', 'regional test matrix');
+requireText(gate, 'Xsolla default-price currency conversion', 'regional test matrix');
 
 requireText(terms, 'Prices may differ between Apple App Store, Google Play, the official TycoonX web shop, countries, regions, currencies, and separate promotional sales windows.', 'canonical Terms');
 requireText(terms, 'A completed one-time purchase is not retroactively repriced', 'canonical Terms');
@@ -49,6 +79,7 @@ requireText(progress, 'Exact next unfinished locale/document: None.', 'localizat
 
 forbidText(gate, 'TyconX', 'geo-blocking gate displayed branding');
 forbidText(gate.toLowerCase(), 'tycoonx is in beta', 'geo-blocking gate release status');
+forbidText(gate.toLowerCase(), 'tycoonx beta', 'geo-blocking gate release status');
 
 if (failures.length > 0) {
   console.error('TycoonX EU geo-blocking verification failed:');
