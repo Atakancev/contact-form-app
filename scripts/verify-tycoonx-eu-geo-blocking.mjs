@@ -37,6 +37,19 @@ requireText(gate, 'No entitlement over-correction', 'geo-blocking gate');
 requireText(gate, 'unrelated purchased Diamonds, active 30-Day VIP, or valid Lifetime VIP', 'geo-blocking gate');
 requireText(gate, 'Reviewed against the law and official guidance available on 2026-09-01', 'geo-blocking gate');
 
+// Services Directive Article 20(2) and German enforcement from 2026-07-01
+requireText(gate, 'Services Directive Article 20(2) and German § 22c DDG require a separate discrimination check', 'Services Directive gate');
+requireText(gate, 'Directive 2006/123/EC Article 20(2)', 'Services Directive gate');
+requireText(gate, 'objective criteria', 'Services Directive gate');
+requireText(gate, '1 July 2026', 'German enforcement date');
+requireText(gate, 'Bundesnetzagentur', 'German enforcement authority');
+requireText(gate, '§ 22c(2) DDG', 'German DDG implementation');
+requireText(gate, 'unjustified **domestic** discrimination', 'domestic discrimination safeguard');
+requireText(gate, 'Never mark a regional-pricing rule compliant merely because Geo-Blocking Regulation Article 4(1)(b) applies', 'Article 4 carve-out limitation');
+requireText(gate, 'German Article 20(2) public access condition', 'regional test matrix');
+requireText(gate, 'Article 20(2) / § 22c DDG assessment', 'regional evidence');
+requireText(gate, 'The Article 4(1)(b) copyright-content carve-out also must not be used as a shortcut around Article 20(2) / § 22c DDG.', 'founder-protective Services Directive rule');
+
 // Apple storefront/price authority
 requireText(gate, "customer's Apple Account country or region setting determine the storefront", 'Apple storefront authority');
 requireText(gate, 'Apple-managed from the base price or manually managed by CK-Labs', 'Apple pricing mode');
