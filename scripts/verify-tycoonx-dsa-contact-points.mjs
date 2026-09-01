@@ -29,7 +29,7 @@ for (const token of [
   'not rely solely on automated tools',
   'Article 12 is not the Article 16 illegal-content mechanism',
   'Micro/small-enterprise status does not erase Articles 11 and 12',
-  'Purchased Diamonds',
+  'purchased Diamonds',
   '30-Day VIP',
   'Lifetime VIP',
 ]) requireText(gate, token);
@@ -42,7 +42,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /recipient.*choose.*web form.*direct email|web form.*direct email/si,
+  /web form.*direct email/si,
   'Missing recipient choice between form and direct email.',
 );
 
