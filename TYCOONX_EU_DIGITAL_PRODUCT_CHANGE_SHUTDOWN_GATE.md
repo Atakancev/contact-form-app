@@ -1,6 +1,6 @@
 # TycoonX EU/German Digital Product Change, Outage & Shutdown Release Gate
 
-**Release QA reference. Last reviewed: August 31, 2026.**
+**Release QA reference. Last reviewed: September 1, 2026.**
 
 This gate turns the existing TycoonX Terms into operational release checks for feature changes, economy corrections, outages, provider migrations and permanent service discontinuation. It is designed around Directive (EU) 2019/770 and the German digital-product rules in BGB §§ 327 et seq. It does not replace transaction-specific legal analysis and must never be used to waive mandatory consumer rights.
 
@@ -147,6 +147,96 @@ If advance notice is genuinely impossible because immediate action is necessary,
 
 Force majeure, cyberattack, platform action or provider outage can explain why performance changed, but those labels do not automatically erase every non-waivable consumer remedy.
 
+## 9A. Required updates, forced updates, and unsupported app versions
+
+Old-client handling is a separate release decision. Do not use the label "unsupported version" as a shortcut for confiscating paid value, avoiding an update duty, or treating a player as having consented to unrelated legal or commercial changes.
+
+### BGB § 327f update duty
+
+Where German **BGB § 327f** applies, CK-Labs must ensure that updates required to maintain conformity are provided during the legally relevant period and that the consumer is informed about those updates. Required updates expressly include **security updates**.
+
+For a digital product supplied continuously, the relevant update period is the supply period. In other cases, it is the period the consumer may reasonably expect in light of the product's nature and purpose, the circumstances and the contract.
+
+If CK-Labs relies on BGB § 327f(2) because a consumer did not install a provided update within a reasonable time, preserve evidence that:
+
+- the update was actually made available to that consumer on a supported distribution path;
+- the consumer was informed about the update's availability and the consequences of failing to install it;
+- a reasonable installation period was available in the circumstances; and
+- the failure or improper installation was **not caused by deficient installation instructions** supplied to the consumer.
+
+The statutory limitation concerns a defect caused **solely** by the missing update. It is not a blanket waiver for unrelated defects, outages, entitlement failures or payment problems.
+
+### Classify the reason before forcing an update
+
+A minimum-version block must identify which real category applies:
+
+1. **required conformity/security update**, including a vulnerable protocol or compromised release;
+2. **platform or OS compatibility change**, including an Apple/Google requirement or an OS/API deprecation;
+3. **server/protocol migration** where the old client can no longer safely or correctly communicate with TycoonX;
+4. **anti-cheat, payment-integrity or abuse-prevention emergency** where continued old-client access creates a concrete integrity risk;
+5. **discretionary product modification** that must also pass the BGB § 327r / Directive Article 19 assessment where applicable; or
+6. **unofficial, modified, tampered or technically invalid client**, which is different from a genuine older official build.
+
+Do not claim that every old official version is inherently insecure. Conversely, CK-Labs does not have to keep a vulnerable or incompatible old protocol online indefinitely merely because an older installation still launches.
+
+### Forced-update UX and legal separation
+
+Where a forced update is reasonably necessary:
+
+- explain the practical reason in clear language when disclosure is safe and reasonably possible;
+- identify the supported update route and minimum supported version;
+- do not make installation of a technical/security update count as acceptance of unrelated new Terms, a new Privacy consent, a recurring subscription, a new promotion, or a new payment obligation;
+- do not use a forced-update screen to hide a material paid-feature reduction that is actually a § 327r modification;
+- provide an appropriate support/recovery route where the player cannot update because of a store, account, device or platform problem and a valid entitlement may still exist; and
+- where immediate blocking is required by a security emergency, preserve the incident reason, affected versions, block time, review point and later user communication.
+
+A device that can no longer run the minimum supported OS or official app version can create a compatibility limitation, but that fact alone does not erase the server-side account, transaction history or valid paid entitlement. Any mandatory remedy depends on the affected contract and applicable law.
+
+### Purchases and entitlement isolation
+
+An unsupported or blocked client must not become a paid-entitlement reset mechanism.
+
+- **Diamonds:** updating, reinstalling or migrating the app must not replay a consumed Diamond purchase or delete unrelated purchased and unused Diamonds. An old local balance display does not override authoritative ledger/provider records.
+- **30-Day VIP:** a forced update, reinstall or client migration must not restart the original 30-day clock. If a required-update failure or update-related outage materially prevents use of a covered paid service, assess the applicable cure, extension, price-reduction, termination or refund consequences rather than silently restarting or shortening the clock.
+- **Lifetime VIP:** blocking an obsolete client does not by itself cancel Lifetime VIP, convert it to 30-Day VIP, create a hidden expiry, or create another Lifetime VIP on restore.
+- **Refunds/chargebacks:** inability or refusal to update is not by itself evidence of fraud, chargeback abuse, exploit intent or account compromise.
+
+If the old client can no longer reliably show current prices, tax, product quantities, payment status or eligibility, disable new purchases on that client rather than accepting a payment through a known-invalid flow and then refusing entitlement delivery merely because the build was old.
+
+### Server migrations and idempotency
+
+A minimum-version migration that changes schemas, entitlement identifiers, authentication or payment APIs must preserve authoritative transaction history. Retried Apple, Google Play or Xsolla events after an app update or server migration must remain idempotent.
+
+A rollback or client upgrade must not:
+
+- grant the same provider transaction twice;
+- lose a valid post-snapshot transaction;
+- overwrite a current server entitlement with stale local state;
+- reset an existing 30-Day VIP expiry;
+- duplicate Lifetime VIP; or
+- turn a pending/failed transaction into a successful entitlement without authoritative confirmation.
+
+### Apple App Store operational rule
+
+Apple currently evaluates App Store apps for functionality, current-review-guideline compliance and staleness. Its App Store Improvements process can flag apps that have not been updated for three years and have extremely low or no downloads in a rolling 12-month period; after an ordinary possible-removal notice, Apple currently gives **90 days** to submit an update, while apps that crash on launch can be removed immediately.
+
+Apple also currently states that App Store removal under that process does not itself delete the app from the developer account and that existing users can continue using the installed app. Treat an Apple distribution/removal event as a storefront/platform-availability event, not as automatic proof that a TycoonX account or valid paid entitlement ceased to exist.
+
+Release evidence must record the current minimum supported iOS/iPadOS version, app version, server protocol version, App Store availability state and any Apple removal/update notice affecting TycoonX.
+
+### Google Play target-API rule effective August 31, 2026
+
+As of **September 1, 2026**, Google's published Android mobile requirements state that, from **August 31, 2026**:
+
+- new apps and app updates submitted to Google Play must target **Android 16 / API level 36 or higher**; and
+- existing apps must target **Android 15 / API level 35 or higher** to remain available to new users on devices running an Android OS version higher than the app's target API level.
+
+Google documents platform-specific exceptions for Wear OS, Android Automotive OS, Android TV and Android XR. TycoonX release evidence must use the category that the actual app belongs to rather than copying the phone/tablet threshold to a different form factor.
+
+Google also currently provides a way to request an extension to **November 1, 2026**. Do **not** treat that extension as granted unless the actual TycoonX Play Console account has received/used the applicable extension. If no extension applies, a build that misses the target-API threshold is a distribution/readiness problem that should be fixed, not an excuse to invalidate existing TycoonX entitlements.
+
+Record for each Android release: package, version code/name, target SDK/API, minimum SDK, supported device/OS range, Play availability status, any granted extension and the server minimum version.
+
 ## 10. Permanent shutdown needs a product-by-product closure runbook
 
 A lawful permanent TycoonX shutdown must not be implemented only by turning off servers.
@@ -200,6 +290,14 @@ Before declaring production parity, test and retain evidence for these scenarios
 | Economy reset touching verified purchased Diamonds | Purchased/promotional split, authoritative transaction evidence, exploit-value isolation, remediation decision |
 | Significant multi-hour or multi-day outage | Incident duration, paid-product impact, whether paid time continued, remedy assessment, provider responsibility |
 | Authentication or infrastructure provider migration | Access impact, continuity plan, old/new provider state, entitlement preservation, consumer notice if required |
+| Required security update blocks a vulnerable old build | BGB § 327f classification, update availability, user notice, consequences of non-installation, reasonable install period where applicable, blocked versions, entitlement preservation |
+| Emergency minimum-version block cannot wait for ordinary notice | Concrete security/integrity reason, affected versions, block timestamp, review point, supported update route, later communication, paid-service impact review |
+| Genuine official old build is unsupported but not evidence of abuse | Minimum-version rule, compatibility/security reason, no automatic fraud/exploit/chargeback flag, support/recovery path |
+| Store outage prevents installation of a required update | Update availability failure, store/provider incident, access impact, no improper reliance on § 327f(2), remedy assessment |
+| Device cannot install the new minimum OS/app | Supported-device matrix, prior/current requirements, account/entitlement preservation, consumer communication, transaction-specific remedy assessment |
+| Google Play target-API compliance after August 31, 2026 | Current target API, app category, Play availability, extension status if any, new-user availability check, server minimum version |
+| Apple App Store outdated-app/removal notice | Apple notice, 90-day deadline where applicable, app functionality, update plan, current-user impact, server/entitlement continuity |
+| App reinstall/update after a valid purchase | Authoritative reconciliation, no second Diamond grant, original 30-Day VIP expiry preserved, one Lifetime VIP only |
 | Unsupported app/version migration | Security/conformity reason, required update notice, supported-version path, no loss of valid entitlement merely from stale local display |
 | Permanent TycoonX shutdown | Closure date, purchase cutoff, consumer notice, Diamonds/30-Day VIP/Lifetime VIP treatment, Apple/Google/Xsolla roles, post-shutdown support route |
 | Change followed by consumer termination under § 327r | Notice receipt, modification date, 30-day calculation, transaction-specific termination, repayment route, unrelated purchases preserved |
@@ -229,15 +327,18 @@ If a future implementation decision requires materially changing that public mea
 3. resynchronize locales in the exact required order; and
 4. do not mark a locale current until native-language QA is complete.
 
-## 17. Official legal references checked August 31, 2026
+## 17. Official legal and platform references checked September 1, 2026
 
 - German BGB digital-product framework, §§ 327 et seq.: https://www.gesetze-im-internet.de/bgb/
+- BGB § 327f, required updates and consequences of consumer non-installation: https://www.gesetze-im-internet.de/bgb/__327f.html
 - BGB § 327n, price reduction and 14-day repayment mechanics: https://www.gesetze-im-internet.de/bgb/__327n.html
 - BGB § 327o, declaration and consequences of contract termination: https://www.gesetze-im-internet.de/bgb/__327o.html
 - BGB § 327p, further use and return of qualifying non-personal user content after termination: https://www.gesetze-im-internet.de/bgb/__327p.html
 - BGB § 327r, modifications to digital products: https://www.gesetze-im-internet.de/bgb/__327r.html
 - Directive (EU) 2019/770 on contracts for digital content and digital services, including Article 19: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L0770
+- Google Play target API level requirements, including the August 31, 2026 Android requirements: https://support.google.com/googleplay/android-developer/answer/11926878
+- Apple App Store Improvements, including outdated/nonfunctional-app review and removal process: https://developer.apple.com/support/app-store-improvements/
 
 ## Release decision
 
-Do not mark the digital-product change/shutdown path complete until production operations can prove the required product classification, change reason, notice, entitlement isolation and remedy handling for the scenarios above. A strong Terms clause is not a substitute for an executable closure and modification process.
+Do not mark the digital-product change/shutdown path complete until production operations can prove the required product classification, change reason, update/support lifecycle, notice, entitlement isolation and remedy handling for the scenarios above. A strong Terms clause is not a substitute for an executable update, closure and modification process.
