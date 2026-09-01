@@ -64,7 +64,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /significant change to the terms and conditions/i,
+  /significant changes? to the terms and conditions/i,
   'Missing DSA significant-change notice safeguard.',
 );
 
@@ -103,10 +103,10 @@ requireText(
   'Canonical Terms lost the express-consent-versus-notice safeguard.',
 );
 
-requireMatch(
+requireText(
   purchases,
-  /completed purchases/i,
-  'Canonical Purchases policy no longer addresses completed purchases.',
+  'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price.',
+  'Canonical Purchases policy lost the no-retroactive-repricing safeguard.',
 );
 requireMatch(
   purchases,
