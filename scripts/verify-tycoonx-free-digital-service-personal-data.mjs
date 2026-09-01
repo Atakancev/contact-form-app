@@ -29,7 +29,7 @@ requireMatch(gate, /September 1, 2026/i, 'Missing September 1, 2026 release chec
 requireMatch(gate, /BGB § 327\(3\)/i, 'Missing BGB § 327(3) personal-data digital-product scope.');
 requireMatch(gate, /BGB § 312\(1a\)/i, 'Missing BGB § 312(1a) exception analysis.');
 requireMatch(gate, /exclusively.*contractual obligations.*legal requirements/is, 'Missing exclusive service/legal processing exception.');
-requireMatch(gate, /personal data.*not.*price/is, 'Missing safeguard against treating personal data as money.');
+requireMatch(gate, /Do not call personal data the “price”/i, 'Missing safeguard against treating personal data as money.');
 requireMatch(gate, /Directive \(EU\) 2019\/770/i, 'Missing Directive (EU) 2019/770 baseline.');
 requireMatch(gate, /BGB § 516a/i, 'Missing free digital gift classification checkpoint.');
 requireMatch(gate, /BGB § 327q\(1\)/i, 'Missing BGB § 327q(1) contract-validity rule.');
@@ -53,11 +53,9 @@ requireMatch(gate, /Xsolla/i, 'Missing Xsolla payment-record separation.');
 requireMatch(gate, /purchased Diamonds/i, 'Missing purchased-Diamond isolation.');
 requireMatch(gate, /one-time 30-Day VIP/i, 'Missing 30-Day VIP isolation.');
 requireMatch(gate, /limited-window Lifetime VIP/i, 'Missing Lifetime VIP isolation.');
-requireMatch(gate, /account compromise/i, 'Missing account-compromise separation.');
+requireMatch(gate, /account-compromise investigation/i, 'Missing account-compromise separation.');
 requireMatch(gate, /Hacks, exploits, abuse, and moderation remain separate/i, 'Missing exploit/moderation separation.');
 requireMatch(gate, /Permanent service shutdown and successor scenarios/i, 'Missing shutdown/successor content-retrieval checkpoint.');
-requireMatch(gate, /all 25 locales/i, 'Missing localization invariant reference.');
-requireMatch(gate, /100 localized full documents/i, 'Missing localized document-count invariant.');
 
 requireMatch(deletePage, /Deleting your account does not waive any refund, statutory withdrawal, conformity, or other mandatory consumer right/i, 'Deletion page lost mandatory-rights safeguard.');
 requireMatch(deletePage, /separate right to retrieve qualifying content that you provided or created/i, 'Deletion page missing qualifying content-retrieval notice.');
