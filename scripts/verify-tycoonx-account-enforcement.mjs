@@ -128,10 +128,10 @@ requireMatch(
   /account compromise/i,
   'Google collaborative chargeback gate no longer accounts for account compromise.',
 );
-requireMatch(
+requireText(
   googleChargebacks,
-  /good-faith|good faith/i,
-  'Google collaborative chargeback gate lost protection for good-faith disputes.',
+  'A user exercising a lawful refund, withdrawal, conformity, or dispute right is not automatically committing fraud or chargeback abuse.',
+  'Google collaborative chargeback gate lost protection for legitimate refund, withdrawal, conformity, and dispute rights.',
 );
 requireText(
   appleBinding,
