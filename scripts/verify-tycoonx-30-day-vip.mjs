@@ -95,8 +95,8 @@ requireMatch(gate, /planned permanent TycoonX shutdown/i, 'Missing shutdown/rema
 requireMatch(terms, /30-Day VIP.*one-time, non-renewing/is, 'Canonical Terms no longer clearly define 30-Day VIP as one-time/non-renewing.');
 requireMatch(terms, /30 consecutive days/is, 'Canonical Terms lost the 30-day duration.');
 requireMatch(terms, /does not automatically renew/i, 'Canonical Terms lost the no-auto-renewal statement.');
-requireMatch(terms, /future recurring VIP product.*separate/is, 'Canonical Terms lost future recurring-product separation.');
-requireMatch(terms, /30-Day VIP.*restored.*still valid/is, 'Canonical Terms lost still-valid 30-Day VIP restore handling.');
+requireMatch(terms, /future recurring VIP product.*own clear recurring-price/is, 'Canonical Terms lost future recurring-product separation.');
+requireMatch(terms, /valid 30-Day VIP should be restored from authoritative account or server records/i, 'Canonical Terms lost authoritative 30-Day VIP restore handling.');
 
 requireMatch(purchases, /30-Day VIP is a \*\*one-time, non-renewing entitlement\*\*/i, 'Canonical Purchases policy lost the 30-Day VIP classification.');
 requireMatch(purchases, /30 consecutive days from activation or availability/i, 'Canonical Purchases policy lost the activation/availability clock.');
@@ -105,13 +105,13 @@ requireMatch(purchases, /Google Play.*must not silently create recurring billing
 requireMatch(purchases, /30-Day VIP:\*\* restored from authoritative account or server records.*while still valid/is, 'Canonical Purchases policy lost authoritative restore handling.');
 
 // Cross-gate consistency.
-requireMatch(recurring, /one-time non-renewing 30-Day VIP/i, 'Future recurring subscription gate no longer preserves current 30-Day VIP classification.');
+requireMatch(recurring, /30-Day VIP.*one-time.*non-renewing/is, 'Future recurring subscription gate no longer preserves current 30-Day VIP classification.');
 requireMatch(crossPlatform, /30-Day VIP/i, 'Cross-platform gate no longer covers 30-Day VIP.');
 requireMatch(crossPlatform, /clock/i, 'Cross-platform gate lost 30-Day VIP clock protection.');
 requireMatch(conformity, /30-Day VIP/i, 'Digital conformity gate no longer covers 30-Day VIP.');
 
 // Localization/release invariants.
-requireMatch(progress, /25\/25 localized hubs/i, 'Localization tracker no longer confirms all 25 localized hubs.');
+requireMatch(progress, /25\/25.*target locales/is, 'Localization tracker no longer confirms all 25 localized hubs/locales.');
 requireMatch(progress, /100\/100 localized full documents/i, 'Localization tracker no longer confirms all 100 localized full documents.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization tracker unexpectedly shows unfinished locale/document work.');
 requireMatch(progress, /September 1, 2026/i, 'Localization tracker lost the September 1, 2026 full-release invariant.');
@@ -122,7 +122,7 @@ requireMatch(renderedTerms, /30-Day VIP/i, 'Rendered Terms lost 30-Day VIP wordi
 requireMatch(renderedPurchases, /30-Day VIP/i, 'Rendered Purchases page lost 30-Day VIP wording.');
 requireMatch(renderedPurchases, /one-time, non-renewing entitlement/i, 'Rendered Purchases page lost one-time/non-renewing classification.');
 
-// Display-brand and stale-live-copy guard. Technical path names are intentionally not scanned as prose.
+// Display-brand guard. Technical path names are intentionally not scanned as prose.
 for (const [name, text] of [
   ['30-Day VIP gate', gate],
   ['canonical Terms', terms],
