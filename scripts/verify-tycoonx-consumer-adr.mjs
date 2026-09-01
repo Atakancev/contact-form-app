@@ -99,7 +99,7 @@ requireText(gate, 'Support copied a 2024 template containing the old ODR link.',
 requireText(terms, 'Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited', 'canonical mandatory rights');
 requireText(terms, 'subject to mandatory legal rights and the user’s ability to challenge an incorrect decision through Support', 'canonical challenge route');
 requireText(terms, 'without limiting genuine fraud reporting or consumer rights', 'canonical chargeback safeguard');
-requireText(purchases, 'Nothing in this Policy excludes statutory rights that cannot legally be waived.', 'Purchases mandatory rights');
+requireText(purchases, 'does not reduce any rights that cannot legally be waived', 'Purchases mandatory rights');
 requireText(purchases, 'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment.', 'Purchases CK-Labs delivery responsibility');
 
 // Localization remains complete because this gate does not change canonical public meaning.
