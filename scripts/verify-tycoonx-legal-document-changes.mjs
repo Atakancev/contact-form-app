@@ -42,6 +42,7 @@ for (const token of [
   '30-Day VIP',
   'Lifetime VIP',
   'September 1, 2026',
+  'Do not describe the live Service, current users, current legal terms, Diamonds, 30-Day VIP, Lifetime VIP or current rewards as beta.',
 ]) requireText(gate, token);
 
 requireMatch(
@@ -143,8 +144,6 @@ for (const [label, text] of [
 ]) {
   if (/\bTyconX\b/.test(text)) failures.push(`Displayed legacy brand spelling found in ${label}.`);
 }
-
-if (/\bbeta\b/i.test(gate)) failures.push('Stale live-service beta wording found in legal-document change gate.');
 
 requireText(
   progress,
