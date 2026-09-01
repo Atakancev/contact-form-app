@@ -22,6 +22,19 @@ export default function TycoonXSupport() {
             <a href="/tycoonx-legal" className="text-sm text-indigo-400 hover:text-indigo-300 transition">Legal Languages</a>
           </div>
         </div>
+
+        <div className="rounded-xl border border-white/10 bg-[#111111] p-5 mt-4">
+          <h2 className="text-lg font-semibold text-white mb-2">EU Digital Services Act contact points</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+            For TycoonX intermediary or community-service matters covered by the EU Digital Services Act, recipients of the service can contact CK-Labs through the Support form below or directly by email at cevikdev@gmail.com. These communications can receive human review and do not rely solely on automated tools.
+          </p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+            The contact point for Member State authorities, the European Commission, and the European Board for Digital Services is cevikdev@gmail.com. Authority communications are accepted in German and English. CK-Labs may verify the identity, legal basis, and scope of an authority request before disclosing protected information.
+          </p>
+          <p className="text-zinc-500 text-xs leading-relaxed">
+            This general DSA contact point does not replace any specific illegal-content notice, statement-of-reasons, emergency, complaint, or redress process required by applicable law.
+          </p>
+        </div>
       </div>
       <ContactForm initialProject="TycoonX" />
     </main>
