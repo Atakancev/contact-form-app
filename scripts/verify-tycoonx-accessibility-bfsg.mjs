@@ -18,12 +18,13 @@ function requireGatePattern(pattern, message) {
   if (!pattern.test(gate)) errors.push(message);
 }
 
-requireGateText('Last reviewed: August 31, 2026', 'Missing current BFSG review checkpoint.');
+requireGateText('Last reviewed: September 1, 2026', 'Missing current BFSG review checkpoint.');
 requireGateText('June 28, 2025', 'Missing BFSG application date.');
 requireGateText('BFSG § 3(3)', 'Missing microenterprise service exemption.');
 requireGateText('BFSG § 2 no. 17', 'Missing statutory microenterprise definition.');
 requireGateText('fewer than 10 persons', 'Missing BFSG headcount threshold.');
 requireGateText('EUR 2 million', 'Missing BFSG turnover/balance-sheet threshold.');
+requireGatePattern(/service-provider microenterprise exemption.*not.*universal exemption/is, 'Missing warning against overstating the service microenterprise exemption.');
 requireGateText('BFSGV § 19', 'Missing e-commerce accessibility requirements.');
 requireGatePattern(/identification, authentication, security and payment functions.*perceivable, operable, understandable and robust/is, 'Missing BFSGV § 19 functional requirements.');
 requireGateText('BFSG § 14(1)', 'Missing service-provider accessibility-information duty.');
@@ -36,6 +37,23 @@ requireGateText('BFSG § 37', 'Missing BFSG enforcement/fine checkpoint.');
 requireGateText('EUR 100,000', 'Missing maximum fine for covered service non-conformity.');
 requireGateText('BFSG §§ 16 and 17', 'Missing fundamental-alteration/disproportionate-burden framework.');
 requireGatePattern(/not informal excuses to skip accessibility work/i, 'Missing narrow-exception warning.');
+
+requireGateText('BFSG § 1(4)(4)', 'Missing narrow third-party-content exclusion.');
+requireGatePattern(/neither financed nor developed.*nor under its control/is, 'Missing statutory third-party-content control test.');
+requireGatePattern(/not a general rule.*third-party SDK, iframe, browser sheet or payment provider/is, 'Missing warning against blanket provider/content exemption.');
+requireGatePattern(/Xsolla, Apple, Google.*provider surfaces.*provider-controlled/is, 'Missing provider-control evidence mapping.');
+
+requireGateText('BFSG § 28(2)', 'Missing BFSG service market-surveillance checkpoint.');
+requireGateText('BFSG Annex 1', 'Missing Annex 1 monitoring and sampling checkpoint.');
+requireGatePattern(/all procedural steps.*standard sequence/is, 'Missing end-to-end procedural testing rule.');
+requireGatePattern(/forms, controls, dialogs, data-entry confirmations, error messages/is, 'Missing Annex 1 interaction/error-state coverage.');
+requireGatePattern(/home page, login, sitemap, contact, help pages\/functions, pages with legal information/is, 'Missing Annex 1 mandatory sample categories.');
+requireGatePattern(/BFSG accessibility-information page itself/is, 'Missing accessibility-information page in Annex 1 sample.');
+requireGatePattern(/If a sampled page is one step in a procedure, the full procedure is tested/is, 'Missing full-procedure sampling consequence.');
+requireGatePattern(/Terms, Purchases & Refunds, Privacy, Support, account recovery\/deletion, restore-entitlement and German withdrawal paths/is, 'Missing TycoonX legal/support/consumer-rights sample mapping.');
+requireGatePattern(/success, pending, validation, error and recovery states/is, 'Missing transaction-state accessibility regression coverage.');
+requireGatePattern(/tested version\/build, page\/route, scenario, result, assistive technology\/browser\/device/is, 'Missing accessibility release-evidence fields.');
+
 requireGateText('Apple Accessibility Nutrition Labels', 'Missing Apple accessibility metadata checkpoint.');
 requireGatePattern(/initially optional.*intended to become required/is, 'Missing current Apple label status distinction.');
 requireGatePattern(/common tasks.*evaluation criteria/is, 'Missing Apple common-task evaluation requirement.');
@@ -44,6 +62,9 @@ requireGateText('30-Day VIP', 'Missing 30-Day VIP entitlement isolation.');
 requireGateText('Lifetime VIP', 'Missing Lifetime VIP entitlement isolation.');
 requireGatePattern(/accessibility complaint.*not be treated as chargeback fraud, entitlement abuse, exploit use or regional-price abuse/is, 'Missing accessibility-complaint abuse safeguard.');
 requireGateText('September 1, 2026', 'Missing TycoonX full-release checkpoint.');
+requireGateText('https://www.gesetze-im-internet.de/bfsg/__1.html', 'Missing current BFSG scope source.');
+requireGateText('https://www.gesetze-im-internet.de/bfsg/__28.html', 'Missing current BFSG service-surveillance source.');
+requireGateText('https://www.gesetze-im-internet.de/bfsg/anlage_1.html', 'Missing Annex 1 source.');
 requireGateText('https://www.mlbf-barrierefrei.de/', 'Missing current MLBF source.');
 requireGateText('https://developer.apple.com/help/app-store-connect/manage-app-accessibility/overview-of-accessibility-nutrition-labels', 'Missing current Apple accessibility source.');
 
@@ -66,5 +87,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('\nPASS: BFSG applicability, service-information, MLBF, Apple accessibility metadata and entitlement-isolation safeguards are present.');
+  console.log('\nPASS: BFSG applicability, Annex 1 end-to-end sampling, provider-boundary, service-information, MLBF, Apple accessibility metadata and entitlement-isolation safeguards are present.');
 }
