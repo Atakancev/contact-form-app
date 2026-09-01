@@ -126,15 +126,15 @@ requireText(paymentGate, 'Pending/approval-style transactions must not grant pai
 requireText(paymentGate, 'Corrections must target invalid or duplicated value and must not confiscate unrelated legitimate purchases.', 'existing paid-value isolation');
 
 // Canonical public documents already support this operational gate.
-requireText(terms, 'Pending, failed, canceled, reversed, revoked, or refunded payments do not create a right to keep unsupported paid value', 'canonical Terms payment state');
-requireText(terms, 'Authoritative server and provider records', 'canonical Terms authoritative records');
-requireText(terms, 'Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited', 'canonical Terms mandatory rights');
-requireText(terms, 'A genuine payment dispute or exercise of a mandatory consumer right is not automatically fraud or chargeback abuse.', 'canonical Terms dispute safeguard');
+requireText(terms, 'If a payment is pending, rejected, reversed, cancelled, fails fraud review, or is never confirmed', 'canonical Terms payment state');
+requireText(terms, 'Authoritative server and payment records remain controlling for entitlement verification', 'canonical Terms authoritative records');
+requireText(terms, 'Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.', 'canonical Terms mandatory rights');
+requireText(terms, 'without limiting genuine fraud reporting or consumer rights', 'canonical Terms genuine-dispute safeguard');
 
 requireText(purchases, 'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment.', 'Purchases policy delivery authority');
-requireText(purchases, 'Pending, failed, canceled, reversed, revoked, or refunded payments', 'Purchases policy payment states');
-requireText(purchases, 'A genuine payment dispute or exercise of a mandatory consumer right is not automatically fraud or chargeback abuse.', 'Purchases policy dispute safeguard');
-requireText(purchases, 'Mandatory consumer rights are not waived', 'Purchases policy mandatory rights');
+requireText(purchases, 'If a payment is pending, rejected, reversed, cancelled, fails fraud review, or is never confirmed', 'Purchases policy payment states');
+requireText(purchases, 'Users should promptly report suspected unauthorized purchases to the relevant payment provider and TycoonX Support.', 'Purchases policy unauthorized-payment route');
+requireText(purchases, 'Nothing in this Policy excludes statutory rights that cannot legally be waived.', 'Purchases policy mandatory rights');
 
 requireText(privacy, 'We generally do not receive your full payment-card number from platform stores or payment processors.', 'Privacy card minimization');
 requireText(privacy, 'purchase receipt, signed transaction information, validation token, or equivalent confirmation data', 'Privacy purchase verification data');
