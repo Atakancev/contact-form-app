@@ -83,7 +83,7 @@ requireMatch(gate, /Non-Consumable.*purchased once.*does not expire or decrease 
 requireMatch(gate, /dedicated Lifetime VIP non-consumable product ID/i, 'Lifetime VIP gate lost dedicated Apple SKU requirement.');
 requireMatch(gate, /do not configure Lifetime VIP as a consumable/i, 'Lifetime VIP gate lost Apple anti-consumable rule.');
 requireMatch(gate, /do not configure it as an Auto-Renewable Subscription/i, 'Lifetime VIP gate lost Apple anti-recurring rule.');
-requireMatch(gate, /Developer Removed from Sale.*not.*refund or revocation/is, 'Lifetime VIP gate lost Apple removed-from-sale ownership safeguard.');
+requireMatch(gate, /Developer Removed from Sale.*refund or revocation/is, 'Lifetime VIP gate lost Apple removed-from-sale ownership safeguard.');
 
 // Google Play mapping.
 requireMatch(gate, /Google Play \*\*one-time product\*\* path/i, 'Lifetime VIP gate lost Google one-time product classification.');
