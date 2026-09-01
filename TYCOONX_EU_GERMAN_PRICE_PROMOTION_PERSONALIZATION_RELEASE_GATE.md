@@ -1,334 +1,241 @@
-# TycoonX EU/German Price Promotion and Personalization Release Gate
+# TycoonX Price Promotion Provider-Evidence Companion Gate
 
 **Review date: September 2, 2026**
 
-This release gate hardens TycoonX pricing, discount, promotion, crossed-out-price, regional-price and personalized-price behavior for CK-Labs. It supplements the canonical TycoonX Terms of Service and Purchases & Refunds Policy without replacing mandatory consumer law or the transaction-specific rules of Apple, Google Play, Xsolla, or another contracting merchant.
+Owner: CK-Labs
 
-The goal is not to prevent lawful sales. The goal is to make sure a real Diamond, 30-Day VIP, Lifetime VIP, coupon or bundle campaign is marketed with a price reference that is true, reproducible and legally supportable.
+This is a narrow integration gate. It intentionally does **not** duplicate the completed substantive rules in:
 
-## 1. Core release rule
+- `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md` for genuine sales windows, countdowns, crossed-out prices, PAngV § 11 scope, C-330/23 Aldi Süd, total-price presentation, children and promotion abuse; and
+- `TYCOONX_EU_PERSONALIZED_PRICING_AUTOMATED_OFFERS_RELEASE_GATE.md` for Consumer Rights Directive Article 6(1)(ea), Article 246a EGBGB, individualized automated pricing, GDPR profiling and regional-vs-personalized pricing.
 
-Before a TycoonX promotion goes live, CK-Labs must be able to answer all of these questions from retained evidence:
+Its purpose is to close the remaining operational gap between a truthful CK-Labs marketing claim and the **actual price/configuration shown by Apple, Google Play or Xsolla at the moment of purchase**.
 
-1. What exact product, bundle or entitlement is being promoted?
-2. What channel and storefront is the offer on: Apple App Store, Google Play, or the official TycoonX web shop using Xsolla?
-3. What country/region and currency does the offer target?
-4. What price is actually payable at checkout, including mandatory taxes and unavoidable charges where applicable?
-5. What does any crossed-out price, percentage, `save`, `was`, `regular price`, `sale`, countdown or limited-time claim refer to?
-6. Was that reference price genuinely charged or otherwise lawfully usable for the claimed comparison?
-7. Is the offer generally available, region-based, eligibility-based, coupon-based, first-purchase-only, or personalized using automated decision-making?
-8. Is a legally required personalized-price disclosure shown before the consumer places the order?
-9. Is the promotion period genuine and technically synchronized with the catalog and checkout?
-10. Can CK-Labs prove the offer history after the campaign ends?
+## 1. Four-layer price truth chain
 
-If the answer to a legally material question is unknown, the risky claim should not ship until it is resolved.
+For every material TycoonX paid campaign, CK-Labs should be able to reconcile four layers:
 
-## 2. German total-price baseline
+1. **CK-Labs marketing layer**: banner, in-game card, email/push copy, webshop landing page, crossed-out price, percentage saving, countdown and eligibility wording.
+2. **Provider/catalog layer**: the configured Apple product/storefront price, Google Play product/offer price, or Xsolla SKU/package/bundle/promotion configuration.
+3. **Checkout layer**: the final product, quantity, currency, tax treatment and total displayed immediately before the consumer confirms payment.
+4. **Authoritative transaction layer**: the provider/server transaction record used to decide whether Diamonds, one-time 30-Day VIP or Lifetime VIP may be granted, restored, reversed or corrected.
 
-German PAngV § 3 requires a trader advertising or offering goods or services to consumers with prices to state the total price, and where a price is broken into components the total price must be highlighted.
+A campaign is not release-ready if CK-Labs cannot explain a material mismatch between these layers.
 
-For TycoonX, this means that a CK-Labs-controlled purchase surface must not make a consumer reconstruct the real payable amount from a Diamond price, VAT line, mandatory fee or other unavoidable component where German law requires the total price to be shown.
+Marketing metadata must never override an authoritative failed, pending, canceled, refunded or reversed payment state.
 
-The same principle is reinforced by German UWG § 5b for consumer invitations to purchase: the total price, or where it cannot reasonably be calculated in advance the method of calculation and relevant additional charges, is material information.
+## 2. Provider-generated prices are not automatically CK-Labs discounts
 
-The final checkout total may legitimately differ by country, currency, VAT treatment, platform tax handling, payment method or provider rules. That difference must be real and must not be disguised as a fake discount.
+A storefront/provider can change a displayed local amount because of currency conversion, tax treatment, local pricing conventions, provider pricing tiers or other provider-controlled mechanisms.
 
-## 3. PAngV § 11 and the 30-day prior-price rule must not be overgeneralized
+Do not automatically describe that movement as:
 
-German PAngV § 11 expressly applies to announcements of price reductions for **goods (`Waren`)** and requires the lowest total price used during the previous 30 days as the reference price, subject to the statutory exceptions.
+- a CK-Labs sale;
+- `X% off`;
+- a Lifetime VIP promotional reduction;
+- a crossed-out former CK-Labs price; or
+- evidence that another TycoonX channel is more expensive.
 
-TycoonX Diamonds, 30-Day VIP and Lifetime VIP are digital game currency/content/services or digital entitlements, not ordinary physical goods. Therefore CK-Labs must **not automatically claim that PAngV § 11 itself directly governs every TycoonX digital promotion** merely because a sale uses a crossed-out price.
+A CK-Labs savings claim needs its own truthful comparison basis under the existing promotion gate.
 
-However, that does not create a loophole for fake digital discounts. Misleading price claims for digital products and services remain subject to German unfair-commercial-practice rules, including UWG §§ 5, 5a and 5b, and to the corresponding EU Unfair Commercial Practices Directive framework.
+## 3. Apple App Store evidence
 
-Operational rule:
+Apple supports storefront-specific In-App Purchase pricing and scheduled price changes. Depending on the pricing setup, Apple can also update prices in other storefronts for tax or foreign-exchange changes.
 
-- for any TycoonX digital offer, the reference price must still be truthful, clear and supportable;
-- if a future TycoonX offer includes a product that is legally a `Ware`, or another jurisdiction extends a statutory prior-price rule to that offer, use the applicable statutory history rule;
-- if legal classification is uncertain, do not use a strong `X% off`, `was`, crossed-out price, or equivalent savings claim until the reference basis is reviewed.
+For every material Apple TycoonX price campaign:
 
-## 4. EU Article 6a / German PAngV price-reduction logic where it actually applies
+- identify the Apple product ID;
+- identify the storefront/country used for the test;
+- record whether CK-Labs manually set that storefront price or whether it derives from Apple's pricing configuration;
+- retrieve/display the current App Store purchase price rather than relying on a stale hard-coded marketing amount;
+- capture the final native purchase price for a representative test;
+- do not label an Apple tax/FX/storefront adjustment as a CK-Labs discount unless it genuinely is one;
+- if CK-Labs advertises a comparison against a webshop or Google Play price, timestamp both compared prices and compare the same entitlement/bundle quantity on a like-for-like tax basis.
 
-Where Directive 98/6/EC Article 6a or German PAngV § 11 applies to a covered good, the reference price is the lowest price applied during at least the previous 30 days, subject to lawful national exceptions.
+A scheduled future Apple price change does not retroactively reprice an already completed one-time purchase.
 
-The Court of Justice of the European Union confirmed in **Case C-330/23, Aldi Süd, judgment of September 26, 2024**, that a percentage reduction or other promotional statement highlighting the advantageous nature of the announced price must be determined on the basis of that legally defined prior price.
+## 4. Google Play evidence
 
-Do not:
+Google Play supports market-specific local prices and may calculate local prices from a base price using currency conversion, tax treatment and local pricing patterns according to its current product configuration.
 
-- briefly raise a covered price and then calculate a dramatic percentage discount from the inflated price;
-- calculate `50% off` from a higher reference price when the legally relevant prior price is lower;
-- use a crossed-out amount that consumers reasonably understand as the former selling price when it was never genuinely applicable;
-- restart a supposedly new sale merely to manufacture a new higher reference price.
+For every material Google Play TycoonX campaign:
 
-Keep per-channel/per-storefront price history where the applicable law measures the prior price separately for those sales channels.
+- identify the Google Play product ID;
+- identify the country/storefront used for the test;
+- retrieve fresh eligible product/price information close enough to purchase that a stale cache does not become the marketing source of truth;
+- capture the final Google Play purchase price for a representative test;
+- record whether the price difference is a CK-Labs promotion, a market-specific configured price, or a provider conversion/tax effect;
+- if CK-Labs compares Google Play with Apple or the TycoonX webshop, timestamp all compared prices and compare the same product/quantity and relevant tax basis.
 
-## 5. Digital TycoonX promotions still need truthful reference prices
+A Google-generated local price change is not automatically a CK-Labs `sale`.
 
-For Diamonds, 30-Day VIP, Lifetime VIP and other digital offers, CK-Labs should treat every savings claim as requiring a documented comparison basis even where PAngV § 11 is not directly applicable.
+## 5. Xsolla promotion evidence
 
-Acceptable examples, if true and presented clearly:
+Xsolla currently documents discount promotions for virtual items, virtual-currency packages and bundles. Its current Web Shop documentation also describes regular and discounted prices in catalog/cart responses, promotion periods, eligibility conditions, discount stacking behavior and promotion timers in supported Site Builder flows.
 
-- `€7.99, previously €9.99 on the TycoonX web shop from August 1 to August 31`;
-- `20% launch discount compared with the price that will apply after September 10`, where the future price and campaign are genuine and the presentation is not misleading;
-- `€2 lower than the current Google Play price in Germany`, where the channel comparison is accurate and clearly identifies the compared channel;
-- `First purchase offer`, where eligibility is genuine and the user is not falsely told that a universal market price was reduced.
+That implementation flexibility creates a specific evidence risk: **a provider-returned `regular` price is not automatically a legally valid reference price for every CK-Labs crossed-out-price claim or jurisdiction**.
 
-Unsafe examples:
+For each material Xsolla TycoonX promotion, retain:
 
-- a crossed-out `€19.99` that was never actually offered or was only displayed momentarily to create an anchor;
-- `50% off` when the normal comparison price cannot be evidenced;
-- `Best price ever` without sufficient historical evidence;
-- `Only today` while the same timer automatically restarts every day;
-- `Last chance` when CK-Labs already configured the same Lifetime VIP offer to continue unchanged;
-- a discount percentage calculated from a different bundle size without clearly explaining the changed quantity.
-
-## 6. Lifetime VIP sales-window rules
-
-Lifetime VIP remains a **limited-time promotional offering available only during selected genuine sales windows**. It may be withdrawn from sale, may never return, and creates no expectation of continuous availability.
-
-Different genuine Lifetime VIP sales windows may use different future prices. A later lower price does not automatically create a refund, credit or price-match right for an earlier completed purchase, and a later higher price does not create an extra charge on an earlier completed one-time purchase, except where mandatory law requires otherwise.
-
-For every Lifetime VIP campaign retain:
-
-- campaign start and end timestamp plus time zone;
-- country/storefront/channel scope;
-- displayed price and currency;
-- any crossed-out/reference price and its evidence;
-- countdown source and end-time configuration;
-- eligibility conditions;
-- screenshots or equivalent durable evidence of the live offer;
-- final checkout total;
-- whether a coupon, bonus or bundled Diamond amount was part of the offer.
-
-If CK-Labs extends a sales window, the extension must be real and the surrounding marketing must not falsely present the extension as a brand-new expiring offer if that would mislead consumers.
-
-## 7. Personalized pricing based on automated decision-making
-
-Under Consumer Rights Directive Article 6(1)(ea), implemented in Germany through Article 246a § 1(1) no. 6 EGBGB, a consumer must be informed where the price presented in a distance/off-premises contract has been personalized on the basis of automated decision-making.
-
-This is different from ordinary regional or dynamic pricing.
-
-Examples that are generally **not personalized pricing merely because prices differ**:
-
-- Apple storefront prices by country;
-- Google Play local prices;
-- Xsolla country/currency/VAT differences;
-- exchange-rate or tax adjustments;
-- a generally available German promotion shown to every eligible German consumer;
-- time-based dynamic pricing that reacts to market conditions without using consumer-specific automated profiling.
-
-Examples that can trigger the personalized-price disclosure:
-
-- the system predicts that a particular player is willing to pay more and shows that player a higher Lifetime VIP price;
-- an automated profile based on purchase history, device data, spending behavior or inferred purchasing power changes the real-money Diamond price for that person or automated consumer segment;
-- a model selects different real-money prices for otherwise comparable consumers using individual behavioral data.
-
-Where the rule applies, the disclosure must be clear and provided before the order is placed. Hiding it only in the Privacy Policy or Terms is not enough for the transaction-specific pre-contract information duty.
-
-## 8. Personalized offers are not always personalized prices
-
-An automated system may decide **who receives an offer** without changing the actual price for people who receive it. That can be an eligibility/promotion issue rather than personalized pricing under Article 6(1)(ea).
-
-Example: every player who reaches level 20 automatically receives the same €4.99 Diamond bundle offer. The rule may be automated, but the price is not necessarily personalized on the basis of automated decision-making in the legal sense.
-
-However, the promotion still must be truthful, must comply with privacy/data-protection rules for the data used, and must not unfairly exploit children or other vulnerable consumers.
-
-Do not label a genuinely individualized automated price as a mere `offer eligibility` rule to avoid the disclosure duty.
-
-## 9. Regional pricing versus personalized pricing
-
-Regional pricing and personalized pricing must be recorded separately.
-
-A price based on genuine storefront, country, tax, currency, payment-provider or lawful regional-market configuration is not automatically a personalized price just because a user in Germany sees a different amount from a user in Türkiye.
-
-A price based on the individual user's predicted willingness to pay, behavioral profile or purchasing power can be personalized even if the system also considers country.
-
-The separate TycoonX EU geo-blocking/regional-pricing gate still applies. A personalized-pricing label does not legalize nationality/residence discrimination, and a regional-pricing label does not legalize covert automated price personalization.
-
-## 10. Coupons, promo codes and targeted promotions
-
-A coupon may lawfully create an individual price reduction without implying that every consumer was offered the same public reduction.
-
-Promotion evidence should record:
-
-- campaign or coupon ID;
-- eligibility rule;
-- issue and expiry period;
-- number of permitted redemptions;
-- whether it is combinable;
-- applicable SKUs/bundles;
-- discount calculation order where multiple promotions stack;
-- actual final total;
-- reason a user was eligible where eligibility was automated.
-
-Duplicate redemption, account farming, coupon replay, manipulated eligibility and technical bugs may be corrected where lawful. The correction should target only the invalid promotional value or affected transaction and must not remove unrelated legitimate purchases.
-
-## 11. Xsolla promotion configuration
-
-Xsolla currently supports discount promotions for virtual items, virtual-currency packages and bundles, can return both regular and discounted prices in catalog/cart price objects, and can configure promotion periods and user-attribute conditions.
-
-Xsolla also documents that multiple discounts can stack and that its Site Builder can display timers for promotions with an end date.
-
-Release rule:
-
-- do not assume that a regular price returned by Xsolla is automatically a legally valid crossed-out/reference price for every jurisdiction;
-- verify what CK-Labs configured, what Xsolla actually displays, and what final price the checkout charges;
-- if multiple Xsolla promotions stack, test the final arithmetic and the user-facing savings claim;
-- if a Xsolla timer is shown, confirm its period is genuine and does not create false scarcity;
-- retain the Xsolla promotion ID/configuration and a sample checkout record.
-
-Xsolla's technology can implement a discount. It does not replace CK-Labs' duty to ensure a CK-Labs-created promotion is lawful and non-misleading.
-
-## 12. Apple App Store pricing boundary
-
-Apple currently supports country/storefront-specific In-App Purchase pricing and scheduled temporary/custom price changes, and Apple may automatically adjust non-custom storefront prices for tax and foreign-exchange changes depending on the pricing setup.
-
-Release rule:
-
-- use the price returned/displayed by the current Apple purchase surface as the transaction price;
-- do not hard-code a stale euro amount in TycoonX marketing if Apple has changed the German storefront price;
-- record whether a storefront price is Apple-generated from a base region or manually set by CK-Labs;
-- if TycoonX itself says `save X%` or shows a crossed-out price outside Apple's native purchase UI, CK-Labs remains responsible for the truthfulness of that marketing claim;
-- an Apple tax/FX adjustment is not automatically a CK-Labs `sale` or `discount`.
-
-## 13. Google Play pricing boundary
-
-Google Play currently allows market-specific local prices and can convert a base price using local currency, taxes, pricing patterns and exchange rates. Google also supports certain sale/promotion mechanisms depending on product type.
-
-Release rule:
-
-- retrieve fresh eligible product/pricing data close to checkout rather than relying on a stale cached marketing price;
-- record country/storefront and product ID when a promotion is tested;
-- do not describe a Google-generated tax/FX/local-price change as a CK-Labs discount unless it genuinely is one;
-- if CK-Labs advertises a comparison between Google Play and the TycoonX web shop, identify the compared channel and make sure both compared prices are contemporaneous and comparable.
-
-## 14. Obvious pricing and catalog errors
-
-A promotion bug must not be disguised as a valid campaign after the fact.
-
-Examples:
-
-- a €99.99 Lifetime VIP price accidentally entered as €9.99;
-- a 500-Diamond bundle accidentally configured as 5,000 Diamonds;
-- a coupon unexpectedly stacks ten times;
-- the checkout currency label is EUR but the numerical amount was imported from another currency;
-- a stale campaign continues after its genuine end time.
-
-The canonical Terms already allow correction of obvious pricing/configuration errors where law permits. Operationally:
-
-1. stop or correct the erroneous future offer;
-2. preserve catalog, checkout and transaction evidence;
-3. determine whether a binding contract already exists under the applicable law/provider flow;
-4. do not unilaterally charge the consumer more after a completed one-time purchase;
-5. where lawful, cancel/refund an unfulfilled obvious-error transaction rather than inventing a new price;
-6. preserve mandatory consumer remedies and provider-specific procedures.
-
-## 15. Completed purchases are not retroactively repriced
-
-A completed one-time Diamond, 30-Day VIP or Lifetime VIP purchase keeps the transaction price that governed that completed purchase, subject to lawful correction of an invalid transaction or obvious error.
-
-A later sale does not automatically create a refund, credit, additional Diamonds or additional VIP time.
-
-A later price increase does not permit CK-Labs to collect an extra amount from the old transaction.
-
-This does not prevent mandatory remedies, provider refunds, settlements, chargeback outcomes, or corrections required by law.
-
-## 16. Entitlement isolation
-
-Promotion or pricing investigations must be transaction-specific.
-
-Do not:
-
-- remove unrelated purchased Diamonds because a coupon on another purchase was invalid;
-- restart or extend the original one-time 30-Day VIP clock because a later promotion is cheaper;
-- downgrade Lifetime VIP to 30-Day VIP because the Lifetime VIP price later changed;
-- create a hidden expiry for Lifetime VIP because its sales window closed;
-- treat a consumer complaint about a misleading discount as fraud or regional-price abuse without independent evidence.
-
-A valid refund/reversal/invalid transaction may still support correction of the corresponding paid value under the canonical Terms and mandatory law.
-
-## 17. Children and vulnerable consumers
-
-Do not use price personalization, countdown pressure or scarcity design to exploit children or other clearly vulnerable consumers.
-
-A child's purchase-approval mechanism is not permission to apply a higher individualized price. A parental approval for one purchase is transaction-specific and does not authorize future promotions, future purchases or behavioral price profiling.
-
-Direct exhortations to children to buy, or to persuade parents or other adults to buy, remain separately restricted under EU unfair-commercial-practice rules.
-
-## 18. Required release evidence
-
-For every major Diamond/VIP campaign retain, at minimum:
-
-- product/SKU and entitlement type;
-- campaign ID/name;
-- channel and storefront;
+- project/product/SKU or package identifier;
+- promotion ID and promotion type;
 - country/region and currency;
-- campaign start/end with time zone;
-- ordinary/current price immediately before the campaign;
-- any statutory prior-price record if applicable;
-- every displayed crossed-out/reference price and what it means;
-- discount percentage calculation;
-- final total including applicable mandatory taxes/charges;
-- eligibility rule and whether automated decision-making is used;
-- personalized-price disclosure where required;
-- screenshots or equivalent evidence of offer and final checkout;
-- provider configuration/export or API evidence;
-- actual test transaction result or sandbox equivalent where available;
-- rollback/correction plan for obvious configuration errors.
+- configured start/end timestamps and time zone;
+- configured discount amount/percentage;
+- eligibility/user-attribute conditions, if any;
+- whether multiple promotions can combine for the tested order;
+- the actual arithmetic/order of stacked discounts where stacking occurs;
+- the provider-returned regular and discounted price fields used by the surface;
+- the final Xsolla checkout total;
+- a screenshot or equivalent durable evidence of any timer/crossed-out price shown by a CK-Labs-controlled surface;
+- a sample authoritative order/payment state used for entitlement delivery.
 
-## 19. Minimum regression scenarios
+Do not assume Xsolla's technical ability to show a regular/discounted pair proves that the regular amount is a lawful statutory prior price or truthful marketing reference. The existing TycoonX promotion gate still controls that legal question.
 
-Before release or a material pricing-system change, test at least these scenarios:
+## 6. Xsolla timer and stacking test
 
-1. German web-shop Diamond bundle with ordinary price and no discount.
-2. Genuine Lifetime VIP sale with a real start/end time.
-3. Crossed-out price whose historical basis is documented.
-4. Fake/inflated reference price rejected before publication.
-5. Percentage discount arithmetic matches the declared comparison basis.
-6. Two overlapping Xsolla discounts produce the expected final checkout amount.
-7. Expired coupon cannot be replayed.
-8. Duplicate coupon redemption removes only invalid promotional value.
-9. Apple German storefront price differs after tax/FX adjustment without being labeled a CK-Labs sale.
-10. Google Play local price differs from Xsolla web-shop price without implying a universal discount.
-11. Country-based regional price is not mislabeled as personalized pricing.
-12. Automated willingness-to-pay pricing triggers the required personalized-price disclosure before order.
-13. Automated level-based offer with one common price is evaluated separately from individualized price personalization.
-14. Personalized-price disclosure remains visible after navigation back/forward and immediately before ordering where required.
-15. Minor/parental approval does not silently authorize future personalized pricing.
-16. Pricing/catalog error is stopped without charging an old completed transaction extra.
-17. Later lower Lifetime VIP sale does not rewrite an earlier completed transaction.
-18. Later higher Lifetime VIP sale does not create a surcharge on an earlier buyer.
-19. Refund of one promotional Diamond purchase preserves unrelated purchased Diamonds.
-20. A promotion complaint does not automatically flag the account as fraud.
+Before a Lifetime VIP or Diamond campaign using Xsolla promotion tooling goes live:
 
-## 20. Current-law references reviewed September 2, 2026
+- test the price before the campaign starts;
+- test it during the campaign;
+- test it immediately after the configured end;
+- verify that a displayed countdown uses the same real end time as the promotion configuration;
+- verify that the timer does not reset while the same unchanged offer remains available as if the deadline had not passed;
+- verify the final amount when a coupon or another promotion can stack;
+- verify that the user-facing stated saving matches the actual discount calculation;
+- verify that an expired/ineligible promotion does not grant the promotional entitlement or price through a stale client state.
 
-- German PAngV § 3, total-price duty: https://www.gesetze-im-internet.de/pangv_2022/__3.html
-- German PAngV § 11, 30-day prior price for price reductions concerning goods: https://www.gesetze-im-internet.de/pangv_2022/__11.html
-- German UWG §§ 5a/5b, material and price information: https://www.gesetze-im-internet.de/uwg_2004/
-- Article 246a § 1(1) no. 6 EGBGB, personalized-price disclosure: https://www.gesetze-im-internet.de/bgbeg/art_246a__1.html
-- Consumer Rights Directive 2011/83/EU Article 6(1)(ea), as amended by Directive (EU) 2019/2161: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02011L0083-20220528
-- Commission CRD guidance on personalized prices: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52021XC1229(04)
-- Directive 98/6/EC Article 6a and Commission price-reduction guidance: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52021XC1229(06)
-- CJEU Case C-330/23, Aldi Süd, judgment of September 26, 2024: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62023CJ0330
+A genuine separately supportable extension remains possible under the existing promotion gate, but the provider configuration and public deadline must be reconciled.
+
+## 7. Cross-channel price comparisons
+
+A claim such as `cheaper than the App Store`, `save €2 on the web shop`, or `best TycoonX price` needs more than one channel's current number.
+
+Before publishing a cross-channel comparison, record:
+
+- compared channel/storefront;
+- country/region;
+- currency;
+- product/SKU and quantity;
+- whether mandatory tax is included;
+- retrieval timestamp for each price;
+- relevant coupon/eligibility conditions;
+- whether one side is a temporary promotion;
+- the final payable totals used in the calculation.
+
+Do not compare 500 Diamonds on one channel with 600 promotional Diamonds on another as if the products were identical without explaining the quantity difference.
+
+Do not compare a tax-inclusive German checkout with a pre-tax or different-country amount and present the difference as a CK-Labs discount.
+
+## 8. Stale-cache and propagation failure handling
+
+Price changes can propagate through app clients, remote configuration, store catalogs, CDN caches and payment-provider systems at different times.
+
+Release behavior should fail safely:
+
+- do not grant an entitlement based only on a marketing price object;
+- do not charge a different amount outside the provider's confirmed checkout;
+- if CK-Labs marketing is stale but checkout is correct, stop/correct the misleading marketing and assess any affected consumer remedy rather than pretending the discrepancy did not occur;
+- if a provider checkout is stale or inconsistent with the intended campaign, pause the affected campaign where feasible until the provider state is understood;
+- never silently modify the confirmed price of an already completed one-time transaction after the fact.
+
+## 9. Pending, failed, canceled, refunded and reversed payments
+
+Promotion state and payment state are separate.
+
+A valid coupon or sale does not turn a failed or pending payment into a completed purchase. Likewise, a promotion ending while a provider payment is pending must be resolved according to the provider's authoritative transaction result and the TycoonX Purchases & Refunds Policy, not by inventing a new post-payment price.
+
+Entitlement delivery must remain idempotent: one authoritative successful transaction must not produce duplicate Diamonds, duplicate Lifetime VIP or a restarted 30-Day VIP clock merely because the client retries after a promotion changes.
+
+## 10. Obvious configuration errors
+
+Examples include:
+
+- Lifetime VIP intended as €99.99 but configured as €9.99;
+- a 500-Diamond package configured as 5,000 Diamonds;
+- a coupon stacking repeatedly because of an integration bug;
+- a EUR label paired with an amount imported from another currency;
+- an expired Xsolla campaign remaining active because a cached catalog was not invalidated.
+
+When this happens:
+
+1. stop or correct the future erroneous offer;
+2. preserve marketing, catalog, checkout and transaction evidence;
+3. identify whether an actual completed transaction exists and which party was the contracting merchant;
+4. follow the canonical obvious-error, refund and mandatory-consumer-rights rules;
+5. do not unilaterally add a surcharge to an already completed one-time transaction;
+6. keep any entitlement correction tied to the affected transaction rather than unrelated paid value.
+
+## 11. Product isolation
+
+Provider-price reconciliation must preserve the existing product distinctions:
+
+- **Diamonds**: an invalid promotion affecting one purchase must not erase unrelated legitimately purchased Diamonds.
+- **30-Day VIP**: a later price change, campaign retry or restore attempt must not restart, extend, shorten or duplicate the original one-time 30-Day VIP period unless a separate lawful remedy specifically requires an adjustment.
+- **Lifetime VIP**: selected genuine sales windows may use different future prices; closing a sales window does not expire an already valid Lifetime VIP, and a later cheaper/higher window does not retroactively reprice the old completed transaction except where mandatory law requires otherwise.
+
+A consumer reporting a price mismatch is not automatically committing fraud, chargeback abuse, coupon abuse or regional-price abuse.
+
+## 12. Minimum provider-parity regression scenarios
+
+Before a material pricing/promotion system release, test at least:
+
+1. Apple German storefront amount equals the amount displayed by the current native purchase flow.
+2. Apple tax/FX/storefront movement is not mislabeled as a CK-Labs sale.
+3. Google Play German market amount is fetched from current product information rather than an obsolete cached marketing price.
+4. Google-generated local price movement is not mislabeled as a CK-Labs sale.
+5. Xsolla ordinary price with no promotion matches checkout.
+6. Xsolla promotion start switches to the expected discounted total.
+7. Xsolla promotion end removes the discount and any countdown expires consistently.
+8. Two combinable Xsolla discounts produce the documented arithmetic and user-facing saving.
+9. A non-combinable coupon does not silently stack.
+10. A cross-channel comparison uses the same product quantity, country, currency/tax basis and near-contemporaneous prices.
+11. A pending payment that completes after a campaign deadline grants exactly the entitlement justified by the authoritative provider transaction, without repricing it after the fact.
+12. A retry after a promotion change cannot duplicate Diamonds, restart 30-Day VIP or recreate Lifetime VIP.
+13. An obvious catalog error can be paused and investigated without altering unrelated purchases.
+14. A price-mismatch complaint does not itself flag the account as fraud.
+
+## 13. Release evidence packet
+
+For each major Diamond or VIP campaign retain a lightweight dated packet containing:
+
+- campaign/product IDs;
+- channel/storefront;
+- country/region and currency;
+- CK-Labs marketing copy and price claim;
+- provider/catalog configuration;
+- campaign start/end and time zone;
+- current/reference price basis where claimed;
+- current provider price retrieval timestamp;
+- checkout screenshot or equivalent durable evidence;
+- final total and tax treatment as shown by the provider;
+- Xsolla promotion stack/eligibility evidence where applicable;
+- authoritative sample transaction state;
+- rollback/disable procedure;
+- result of the provider-parity scenarios above.
+
+Retention must remain proportionate and follow the Privacy Policy. Do not retain unrelated player data merely to prove a price existed.
+
+## 14. Current provider references reviewed September 2, 2026
+
 - Apple In-App Purchase pricing: https://developer.apple.com/in-app-purchase/
 - Apple scheduled In-App Purchase price changes: https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/schedule-price-changes-for-in-app-purchases/
 - Google Play price setup: https://support.google.com/googleplay/android-developer/answer/6334373
-- Xsolla discount promotions: https://developers.xsolla.com/solutions/web-shop/promotions/discounts/
+- Xsolla Web Shop discount promotions: https://developers.xsolla.com/solutions/web-shop/promotions/discounts/
 
-## 21. Release decision
+The substantive German/EU legal references remain maintained in the existing promotion and personalized-pricing gates rather than being duplicated here.
 
-A TycoonX price promotion is **not release-ready** if any of the following remains unresolved:
+## 15. Release decision
 
-- final total price is unclear;
-- a crossed-out/reference price cannot be evidenced;
-- a percentage discount is calculated from an unsupported anchor;
-- a timer or `limited-time` claim is not genuine;
-- Lifetime VIP scarcity wording does not match the configured sales window;
-- CK-Labs cannot distinguish regional pricing from automated personalized pricing;
-- a required personalized-price disclosure is absent;
-- Apple/Google/Xsolla price state is stale or inconsistent with CK-Labs marketing;
-- a provider-generated regular price is being treated automatically as a legally valid prior/reference price without checking applicable law;
-- promotion correction could remove unrelated Diamonds, alter the original 30-Day VIP clock, or damage valid Lifetime VIP.
+A provider-mediated TycoonX campaign is **not release-ready** if:
 
-This gate is intentionally conservative. It protects CK-Labs by allowing flexible future pricing and genuine sales while keeping promotional claims reproducible, transaction-specific and compatible with mandatory German/EU consumer protections.
+- CK-Labs marketing and the provider checkout materially disagree and the difference is unexplained;
+- a provider-generated amount is being marketed as a CK-Labs discount without a truthful basis;
+- an Xsolla `regular` price is being treated automatically as a legally valid crossed-out/reference price;
+- stacked discounts produce a different result from the stated saving;
+- a timer and the provider promotion end time disagree;
+- a cross-channel comparison uses stale, non-comparable or differently taxed amounts without explanation;
+- entitlement delivery depends on a marketing/catalog price object instead of an authoritative successful transaction state; or
+- correcting a pricing problem could unintentionally remove unrelated Diamonds, alter the original one-time 30-Day VIP clock or damage a valid Lifetime VIP.
+
+This companion gate protects CK-Labs by making each promotion reproducible across the real provider stack without restating the already-completed substantive consumer-law and personalized-pricing analysis.
