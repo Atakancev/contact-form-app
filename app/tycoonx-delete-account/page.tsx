@@ -24,6 +24,7 @@ export default function TycoonXDeleteAccountPage() {
               <p>Deleting your account may permanently remove account-linked profile data, gameplay progress, social data, inventory, Diamonds and other virtual value, VIP state, and other account data associated with TycoonX.</p>
               <p>CK-Labs may retain only the minimum records that law permits or requires for purposes such as tax, accounting, fraud prevention, security, dispute handling, legal claims, or verification and restoration of a valid restorable paid entitlement. The TycoonX Privacy Policy explains these retention rules in more detail.</p>
               <p>Deleting your account does not waive any refund, statutory withdrawal, conformity, or other mandatory consumer right that applicable law gives you.</p>
+              <p>Where applicable digital-product law gives you a separate right to retrieve qualifying content that you provided or created, account deletion does not waive that right. If you want a copy, contact TycoonX Support before deletion where practical. CK-Labs will also handle a valid request after contract termination where applicable law requires it.</p>
             </div>
           </section>
 
