@@ -66,13 +66,13 @@ requireMatch(gate, /Regional-price or promotion abuse/i, 'Missing regional/promo
 requireMatch(gate, /all 25 locales/i, 'Missing localization reopening rule.');
 requireMatch(gate, /100 localized full documents/i, 'Missing localized-document completion invariant.');
 
-requireMatch(terms, /mandatory consumer rights/i, 'Canonical Terms lost mandatory-consumer-rights protection.');
+requireMatch(terms, /Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived/i, 'Canonical Terms lost non-waivable digital-product-rights protection.');
 requireMatch(terms, /Purchased Diamonds/i, 'Canonical Terms lost purchased-Diamond distinction.');
 requireMatch(terms, /30-Day VIP/i, 'Canonical Terms lost 30-Day VIP distinction.');
 requireMatch(terms, /Lifetime VIP/i, 'Canonical Terms lost Lifetime VIP distinction.');
 requireMatch(terms, /commercial operating lifetime of the Service/i, 'Canonical Terms lost Lifetime VIP commercial-lifetime wording.');
 requireMatch(terms, /authoritative.*records/is, 'Canonical Terms lost authoritative-record principle.');
-requireMatch(terms, /required updates/i, 'Canonical Terms lost required-update protection.');
+requireMatch(terms, /updates required to keep the relevant digital product in conformity/i, 'Canonical Terms lost required-update protection.');
 
 requireMatch(purchases, /does not reduce any rights that cannot legally be waived/i, 'Purchases policy lost non-waivable-rights protection.');
 requireMatch(purchases, /If a user was charged but purchased content does not appear/i, 'Purchases policy lost delivery-problem path.');
@@ -81,9 +81,9 @@ requireMatch(purchases, /Mandatory consumer remedies remain available if discont
 requireMatch(purchases, /Sections 327 et seq\. BGB/i, 'Purchases policy lost German digital-product framework.');
 requireMatch(purchases, /including required security updates/i, 'Purchases policy lost security-update obligation.');
 
-requireMatch(progress, /25\/25 localized hubs/i, 'Localization progress no longer reports 25/25 hubs.');
+requireMatch(progress, /25\/25.*target locales/i, 'Localization progress no longer reports 25/25 target locales.');
 requireMatch(progress, /100\/100 localized full documents/i, 'Localization progress no longer reports 100/100 full documents.');
-requireMatch(progress, /Exact next unfinished locale\/document:\s*\*\*None\*\*/i, 'Localization tracker no longer reports no unfinished locale/document.');
+requireMatch(progress, /Exact next unfinished locale\/document:\s*None\./i, 'Localization tracker no longer reports no unfinished locale/document.');
 
 for (const [name, text] of [
   ['digital-product conformity gate', gate],
