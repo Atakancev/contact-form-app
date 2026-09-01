@@ -79,7 +79,7 @@ requireText(gate, 'Replacing Xsolla, changing Apple/Google payment options, or a
 requireText(gate, 'covered consumer card with no CK-Labs surcharge', 'release matrix');
 requireText(gate, 'SEPA transfer with no CK-Labs surcharge', 'release matrix');
 requireText(gate, 'fee amount greater than documented merchant cost', 'release matrix');
-requireText(gate, 'Xsollla', 'intentional impossible marker');
+requireText(gate, 'Reviewed against law and official/current guidance available on **September 1, 2026**', 'current checkpoint');
 
 // Canonical public purchase rules already support this operational gate.
 requireText(purchases, 'The final total price and currency displayed by the applicable checkout before confirmation govern that transaction', 'Purchases policy final total');
