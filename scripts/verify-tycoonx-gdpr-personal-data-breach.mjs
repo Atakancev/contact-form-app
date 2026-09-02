@@ -6,6 +6,9 @@ const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
 const gate = read('TYCOONX_GDPR_PERSONAL_DATA_BREACH_RELEASE_GATE.md');
 const privacy = read('tyconx-privacy-policy.md');
+const renderedPrivacy = read('app/tyconx-privacy-policy/page.tsx');
+const renderedTerms = read('app/tyconx-terms-of-service/page.tsx');
+const craGate = read('TYCOONX_EU_CYBER_RESILIENCE_ACT_2026_REPORTING_GATE.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
 const failures = [];
@@ -20,6 +23,19 @@ function requireRegex(text, regex, label) {
 
 function forbidRegex(text, regex, label) {
   if (regex.test(text)) failures.push(`${label}: forbidden pattern ${regex}`);
+}
+
+// The personal-data-breach gate is the single GDPR breach doctrine source of truth.
+// These older overlapping gates/verifiers were intentionally removed on September 3, 2026.
+for (const stalePath of [
+  'TYCOONX_GDPR_BREACH_INCIDENT_RESPONSE_GATE.md',
+  'TYCOONX_GDPR_SECURITY_INCIDENT_RESPONSE_GATE.md',
+  'scripts/verify-tycoonx-gdpr-breach.mjs',
+  'scripts/verify-tycoonx-gdpr-incidents.mjs',
+]) {
+  if (fs.existsSync(path.join(root, stalePath))) {
+    failures.push(`Duplicate GDPR incident-response source reappeared: ${stalePath}`);
+  }
 }
 
 // GDPR breach definition and security dimensions.
@@ -117,6 +133,21 @@ for (const needle of [
   'For privacy requests, account deletion, security reports',
 ]) requireText(privacy, needle, 'Canonical Privacy Policy');
 
+// The rendered legal pages must retain the same operational security promises and transaction evidence boundaries.
+requireRegex(renderedPrivacy, /title:\s*['\"]Security['\"]/, 'Rendered Privacy security section');
+requireRegex(renderedPrivacy, /security vulnerability/i, 'Rendered Privacy security-report route');
+requireRegex(renderedPrivacy, /Security and fraud data/i, 'Rendered Privacy security/fraud data');
+requireRegex(renderedTerms, /account[^\n]{0,120}compromised/i, 'Rendered Terms account-compromise handling');
+requireRegex(renderedTerms, /authoritative server and payment-provider records/i, 'Rendered Terms authoritative-record boundary');
+
+// GDPR and CRA incident reporting stay legally separate. CRA reporting begins September 11, 2026.
+for (const needle of [
+  'September 11, 2026',
+  'Article 14',
+  'Single Reporting Platform',
+]) requireText(craGate, needle, 'CRA parallel reporting gate');
+requireRegex(craGate, /GDPR|personal data breach/i, 'CRA/GDPR separation');
+
 // Release evidence and scenario coverage must be concrete.
 for (const needle of [
   'breach-register template',
@@ -142,6 +173,8 @@ requireText(gate, 'September 1, 2026', 'Full-release invariant');
 requireText(gate, 'TycoonX', 'Brand invariant');
 forbidRegex(gate, /\bTyconX\b/, 'GDPR breach gate brand');
 forbidRegex(privacy, /\bTyconX\b/, 'Privacy Policy brand');
+forbidRegex(renderedPrivacy, /\bTyconX\b/, 'Rendered Privacy brand');
+forbidRegex(renderedTerms, /\bTyconX\b/, 'Rendered Terms brand');
 
 // Prevent stale live-service beta characterization while allowing legally useful generic test references elsewhere.
 forbidRegex(gate, /TycoonX[^\n]{0,40}\bbeta\b|\bbeta\b[^\n]{0,40}TycoonX/i, 'GDPR breach gate release status');
@@ -153,4 +186,4 @@ if (failures.length) {
 }
 
 console.log('TycoonX GDPR personal data breach verification PASS');
-console.log('Checked breach definition, awareness timing, 72-hour/phased authority notification, high-risk player communication, breach-register evidence, processor/provider boundaries, cross-border authority mapping, paid-entitlement isolation, canonical Privacy Policy parity, localization completion and full-release branding.');
+console.log('Checked the consolidated breach doctrine, awareness timing, 72-hour/phased authority notification, high-risk player communication, breach-register evidence, processor/provider boundaries, cross-border authority mapping, GDPR/CRA separation, rendered legal-page parity, paid-entitlement isolation, localization completion and full-release branding.');
