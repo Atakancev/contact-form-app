@@ -56,7 +56,7 @@ const checks = [
   {
     file: 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md',
     mustInclude: [
-      '100/100 localized full documents are current',
+      '100/100 localized full documents are currently confirmed current',
       'Exact next unfinished locale/document: None',
       'TycoonX goes to full release on **September 1, 2026**',
     ],
@@ -65,23 +65,19 @@ const checks = [
 ];
 
 let failed = false;
-
 for (const check of checks) {
   if (!fs.existsSync(check.file)) {
     console.error(`MISSING: ${check.file}`);
     failed = true;
     continue;
   }
-
   const text = fs.readFileSync(check.file, 'utf8');
-
   for (const needle of check.mustInclude) {
     if (!text.includes(needle)) {
       console.error(`MISSING TEXT in ${check.file}: ${needle}`);
       failed = true;
     }
   }
-
   for (const needle of check.mustNotInclude) {
     if (text.includes(needle)) {
       console.error(`FORBIDDEN TEXT in ${check.file}: ${needle}`);
