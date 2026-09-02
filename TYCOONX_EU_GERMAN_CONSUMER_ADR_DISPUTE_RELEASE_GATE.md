@@ -2,7 +2,7 @@
 
 **Status:** release/legal operations gate
 
-**Reviewed against current law and official guidance:** September 1, 2026
+**Reviewed against current law and official guidance:** September 2, 2026
 
 This document is an implementation and support-operations gate for **TycoonX**. It does not replace the canonical English Terms of Service, Purchases & Refunds Policy, Privacy Policy, or Community Standards.
 
@@ -290,7 +290,7 @@ Any future dispute-resolution clause added to the canonical Terms must be review
 
 Directive (EU) **2025/2647** amended the EU consumer ADR framework after discontinuation of the old ODR platform.
 
-As of September 1, 2026:
+As of September 2, 2026:
 
 - the Directive is **in force** at EU level;
 - it entered into force on **January 19, 2026**;
@@ -299,7 +299,7 @@ As of September 1, 2026:
 
 Therefore:
 
-- do not treat every future-rule detail as already applicable German law on September 1, 2026;
+- do not treat every future-rule detail as already applicable German law on September 2, 2026;
 - keep a legal-watch item for German implementation;
 - re-audit VSBG, Support templates, ADR-response deadlines, Terms/website disclosures, and cross-border tooling before the 2028 application date; and
 - do not revive the old EU ODR link when the Commission launches the newer ADR information/tooling infrastructure.
@@ -384,6 +384,7 @@ If CK-Labs later adds a material public ADR commitment, dispute-resolution claus
 
 - German VSBG current text: https://www.gesetze-im-internet.de/vsbg/BJNR025410016.html
 - § 36 VSBG: https://www.gesetze-im-internet.de/vsbg/__36.html
+- § 37 VSBG: https://www.gesetze-im-internet.de/vsbg/__37.html
 - Federal Office of Justice business guidance for §§ 36 and 37 VSBG: https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/Verbraucherstreitbeilegung/Unternehmen/Unternehmen.html
 - Federal Office of Justice list of consumer conciliation bodies: https://www.bundesjustizamt.de/SharedDocs/Downloads/DE/Verbraucherschutz/Liste_Verbraucherschlichtungsstellen.pdf
 - Regulation (EU) 2024/3228 discontinuing the old ODR platform: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
@@ -408,3 +409,28 @@ Do not mark German/EU consumer-dispute handling ready unless CK-Labs can demonst
 - transaction-specific Diamonds/30-Day VIP/Lifetime VIP correction;
 - preservation of mandatory consumer and court rights; and
 - a dated legal-watch item for German implementation of Directive (EU) 2025/2647 before the 2028 application date.
+
+## 22. DSA Article 21 and public Impressum boundary
+
+German VSBG consumer conciliation must remain separate from **DSA Article 21** out-of-court dispute settlement for eligible platform-moderation decisions. The same underlying facts can produce more than one route, but they do not share the same legal basis, scope, deadlines, decision-maker, or consequences.
+
+Do not collapse any of the following into one generic `appeal` flow:
+
+- a § 37 VSBG consumer-contract notice;
+- a DSA Article 20 internal complaint;
+- DSA Article 21 certified out-of-court dispute settlement;
+- an Apple, Google Play, or Xsolla refund/reversal process;
+- a GDPR complaint or data-subject request; or
+- a court claim.
+
+The current public TycoonX Impressum contains provider information under § 5 DDG, a DSA contact-point section, a conditional § 37 VSBG statement, and an accurate statement that the former EU ODR platform was discontinued. Preserve those safeguards.
+
+However, the Impressum's conditional § 37 statement is **not a substitute** for a § 36(1)(1) website/Terms participation-status statement if that general duty actually applies to CK-Labs. Likewise, a generic Impressum link is not a substitute for the transaction-specific text-form § 37 notice after an unresolved covered consumer-contract dispute.
+
+Before relying on the § 36(3) employee-count exemption, keep a dated record based on the actual number of persons employed on December 31 of the preceding year. Do not infer the exemption from labels such as `indie`, `solo`, `small`, `individual`, or from a store-account type.
+
+## 23. Single source of truth
+
+This file is the **single TycoonX EU/German consumer ADR / VSBG / former-ODR operational release gate**.
+
+Do not create a second overlapping ADR gate for the same §§ 36/37 VSBG and former-ODR subject. Future legal changes should be merged here, and the surviving verifier should enforce this single-source-of-truth rule.
