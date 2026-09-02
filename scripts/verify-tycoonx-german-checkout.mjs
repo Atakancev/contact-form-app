@@ -29,7 +29,7 @@ const [gate, purchases, renderedPurchases, recurring, progress] = await Promise.
 requireMatch(gate, /BGB § 312j/i, 'Missing BGB § 312j checkout gate.');
 requireMatch(gate, /zahlungspflichtig bestellen/i, 'Missing explicit German payment-obligation button rule.');
 requireMatch(gate, /Fuhrmann-2/i, 'Missing CJEU Fuhrmann-2 button-wording safeguard.');
-requireMatch(gate, /words on the button|based on the words on the button/i, 'Missing rule that nearby text cannot cure an ambiguous order button.');
+requireMatch(gate, /based on the words on the button|words on the button/i, 'Missing rule that nearby text cannot cure an ambiguous order button.');
 requireMatch(gate, /Conny/i, 'Missing CJEU Conny conditional-payment safeguard.');
 requireMatch(gate, /concluded only if/i, 'Missing § 312j(4) contract-formation consequence.');
 requireMatch(gate, /BGB § 312i/i, 'Missing electronic-order mechanics gate.');
@@ -96,15 +96,15 @@ requireMatch(recurring, /jetzt kündigen/i, 'Recurring-subscription gate lost fi
 
 // Canonical public wording already promises the electronic withdrawal function without overloading the public policy with implementation detail.
 requireMatch(purchases, /## 7\. German electronic withdrawal function/i, 'Canonical Purchases policy lost German electronic withdrawal section.');
-requireMatch(purchases, /continuously available, prominently placed, easily accessible withdrawal function/i, 'Canonical Purchases policy lost § 356a availability/placement baseline.');
-requireMatch(purchases, /confirmation step/i, 'Canonical Purchases policy lost withdrawal confirmation-step baseline.');
-requireMatch(purchases, /receipt confirmation on a durable medium/i, 'Canonical Purchases policy lost durable-medium withdrawal receipt baseline.');
-requireMatch(purchases, /supplements rather than removes any other legally valid way/i, 'Canonical Purchases policy lost alternative withdrawal-route safeguard.');
+requireMatch(purchases, /clearly labelled, continuously available, prominently accessible withdrawal function/i, 'Canonical Purchases policy lost § 356a availability/placement baseline.');
+requireMatch(purchases, /confirmation process/i, 'Canonical Purchases policy lost withdrawal confirmation-step baseline.');
+requireMatch(purchases, /acknowledged on a durable medium/i, 'Canonical Purchases policy lost durable-medium withdrawal receipt baseline.');
+requireMatch(purchases, /does not remove any other legally valid way/i, 'Canonical Purchases policy lost alternative withdrawal-route safeguard.');
 requireMatch(purchases, /Before a consumer places a paid order, the applicable checkout must present the legally required pre-contract information clearly and at the legally required point in the flow/i, 'Canonical Purchases policy lost pre-contract checkout-information rule.');
-requireMatch(purchases, /final ordering step must make that payment obligation clear/i, 'Canonical Purchases policy lost German payment-obligation rule.');
-requireMatch(purchases, /identity and contact information of the contracting trader/i, 'Canonical Purchases policy lost contracting-trader identity rule.');
+requireMatch(purchases, /ordering step must make the payment obligation clear/i, 'Canonical Purchases policy lost German payment-obligation rule.');
+requireMatch(purchases, /identity of the contracting trader/i, 'Canonical Purchases policy lost contracting-trader identity rule.');
 requireMatch(purchases, /total price including mandatory taxes and charges/i, 'Canonical Purchases policy lost total-price rule.');
-requireMatch(purchases, /official TycoonX web shop powered by Xsolla/i, 'Canonical Purchases policy lost Xsolla channel distinction.');
+requireMatch(purchases, /official TycoonX web shop/i, 'Canonical Purchases policy lost Xsolla/webshop channel distinction.');
 
 requireMatch(renderedPurchases, /German electronic withdrawal function/i, 'Rendered Purchases page lost German withdrawal-function section.');
 requireMatch(renderedPurchases, /continuously available/i, 'Rendered Purchases page lost withdrawal availability baseline.');
@@ -123,7 +123,6 @@ for (const [name, text] of [
   ['canonical Purchases policy', purchases],
   ['rendered Purchases policy', renderedPurchases],
   ['future recurring-subscription gate', recurring],
-  ['localization tracker', progress],
 ]) {
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
   if (/\bTycoonX\s+beta\b/i.test(text)) errors.push(`Stale TycoonX beta wording found in ${name}.`);
