@@ -22,6 +22,17 @@ requireMatch(gate, /sufficiently substantiated explanation/i, 'Missing Article 1
 requireMatch(gate, /exact electronic location/i, 'Missing Article 16 exact-location field.');
 requireMatch(gate, /good-faith statement/i, 'Missing Article 16 good-faith statement field.');
 requireMatch(gate, /without undue delay/i, 'Missing DSA without-undue-delay handling requirement.');
+requireMatch(gate, /any individual or entity/i, 'Missing Article 16 external-reporter scope.');
+requireMatch(gate, /account or successful login a hidden precondition/i, 'Missing logged-out/external-reporter safeguard.');
+requireMatch(gate, /stable content locator/i, 'Missing stable content-locator safeguard.');
+requireMatch(gate, /fallback electronic reporting route/i, 'Missing fallback external reporting route.');
+requireMatch(gate, /mobile app, public web surfaces, and any desktop\/web layout/i, 'Missing cross-surface notice-and-action usability check.');
+requireMatch(gate, /2026 German DSA enforcement checkpoint/i, 'Missing 2026 German DSA enforcement checkpoint.');
+requireMatch(gate, /June 12, 2026[\s\S]*Steam/i, 'Missing 2026 Steam DSA reporting investigation checkpoint.');
+requireMatch(gate, /July 6, 2026[\s\S]*eBay/i, 'Missing 2026 eBay DSA reporting enforcement checkpoint.');
+requireMatch(gate, /not a final infringement decision/i, 'Missing cautious Steam enforcement-status wording.');
+requireMatch(gate, /had not yet reached a final decision/i, 'Missing cautious eBay enforcement-status wording.');
+requireMatch(gate, /illegal-content notice.*normal Community Standards report/is, 'Missing illegal-content vs ordinary policy-report distinction.');
 
 // DSA Article 17 exact reason requirements.
 requireMatch(gate, /Article 17 statement of reasons/i, 'Missing DSA Article 17 statement-of-reasons gate.');
@@ -34,6 +45,7 @@ requireMatch(gate, /legal ground relied on/i, 'Missing Article 17 illegal-conten
 requireMatch(gate, /specific contractual\/policy ground/i, 'Missing Article 17 Terms/policy ground field.');
 requireMatch(gate, /certified out-of-court dispute settlement/i, 'Missing Article 17 redress information.');
 requireMatch(gate, /generic reason such as `policy violation`/i, 'Missing generic-reason rejection safeguard.');
+requireMatch(gate, /actual reason is visible to the affected user at the time of restriction/i, 'Missing user-facing reason-delivery safeguard.');
 
 // DSA Article 18 emergency escalation.
 requireMatch(gate, /Article 18 serious-criminal-offence escalation gate/i, 'Missing DSA Article 18 emergency gate.');
@@ -72,5 +84,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Article 16/17/18, Article 19 classification and Article 24(5) Transparency Database safeguards are present.');
+  console.log('PASS: Article 16/17/18, 2026 German notice-and-action enforcement UX, Article 19 classification and Article 24(5) Transparency Database safeguards are present.');
 }
