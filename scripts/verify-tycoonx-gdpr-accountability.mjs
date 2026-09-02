@@ -131,7 +131,7 @@ requireText(privacy, 'If a change requires your consent, we will request that co
 // Existing privacy gates remain connected rather than duplicated.
 requireText(processor, 'Article 28', 'processor Article 28 coverage');
 requireText(transfers, 'Chapter V', 'international transfer coverage');
-requireText(breach, '72-hour', 'breach timing coverage');
+requireText(breach, '72 hours after awareness', 'breach timing coverage');
 
 // Localization and release invariants.
 requireRegex(progress, /25\/25/, '25 localized hubs');
