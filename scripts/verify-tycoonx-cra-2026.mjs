@@ -30,8 +30,8 @@ requireGateText('August 31, 2026', 'Missing latest ENISA SRP FAQ checkpoint.');
 requireGatePattern(/dedicated public SRP URL.*published before go-live/is, 'Missing current SRP public-URL status checkpoint.');
 requireGatePattern(/must not claim that the SRP is already live/i, 'Missing safeguard against prematurely claiming SRP go-live.');
 
-requireGateText('within 24 hours', 'Missing 24-hour early-warning deadline.');
-requireGateText('within 72 hours', 'Missing 72-hour notification deadline.');
+requireGatePattern(/within 24 hours/i, 'Missing 24-hour early-warning deadline.');
+requireGatePattern(/within 72 hours/i, 'Missing 72-hour notification deadline.');
 requireGateText('14 days after a corrective or mitigating measure becomes available', 'Missing actively exploited vulnerability final-report deadline.');
 requireGatePattern(/one month after the submission of the 72-hour incident notification/i, 'Missing severe-incident final-report deadline.');
 requireGateText('Single Reporting Platform', 'Missing CRA Single Reporting Platform requirement.');
