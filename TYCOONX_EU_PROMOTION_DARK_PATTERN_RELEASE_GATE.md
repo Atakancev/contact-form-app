@@ -1,6 +1,6 @@
 # TycoonX EU Promotion & Dark-Pattern Release Gate
 
-Last reviewed: 2026-08-30
+Last reviewed: 2026-09-02
 Owner: CK-Labs
 Scope: TycoonX app, official TycoonX webshop, purchase screens, store metadata, banners, push notifications, email, social posts, event pages, VIP/Diamond offers, coupons and promotional UI.
 
@@ -46,13 +46,17 @@ German UWG Annex no. 7 and the corresponding EU Unfair Commercial Practices Dire
 - Do not assume that the same price-reduction formula applies identically to every digital entitlement in every EU jurisdiction. Legal applicability must be checked for the specific product and marketing claim.
 - A later genuine lower price does not by itself create a refund or price-match right for an earlier completed one-time purchase unless mandatory law, the provider's rules or the specific offer says otherwise.
 
-#### German 30-day prior-price rule: apply it only where it actually applies
+#### German 30-day prior-price rule: goods-only scope, not a default rule for TycoonX digital entitlements
 
-- German PAngV § 11 currently imposes the 30-day lowest-prior-total-price rule when a trader announces a price reduction for a **Ware**. The statutory text is product-scope specific and must not be mechanically described as an automatic rule for every TycoonX Diamond or VIP digital entitlement.
-- If a TycoonX offer or bundled item is legally within that rule, or another jurisdiction applies an equivalent rule to the offer, the qualifying price-reduction announcement must use the legally required prior-price basis. In Germany, that means the lowest total price used toward consumers in the 30 days before the reduction, subject to the statutory exceptions.
-- For an in-scope percentage reduction or promotional statement highlighting the advantageous reduced price, do not calculate the claimed saving from a higher convenient reference price when the law requires the lower statutory prior price. The Court of Justice confirmed this interpretation on **September 26, 2024** in **C-330/23, Aldi Süd**.
-- PAngV § 11(4)(1) currently excludes individual price reductions from that specific German 30-day rule. That exception must not be misread as permission to use deceptive individualized pricing or as an exemption from other consumer-information duties.
-- Even where PAngV § 11 does not govern a digital entitlement, German UWG and EU unfair-commercial-practice rules can still make a fabricated crossed-out price, fake saving, false "best price" claim or manipulated reference price unlawful. Keep evidence for the actual commercial basis of the claim.
+- German PAngV § 11 currently applies when a trader announces a price reduction for a **Ware**. The European Commission's Article 6a Price Indication Directive guidance states that the Directive's relevant concept of products is to be understood as **goods**, meaning movable goods, and that the Directive, including Article 6a, does **not** apply to services, including digital services, or to digital content.
+- Ordinary TycoonX Diamonds, one-time 30-Day VIP and Lifetime VIP are purely digital monetization products. They therefore must not be presented internally as automatically subject to the PAngV § 11 / Article 6a 30-day rule merely because TycoonX advertises a discount. If CK-Labs later sells a tangible good, a mixed offer containing an in-scope good, or another product whose classification is materially different, perform a fresh scope analysis instead of reusing the digital-entitlement conclusion.
+- Where PAngV § 11 genuinely applies, the announced reduction must use the lowest total price applied toward consumers during the preceding 30 days, subject to the statutory exceptions. For an in-scope percentage reduction or promotional statement highlighting the advantageous reduced price, do not calculate the saving from a higher convenient reference price when the law requires the statutory prior price. The Court of Justice confirmed that rule for in-scope Article 6a price-reduction announcements on **September 26, 2024** in **C-330/23, Aldi Süd**.
+- PAngV § 11(4)(1) excludes **individual price reductions** from that specific German 30-day rule. Do not assume that a publicly available coupon, broadly available loyalty offer, account-wide campaign or generally offered promo code is "individual" merely because a code or account attribute is used. Classify the real offer.
+- The PAngV scope limitation is not a permission to manufacture digital discounts. German UWG § 5 continues to prohibit misleading price and special-price-advantage claims. In particular, § 5(5) presumes a price-reduction advertisement to be misleading if the supposedly higher price was demanded only for an unreasonably short period; if it is disputed whether and for how long that prior price was demanded, the advertiser bears the burden of proof.
+- For a TycoonX digital offer, a crossed-out `€99.99` followed by `€49.99` or a `50% off` claim therefore needs support for what the €99.99 figure actually represents. Do not set a higher price only briefly to manufacture an apparent saving. If the comparison is instead to another channel, package, regular list price or different sales window, identify that basis clearly enough that the consumer is not led to believe it is a genuine former price when it is not.
+- Lifetime VIP may lawfully have different prices in different genuine sales windows. A price used in one old sales window does not automatically become a truthful "was" price for a later window. If CK-Labs uses that earlier price as a comparison, the context and basis must make the comparison accurate rather than suggesting an uninterrupted former price history.
+- Reference-price evidence should be like-for-like where the claim suggests a direct saving: same entitlement or bundle quantity, same country/region, comparable storefront/channel, same currency and materially comparable tax basis, and the same eligibility class unless a different comparison basis is clearly disclosed.
+- Even where PAngV § 11 does not govern a digital entitlement, German UWG and EU unfair-commercial-practice rules can still make a fabricated crossed-out price, fake saving, false "best price" claim or manipulated reference price unlawful. Keep dated evidence for the actual commercial basis of the claim.
 
 #### Automated personalized pricing
 
@@ -144,7 +148,9 @@ When CK-Labs changes a genuine promotion after it has gone live:
 - [ ] No identical expired offer remains falsely labelled as ending soon.
 - [ ] Product page states the limited-sale nature and commercial-lifetime meaning accurately.
 - [ ] Crossed-out/reference price basis is documented where used.
-- [ ] German/EU 30-day prior-price rules have been checked for the actual product/claim rather than assumed to apply or not apply based only on the word "digital".
+- [ ] For ordinary purely digital TycoonX entitlements, the German PAngV § 11 / Article 6a goods-only scope has been distinguished from the broader UWG misleading-price rules instead of imposing the goods-only 30-day rule by default.
+- [ ] Any claimed former/reference price is supported for the actual comparison, including the UWG § 5(5) prior-price duration and evidence issue where relevant.
+- [ ] Any direct saving comparison is like-for-like as to entitlement/quantity, market, channel context, currency, tax basis and eligibility, or the different comparison basis is clearly disclosed.
 - [ ] Any individualized automated price is distinguished from ordinary regional pricing and carries the required pre-contract disclosure where applicable.
 - [ ] Total payable price/tax presentation is compliant for the target checkout.
 - [ ] No optional paid item is preselected.
@@ -163,6 +169,8 @@ For each major paid promotion, retain a lightweight record of:
 - start/end timestamps;
 - displayed price and currency;
 - reference-price basis if one is claimed;
+- actual dates or period during which a claimed former price was genuinely demanded, where relevant to the claim;
+- the like-for-like comparison inputs or the clearly disclosed alternative comparison basis;
 - whether the offer uses ordinary regional pricing or individualized automated pricing;
 - the required automated-personalization disclosure shown, if applicable;
 - screenshots or copy of countdown/discount creative;
@@ -178,13 +186,15 @@ Retention must follow the Privacy Policy and applicable data-minimization/retent
 This release gate reflects:
 
 - Directive 2005/29/EC on unfair business-to-consumer commercial practices, including Annex I point 7 on false very-limited-time claims;
+- the German UWG, including § 5 on misleading commercial practices and § 5(5) on price-reduction advertising where a supposedly higher price was demanded only for an unreasonably short period, plus the advertiser's burden of proof regarding whether and for how long that price was demanded;
 - the German UWG Annex to section 3(3), including no. 7 (false time limitation), no. 10 (presenting legal rights as a special feature), no. 20 (false "free" claims) and no. 28 (direct exhortations to children);
 - Directive 2011/83/EU Article 22 on express consent for additional payments;
 - Directive 2011/83/EU Article 6(1)(ea) and German EGBGB Art. 246a § 1(1) no. 6 on disclosure, where applicable, that a price was personalized on the basis of automated decision-making;
 - German PAngV § 11 on the lowest total price during the prior 30 days for in-scope announced price reductions for goods, including its individual-price-reduction exception;
+- European Commission Notice 2021/C 526/02 on Article 6a of Directive 98/6/EC, which states that the Price Indication Directive's relevant product scope is goods and that Article 6a does not apply to services, including digital services, or digital content;
 - Court of Justice judgment of September 26, 2024 in C-330/23, Aldi Süd, confirming for in-scope Article 6a price-reduction announcements that a percentage reduction or promotional price-advantage statement must be determined on the statutory prior-price basis; and
 - the European Commission/CPC 2026 sweep on online sales practices, which highlighted misleading reference prices, fake scarcity/countdowns, preselected extras and drip pricing as continuing enforcement concerns.
 
 ## Founder-protective interpretation
 
-Nothing here prevents CK-Labs from running genuine short promotions, changing future prices, setting different regional prices, ending a sale, making a documented genuine extension, correcting an obvious configuration error, refusing promotion abuse, or never offering Lifetime VIP again. It also does not force CK-Labs to treat every digital-entitlement discount as if German PAngV § 11 automatically applied when the statutory scope does not. The protection comes from correctly classifying the offer, making any required automated-personalization disclosure, and keeping the commercial reality and the consumer-facing claim aligned.
+Nothing here prevents CK-Labs from running genuine short promotions, changing future prices, setting different regional prices, ending a sale, making a documented genuine extension, correcting an obvious configuration error, refusing promotion abuse, or never offering Lifetime VIP again. It also does not force CK-Labs to apply a goods-only PAngV § 11 / Article 6a 30-day rule to ordinary purely digital TycoonX entitlements when that rule is outside their product scope. The protection comes from classifying the offer correctly, keeping evidence for any claimed former or comparison price under the broader misleading-practice rules, making any required automated-personalization disclosure, and keeping the commercial reality and the consumer-facing claim aligned.
