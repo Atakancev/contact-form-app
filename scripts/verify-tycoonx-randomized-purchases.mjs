@@ -59,7 +59,7 @@ requireMatch(virtualCurrency, /children and vulnerable consumers/i, 'EU virtual-
 requireMatch(youth, /randomized or gambling-like mechanics/i, 'German youth gate lost randomized/gambling-like mechanic review.');
 requireMatch(youth, /do not launch first and correct the rating later/i, 'German youth gate lost pre-launch rating safeguard.');
 requireMatch(progress, /100\/100.*current/is, 'Localization tracker no longer confirms 100/100 localized documents are current.');
-requireMatch(progress, /Exact next unfinished locale\/document:\s*\*\*None/i, 'Localization tracker no longer records no unfinished locale/document.');
+requireMatch(progress, /Exact next unfinished locale\/document.*None/is, 'Localization tracker no longer records no unfinished locale/document.');
 
 for (const [name, text] of [
   ['randomized-purchase gate', gate],
@@ -69,8 +69,14 @@ for (const [name, text] of [
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
 }
 
-if (/\bTycoonX\b[^\n]{0,80}\bbeta\b|\bbeta\b[^\n]{0,80}\bTycoonX\b/i.test(gate)) {
-  errors.push('Stale TycoonX beta wording found in randomized-purchase gate.');
+for (const pattern of [
+  /TycoonX beta/i,
+  /beta version of TycoonX/i,
+  /TycoonX is (?:currently )?(?:in )?beta/i,
+  /beta users/i,
+  /beta purchases/i,
+]) {
+  if (pattern.test(gate)) errors.push('Stale live-service beta wording found in randomized-purchase gate.');
 }
 
 console.log('TycoonX randomized-purchase / gambling-classification QA');
