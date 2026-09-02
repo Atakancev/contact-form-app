@@ -7,6 +7,7 @@ const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const files = {
   gate: read('TYCOONX_APPLE_EU_DSA_TRADER_STATUS_RELEASE_GATE.md'),
   noticeGate: read('TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md'),
+  storeChecklist: read('TYCONX_APP_STORE_LEGAL_CHECKLIST.md'),
   notice: read('TYCOONX_GERMAN_LEGAL_NOTICE.md'),
   noticePage: read('app/tycoonx-impressum/page.tsx'),
   supportPage: read('app/tyconx-support/page.tsx'),
@@ -50,6 +51,38 @@ for (const needle of [
   'TycoonX has been in full release since September 1, 2026',
 ]) requireText('German notice checklist', files.noticeGate, needle);
 
+for (const needle of [
+  'Last reviewed: 2026-09-02',
+  'TycoonX has been in full release since **September 1, 2026**',
+  '**German legal notice / Impressum** → `/tycoonx-impressum`',
+  'EU DSA trader-status P0 gate',
+  'TYCOONX_APPLE_EU_DSA_TRADER_STATUS_RELEASE_GATE.md',
+  'public EU App Store product page',
+  'P0 Google Play target-API gate after 31 August 2026',
+  'As of September 2, 2026',
+  'test/review grant',
+  'Current production blockers / evidence gaps',
+]) requireText('Store legal checklist', files.storeChecklist, needle);
+
+reject(
+  'Store legal checklist',
+  files.storeChecklist,
+  /German legal notice \/ Impressum[^\n]*must be added/i,
+  'stale statement that the already-implemented Impressum still needs to be added',
+);
+reject(
+  'Store legal checklist',
+  files.storeChecklist,
+  /\bbeta benefit\b/i,
+  'stale beta-benefit wording',
+);
+reject(
+  'Store legal checklist',
+  files.storeChecklist,
+  /exact legal operator identity and public address are not established in this repository/i,
+  'stale blocker claiming the implemented legal-notice identity is absent',
+);
+
 for (const [name, text] of [
   ['German legal notice Markdown', files.notice],
   ['German legal notice page', files.noticePage],
@@ -80,6 +113,7 @@ requireText('Localization progress', files.progress, 'September 1, 2026');
 for (const [name, text] of [
   ['Apple trader gate', files.gate],
   ['German notice checklist', files.noticeGate],
+  ['Store legal checklist', files.storeChecklist],
   ['Support page', files.supportPage],
   ['Legal hub', files.legalHub],
 ]) reject(name, text, /\bTyconX\b/, 'displayed brand typo TyconX');
@@ -91,4 +125,4 @@ if (failures.length) {
 }
 
 console.log('TycoonX Apple EU DSA trader-status verification PASSED');
-console.log('Checked: Apple trader gate, German legal notice parity, public Impressum links, paid-product isolation, localization/full-release invariants.');
+console.log('Checked: Apple trader gate, German legal notice parity, refreshed store checklist, public Impressum links, paid-product isolation, localization/full-release invariants.');
