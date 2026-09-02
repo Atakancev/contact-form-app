@@ -4,11 +4,20 @@ import path from 'node:path';
 const gatePath = 'TYCOONX_EU_GERMAN_CONSUMER_ADR_DISPUTE_RELEASE_GATE.md';
 const termsPath = 'tyconx-terms-of-service.md';
 const purchasesPath = 'tyconx-purchase-refund-policy.md';
+const impressumPath = 'app/tycoonx-impressum/page.tsx';
 const progressPath = 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md';
+
+const duplicateAdrPaths = [
+  'TYCOONX_GERMAN_ADR_ODR_RELEASE_GATE.md',
+  'TYCOONX_VSBG_CONSUMER_ADR_RELEASE_GATE.md',
+  'scripts/verify-tycoonx-german-adr.mjs',
+  'scripts/verify-tycoonx-vsbg-consumer-adr.mjs',
+];
 
 const gate = fs.readFileSync(gatePath, 'utf8');
 const terms = fs.readFileSync(termsPath, 'utf8');
 const purchases = fs.readFileSync(purchasesPath, 'utf8');
+const impressum = fs.readFileSync(impressumPath, 'utf8');
 const progress = fs.readFileSync(progressPath, 'utf8');
 
 const failures = [];
@@ -50,6 +59,7 @@ requireText(gate, 'it does **not** remove the post-dispute duty in § 37 VSBG', 
 requireText(gate, 'address and website', 'VSBG section 37 body details');
 requireText(gate, 'willing or obliged', 'VSBG section 37 participation statement');
 requireText(gate, 'in text form', 'VSBG section 37 form requirement');
+requireText(gate, 'Do not infer the exemption from labels such as `indie`, `solo`, `small`, `individual`', 'no assumed employee exemption');
 
 // Competent body lookup must be current rather than permanently assumed.
 requireText(gate, 'Do not permanently hard-code a consumer conciliation body without rechecking competence.', 'competence recheck');
@@ -85,7 +95,18 @@ requireText(gate, 'Directive (EU) **2025/2647**', 'EU ADR reform');
 requireText(gate, 'January 19, 2026', 'EU ADR directive entry into force');
 requireText(gate, 'March 20, 2028', 'EU ADR transposition date');
 requireText(gate, 'September 20, 2028', 'EU ADR application date');
-requireText(gate, 'do not treat every future-rule detail as already applicable German law on September 1, 2026', 'future rule timing guard');
+requireText(gate, 'do not treat every future-rule detail as already applicable German law on September 2, 2026', 'future rule timing guard');
+
+// DSA Article 21 and Impressum are related but legally separate.
+requireText(gate, 'DSA Article 21 and public Impressum boundary', 'DSA / Impressum section');
+requireText(gate, 'DSA Article 21 certified out-of-court dispute settlement', 'DSA Article 21 separation');
+requireText(gate, 'a generic Impressum link is not a substitute for the transaction-specific text-form § 37 notice', 'Impressum is not section 37 delivery');
+requireText(gate, 'conditional § 37 statement is **not a substitute** for a § 36(1)(1) website/Terms participation-status statement', 'Impressum is not section 36 substitute');
+requireText(impressum, 'Angaben gemäß § 5 DDG', 'Impressum provider information');
+requireText(impressum, 'Kontaktstelle nach dem Digital Services Act', 'Impressum DSA contact point');
+requireText(impressum, '§ 37 VSBG', 'Impressum conditional section 37');
+requireText(impressum, 'Die frühere EU-Plattform für Online-Streitbeilegung (ODR) wurde eingestellt.', 'Impressum ODR sunset');
+forbidText(impressum, 'ec.europa.eu/consumers/odr', 'Impressum stale ODR URL');
 
 // Operational evidence.
 requireText(gate, 'annual § 36 employee-threshold assessment', 'annual threshold evidence');
@@ -96,6 +117,10 @@ requireText(gate, '## 17. QA scenarios', 'QA matrix');
 requireText(gate, 'Support copied a 2024 template containing the old ODR link.', 'stale template regression');
 
 // Canonical public wording already preserves mandatory rights and transaction-specific corrections.
+requireText(terms, '## 34. Consumer dispute resolution', 'canonical consumer ADR section');
+requireText(terms, 'whether CK-Labs is willing or legally obliged to participate', 'canonical conditional ADR participation');
+requireText(terms, 'If a dispute concerning a consumer contract cannot be resolved directly and German § 37 VSBG or another mandatory rule applies', 'canonical section 37 safeguard');
+requireText(terms, 'The former European Commission Online Dispute Resolution platform was discontinued in 2025.', 'canonical ODR sunset');
 requireText(terms, 'Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited', 'canonical mandatory rights');
 requireText(terms, 'subject to mandatory legal rights and the user’s ability to challenge an incorrect decision through Support', 'canonical challenge route');
 requireText(terms, 'without limiting genuine fraud reporting or consumer rights', 'canonical chargeback safeguard');
@@ -109,8 +134,15 @@ requireText(progress, 'Exact next unfinished locale/document: None.', 'localizat
 requireText(progress, 'September 1, 2026', 'full release invariant');
 requireText(gate, 'does **not** by itself change the public canonical English Terms', 'localization impact');
 
+// One source of truth only: old overlapping ADR gates/verifiers must stay removed.
+requireText(gate, 'single TycoonX EU/German consumer ADR / VSBG / former-ODR operational release gate', 'single-source-of-truth statement');
+for (const file of duplicateAdrPaths) {
+  if (fs.existsSync(file)) failures.push(`Duplicate ADR source should stay removed: ${file}`);
+}
+
 // Player-facing/legal brand and release wording.
 forbidText(gate, 'TyconX', 'gate brand spelling');
+forbidText(impressum, 'TyconX', 'Impressum brand spelling');
 forbidText(gate.toLowerCase(), 'tycoonx is in beta', 'gate stale beta wording');
 
 // The discontinued Commission ODR URL must not reappear in canonical or localized legal copy.
@@ -119,6 +151,7 @@ const legalFiles = [
   purchasesPath,
   'tyconx-privacy-policy.md',
   'tyconx-community-standards.md',
+  impressumPath,
   ...collectTextFiles('app/tycoonx-legal'),
   ...collectTextFiles('app/tyconx-terms-of-service'),
   ...collectTextFiles('app/tyconx-purchase-refund-policy'),
@@ -136,4 +169,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('TycoonX EU/German consumer ADR and dispute invariants verified.');
+console.log('TycoonX EU/German consumer ADR, VSBG, DSA-boundary, Impressum, and former-ODR invariants verified.');
