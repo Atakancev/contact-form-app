@@ -101,7 +101,7 @@ requireText(transfers, 'DPF does not replace the rest of GDPR', 'transfer gate D
 requireRegex(progress, /25\/25/, '25 localized hubs');
 requireRegex(progress, /100\/100/, '100 localized full documents');
 requireText(progress, 'September 1, 2026', 'full-release date');
-requireRegex(progress, /Exact next unfinished locale\/document:\s*\*\*None\*\*|Exact next unfinished locale\/document:\s*None/i, 'closed localization queue');
+requireRegex(progress, /Exact next unfinished locale\/document:\s*None\b/i, 'closed localization queue');
 
 // Rendered/legal prose must use the correct brand and must not describe the live service as beta.
 for (const [file, text] of [
