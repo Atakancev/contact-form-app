@@ -24,9 +24,19 @@ requireMatch(gate, /countdown must not automatically reset/i, 'Missing fake-coun
 requireMatch(gate, /No fake scarcity or false urgency/i, 'Missing scarcity/urgency protection.');
 requireMatch(gate, /crossed-out price|reference price/i, 'Missing reference-price substantiation rule.');
 requireMatch(gate, /PAngV § 11/i, 'Missing German PAngV § 11 price-reduction checkpoint.');
-requireMatch(gate, /30-day lowest-prior-total-price|lowest total price used toward consumers in the 30 days/i, 'Missing German 30-day prior-price safeguard.');
-requireMatch(gate, /must not be mechanically described as an automatic rule for every TycoonX Diamond or VIP digital entitlement/i, 'Missing product-scope distinction for the German 30-day prior-price rule.');
+requireMatch(gate, /goods-only scope|applies when a trader announces a price reduction for a \*\*Ware\*\*/i, 'Missing goods-only scope for German PAngV § 11.');
+requireMatch(gate, /does \*\*not\*\* apply to services, including digital services, or to digital content/i, 'Missing Commission Article 6a guidance excluding services/digital content from the price-indication rule.');
+requireMatch(gate, /Diamonds, one-time 30-Day VIP and Lifetime VIP are purely digital monetization products/i, 'Missing TycoonX digital-product application of the PAngV scope analysis.');
+requireMatch(gate, /lowest total price applied toward consumers during the preceding 30 days/i, 'Missing German 30-day prior-price safeguard for in-scope goods.');
 requireMatch(gate, /§ 11\(4\)\(1\).*individual price reductions/i, 'Missing PAngV individual-price-reduction exception checkpoint.');
+requireMatch(gate, /publicly available coupon.*not.*individual|broadly available loyalty offer.*not.*individual/is, 'Missing safeguard against overusing the individual-discount exception.');
+requireMatch(gate, /UWG § 5\(5\)/i, 'Missing German UWG § 5(5) price-reduction checkpoint.');
+requireMatch(gate, /unreasonably short period/i, 'Missing UWG safeguard against a briefly inflated former price.');
+requireMatch(gate, /advertiser bears the burden of proof/i, 'Missing UWG § 5(5) price-history burden-of-proof rule.');
+requireMatch(gate, /Do not set a higher price only briefly to manufacture an apparent saving/i, 'Missing anti-manufactured-discount safeguard for digital offers.');
+requireMatch(gate, /old sales window does not automatically become a truthful "was" price/i, 'Missing Lifetime VIP sales-window reference-price safeguard.');
+requireMatch(gate, /same entitlement or bundle quantity.*same country\/region.*comparable storefront\/channel.*same currency/is, 'Missing like-for-like comparison basis for direct savings claims.');
+requireMatch(gate, /2021\/C 526\/02/i, 'Missing Commission Article 6a guidance reference.');
 requireMatch(gate, /C-330\/23, Aldi Süd/i, 'Missing CJEU Aldi Süd prior-price checkpoint.');
 requireMatch(gate, /Article 6\(1\)\(ea\)/i, 'Missing Consumer Rights Directive automated personalized-pricing disclosure checkpoint.');
 requireMatch(gate, /EGBGB Art\. 246a § 1\(1\) no\. 6/i, 'Missing German automated personalized-pricing disclosure checkpoint.');
@@ -76,5 +86,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: promotion, countdown, prior-price, personalized-pricing, extra-payment and child-directed purchase safeguards are present in both canonical surfaces.');
+  console.log('PASS: promotion, countdown, German digital-vs-goods prior-price scope, UWG price-history evidence, personalized-pricing, extra-payment and child-directed purchase safeguards are present in both canonical surfaces.');
 }
