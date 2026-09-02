@@ -1,389 +1,245 @@
 # TycoonX TDDDG Terminal-Access and Consent Release Gate
 
-**Status:** production/legal QA gate for CK-Labs.  
-**Checked against current German law and regulator guidance:** September 2, 2026.  
-**Public canonical impact:** this gate operationalizes the existing TycoonX Privacy Policy statement that consent is requested separately where legally required. It does **not** materially change the canonical Terms, Purchases & Refunds Policy, Privacy Policy, or Community Standards by itself.
+**Status:** production/legal QA source of truth for CK-Labs  
+**Reviewed against current law and provider documentation:** September 3, 2026  
+**Scope:** TycoonX iOS and Android apps, CK-Labs-controlled websites and webshop entry surfaces, support/contact pages, browser storage, mobile SDK storage/access, analytics, diagnostics, attribution, fraud/security tooling, consent management, Apple App Tracking Transparency, Google Play privacy controls, and Xsolla checkout handoffs.
 
-## 1. Why this gate exists
+This is the single TycoonX operational gate for German terminal-device storage/access under the Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG). It operationalizes the existing canonical TycoonX Privacy Policy. It does not itself change the public contractual meaning of the Terms of Service, Purchases & Refunds Policy, Privacy Policy, or Community Standards.
 
-TycoonX is a mobile and web digital service. German privacy compliance is not limited to GDPR analysis after data reaches CK-Labs servers.
+## 1. Core German rule
 
-Section 25 of the German **Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG)** separately regulates the act of:
+Section 25(1) TDDDG generally permits storing information on an end user's terminal equipment or accessing information already stored there only with consent based on clear and comprehensive information. The information and consent must follow the GDPR consent framework.
 
-- storing information on an end user's terminal equipment; or
-- accessing information already stored on that terminal equipment.
+The rule is about terminal equipment, not only personal data. Personal-data status is not a prerequisite for Section 25 TDDDG to apply. If personal data is processed after the access, the downstream GDPR analysis is a separate legal step.
 
-This applies to websites **and apps** and is not limited to classic browser cookies. The German Data Protection Conference (DSK) expressly treats mobile apps and technologies such as device identifiers, advertising identifiers, local or session storage, fingerprinting and comparable terminal-access techniques as potentially within the rule.
+This applies to websites **and apps**. Relevant technologies can include cookies, localStorage, sessionStorage, IndexedDB, app-local storage, SDK-generated installation identifiers, advertising or vendor identifiers, fingerprinting signals, browser/device configuration, webview storage and similar mechanisms.
 
-The protection is about terminal privacy. Personal-data status is not a prerequisite for Section 25 TDDDG to apply. If personal data is then processed after the terminal access, GDPR legality must be assessed separately as the second step.
+A violation of Section 25(1) is included in the administrative-offence framework in Section 28 TDDDG. The current statutory maximum for the relevant offence category is EUR 300,000.
 
-**Release rule:** do not ship a new or changed TycoonX SDK, analytics feature, fraud tool, attribution tool, advertising technology, web cookie, local-storage mechanism, fingerprinting technique or device-access feature for German users until the concrete storage/access operation has been classified under this gate.
+## 2. The statutory exceptions are narrow
 
-## 2. Current legal baseline
+Section 25(2) contains two relevant exceptions to the consent rule:
 
-### 2.1 Default rule: consent before non-exempt terminal access
-
-Section 25(1) TDDDG permits storage of information in terminal equipment or access to already stored information only where the end user has consented on the basis of clear and comprehensive information. The information and consent must satisfy the GDPR consent framework.
-
-The consent must exist **before** the consent-requiring storage/access occurs.
-
-TycoonX must not:
-
-- initialize an optional analytics or tracking SDK so that it reads or writes terminal information before consent and then ask afterwards;
-- create optional identifiers before consent merely because they are not immediately uploaded;
-- treat opening the app, continuing to play, scrolling, closing a banner, silence or inactivity as consent;
-- bundle unrelated optional terminal-access purposes into acceptance of the Terms or purchase terms;
-- claim that a privacy-policy link alone is consent; or
-- assume that an OS permission dialog automatically supplies all legally required consent for unrelated purposes.
-
-### 2.2 The two statutory exceptions are narrow
-
-Consent under Section 25(1) is not required only where the concrete operation falls within Section 25(2):
-
-1. the **sole purpose** of the storage/access is carrying out transmission of a communication over a public telecommunications network; or
+1. the sole purpose of the storage/access is transmitting a communication over a public telecommunications network; or
 2. the storage/access is **strictly necessary** so the provider can make available a digital service expressly requested by the user.
 
-The second exception is not a generic "legitimate interests" exception.
-
-Economic usefulness, revenue optimization, analytics convenience, attribution value, anti-churn value, advertising value or the fact that a provider SDK is commercially standard do **not** by themselves make terminal access strictly necessary.
-
-### 2.3 Section 25 TDDDG and GDPR are separate layers
-
-For each relevant mechanism, CK-Labs must record two distinct answers:
-
-1. **TDDDG:** may TycoonX store/access the information on the terminal, and if so on what Section 25 basis?
-2. **GDPR:** if personal data is subsequently processed, what GDPR legal basis, transparency, retention, recipient, transfer and rights rules apply?
-
-A GDPR legitimate-interest assessment cannot cure terminal access that required consent under Section 25 TDDDG.
-
-Likewise, valid Section 25 terminal access does not automatically create a GDPR legal basis for every downstream use.
-
-## 3. Required terminal-access inventory
-
-Maintain a dated inventory for every production TycoonX web and mobile release. At minimum review:
-
-| Technology / operation | Examples to examine | Section 25 decision required? |
-| --- | --- | --- |
-| Browser cookies | session, preferences, analytics, attribution, fraud, checkout | Yes |
-| Web storage | localStorage, sessionStorage, IndexedDB or similar | Yes |
-| Mobile app local storage | persistent identifiers, SDK state, install IDs, attribution state | Yes |
-| Device / hardware identifiers | advertising ID, vendor/device IDs, hardware-derived identifiers | Yes |
-| Fingerprinting | device/browser configuration combined into a stable identifier | Yes |
-| SDK-generated identifiers | analytics, crash, attribution, fraud, engagement SDK IDs | Yes |
-| Clipboard / contacts / SMS / call information | where a feature attempts access | Yes, plus platform permission/legal review |
-| Bluetooth / beacon information | where accessed by a feature or SDK | Yes, plus platform permission/legal review |
-| Remember-me / persistent login state | long-lived authentication storage | Yes |
-| Consent-state storage | storing the user's consent choice | Yes, classify narrowly |
-| Xsolla or other checkout cookies | CK-Labs page, embedded handoff, provider-controlled checkout | Yes, role and domain boundary required |
-
-The inventory must identify:
-
-- exact app/web component and SDK version;
-- information written or read;
-- terminal location or API involved;
-- purpose;
-- first access time;
-- duration / persistence;
-- first party or third party able to read it;
-- whether a stable or unique identifier is involved;
-- Section 25(1) consent or the exact Section 25(2) exception relied on;
-- separate GDPR basis if personal data is processed downstream;
-- user-facing disclosure/consent control where applicable; and
-- evidence owner and review date.
-
-## 4. Strict-necessity decision test
-
-Do not classify an operation as strictly necessary merely because the app contains the feature.
-
-The DSK's current approach is granular. Ask what **specific function** the user actually requested, then whether the particular storage/access is technically indispensable to providing that function.
+Economic usefulness, revenue optimization, analytics convenience, attribution value, conversion improvement, anti-churn value, advertising value, or the fact that a vendor calls a tool `security` do not by themselves make terminal access strictly necessary.
 
 For each claimed Section 25(2)(2) operation, record:
 
-1. **Requested function:** what did the user expressly request at that moment?
-2. **Timing:** does the access begin only when the function is actually used?
-3. **Content:** is only the minimum information needed stored/read?
-4. **Duration:** does it persist only as long as needed?
-5. **Audience:** who can read or reuse it?
-6. **Alternative:** can the requested function work without this terminal access or with a materially less intrusive method?
-7. **Separate purpose:** is the same identifier also used for analytics, advertising, cross-service profiling, product improvement or another provider purpose?
+- **Requested function:** what specific function did the user expressly request at that moment?
+- **Timing:** does access begin only when that function is actually used?
+- **Content:** is only the minimum terminal information needed read or written?
+- **Duration:** does it persist only as long as reasonably necessary?
+- **Audience:** who can read, receive or reuse it?
+- **Alternative:** can the requested function work with a materially less intrusive implementation?
+- **Separate purpose:** is the same identifier or signal also reused for analytics, advertising, profiling or another provider purpose?
 
-If a less intrusive technically workable method provides the same requested function, the broader operation should not be labelled strictly necessary without documented legal review.
+Potentially supportable examples, depending on the real implementation, include a short-lived session/authentication token needed to keep a requested login working, narrowly configured checkout state after the user starts checkout, or proportionate security state genuinely necessary to protect that requested session.
 
-### Examples
+Do not automatically classify general product analytics, campaign attribution, cross-service advertising, A/B testing, heatmaps, session replay, optional personalization, a persistent SDK install ID, or broad device fingerprinting as strictly necessary.
 
-Potentially supportable as strictly necessary **only when the concrete implementation actually meets the test**:
+## 3. Keep TDDDG and GDPR decisions separate
 
-- a short-lived session/authentication token needed to keep a user securely signed in after they request account access;
-- user-oriented security state genuinely needed to protect that requested login/session against repeated authentication abuse;
-- checkout/session state activated when the user actually starts a TycoonX purchase flow and required to complete that requested transaction;
-- minimal state needed to remember a user's explicit consent choice without creating an unnecessary long-lived unique tracking identifier.
+For each technology, document both questions:
 
-Do not automatically classify as strictly necessary:
+1. **TDDDG:** may TycoonX store/access the terminal information, and is the basis consent, Section 25(2)(1), or Section 25(2)(2)?
+2. **GDPR:** if personal data is processed afterwards, what legal basis, purpose, retention, recipients, international-transfer safeguards, transparency and rights rules apply?
 
-- general product analytics;
-- retention analytics;
-- campaign attribution;
-- advertising or cross-app tracking;
-- an SDK's persistent install ID merely because the SDK creates one by default;
-- broad device fingerprinting for generic fraud scoring without a granular necessity analysis;
-- long-lived "remember me" behavior that the user did not request;
-- third-party security tracking that serves the third party's wider network rather than the specific TycoonX function requested by the user; or
-- any optional personalization that can be provided without unique device identification.
+A GDPR legitimate-interest assessment cannot cure terminal access that required consent under Section 25 TDDDG. Conversely, a valid Section 25 exception does not automatically create a GDPR legal basis for every downstream use.
 
-## 5. Consent UX requirements
+## 4. Required terminal-access inventory
 
-Where Section 25(1) consent is required, TycoonX must provide a real choice.
+Maintain a dated production inventory for every material release, SDK change, consent-manager change and provider migration.
 
-### Before access
+| Technology / operation | Examples to inspect | Decision required |
+| --- | --- | --- |
+| Browser cookies | session, preferences, fraud, checkout, analytics, attribution | Section 25 classification |
+| Web storage | localStorage, sessionStorage, IndexedDB, Cache API | Section 25 classification |
+| Mobile app local storage | persistent SDK state, install IDs, app preferences | Section 25 classification |
+| Device / hardware identifiers | advertising IDs, vendor IDs, hardware-derived signals | Section 25 plus platform review |
+| Fingerprinting | browser/device configuration used to derive a stable identity | Section 25 plus Apple/Google review |
+| SDK-generated identifiers | analytics, crash, fraud, engagement, attribution SDK IDs | Section 25 classification |
+| Remember-me / persistent login state | long-lived authentication storage | Section 25 classification |
+| Consent-state storage | evidence/preferences for the user's privacy choice | narrow necessity analysis |
+| Xsolla or other checkout cookies | CK-Labs page, embed, redirect, provider domain | role and Section 25 boundary |
+| Cloudflare Turnstile | challenge token, optional clearance state, device/security signals | actual configuration review |
 
-The optional storage/access must remain blocked until valid consent exists.
+Each inventory record must identify the provider/SDK and version, platform/surface, exact read/write operation, information involved, purpose, first access time, lifetime, first/third-party access, whether a stable identifier exists, Section 25 basis, separate GDPR basis where relevant, consent/disclosure control, and evidence owner/review date.
 
-### Clear information
+Unknown behavior is a blocker for an optional SDK. Do not ship an optional technology merely because its vendor documentation is vague.
 
-Before the choice, the user must be able to understand at least:
+## 5. Consent must happen before optional access
 
-- who is accessing/storing terminal information;
-- what type of information is accessed/stored;
-- the specific purpose;
-- material duration/persistence;
-- whether a third party can access or reuse it; and
-- the relevant downstream personal-data purpose where applicable.
+Where Section 25(1) consent is required, the optional storage/access must remain blocked until valid consent exists.
 
-### Affirmative action
+Do not initialize an optional SDK so that it reads or writes terminal information before consent and then ask afterwards. Do not infer consent from opening TycoonX, accepting the Terms, creating an account, buying Diamonds, buying 30-Day VIP, buying Lifetime VIP, scrolling, closing a banner, silence or continued use.
 
-Consent requires an unambiguous affirmative action. No pre-ticked boxes, silence, inactivity or inferred acceptance from normal gameplay.
+Consent requires a genuine affirmative choice. No pre-ticked boxes, silence, inactivity or inferred acceptance.
 
-### Reject must be genuinely available
+### Fail closed on unknown state
 
-Where a consent layer blocks normal access, refusal of optional storage/access must not require materially more effort than acceptance. A clear first-layer acceptance button paired with a hidden multi-step refusal path is a legal release risk.
+Consent-state handling must fail closed for consent-requiring technology. `unknown`, `not asked`, `failed`, `migration missing`, a consent-manager timeout, a remote-config error or a provider outage must not silently become `accepted`.
 
-### Granularity
+A provider or CMP migration must preserve a valid prior rejection where reasonably possible. If the system cannot establish a lawful consent state, optional consent-requiring access stays disabled until the state is resolved.
 
-Do not force one blanket consent where materially distinct optional purposes should be separable. Examples include analytics, personalized advertising/attribution, optional personalization and provider-specific tracking.
+## 6. Reject and withdrawal UX
 
-### Withdrawal
+**Reject must be genuinely available.** Where an `Accept all` control is presented on the first layer, provide a clear first-layer route to reject all consent-requiring purposes with substantially equivalent effort. Do not hide refusal behind unnecessary extra screens, misleading labels, low contrast, smaller controls, countdowns, repeated nagging or other steering design.
 
-Withdrawal must be as easy as giving consent. If TycoonX obtains the choice inside the app or website, the user must have a directly reachable in-app or web method to change that choice without being forced to email Support or search through unrelated documents.
+Withdrawal must be as easy as giving consent. If the choice is made directly in the app or website, users should have a directly reachable in-product method to change it rather than being forced to email Support or search through unrelated legal text.
 
-Withdrawal stops future consent-based terminal access and associated consent-based downstream processing as applicable. It does not retroactively make lawful earlier access unlawful.
+A material change to purpose, provider, recipient, persistence, identifier or tracking behavior can require a new consent assessment and potentially fresh consent. Do not silently stretch a historical consent to cover materially broader processing.
 
-### Re-consent after material change
+## 7. Current repository checkpoint: Cloudflare Turnstile
 
-Do not silently reuse an old consent after a material change to purpose, SDK/provider, terminal information, recipients, persistence or tracking behavior that moves the processing beyond the original specific informed choice.
+The current `contact-form-app` dependency manifest includes `@marsidev/react-turnstile`, and `app/ContactForm.tsx` renders Cloudflare Turnstile on the message step before the support/contact message can be submitted.
 
-## 6. Mobile-app rules
+This is a concrete production checkpoint, not proof of a legal conclusion. Do not assume `Turnstile is security` automatically proves Section 25(2)(2), and do not force a consent banner for a genuinely strictly necessary security mechanism merely because a third party is involved.
 
-Section 25 TDDDG is not a browser-cookie-only rule.
+For the deployed widget, preserve evidence of:
 
-For TycoonX iOS and Android builds, review at minimum:
+- the configured hostnames and widget mode;
+- whether pre-clearance is enabled and the clearance level;
+- whether a `cf_clearance` cookie is actually set in the relevant production flow;
+- whether Ephemeral IDs are enabled or available for the deployed plan/configuration;
+- whether cookies, local storage or other terminal state appear in browser or mobile/webview use;
+- which browser/device/security signals are transmitted;
+- relevant provider retention/controller/processor information;
+- Siteverify/server-side validation configuration;
+- the exact Section 25 classification; and
+- the separate GDPR basis and Privacy Policy fit where personal data is processed.
 
-- advertising identifiers;
-- vendor/app-scoped identifiers;
-- SDK install IDs;
-- device fingerprint components;
-- app-local persistent storage;
-- diagnostic SDK identifiers;
-- attribution parameters;
-- push token use where combined with additional profiling;
-- OS/device settings read by third-party SDKs; and
-- any permission-protected device data.
+Current Cloudflare documentation says ordinary Turnstile widgets issue a one-time token by default, while pre-clearance can additionally issue a `cf_clearance` cookie. Cloudflare also documents Ephemeral IDs as short-lived device identifiers that do not require cookies or local storage, but availability depends on the relevant Enterprise configuration. CK-Labs must classify its actual deployed configuration rather than copying a generic vendor description.
 
-A platform permission and a TDDDG consent question can overlap, but they are not interchangeable by default.
+A package-list search alone is not proof that the deployed site is cookie-free or that no hosting/provider layer accesses terminal information.
 
-## 7. Apple boundary
+## 8. Apple boundary
 
-Apple's App Tracking Transparency (ATT), App Privacy disclosures and privacy manifests are separate platform requirements.
+Apple App Tracking Transparency (ATT), App Privacy disclosures, privacy manifests and required-reason API rules are separate platform controls.
 
-### ATT
+If TycoonX or an included SDK tracks users across apps or websites owned by other companies as Apple defines tracking, permission must be obtained before that tracking occurs. A granted ATT permission does **not** automatically prove German Section 25 consent for every terminal-access purpose.
 
-If TycoonX or an included SDK tracks a person across apps/websites owned by other companies as Apple defines tracking, CK-Labs must follow ATT requirements and request permission before tracking.
+An ATT denial also must not be bypassed with another identifier, hashed account data, fingerprinting or SDK/device signals that recreate prohibited tracking. Apple also makes developers responsible for third-party code included in their apps, so SDK behavior must be reconciled against the shipped privacy declarations.
 
-A granted ATT permission does **not** automatically prove that every German Section 25 storage/access purpose has valid consent. The TycoonX disclosure and consent flow still needs to cover the actual TDDDG operation where Section 25(1) applies.
-
-An ATT denial also must not be bypassed by alternative identifiers, fingerprinting, provider-side matching or another SDK route that recreates prohibited tracking.
-
-### Privacy manifests and SDKs
-
-TycoonX must keep Apple privacy declarations accurate for first-party and relevant third-party SDK behavior. Before an SDK update, inspect whether the SDK begins collecting new data, contacting tracking/profiling domains, generating new identifiers or using required-reason APIs differently.
-
-An SDK privacy manifest is evidence, not a substitute for CK-Labs' own legal classification.
-
-## 8. Google Play boundary
+## 9. Google Play boundary
 
 Google Play's User Data and SDK requirements are separate from German TDDDG compliance.
 
-TycoonX must:
+TycoonX must keep Data safety and relevant in-app disclosures accurate for first-party and third-party SDK behavior. Where Google Play requires prominent disclosure and consent for personal or sensitive user data outside reasonable user expectation, the disclosure must occur before the relevant access/collection and consent must be affirmative.
 
-- keep Google Play Data safety disclosures accurate;
-- provide in-app prominent disclosure and affirmative consent where Google policy requires them;
-- remain responsible for third-party SDK collection behavior; and
-- avoid collecting sensitive or unexpected data before the applicable disclosure/consent step.
+An Android runtime permission does not automatically authorize unrelated analytics, attribution or advertising terminal access. Likewise, a Section 25 exception does not automatically satisfy every Google Play disclosure, permission or SDK requirement.
 
-An Android runtime permission does not automatically authorize an unrelated analytics, attribution or advertising terminal-access purpose.
+## 10. Xsolla and webshop boundary
 
-Likewise, a Section 25(2) strict-necessity conclusion does not automatically satisfy every Google Play disclosure, permission or sensitive-data rule.
+The CK-Labs TycoonX webshop and an Xsolla-controlled checkout may involve different actors, domains and storage configurations.
 
-## 9. Xsolla and TycoonX webshop boundary
+Record separately:
 
-The TycoonX webshop and an Xsolla-hosted payment flow may involve different actors, domains and cookie/storage configurations.
-
-Before production release, record separately:
-
-1. cookies/storage created on CK-Labs-controlled TycoonX pages before provider handoff;
-2. storage/access used only after the user initiates checkout;
+1. CK-Labs-controlled cookies/storage before provider handoff;
+2. storage/access activated only after the user starts checkout;
 3. Xsolla-controlled checkout-domain storage;
-4. analytics, attribution or campaign technologies added around checkout;
-5. whether any embedded/iframe integration causes a third party to access terminal information before the user chooses checkout; and
-6. which party is responsible for each disclosure/consent control.
+4. embedded/iframe behavior that can run before checkout is consciously selected;
+5. analytics, attribution or campaign parameters around checkout; and
+6. which party controls each disclosure and consent mechanism.
 
-Do not assume that Xsolla's own cookie or privacy notice cures a CK-Labs-controlled pre-handoff access that independently required consent.
+Do not assume Xsolla's privacy/cookie notices cure a CK-Labs-controlled access that independently required consent. Do not assume every checkout cookie requires consent either. A narrowly configured checkout/session mechanism can potentially qualify as strictly necessary once the user actually requests the payment function.
 
-Do not assume that every checkout cookie requires consent either. A narrowly configured checkout/session mechanism can potentially satisfy Section 25(2)(2) once the user actually requests the payment function. The decision must match the real implementation.
+## 11. Analytics, crash reporting, fraud and anti-cheat
 
-## 10. Analytics, crash reporting and anti-fraud
+Optional audience measurement, retention analytics, feature analytics and attribution require their own Section 25 classification.
 
-### Analytics
+Do not automatically classify all crash-reporting SDK terminal access as strictly necessary. Inspect persistent identifiers, device configuration, independent provider reuse and whether a more limited diagnostic mode exists.
 
-Optional audience measurement, feature analytics, retention analytics and attribution require a Section 25 classification even where CK-Labs believes the downstream GDPR processing may rely on legitimate interests.
+Protecting accounts, purchases and the TycoonX economy is important, but `security` is not a magic Section 25 exemption. User-oriented security state genuinely required to protect a requested login or purchase can support a necessity analysis. Broad network-wide profiling or long-lived fingerprinting needs a separate granular review.
 
-### Crash reporting
+Security identifiers must not be silently repurposed for advertising or unrelated behavioral profiling.
 
-Do not automatically classify all crash-reporting SDK terminal access as strictly necessary. Review whether the SDK reads/writes persistent identifiers, device configuration or unrelated analytics state and whether a more limited diagnostic configuration is available.
+## 12. Minors and age-related controls
 
-### Fraud / anti-cheat / account security
+Where TycoonX knows or reasonably treats a user as a minor, avoid unnecessary behavioral tracking, profiling and manipulative consent design.
 
-Protecting paid entitlements, accounts and the TycoonX economy is important, but "security" is not a magic Section 25 exemption.
+A parent's approval of a purchase does not automatically provide consent to optional tracking or analytics. Conversely, privacy consent does not authorize a purchase. GDPR child protections, German youth rules, Apple/Google age controls and TDDDG remain separate questions.
 
-A user-oriented security mechanism needed to protect the requested login/session can be strictly necessary in appropriate circumstances. A broad persistent fingerprint reused across unrelated customers/services, or a provider's network-wide profiling identifier, requires a separate granular analysis.
-
-If a particular fraud-control access is genuinely indispensable to complete a user-requested paid transaction, document why the exact data, timing, duration and recipients are technically necessary.
-
-## 11. Consent refusal must not damage paid entitlements
+## 13. Paid entitlement isolation
 
 Refusing or withdrawing consent for **optional** terminal access must not itself:
 
 - delete or duplicate legitimately purchased **Diamonds**;
-- remove unrelated legitimately acquired Diamond balances;
-- restart, pause, extend or duplicate the original one-time **30-Day VIP** period;
+- convert purchased Diamonds into promotional Diamonds or create an unrelated negative balance;
+- restart, pause, extend, shorten or duplicate the original one-time **30-Day VIP** period;
 - create an expiry, downgrade or conversion in a valid **Lifetime VIP** entitlement;
 - convert Lifetime VIP into 30-Day VIP;
-- replay Apple App Store, Google Play or Xsolla purchase fulfillment;
-- manufacture a refund, chargeback, fraud or exploit finding; or
-- block core paid functionality merely to pressure the user into optional analytics/tracking consent.
+- block lawful purchase restoration merely to pressure the user into tracking consent;
+- replay Apple App Store, Google Play or Xsolla purchase fulfillment; or
+- manufacture a refund, chargeback, fraud, exploit or account-compromise finding.
 
-If a specific paid function genuinely cannot technically operate without a particular terminal access, classify that function under the strict-necessity test and explain the requirement narrowly. Do not bundle unrelated analytics or tracking into that necessity claim.
+Lifetime VIP remains a one-time limited-window promotional offering available only during selected genuine sales windows. It may be withdrawn from future sale, may never return, and creates no expectation of continuous availability for future buyers.
 
-Lifetime VIP remains a one-time limited-window promotional entitlement that may be offered only during selected genuine sales windows, may be withdrawn from future sale and may never return. TDDDG consent handling does not alter those commercial characteristics or any mandatory consumer rights.
+A separate authoritative refund, reversal, fraud finding or lawful entitlement correction can still affect the transaction to which it actually relates.
 
-## 12. Consent records and minimization
+## 14. Provider outages and replacements
 
-CK-Labs should be able to prove what consent mechanism and information were presented without creating unnecessary new tracking.
+If a CMP, remote-config service, tag manager, SDK configuration endpoint or privacy-settings service is unavailable, optional consent-requiring technology stays disabled where the required consent state cannot be established. Strictly necessary login, security, support and payment functions should remain available where technically possible.
 
-Retain proportionate evidence such as:
+Provider replacement requires a fresh data-flow review covering new device access, identifiers, purposes, controller/processor roles, international transfers, Apple declarations, Google Play declarations, consent needs and Privacy Policy impact.
 
-- consent configuration/version;
-- categories/purposes offered;
-- timestamp or decision event where needed;
-- app/web version;
-- relevant provider/SDK configuration; and
-- withdrawal/change event where appropriate.
+A security emergency may justify urgent technical changes, but emergency scope must be necessary, proportionate, documented and reviewed afterwards. An emergency does not authorize unrelated advertising or profiling.
 
-Do not assume a long-lived unique consent-cookie ID is automatically necessary. The DSK specifically warns that consent evidence can often be maintained without creating an excessive persistent unique identifier.
+## 15. Consent evidence and minimization
 
-Preserve historic consent copy/configuration for the period reasonably necessary to demonstrate what the user was shown when a dispute concerns the validity of the consent.
+Keep enough evidence to demonstrate the choice without creating unnecessary tracking. Depending on implementation, retain the consent interface/version, purposes or vendor categories shown, accepted/rejected state, timestamp or version transition, platform/surface, withdrawal/change event and enough context to connect the choice to the configuration it controlled.
 
-## 13. Release blockers
+Do not create a long-lived unique identifier solely because it is convenient for consent logging if a less intrusive record can demonstrate compliance.
 
-Block the relevant German release/configuration until resolved if any of the following is true:
+## 16. Release blockers
 
-- optional terminal storage/access starts before consent;
-- the team cannot identify what an SDK writes or reads from the device;
-- Section 25(2)(2) is claimed solely because analytics/security is commercially useful;
-- a stable identifier is created for an optional purpose before consent;
-- acceptance is easy but refusal is hidden or materially harder;
-- withdrawal requires Support/email while consent was given directly in the app/site;
-- a third-party SDK reuses TycoonX terminal data for independent advertising/profiling without an appropriate legal/platform basis;
-- ATT denial is bypassed by another tracking method;
-- Google Play/Apple disclosures do not match shipped SDK behavior;
-- Xsolla/CK-Labs cookie responsibility is unknown in the actual German checkout path;
-- consent refusal changes paid entitlements or game balances; or
-- a new SDK version materially changes terminal access without a fresh review.
+Block the relevant German release or configuration change if optional storage/access starts before required consent, an optional SDK's behavior is unknown, a strict-necessity claim is based only on commercial usefulness, rejection is materially harder than acceptance, an unknown consent state becomes accepted, withdrawal does not stop future optional access, ATT denial is bypassed, Apple/Google declarations do not match shipped behavior, the CK-Labs/Xsolla boundary is unknown, the actual Turnstile configuration is unclassified, or privacy choices can damage/duplicate paid entitlements.
 
-## 14. Release evidence packet
+## 17. Release evidence packet
 
-For each material release or SDK/provider change, retain:
+For every material app/web release, SDK update, provider migration or consent redesign, retain:
 
-1. terminal-access inventory diff;
-2. Section 25 basis for each new/changed operation;
-3. strict-necessity analysis where Section 25(2)(2) is used;
-4. screenshots/video of the consent and refusal flow where consent is required;
-5. evidence that optional SDK access is blocked before consent;
-6. evidence that withdrawal is directly accessible and effective;
-7. Apple ATT/App Privacy/privacy-manifest parity evidence where applicable;
-8. Google Play Data safety/User Data/SDK parity evidence where applicable;
-9. Xsolla checkout cookie/storage responsibility map where applicable;
-10. network/storage inspection showing actual runtime behavior;
-11. provider and SDK versions tested;
-12. evidence that Diamonds, 30-Day VIP and Lifetime VIP remain unaffected by optional-consent refusal/withdrawal; and
-13. reviewer/date and any follow-up trigger.
+- terminal-access inventory diff;
+- Section 25 basis for each new/changed operation;
+- strict-necessity analysis where Section 25(2)(2) is used;
+- screenshots/video of consent, reject and withdrawal paths where consent is required;
+- network/storage evidence showing optional technology remains off before consent;
+- fail-closed tests for `unknown`, outage and migration states;
+- Apple ATT/App Privacy/privacy-manifest parity evidence where applicable;
+- Google Play Data safety/User Data/SDK parity evidence where applicable;
+- Xsolla checkout responsibility map where applicable;
+- Cloudflare Turnstile production configuration and runtime-storage evidence;
+- provider and SDK versions tested;
+- proof that Diamonds, 30-Day VIP and Lifetime VIP remain unaffected by optional-consent refusal/withdrawal; and
+- reviewer/date plus re-review triggers.
 
-## 15. Regression scenarios
+## 18. Regression scenarios
 
-1. **Fresh German web visitor, analytics rejected:** optional analytics cookies/local storage never initialize; the legal page and ordinary site remain usable.
-2. **Fresh German mobile install, analytics rejected:** optional SDK install identifier is not created/read before consent where Section 25(1) applies.
-3. **Consent accepted:** only the purposes actually disclosed are enabled.
-4. **Consent withdrawn:** future optional access stops without deleting legitimate gameplay or paid entitlements.
-5. **SDK update adds persistent device ID:** release is blocked until Section 25 and platform declarations are re-reviewed.
-6. **ATT denied on iOS:** TycoonX does not recreate cross-app tracking through fingerprinting or an alternate identifier.
-7. **Android permission denied:** core gameplay continues where that permission is not technically necessary.
-8. **User logs in:** a narrowly necessary session token can function without enabling unrelated analytics.
-9. **Remember-me option not chosen:** TycoonX does not silently create unnecessarily long-lived authentication tracking state.
-10. **Failed-login protection:** security state is limited to what is actually needed for the requested account-security function.
-11. **Broad third-party fraud fingerprint:** it is not labelled strictly necessary without granular evidence.
-12. **User opens webshop but does not start checkout:** payment-only terminal access does not initialize prematurely merely because a payment feature exists elsewhere on the page.
-13. **User starts Xsolla checkout:** narrowly necessary payment/session storage can be activated where the concrete Section 25(2)(2) test is satisfied.
-14. **Xsolla page has its own optional analytics:** provider-controlled consent responsibility is documented and CK-Labs does not misrepresent it as a CK-Labs consent.
-15. **Consent banner accept/reject:** both choices are clearly visible and materially equivalent in effort when the banner blocks access.
-16. **Historic consent dispute:** CK-Labs can identify what purposes/provider/version the user was shown without relying on an excessive permanent tracking ID.
-17. **Diamond purchase after analytics refusal:** valid purchase delivery works and no unrelated Diamond balance is removed.
-18. **30-Day VIP after analytics refusal:** the original one-time period is delivered normally and is not restarted by later consent changes.
-19. **Lifetime VIP after analytics refusal:** valid Lifetime VIP remains lifetime under its contract and is not given an artificial expiry.
-20. **Account compromise investigation:** necessary security processing may continue on its own lawful basis, but optional tracking consent is not fabricated from the incident.
-21. **Crash-reporting provider adds advertising functionality:** release is blocked until the new purpose and terminal access are separated or consented to as required.
-22. **Consent purpose changes materially:** old consent is not silently reused for the new purpose.
-23. **Consent refusal:** it is not treated as fraud, abuse, regional-price abuse, chargeback risk or exploit behavior.
-24. **Business/provider migration:** a successor SDK/provider does not inherit old consent automatically where the original informed choice no longer covers the new actor or purpose.
+At minimum test first launch with optional consent refused; selected purposes accepted; withdrawal after prior consent; app restart after refusal; CMP timeout; unknown/missing migrated state; provider replacement; iOS ATT denial; Android permission/Advertising ID changes where relevant; support-form submission with Turnstile; Turnstile pre-clearance disabled and enabled where used; valid Diamond purchase with optional analytics refused; active 30-Day VIP with optional analytics refused; Lifetime VIP restore with optional analytics refused; Xsolla checkout with optional CK-Labs tracking refused; fraud/security tooling without unrelated profiling; and a material SDK update that adds a new identifier.
 
-## 16. Canonical and localization rule
+## 19. Canonical and localization trigger
 
-The canonical TycoonX Privacy Policy already states that:
+The canonical TycoonX Privacy Policy already says that mere use is not consent where consent is legally required, separates optional processing where required, and preserves withdrawal for future consent-based processing. This gate therefore does not by itself reopen localization.
 
-- consent is requested separately where legally required;
-- merely using TycoonX is not treated as consent to processing that requires consent;
-- consent can be withdrawn for future processing; and
-- optional cookies/analytics/other optional features use consent controls where applicable.
+If production review reveals a materially new public data practice not fairly described by the canonical Privacy Policy, update canonical English first, then reopen the Privacy Policy across all 25 target locales in the required order and update `TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md`.
 
-This gate gives production meaning to those existing promises. It does **not materially change** the canonical public legal meaning by itself, so the completed 25-locale Privacy queue is not reopened in this run.
+## 20. Consolidation rule
 
-If future implementation requires the public Privacy Policy to add a materially new terminal-access purpose, new provider role, new tracking practice, or new consent consequence, update the canonical English Privacy Policy first and then resynchronize **Privacy only** across the 25 locales in the mandated order.
+This file is the sole TDDDG terminal-access implementation gate. The following older overlapping gates are obsolete and must remain deleted:
 
-## 17. Brand and release invariants
+- `TYCOONX_TDDDG_COOKIE_TRACKING_RELEASE_GATE.md`
+- `TYCOONX_TDDDG_DEVICE_ACCESS_CONSENT_RELEASE_GATE.md`
+- `TYCOONX_EU_GERMAN_DEVICE_STORAGE_TRACKING_CONSENT_RELEASE_GATE.md`
 
-- Player-facing/legal prose must always display **TycoonX**.
-- Technical routes or filenames containing `tyconx` may remain when changing them could break URLs.
-- TycoonX is in full release from **September 1, 2026**. This gate must not describe the live service, purchases, users, VIP, Diamonds, rewards or legal terms as beta.
+The single matching verifier is `scripts/verify-tycoonx-tdddg-terminal-access.mjs`. Older overlapping TDDDG/device-tracking verifiers must remain deleted so legal changes cannot drift across competing sources of truth.
 
-## 18. Current official references
+## 21. Current reference checkpoint
 
-- German TDDDG, especially Sections 25 and 28: https://www.gesetze-im-internet.de/ttdsg/
-- DSK, *Orientierungshilfe der Aufsichtsbehörden für Anbieter:innen von digitalen Diensten*, Version 1.2, November 2024: https://www.datenschutzkonferenz-online.de/media/oh/OH_Digitale_Dienste.pdf
-- Apple App Review Guidelines / privacy requirements: https://developer.apple.com/app-store/review/guidelines/
-- Apple privacy manifests: https://developer.apple.com/documentation/bundleresources/describing-data-use-in-privacy-manifests
-- Google Play User Data policy: https://support.google.com/googleplay/android-developer/answer/10144311
-- Google Play SDK requirements: https://support.google.com/googleplay/android-developer/answer/13323374
+Reviewed September 3, 2026 against the current German TDDDG Sections 25 and 28, current German Data Protection Conference orientation guidance for digital services, current Apple user privacy and ATT guidance, current Google Play User Data/SDK requirements, and current Cloudflare Turnstile documentation for pre-clearance, `cf_clearance` and Ephemeral IDs.
 
-## 19. Risk note
+## Release decision
 
-A violation of Section 25(1) is an administrative offence under Section 28 TDDDG and the statute permits a fine of up to **EUR 300,000** for the relevant Section 25 offence category. This is separate from any GDPR, consumer-law, contractual or platform consequences that may arise from the same implementation.
+**PASS only if** CK-Labs can show what the live TycoonX app/web/support/payment stack reads or writes on terminal equipment, why every consent-free operation fits a real Section 25 exception, that consent-requiring technology stays off until a lawful choice, that reject/withdrawal and outage states behave correctly, that Apple/Google/provider declarations match shipped SDK behavior, that Turnstile and Xsolla boundaries are based on actual configuration, and that privacy choices cannot corrupt Diamonds, 30-Day VIP or Lifetime VIP.
 
-The purpose of this gate is to prevent accidental overreach while preserving CK-Labs' lawful ability to use genuinely necessary session, security, checkout and service technologies and to operate TycoonX without turning optional analytics or tracking into a condition for unrelated paid value.
+Mandatory consumer, privacy, withdrawal, conformity, update, liability and other non-waivable rights remain intact.
