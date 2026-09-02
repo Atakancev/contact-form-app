@@ -1,6 +1,6 @@
 # TycoonX Community Moderation & DSA Release Checklist
 
-Last reviewed: 2026-08-30  
+Last reviewed: 2026-09-02  
 Operator/business name used in player-facing documents: **CK-Labs**
 
 This checklist covers TycoonX user-generated content (UGC), chat, social/community features, Apple App Store UGC requirements, Google Play UGC requirements, and EU Digital Services Act (DSA) obligations that may apply to hosting/intermediary features. It is an operational checklist, not a substitute for qualified legal advice.
@@ -79,7 +79,7 @@ Where a TycoonX community feature falls within the DSA intermediary-service fram
 
 ## 6. EU DSA Article 16 notice-and-action mechanism
 
-If a TycoonX feature qualifies as a hosting service under the DSA, Article 16 requires an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content.
+If a TycoonX feature qualifies as a hosting service under the DSA, Article 16 requires an easy-to-access, user-friendly electronic mechanism for notices about specific allegedly illegal content. Article 16 is written so that **any individual or entity** can use that mechanism. Do not make a TycoonX account or successful login a hidden precondition where that would prevent an external rights holder, regulator, victim, parent, or other non-user from submitting a legally sufficient notice.
 
 The production mechanism should be able to collect, as applicable:
 - [ ] a sufficiently substantiated explanation of why the reporter considers the specific information illegal;
@@ -93,8 +93,27 @@ Operational behavior:
 - [ ] process notices in a timely, diligent, non-arbitrary, and objective manner;
 - [ ] tell the reporter the decision and available redress without undue delay where legally required;
 - [ ] if automated means materially process or decide the notice, provide the legally required information about that use;
-- [ ] preserve evidence only for lawful, necessary periods; and
-- [ ] do not assume a generic support mailbox is sufficient unless the real flow satisfies Article 16's notice fields and processing behavior.
+- [ ] preserve evidence only for lawful, necessary periods;
+- [ ] do not assume a generic support mailbox is sufficient unless the real flow satisfies Article 16's notice fields and processing behavior;
+- [ ] when a report starts from a specific TycoonX post, message, profile, artwork, music item, book, or other UGC object, prefill a stable content locator where technically possible instead of forcing the reporter to reconstruct it manually;
+- [ ] provide a fallback electronic reporting route for an external reporter who cannot open the app or authenticate, while still applying reasonable anti-abuse and security controls; and
+- [ ] test discoverability and usability end-to-end on every supported reporting surface, including the mobile app, public web surfaces, and any desktop/web layout that exposes the relevant hosted content. A compliant path on one client does not cure an inaccessible path on another client.
+
+### 2026 German DSA enforcement checkpoint
+
+Treat the following as concrete enforcement signals, not merely theoretical UX guidance:
+
+- On **June 12, 2026**, the German Digital Services Coordinator at the Bundesnetzagentur announced an investigation concerning the gaming platform Steam. The authority specifically highlighted whether the platform had correctly implemented the DSA mechanism for reporting potentially illegal content and appropriately handled complaints. The announcement stated that a reporting mechanism must be easily accessible and user-friendly and that notices must be reviewed promptly and carefully. This is an investigation, not a final infringement decision.
+- On **July 6, 2026**, the Bundesnetzagentur announced that, in its eBay investigation, it had identified DSA infringements and required eBay to respond and remedy them. It specifically criticised the desktop notice-and-action implementation as not easily accessible and overall not user-friendly, and also identified incomplete reasons for measures against users. The authority stated that the proceeding had not yet reached a final decision.
+
+Production consequence for TycoonX:
+
+- [ ] Test Article 16 access from a logged-out browser and from a user who cannot access the original account.
+- [ ] Test the shortest realistic path from visible UGC to the illegal-content notice form and record the clicks/screens required.
+- [ ] Test both narrow/mobile and wide/desktop web layouts rather than assuming responsive rendering preserves discoverability.
+- [ ] Test that the report can still be submitted if the content is later hidden from ordinary navigation but a stable identifier remains available.
+- [ ] Distinguish an **illegal-content notice** from a normal Community Standards report. They may share infrastructure, but a generic policy-report flow must not discard the Article 16 fields, receipt, decision, or redress requirements.
+- [ ] Preserve a dated screenshot or screen recording of each production reporting path as release evidence.
 
 ## 7. EU DSA Article 17 statement of reasons
 
@@ -116,6 +135,7 @@ Quality gate:
 - [ ] Do not send a generic reason such as `policy violation`, `illegal content`, `spam`, or `automated moderation` by itself when Article 17 requires a more specific explanation.
 - [ ] Generate reasons that are clear, easily comprehensible, and as precise and specific as reasonably possible while still protecting security-sensitive anti-abuse details and third-party personal data.
 - [ ] Preserve an immutable/auditable copy of the reason actually sent and the decision timestamp so CK-Labs can prove what the affected user was told.
+- [ ] Verify the actual reason is visible to the affected user at the time of restriction through a usable delivery surface. A complete reason stored only in an internal admin log does not satisfy the user-facing duty.
 - [ ] A voluntary Support appeal does not replace a mandatory Article 17 statement or any Article 20/21 route that actually applies.
 
 ## 8. DSA Article 18 serious-criminal-offence escalation gate
@@ -203,8 +223,8 @@ Do not use these protections to remove unrelated legitimate paid digital value, 
 ## 14. Current P0/P1 gaps
 
 1. **P0: UGC acceptance implementation:** verify the actual app flow requires Terms/User Policy acceptance before UGC creation where Google Play requires it.
-2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA, including the Article 16 notice fields and reporter good-faith statement.
-3. **P0: DSA Article 17 reason-generation evidence:** verify moderation/admin tooling can generate the complete Article 17 reason object at or before the restriction, including specific legal/contract ground, facts, automation use, duration/scope where relevant, and user redress without leaking security/private information.
+2. **P0: DSA Article 16 implementation evidence:** verify a compliant illegal-content notice-and-action flow for every TycoonX feature that qualifies as hosting under the DSA, including the Article 16 notice fields, reporter good-faith statement, logged-out/external-reporter access, stable content locators, and discoverability/usability on every supported reporting surface.
+3. **P0: DSA Article 17 reason-generation evidence:** verify moderation/admin tooling can generate and actually deliver the complete Article 17 reason object at or before the restriction, including specific legal/contract ground, facts, automation use, duration/scope where relevant, and user redress without leaking security/private information.
 4. **P0: DSA Article 18 emergency escalation:** implement and test the serious-criminal-offence/life-or-safety escalation path, authority-selection logic, evidence preservation, and audit trail.
 5. **P0: Apple/Google in-app report + block verification:** legal text alone is not sufficient; the production app must implement the required controls.
 6. **P0: Google August 26 child-safety classification:** verify whether TycoonX falls within Google Play's Child Safety Standards scope as a social app. Confirm TycoonX does not have anonymous/random chat as a core function; if that changes, use required Play Console age-restriction tools to block minors and complete the applicable child-safety requirements before release.
