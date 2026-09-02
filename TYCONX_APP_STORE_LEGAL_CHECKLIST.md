@@ -1,9 +1,11 @@
 # TycoonX Store, Webshop & Legal Release Checklist
 
-Last reviewed: 2026-08-24  
+Last reviewed: 2026-09-02  
 Operator/business name used in player-facing documents: **CK-Labs**
 
-This is an operational release checklist for TycoonX purchases through Apple App Store, Google Play, and the official web shop using Xsolla. It is not a substitute for qualified legal advice.
+This is an operational production checklist for TycoonX purchases through Apple App Store, Google Play, and the official web shop using Xsolla. It is not a substitute for qualified legal advice.
+
+TycoonX has been in full release since **September 1, 2026**. Treat time-sensitive platform deadlines as current production requirements, not future launch placeholders.
 
 ## 1. Public legal URLs
 
@@ -12,7 +14,12 @@ This is an operational release checklist for TycoonX purchases through Apple App
 - **Support** → `/tyconx-support`
 - **Terms of Service** → `/tyconx-terms-of-service`
 - **Purchases & Refunds Policy** → `/tyconx-purchase-refund-policy`
-- **German legal notice / Impressum** → must be added before the commercial setup is treated as complete.
+- **German legal notice / Impressum** → `/tycoonx-impressum`
+- **Community Standards** → `/tycoonx-community-standards`
+- **Apple Custom EULA** → `/tycoonx-eula`
+- **Localized legal hub** → `/tycoonx-legal`
+
+The German legal notice is already implemented. Verify its operator/contact facts and public reachability rather than leaving stale wording that it still needs to be added.
 
 Technical route names may remain `tyconx` for compatibility, but every rendered title, heading, description, checkout message, legal paragraph, and support message must spell the game name **TycoonX**.
 
@@ -20,13 +27,30 @@ Technical route names may remain `tyconx` for compatibility, but every rendered 
 
 | TycoonX product | Intended purchase type | Core rule |
 | --- | --- | --- |
-| Diamond packs | Consumable / one-time digital content | Purchased Diamonds do not expire solely because time passes. Do not create duplicate value on restore. |
+| Diamond packs | Consumable / one-time digital value | Purchased Diamonds do not expire solely because time passes. Do not create duplicate value on restore. |
 | One-time 30-Day VIP | Non-renewing / one-time 30-day entitlement | Exactly 30 consecutive days. No automatic renewal unless a separate recurring product is explicitly introduced. |
 | Lifetime VIP | One-time non-consumable entitlement | Limited-time promotional sale only. Restorable while valid. “Lifetime” means the commercial operating lifetime of TycoonX for that account. |
 
 Lifetime VIP must never be marketed as a permanently available product. CK-Labs may run genuine sales windows, stop selling it, change the price for later genuine sales windows, or never offer it again. Previous availability does not create an expectation of return.
 
 ## 3. Apple App Store
+
+### EU DSA trader-status P0 gate
+TycoonX EU App Store distribution must pass `TYCOONX_APPLE_EU_DSA_TRADER_STATUS_RELEASE_GATE.md`.
+
+For current EU production:
+- preserve a dated assessment of the developer’s trader status;
+- do not declare `not a trader` merely to avoid public contact information;
+- verify the TycoonX app-specific trader status in App Store Connect;
+- verify Apple has accepted the required address/phone/email evidence where trader status applies;
+- check the **public EU App Store product page**, not only the saved App Store Connect setting;
+- keep the public Apple trader identity consistent with the real CK-Labs operator and `/tycoonx-impressum`;
+- do not treat an Apple-accepted P.O. Box as a substitute for the serviceable establishment street address required by the German Impressum where DDG § 5 applies; and
+- recheck after Apple Developer account changes, app transfer, business sale, successor operator, address/phone/email change, or Apple rule changes.
+
+Apple has stated that apps lacking required verified trader status are removed from EU App Store distribution until the requirement is completed. Treat this as a distribution blocker, not cosmetic metadata.
+
+Trader-status remediation must not delete or duplicate purchased Diamonds, restart one-time 30-Day VIP, expire valid Lifetime VIP, or replay already processed Apple transactions.
 
 ### Product configuration
 - Diamond packs: **Consumable**.
@@ -51,7 +75,7 @@ Apple currently tells developers to announce an intended In-App Purchase removal
 Operational rule for TycoonX:
 - do **not** use App Store Connect “Remove from Sale” as a casual short-sale countdown mechanism without first checking the current Apple removal guidance;
 - for a shorter Lifetime VIP promotion, verify an App Review-safe product/offer presentation that closes new purchases at the genuine advertised end while preserving restoration for prior purchasers, rather than assuming the underlying non-consumable SKU itself must be removed from sale;
-- stop any App Store merchandising/promotion of the Lifetime VIP when the genuine offer closes;
+- stop any App Store merchandising/promotion of the Lifetime VIP when the genuine offer closes; and
 - if the IAP itself will actually be removed from sale, follow Apple’s then-current notice/removal guidance and preserve restoration for existing purchasers.
 
 ### Restore Purchases
@@ -62,7 +86,7 @@ TycoonX should expose an obvious user-initiated Restore Purchases action where a
 - restore a still-valid 30-Day VIP without extending it;
 - never duplicate Diamond consumables;
 - keep restore idempotent;
-- log enough transaction and entitlement information for support/audit purposes;
+- log enough transaction and entitlement information for support/audit purposes; and
 - never grant paid value solely because a client claims payment succeeded.
 
 ### Pending transaction / approval-flow gate
@@ -85,7 +109,7 @@ Test this explicitly:
 2. user deletes the TycoonX account and the deletable gameplay/profile data is removed;
 3. the Apple purchase record remains independently verifiable where Apple retains it;
 4. the same purchaser creates or signs into an eligible TycoonX account;
-5. Restore Purchases re-links the valid Lifetime VIP after reasonable verification;
+5. Restore Purchases re-links the valid Lifetime VIP after reasonable verification; and
 6. deleted gameplay progress, consumed Diamonds, inventory, and social history are **not** recreated merely because VIP was restored.
 
 Explain the consequence of account deletion before final confirmation where platform rules or applicable law require it.
@@ -99,7 +123,7 @@ Before enabling it in App Store Connect:
 - if enabled, display the shareable status accurately in TycoonX purchase UI;
 - process Apple shared/restored transactions and entitlement-revocation events so a family member does not retain access after Apple reports that sharing ended;
 - never convert shared access into a separately owned, transferable, or separately refundable TycoonX purchase; and
-- test refund, family-leave, share-disable, reinstall, and account-relink scenarios before launch.
+- test refund, family-leave, share-disable, reinstall, and account-relink scenarios before enabling the feature.
 
 Until CK-Labs explicitly chooses and implements Family Sharing, do not market Lifetime VIP as family-shareable.
 
@@ -141,15 +165,20 @@ Expected rule: the original pending state grants nothing. A later valid `PURCHAS
 
 Google also warns that an unacknowledged valid purchase can be automatically refunded. Make sure valid completed purchases are acknowledged or consumed using the correct product flow after entitlement is granted.
 
-### P0 Google Play target-API gate for 31 August 2026
-Google’s published deadline for **31 August 2026** requires new Android apps and app updates for mobile to target **Android 16 / API level 36 or higher**. Existing mobile apps generally need to target **Android 15 / API level 35 or higher** to remain available to new users on devices running a newer Android version than the app targets. Google indicates that an extension to **1 November 2026** may be requestable through Play Console where applicable.
+### P0 Google Play target-API gate after 31 August 2026
+As of September 2, 2026, Google’s published **31 August 2026** target-API deadline has passed.
 
-Before the next Android release or the deadline:
-- verify the actual TycoonX production Android `targetSdk` / target API level in the game repository and release artifact;
+Google currently says:
+- new mobile apps and app updates submitted to Google Play must target **Android 16 / API level 36 or higher**;
+- existing mobile apps generally need to target **Android 15 / API level 35 or higher** to remain available to new users on devices running a newer Android version than the app targets; and
+- developers can request an extension to **1 November 2026** where Google makes that extension available.
+
+Current-production rule:
+- verify the actual TycoonX production Android `targetSdk` / target API level in the game repository and current release artifact **now**;
 - do not assume this legal/web repository proves Android compliance;
-- if the app is below the required level, plan the platform upgrade before submitting an update;
-- if additional time is genuinely needed and Google offers the extension for the app, decide deliberately whether to request it before the deadline; and
-- recheck Google’s current requirement immediately before submission because platform deadlines can change.
+- if the submitted-update requirement is not met, do not assume another non-compliant update can be submitted after August 31 without a valid extension;
+- if a valid extension was obtained, retain evidence and treat November 1, 2026 as the operative temporary deadline for the covered app; and
+- recheck Google’s current requirement immediately before the next submission because platform requirements can change.
 
 ### Google Play EEA external offers / Xsolla linkouts
 Users may be able to consume TycoonX content purchased outside Google Play, but that does **not** mean TycoonX should insert an Xsolla web-shop link into the Google Play app without checking the current program rules.
@@ -165,7 +194,7 @@ Off-app promotion by email, website, or other lawful channels should still be ch
 
 ## 5. Official TycoonX web shop using Xsolla
 
-Before launch, verify the exact Xsolla contract and checkout configuration in use rather than assuming every Xsolla setup is identical.
+For current production and before a material Xsolla configuration change, verify the exact Xsolla contract and checkout configuration in use rather than assuming every Xsolla setup is identical.
 
 Where an Xsolla entity acts as merchant of record, the transaction-specific checkout/receipt should identify the applicable merchant and govern payment processing, payment methods, transaction taxes/VAT, fraud checks, refunds, disputes, and chargebacks under its terms and mandatory law.
 
@@ -183,7 +212,7 @@ The web shop must not be linked or promoted inside Apple/Google apps in a way th
 
 For Lifetime VIP sold through the web shop, maintain enough lawful transaction/entitlement evidence to distinguish account deletion from cancellation/refund of the underlying purchase. Define a verified re-link process for a purchaser who deletes a TycoonX account and later proves control of the same purchase identity, subject to the Xsolla contract, privacy law, and mandatory consumer rights.
 
-Xsolla’s public Refund Policy was reverified on **24 August 2026** and is currently dated **16 June 2026**. It says the applicable refund-policy type is shown at checkout and the relevant Xsolla contracting company can depend on the payment method. Do not hard-code one universal Xsolla refund policy or entity into TycoonX legal copy unless the actual CK-Labs Xsolla setup makes that statement true.
+Xsolla’s public Refund Policy was reverified on **24 August 2026** and was then dated **16 June 2026**. Reverify it and the live checkout before relying on it because the applicable refund-policy type and contracting Xsolla company can depend on the payment method/configuration. Do not hard-code one universal Xsolla refund policy or entity into TycoonX legal copy unless the actual CK-Labs Xsolla setup makes that statement true.
 
 ## 6. Prices and promotions
 
@@ -204,7 +233,7 @@ Operational rules:
 - include or display mandatory taxes and unavoidable price components as required;
 - let platform/provider FX, tax, and local pricing mechanisms update local prices where applicable;
 - never use fake countdowns, fake scarcity, fake crossed-out prices, or false discount claims;
-- where a jurisdiction imposes a reference-price or price-history rule for the specific product/offer, apply it to that offer;
+- where a jurisdiction imposes a reference-price or price-history rule for the specific product/offer, apply it to that offer; and
 - if automated decision-making ever truly personalizes an individual consumer price and the law requires disclosure, disclose that fact before purchase.
 
 Ordinary country-based, storefront-based, tax-based, currency-based, or generally available regional pricing should not be described internally as “personalized pricing” merely because prices differ by region.
@@ -230,7 +259,7 @@ Where legally permitted:
 - cancel and refund an unfulfilled obviously erroneous transaction rather than grant unintended extreme value;
 - remove duplicate grants caused by retry/replay/webhook/store-notification bugs;
 - delay entitlement delivery while a payment remains pending or fails validation;
-- use reliable server/store/payment records when a stale or manipulated client display conflicts with authoritative records;
+- use reliable server/store/payment records when a stale or manipulated client display conflicts with authoritative records; and
 - never use an “error” clause to override a genuinely binding consumer contract where mandatory law says otherwise.
 
 For limited-time offers, define the cutoff by authoritative provider transaction state, not by a client clock or purchase-button tap. A pending state is not itself a paid entitlement, but a provider-confirmed transaction that validly completes later must be reconciled according to the provider record, the actual offer, and mandatory law.
@@ -249,7 +278,7 @@ Protect against:
 
 Corrections should target the invalid promotional value and not unrelated legitimate purchases.
 
-A voluntary goodwill credit, free VIP extension, discretionary refund, compensation item, beta benefit, tester grant, or bonus beyond a legal obligation should be recorded as discretionary. It should not be worded as an admission of liability or a promise that every future user will receive the same treatment.
+A voluntary goodwill credit, free VIP extension, discretionary refund, compensation item, test/review grant, complimentary grant, or bonus beyond a legal obligation should be recorded as discretionary. It should not be worded as an admission of liability or a promise that every future user will receive the same treatment.
 
 ## 9. Refunds, chargebacks, and payment reversals
 
@@ -283,9 +312,11 @@ Important areas include:
 - lawful modifications of continuously supplied digital products; and
 - statutory withdrawal rights.
 
-For immediately supplied paid digital content such as Diamonds, do not assume the statutory withdrawal right automatically disappears. Where applicable, the legally required express consent to early performance, acknowledgement of loss of the withdrawal right, and contractual confirmation must actually be obtained.
+For purchased Diamonds, do not assume the statutory withdrawal right automatically disappears merely because the account balance was credited. Where an applicable statutory withdrawal right exists, the treatment of unused versus already spent/transferred/exchanged purchased value must follow mandatory law and the actual transaction.
 
-30-Day VIP and Lifetime VIP are supplied over time and must not be treated as legally identical to a consumed Diamond bundle merely because they use a one-time payment.
+A separate digital-content/service purchase may lose an applicable withdrawal right after early performance only where every legally required transaction-specific condition is actually satisfied, including any required request/consent, acknowledgement, and contractual confirmation.
+
+30-Day VIP and Lifetime VIP are supplied over time and must not be treated as legally identical to a Diamond bundle merely because they use a one-time payment.
 
 ## 11. German checkout requirements
 
@@ -302,7 +333,7 @@ Do not rely on hidden text or an ambiguous “Continue” button to create a Ger
 
 ## 12. German electronic withdrawal function, effective 19 June 2026
 
-This is a **P0 web-checkout compliance item**.
+This remains a **P0 live web-checkout compliance item**.
 
 For covered distance contracts concluded through an online user interface while a statutory withdrawal period is running, German §356a BGB requires an electronic withdrawal function.
 
@@ -314,7 +345,7 @@ When CK-Labs is the responsible contracting trader/interface, verify that the fu
 - followed by a separate clear confirmation action; and
 - followed by an immediate receipt confirmation on a durable medium containing the required information, date, and time.
 
-If Apple, Google, or Xsolla is the contracting merchant or controls the relevant purchase/withdrawal interface, verify which party actually provides the legally compliant route. Do not merely assume that “the payment provider handles it.” Record the verified responsibility per channel before launch.
+If Apple, Google, or Xsolla is the contracting merchant or controls the relevant purchase/withdrawal interface, verify which party actually provides the legally compliant route. Do not merely assume that “the payment provider handles it.” Record the verified responsibility per channel.
 
 The electronic function does not replace other legally valid withdrawal methods.
 
@@ -385,17 +416,19 @@ Do not say that using TycoonX means consent to all processing. Use the appropria
 
 ## 17. German legal notice / operator identity
 
-Before treating the commercial legal setup as complete, publish an easily recognizable, directly accessible, permanently available legal notice/Impressum with the information required for the actual CK-Labs legal form and activity.
+The live German legal notice is available at `/tycoonx-impressum`. Keep it easily recognizable, directly accessible, permanently available, and accurate for the actual CK-Labs legal form/activity.
 
-Do not invent operator details. Confirm and publish, as applicable:
+Current production QA must confirm, as applicable:
 - exact legal trader name behind CK-Labs;
-- public business postal address;
+- serviceable establishment street address;
 - direct electronic contact details;
 - registration details where applicable;
 - VAT/business identification numbers where applicable; and
 - any other legally required operator information.
 
-The same legal trader identity must be consistent across the website, Terms, Privacy Policy, checkout, invoices/receipts where CK-Labs is the seller, and platform developer information.
+Do not invent details that do not apply. Keep the operator identity consistent across the website, Terms, Privacy Policy, checkout, invoices/receipts where CK-Labs is the seller, Apple EU trader information, and other platform developer information.
+
+Pass `TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md` after any operator/contact change.
 
 ## 18. Cross-platform entitlements and duplicate-benefit prevention
 
@@ -419,36 +452,38 @@ If a user genuinely completed two separate valid transactions, do not silently c
 Do not add a stale EU Online Dispute Resolution link. Regulation (EU) 2024/3228 discontinued the European Commission ODR platform and repealed the old ODR Regulation with effect from 20 July 2025.
 
 For German VSBG compliance:
-- determine before launch whether the general §36 VSBG information duty applies to the actual CK-Labs business circumstances, including any applicable small-business exemption;
+- determine for current production whether the general §36 VSBG information duty applies to the actual CK-Labs business circumstances, including any applicable small-business exemption;
 - if §36 applies, clearly state whether CK-Labs is willing or legally obliged to participate in consumer conciliation and identify a competent body where required;
 - do **not** voluntarily promise general participation unless CK-Labs actually intends to make that commitment;
-- independently prepare a §37 VSBG post-dispute response workflow, because after an unresolved consumer-contract dispute the trader may need to identify the competent consumer conciliation body, give its address and website, and state in text form whether participation is voluntary or mandatory; and
+- independently maintain a §37 VSBG post-dispute response workflow, because after an unresolved consumer-contract dispute the trader may need to identify the competent consumer conciliation body, give its address and website, and state in text form whether participation is voluntary or mandatory; and
 - keep this information consistent between the website, Terms, and support responses.
 
 The Terms may remain founder-protective by preserving court rights and not imposing mandatory arbitration, while avoiding an unnecessary voluntary ADR commitment.
 
 ## 20. Future paid randomized items guardrail
 
-TycoonX currently does not need a random-paid-item rule merely because it sells Diamonds or VIP. If a future product lets users pay for a randomized virtual item or loot-box-like outcome, stop release until the applicable platform and consumer-law requirements are reviewed.
+TycoonX currently does not need a random-paid-item rule merely because it sells Diamonds or VIP. If a future product lets users pay for a randomized virtual item or loot-box-like outcome, stop that feature release until the applicable platform and consumer-law requirements are reviewed.
 
 At minimum, Apple currently requires apps offering paid randomized virtual-item mechanisms to disclose the odds of receiving each type of item before purchase. Do not add a paid random-reward mechanic without the required disclosures and a separate fairness/age/consumer-protection review.
 
-## 21. Release gate
+## 21. Production release gate
 
-Do not treat paid TycoonX purchases as legally production-ready until all applicable items pass:
+Do not treat a paid TycoonX release/update or monetization change as legally production-ready until all applicable items pass:
 
 - [ ] Privacy Policy works publicly over HTTPS.
 - [ ] Support route works publicly and provides a real contact method.
 - [ ] Terms of Service works publicly over HTTPS.
 - [ ] Purchases & Refunds Policy works publicly over HTTPS.
-- [ ] German legal notice/Impressum is complete for the real operator.
+- [ ] German legal notice/Impressum at `/tycoonx-impressum` is complete and current for the real operator.
+- [ ] Apple EU DSA trader status is truthfully assessed, verified where required, and correct on the public EU App Store product page.
+- [ ] Apple trader information and the German Impressum identify the same real operator without confusing Apple’s platform role with CK-Labs’ role.
 - [ ] Every rendered legal/checkout/support reference spells **TycoonX** correctly.
 - [ ] Product type/configuration is correct per Apple/Google/Xsolla channel.
 - [ ] Google Lifetime VIP is non-consumable if sold under the intended permanent-benefit model.
 - [ ] Google 30-Day VIP repeat-purchase behavior is verified if users may buy another 30-day period later.
 - [ ] Google pending purchases grant nothing until `PURCHASED`, and PENDING → PURCHASED / cancelled flows are tested across a Lifetime VIP sale-window cutoff.
 - [ ] Google completed purchases are acknowledged/consumed using the correct product flow after valid entitlement delivery.
-- [ ] Google Play Android target-API compliance is verified for the **31 August 2026** deadline, or a valid Google extension to **1 November 2026** is confirmed if needed.
+- [ ] Google Play Android target-API compliance has been verified **after the 31 August 2026 deadline**, or a valid extension to **1 November 2026** is documented if applicable.
 - [ ] Google Play EEA Xsolla/external-offer linkouts are used only under the current applicable program/rules.
 - [ ] Apple pending/approval-style purchases grant nothing until completion and are tested across a Lifetime VIP sale-window cutoff.
 - [ ] Purchased Diamonds do not expire solely because time passes.
@@ -466,9 +501,10 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] Checkout clearly displays total price, product, duration/renewal status, and other required pre-contract information.
 - [ ] German payment-obligation button/order flow is compliant where CK-Labs controls an applicable German consumer checkout.
 - [ ] German §356a electronic withdrawal function responsibility is verified and implemented for every covered web/UI purchase channel.
-- [ ] Diamond early-supply withdrawal consent/acknowledgement/contract confirmation is implemented where legally required.
+- [ ] Purchased-Diamond withdrawal handling follows mandatory law and does not rely on a blanket rule that crediting the balance automatically extinguishes the right.
+- [ ] Any required early-performance consent/acknowledgement/contract confirmation is implemented transaction-specifically for the digital content/service to which it legally applies.
 - [ ] Required/security-update notices record availability, consequences of non-installation, and adequate update instructions where German §327f applies.
-- [ ] Store listings, website, webshop, screenshots, ads, and Lifetime VIP sales copy are checked for materially outdated or overpromising public statements before paid launch.
+- [ ] Store listings, website, webshop, screenshots, ads, and Lifetime VIP sales copy are checked for materially outdated or overpromising public statements before a paid-product/campaign change.
 - [ ] Promotions/countdowns/discount claims are genuine and not misleading.
 - [ ] German/EU reference-price claims are reviewed for the actual legal classification of the digital offer instead of mechanically assuming the goods-specific §11 PAngV rule applies identically.
 - [ ] Apple Lifetime VIP sales-window implementation has been checked against current IAP removal/availability guidance; a short promotional end is not implemented by blindly toggling Remove from Sale.
@@ -481,19 +517,19 @@ Do not treat paid TycoonX purchases as legally production-ready until all applic
 - [ ] Any future paid randomized-item mechanic receives a fresh odds/fairness/age/platform review before release.
 - [ ] App review/release metadata accurately explains the paid product types.
 
-## 22. Current blockers
+## 22. Current production blockers / evidence gaps
 
-The strongest remaining blockers before calling the complete TycoonX legal/payment setup production-ready are:
+The strongest remaining evidence gaps before calling the complete TycoonX commercial/legal/payment implementation fully verified are:
 
-1. **German legal notice / Impressum:** exact legal operator identity and public address are not established in this repository.
+1. **Apple EU trader-status evidence:** the repository now defines the gate, but the real current TycoonX App Store Connect app-specific status and public EU App Store trader display still need production evidence from Apple’s console/storefront.
 2. **Checkout implementation evidence:** the legal documents cannot prove that the real Apple, Google, and Xsolla purchase screens provide every required disclosure and consent.
 3. **German §356a withdrawal function:** responsibility and implementation must be verified on the real web purchase interface for every covered transaction.
-4. **Withdrawal consent implementation for immediate Diamond delivery:** the transaction-specific flow must be verified, not only described in Terms.
+4. **Purchased-Diamond withdrawal implementation:** actual transaction handling must match the canonical mandatory-rights wording; crediting Diamonds cannot be treated as automatic proof that every applicable withdrawal right expired.
 5. **Pending-payment and sale-window lifecycle:** Apple pending/approval flows, Google PENDING → PURCHASED/cancelled, and delayed Xsolla confirmation must be tested so a limited Lifetime VIP offer neither grants unpaid value nor loses a valid later-confirmed transaction.
 6. **Xsolla webhook authority:** production fulfillment must verify signatures, trust authoritative server-side payment/order events, and remain idempotent across retries, duplicates, cancellations, and refunds.
 7. **Entitlement lifecycle testing:** account deletion, reinstall/new-device restoration, cross-platform idempotency, Apple Family Sharing decision/status, Google 30-Day repeat-purchase behavior, and the Apple limited-time Lifetime VIP sales-window implementation must be tested against the final store configuration.
-8. **Google Play 31 August 2026 target-API gate:** the actual TycoonX Android target SDK/API level must be verified in the game/release artifact; this legal repository alone cannot establish compliance.
+8. **Google Play post-31 August 2026 target-API verification:** the actual TycoonX Android target SDK/API level must be verified now in the game/release artifact; if the normal deadline is not met, confirm whether a valid extension to November 1, 2026 actually exists for the app.
 9. **Google/Xsolla route compliance:** any EEA Google Play in-app external-offer/linkout must be verified against the current Google program before it is exposed.
-10. **German consumer-dispute process:** §36 VSBG applicability/statement and §37 post-dispute workflow need final operator-specific verification; do not use the discontinued EU ODR platform.
-11. **Store/privacy/configuration parity:** App Store, Google Play, Xsolla, receipt/invoice responsibility, and storefront settings must be checked against the final public legal copy before launch.
+10. **German consumer-dispute process:** §36 VSBG applicability/statement and §37 post-dispute workflow need current operator-specific verification; do not use the discontinued EU ODR platform.
+11. **Store/privacy/configuration parity:** App Store, Google Play, Xsolla, receipt/invoice responsibility, and storefront settings must be checked against the final public legal copy after material changes.
 12. **Operational §327f evidence:** if CK-Labs wants to rely on the user-not-installed-update protection, the actual update availability/consequence notices and adequate instructions must be implemented and evidenced; Terms wording alone is not enough.
