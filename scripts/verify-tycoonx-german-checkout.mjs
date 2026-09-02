@@ -96,15 +96,15 @@ requireMatch(recurring, /jetzt kündigen/i, 'Recurring-subscription gate lost fi
 
 // Canonical public wording already promises the electronic withdrawal function without overloading the public policy with implementation detail.
 requireMatch(purchases, /## 7\. German electronic withdrawal function/i, 'Canonical Purchases policy lost German electronic withdrawal section.');
-requireMatch(purchases, /clearly labelled, continuously available, prominently accessible withdrawal function/i, 'Canonical Purchases policy lost § 356a availability/placement baseline.');
-requireMatch(purchases, /confirmation process/i, 'Canonical Purchases policy lost withdrawal confirmation-step baseline.');
-requireMatch(purchases, /acknowledged on a durable medium/i, 'Canonical Purchases policy lost durable-medium withdrawal receipt baseline.');
-requireMatch(purchases, /does not remove any other legally valid way/i, 'Canonical Purchases policy lost alternative withdrawal-route safeguard.');
+requireMatch(purchases, /clearly labelled, continuously available, prominently placed, easily accessible withdrawal function/i, 'Canonical Purchases policy lost § 356a availability/placement baseline.');
+requireMatch(purchases, /confirmation step/i, 'Canonical Purchases policy lost withdrawal confirmation-step baseline.');
+requireMatch(purchases, /receipt confirmation on a durable medium/i, 'Canonical Purchases policy lost durable-medium withdrawal receipt baseline.');
+requireMatch(purchases, /supplements rather than removes any other legally valid way/i, 'Canonical Purchases policy lost alternative withdrawal-route safeguard.');
 requireMatch(purchases, /Before a consumer places a paid order, the applicable checkout must present the legally required pre-contract information clearly and at the legally required point in the flow/i, 'Canonical Purchases policy lost pre-contract checkout-information rule.');
-requireMatch(purchases, /ordering step must make the payment obligation clear/i, 'Canonical Purchases policy lost German payment-obligation rule.');
-requireMatch(purchases, /identity of the contracting trader/i, 'Canonical Purchases policy lost contracting-trader identity rule.');
+requireMatch(purchases, /final ordering step must make that payment obligation clear/i, 'Canonical Purchases policy lost German payment-obligation rule.');
+requireMatch(purchases, /identity and contact information of the contracting trader/i, 'Canonical Purchases policy lost contracting-trader identity rule.');
 requireMatch(purchases, /total price including mandatory taxes and charges/i, 'Canonical Purchases policy lost total-price rule.');
-requireMatch(purchases, /official TycoonX web shop/i, 'Canonical Purchases policy lost Xsolla/webshop channel distinction.');
+requireMatch(purchases, /official TycoonX web shop powered by Xsolla/i, 'Canonical Purchases policy lost Xsolla/webshop channel distinction.');
 
 requireMatch(renderedPurchases, /German electronic withdrawal function/i, 'Rendered Purchases page lost German withdrawal-function section.');
 requireMatch(renderedPurchases, /continuously available/i, 'Rendered Purchases page lost withdrawal availability baseline.');
