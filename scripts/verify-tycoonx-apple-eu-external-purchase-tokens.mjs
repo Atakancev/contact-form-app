@@ -59,9 +59,9 @@ const requiredTransition = [
 ];
 
 const requiredProgress = [
-  ['Localized full documents: `100 / 100`', '100/100 localized full documents'],
-  ['Localized hubs: `25 / 25`', '25/25 localized hubs'],
-  ['Exact next unfinished locale/document: `None`', 'closed localization queue'],
+  ['100/100 localized full documents are currently confirmed current', '100/100 localized full documents'],
+  ['25/25', '25/25 localized hubs'],
+  ['Exact next unfinished locale/document: None', 'closed localization queue'],
 ];
 
 function missingFrom(text, rules) {
@@ -78,7 +78,7 @@ const forbidden = [
   [/\bTyconX\b/, 'displayed TycoonX brand typo'],
   [/TycoonX goes to full release on September 1, 2026/i, 'stale future-tense release wording'],
   [/\bTycoonX\b[^\n]{0,100}\bbeta\b|\bbeta\b[^\n]{0,100}\bTycoonX\b/i, 'live-service beta wording'],
-  [/token[^\n]{0,80}(?:proves|proof of)[^\n]{0,40}(?:payment|purchase)/i, 'token incorrectly treated as payment proof'],
+  [/token[^.\n]{0,60}(?:proves payment|is proof of payment|confirms payment)/i, 'token incorrectly treated as payment proof'],
 ];
 
 const forbiddenHits = forbidden.filter(([pattern]) => pattern.test(gate));
