@@ -28,7 +28,7 @@ const gate = await read(GATE, 'Xsolla chargeback release gate');
 const purchases = await read(PURCHASES, 'canonical Purchases & Refunds page');
 const privacy = await read(PRIVACY, 'canonical Privacy Policy page');
 
-requireMatch(gate, /August 30, 2026/, 'Xsolla gate is missing the current review checkpoint.');
+requireMatch(gate, /September 4, 2026/, 'Xsolla gate is missing the current review checkpoint.');
 requireMatch(gate, /applicable refund-policy type is shown/i, 'Xsolla gate no longer preserves transaction-specific refund-policy handling.');
 requireMatch(gate, /group company.*checkout.*receipt|checkout.*receipt.*group company/is, 'Xsolla gate no longer preserves transaction-specific merchant identity.');
 requireMatch(gate, /server-side confirmation/i, 'Xsolla gate no longer requires server-side payment authority.');
@@ -46,6 +46,15 @@ requireMatch(gate, /partial refunds are payment-method and transaction specific/
 requireMatch(gate, /do not fabricate evidence/i, 'Xsolla gate is missing evidence-integrity protection.');
 requireMatch(gate, /unrelated private chats|private messages/i, 'Xsolla gate is missing privacy minimization for dispute evidence.');
 requireMatch(gate, /record what evidence was disclosed/i, 'Xsolla gate is missing an evidence-disclosure audit trail.');
+requireMatch(gate, /evidence requests are \*\*selective\*\*|evidence requests are selective/i, 'Xsolla gate is missing selective evidence-request handling.');
+requireMatch(gate, /3[- ]calendar[- ]day|3 calendar days/i, 'Xsolla gate is missing the strict three-calendar-day evidence deadline.');
+requireMatch(gate, /Action required/i, 'Xsolla gate is missing Publisher Account Action required monitoring.');
+requireMatch(gate, /required \*\*PDF\*\* format|PDF.*format/i, 'Xsolla gate is missing the current PDF evidence format requirement.');
+requireMatch(gate, /cannot be.*replaced|replacement is unavailable/i, 'Xsolla gate is missing the post-submission replacement limitation.');
+requireMatch(gate, /30.?60 days/i, 'Xsolla gate is missing the current typical post-evidence decision window.');
+requireMatch(gate, /missed.*deadline.*not proof|missed evidence deadline.*not proof/is, 'Xsolla gate must not equate a missed evidence deadline with player fraud.');
+requireMatch(gate, /merely because Xsolla requested evidence|evidence request.*not.*entitlement/is, 'Xsolla gate must isolate evidence requests from entitlement enforcement.');
+requireMatch(gate, /compromised account.*does not automatically prove|account-compromise.*does not automatically prove/is, 'Xsolla gate is missing the compromised-account evidence safeguard.');
 requireMatch(gate, /chargeback request alone is not proof of fraud/i, 'Xsolla gate is missing the safeguard against treating every dispute as fraud.');
 requireMatch(gate, /do not confiscate unrelated legitimate purchases/i, 'Xsolla gate is missing narrow entitlement-correction protection.');
 requireMatch(gate, /full payment-card numbers|full payment-card/i, 'Xsolla gate no longer warns support not to collect full card data.');
@@ -63,7 +72,9 @@ requireMatch(privacy, /only what is reasonably necessary/i, 'Canonical Privacy P
 
 for (const [label, text] of [['gate', gate], ['Purchases', purchases], ['Privacy', privacy]]) {
   if (/TyconX/.test(text)) errors.push(`${label} contains displayed brand typo "TyconX".`);
-  if (/\bbeta\b/i.test(text)) errors.push(`${label} contains stale release wording.`);
+  if (/\bTycoonX\s+(?:is|remains|service is|game is)\s+(?:a\s+)?beta\b/i.test(text)) {
+    errors.push(`${label} contains stale player-facing beta wording.`);
+  }
 }
 
 console.log('TycoonX Xsolla refund/chargeback QA');
@@ -73,5 +84,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Xsolla webhook, refund, chargeback, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Xsolla webhook, refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
 }
