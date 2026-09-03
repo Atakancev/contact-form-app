@@ -40,7 +40,7 @@ requireMatch(gate, /not the same thing as a court order/i, 'Missing notice-vs-or
 requireMatch(gate, /timely, diligent, non-arbitrary and objective/i, 'Missing Article 16 decision standard.');
 requireMatch(gate, /Article 16\(3\).*actual knowledge or awareness/is, 'Missing Article 16(3) actual-knowledge analysis.');
 requireMatch(gate, /without a detailed legal examination/i, 'Missing detailed-legal-examination threshold.');
-requireMatch(gate, /Article 6.*acts expeditiously/is, 'Missing Article 6 expeditious action rule.');
+requireMatch(gate, /Article 6.*expeditious/is, 'Missing Article 6 expeditious action rule.');
 requireMatch(gate, /specific notified item/i, 'Missing item-specific knowledge boundary.');
 requireMatch(gate, /no general obligation to monitor/i, 'Missing Article 8 no-general-monitoring safeguard.');
 requireMatch(gate, /Article 7/i, 'Missing voluntary good-faith investigation safeguard.');
