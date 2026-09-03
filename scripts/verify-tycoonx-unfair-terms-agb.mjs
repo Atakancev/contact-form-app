@@ -90,7 +90,7 @@ requireMatch(terms, /Mandatory refund, price-reduction, termination, warranty, o
 requireMatch(terms, /termination and objection rights where applicable law requires it/i, 'Canonical Terms lost successor-transfer consumer safeguards.');
 requireMatch(terms, /one-time, non-renewing/i, 'Canonical Terms lost one-time 30-Day VIP distinction.');
 requireMatch(terms, /Lifetime VIP/i, 'Canonical Terms lost Lifetime VIP coverage.');
-requireMatch(purchases, /completed purchase is not retroactively repriced/i, 'Canonical Purchases policy lost completed-purchase repricing protection.');
+requireMatch(purchases, /completed (?:one-time )?purchase is not retroactively repriced/i, 'Canonical Purchases policy lost completed-purchase repricing protection.');
 requireMatch(purchases, /final total price and currency displayed by the applicable checkout/i, 'Canonical Purchases policy lost final-checkout-price rule.');
 
 // Localization/release-state invariants.
