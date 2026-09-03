@@ -119,7 +119,16 @@ for (const [name, text] of [
   ['canonical Terms', terms],
 ]) {
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
-  if (/TycoonX.{0,40}(?:is|was|remains|currently).{0,20}\bbeta\b/i.test(text)) {
+}
+
+// Player-facing canonical documents must not regress to a TycoonX beta description.
+// Do not flag operational sentences that explicitly say the live game must not be described that way.
+for (const [name, text] of [
+  ['canonical Privacy Policy', privacy],
+  ['canonical Purchases policy', purchases],
+  ['canonical Terms', terms],
+]) {
+  if (/\bTycoonX beta\b|\bTycoonX is (?:still )?(?:in )?beta\b|\bTycoonX remains (?:in )?beta\b/i.test(text)) {
     errors.push(`Stale TycoonX beta-state wording found in ${name}.`);
   }
 }
