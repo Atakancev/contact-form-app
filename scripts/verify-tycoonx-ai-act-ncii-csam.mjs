@@ -103,7 +103,7 @@ for (const [text, context] of [
   requireText(text, 'TycoonX', `${context} branding`);
 }
 
-requireText(terms, 'game integrity, exploits, automation, and cheating', 'canonical Terms integrity safeguard');
+requireText(terms, 'Game integrity, exploits, automation, and cheating', 'canonical Terms integrity safeguard');
 requireText(terms, 'Account compromise and unauthorized activity', 'canonical Terms compromise safeguard');
 requireText(terms, 'Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.', 'mandatory consumer rights');
 requireText(purchases, 'one-time, non-renewing entitlement', '30-Day VIP product distinction');
