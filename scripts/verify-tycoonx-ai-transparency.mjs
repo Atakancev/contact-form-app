@@ -21,21 +21,25 @@ const terms = read('tyconx-terms-of-service.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
 for (const needle of [
-  'Last reviewed: August 31, 2026',
+  'Last reviewed: September 3, 2026',
   '2 August 2026',
   'Article 50(1)',
   'Article 50(2)',
   'Article 50(4)',
+  'Article 50(5)',
   'Article 4',
   'from the start of the first interaction',
   'machine-readable',
   '2 December 2026',
   'first exposure',
+  'clear and distinguishable manner',
   'human-review/editorial-control',
   'Code of Practice on Transparency of AI-generated Content',
   'voluntary',
   'equivalently adequate means',
   'AI literacy',
+  '3 August 2026 onwards',
+  'EUR 15 million or 3% of total worldwide turnover',
   'Diamonds',
   '30-Day VIP',
   'Lifetime VIP',
@@ -51,18 +55,25 @@ for (const needle of [
   'there is a genuine two-way exchange',
   'directly with the natural person',
   'recipient is a natural person',
+  'no later than the person\'s first interaction or exposure',
+  'One does not automatically substitute for the other.',
   'spelling, grammar, formatting or other superficial review',
   'authority to approve, alter or reject publication',
   'No AI officer, certificate or large formal training programme',
   'An AI error, hallucination, moderation label or fraud score must never itself alter paid value.',
+  'AI-literacy repository, with the repository last updated **10 August 2026**',
+  'Regulation (EU) 2026/1744',
 ]) {
   requireText(gate, needle, 'AI Act implementation detail');
 }
 
+requireRegex(gate, /TycoonX went to full release on \*\*September 1, 2026\*\*/i, 'live-release invariant');
+requireRegex(gate, /Article 50\(5\)[\s\S]{0,1500}accessibility requirements/i, 'Article 50(5) accessibility safeguard');
 requireRegex(gate, /provider[\s\S]{0,140}deployer[\s\S]{0,140}downstream provider/i, 'AI role classification');
 requireRegex(gate, /fictional[\s\S]{0,300}public-interest/i, 'fictional/public-interest distinction');
 requireRegex(gate, /public-interest[\s\S]{0,600}human review/i, 'public-interest human-review safeguard');
 requireRegex(gate, /emotion recognition[\s\S]{0,160}biometric categorisation/i, 'sensitive AI safeguard');
+requireRegex(gate, /statutory maxima, not as an automatic fine/i, 'AI Act penalty proportionality safeguard');
 
 for (const needle of [
   'Third-party AI services are not exempt from these rules.',
@@ -80,6 +91,12 @@ requireText(progress, 'September 1, 2026', 'release status');
 
 if (/\bTyconX\b/.test(gate)) {
   throw new Error('AI transparency gate contains stale displayed brand spelling.');
+}
+if (/TycoonX goes to full release on/i.test(gate)) {
+  throw new Error('AI transparency gate still describes the September 1, 2026 release as future.');
+}
+if (/\bbeta\b/i.test(gate)) {
+  throw new Error('AI transparency gate contains stale beta wording.');
 }
 
 console.log('TycoonX AI transparency verification passed.');
