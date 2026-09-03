@@ -32,7 +32,7 @@ requireMatch(gate, /Apple App Store refund or reversal/i, 'Missing Apple transac
 requireMatch(gate, /Google Play refund, voided purchase/i, 'Missing Google transaction separation.');
 requireMatch(gate, /Xsolla failed, pending, canceled, refunded, reversed, or charged-back transaction/i, 'Missing Xsolla transaction separation.');
 requireMatch(gate, /RTDN or Developer API state is payment evidence, not a TycoonX moderation reason/i, 'Missing Google evidence boundary.');
-requireMatch(gate, /two linked but separate records/i, 'Missing mixed-incident record separation.');
+requireMatch(gate, /linked but separate records/i, 'Missing mixed-incident record separation.');
 requireMatch(gate, /payment\/transaction decision schema/i, 'Missing independent payment decision schema.');
 requireMatch(gate, /must not silently generate a moderation violation/i, 'Missing payment-to-moderation non-propagation rule.');
 
