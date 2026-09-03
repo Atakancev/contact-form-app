@@ -105,7 +105,7 @@ for (const [text, context] of [
 
 requireText(terms, 'Game integrity, exploits, automation, and cheating', 'canonical Terms integrity safeguard');
 requireText(terms, 'Account compromise and unauthorized activity', 'canonical Terms compromise safeguard');
-requireText(terms, 'Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.', 'mandatory consumer rights');
+requireText(terms, 'These Terms do not create an unlimited right to confiscate legitimately purchased value without any remedy where mandatory law requires one.', 'mandatory consumer rights');
 requireText(purchases, 'one-time, non-renewing entitlement', '30-Day VIP product distinction');
 requireText(purchases, 'selected limited promotional sales windows', 'Lifetime VIP promotional distinction');
 
