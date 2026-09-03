@@ -101,6 +101,8 @@ requireText(xsolla, 'chargeback', 'Xsolla chargeback gate dependency');
 requireText(progress, '25/25', 'localization progress');
 requireText(progress, '100/100 localized full documents are currently confirmed current', 'localization progress');
 requirePattern(progress, /Exact next unfinished locale\/document:\s*None\.?/, 'localization progress');
+requireText(progress, 'TycoonX went to full release on **September 1, 2026**.', 'localization tracker live-release status');
+forbidText(progress, 'TycoonX goes to full release on **September 1, 2026**.', 'localization tracker stale release wording');
 
 // Branding and release-state invariants for this new legal prose.
 forbidText(gate, 'TyconX', 'sanctions gate displayed branding');
