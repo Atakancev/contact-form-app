@@ -41,7 +41,7 @@ for (const token of [
   'imminent threat to life',
   'private messaging',
   'educational, journalistic, artistic or research purposes',
-  'Fake authority',
+  'Authority impersonation and phishing',
   'purchased Diamonds',
   'one-time 30-Day VIP',
   'Lifetime VIP',
@@ -60,7 +60,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /first removal order[\s\S]*12 hours[\s\S]*does \*\*not\*\* convert the one-hour execution rule/i,
+  /12 hours before issuing the first removal order[\s\S]*does \*\*not\*\* convert the one-hour execution rule/i,
   'Missing first-order advance-information/no-grace-period safeguard.',
 );
 
@@ -102,7 +102,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /artwork[\s\S]*historical[\s\S]*satire[\s\S]*not automatically/i,
+  /Do not automatically remove[\s\S]{0,250}artwork[\s\S]{0,250}historical[\s\S]{0,250}satire/i,
   'Missing lawful artistic/historical/satire contextual safeguard.',
 );
 
@@ -126,7 +126,7 @@ requireMatch(
 
 requireMatch(
   gate,
-  /CDN\/cache invalidation[\s\S]*old unsupported client/i,
+  /old unsupported client[\s\S]*CDN\/cache invalidation/i,
   'Missing old-client/cache enforcement safeguard.',
 );
 
