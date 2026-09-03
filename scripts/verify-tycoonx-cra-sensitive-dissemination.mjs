@@ -38,7 +38,7 @@ requirePattern(gate, /CSIRT controls whether and for how long onward disseminati
 requirePattern(gate, /cannot impose it unilaterally/i, 'Missing safeguard against unilateral manufacturer secrecy.');
 requirePattern(gate, /period strictly necessary/i, 'Missing strictly-necessary duration rule.');
 
-requirePattern(gate, /cybersecurity risks of dissemination outweighs? the security benefit/i, 'Missing cybersecurity risk-versus-benefit assessment.');
+requirePattern(gate, /security risks? of dissemination outweighs? the security benefits?/i, 'Missing cybersecurity risk-versus-benefit assessment.');
 requireText(gate, 'Traffic Light Protocol', 'Missing TLP handling-restriction assessment.');
 requireText(gate, 'Permissible Actions Protocol', 'Missing PAP handling-restriction assessment.');
 requirePattern(gate, /effective risk mitigation measure.*expected.*within 72 hours/is, 'Missing 72-hour expected-mitigation condition.');
