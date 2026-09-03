@@ -1,8 +1,10 @@
 # TycoonX Business Transfer & Successor Operator Release Gate
 
 **Status:** P0 legal / entitlement / platform-migration gate  
-**Reviewed:** August 31, 2026  
+**Reviewed:** September 3, 2026  
 **Applies to:** any sale, asset transfer, statutory merger, reorganization, financing transaction, operator change, developer-account transfer, or successor arrangement affecting TycoonX.
+
+TycoonX went to full release on **September 1, 2026**. Treat this as a live-service continuity gate, not a launch checklist.
 
 ## Purpose
 
@@ -82,6 +84,18 @@ Before closing:
 
 A successor may change future TycoonX features or eventually discontinue the Service only within the existing digital-product, modification, shutdown, notice, and mandatory-remedy rules.
 
+### Promotion and catalog freeze around closing
+
+A sale must not create a fake or technically impossible promotion.
+
+Before an Apple, Google Play, Xsolla, merchant, or backend cutover begins, record whether any Lifetime VIP sales window, Diamond promotion, coupon, regional-price change, currency change, or other time-limited offer overlaps the transfer period.
+
+- Do not advertise a promotion whose start, end, price, catalog visibility, or entitlement fulfillment depends on platform settings that will be locked or inaccessible during the transfer.
+- Preserve the advertised end time and eligibility rules for a genuine offer already in progress unless a lawful change is made with any required consumer notice or remedy.
+- A delayed provider handoff must not silently extend a countdown or create a false scarcity claim.
+- A completed purchase keeps the final transaction price that governed that completed transaction, subject to the existing obvious-error and mandatory-law rules. A successor must not retroactively reprice it because the company changed hands.
+- If the transfer makes a promised sale impossible to operate accurately, stop new promotional claims before they become misleading and preserve rights for transactions already completed.
+
 ## 4. GDPR controller-change and data-transfer gate
 
 A sale or reorganization involving player data is itself a data-processing event. Corporate necessity does not remove GDPR requirements.
@@ -144,19 +158,36 @@ Apple's current App Store Connect guidance expressly supports transferring an ap
 
 That continuity does not mean every integration migrates automatically.
 
-As of August 31, 2026, Apple's transfer guidance requires CK-Labs and the successor to review, where applicable:
+### Current transfer timing and control freeze
+
+As checked on September 3, 2026:
+
+- the recipient must accept an initiated Apple app transfer within **60 days**;
+- Apple says completion can take up to **two business days** after acceptance while the app is in `Processing App Transfer`;
+- while the transfer is pending/processing, important editing rights are restricted, including metadata, pricing, availability, and In-App Purchases, and open App Review communications are closed; and
+- after transfer, the recipient must create new provisioning profiles associated with the transferred App ID and its own distribution certificate.
+
+Operational consequence for TycoonX: do not schedule an Apple-side Lifetime VIP sales-window start/end, Diamond price change, country-availability change, or urgent IAP metadata correction that depends on App Store Connect editing during the transfer freeze. Finish the change before initiating transfer, defer it until the recipient has control, or pause the affected commercial campaign accurately.
+
+### Apple transfer dependencies to verify
+
+Before initiating transfer, review where applicable:
 
 - app-transfer eligibility and both parties' current Apple agreements;
 - In-App Purchase product status and product-ID conflicts in the recipient account;
-- new/updated support, marketing, privacy-policy, App Review, and App Store contact information when the recipient accepts the transfer;
-- existing App Privacy answers;
-- **Sign in with Apple** transfer identifiers for users;
+- the successor's support URL, marketing URL where applicable, privacy-policy URL, App Review contact information, and App Store contact information required during acceptance;
+- existing App Privacy answers, including the recipient's decision to retain or replace them and the obligation to provide current answers before a later version when required;
+- **Sign in with Apple** transfer identifiers for users and any Service ID relationships;
 - keychain-sharing changes, including the risk that users may need to sign in again after a transferred app is updated;
 - APNs certificates/keys and push-server configuration;
 - webhooks that may otherwise continue pointing to the transferor's server;
 - Game Center and other capabilities used by the shipped TycoonX build;
-- sales/payment history that the transferor should preserve before access changes; and
-- alternative-distribution or EU alternative-terms requirements if the affected TycoonX distribution uses them.
+- any **Accessibility Nutrition Labels** and accessibility URL that transfer with the app, followed by successor review of whether the URL and claims still describe the live product accurately;
+- any configured OS data-transfer metadata, including Android package/signing-fingerprint information, so stale cross-platform identifiers are not inherited accidentally;
+- alternative-distribution or EU alternative-terms requirements if the affected TycoonX distribution uses them; and
+- sales/payment history split across the old and new developer accounts.
+
+Apple currently states that the transferor retains access to sales/payment information from before transfer, while the recipient receives information for transactions after transfer. Preserve a dated reconciliation boundary so CK-Labs and the successor can investigate refunds, chargebacks, restores, and accounting questions spanning the cutover without guessing which account owns the evidence.
 
 Do not start an Apple transfer until purchased Diamonds, 30-Day VIP and Lifetime VIP restoration/reconciliation behavior has been tested against the planned recipient account and backend ownership model.
 
@@ -166,11 +197,14 @@ Google Play currently provides a Play Console process for transferring apps to a
 
 Before a transfer:
 
+- use Google's official app-transfer process rather than sharing or selling a developer-account login as a substitute for a transfer;
 - export and preserve the reports and transaction evidence CK-Labs will need after its access changes;
 - document the app package, signing configuration, linked Google Cloud/Play Developer API access, Pub/Sub/RTDN configuration, service accounts, webhooks, purchase-token reconciliation, and refund/voided-purchase workflows;
 - verify that the successor can validate existing purchase tokens and process future provider state changes before cutover;
 - test a valid prior Diamond purchase, active 30-Day VIP, and any supported restorable non-consumable/Lifetime VIP path after the transfer; and
 - do not assume that transferring the Play listing automatically transfers every external cloud resource, legal agreement, support mailbox, or CK-Labs database credential.
+
+Do not rely on old community posts, screenshots, or remembered Play Console menus for a real transaction. Re-open Google's current official `Transfer apps to a different developer account` documentation at the time of transfer and preserve the requirements actually shown then.
 
 If the then-current Google process differs from this gate, the current Google process controls the platform implementation. Mandatory consumer and data-protection rights remain separate.
 
@@ -180,9 +214,15 @@ Xsolla's current integration is organized around a Publisher Account/company, `m
 
 A sale of TycoonX does not by itself prove that the existing Xsolla agreement, legal entity, merchant relationship, project, tax/KYC status, payout setup, or API credentials can simply be handed to the successor.
 
+### Current Xsolla advance-notice checkpoint
+
+Xsolla's Publisher Account Terms of Use dated June 30, 2026 currently require the publisher to inform Xsolla at least **10 business days in advance** of planned changes to the Publisher Account or associated projects. The examples include pricing, currency changes, additions/removals of items, pre-order end dates, and game release dates.
+
+For a TycoonX sale, legal-entity change, merchant migration, project migration, or successor payout change, treat that 10-business-day rule as a minimum operational checkpoint and ask Xsolla what additional notice, amendment, KYC, tax, licensing, or migration steps apply to the actual transaction. Do not assume that a corporate closing date overrides the provider's account-change process.
+
 Before closing:
 
-- ask Xsolla through the applicable account/support process what is required for the specific legal-entity/operator change;
+- notify/consult Xsolla early enough for the actual planned Publisher Account/project changes and preserve the response;
 - record whether the existing project can remain, must be amended, or must be migrated;
 - complete any required successor KYC/tax/licensing steps before routing real payments to the successor;
 - preserve transaction, refund, chargeback, payout, and entitlement reconciliation evidence from the old setup;
@@ -220,6 +260,8 @@ Where notice is required or commercially appropriate, the communication should s
 
 Do not create unnecessary alarm by saying a corporate transaction automatically cancels accounts or purchases when it does not. Equally, do not hide a real controller or contracting-party change behind a generic "we updated our Terms" notice.
 
+If a material canonical Terms, Privacy, Purchases & Refunds, or Community Standards meaning changes because of the transaction, update English first and then reopen only the affected localized documents in the required locale order. An internal platform-account handoff that does not change player-facing legal meaning does not by itself justify rewriting 100 completed localizations.
+
 ## 11. Service shutdown instead of transfer
 
 If a proposed transaction fails and TycoonX will instead be permanently discontinued, use the separate digital-product change/shutdown gate and canonical shutdown rules.
@@ -237,12 +279,13 @@ Do not complete operational cutover until the responsible owner can answer **yes
 - [ ] Valid Lifetime VIP continues if the successor continues TycoonX, subject to the applicable contract and mandatory law.
 - [ ] Pending refunds, reversals, chargebacks, disputes, and provider notifications have an owner after cutover.
 - [ ] No migration step duplicates a Diamond grant or VIP entitlement.
+- [ ] Any overlapping Lifetime VIP/Diamond promotion has a documented platform-editability and cutover plan.
 - [ ] New controller/operator identity and contact information are correct in the Privacy Policy, Terms/legal notice, support surfaces, and applicable store metadata by the legally required time.
 - [ ] GDPR Articles 13/14 transparency and any international-transfer consequences have been reviewed.
 - [ ] Open privacy and account-deletion requests remain tracked across the cutover.
-- [ ] Apple transfer-specific Sign in with Apple, keychain, push, webhook, App Privacy, IAP, and reporting dependencies have been reviewed where applicable.
-- [ ] Google Play transfer, signing/API/RTDN/order/refund dependencies have been reviewed against the current Play process.
-- [ ] Xsolla has confirmed the required treatment of the actual company/legal-entity/project change before real payments are moved.
+- [ ] Apple transfer-specific 60-day acceptance, processing freeze, Sign in with Apple, keychain, push, webhook, App Privacy, accessibility, IAP, and sales/reporting dependencies have been reviewed where applicable.
+- [ ] Google Play transfer, signing/API/RTDN/order/refund dependencies have been reviewed against the current official Play process.
+- [ ] Xsolla has been contacted early enough for the current 10-business-day Publisher Account/project-change checkpoint and has confirmed the required treatment of the actual company/legal-entity/project change before real payments are moved.
 - [ ] Old administrator/API access is rotated or removed on a controlled schedule.
 - [ ] Historical purchase/refund/accounting evidence needed for claims remains available to the entity that must service those claims.
 - [ ] Any required player notice, consent, objection, or termination route is ready before the effective date.
@@ -255,6 +298,8 @@ Keep a dated transition record containing only what is reasonably necessary, inc
 - old and new operator/controller identity;
 - contract/entitlement migration decision;
 - Apple/Google/Xsolla transfer confirmations and configuration snapshots relevant to TycoonX;
+- Apple transfer initiation, recipient acceptance, processing-completion timestamps, and before/after sales-reporting boundary where applicable;
+- Xsolla advance-notice/support correspondence and any successor KYC/tax/licensing evidence needed for the payment relationship;
 - before/after entitlement reconciliation totals and sampled account-level evidence;
 - credential/access-rotation record without storing secrets in the compliance file;
 - copies of player notices and the Terms/Privacy versions in force at transition;
@@ -266,15 +311,15 @@ Retention of this evidence remains subject to the Privacy Policy, data minimizat
 
 ## 14. Current legal/platform reference checkpoint
 
-Reviewed August 31, 2026 against:
+Reviewed September 3, 2026 against:
 
 - German **BGB § 398** (assignment of claims);
 - German **BGB § 415** (approval rule for the debt-assumption situation it governs);
 - German **UmwG § 20(1) no. 1** (transfer of assets including liabilities by universal succession for an in-scope registered merger);
 - GDPR Articles **13 and 14** on controller identity, purposes/legal basis, recipients and transparency, together with the other applicable GDPR principles and rights;
-- Apple's current App Store Connect **Overview of app transfer**, **App transfer criteria**, **Initiate an app transfer**, and **Accept an app transfer** documentation; and
-- Google's current Play Console help category for **Transfer apps to a different developer account**, with transaction-time verification required because transfer mechanics can change;
-- Xsolla's current Publisher Account documentation describing company/merchant ID, project ID, API keys, legal settings, transaction reporting and the licensing step required for real payments.
+- Apple's current App Store Connect **Overview of app transfer**, **App transfer criteria**, **Initiate an app transfer**, and **Accept an app transfer** documentation, including the current 60-day acceptance window, processing/edit freeze, App Privacy, accessibility, webhook, Sign in with Apple, keychain and sales/reporting consequences;
+- Google's current Play Console help category for **Transfer apps to a different developer account**, with transaction-time verification required because transfer mechanics can change; and
+- Xsolla's **Publisher Account Terms of Use** dated June 30, 2026, including the current 10-business-day advance-notice rule for planned Publisher Account/project changes, plus current Publisher Account/project/API documentation.
 
 Official reference links:
 
@@ -284,8 +329,10 @@ Official reference links:
 - https://eur-lex.europa.eu/eli/reg/2016/679/oj
 - https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer
 - https://developer.apple.com/help/app-store-connect/transfer-an-app/app-transfer-criteria
+- https://developer.apple.com/help/app-store-connect/transfer-an-app/initiate-an-app-transfer
 - https://developer.apple.com/help/app-store-connect/transfer-an-app/accept-an-app-transfer
 - https://support.google.com/googleplay/android-developer/answer/6230247
+- https://xsolla.com/terms-of-use
 - https://developers.xsolla.com/sdk/publisher-account/
 - https://developers.xsolla.com/api/getting-started/
 
@@ -293,4 +340,4 @@ Official reference links:
 
 This gate preserves CK-Labs' ability to sell, merge, reorganize, finance, or transfer TycoonX without promising that CK-Labs must operate the game forever. It also prevents the opposite mistake: assuming a company transaction automatically extinguishes purchased value, silently transfers contracts that legally require another mechanism, converts a Privacy disclosure into consent, or eliminates mandatory consumer remedies.
 
-The safest transition is one in which the legal structure, controller identity, provider accounts, entitlement ledger, refund/chargeback evidence, and player communication all describe the same real-world operator on the same effective date.
+The safest transition is one in which the legal structure, controller identity, provider accounts, entitlement ledger, refund/chargeback evidence, promotion calendar, platform-editability window, and player communication all describe the same real-world operator on the same effective date.
