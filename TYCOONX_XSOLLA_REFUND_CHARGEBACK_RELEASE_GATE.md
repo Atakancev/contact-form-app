@@ -1,6 +1,6 @@
 # TycoonX Xsolla Refund & Chargeback Release Gate
 
-Last reviewed: August 30, 2026
+Last reviewed: September 4, 2026
 
 This is an operational release gate for purchases made through the official CK-Labs TycoonX webshop using Xsolla. It complements the public TycoonX Terms of Service, Purchases & Refunds Policy, and Privacy Policy. It does not replace the transaction-specific Xsolla checkout terms, mandatory consumer law, or Xsolla's current Partner/Publisher terms.
 
@@ -9,6 +9,8 @@ This is an operational release gate for purchases made through the official CK-L
 Xsolla's current Refund Policy says the refund-policy type that applies to a purchase is shown in the checkout. The Xsolla group company that is party to the transaction can also depend on the chosen payment method and is identified in checkout and on the receipt. TycoonX must therefore not hard-code one universal Xsolla merchant entity or one universal refund rule into support, checkout copy, or entitlement logic.
 
 Xsolla's current chargeback documentation also says that Xsolla can resolve most chargebacks from its own payment and fraud information, but may contact a game developer when additional information about player behavior is needed. That makes evidence handling, privacy minimization, and entitlement reconciliation release-critical.
+
+Xsolla's current evidence-submission documentation adds an important operational constraint: partner evidence requests are selective, must currently be answered within **3 calendar days from the request date**, accept a **PDF** through the Publisher Account chargeback registry, and cannot be replaced through that registry after submission. A missed evidence deadline is therefore a commercial/process risk for CK-Labs, not proof of player fraud and not an entitlement event by itself.
 
 Xsolla's current webhook documentation also distinguishes between **combined** and **separate** Store/Payments webhook models. Newer Publisher Accounts registered after January 22, 2025 receive payment, transaction and item information through combined `order_paid` / `order_canceled` webhooks, while accounts registered on or before January 22, 2025 can receive separate `payment` / `refund` plus `order_paid` / `order_canceled` webhooks unless migrated. TycoonX must implement the model actually configured for the CK-Labs project rather than assuming one webhook shape from sample code.
 
@@ -92,6 +94,29 @@ When Xsolla asks CK-Labs for additional information about player behavior for a 
 
 The canonical TycoonX Privacy Policy already permits reasonably necessary sharing with Xsolla and other payment partners for purchase validation, refunds, fraud, and disputes. This gate limits operational disclosure to that purpose rather than expanding it.
 
+### 7A. Xsolla evidence-request lifecycle and strict deadline
+
+Xsolla's current chargeback evidence documentation says partner evidence requests are **selective**, rather than required for every chargeback. Xsolla may already have enough payment/fraud evidence itself, while partner evidence is more likely to be requested for matters such as non-delivery, order cancellation, or a payment-system request for additional proof.
+
+Operationally:
+
+- keep the email address configured in Xsolla Publisher Account current and monitored;
+- also check **Analytics > Overview > Anti-fraud > Chargeback registry** for the `Action required` state so a missing/spam-filtered email does not hide a request;
+- treat the current **3-calendar-day period from the evidence-request date** as a strict operational deadline;
+- verify the Xsolla transaction ID before preparing or uploading anything;
+- use the currently required **PDF** format and make the file transaction-specific;
+- before upload, review the final PDF for unrelated chats, unrelated users, payment secrets, hidden metadata, or data that is not needed for the dispute;
+- record the request date, deadline, transaction/dispute ID, evidence categories, upload timestamp, and the operator who approved the submission;
+- after upload, record that the chargeback registry moved to the provider's evidence-received / `In progress` state rather than treating upload as proof that CK-Labs won the dispute;
+- do not represent the dispute as finally resolved until the authoritative provider/payment-system outcome exists. Xsolla currently says a decision typically takes **30–60 days** after evidence is submitted;
+- once a file has been submitted, do not assume it can be silently replaced in the registry. Xsolla currently says replacement is unavailable there; corrected or additional data requires contacting its chargeback management team;
+- if the three-day deadline is missed, record the operational failure and allow Xsolla to proceed with the evidence it already has. A missed deadline is not proof that the player was right, wrong, fraudulent, or abusive; and
+- never remove Diamonds, cancel 30-Day VIP, revoke Lifetime VIP, suspend an account, create a negative balance, or mark a payment fraudulent **merely because Xsolla requested evidence, because the evidence request is still pending, or because CK-Labs missed the evidence deadline**. Any entitlement/enforcement action needs its own authoritative payment state, valid contract/legal basis, or independently supported fraud/exploit finding.
+
+For an account-compromise dispute, login/device/session evidence can be relevant, but it must be interpreted carefully. Activity from a compromised account does not automatically prove that the legitimate account owner personally authorized the disputed purchase or intentionally committed fraud.
+
+Because the evidence window is currently only three calendar days, a production webshop should not rely on an occasional manual inbox check. CK-Labs should maintain a lightweight routine that can notice `Action required` disputes promptly without introducing unnecessary player surveillance or a paid monitoring service.
+
 ### 8. Refund, reversal, and chargeback reconciliation
 
 - A refund or chargeback must reconcile against the exact purchased entitlement or virtual value connected to that transaction.
@@ -138,7 +163,7 @@ Xsolla's chargeback documentation notes that disputes may arise from game-condit
 
 ## Current Xsolla checkpoint
 
-As of August 30, 2026:
+As of September 4, 2026:
 
 - Xsolla's legal index lists its Refund Policy as updated June 16, 2026 and its Privacy Policy as updated June 3, 2026.
 - Xsolla states that the applicable Refund Policy type is identified in checkout.
@@ -146,8 +171,9 @@ As of August 30, 2026:
 - Xsolla's current Store/Payments webhook documentation distinguishes combined and separate webhook modes based on Publisher Account setup, with January 22, 2025 as the documented default split and migration possible through Xsolla.
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
 - Xsolla currently requires signature verification against the raw request body and documents HTTPS, valid certificates and IP allowlisting as webhook-security practices.
-- Xsolla's refund documentation, last updated August 24, 2026, says refunds can take approximately 5–10 banking days depending on payment method, an issued refund cannot be canceled, and partial-refund eligibility depends on payment method and transaction conditions.
-- Xsolla's chargeback documentation, last updated August 5, 2026, says Xsolla resolves most chargebacks from its own data and contacts developers when additional player-behavior information is needed.
+- Xsolla's refund documentation says refunds can take approximately 5–10 banking days depending on payment method, an issued refund cannot be canceled, and partial-refund eligibility depends on payment method and transaction conditions.
+- Xsolla's chargeback evidence documentation, last updated August 5, 2026, says evidence requests are selective; a requested file must currently be uploaded as PDF through Publisher Account within **3 calendar days from the request date**; late evidence cannot be submitted through the registry; a submitted file cannot be replaced there; and a payment-system decision typically takes **30–60 days** after evidence submission.
+- Xsolla currently identifies potentially useful evidence such as proof of digital delivery, relevant user activity/login logs, purchase confirmation/details, screenshots of item use, applicable refund-policy excerpts, or correspondence about the disputed transaction, while expressly instructing partners to include only data necessary for the chargeback.
 - Xsolla's Publisher Account documentation currently describes a dispute/chargeback fee that can be charged when a chargeback reaches a final status. Treat that as a commercial-cost input, not as permission to impose an undisclosed fee on players.
 
 Recheck these points before materially changing webshop refund or dispute handling. Provider documentation can change without a TycoonX app update.
