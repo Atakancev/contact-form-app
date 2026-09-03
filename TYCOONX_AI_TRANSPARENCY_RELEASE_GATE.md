@@ -1,10 +1,10 @@
 # TycoonX AI Transparency Release Gate
 
-Last reviewed: August 31, 2026
+Last reviewed: September 3, 2026
 
 Purpose: prevent TycoonX from shipping user-facing AI, AI-assisted support or moderation, generative-content features, or internal AI workflows that conflict with the EU AI Act, data-protection law, Apple App Review rules, Google Play rules, or the existing TycoonX legal framework.
 
-This is a release and implementation gate. It does not state that every listed AI feature currently exists in TycoonX. Article 50 of the EU AI Act has applied since **2 August 2026**. Article 4 AI-literacy duties already apply and were amended in July 2026. TycoonX goes to full release on **September 1, 2026**.
+This is a release and implementation gate. It does not state that every listed AI feature currently exists in TycoonX. Article 50 of the EU AI Act has applied since **2 August 2026**. Article 4 AI-literacy duties already apply and were amended in July 2026. TycoonX went to full release on **September 1, 2026**.
 
 ## P0 release decisions
 
@@ -35,6 +35,19 @@ Where Article 50(1) applies, or where an equivalent disclosure is otherwise appr
 - [ ] treat the exception for interactions whose AI nature is genuinely obvious as a narrow, evidence-based exception rather than a default assumption.
 
 A background AI tool that only summarizes a ticket for a human operator is not automatically a direct AI interaction. If the human genuinely reviews and sends the response, classify the background tool separately. Conversely, putting a human-looking name or avatar in front of an autonomous AI response does not turn the AI interaction into human support.
+
+## Article 50(5): disclosure timing, clarity and accessibility
+
+Article 50(5) is a horizontal safeguard for the human-facing information required by Article 50. Where Article 50 requires CK-Labs to inform a natural person about an AI interaction, permitted emotion-recognition/biometric-categorisation exposure, a deepfake, or covered AI-generated/manipulated public-interest text:
+
+- [ ] provide the required information in a **clear and distinguishable manner** no later than the person's first interaction or exposure, as applicable;
+- [ ] meet applicable accessibility requirements rather than assuming that visual text alone is sufficient for every user;
+- [ ] do not hide a required disclosure only in Terms, Privacy, a help article, settings screen, hover state, collapsed menu, or post-interaction notice;
+- [ ] ensure the disclosure remains understandable in the language and interface actually shown to the user;
+- [ ] preserve screenshots or equivalent evidence of the disclosure in the production context; and
+- [ ] keep Article 50(5) human-facing disclosure separate from Article 50(2) machine-readable marking. One does not automatically substitute for the other.
+
+A small `AI` icon can support disclosure, but do not assume an icon by itself is sufficient where the user would not reasonably understand what it means. The Commission has published EU icons for some AI-generated-content labelling use cases, but using an icon does not remove the duty to satisfy the legal clarity, timing and accessibility requirements that apply to the actual feature.
 
 ## Article 50(2): machine-readable marking of synthetic content
 
@@ -86,6 +99,8 @@ Do not introduce emotion recognition, biometric categorisation, face inference, 
 
 **Article 4** applies to providers and deployers of AI systems. Following the July 2026 amendment, CK-Labs must take measures to support development of AI literacy for staff and other persons operating or using AI systems on its behalf, taking into account their knowledge, experience, training, the use context, and people affected. The amended rule does **not** require CK-Labs to guarantee a specific level of AI literacy for every individual.
 
+The Commission's current AI-literacy Q&A states that Article 4 has applied since **2 February 2025** and that the relevant supervision and enforcement rules apply from **3 August 2026 onwards**. Do not treat AI literacy as a future-only obligation merely because TycoonX is a small or solo operation.
+
 For a small or solo operation, compliance should be proportionate rather than bureaucratic:
 
 - [ ] maintain a short dated inventory of AI tools actually used for TycoonX;
@@ -95,6 +110,15 @@ For a small or solo operation, compliance should be proportionate rather than bu
 - [ ] revisit the guidance when a materially different AI system or higher-risk use is introduced.
 
 No AI officer, certificate or large formal training programme should be invented as a legal requirement where the law does not require one. A generic one-time "AI training completed" checkbox is also not a substitute for risk-appropriate measures.
+
+## Article 50 enforcement checkpoint
+
+Article 50 is already in force for covered systems. The Commission's current Article 50 Q&A states that enforcement will mainly sit with national competent market-surveillance authorities, with more limited AI Office competence for specified systems under its supervision. The Commission also states that applicable AI Act fines for Article 50 non-compliance can reach **EUR 15 million or 3% of total worldwide turnover for the preceding financial year**, with proportionality taken into account for SMEs and small mid-cap companies.
+
+- [ ] Treat those figures as statutory maxima, not as an automatic fine for every mistake.
+- [ ] Preserve proportionality evidence appropriate to CK-Labs' size, role, risk and remediation where an issue is identified.
+- [ ] Fix a detected missing disclosure or provenance control promptly and preserve the correction rather than attempting to conceal the historic configuration.
+- [ ] Do not use a possible penalty as a reason to overstate CK-Labs' AI Act role or claim a feature is prohibited when it is merely subject to a transparency obligation.
 
 ## Code of Practice on Transparency of AI-generated Content
 
@@ -157,7 +181,7 @@ For every material production AI feature, preserve enough evidence to answer all
 - AI provider/system/model and material version where reasonably available;
 - purpose and affected player groups;
 - input/output data categories and whether personal data is involved;
-- Article 50(1), 50(2) and 50(4) applicability decisions;
+- Article 50(1), 50(2), 50(4) and 50(5) applicability decisions;
 - user-facing disclosure or label text, locale and screenshot where applicable;
 - machine-readable marking/provenance method where applicable;
 - any exception or transition period relied on and its factual basis;
@@ -182,13 +206,13 @@ For every material production AI feature, preserve enough evidence to answer all
 
 ## Current official reference checkpoint
 
-Rechecked on August 31, 2026 against current European Commission and EUR-Lex material, including:
+Rechecked on September 3, 2026 against current European Commission and EUR-Lex material, including:
 
-- European Commission, Guidelines on transparency obligations for providers and deployers of certain AI systems, last updated 6 August 2026;
-- European Commission, Article 50 transparency Q&A;
+- European Commission, Guidelines on transparency obligations for providers and deployers of certain AI systems, last updated **6 August 2026**;
+- European Commission, Article 50 transparency Q&A, including the current 2 December 2026 Article 50(2) transition and enforcement checkpoint;
 - European Commission, Code of Practice on Transparency of AI-generated Content, published 10 June 2026 and adequacy opinion of July 2026;
-- European Commission, AI Literacy Questions & Answers and AI-literacy repository; and
-- consolidated Regulation (EU) 2024/1689 as amended in July 2026.
+- European Commission, AI Literacy Questions & Answers and AI-literacy repository, with the repository last updated **10 August 2026**; and
+- consolidated Regulation (EU) 2024/1689 as amended by Regulation (EU) 2026/1744, applicable consolidated text dated **27 July 2026**.
 
 Recheck the current official material before enabling a materially new AI feature because guidance, standards, signatory status and national enforcement arrangements can evolve.
 
