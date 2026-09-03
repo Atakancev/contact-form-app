@@ -55,7 +55,7 @@ requireText(gate, '`payment_reversed_or_refunded`', 'payment-state model');
 requireText(gate, "customer's Apple Account country or region determines the storefront", 'Apple storefront authority');
 requireText(gate, 'users who previously downloaded an app from a country that is later deselected can generally continue receiving updates', 'Apple prior-user continuity');
 requireText(gate, 'most specific current Google rule', 'Google country-rule specificity');
-requireText(gate, 'Users can only access paid apps and games that have already been downloaded', 'Google Russia/Belarus nuance');
+requireText(gate, 'limits affecting paid-app access and updates', 'Google Russia/Belarus nuance');
 requireText(gate, '`0003-0003`', 'Xsolla restricted-country error');
 requireText(gate, "Do not treat Xsolla's IP-derived country as conclusive proof of residence", 'Xsolla IP limitation');
 requireText(gate, 'provider-controlled restriction', 'provider/legal distinction');
