@@ -10,8 +10,16 @@ const checkoutPath = path.join(ROOT, 'TYCOONX_GERMAN_ECOMMERCE_CHECKOUT_RELEASE_
 const termsPath = path.join(ROOT, 'tyconx-terms-of-service.md');
 const purchasesPath = path.join(ROOT, 'tyconx-purchase-refund-policy.md');
 const progressPath = path.join(ROOT, 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
-const duplicateGatePath = path.join(ROOT, 'TYCOONX_ACCESSIBILITY_BFSG_RELEASE_GATE.md');
-const duplicateVerifierPath = path.join(ROOT, 'scripts', 'verify-tycoonx-accessibility-bfsg.mjs');
+
+// Keep one consolidated BFSG source of truth. These names cover both the
+// historical duplicate naming pattern and the tempting German-prefixed naming
+// pattern so a future audit cannot accidentally recreate parallel legal gates.
+const duplicatePaths = [
+  path.join(ROOT, 'TYCOONX_ACCESSIBILITY_BFSG_RELEASE_GATE.md'),
+  path.join(ROOT, 'scripts', 'verify-tycoonx-accessibility-bfsg.mjs'),
+  path.join(ROOT, 'TYCOONX_GERMAN_BFSG_ACCESSIBILITY_RELEASE_GATE.md'),
+  path.join(ROOT, 'scripts', 'verify-tycoonx-german-bfsg-accessibility.mjs'),
+];
 
 const errors = [];
 
@@ -24,7 +32,7 @@ async function requireMissing(filePath, message) {
     await access(filePath);
     errors.push(message);
   } catch {
-    // Expected: stale duplicate has been removed.
+    // Expected: duplicate file does not exist.
   }
 }
 
@@ -159,8 +167,12 @@ for (const [name, text] of [
 
 if (/before full release/i.test(gate)) errors.push('Stale pre-release wording found in the live-service BFSG gate.');
 
-await requireMissing(duplicateGatePath, 'Stale duplicate BFSG gate still exists; keep the consolidated e-commerce gate as the single source of truth.');
-await requireMissing(duplicateVerifierPath, 'Stale duplicate BFSG verifier still exists; keep one consolidated verifier.');
+for (const duplicatePath of duplicatePaths) {
+  await requireMissing(
+    duplicatePath,
+    `Duplicate BFSG gate/verifier exists at ${path.relative(ROOT, duplicatePath)}; keep TYCOONX_BFSG_ECOMMERCE_ACCESSIBILITY_RELEASE_GATE.md and scripts/verify-tycoonx-bfsg-accessibility.mjs as the single source of truth.`,
+  );
+}
 
 console.log('TycoonX German BFSG / European Accessibility Act QA');
 
