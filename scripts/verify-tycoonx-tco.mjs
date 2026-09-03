@@ -33,11 +33,15 @@ for (const token of [
   'force majeure',
   'manifest errors',
   'six-month',
+  'Article 10 complaints: two-week outcome clock',
+  'within two weeks of receipt of the complaint',
+  'Article 11 information to content providers',
   'Article 5: special duties only after a formal exposure decision',
   'two or more final removal orders in the previous 12 months',
   'within **three months**',
   'Article 15 contact point',
-  'Article 8 transparency reporting',
+  'Article 7 provider transparency reporting',
+  'before March 1 of the following year',
   'imminent threat to life',
   'private messaging',
   'educational, journalistic, artistic or research purposes',
@@ -90,8 +94,26 @@ requireMatch(
 
 requireMatch(
   gate,
+  /Article 10[\s\S]*within two weeks of receipt of the complaint[\s\S]*reasons/i,
+  'Missing Article 10 two-week complaint outcome/reason safeguard.',
+);
+
+requireMatch(
+  gate,
+  /Article 11[\s\S]*information about the removal\/disablement[\s\S]*non-disclosure[\s\S]*public-security/i,
+  'Missing Article 11 user-information/non-disclosure safeguard.',
+);
+
+requireMatch(
+  gate,
   /formal exposure decision[\s\S]*two or more final removal orders[\s\S]*three months[\s\S]*annually thereafter/i,
   'Missing Article 5 exposure-decision reporting workflow.',
+);
+
+requireMatch(
+  gate,
+  /Article 7[\s\S]*before March 1 of the following year[\s\S]*complaints and outcomes/i,
+  'Missing Article 7 provider transparency deadline/content safeguard.',
 );
 
 requireMatch(
@@ -185,4 +207,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('PASS: TCO scope, one-hour removal orders, German authority roles, cross-border review, preservation, Article 5 exposure, contact point, transparency, DSA separation, entitlement isolation, localization, brand and live-release safeguards are present.');
+console.log('PASS: TCO scope, one-hour removal orders, German authority roles, cross-border review, Article 6 preservation, Articles 10/11 user safeguards, Article 5 exposure duties, Article 7 provider transparency, DSA separation, entitlement isolation, localization, brand and live-release safeguards are present.');
