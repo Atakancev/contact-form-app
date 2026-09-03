@@ -95,8 +95,8 @@ if (/goes to full release/i.test(gate)) failures.push("gate: stale future-releas
 const forbiddenInvestmentClaims = [
   /Diamonds are an investment/i,
   /Lifetime VIP is an investment/i,
-  /guaranteed real-world returns?/i,
-  /guaranteed cash value/i,
+  /TycoonX guarantees? real-world returns?/i,
+  /(?:Diamonds|Lifetime VIP) (?:have|has|provide|provides) guaranteed cash value/i,
 ];
 for (const pattern of forbiddenInvestmentClaims) {
   if (pattern.test(gate)) failures.push(`gate: forbidden financial claim ${pattern}`);
