@@ -106,7 +106,10 @@ for (const [name, text] of [
   if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
 }
 
-if (/\bbeta\b/i.test(gate)) errors.push('Stale beta wording found in Article 16 notice-and-action gate.');
+// Internal compliance prose may discuss removing stale beta language. Flag only wording that actually presents the live service as beta.
+if (/TycoonX\s+(?:is|remains|currently is)\s+(?:in\s+)?beta\b/i.test(gate) || /TycoonX beta\b/i.test(gate)) {
+  errors.push('Gate incorrectly presents the live TycoonX service as beta.');
+}
 
 console.log('TycoonX DSA Article 16 notice-and-action QA');
 
