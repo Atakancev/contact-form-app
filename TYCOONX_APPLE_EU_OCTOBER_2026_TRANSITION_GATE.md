@@ -1,8 +1,8 @@
 # TycoonX Apple EU October 2026 Transition Gate
 
-Last reviewed: August 30, 2026
+Last reviewed: September 3, 2026
 
-This gate prepares TycoonX for Apple’s updated EU business terms announced on August 18, 2026 and taking effect for an account on **October 1, 2026 or the date the Account Holder agrees to the updated terms, whichever is later**. It is an operational checklist, not public legal copy. It complements the TycoonX Terms, Purchases & Refunds Policy, Apple Custom EULA, Privacy Policy, Payment & Entitlement Release Gates, and Xsolla release gates.
+TycoonX went to full release on **September 1, 2026**. This gate now governs the post-release transition to Apple’s updated EU business terms announced on August 18, 2026 and taking effect for an account on **October 1, 2026 or the date the Account Holder agrees to the updated terms, whichever is later**. It is an operational checklist, not public legal copy. It complements the TycoonX Terms, Purchases & Refunds Policy, Apple Custom EULA, Privacy Policy, Payment & Entitlement Release Gates, and Xsolla release gates.
 
 ## Why this exists
 
@@ -220,13 +220,15 @@ Before enabling the unified-EU alternative-payment path, compare the live implem
 
 Do not promise that Apple handles refunds for an Xsolla alternative-payment transaction. Do not describe Xsolla as the merchant of record for a transaction unless the actual checkout/receipt identifies the relevant Xsolla entity in that role.
 
-## Recommended rollout decision
+## Current rollout decision after full release
 
-For the September 1, 2026 TycoonX full release, do not rush an EU alternative-payment implementation merely because the Xsolla webshop exists. A conservative release path is to keep the currently compliant storefront behavior, finish the October unified-terms acceptance, payment election, entitlement, runtime API, in-app alternative-processing requirement where applicable, VAT-ID setup, reporting, support, child-safety, commission, invoice, tax and App Review work, and only then enable EU alternative payment options when the full flow is verified end to end.
+TycoonX went to full release on **September 1, 2026**. Do not enable an EU alternative-payment implementation merely because the Xsolla webshop exists. Keep the currently compliant storefront behavior while completing the October unified-terms acceptance, payment election, entitlement, runtime API, in-app alternative-processing requirement where applicable, VAT-ID setup, reporting, support, child-safety, commission, invoice, tax and App Review work. Enable the unified-EU alternative-payment path only after the full flow is verified end to end.
+
+Do not describe this live transition as a beta or pre-release phase. A delayed Apple transition also must not be used to extend a Lifetime VIP countdown, create fake scarcity, or alter the price or entitlement of a purchase that was already completed under the applicable transaction terms.
 
 ## Source checkpoint
 
-Apple’s current August 2026 guidance and Attachment 14 transition materials state that:
+Apple’s current guidance was rechecked on **September 3, 2026**. The August 18, 2026 Developer Program License Agreement update and Attachment 14 transition materials currently state that:
 
 - the updated Apple Developer Program License Agreement was published August 18, 2026;
 - the unified EU terms apply starting October 1, 2026 or the date the Account Holder agrees, whichever is later;
