@@ -1,6 +1,6 @@
 # TycoonX EU/German Direct Marketing & Communications Release Gate
 
-Last reviewed: 2026-09-01  
+Last reviewed: 2026-09-04  
 Owner: CK-Labs  
 Scope: TycoonX promotional email, SMS or similar messages, push notifications, in-app inbox messages, banners, webshop campaigns, VIP/Diamond promotions, service notices, security messages, legal notices, purchase/entitlement communications, and provider-mediated communications.
 
@@ -142,20 +142,42 @@ For commercial communications by electronic mail, do not intentionally hide or d
 
 Do not use deceptive subject lines such as `Security alert` or `Payment problem` merely to improve open rates for a sale.
 
-### 10. Push notifications require two separate checks
+### 10. Promotional push requires three separate checks
 
-For promotional push notifications, treat these as separate questions:
+For every promotional push notification, treat these as separate questions:
 
-1. **technical notification permission**: may the operating system display notifications for the app? and
-2. **legal direct-marketing permission**: may CK-Labs use the relevant personal/device data and channel for this promotional purpose?
+1. **technical notification permission**: may the operating system display notifications for the app?;
+2. **legal direct-marketing permission**: may CK-Labs use the relevant personal/device data and electronic channel for this promotional purpose?; and
+3. **platform marketing permission**: does the applicable app-store/platform policy permit this promotional push and has every platform-specific opt-in/opt-out condition been satisfied?
 
-Apple currently requires apps to request user authorization for local and remote notification interactions. Android 13/API 33+ uses the `POST_NOTIFICATIONS` runtime permission for non-exempt app notifications.
+These checks are cumulative. Passing one does not automatically satisfy the others.
 
-Neither technical permission should be treated as blanket legal consent to promotional processing. Conversely, a valid marketing consent does not bypass a device-level denial of notifications.
+#### Apple / iOS
 
-Because the exact legal classification of a particular push implementation can depend on its technical and factual design, the TycoonX release baseline is conservative: do not send promotional push to a German/EU recipient unless the relevant legal basis/permission has been documented for that use. If counsel or a regulator-supported interpretation establishes a lawful exception for a specific implementation, record that assessment before relying on it.
+Apple App Review Guideline **4.5.4**, current as of Apple's June 8, 2026 guideline update, separately restricts promotional and direct-marketing push notifications. For TycoonX on Apple platforms:
 
-Security, purchase, or operational pushes should remain separately classified and limited to their necessary purpose.
+- push notifications must not be required for TycoonX to function;
+- promotional/direct-marketing push must not be sent unless the user has **explicitly opted in** through consent language displayed in the TycoonX app UI;
+- TycoonX must provide an **in-app opt-out** method for those promotional/direct-marketing pushes;
+- merely granting the iOS system notification permission is not by itself the required TycoonX promotional-push opt-in;
+- declining or later disabling promotional push must not remove purchased Diamonds, 30-Day VIP, Lifetime VIP, gameplay access, refunds, support, or other rights; and
+- security, purchase, legal, or genuinely operational notifications must remain separately classified rather than being used to smuggle promotional content around the marketing opt-out.
+
+The app-level promotional-push preference and the OS notification authorization should therefore be modeled as distinct state. If the user opts out of promotional push inside TycoonX, the marketing suppression must take effect even if iOS still technically permits notifications. If the user disables notifications at OS level, TycoonX must not attempt to treat an app-level marketing preference as permission to bypass that device setting.
+
+Do not condition a Diamond bonus, VIP benefit, gameplay feature, account access, or other compensation on enabling promotional push where doing so would conflict with Apple policy or applicable law.
+
+#### Android / Google Play
+
+Android 13/API 33+ uses the `POST_NOTIFICATIONS` runtime permission for non-exempt app notifications. That technical permission is not blanket consent to promotional processing. Promotional use must still satisfy the applicable legal basis, direct-marketing rule, Google Play policy, age/minor restrictions, and any in-app preference or opt-out promise TycoonX makes.
+
+A Google Play purchase or Android notification permission does not automatically create permission for unrelated TycoonX marketing.
+
+#### Shared notification infrastructure
+
+If marketing and service notifications share the same push token, notification provider, topic, or queue, keep the **purpose classification and suppression state separate**. A marketing opt-out must suppress promotional messages without silently disabling transaction, security, legal, or other necessary notifications that remain lawful and technically enabled. Conversely, a service-message route must not become a hidden bypass for marketing.
+
+Because the exact legal classification of a particular push implementation can depend on its technical and factual design, the TycoonX release baseline remains conservative: do not send promotional push to a German/EU recipient unless the relevant legal basis/permission has been documented for that use.
 
 ### 11. In-app commercial messages are not a consent loophole
 
@@ -176,7 +198,7 @@ Do not use an in-app surface to:
 
 Apple controls its platform notification APIs, device-level notification authorization, App Store transaction communications, and communications Apple sends under its own role. CK-Labs remains responsible for the purpose and content of TycoonX marketing that CK-Labs sends or instructs a provider to send.
 
-An Apple transaction, receipt, App Store account, or notification authorization does not automatically authorize CK-Labs promotional email or push.
+An Apple transaction, receipt, App Store account, or notification authorization does not automatically authorize CK-Labs promotional email or push. App Review Guideline 4.5.4's promotional-push opt-in and in-app opt-out requirements remain separate from Apple's transaction communications.
 
 #### Google Play / Android
 
@@ -303,7 +325,8 @@ Do not keep the full gameplay profile, chat history, payment credentials, or unr
 | Mandatory Terms/Privacy notice | Legal/service | Do not bundle an unrelated Diamond/VIP sale |
 | General outage notice | Service | Keep operational; avoid converting it into a promotion |
 | `Lifetime VIP sale ends Sunday` email | Marketing | Require lawful electronic-marketing route; deadline must be genuine |
-| `20% more Diamonds this weekend` push | Marketing | Check both legal marketing permission and OS notification permission |
+| `20% more Diamonds this weekend` push | Marketing | Require legal marketing permission, OS permission, and applicable platform promotional-push permission |
+| iOS promotional push | Marketing | Require explicit in-app promotional-push opt-in plus an in-app opt-out under current Apple App Review Guideline 4.5.4 |
 | In-app Lifetime VIP card | Commercial in-app | Apply truthful-offer, age, DDG/UWG/dark-pattern rules |
 | Receipt plus large VIP ad | Mixed | Remove/separate promo or ensure lawful marketing permission |
 | Xsolla receipt | Provider transaction communication | Do not treat it as CK-Labs marketing consent |
@@ -323,9 +346,12 @@ Before enabling or materially changing direct marketing:
 - [ ] Transactional/security/legal templates contain no disguised material sales payload.
 - [ ] Email sender and commercial character are not intentionally hidden.
 - [ ] Promotion conditions and sender identity are clear where DDG § 6 applies.
-- [ ] Apple notification authorization is not treated as legal marketing consent.
+- [ ] Apple/iOS promotional push has a separate explicit in-app marketing opt-in and an in-app opt-out as required by current App Review Guideline 4.5.4.
+- [ ] Apple's OS notification authorization is not treated as the TycoonX promotional-push opt-in.
+- [ ] Promotional push is not required for TycoonX to function or for access to already purchased content/entitlements.
 - [ ] Android `POST_NOTIFICATIONS` permission is not treated as legal marketing consent.
 - [ ] A legal marketing permission is not used to bypass device notification settings.
+- [ ] Shared push infrastructure preserves separate marketing suppression and service-message routing.
 - [ ] Xsolla merchant communications are not treated as CK-Labs marketing consent.
 - [ ] Lifetime VIP campaign dates match a real selected sales window.
 - [ ] 30-Day VIP is described as one-time and non-renewing.
@@ -350,7 +376,7 @@ If TycoonX discovers that a promotional campaign was sent without the required p
 
 ## Current legal and platform checkpoint
 
-As reviewed on September 1, 2026:
+As reviewed on September 4, 2026:
 
 - **German UWG § 7(2)(2)** treats advertising using electronic mail without the recipient's prior express consent as an unreasonable nuisance, subject to the statutory exception in **§ 7(3)**.
 - **UWG § 7(3)** requires all four existing-customer conditions: address obtained in connection with a sale, own similar products/services, no objection, and clear objection information at collection and every use.
@@ -358,13 +384,13 @@ As reviewed on September 1, 2026:
 - **GDPR Article 7** requires demonstrable consent where consent is relied on and says withdrawal must be as easy as giving consent.
 - **GDPR Article 21(2)-(4)** gives an unconditional objection right for direct marketing, including related profiling; after objection the personal data may no longer be processed for that marketing purpose, and the right must be brought clearly and separately to the person's attention no later than the first communication.
 - **German DDG § 6** requires commercial communications within its scope to be recognizable and identify the person on whose behalf they are made, and prohibits intentionally concealing the sender or commercial nature in electronic-mail header/subject information.
-- **Apple User Notifications** requires the app to request authorization for local/remote notification interactions before scheduling notifications/registering for APNs as described by Apple's current developer documentation.
-- **Android 13/API 33+** uses the `POST_NOTIFICATIONS` runtime permission for non-exempt app notifications, as documented by Android Developers.
+- **Apple App Review Guideline 4.5.4**, in the App Review Guidelines last updated **June 8, 2026**, says push notifications must not be required for app functionality and permits promotional/direct-marketing push only after explicit opt-in through consent language shown in the app UI, with an in-app method to opt out.
+- **Android 13/API 33+** uses the `POST_NOTIFICATIONS` runtime permission for non-exempt app notifications, as documented by Android Developers; that technical permission is not by itself a complete legal or promotional-marketing permission.
 
 ## Founder-protective interpretation
 
 Nothing in this gate prevents CK-Labs from lawfully marketing TycoonX, announcing genuine Lifetime VIP windows, sending truthful Diamond/VIP offers, using a properly documented existing-customer exception where every condition is met, or sending necessary security/purchase/legal/service communications under an appropriate lawful basis.
 
-The protection comes from keeping the classifications clean: **a purchase is not marketing consent, OS notification permission is not marketing consent, a marketing opt-out is not an account cancellation, and a provider's communication permission is not automatically CK-Labs' permission**.
+The protection comes from keeping the classifications clean: **a purchase is not marketing consent, OS notification permission is not marketing consent, an Apple promotional-push opt-in is a distinct app-level choice, a marketing opt-out is not an account cancellation, and a provider's communication permission is not automatically CK-Labs' permission**.
 
 If the legal classification of a new channel or communication format is uncertain, default to the narrower non-marketing use or obtain the necessary permission before scaling the campaign. Do not solve uncertainty by silently treating every TycoonX user as subscribed.
