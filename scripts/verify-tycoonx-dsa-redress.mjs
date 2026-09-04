@@ -7,7 +7,7 @@ import process from 'node:process';
 const root = process.cwd();
 const gate = await readFile(path.join(root, 'TYCOONX_DSA_ARTICLE_20_21_REDRESS_RELEASE_GATE.md'), 'utf8');
 const community = await readFile(path.join(root, 'tycoonx-community-standards.md'), 'utf8');
-const adr = await readFile(path.join(root, 'TYCOONX_GERMAN_ADR_ODR_RELEASE_GATE.md'), 'utf8');
+const adr = await readFile(path.join(root, 'TYCOONX_GERMAN_CONSUMER_ADR_ODR_RETIREMENT_RELEASE_GATE.md'), 'utf8');
 const progress = await readFile(path.join(root, 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md'), 'utf8');
 
 const failures = [];
@@ -148,8 +148,8 @@ requireMatch(
 
 requireText(
   adr,
-  'Regulation (EU) No 524/2013 was repealed with effect from **July 20, 2025**',
-  'German ADR/ODR gate lost the discontinued ODR-platform checkpoint.',
+  'Regulation (EU) 2024/3228 repealed Regulation (EU) No 524/2013 with effect from **July 20, 2025**',
+  'German ADR/ODR retirement gate lost the discontinued ODR-platform checkpoint.',
 );
 
 requireText(
@@ -173,7 +173,7 @@ requireText(
 for (const [label, text] of [
   ['DSA Article 20/21 redress gate', gate],
   ['canonical Community Standards', community],
-  ['German ADR/ODR gate', adr],
+  ['German ADR/ODR retirement gate', adr],
 ]) {
   if (/\bTyconX\b/.test(text)) failures.push(`Displayed legacy brand spelling found in ${label}.`);
 
