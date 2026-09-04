@@ -1,6 +1,6 @@
 # TycoonX German Legal Notice Release Checklist
 
-Last reviewed: September 2, 2026
+Last reviewed: September 4, 2026
 
 This checklist governs the public TycoonX legal notice at `/tycoonx-impressum`. It supplements the Terms, Purchases & Refunds Policy, Privacy Policy, Community Standards, Apple Custom EULA, store/payment release gates, and platform-specific compliance settings.
 
@@ -128,15 +128,85 @@ Do not confuse Apple’s App Store trader-information obligations with CK-Labs�
 
 ## Consumer dispute-resolution gate
 
-German VSBG § 36 contains general website/Terms information duties about participation in consumer conciliation, but § 36(3) exempts a trader from the § 36(1) no. 1 information duty when the trader employed ten or fewer persons on 31 December of the preceding year.
+German VSBG §§ 36 and 37 impose different duties and must be treated as separate state transitions, not as one generic “ADR notice” checkbox.
 
-Do not infer the applicable headcount or participation status from stale data. Recheck the legally relevant facts for the current year and whenever the business structure changes.
+### Current § 36 VSBG annual assessment
 
-If § 36 requires a general statement, add the required clear information to the website and Terms. If CK-Labs becomes obliged or commits to participate before a specific consumer conciliation body, include the body, address, website, and participation statement required by § 36.
+Under current § 36 VSBG, a trader that maintains a website or uses general terms and conditions may have to state clearly and accessibly whether it is willing or obliged to participate in consumer-conciliation proceedings.
 
-Independently, after a consumer-contract dispute cannot be resolved directly, follow § 37 VSBG and provide the consumer in text form with the competent consumer conciliation body and whether CK-Labs is willing or obliged to participate.
+The § 36(3) small-business exemption is narrow:
 
-Do not treat an Apple, Google Play, Xsolla, card-network, chargeback, or platform-support process as automatically satisfying a separate statutory German ADR information duty.
+- it exempts only the § 36(1) no. 1 general participation-status information duty;
+- it applies where the trader employed **ten or fewer persons on 31 December of the preceding year**;
+- the legally relevant measure is headcount, not full-time-equivalent working hours; and
+- it does **not** remove § 36(1) no. 2 if CK-Labs has legally or contractually committed to participate before a particular consumer conciliation body.
+
+For TycoonX, keep a dated annual record of the legally relevant December 31 headcount and the actual ADR participation/commitment status. Recheck after a business sale, merger, incorporation, employment growth, contractual ADR commitment, or sector change. Do not assume today’s solo-developer structure permanently resolves next year’s § 36 position.
+
+If § 36 requires a general statement, put the required information both on the relevant CK-Labs website and with the applicable consumer Terms where current German law requires it. If CK-Labs is obliged or has committed to participate before a particular body, include the body’s current address and website plus the required participation statement.
+
+Do not add a voluntary participation promise merely because a template contains one. A public statement that CK-Labs will participate can itself become legally relevant and should reflect the founder’s actual decision.
+
+### Current § 37 VSBG unresolved-dispute workflow
+
+The § 36(3) headcount exemption does **not** exempt CK-Labs from § 37. Current Bundesamt für Justiz guidance expressly treats §§ 36 and 37 as parallel duties and states that § 37 applies to all businesses where a consumer-contract dispute could not be resolved directly, irrespective of employee count.
+
+When a TycoonX consumer-contract dispute reaches that unresolved state:
+
+1. identify a consumer conciliation body actually competent for the subject matter;
+2. provide the body’s **current postal address and website** to the consumer;
+3. state whether CK-Labs is willing or obliged to participate in proceedings before that body; and
+4. provide that information in **text form** and retain evidence of what was sent and when.
+
+If CK-Labs is not willing to participate and no specialist body applies, the current BfJ guidance says a reference to a competent body is still required; in doubt, the **Universalschlichtungsstelle des Bundes** can be the competent general body. As of this review, the BfJ list identifies:
+
+- Universalschlichtungsstelle des Bundes, Zentrum für Schlichtung e. V.;
+- Straßburger Str. 8, 77694 Kehl, Germany; and
+- `https://www.universalschlichtungsstelle.de`.
+
+Treat those details as operational evidence, not timeless hard-coded truth. Verify the current BfJ list immediately before sending a § 37 notice because competence, name, address, or website can change.
+
+A payment-provider support case, Apple refund request, Google Play refund, Xsolla dispute, card-network chargeback, DSA appeal, GDPR request, or ordinary TycoonX support ticket does not automatically satisfy the separate § 37 information duty.
+
+### Entitlement and enforcement isolation
+
+An ADR request, a § 37 notice, or a consumer’s decision to contact a conciliation body is not by itself evidence of fraud, chargeback abuse, exploit activity, account compromise, or a Terms violation. It must not automatically:
+
+- remove purchased Diamonds;
+- restart, shorten, extend, or duplicate the one-time non-renewing 30-Day VIP entitlement;
+- cancel a valid Lifetime VIP;
+- reopen a closed Lifetime VIP sales window;
+- create a refund or payment reversal without the applicable provider/legal basis; or
+- suspend an account merely because the consumer used a lawful redress channel.
+
+Payment, entitlement, security, moderation, and ADR records should remain independently attributable while still allowing the same transaction to be reconciled where a real remedy is agreed or legally required.
+
+## EU ADR Directive 2025/2647 transition checkpoint
+
+Directive (EU) **2025/2647** entered into force on **January 19, 2026** and amends the EU consumer ADR framework after discontinuation of the former ODR platform. It is in force as an EU directive, but its new trader-facing rules are **not a substitute for current German VSBG duties today**.
+
+Member States must adopt and publish transposition measures by **March 20, 2028** and apply them from **September 20, 2028**. Therefore:
+
+- continue applying the current German VSBG until German transposition law changes it;
+- do not prematurely remove the current § 36/§ 37 workflow merely because the 2025 Directive modernizes Article 13;
+- re-audit TycoonX Terms, Impressum, support macros, dispute workflows, and this checklist when Germany publishes its transposition law; and
+- preserve current consumer rights and court access regardless of any ADR participation decision.
+
+### Future ADR-entity response duty
+
+Under the amended EU framework to be applied after national transposition, when a competent ADR entity decides to consider a consumer complaint and contacts an EU-established trader, the trader generally must say whether it agrees to participate within a period that must not exceed **20 working days**. In complex disputes or exceptional circumstances the ADR entity may extend that period, but not beyond **30 working days**.
+
+The Directive contains exceptions where that reply duty does not apply, including where participation is already mandatory, the ADR entity can reach an outcome without the trader’s consent, or the trader has already contractually committed to use ADR.
+
+Do not implement these future deadlines as a current German statutory deadline before the applicable German transposition rules take effect. Instead, create a calendar/compliance checkpoint for 2028 and design support tooling so an ADR-entity request can later be routed and answered without rebuilding the dispute system.
+
+### Consumer Redress Portal versus discontinued ODR platform
+
+The European Commission now operates the **Consumer Redress Portal**, an interactive tool established under the amended ADR framework. It provides a directory of certified ADR entities, cross-border redress guidance, machine translation, and links to complaint routes where available.
+
+This portal is **not** the former EU ODR platform and its existence does not create a blanket obligation for CK-Labs to participate in every ADR proceeding. Do not reintroduce the discontinued ODR platform link or describe the Consumer Redress Portal as if it were the same service.
+
+If TycoonX chooses to link to the Consumer Redress Portal for consumer-help purposes, describe it accurately as a current information/redress-navigation tool and do not imply that using it automatically creates a refund, entitlement restoration, or binding settlement.
 
 ## EU ODR platform
 
@@ -152,11 +222,13 @@ Keep a small dated evidence packet for each material operator/contact change con
 2. proof that Support and the main legal hub link to the Impressum;
 3. the current operator name/address/email/phone verification checklist;
 4. register/VAT/business-ID determination showing either the disclosed value or why no disclosure is currently applicable;
-5. VSBG § 36 headcount/participation assessment for the legally relevant date;
-6. Apple App Store Connect trader-status screenshot/export and the public EU App Store trader display;
-7. Google Play developer/merchant identity checkpoint where relevant;
-8. representative Xsolla checkout/receipt merchant identity; and
-9. a record of any operator/address/business-transfer change and the surfaces updated because of it.
+5. VSBG § 36 headcount/participation assessment for the legally relevant December 31 date;
+6. the current § 37 unresolved-dispute text-form template plus a dated competent-body verification source;
+7. a 2028 transition reminder for Directive (EU) 2025/2647 and German implementing legislation;
+8. Apple App Store Connect trader-status screenshot/export and the public EU App Store trader display;
+9. Google Play developer/merchant identity checkpoint where relevant;
+10. representative Xsolla checkout/receipt merchant identity; and
+11. a record of any operator/address/business-transfer change and the surfaces updated because of it.
 
 Do not store identity-verification documents or other personal data in this public repository. Keep sensitive evidence in an appropriately protected location.
 
