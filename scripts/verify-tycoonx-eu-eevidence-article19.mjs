@@ -55,7 +55,7 @@ const requiredGate = [
   ['`fallback_recorded_in_system_at`', 'production fallback-record field'],
   ['`manifest_hash_digest`', 'production manifest hash field'],
   ['18. business/provider migration', 'regression-matrix completeness'],
-  ['does not directly alter Diamonds or VIP entitlements', 'P0 entitlement isolation blocker'],
+  ['an Article 19 event can directly alter Diamonds or VIP entitlements', 'P0 entitlement isolation blocker'],
   ['not the canonical player-facing meaning', 'canonical/localization non-reopening boundary'],
   ['TycoonX is a fully released service', 'full-release status'],
 ];
