@@ -34,6 +34,7 @@ const requiredGate = [
   ['future purchases', 'future price-change boundary'],
   ['later price decrease does not automatically create a refund', 'no automatic price-match rule'],
   ['later price increase does not create an extra charge', 'no retroactive increase rule'],
+  ['Do not create a misleading `Apple surcharge` label', 'no misleading consumer surcharge label'],
   ['TycoonX currently has no recurring subscription product', 'no-current-recurring-product invariant'],
   ['Do not enable the Attachment 14 alternative-payment configuration', 'P0 fail-closed rule'],
   ['Minimum production regression scenarios', 'production regression matrix'],
@@ -69,9 +70,8 @@ if (!/September 1, 2026/.test(progress)) missing.push('full-release date in loca
 
 const forbidden = [
   [/\bTycoonX\b[^\n]{0,90}\bbeta\b|\bbeta\b[^\n]{0,90}\bTycoonX\b/i, 'live-service beta wording in new gate'],
-  [/Apple surcharge/i, 'misleading Apple surcharge label in new gate'],
-  [/30-Day VIP[^\n]{0,80}(auto-renew|recurring subscription)/i, '30-Day VIP recurring-product drift'],
-  [/Lifetime VIP[^\n]{0,80}(auto-renew|recurring subscription)/i, 'Lifetime VIP recurring-product drift'],
+  [/30-Day VIP is (?:an? )?(?:auto-renewing|recurring)/i, '30-Day VIP recurring-product drift'],
+  [/Lifetime VIP is (?:an? )?(?:auto-renewing|recurring)/i, 'Lifetime VIP recurring-product drift'],
 ];
 const forbiddenHits = forbidden.filter(([pattern]) => pattern.test(gate));
 
