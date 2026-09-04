@@ -30,6 +30,18 @@ requireMatch(gate, /Directive \(EU\) 2019\/770 Article 16/i, 'Missing Directive 
 requireMatch(gate, /Do \*\*not\*\* assume that announcing a permanent closure converts every affected contract/i, 'Missing shutdown-versus-modification classification safeguard.');
 requireMatch(gate, /force majeure = no refund/i, 'Missing force-majeure no-blanket-waiver safeguard.');
 
+// Current 2026 EU videogame-preservation policy checkpoint.
+requireMatch(gate, /Last legal\/source review:\*\* September 4, 2026/i, 'Shutdown gate legal-review date is stale.');
+requireMatch(gate, /June 16, 2026.*European Citizens' Initiative/is, 'Missing June 2026 European Citizens Initiative shutdown checkpoint.');
+requireMatch(gate, /could not propose a standalone legal obligation requiring videogames to remain playable after they stop being provided commercially/i, 'Missing Commission no-standalone-perpetual-playability checkpoint.');
+requireMatch(gate, /existing EU consumer law already protects consumers/i, 'Missing continued EU consumer-law protection after ECI response.');
+requireMatch(gate, /pre-contract information about contract duration and termination conditions/i, 'Missing duration/termination disclosure checkpoint.');
+requireMatch(gate, /consumers may be entitled to a proportionate refund/i, 'Missing proportionate-refund checkpoint.');
+requireMatch(gate, /publish server source code, hand over backend credentials, release a community-server binary, or create a permanent offline mode/i, 'Missing no-invented-preservation-duty safeguard.');
+requireMatch(gate, /absence of that new standalone preservation duty.*no remedy/is, 'Missing no-new-duty/no-remedy separation.');
+requireMatch(gate, /voluntarily provides an offline fallback, read-only archive, data\/save export, community migration path/i, 'Missing voluntary preservation scope safeguard.');
+requireMatch(gate, /end-2026 industry engagement produces a new recommendation, standard or legislative proposal/i, 'Missing future EU policy re-check trigger.');
+
 // Commercial exposure and entitlement isolation.
 requireMatch(gate, /freeze new Lifetime VIP sales/i, 'Missing Lifetime VIP sale-freeze safeguard.');
 requireMatch(gate, /stop or adjust 30-Day VIP sales/i, 'Missing 30-Day VIP remaining-term safeguard.');
@@ -39,10 +51,13 @@ requireMatch(gate, /do not automatically replace cash remedies with Diamonds/i, 
 requireMatch(gate, /do not remove unrelated paid entitlements/i, 'Missing unrelated-entitlement isolation.');
 requireMatch(gate, /commercial operating lifetime of the TycoonX Service/i, 'Missing Lifetime VIP commercial-lifetime invariant.');
 requireMatch(gate, /safest default is to remove Lifetime VIP from sale/i, 'Missing already-decided-closure Lifetime VIP safeguard.');
+requireMatch(gate, /review App Store, Google Play, Xsolla\/webshop, website and in-game marketing/i, 'Missing shutdown marketing-promise audit.');
 
 // Apple, Google Play and Xsolla wind-down controls.
+requireMatch(gate, /Current Apple checkpoints as of September 4, 2026/i, 'Apple shutdown checkpoint date is stale.');
 requireMatch(gate, /at least 31 days before removal/i, 'Missing Apple 31-day IAP-removal guidance checkpoint.');
 requireMatch(gate, /Developer Removed from Sale/i, 'Missing Apple purchased-IAP access checkpoint.');
+requireMatch(gate, /Current Google checkpoints as of September 4, 2026/i, 'Google shutdown checkpoint date is stale.');
 requireMatch(gate, /monetization\.onetimeproducts\.purchaseOptions\.batchUpdateStates/i, 'Missing Google one-time-product deactivation control.');
 requireMatch(gate, /orders\.refund/i, 'Missing Google refund control.');
 requireMatch(gate, /orders older than three years cannot be refunded through that endpoint/i, 'Missing Google refund-endpoint limitation checkpoint.');
@@ -57,6 +72,7 @@ requireMatch(gate, /Do not destroy transaction evidence while Apple\/Google\/Xso
 requireMatch(gate, /Do not turn off webhooks before the last purchase\/refund\/chargeback events are reconciled/i, 'Missing webhook wind-down safeguard.');
 requireMatch(gate, /final entitlement reconciliation hash\/export or equivalent immutable evidence/i, 'Missing final entitlement evidence package.');
 requireMatch(gate, /Emergency versus planned closure/i, 'Missing emergency closure path.');
+requireMatch(gate, /personal data, payment credentials, anti-fraud logic, third-party licensed material or security-sensitive server components/i, 'Missing preservation privacy/security/IP boundary.');
 
 // Canonical public Terms must keep the high-level promises already localized.
 requireMatch(terms, /## 25\. Permanent discontinuation/i, 'Canonical Terms lost permanent-discontinuation section.');
@@ -72,12 +88,13 @@ requireMatch(progress, /25\/25.*target locales/is, 'Localization hub completion 
 requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localized full-document completion invariant missing.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization queue is unexpectedly open.');
 requireMatch(gate, /September 1, 2026/i, 'Missing TycoonX full-release date invariant.');
+requireMatch(gate, /TycoonX is the only displayed game-brand spelling/i, 'Missing positive TycoonX brand invariant.');
 
 for (const [name, text] of [
   ['shutdown gate', gate],
   ['canonical Terms', terms],
 ]) {
-  if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
+  if (/TyconX/.test(text)) errors.push(`Legacy displayed brand spelling found in ${name}.`);
   if (/\bTycoonX\s+(?:is|remains|currently|still)\s+(?:in\s+)?beta\b/i.test(text)) {
     errors.push(`Stale live-service beta wording found in ${name}.`);
   }
@@ -90,5 +107,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: shutdown classification, consumer remedies, payment-channel wind-down, entitlement isolation, content handback, and evidence safeguards are present.');
+  console.log('PASS: shutdown classification, current EU videogame-preservation policy, consumer remedies, payment-channel wind-down, entitlement isolation, content handback, and evidence safeguards are present.');
 }
