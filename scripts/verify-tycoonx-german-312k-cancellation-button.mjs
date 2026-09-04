@@ -4,7 +4,7 @@ const read = (path) => fs.readFileSync(new URL(`../${path}`, import.meta.url), '
 
 const gate = read('TYCOONX_GERMAN_312K_CANCELLATION_BUTTON_RELEASE_GATE.md');
 const terms = read('tyconx-terms-of-service.md');
-const purchases = read('tyconx-purchases-refunds.md');
+const purchases = read('tyconx-purchase-refund-policy.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
 const errors = [];
