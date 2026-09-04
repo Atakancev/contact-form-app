@@ -48,7 +48,7 @@ const requiredGate = [
   ['Lifetime VIP remains a one-time promotional entitlement available only during selected genuine sales windows', 'Lifetime VIP limited-window rule'],
   ['may be withdrawn from future sale, may never return', 'Lifetime VIP future availability rule'],
   ['is not itself a refund, chargeback, fraud finding', 'legal-process/payment separation'],
-  ['evidence request is not conclusive proof of a TycoonX Terms violation', 'criminal allegation/game enforcement separation'],
+  ['The existence of the request is not conclusive proof of a TycoonX Terms violation', 'criminal allegation/game enforcement separation'],
   ['eight-hour production deadline', 'out-of-hours emergency continuity'],
   ['Permanent discontinuation of TycoonX does not automatically extinguish', 'shutdown legal-hold continuity'],
   ['up to **EUR 500,000**', 'German statutory fine cap checkpoint'],
