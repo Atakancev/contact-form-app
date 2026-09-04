@@ -100,8 +100,9 @@ for (const [needle, label] of requiredProgress) {
   if (!progress.includes(needle)) missing.push(`${progressFile}: ${label}`);
 }
 
+const legacyBrand = ['Ty', 'conX'].join('');
 const forbiddenGate = [
-  [/\bTyconX\b/, 'legacy displayed brand spelling in e-Evidence gate'],
+  [new RegExp(`\\b${legacyBrand}\\b`), 'legacy displayed brand spelling in e-Evidence gate'],
   [/\bTycoonX\b[^\n]{0,100}\bbeta\b|\bbeta\b[^\n]{0,100}\bTycoonX\b/i, 'live-service beta wording in e-Evidence gate'],
   [/preservation (?:itself )?authorizes disclosure/i, 'preservation treated as disclosure authority'],
   [/EPOC[^\n]{0,120}(automatically removes? Diamonds|automatically refunds?|automatically expires? Lifetime VIP)/i, 'e-Evidence/payment-entitlement coupling'],
