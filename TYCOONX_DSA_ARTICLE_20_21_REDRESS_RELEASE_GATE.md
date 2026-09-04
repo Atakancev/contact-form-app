@@ -315,7 +315,7 @@ If CK-Labs later publishes a new unconditional promise about statutory Article 2
 
 ## 18. Brand and release invariants
 
-- All player-facing and legal prose must display **TycoonX**, never `TyconX`.
+- All player-facing and legal prose must display **TycoonX** using that exact spelling.
 - TycoonX went to full release on **September 1, 2026**.
 - Do not describe current TycoonX, purchases, Diamonds, 30-Day VIP, Lifetime VIP, users, rewards, or legal terms as beta.
 - Technical route/file names containing `tyconx` may remain only where changing them risks breaking URLs or integrations.
