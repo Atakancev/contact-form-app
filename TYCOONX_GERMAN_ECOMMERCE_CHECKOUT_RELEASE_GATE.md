@@ -1,6 +1,6 @@
 # TycoonX German E-Commerce Checkout & Contract-Formation Release Gate
 
-Last reviewed: September 2, 2026
+Last reviewed: September 4, 2026
 Owner: CK-Labs
 Scope: paid TycoonX web checkout, Xsolla-powered webshop handoff, CK-Labs-owned order screens, and release evidence for Apple App Store and Google Play purchases where the platform controls the final payment interface.
 
@@ -155,9 +155,11 @@ If CK-Labs later launches a recurring TycoonX product through a German website, 
 
 Do not remove or disable the § 356a function merely because TycoonX value was delivered immediately.
 
-For a paid contract for non-physical digital content, BGB § 356(6) requires the statutory conditions before an existing withdrawal right can expire early, including commencement of performance, the consumer's express consent to begin before the period ends, acknowledgement that this causes loss of the withdrawal right when performance begins, and the required confirmation under § 312f.
+For a paid contract for non-physical digital content, current BGB § 356(5) requires the statutory conditions before an existing withdrawal right can expire early, including commencement of performance, the consumer's express consent to begin before the period ends, acknowledgement that this causes loss of the withdrawal right when performance begins, and the required confirmation under § 312f.
 
-For a paid service, BGB § 356(5) uses a different rule and generally requires complete performance plus the applicable express consent/knowledge conditions before early expiry. Classify the product before applying an expiry rule.
+For a paid service, current BGB § 356(4) uses a different rule and requires full performance plus the applicable express consent/knowledge conditions before early expiry. Classify the product before applying an expiry rule.
+
+The separate `TYCOONX_GERMAN_WITHDRAWAL_DIGITAL_CONTENT_SERVICE_VALUE_RELEASE_GATE.md` controls the current digital-content/service classification evidence and BGB § 357a value-compensation boundary. In particular, a service start is not automatically full performance, and BGB § 357a(3) does not create a value-compensation claim for withdrawn non-tangible digital content.
 
 Purchased Diamonds must continue to follow the canonical TycoonX withdrawal treatment. Merely crediting Diamonds is not an automatic switch that hides the withdrawal function. For 30-Day VIP and Lifetime VIP, document the transaction-specific product classification and withdrawal status instead of assuming that activation alone ended the right.
 
@@ -329,10 +331,11 @@ This gate must never be weakened to say that:
 
 ## Current legal/platform checkpoint
 
-Reviewed against current sources available September 2, 2026:
+Reviewed against current sources available September 4, 2026:
 
 - German BGB § 356a, including `Vertrag widerrufen`, continuous/prominent/easy availability, the required name/contract/contact fields, `Widerruf bestätigen`, immediate durable-medium receipt, and the timely-submission rule;
-- German BGB § 356(5) and § 356(6), which use different conditions for early expiry of withdrawal rights for services and paid non-physical digital content;
+- current German BGB § 356(4) for services and § 356(5) for non-tangible digital content, which use different conditions for early expiry of withdrawal rights;
+- German BGB § 357a(2) for proportionate service value compensation and § 357a(3) for the no-value-compensation rule on withdrawn non-tangible digital content;
 - EGBGB Article 246a § 1, including withdrawal information and, where applicable, information about the existence and placement of the § 356a function;
 - German BGB § 312i, § 312j, § 312e, and § 312f;
 - EGBGB Article 246c;
