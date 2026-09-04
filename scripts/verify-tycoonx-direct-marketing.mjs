@@ -72,9 +72,9 @@ assertIncludes(terms, 'Purchased Diamonds do not expire solely because time pass
 assertIncludes(promo, 'Lifetime VIP windows must be real', 'promotion-gate sales-window rule');
 assertIncludes(promo, 'No fake scarcity or false urgency', 'promotion-gate truthful urgency rule');
 
-assertIncludes(progress, 'Completed localized hubs: 25/25', 'localized hub completion');
-assertIncludes(progress, 'Completed full localized documents: 100/100', 'localized full-document completion');
-assertIncludes(progress, 'Exact next unfinished locale/document: **None**', 'no unfinished locale/document');
+assertIncludes(progress, 'exists for all **25/25** target locales', 'localized hub completion');
+assertIncludes(progress, '**100/100 localized full documents are currently confirmed current**', 'localized full-document completion');
+assertIncludes(progress, '**Exact next unfinished locale/document: None.', 'no unfinished locale/document');
 assertIncludes(progress, 'September 1, 2026', 'full release invariant');
 
 for (const [label, text] of [
