@@ -326,4 +326,4 @@ If CK-Labs later publishes a new unconditional promise about statutory Article 2
 - European Commission, certified DSA out-of-court dispute-settlement bodies, last updated July 2, 2026: `https://digital-strategy.ec.europa.eu/en/policies/dsa-out-court-dispute-settlement`
 - European Commission, Digital Services Coordinators: `https://digital-strategy.ec.europa.eu/en/policies/dsa-dscs`
 - Regulation (EU) 2024/3228 discontinuing the former EU ODR platform: `https://eur-lex.europa.eu/eli/reg/2024/3228/oj/eng`
-- Existing TycoonX German consumer ADR / ODR sunset gate: `TYCOONX_GERMAN_ADR_ODR_RELEASE_GATE.md`
+- Existing TycoonX German consumer ADR / ODR sunset gate: `TYCOONX_GERMAN_CONSUMER_ADR_ODR_RETIREMENT_RELEASE_GATE.md`
