@@ -87,7 +87,7 @@ requireMatch(terms, /30-Day VIP.*one-time, non-renewing digital entitlement/is, 
 requireMatch(terms, /Lifetime VIP.*one-time digital entitlement.*limited promotional sales windows/is, 'Canonical Terms lost Lifetime VIP selected-window rule.');
 requireMatch(terms, /Purchased Diamonds do not expire solely because time passes/i, 'Canonical Terms lost purchased-Diamond time-expiry safeguard.');
 
-requireMatch(purchases, /mandatory consumer rights/i, 'Purchases policy lost mandatory-consumer-rights safeguard.');
+requireMatch(purchases, /does not reduce any rights that cannot legally be waived/i, 'Purchases policy lost mandatory non-waiver protection.');
 requireMatch(purchases, /30-Day VIP/i, 'Purchases policy lost 30-Day VIP product distinction.');
 requireMatch(purchases, /Lifetime VIP/i, 'Purchases policy lost Lifetime VIP product distinction.');
 requireMatch(purchases, /Diamonds/i, 'Purchases policy lost Diamond product distinction.');
