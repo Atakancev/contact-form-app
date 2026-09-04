@@ -44,10 +44,19 @@ requireText('gate', 'pending, failed, rejected, or unconfirmed payment', 'failed
 requireText('gate', 'provider/platform refund', 'provider refund separated from statutory withdrawal');
 requireText('gate', 'transaction-scoped and idempotent', 'idempotent transaction-scoped unwind');
 
-// Existing German checkout gate must remain the general electronic-withdrawal control.
+// Existing German checkout gate must remain the general electronic-withdrawal control and use current subsection mapping.
 requireText('checkout', 'BGB § 356a', 'electronic withdrawal function');
 requireText('checkout', 'Vertrag widerrufen', 'first statutory withdrawal control');
 requireText('checkout', 'Widerruf bestätigen', 'final statutory withdrawal control');
+requireText('checkout', 'For a paid contract for non-physical digital content, current BGB § 356(5)', 'current digital-content subsection mapping');
+requireText('checkout', 'For a paid service, current BGB § 356(4)', 'current service subsection mapping');
+requireText('checkout', 'BGB § 357a(3) does not create a value-compensation claim for withdrawn non-tangible digital content', 'checkout gate no-Wertersatz cross-reference');
+if (text.checkout.includes('For a paid contract for non-physical digital content, BGB § 356(6)')) {
+  failures.push(`${files.checkout} contains stale digital-content subsection mapping`);
+}
+if (text.checkout.includes('For a paid service, BGB § 356(5)')) {
+  failures.push(`${files.checkout} contains stale service subsection mapping`);
+}
 
 // Canonical legal invariants must remain unchanged unless localized documents are resynchronized.
 requireText('terms', 'Purchased Diamonds do not expire solely because time passes.');
