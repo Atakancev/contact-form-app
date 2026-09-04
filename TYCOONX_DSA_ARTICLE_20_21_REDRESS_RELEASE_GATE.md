@@ -1,6 +1,6 @@
 # TycoonX DSA Article 20 / 21 Redress Release Gate
 
-**Last reviewed: August 31, 2026**
+**Last reviewed: September 4, 2026**
 
 This gate covers the EU Digital Services Act (DSA) internal complaint and certified out-of-court dispute-settlement rules that can apply to a TycoonX feature qualifying as an **online platform**. It is deliberately separate from German consumer-contract ADR under the VSBG, the discontinued EU ODR platform, Apple / Google Play / Xsolla payment disputes, statutory withdrawal rights, and ordinary court proceedings.
 
@@ -38,28 +38,43 @@ Voluntarily offering an appeal does not by itself mean CK-Labs has waived an Art
 
 ## 3. Article 20 internal complaint-handling system
 
-Where Article 20 applies, TycoonX must provide eligible recipients, including eligible notice submitters, access to an effective internal complaint-handling system for at least **six months** after the relevant decision.
+Where Article 20 applies, TycoonX must provide eligible recipients, including eligible individuals or entities that submitted notices, access to an effective internal complaint-handling system **electronically and free of charge for at least six months** after the relevant decision.
 
-The covered decisions include the Article 20 categories, such as decisions on grounds that user-provided information is illegal or incompatible with TycoonX Terms / Community Standards concerning:
+The Article 20 complaint route must cover the relevant statutory decision categories, including decisions taken after receipt of a notice and decisions taken because user-provided information is considered illegal or incompatible with TycoonX Terms / Community Standards concerning:
 
-- removal, disabling access, or visibility restriction;
-- suspension or termination of the service, in whole or part;
-- suspension or termination of an account; and
-- suspension, termination, or other restriction of monetisation of user-provided information where that category is relevant.
+- whether or not to remove, disable access to, or restrict visibility of the information;
+- whether or not to suspend or terminate provision of the service, in whole or in part;
+- whether or not to suspend or terminate the recipient's account; and
+- whether or not to suspend, terminate, or otherwise restrict the ability to monetise user-provided information, where that category is relevant.
+
+An eligible notice submitter must also be able to challenge a **decision not to act upon the notice** where Article 20 applies. Do not design the appeal surface only for the account whose content was restricted.
+
+The six-month period starts on the day the recipient is informed of the relevant decision in accordance with Article 16(5) or Article 17, as applicable. Preserve that notification timestamp rather than starting the clock from an internal moderation timestamp the user never received.
 
 The system must be:
 
 - electronic;
 - free of charge to the complainant;
 - easy to access and user-friendly;
-- capable of receiving sufficiently precise and adequately substantiated complaints; and
+- capable of receiving and facilitating sufficiently precise and adequately substantiated complaints; and
 - operated in a timely, non-discriminatory, diligent, and non-arbitrary manner.
 
-If a complaint provides sufficient grounds showing the earlier decision was unfounded or disproportionate under the applicable Article 20 standard, the decision must be reversed without undue delay.
+**Recital 58 is an important anti-formalism control.** The complaint system should not impose formal requirements such as forcing the complainant to identify a specific legal provision, quote the DSA, use legal terminology, or provide an elaborate legal explanation. TycoonX can ask for enough facts to identify the decision and understand the challenge, but a substantively understandable complaint must not be rejected merely because the player is not a lawyer or selected the wrong internal category.
 
-The decision on the complaint must be under the supervision of appropriately qualified staff and must **not be taken solely on the basis of automated means**.
+Examples of prohibited friction where Article 20 applies:
 
-TycoonX may use automation to triage, group evidence, detect duplicates, or help staff review a complaint, but an AI classifier or rule engine must not be the sole final Article 20 decision-maker where Article 20 applies.
+- requiring `Article 20` or another statute number in the complaint text;
+- rejecting a complaint because it says `my post was removed by mistake` instead of identifying a legal basis;
+- hiding the appeal behind an unrelated payment-support form;
+- requiring purchase of VIP or Diamonds to obtain review;
+- imposing an arbitrary character minimum that prevents a concise but sufficiently clear complaint; or
+- forcing a notice submitter to create a new paid entitlement or accept unrelated commercial terms to challenge a rejected notice.
+
+If a complaint provides sufficient grounds showing that a decision not to act upon a notice was unfounded, that the information is not illegal or incompatible with the applicable Terms, or that the complainant's conduct did not warrant the measure taken, the relevant decision must be reversed without undue delay under the applicable Article 20 standard.
+
+The reasoned decision on the complaint must be taken under the supervision of appropriately qualified staff and must **not be taken solely on the basis of automated means**.
+
+TycoonX may use automation to triage, group evidence, detect duplicates, translate, or help staff review a complaint, but an AI classifier or rule engine must not be the sole final Article 20 decision-maker where Article 20 applies. The production record should show that qualified human supervision actually occurred rather than merely stating that a human could theoretically intervene.
 
 ## 4. Article 20 outcome notice must preserve Article 21 redress
 
@@ -70,23 +85,28 @@ Where Article 20 applies, TycoonX must inform the complainant without undue dela
 
 Do not hide the Article 21 information only inside a long general legal policy if the law requires it to be communicated with the Article 20 outcome.
 
-Do not state or imply that the user must finish the internal complaint first before using a court or Article 21 body where the DSA does not impose that exhaustion requirement.
+Do not state or imply that the user must finish the internal complaint first before using a court or Article 21 body. Article 21 expressly preserves the right to initiate judicial proceedings **at any stage**, and Article 21 can cover complaints that have not been resolved through the internal complaint system.
 
 ## 5. Article 21 right to choose a certified body
 
-Where Article 21 applies, recipients addressed by the relevant Article 20 decisions may select a certified DSA out-of-court dispute-settlement body to resolve a dispute about that decision, including a complaint not satisfactorily resolved through the internal complaint process.
+Where Article 21 applies, recipients addressed by the relevant Article 20 decisions, including eligible individuals or entities that submitted notices, may select a certified DSA out-of-court dispute-settlement body to resolve a dispute about that decision.
 
 The selected body must actually be certified and its certified **subject-matter/platform expertise and language coverage must fit the dispute**.
 
-Current Commission guidance says certification is valid across the EU, but a body's certification can be limited by subject matter, platform type, or language. Therefore:
+Current Commission guidance says certification is valid across all 27 EU Member States, but a body's certification can be limited by subject matter, platform type, or language. A national Digital Services Coordinator can also revoke a certification if the body no longer satisfies the statutory conditions. Therefore:
 
 - do not hard-code one body forever;
 - do not reject a body solely because it is certified in another EU Member State;
-- do not claim a body can hear TycoonX disputes merely because it appears on the Commission list;
-- verify the body's current certification, expertise, language coverage, and procedure at the time of the dispute; and
-- retain the Commission-list/version date used for the check.
+- do not claim a body can hear TycoonX disputes merely because it appears somewhere on the Commission list;
+- verify the body's current certification, expertise, language coverage, rules of procedure, and any platform-specific scope at the time of the dispute;
+- retain the Commission-list/version date and the body's rules/procedure version used for the check; and
+- re-check current status before treating a previously cached body as competent in a later case.
 
-As of the Commission list last updated **July 2, 2026**, the certified list includes bodies with different scopes. For example, **ADROIT** is listed with expertise that includes gaming platforms, while several other bodies are limited to named social-media services, particular illegal-content fields, or particular languages. This is a useful discovery signal, not a determination that any specific body necessarily has competence for the actual TycoonX dispute.
+As of the European Commission list last updated **July 2, 2026**, the certified list contains bodies with materially different scopes. **ADROIT**, certified by the Malta Communications Authority on July 10, 2024, is currently listed with expertise that expressly includes `Gaming, gambling and betting platforms` and with Dutch, English, French, German, Italian, Maltese, Portuguese, and Spanish language coverage. Several other bodies are limited to named social-media services, specified forms of illegal content, specified platform types, or narrower language sets.
+
+ADROIT's current gaming entry is a useful **discovery signal**, not a permanent designation of ADROIT as the TycoonX dispute body and not proof that ADROIT must accept every TycoonX dispute. At case intake, verify the actual dispute, the current Commission certification data, the body's current rules, language, competence, admissibility requirements, and any relevant change in certification.
+
+If a certification or scope changes while a matter is already pending, do not silently close the user's TycoonX appeal or invent a new competence rule. Preserve the case record and follow the body/certifying-authority transition or procedural directions that lawfully apply, while keeping court and other mandatory redress available.
 
 ## 6. Article 21 information must be easy to find when applicable
 
@@ -96,7 +116,7 @@ Production evidence should therefore include the actual surface where an affecte
 
 The Community Standards may remain conditional while Article 19 status and feature classification are conditional, but the live product must expose the legally required route when Article 21 becomes applicable.
 
-## 7. CK-Labs and the user must engage in good faith
+## 7. CK-Labs and the user must engage in good faith, and the refusal exception is narrow
 
 When Article 21 applies and a competent certified body is selected, both parties must engage with that body **in good faith** with a view to resolving the dispute.
 
@@ -108,9 +128,18 @@ TycoonX support/moderation operations must not:
 - suspend or terminate an account merely because the user used a statutory redress route; or
 - classify a good-faith Article 21 request as chargeback fraud, entitlement abuse, or malicious reporting without separate evidence.
 
-The provider may refuse to engage in the limited duplicate-proceeding situation recognized by Article 21, including where the same dispute has already been resolved or is already subject to an ongoing procedure before the competent court or another competent certified out-of-court dispute-settlement body.
+**Article 21(2)'s provider refusal exception is narrower than a generic lis-pendens or duplicate-case rule.** CK-Labs may refuse to engage with the selected certified body where a dispute **has already been resolved concerning the same information and the same grounds of alleged illegality or incompatibility of content**.
 
-Do not expand that limited refusal basis into a blanket right to reject difficult, repetitive, or expensive disputes.
+Do **not** broaden that exception merely because:
+
+- an internal Article 20 complaint was already decided;
+- a court case is merely pending;
+- another certified-body procedure is merely pending;
+- the user previously complained about different information;
+- the same information is disputed on a materially different ground; or
+- the case is difficult, repetitive, expensive, or inconvenient.
+
+A separate procedural rule of a competent court or certified body may affect a pending case, but do not falsely describe such a rule as the Article 21(2) provider-refusal exception. Record the exact legal/procedural basis actually relied on.
 
 ## 8. Article 21 outcomes are not binding settlements
 
@@ -187,6 +216,8 @@ Unless there is a separate lawful, transaction-specific reason:
 
 If the underlying moderation decision itself lawfully suspends or terminates access to the Service, apply the separate Terms, DSA statement-of-reasons, digital-product, refund, and mandatory consumer-rights analysis for any paid entitlement affected by that access restriction.
 
+**Product invariants:** 30-Day VIP is a one-time, non-renewing 30-day entitlement. Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability. Article 20/21 redress cannot independently rewrite those commercial terms.
+
 ## 13. Account compromise, impersonation, and evidence quality
 
 A disputed moderation event can involve a compromised account. Preserve the distinction between:
@@ -224,16 +255,18 @@ Where reporter or third-party information is sensitive, preserve the separate Ar
 For every production case where the statutory route applies, retain an auditable record containing at least:
 
 - feature classification and the Article 19 status used;
-- original moderation decision ID and timestamp;
-- exact statement of reasons sent;
-- date the six-month Article 20 window began;
+- original moderation/notice decision ID and timestamp;
+- exact statement of reasons or Article 16(5) communication sent;
+- date and timestamp the recipient was informed and the six-month Article 20 window began;
 - complaint timestamp and complaint content;
-- human-supervised Article 20 review record;
+- whether the complainant was the affected content/account user, a notice submitter, or another eligible recipient;
+- any automation used for triage/recommendation and the human-supervised Article 20 review record;
+- role/qualification basis for the staff supervision, without unnecessarily publishing staff personal data;
 - reasoned Article 20 outcome and timestamp;
 - Article 21/redress information shown to the user;
-- selected certified body's name, certification source/date, expertise and language basis;
+- selected certified body's name, Commission/certifying-authority status checked, check date, certification date, expertise, language basis, and rules/procedure version;
 - body correspondence and submitted evidence;
-- duplicate-proceeding check, if any refusal is considered;
+- if CK-Labs refuses to engage, the exact facts showing a previously resolved dispute concerning the **same information and same grounds**, or the separate non-Article-21 legal/procedural basis actually relied on;
 - fee schedule and invoice information;
 - body outcome and outcome date;
 - any user expense reimbursement due under Article 21;
@@ -248,22 +281,29 @@ Before marking this gate operationally complete for a feature where Articles 20/
 
 1. A content removal can be challenged electronically and free of charge during the Article 20 window.
 2. A visibility restriction produces an eligible complaint path where Article 20 applies.
-3. The complaint decision is not made solely by automation.
-4. A successful internal complaint reverses the challenged decision without undue delay.
-5. The Article 20 outcome includes the Article 21 option and other required redress information.
-6. The user can find Article 21 information easily on the relevant online interface.
-7. A certified body from another EU Member State is not rejected merely because it is foreign.
-8. A body outside the dispute's certified expertise/language is not falsely treated as competent.
-9. A competent certified-body request is handled in good faith.
-10. The same dispute already pending before a court or another competent Article 21 body follows the limited duplicate-proceeding rule instead of a blanket rejection.
-11. A body decision in the user's favour produces the correct fee/expense handling without granting Diamonds as a substitute.
-12. A body decision in CK-Labs' favour does not charge the user CK-Labs' costs unless the statutory manifest-bad-faith condition is actually met.
-13. A DSA redress case cannot replay, revoke, or duplicate Apple, Google Play, or Xsolla entitlements by itself.
-14. Purchased Diamonds remain unchanged absent a separate transaction-specific legal basis.
-15. One-time 30-Day VIP keeps its original clock absent a separate lawful entitlement event.
-16. Lifetime VIP remains one entitlement absent a separate lawful entitlement event.
-17. The old EU ODR URL is not presented as the Article 21 route.
-18. A normal consumer refund complaint is not automatically misrouted into DSA Article 21.
+3. A notice submitter can challenge a decision not to act on the notice where Article 20 applies.
+4. A concise understandable complaint is not rejected merely because it contains no statute number, legal terminology, or elaborate legal explanation.
+5. The six-month clock is anchored to the recipient-facing Article 16(5)/Article 17 notification date rather than an invisible internal timestamp.
+6. The complaint decision is not made solely by automation and the record proves qualified human supervision occurred.
+7. A successful internal complaint reverses the challenged decision without undue delay.
+8. The Article 20 outcome includes the Article 21 option and other required redress information.
+9. The user can find Article 21 information easily on the relevant online interface.
+10. A certified body from another EU Member State is not rejected merely because it is foreign.
+11. A body outside the dispute's current certified expertise/language is not falsely treated as competent.
+12. A previously cached body is re-checked for current certification, scope, language, and procedure before reliance.
+13. A competent certified-body request is handled in good faith.
+14. A previously resolved dispute involving the same information but a materially different ground is not automatically rejected under Article 21(2).
+15. A merely pending court or certified-body case is not falsely described as falling within Article 21(2)'s already-resolved provider-refusal exception.
+16. A body decision in the user's favour produces the correct fee/expense handling without granting Diamonds as a substitute.
+17. A body decision in CK-Labs' favour does not charge the user CK-Labs' costs unless the statutory manifest-bad-faith condition is actually met.
+18. A DSA redress case cannot replay, revoke, or duplicate Apple, Google Play, or Xsolla entitlements by itself.
+19. Purchased Diamonds remain unchanged absent a separate transaction-specific legal basis.
+20. One-time 30-Day VIP keeps its original clock absent a separate lawful entitlement event.
+21. Lifetime VIP remains one entitlement absent a separate lawful entitlement event.
+22. The old EU ODR URL is not presented as the Article 21 route.
+23. A normal consumer refund complaint is not automatically misrouted into DSA Article 21.
+24. A compromised-account allegation is reviewed without treating account ownership as conclusive proof of authorship.
+25. A body certification/scope change is handled from current evidence rather than a stale hard-coded allowlist.
 
 ## 17. Public-document / localization rule
 
@@ -276,13 +316,13 @@ If CK-Labs later publishes a new unconditional promise about statutory Article 2
 ## 18. Brand and release invariants
 
 - All player-facing and legal prose must display **TycoonX**, never `TyconX`.
-- TycoonX goes to full release on **September 1, 2026**.
+- TycoonX went to full release on **September 1, 2026**.
 - Do not describe current TycoonX, purchases, Diamonds, 30-Day VIP, Lifetime VIP, users, rewards, or legal terms as beta.
 - Technical route/file names containing `tyconx` may remain only where changing them risks breaking URLs or integrations.
 
 ## Official sources reviewed
 
-- Regulation (EU) 2022/2065, Articles 19, 20 and 21: `https://eur-lex.europa.eu/eli/reg/2022/2065/oj/eng`
+- Regulation (EU) 2022/2065, Recital 58 and Articles 19, 20 and 21: `https://eur-lex.europa.eu/eli/reg/2022/2065/oj/eng`
 - European Commission, certified DSA out-of-court dispute-settlement bodies, last updated July 2, 2026: `https://digital-strategy.ec.europa.eu/en/policies/dsa-out-court-dispute-settlement`
 - European Commission, Digital Services Coordinators: `https://digital-strategy.ec.europa.eu/en/policies/dsa-dscs`
 - Regulation (EU) 2024/3228 discontinuing the former EU ODR platform: `https://eur-lex.europa.eu/eli/reg/2024/3228/oj/eng`
