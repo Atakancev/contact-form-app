@@ -1,7 +1,7 @@
 # TycoonX Permanent Shutdown / End-of-Service Release Gate
 
 **Status:** release and contingency gate for CK-Labs  
-**Last legal/source review:** August 31, 2026  
+**Last legal/source review:** September 4, 2026  
 **Applies to:** TycoonX, including purchased Diamonds, one-time 30-Day VIP, limited-window Lifetime VIP, Apple App Store purchases, Google Play purchases, and the CK-Labs TycoonX webshop using Xsolla.
 
 This gate is for a genuine permanent discontinuation of all or a material part of TycoonX. It is not a shutdown plan and does not imply that CK-Labs intends to discontinue TycoonX.
@@ -110,7 +110,7 @@ Do not promise a notice period that CK-Labs cannot reliably provide. For emergen
 
 Apple's current App Store Connect guidance distinguishes removing an app/IAP from sale from terminating the developer's underlying online service.
 
-Current Apple checkpoints as of August 31, 2026:
+Current Apple checkpoints as of September 4, 2026:
 
 - Apple says that before removing an In-App Purchase from sale, developers should announce the intention to remove it and stop merchandising it **at least 31 days before removal**, so people can use consumable IAP, and should notify Apple; Apple states that it reserves the right to offer refunds for unfulfilled IAP.
 - When an IAP is `Developer Removed from Sale`, Apple states that customers who already purchased it retain access and the transaction remains available through StoreKit/App Store Server API.
@@ -137,7 +137,7 @@ Before a planned closure, where feasible:
 
 Google Play currently provides controls to deactivate one-time-product purchase options, and the Google Play Developer API can process eligible refunds for in-app purchase orders.
 
-Current Google checkpoints as of August 31, 2026:
+Current Google checkpoints as of September 4, 2026:
 
 - `monetization.onetimeproducts.purchaseOptions.batchUpdateStates` can deactivate purchase options so they are no longer available for purchase.
 - `orders.refund` can refund an eligible in-app purchase/subscription order; Google's current API documentation states that orders older than three years cannot be refunded through that endpoint.
@@ -289,6 +289,28 @@ Record:
 
 CK-Labs may rely on lawful limitation/impossibility rules where they genuinely apply, but should never communicate `force majeure = no refund` as a universal rule.
 
+### 15A. Current EU videogame-preservation policy checkpoint
+
+The European Commission's response of **June 16, 2026** to the European Citizens' Initiative commonly known as `Stop Destroying Videogames` is a useful current boundary for TycoonX shutdown planning.
+
+The Commission stated that, at that stage, it **could not propose a standalone legal obligation requiring videogames to remain playable after they stop being provided commercially**. It also emphasized that existing EU consumer law already protects consumers, including through pre-contract information about contract duration and termination conditions and remedies where digital content or a digital service does not conform with the contract or reasonable expectations. The Commission noted that consumers may be entitled to a proportionate refund. It announced engagement with consumers and publishers by the end of 2026 to explore improved industry standards.
+
+Current source:
+
+- https://digital-strategy.ec.europa.eu/en/news/commission-will-engage-industry-following-european-citizens-initiative-disabling-videogames
+
+For TycoonX, this means all of the following:
+
+1. do **not** describe EU law as currently requiring CK-Labs, merely because TycoonX is a videogame, to operate servers forever, publish server source code, hand over backend credentials, release a community-server binary, or create a permanent offline mode;
+2. do **not** use the absence of that new standalone preservation duty as a `we may shut down with no remedy` argument; the existing contractual, German/EU digital-product, refund, conformity, termination, update, withdrawal and liability rules in this gate remain fully applicable;
+3. before an actual closure decision is announced, review App Store, Google Play, Xsolla/webshop, website and in-game marketing for statements such as `forever`, `permanent access`, `always playable`, `never shuts down`, or another representation that could create an expectation stronger than the canonical commercial-operating-lifetime wording;
+4. preserve evidence of the server-dependent nature of the affected service and what duration/termination information was actually shown to the consumer at the relevant purchase time;
+5. if CK-Labs voluntarily provides an offline fallback, read-only archive, data/save export, community migration path or another preservation measure, define its scope accurately and do not accidentally promise indefinite security maintenance, hosting, compatibility or support unless CK-Labs intends to make that commitment;
+6. do not release production secrets, personal data, payment credentials, anti-fraud logic, third-party licensed material or security-sensitive server components merely to create a preservation mechanism; privacy, security, intellectual-property and provider obligations still apply; and
+7. re-check this policy area before any real TycoonX shutdown and again when the Commission's announced end-2026 industry engagement produces a new recommendation, standard or legislative proposal. A 2026 policy statement is a current checkpoint, not a permanent guarantee that the law will never change.
+
+This section is intentionally founder-protective in both directions: it avoids inventing a perpetual-playability obligation that the Commission has not established, while preventing the same policy development from being misused to erase existing mandatory consumer remedies or purchase-specific promises.
+
 ## 16. No mass enforcement during closure
 
 Shutdown refunds, migrations or corrections must remain transaction-specific.
@@ -347,7 +369,7 @@ An emergency can justify shorter operational notice. It does not authorize rewri
 
 The public TycoonX Terms must continue to preserve all of the following:
 
-- TycoonX is the displayed brand, never `TyconX`;
+- TycoonX is the only displayed game-brand spelling;
 - TycoonX goes to full release on **September 1, 2026**, and current legal/player copy does not describe the live service or purchases as beta;
 - purchased Diamonds are distinct from free/promotional Diamonds;
 - one-time 30-Day VIP is non-renewing unless a different future product clearly says otherwise;
