@@ -20,34 +20,94 @@ function requireMatch(text, pattern, message) {
   if (!pattern.test(text)) failures.push(message);
 }
 
+function forbidMatch(text, pattern, message) {
+  if (pattern.test(text)) failures.push(message);
+}
+
 for (const token of [
+  '**Last reviewed: September 4, 2026**',
   'Article 19(1) DSA',
   '12 months after loss of micro/small status',
-  'at least **six months**',
-  'free of charge to the complainant',
+  'at least six months',
+  'free of charge',
+  'decision not to act upon the notice',
+  'Article 16(5)',
+  'Recital 58',
+  'specific legal provision',
+  'elaborate legal explanation',
   'not be taken solely on the basis of automated means',
+  'qualified human supervision actually occurred',
   'Article 21',
+  'at any stage',
   'easily accessible on the online interface, clear, and user-friendly',
   'engage with that body **in good faith**',
+  'same information and the same grounds',
+  'merely pending',
   'mandatory arbitration;',
   '90 calendar days',
   'maximum total of **180 days**',
   'free of charge or at a nominal fee',
   'manifestly acted in bad faith',
   'ADROIT',
+  'Gaming, gambling and betting platforms',
+  'Dutch, English, French, German, Italian, Maltese, Portuguese, and Spanish',
   'July 2, 2026',
   'July 20, 2025',
   'Purchased Diamonds',
   '30-Day VIP',
   'Lifetime VIP',
+  'one-time, non-renewing 30-day entitlement',
+  'selected genuine sales windows',
   'Apple, Google Play, or Xsolla',
   'does **not** by itself materially change',
 ]) requireText(gate, token);
 
 requireMatch(
   gate,
+  /has already been resolved concerning the same information and the same grounds of alleged illegality or incompatibility of content/i,
+  'Missing the exact narrow Article 21(2) already-resolved refusal safeguard.',
+);
+
+forbidMatch(
+  gate,
   /same dispute has already been resolved or is already subject to an ongoing procedure before the competent court or another competent certified out-of-court dispute-settlement body/i,
-  'Missing the limited Article 21 duplicate-proceeding refusal safeguard.',
+  'Gate still overstates Article 21(2) by treating merely pending court/body proceedings as the statutory provider-refusal exception.',
+);
+
+requireMatch(
+  gate,
+  /do \*\*not\*\* broaden that exception merely because:[\s\S]*a court case is merely pending;[\s\S]*another certified-body procedure is merely pending;/i,
+  'Missing safeguard against broadening Article 21(2) to merely pending proceedings.',
+);
+
+requireMatch(
+  gate,
+  /complaint system should not impose formal requirements[\s\S]*specific legal provision[\s\S]*elaborate legal explanation/i,
+  'Missing Recital 58 anti-formalism safeguard for Article 20 complaints.',
+);
+
+requireMatch(
+  gate,
+  /eligible notice submitter must also be able to challenge a \*\*decision not to act upon the notice\*\*/i,
+  'Missing Article 20 notice-submitter appeal safeguard.',
+);
+
+requireMatch(
+  gate,
+  /six-month period starts on the day the recipient is informed[\s\S]*Article 16\(5\) or Article 17/i,
+  'Missing recipient-notification anchor for the Article 20 six-month window.',
+);
+
+requireMatch(
+  gate,
+  /certification[\s\S]*can also revoke a certification/i,
+  'Missing certified-body revocation/change safeguard.',
+);
+
+requireMatch(
+  gate,
+  /ADROIT[\s\S]*Malta Communications Authority[\s\S]*Gaming, gambling and betting platforms/i,
+  'Missing current Commission ADROIT gaming-scope discovery checkpoint.',
 );
 
 requireMatch(
@@ -116,7 +176,15 @@ for (const [label, text] of [
   ['German ADR/ODR gate', adr],
 ]) {
   if (/\bTyconX\b/.test(text)) failures.push(`Displayed legacy brand spelling found in ${label}.`);
-  if (/\bbeta\b/i.test(text)) failures.push(`Stale live-service beta wording found in ${label}.`);
+
+  const staleBetaPatterns = [
+    /TycoonX\s+(?:is|remains|currently is)\s+(?:a\s+)?beta\b/i,
+    /\bTycoonX beta\b/i,
+    /\bbeta\s+(?:TycoonX|service|purchases?|Diamonds?|VIP|users?|rewards?)\b/i,
+  ];
+  if (staleBetaPatterns.some((pattern) => pattern.test(text))) {
+    failures.push(`Stale live-service beta description found in ${label}.`);
+  }
 }
 
 console.log('TycoonX DSA Article 20/21 redress QA');
@@ -127,4 +195,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('PASS: Article 19 classification, Article 20 internal complaints, Article 21 certified redress, ODR separation, entitlement isolation, localization, brand and release safeguards are present.');
+console.log('PASS: Article 19 classification, Article 20 anti-formalism and notice-submitter complaints, human supervision, Article 21 certified-body/current-scope checks, narrow already-resolved refusal rule, ODR separation, entitlement isolation, localization, brand and release safeguards are present.');
