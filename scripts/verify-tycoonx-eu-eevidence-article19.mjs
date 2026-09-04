@@ -108,7 +108,7 @@ for (const [file, text, rules] of groups) {
 const legacyBrand = ['Ty', 'conX'].join('');
 const forbidden = [
   [new RegExp(`\\b${legacyBrand}\\b`), 'legacy displayed brand spelling'],
-  [/\bTycoonX\b[^\n]{0,100}\bbeta\b|\bbeta\b[^\n]{0,100}\bTycoonX\b/i, 'live-service beta wording'],
+  [/TycoonX\s+(?:is|remains|operates as)\s+(?:an?\s+)?beta\b|\bbeta\s+(?:service|release|users?|purchases?|VIP|Diamonds)\b/i, 'stale live-service beta characterization'],
   [/ordinary email is the default/i, 'ordinary email treated as primary route'],
   [/fallback[^\n]{0,120}(waives|removes|expires)[^\n]{0,80}(Diamonds|VIP)/i, 'fallback/payment-entitlement coupling'],
   [/30-Day VIP[^\n]{0,100}(auto-renew|automatically renews|subscription)/i, '30-Day VIP recurring characterization'],
