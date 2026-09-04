@@ -103,7 +103,7 @@ for (const [needle, label] of requiredProgress) {
 const forbiddenGate = [
   [/\bTyconX\b/, 'legacy displayed brand spelling in e-Evidence gate'],
   [/\bTycoonX\b[^\n]{0,100}\bbeta\b|\bbeta\b[^\n]{0,100}\bTycoonX\b/i, 'live-service beta wording in e-Evidence gate'],
-  [/preservation order[^\n]{0,100}(automatically disclose|automatic disclosure)/i, 'preservation implemented as automatic disclosure'],
+  [/preservation (?:itself )?authorizes disclosure/i, 'preservation treated as disclosure authority'],
   [/EPOC[^\n]{0,120}(automatically removes? Diamonds|automatically refunds?|automatically expires? Lifetime VIP)/i, 'e-Evidence/payment-entitlement coupling'],
   [/30-Day VIP[^\n]{0,100}(auto-renew|automatically renews|subscription)/i, '30-Day VIP recurring characterization'],
   [/Lifetime VIP[^\n]{0,100}(always available|permanently available|guaranteed to return)/i, 'continuous Lifetime VIP availability promise'],
