@@ -77,9 +77,9 @@ const requiredPurchases = [
 ];
 
 const requiredProgress = [
-  ['**25 / 25** localized legal hubs', '25/25 localized hubs completion'],
-  ['**100 / 100** localized full documents', '100/100 localized documents completion'],
-  ['**None**', 'no unfinished locale/document'],
+  ['all **25/25** target locales', '25/25 localized hubs completion'],
+  ['**100/100 localized full documents are currently confirmed current**', '100/100 localized documents completion'],
+  ['**Exact next unfinished locale/document: None.', 'no unfinished locale/document'],
   ['September 1, 2026', 'full-release date in tracker'],
 ];
 
