@@ -48,7 +48,15 @@ const gateChecks = [
   ['selected sales windows', 'Lifetime VIP selected sales windows'],
   ['one-time and non-renewing', '30-Day VIP non-renewal'],
   ['child-directed purchase exhortations', 'minor marketing protection'],
-  ['September 1, 2026', 'full-release/current review date'],
+  ['three separate checks', 'promotional push three-way permission separation'],
+  ['App Review Guideline 4.5.4', 'Apple promotional push policy'],
+  ['June 8, 2026', 'current Apple guideline date'],
+  ['explicitly opted in', 'Apple explicit promotional push opt-in'],
+  ['in-app opt-out', 'Apple in-app promotional push opt-out'],
+  ['push notifications must not be required for TycoonX to function', 'Apple push functionality independence'],
+  ['merely granting the iOS system notification permission', 'iOS OS-permission separation'],
+  ['purpose classification and suppression state separate', 'shared push infrastructure separation'],
+  ['September 4, 2026', 'current legal/platform review date'],
 ];
 
 for (const [needle, label] of gateChecks) {
