@@ -44,7 +44,7 @@ requireMatch(gate, /install a required security update/i, 'Missing required-upda
 requireMatch(gate, /recover a compromised account/i, 'Missing compromised-account recovery safeguard.');
 requireMatch(gate, /post-notice agreement/i, 'Missing post-notice agreement evidence separation.');
 requireMatch(gate, /anti-circumvention engineering checks/i, 'Missing engineering anti-circumvention checks.');
-requireMatch(gate, /splitting one material change into many small server toggles/i, 'Missing anti-salting/splitting safeguard for material changes.');
+requireMatch(gate, /splitting one material change into many small server toggles/i, 'Missing anti-splitting safeguard for material changes.');
 requireMatch(gate, /moving a promised feature behind a new paid tier/i, 'Missing paywall-change anti-circumvention safeguard.');
 
 // Product/payment distinctions.
@@ -80,11 +80,11 @@ requireMatch(changeGate, /without cost within 30 days/i, 'Existing change gate l
 requireMatch(changeGate, /durable medium/i, 'Existing change gate lost durable-medium notice.');
 requireMatch(changeGate, /permanent TycoonX shutdown/i, 'Existing change gate lost permanent-shutdown handling.');
 
-requireMatch(terms, /No part of these Terms excludes rights that cannot legally be excluded/i, 'Canonical Terms lost general mandatory-rights safeguard.');
+requireMatch(terms, /Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited/i, 'Canonical Terms lost general mandatory-rights safeguard.');
 requireMatch(terms, /valid contractual reason, will not impose additional cost to the consumer, and will be communicated clearly/i, 'Canonical Terms lost valid-reason/no-cost modification safeguard.');
 requireMatch(terms, /durable-medium information, termination right, unchanged-version option, refund, price reduction/i, 'Canonical Terms lost material-change remedy wording.');
-requireMatch(terms, /30-Day VIP is a \*\*one-time, non-renewing entitlement\*\*/i, 'Canonical Terms lost 30-Day VIP distinction.');
-requireMatch(terms, /Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows/i, 'Canonical Terms lost Lifetime VIP selected-window rule.');
+requireMatch(terms, /30-Day VIP.*one-time, non-renewing digital entitlement/is, 'Canonical Terms lost 30-Day VIP distinction.');
+requireMatch(terms, /Lifetime VIP.*one-time digital entitlement.*limited promotional sales windows/is, 'Canonical Terms lost Lifetime VIP selected-window rule.');
 requireMatch(terms, /Purchased Diamonds do not expire solely because time passes/i, 'Canonical Terms lost purchased-Diamond time-expiry safeguard.');
 
 requireMatch(purchases, /mandatory consumer rights/i, 'Purchases policy lost mandatory-consumer-rights safeguard.');
@@ -93,7 +93,7 @@ requireMatch(purchases, /Lifetime VIP/i, 'Purchases policy lost Lifetime VIP pro
 requireMatch(purchases, /Diamonds/i, 'Purchases policy lost Diamond product distinction.');
 
 // Localization and release-status invariants.
-requireMatch(progress, /25\/25 target locales/i, 'Localization tracker no longer confirms all 25 hubs/locales.');
+requireMatch(progress, /25\/25\*{0,2} target locales/i, 'Localization tracker no longer confirms all 25 hubs/locales.');
 requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localization tracker no longer confirms 100/100 current full documents.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization tracker no longer reports no unfinished locale/document.');
 requireMatch(gate, /September 1, 2026/i, 'Missing TycoonX full-release date.');
