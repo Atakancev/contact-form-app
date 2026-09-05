@@ -1,100 +1,57 @@
 # TycoonX German BFSG / European Accessibility Act E-Commerce Release Gate
 
-Last reviewed: September 2, 2026
+Last reviewed: September 5, 2026
 Owner: CK-Labs
 Scope: TycoonX consumer-facing websites, the official TycoonX web shop, CK-Labs-controlled checkout and account flows, purchase-related pages inside the TycoonX apps, legal/support information connected to those flows, and third-party payment handoffs where CK-Labs must verify that the complete consumer journey remains legally usable.
 
-## Purpose
+## Purpose and single-source rule
 
-TycoonX already has detailed legal gates for contract formation, prices, withdrawal, refunds, Diamonds, one-time 30-Day VIP, limited-window Lifetime VIP, Apple App Store purchases, Google Play purchases, and the Xsolla-powered web shop. This gate covers a different issue: **accessibility of an electronic-commerce service under the German Barrierefreiheitsstärkungsgesetz (BFSG), which implements the European Accessibility Act (Directive (EU) 2019/882).**
+This is the single TycoonX operational doctrine for German BFSG / European Accessibility Act e-commerce accessibility. It does not replace the canonical TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, Community Standards, mandatory consumer law, or transaction-specific Apple, Google Play, Xsolla, or other provider terms.
 
-The BFSG has applied to covered services provided to consumers since **June 28, 2025**. German official guidance expressly identifies services in electronic commerce, including online shops, as covered services where the statutory scope applies.
+The BFSG has applied to covered consumer services since **June 28, 2025**. Services in electronic commerce, including online shops, can be in scope. A game is not automatically outside the BFSG merely because its primary purpose is entertainment, but the existence of an in-app purchase also does not make every gameplay screen a separate electronic-commerce service. Classify the real consumer-contract path.
 
-This is an implementation, evidence, and public-information gate. It does not replace the TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, Community Standards, mandatory consumer law, or transaction-specific Apple, Google, Xsolla, or other provider terms.
+This gate does **not** assume CK-Labs is currently subject to every BFSG service obligation. The first live-service question is whether the statutory microenterprise service exemption applies. Never claim statutory BFSG conformity or an exemption without dated evidence.
 
-This gate does **not** assume that CK-Labs is currently subject to every BFSG service obligation. The first live-service question is whether the statutory **microenterprise service exemption** applies. Do not publish a false claim of statutory BFSG compliance, and do not claim an exemption without dated evidence.
-
-## P0: determine BFSG scope before relying on either compliance or exemption
+## 1. P0 scope and microenterprise classification
 
 For every German consumer-facing paid TycoonX flow, record:
 
 - the service being provided;
-- whether it is a service in electronic commerce within the BFSG scope;
-- which entity is the service provider for the relevant part of the flow;
-- whether CK-Labs is relying on the BFSG microenterprise exemption for that service;
-- the evidence supporting that status;
-- which third party controls any payment, authentication, or checkout step;
-- whether the user can complete the complete relevant flow using assistive technology where the BFSG applies; and
-- whether a public BFSG accessibility information notice under § 14 and Annex 3 is legally required.
+- whether it is a service in electronic commerce within BFSG scope;
+- the entity providing the relevant part of the service;
+- whether CK-Labs relies on the BFSG microenterprise service exemption;
+- evidence supporting that status;
+- which party controls each payment, authentication, security, checkout, and support step;
+- whether the complete relevant flow can be completed with applicable assistive technology where BFSG applies; and
+- whether public BFSG information under § 14 and Annex 3 is required.
 
-Do not assume that a video game is entirely outside the BFSG merely because its primary purpose is entertainment. A website or app can contain a consumer electronic-commerce service even if the surrounding product has another primary purpose.
-
-Do not make the opposite mistake either. The existence of an in-app purchase does not by itself prove that every gameplay screen is a separate electronic-commerce service. Classify the real service and user journey rather than using a blanket label.
-
-## 1. Microenterprise service exemption: BFSG § 3(3)
-
-BFSG § 3(3) excludes **microenterprises that offer or provide services** from the accessibility requirement in § 3(1).
-
-For this purpose, BFSG § 2 no. 17 defines a microenterprise as an undertaking that:
+BFSG § 3(3) exempts **microenterprises that offer or provide services** from the general service accessibility requirement. BFSG § 2 no. 17 defines a microenterprise as an undertaking that:
 
 - employs **fewer than 10 persons**; and
 - either has annual turnover of **no more than €2 million** or an annual balance-sheet total of **no more than €2 million**.
 
-### Release rule when CK-Labs relies on the exemption
+If CK-Labs relies on that exemption, retain a dated internal memo containing the relevant legal operator, person-count method, annual turnover evidence, annual balance-sheet evidence where relied on, relevant partner/linked-enterprise analysis where applicable, accounting period, decision date, and reassessment trigger.
 
-Keep a dated, reproducible status memo containing at least:
+Reassess at least when annual accounts become available and after material hiring, financial change, restructuring, sale, merger, reorganization, or successor-operator change. The exemption is **not a permanent product feature** and must not be hard-coded forever.
 
-- the relevant legal entity/operator;
-- the employee/person-count calculation used;
-- annual turnover evidence;
-- annual balance-sheet-total evidence where relied on;
-- any legally relevant partner/linked-enterprise analysis where applicable;
-- the accounting period used;
-- the date the assessment was approved; and
-- the event that will trigger the next reassessment.
+The service exemption is **not a universal BFSG exemption**. A separately covered product requires its own analysis. Even where the service exemption applies, do not publish misleading accessibility claims, misuse disability/accessibility information, or intentionally create avoidable barriers in refunds, withdrawals, account recovery, support, or paid-entitlement management.
 
-Reassess at least when annual accounts become available and after a material change such as hiring, restructuring, business sale, merger, transfer to a successor operator, or a change that could affect the enterprise calculation.
+Do not publish private financial evidence on a public legal page.
 
-A microenterprise exemption is not a permanent product feature and must not be hard-coded as `true` forever.
+## 2. BFSG § 14 and Annex 3 if the exemption does not apply
 
-### What the exemption does not mean
+Where CK-Labs provides an in-scope service and cannot rely on the microenterprise service exemption, BFSG § 14 is a release gate. The service may be offered or provided only when the applicable accessibility requirements are met and the Annex 3 information has been created and made publicly accessible in an accessible form.
 
-Even when the BFSG service exemption applies:
+The service provider must keep that information **as long as the service is offered or provided** and must account for changes in the service, accessibility requirements, harmonised standards, and technical specifications.
 
-- CK-Labs must not make misleading accessibility claims;
-- mandatory consumer information must still be clear and usable under other applicable law;
-- discrimination and other applicable disability/consumer protections remain separate questions;
-- Apple or Google accessibility metadata must remain accurate if CK-Labs publishes it;
-- a provider-controlled payment page must still satisfy that provider's own applicable duties;
-- CK-Labs should not intentionally introduce avoidable barriers into withdrawal, refund, account recovery, or paid-entitlement management; and
-- losing the exemption later must trigger a new scope review before continuing to rely on it.
-
-Voluntary accessibility improvements do not waive the exemption and should not be described as a legally required certification unless that is true.
-
-The service-provider microenterprise exemption is not a universal BFSG exemption. If CK-Labs later places a separately covered product on the EU market, that product requires its own BFSG scope analysis rather than inheriting a service exemption automatically.
-
-## 2. If the exemption does not apply: BFSG § 14 becomes a release gate
-
-Where CK-Labs provides an in-scope service and cannot rely on the microenterprise service exemption, BFSG § 14 requires the service to satisfy the applicable accessibility requirements and requires the public information described in Annex 3.
-
-Do not launch or continue an in-scope German consumer electronic-commerce flow on the assumption that an accessibility statement alone cures an inaccessible service. The technical service and the required public information are separate obligations.
-
-The service provider must also keep the Annex 3 information for as long as the service is offered or provided and must account for changes in the service, applicable accessibility requirements, harmonised standards, and technical specifications.
-
-## 3. Public accessibility information: BFSG § 14 + Annex 3
-
-Where required, provide the information **in the Terms or in another clearly perceivable manner**, and make it accessible to the public in an accessible format.
-
-At minimum, the TycoonX BFSG information must contain, as applicable:
+At minimum, the TycoonX Annex 3 information must contain, as applicable:
 
 1. a general description of the relevant service in an accessible format;
 2. descriptions and explanations necessary to understand how the service is performed;
 3. a description of how the service meets the applicable accessibility requirements; and
 4. the competent market-surveillance authority.
 
-As of September 2, 2026, the German official accessibility authority guidance identifies the **Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF AöR)** as the nationwide competent market-surveillance body for BFSG consumer complaints and oversight.
-
-Current authority checkpoint:
+Current authority checkpoint as of September 5, 2026:
 
 - Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen - Anstalt öffentlichen Rechts (MLBF AöR)
 - Carl-Miller-Straße 6, 39112 Magdeburg, Germany
@@ -102,376 +59,251 @@ Current authority checkpoint:
 - Email: kontakt@mlbf-barrierefrei.de
 - Website: https://www.mlbf-barrierefrei.de/
 
-Verify the current authority name and contact route immediately before publishing or updating a mandatory notice rather than freezing a 2026 authority reference forever.
+Verify the current authority name and contact route immediately before publishing or updating a mandatory notice.
 
-### Public notice quality rule
+Do not publish boilerplate such as `TycoonX is fully accessible`, `BFSG certified`, `EAA certified`, or `fully WCAG compliant` unless the evidence supports the exact claim. The private-sector BFSG information under § 14 and Annex 3 is not automatically the same instrument as the public-sector **Erklärung zur Barrierefreiheit**.
 
-Do not publish boilerplate such as `TycoonX is fully accessible` unless the evidence supports that statement across the service actually described.
+## 3. BFSGV § 12 general service accessibility
 
-A compliant notice should identify:
+Where BFSG applies, the relevant TycoonX service must be designed consistently and appropriately so information and functions are, as applicable, perceivable, operable, understandable, and robust.
 
-- the service and surfaces covered;
-- the relevant accessibility requirements;
-- the actual measures used to meet them;
-- any legally valid limitation or exception relied on;
-- a usable contact route for accessibility issues; and
-- the current competent authority.
+Release QA must cover at least:
 
-If CK-Labs is exempt as a microenterprise and still publishes a voluntary accessibility page, label it accurately as voluntary accessibility information rather than presenting a false statutory conformity declaration.
+- information that is findable and understandable;
+- more than one sensory channel where legally required;
+- appropriate text size, spacing, contrast, zoom, larger-text and orientation behavior;
+- an appropriate alternative representation for non-text content;
+- meaningful accessible names, roles, values, states, and error messages;
+- logical focus order and focus restoration after dialogs/provider handoffs;
+- keyboard, switch, screen-reader and platform-assistive-technology navigation where relevant;
+- validation errors that identify the affected field and explain recovery;
+- session expiry, security timeout, or countdown behavior that does not unnecessarily trap users who need more time;
+- confirmation, cancellation, refund, withdrawal, and support controls that remain perceivable and operable; and
+- accessible support communication where support services are offered.
 
-Important terminology: the private-sector BFSG information under § 14 and Annex 3 is not automatically the same legal instrument as the public-sector **Erklärung zur Barrierefreiheit**. Do not copy a public-authority template in a way that creates a false or overbroad conformity claim.
+Automated scanners are supporting evidence, not proof of legal conformity. Manual end-to-end task testing remains necessary.
 
-## 4. BFSGV § 12: general service accessibility
+## 4. BFSGV § 19 electronic-commerce functions
 
-Where the BFSG applies, the relevant TycoonX website/app/service information must be provided so that it is, as applicable:
+For an in-scope electronic-commerce service, BFSGV § 19 specifically requires relevant **identification, authentication, security, and payment functions** to be perceivable, operable, understandable, and robust.
 
-- available through more than one sensory channel;
-- findable;
-- understandable;
-- perceivable;
-- available in text formats capable of generating alternative assistive formats;
-- presented with appropriate text size, form, contrast, and spacing;
-- accompanied by an alternative representation for non-text content where needed; and
-- provided consistently in a way that is **perceivable, operable, understandable, and robust**.
-
-BFSGV § 12 also requires websites, associated online applications, mobile-device services, and mobile apps within scope to be designed consistently and appropriately so they are perceivable, operable, understandable, and robust.
-
-Where support services such as help desk or technical support are available, accessibility and assistive-technology information about the service must be available through accessible communication means.
-
-### Do not reduce accessibility to one automated score
-
-A Lighthouse, axe, Accessibility Scanner, or similar automated score is useful evidence but not proof of legal conformity. Manual testing with assistive technologies and task completion remains necessary.
-
-## 5. BFSGV § 19: electronic-commerce functions
-
-For an in-scope electronic-commerce service, BFSGV § 19 adds specific requirements. TycoonX must ensure, where applicable, that:
-
-- accessibility information supplied by the responsible economic operator for products/services offered for sale is made available;
-- identification functions are perceivable, operable, understandable, and robust;
-- authentication functions are perceivable, operable, understandable, and robust;
-- security functions are perceivable, operable, understandable, and robust;
-- payment functions are perceivable, operable, understandable, and robust; and
-- supplied identification methods, authentication methods, electronic signatures, and payment services meet those same principles.
-
-This means accessibility testing must include the **real purchase journey**, not only the marketing page.
-
-For TycoonX, test at least:
+Test the real transaction journey, not only the marketing page. For TycoonX, include at least:
 
 - product selection;
 - Diamond bundle selection;
 - one-time 30-Day VIP selection;
 - Lifetime VIP selection while a genuine sales window exists;
-- price/currency/tax presentation;
-- login and account identification where required;
-- MFA/OTP or other authentication where used;
-- security warnings and fraud-review steps that the user must complete;
-- final order review;
+- product identity, quantity, duration, one-time/non-recurring status, and material limitations;
+- final price, currency, tax/fee presentation and regional-pricing information;
+- login, account binding, MFA/OTP, SCA/3DS, CAPTCHA/anti-bot and fraud-review steps where used;
+- final order review and the legally relevant payment-obligation control;
 - payment method selection;
+- success, pending, cancellation, failure, refund, reversal and restoration states;
 - confirmation/receipt access;
-- refund or withdrawal navigation where CK-Labs controls it;
-- purchase restoration/reconciliation where user action is required; and
-- Support access for a failed or disputed transaction.
+- refund or withdrawal navigation where CK-Labs controls it; and
+- support access for failed or disputed transactions.
 
-A security control is not compliant merely because it prevents fraud. A CAPTCHA, OTP, anti-bot challenge, risk screen, or forced gesture that blocks users of assistive technology needs an accessible alternative where required.
+A security control is not compliant merely because it prevents fraud. A CAPTCHA, OTP, anti-bot challenge, SCA/3DS flow, risk screen, forced gesture, or timer that blocks assistive-technology users needs an accessible route or alternative where required. Accessibility does not require CK-Labs to weaken reasonable security, parental controls, fraud prevention, account-compromise protection, or legally required purchase confirmations. Implement those controls accessibly instead.
 
-## 6. The whole relevant shop journey matters
+## 5. The whole relevant shop journey matters
 
-Current German official guidance states that where electronic-commerce services are offered through websites or apps, the accessibility requirements are not limited to the last payment button. The guidance indicates that the whole website/app of the online shop can be relevant, including the path to contract conclusion.
+Do not scope accessibility testing only to `Buy` or the last payment button. Include the entry point, product information, legal information needed for the transaction, cart/order review if used, account identification, authentication, security, checkout, payment, confirmation, post-purchase administration, refund/withdrawal controls, and recovery from errors or provider failure.
 
-For TycoonX, do not scope testing only to `Buy`. Include the entry point, product information, legal information needed for the transaction, cart/order review if used, checkout, authentication, payment, confirmation, and post-purchase controls that are part of the electronic-commerce service.
+Where a sampled page is one step in a procedure, the full procedure must be tested for release evidence. Use BFSG Annex 1 as the market-surveillance risk model: include home/entry, login, contact/support, help, legal-information pages, accessibility information where required, materially different page types, and a complete transaction/error-recovery path.
 
-Where a page mixes gameplay and commerce, document which portions are part of the paid consumer journey and test the actual path a player must use.
+## 6. Legal and consumer-protection controls must remain accessible
 
-## 7. Accessibility of legal and consumer-protection controls
-
-If a legal control is required and BFSG applies to the surrounding electronic-commerce service, accessibility cannot stop just before that control.
-
-Test, as applicable:
+Where applicable to the covered service, test:
 
 - the German BGB § 356a electronic withdrawal function;
 - any future BGB § 312k termination button for a covered recurring product;
-- refund-request links;
-- purchase-history/order details;
+- refund-request and purchase-history/order-detail controls;
 - account recovery used to reach paid entitlements;
-- legal-policy links shown before checkout;
-- consent/acknowledgement controls required for early performance where applicable; and
+- legal-policy links required before checkout;
+- transaction-specific consent/acknowledgement controls required for early performance where applicable; and
 - durable-medium confirmations or accessible versions of documents generated by the service.
 
-A visually prominent withdrawal button that a screen-reader or keyboard-only user cannot operate is not an acceptable implementation merely because its German wording is correct.
+A visually prominent legal control that a screen-reader or keyboard-only user cannot operate is not acceptable merely because its wording is legally correct. Do not force an accessibility user into phone support if other users can complete the required process online unless a legally valid reason genuinely requires a different channel.
 
-Do not require an accessibility user to call Support if other users can complete the statutory or commercial process online, unless a legally valid reason genuinely requires a different channel.
+## 7. Apple, Google Play, Xsolla and third-party responsibility boundaries
 
-## 8. Technical benchmark and standards-change control
+Accessibility responsibility follows the actual UI and legal role.
 
-German official guidance currently identifies **EN 301 549 V3.2.1 (2021-03)** as the central technical reference for digital accessibility and notes that its web criteria refer to WCAG 2.1. The official guidance also says the standard is being revised for the European Accessibility Act and is expected to move toward WCAG 2.2.
+### Apple App Store
 
-Therefore:
+Apple controls its StoreKit/App Store payment UI. CK-Labs remains responsible for TycoonX-controlled product selection, labels, navigation, account binding, purchase initiation, entitlement status, restore/help surfaces, and other CK-Labs-controlled parts of the relevant journey. Apple Accessibility Nutrition Labels are separate metadata claims and must match the current app and common tasks such as first launch, login, purchase, and settings where applicable.
 
-- use the current officially relevant standard and BFSGV requirements as the legal benchmark;
-- use WCAG 2.2 as forward-looking engineering guidance where it improves readiness;
-- do not falsely state that a future or draft standard is already the binding harmonised standard;
-- re-check the Bundesfachstelle's `Normen und Standards` page before major releases and when the revised EN 301 549 is published/cited; and
-- treat a standards change as a trigger to reassess the public Annex 3 description if the service is in scope.
+### Google Play
 
-The public notice must describe actual conformity, not merely say `WCAG compliant` because a library claims it.
+Google controls Play Billing UI where Play Billing is used. CK-Labs remains responsible for TycoonX-controlled product selection, purchase initiation, account binding, entitlement, restore/help, and alternative-billing/external-offer choice and handoff screens. Test representative Android flows with TalkBack and, where relevant, Switch Access/keyboard navigation.
 
-## 9. Apple App Store accessibility metadata is separate
+### Xsolla web shop
 
-Apple's current Accessibility Nutrition Labels allow developers to publish accessibility support by device and feature. Apple says a claimed feature should support **all common tasks**, and explicitly treats first launch, login, purchase, and settings as common tasks where applicable.
+Where Xsolla hosts or controls checkout/payment components, document the boundary rather than assuming a vendor exemption. For every material German storefront change record the CK-Labs entry point, transition to Xsolla, merchant/provider role, party controlling authentication/payment UI, representative assistive-technology result, recovery path from failure, complaint ownership, and vendor evidence for the actual configuration/payment methods offered to German consumers.
 
-For TycoonX:
+A provider's generic marketing statement is not proof that the live TycoonX configuration is accessible. Likewise, CK-Labs must not promise control over provider UI it cannot change.
 
-- do not claim VoiceOver, Voice Control, Larger Text, Sufficient Contrast, or another Apple accessibility feature unless the current app actually meets Apple's published evaluation criteria for the supported device;
-- include the purchase flow when evaluating an accessibility claim;
-- keep App Store accessibility metadata current after material UI changes; and
-- use Apple's optional accessibility URL only if the linked information is accurate and maintained.
+### Third-party content
 
-Apple accessibility metadata does not prove BFSG conformity, and BFSG conformity does not automatically authorize an inaccurate App Store label.
+BFSG § 1(4)(4) is narrow. It is not a blanket rule for every third-party SDK, iframe, browser sheet, hosted checkout, widget, or provider template. If relying on that exclusion, retain evidence that the particular content is neither financed nor developed by CK-Labs nor under CK-Labs control. Reassess after customization or a change in contractual/technical control.
 
-## 10. Google / Android accessibility engineering is separate
+## 8. Technical standards and change control
 
-Google's current Android accessibility guidance recommends that common app flows work with assistive technologies such as TalkBack and Switch Access and emphasizes content labels, sufficient contrast, usable touch targets, and manual plus automated accessibility testing.
+Use the currently applicable BFSG/BFSGV requirements and officially relevant harmonised standards/technical specifications as the legal benchmark. EN 301 549 V3.2.1 (2021-03) remains an important engineering reference and its web criteria use WCAG 2.1. Use WCAG 2.2 as forward-looking engineering guidance where it improves readiness, but do not falsely state that a future or draft standard is already the binding harmonised standard.
 
-For TycoonX:
+Recheck official German/EU standards guidance before major releases and after material changes to the cited standards. The BFSGV in force has been amended since its original adoption, including a July 10, 2026 amendment, so do not freeze an old technical baseline indefinitely.
 
-- test purchase and account-management flows with TalkBack and keyboard/switch-style navigation where relevant;
-- ensure custom controls expose useful semantics and labels;
-- do not communicate state only through color;
-- ensure required controls can be focused and activated without a gesture-only path; and
-- use automated Android accessibility checks as a supplement to manual testing, not as the complete BFSG legal assessment.
+## 9. Fundamental alteration and disproportionate burden are narrow routes
 
-If TycoonX ever uses Android's AccessibilityService API, review Google Play's separate Accessibility API policy before release. Ordinary accessibility support for users does not require TycoonX to declare itself an accessibility tool.
+Do not use `too expensive`, `third-party SDK`, `small team`, or `game design` as an informal exemption.
 
-Google engineering guidance and Play policy do not replace German statutory accessibility duties where those duties apply.
+Where CK-Labs is not covered by the microenterprise service exemption and considers relying on BFSG §§ 16 or 17, require a written legal/technical assessment using the applicable statutory test and Annex 4 criteria.
 
-## 11. Xsolla and third-party checkout responsibility
+For a BFSG § 17 disproportionate-burden assessment:
 
-The official TycoonX web shop can redirect to or embed Xsolla-controlled checkout/payment components. This creates a responsibility boundary, not an accessibility exemption by itself.
+- identify the exact requirement, service/function, evidence, calculation, alternative implementation, and decision owner;
+- document the assessment and, where § 17(2) applies, retain it for **five years from the last provision of the service**;
+- under § 17(3), reassess the relevant service category/type **at least every five years**, and also whenever the service changes or the competent authority requests a new assessment;
+- under § 17(4), do not rely on disproportionate burden where CK-Labs has received relevant non-own public or private funding specifically intended to improve accessibility and the statutory restriction applies; and
+- satisfy any authority information/notification requirement, including the § 17(5) rule where applicable rather than assuming the exception is self-executing.
 
-For every German material storefront change, record:
+Do not convert a narrow exception for one feature into a blanket exemption for the whole TycoonX service.
 
-- the CK-Labs-controlled entry point;
-- the exact transition to Xsolla;
-- the Xsolla entity/merchant role shown to the consumer;
-- which party controls authentication and payment UI;
-- whether the relevant Xsolla checkout can be operated with keyboard/screen-reader assistive technology in the tested configuration;
-- whether payment-method widgets introduce inaccessible steps;
-- whether a failed provider step returns the user to an accessible recovery route;
-- who provides legally required accessibility information for the service; and
-- which party receives and resolves accessibility complaints about each part of the flow.
+## 10. Accessibility state must not become pricing, fraud, or entitlement logic
 
-Do not assume that a third-party payment provider's generic marketing statement proves the live TycoonX project configuration is BFSG-conformant. Test the actual project and payment methods offered to German consumers.
+Accessibility settings, screen-reader use, larger text, keyboard/switch navigation, disability-related support contact, or a request for an accessible format must **not** by themselves be used to:
 
-Likewise, do not promise that CK-Labs controls a provider screen that it cannot technically change. Document the boundary and escalate provider defects that block a legally required flow.
+- increase or decrease a player's price;
+- deny an otherwise valid genuine promotion;
+- assign a worse regional price;
+- classify the player as fraudulent, abusive, compromised, or high risk;
+- change fraud scoring merely because assistive technology is used;
+- remove or duplicate Diamonds;
+- start, restart, pause, extend, shorten, or cancel 30-Day VIP;
+- add an expiry, downgrade, duplicate, or reopen a Lifetime VIP sales window;
+- block a statutory refund, withdrawal, conformity, termination, privacy, account-deletion, or other mandatory remedy; or
+- reduce ordinary customer support.
 
-## 12. Third-party content exclusion is narrow: BFSG § 1(4)(4)
+Accessibility telemetry, if collected, must follow the TycoonX Privacy Policy, applicable GDPR/platform rules, purpose limitation, security, and data minimization. Do not create an unnecessary disability profile merely to prove that the UI was tested. Preserve only evidence reasonably needed for accessibility QA or legal compliance.
 
-BFSG § 1(4)(4) excludes third-party website/mobile-app content only where that content is **neither financed nor developed by the relevant economic operator nor under its control**.
+## 11. Paid-product distinctions and accessible copy
 
-This is content-specific. It is not a blanket rule that everything rendered through a third-party SDK, iframe, browser sheet, hosted checkout, embedded widget, or provider template falls outside the TycoonX accessibility analysis.
+Accessibility changes must preserve the same product meaning available visually.
 
-Release rule:
+### Diamonds
 
-- [ ] Record which Apple, Google, Xsolla, authentication, fraud, support, or other provider surfaces are genuinely provider-controlled.
-- [ ] Separately record CK-Labs-controlled copy, product cards, buttons, routing, error states, post-payment screens, restore controls, legal notices, and support links.
-- [ ] If relying on BFSG § 1(4)(4), retain enough evidence to show why the particular content is outside CK-Labs financing, development, and control.
-- [ ] Reassess after customizing provider templates, injecting CK-Labs copy/styles, embedding provider content more deeply, or changing contractual/technical control.
-- [ ] Do not call CK-Labs-controlled checkout-entry or post-checkout content third-party content merely because the actual payment is later processed externally.
+Purchased Diamonds remain purchased in-game virtual currency and **do not expire solely because time passes**. Accessibility remediation, a provider retry, or a test cannot silently convert paid Diamonds into a promotional grant, delete unrelated legitimate purchased value, or replay fulfillment.
 
-## 13. BFSG Annex 1 means end-to-end market-surveillance style testing
+### One-time 30-Day VIP
 
-BFSG § 28(2) points service monitoring to the method and sample selection in BFSG Annex 1. For websites and mobile apps, Annex 1 is operationally important because the test is not limited to a visually representative purchase screen.
+30-Day VIP remains a **one-time, non-renewing 30-day entitlement**. Visible text, screen-reader labels, hidden accessibility strings, App Store/Play descriptions, and Xsolla checkout descriptions must not call it a subscription or recurring product. Accessibility changes cannot restart, pause, extend, shorten, or duplicate an already valid period.
 
-The monitoring method checks all procedural steps in at least the ordinary standard sequence. It covers forms, controls, dialogs, data-entry confirmations, error messages, user feedback, necessary external interactions, and behavior with different software, assistive technologies, and settings.
+### Lifetime VIP
 
-Where present, the statutory sample includes the home page, login, sitemap, contact, help pages/functions, pages with legal information, at least one relevant page for each service/main purpose, the BFSG accessibility-information page itself, materially different page types, relevant downloadable documents, pages selected by the authority, and an additional random sample. If a sampled page is one step in a procedure, the full procedure is tested.
+Lifetime VIP remains a **one-time promotional entitlement offered only during selected genuine sales windows**. It may be withdrawn from future sale, may never return, and past or current availability creates no expectation of continuous future availability. Accessible/hidden text must preserve the same limited-window conditions, price information, and commercial-lifetime meaning as the visual offer and must not invent a permanent availability promise or different expiry.
 
-For TycoonX, use this risk model for release evidence where BFSG applies and as strong voluntary QA where CK-Labs currently relies on the service-provider microenterprise exemption:
+## 12. Price, promotion, regional pricing, payment state and accessibility
 
-- [ ] Test the consumer journey end-to-end rather than only screenshots or static HTML.
-- [ ] Include entry/home, login, contact/support, help, legal-information pages, and any required **Information zur Barrierefreiheit**.
-- [ ] Include Terms, Purchases & Refunds, Privacy, Support, account recovery/deletion, restore-entitlement, and German withdrawal paths where they form part of or administer the relevant consumer service.
-- [ ] Exercise success, pending, validation, error, provider-failure, and recovery states.
-- [ ] Test keyboard-only navigation plus representative screen-reader/assistive-technology paths.
-- [ ] Record tested build/version, route, scenario, result, browser/device/assistive technology, defect severity, remediation, and retest evidence.
-- [ ] If the user must leave CK-Labs UI for an external interaction, test the CK-Labs handoff and return/recovery path and preserve the provider-boundary evidence.
-- [ ] Never let an accessibility test or retry replay a real purchase or alter production Diamonds, 30-Day VIP, or Lifetime VIP.
+The accessible path must preserve the same legally relevant material information as the ordinary path, including Diamond quantity, 30-Day VIP duration and one-time status, Lifetime VIP limited-window meaning, final price/currency, mandatory taxes/fees, genuine promotion conditions, regional eligibility, refund/withdrawal route, and contracting merchant/provider identity where required.
 
-## 14. Nonconformity, correction, authority notification, and enforcement
+A provider outage or accessibility defect does not authorize CK-Labs to fabricate a successful transaction or grant paid value without authoritative payment confirmation. Failed, pending, reversed, refunded, charged-back, duplicated, or restored transactions remain transaction-scoped payment/entitlement events. Accessibility retries must be idempotent.
 
-Where BFSG § 14 applies and an in-scope service does not satisfy the applicable accessibility requirements, CK-Labs must not treat the issue as a normal cosmetic backlog item.
+An accessibility complaint or request is not evidence of fraud, chargeback abuse, exploit use, account compromise, entitlement abuse, or regional-price abuse without separate reliable evidence.
 
-The release/incident workflow must:
+## 13. Nonconformity, correction and enforcement
 
-1. record the nonconformity and affected service;
-2. assess user impact and the specific legal requirement;
+Where BFSG § 14 applies and an in-scope service fails the applicable requirements, the issue is not merely cosmetic. The incident workflow must:
+
+1. record the nonconformity and affected service/version;
+2. assess user impact and the legal requirement;
 3. take necessary corrective measures to restore conformity;
-4. preserve evidence of the correction and retest it; and
-5. where § 14(4) requires, inform the competent German market-surveillance authority and the relevant authorities of other EU Member States where the service is offered/provided, with the required detail on the nonconformity and corrective measures.
+4. preserve correction and retest evidence; and
+5. where § 14(4) requires, inform the competent German market-surveillance authority and relevant authorities in other EU Member States where the service is offered/provided, including the nature of the nonconformity and corrective measures.
 
-Do not delay a legally required authority notification merely to wait for a perfect redesign.
+BFSG § 37 currently allows fines up to **€100,000** for specified violations. Consumers and eligible organizations also have statutory routes under BFSG §§ 32 and 33 where the statutory conditions are met.
 
-BFSG § 37 currently allows a fine of up to **€100,000** for offering or providing a covered service contrary to § 14(1) in conjunction with the BFSGV. Consumers and eligible organizations also have statutory routes under BFSG §§ 32 and 33 to trigger administrative review or pursue remedies where the statutory conditions are met.
+Do not rewrite historic evidence after a complaint arrives, make a blanket admission that the entire TycoonX service violates BFSG because one control failed, or classify an accessibility complaint as enforcement abuse.
 
-If the microenterprise exemption applies, do not falsely file a statutory nonconformity notification as though CK-Labs were subject to a duty that does not apply. Record the scope/exemption decision and still fix material user barriers where appropriate.
+## 14. Old versions, outages, provider replacement and security emergencies
 
-Founder-protective incident rule:
+An accessibility fix in the newest build does not prove still-supported old versions are compliant. Where BFSG applies:
 
-- preserve the defect report, affected version, remediation, retest, and dates;
-- do not rewrite historic evidence after a complaint arrives;
-- do not make a blanket admission that the whole TycoonX service violates BFSG because one control failed; and
-- do not treat an accessibility complaint as fraud, chargeback abuse, exploit use, account compromise, or regional-price abuse without separate reliable evidence.
+- identify supported/distributed versions and test material purchase paths on versions consumers can still use;
+- require a supported update where reasonably necessary for security, legal compliance, or accessibility, subject to mandatory digital-product/update rights;
+- preserve lawful pending-purchase, refund, withdrawal, entitlement-restoration, and support routes during outages;
+- ensure a provider or consent/accessibility component outage does not default to an inaccessible paid flow;
+- re-test after material Apple, Google Play, Xsolla, authentication, payment, fraud/security, infrastructure, or accessibility-provider changes; and
+- keep security prompts accessible where required without weakening security unnecessarily.
 
-## 15. Fundamental alteration and disproportionate burden are narrow, documented routes
+An unsupported old version is not a basis to erase valid Diamonds, 30-Day VIP, or Lifetime VIP.
 
-Do not use `too expensive`, `third-party SDK`, `small team`, or `game design` as an informal accessibility exemption.
+## 15. Permanent service discontinuation and successor operators
 
-Where CK-Labs is not covered by the microenterprise service exemption and considers relying on a statutory fundamental-alteration or disproportionate-burden provision, require a separate written legal/technical assessment under the applicable BFSG provisions and Annex 4 criteria before relying on that route.
+Permanent TycoonX service discontinuation does not eliminate accrued mandatory consumer remedies, lawful payment records that must be retained, valid refund/chargeback processing, privacy duties, authority cooperation, or other surviving legal obligations.
 
-The assessment must identify:
+A sale, merger, reorganization, or successor operator can change the BFSG enterprise-size analysis, service-provider identity, public accessibility information, vendor configuration, and authority/contact details. Before the successor continues the German electronic-commerce service, reassess the microenterprise exemption, update Annex 3 information if required, update provider/contact identity, retest paid flows, and preserve valid paid entitlements and mandatory remedies during migration.
 
-- the exact requirement affected;
-- the feature/service involved;
-- why compliance would fundamentally alter the basic nature of the service or create the claimed disproportionate burden;
-- the evidence and calculation used;
-- whether an alternative accessible implementation is available;
-- the review/renewal date required by law; and
-- any authority information/notification duty triggered by reliance on the exception.
+## 16. Release evidence packet
 
-BFSG § 17 requires a disproportionate-burden assessment to be documented and, where its documentation rule applies, retained for five years from the last provision of the service. Do not convert a narrow exception for one feature into a blanket exemption for the whole TycoonX service.
+For each materially changed German TycoonX purchase path, keep a compact access-controlled packet containing:
 
-## 16. Accessibility changes must not alter paid entitlement state
-
-Accessibility remediation, assistive-technology metadata, a provider accessibility defect, or an accessibility complaint must remain separate from payment entitlement truth.
-
-Specifically:
-
-- fixing an inaccessible Diamond purchase screen must not duplicate purchased Diamonds;
-- re-rendering or replaying a checkout cannot create a second entitlement grant;
-- accessibility testing must never use production refund/reversal controls against a real player account without an authorized test plan;
-- an accessibility complaint is not evidence of fraud, chargeback abuse, account compromise, exploit use, or regional-price abuse;
-- fixing or replacing a 30-Day VIP purchase UI must not restart, pause, extend, shorten, or duplicate an already valid one-time 30-Day VIP period;
-- fixing a Lifetime VIP sales screen cannot create a hidden expiry, downgrade, or duplicate a valid Lifetime VIP;
-- withdrawal/refund accessibility changes must remain idempotent and transaction-scoped; and
-- Apple, Google, or Xsolla accessibility/provider retries must never replay entitlement fulfillment.
-
-If an inaccessible flow caused a consumer to receive an incorrect charge or miss a mandatory remedy, correct the specific transaction under applicable law and authoritative records rather than making a game-wide economy correction.
-
-## 17. Price, promotion, regional pricing, and accessibility
-
-Accessibility cannot be used to show disabled users a materially different commercial offer unless there is a lawful, transparent reason unrelated to disability discrimination.
-
-The accessible path must preserve the same legally relevant information as the ordinary path, including:
-
-- Diamond quantity;
-- 30-Day VIP duration and one-time/non-renewing status;
-- Lifetime VIP limited-window and commercial-lifetime meaning;
-- final price and currency;
-- mandatory taxes/fees;
-- genuine promotion conditions;
-- regional eligibility;
-- refund/withdrawal route; and
-- contracting merchant/provider identity where required.
-
-Alternative text, screen-reader labels, or simplified presentation must not silently omit a price limitation, countdown condition, subscription status, tax, or material product distinction.
-
-## 18. Security and old/unsupported versions
-
-Accessibility does not prevent CK-Labs from deploying reasonable security controls, forcing a security update, or ending support for an old app version where legally permitted.
-
-However:
-
-- security prompts needed to continue a purchase must themselves be accessible where required;
-- a forced update must not strand a user without a reasonable way to restore paid entitlements;
-- an unsupported old version cannot be used as the sole excuse to erase valid Diamonds, 30-Day VIP, or Lifetime VIP;
-- emergency provider replacement must include accessibility regression testing for the new purchase/authentication path; and
-- accessibility fixes must not weaken authentication or fraud controls unnecessarily when an accessible secure alternative exists.
-
-## 19. Business sale, merger, or successor operator
-
-A sale, merger, reorganization, or successor operator can change the BFSG enterprise-size analysis, service-provider identity, public accessibility information, and authority/contact details.
-
-Before the successor continues the German electronic-commerce service:
-
-- reassess the microenterprise exemption;
-- update the Annex 3 information if required;
-- update the service-provider/contact identity;
-- retest the paid purchase path;
-- verify third-party provider contracts/configuration; and
-- preserve valid paid entitlements and mandatory consumer remedies during migration.
-
-Do not assume the predecessor's exemption or conformity evidence automatically transfers unchanged.
-
-## 20. Release evidence packet
-
-Keep a dated packet for each material German storefront release containing:
-
-- BFSG scope classification;
-- microenterprise exemption memo or non-exempt compliance decision;
-- current employee/person and turnover/balance-sheet evidence used for the scope decision;
-- the current Annex 3 public accessibility information if required;
-- confirmation of the current MLBF/competent-authority details where cited;
-- the standards/version baseline used;
-- automated accessibility scan results;
-- Annex 1-style sample selection and complete-procedure test evidence where applicable;
-- manual keyboard navigation evidence for the web shop;
-- screen-reader test evidence for critical flows;
-- iOS VoiceOver purchase/login/settings test evidence where relevant;
-- Android TalkBack purchase/login/settings test evidence where relevant;
-- text scaling/zoom evidence;
-- contrast/non-color-only evidence;
-- focus-order and modal/dialog evidence;
-- accessible authentication/security challenge evidence;
-- Xsolla provider-boundary test evidence for representative German payment methods;
+- build/site version and release date;
+- BFSG scope classification and microenterprise-exemption memo or non-exempt decision;
+- current Annex 3 information if required;
+- current authority details where cited;
+- applicable standards/version baseline;
+- automated scan results and manual keyboard/screen-reader/switch tests;
+- zoom/text-size/orientation/contrast evidence;
+- focus, dialog, error, timeout, and security-challenge evidence;
+- Apple, Google Play, or Xsolla integration mode and provider-boundary evidence;
+- price/product/offer/entitlement accessibility checks;
 - legal/withdrawal/refund control accessibility evidence;
-- Apple Accessibility Nutrition Label reconciliation if labels are published;
-- nonconformity/correction records; and
-- a sign-off confirming that accessibility testing did not mutate real paid entitlements.
+- nonconformity/correction/retest records;
+- unresolved defects, severity, workaround and owner;
+- next review date; and
+- confirmation that accessibility testing did not mutate real production paid entitlements.
 
-Do not retain unnecessary player personal data, payment credentials, or production secrets in screenshots/test evidence.
+Do not retain unnecessary player personal data, full payment credentials, private chat content, authentication secrets, disability profiles, or unrelated financial records in this packet.
 
-## 21. Minimum regression scenarios
+## 17. Minimum regression scenarios
 
-Before treating the gate as live-service ready after a material German consumer-commerce change, test at least the following scenarios.
+Before treating a materially changed German consumer-commerce path as ready, test at least:
 
-1. **Microenterprise exemption applies:** evidence proves the current threshold conditions; the system records a reassessment trigger rather than permanently hard-coding exemption.
-2. **Microenterprise exemption is lost:** the service cannot continue relying on the old memo; Annex 3 and technical conformity become required work where BFSG applies.
-3. **Keyboard-only webshop:** a user can reach product, price, order review, checkout handoff, and recovery without a mouse.
-4. **Screen-reader product selection:** Diamond quantity and VIP product distinctions are announced correctly.
-5. **30-Day VIP:** assistive technology announces that the product is one-time and non-renewing and identifies the 30-day duration.
-6. **Lifetime VIP:** assistive technology exposes the limited sales-window nature and commercial-lifetime meaning without hiding it behind an unlabeled tooltip.
-7. **Price and tax:** the same final material price/currency/tax information is available through the accessible route.
-8. **Color independence:** sale status, validation errors, selected payment method, and success/failure are not communicated only by color.
-9. **Authentication:** OTP/MFA/security steps are labeled and operable with assistive technology.
-10. **CAPTCHA/anti-bot:** a required security challenge has an accessible path or alternative where required.
-11. **Xsolla handoff:** focus and context are understandable before and after the provider transition.
-12. **Provider failure:** an inaccessible or failed payment widget returns to a usable recovery path without granting value.
-13. **German withdrawal function:** `Vertrag widerrufen` / `Widerruf bestätigen` or valid equivalents can be found and operated through assistive technology where CK-Labs controls the applicable function.
-14. **Durable-medium receipt:** the resulting withdrawal/order confirmation is perceivable and usable in an accessible format where BFSG applies.
-15. **Duplicate accessibility retry:** refreshing, re-focusing, or retrying a provider widget cannot duplicate Diamonds or VIP.
-16. **Apple accessibility label:** any published VoiceOver/other accessibility claim matches the current common-task test including purchase/login/settings.
-17. **Android TalkBack:** the user can complete the representative purchase path without unlabeled custom controls.
-18. **Legal text:** the user can navigate headings and links in Terms/Purchases information needed for the transaction without an image-only or inaccessible document barrier.
-19. **Annex 1 sample:** login, support/contact, legal information, accessibility information, and a full transaction/error-recovery procedure are covered where present.
-20. **Third-party-content claim:** CK-Labs does not use § 1(4)(4) for content it finances, develops, controls, or materially customizes.
-21. **Nonconformity discovered:** the issue enters the BFSG correction/authority decision workflow instead of a cosmetic backlog.
-22. **Accessibility complaint:** the reporter's account and paid value remain untouched unless separate evidence justifies an unrelated enforcement action.
-23. **Successor operator:** a merger/sale triggers fresh exemption/scope/provider/public-information assessment without harming existing paid entitlements.
-24. **Exemption lost after growth:** the microenterprise status memo is re-evaluated immediately rather than waiting for the next app release.
+1. valid microenterprise exemption with dated evidence and reassessment trigger;
+2. exemption lost after growth/reorganization;
+3. keyboard-only webshop purchase selection and recovery;
+4. screen-reader Diamond bundle and final-price reading;
+5. 30-Day VIP announced as one-time, non-renewing and 30 days;
+6. Lifetime VIP limited genuine sales-window meaning exposed accessibly;
+7. large text/zoom/orientation without hidden buy/cancel/price controls;
+8. non-color-only sale, error, selected-payment and success/failure states;
+9. MFA/OTP/SCA/security challenge with accessible recovery;
+10. timeout/session-expiry flow for a user needing more time;
+11. Xsolla handoff and return with understandable focus/context;
+12. Apple/Google provider cancellation without a false entitlement grant;
+13. pending payment without a false success announcement;
+14. provider failure/outage without fraud classification or fabricated payment success;
+15. German § 356a withdrawal controls operable with assistive technology where CK-Labs controls them;
+16. durable-medium receipt/confirmation accessible where required;
+17. accessibility retry cannot duplicate Diamonds or VIP;
+18. accessibility-support request cannot change price, promotion, regional pricing or fraud score;
+19. accessibility telemetry cannot create an unnecessary disability profile;
+20. third-party-content claim is rejected for content CK-Labs finances, develops, controls, or materially customizes;
+21. disproportionate-burden reliance has documented five-year retention plus § 17(3) reassessment cadence and funding/authority checks;
+22. nonconformity enters the correction/authority-decision workflow;
+23. old client/update scenario preserves restoration/refund/support routes;
+24. successor operator triggers fresh scope/provider/public-information review; and
+25. permanent shutdown preserves surviving remedies and records without creating new paid entitlement promises.
 
-## 22. Canonical-document and localization trigger
+## 18. Canonical-document and localization trigger
 
-This gate is operational and does **not** by itself change the current public meaning of the English Terms, Purchases & Refunds Policy, Privacy Policy, or Community Standards.
+This operational gate does **not** materially change the current public meaning of the English Terms, Purchases & Refunds Policy, Privacy Policy, or Community Standards. The completed TycoonX localization queue therefore remains closed.
 
-Therefore the completed TycoonX localization queue remains closed unless a future BFSG implementation requires a **material new player-facing legal promise or statutory disclosure inside a canonical legal document**.
+If a future BFSG implementation requires a material new player-facing contractual promise, merchant-role statement, purchase limitation, mandatory accessibility disclosure inside a canonical legal document, or other canonical legal change, update the English canonical document first and reopen only the affected localized document type in the exact locale order recorded in `TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md`.
 
-If CK-Labs becomes non-exempt and chooses to put mandatory Annex 3 information inside the canonical Terms or Purchases policy rather than on a separate clearly perceivable accessibility page, that is a canonical meaning change. Reopen the affected localized document type and resynchronize all 25 locales in the required order.
+## 19. Live-service decision
 
-If a separate BFSG accessibility-information page is created, decide deliberately whether and how it should be localized. Do not silently claim that an English-only notice satisfies every language/accessibility obligation without checking the actual German/EU service and audience.
-
-## 23. Live-service decision
-
-Do not mark the German TycoonX electronic-commerce accessibility gate `PASS` until one of these two paths is evidenced:
+Do not mark the German TycoonX e-commerce accessibility gate `PASS` until one of these paths is evidenced:
 
 ### Path A: valid microenterprise service exemption
 
@@ -482,39 +314,27 @@ Do not mark the German TycoonX electronic-commerce accessibility gate `PASS` unt
 
 ### Path B: BFSG applies
 
-- the in-scope service passes the applicable BFSG/BFSGV accessibility requirements;
-- the real end-to-end purchase/auth/payment/support path has been tested;
+- the in-scope service passes applicable BFSG/BFSGV accessibility requirements;
+- the real end-to-end purchase/authentication/security/payment/support path has been tested;
 - Annex 3 public accessibility information exists and is accessible;
 - the current competent authority is identified;
 - nonconformity/correction handling is operational;
 - third-party provider boundaries are evidenced; and
 - Diamonds, 30-Day VIP, Lifetime VIP, refunds, withdrawals, and chargebacks remain idempotent and transaction-scoped.
 
-Continued operation of the German consumer electronic-commerce service is **blocked** if CK-Labs cannot evidence either path and the service remains within BFSG scope.
+Continued operation of the German consumer electronic-commerce service is blocked if CK-Labs cannot evidence either path and the service remains within BFSG scope.
 
-## Primary references reviewed September 2, 2026
+## Primary references reviewed September 5, 2026
 
-German statutory sources:
-
-- BFSG § 1 scope and third-party-content exclusions: https://www.gesetze-im-internet.de/bfsg/__1.html
-- BFSG § 2 definitions, including electronic commerce and microenterprise: https://www.gesetze-im-internet.de/bfsg/__2.html
-- BFSG § 3 accessibility requirement and microenterprise service exemption: https://www.gesetze-im-internet.de/bfsg/__3.html
-- BFSG § 14 service-provider duties: https://www.gesetze-im-internet.de/bfsg/__14.html
-- BFSG § 17 disproportionate burden: https://www.gesetze-im-internet.de/bfsg/__17.html
-- BFSG § 28 service market surveillance: https://www.gesetze-im-internet.de/bfsg/__28.html
-- BFSG §§ 32-33 consumer/association administrative rights and remedies: https://www.gesetze-im-internet.de/bfsg/__32.html and https://www.gesetze-im-internet.de/bfsg/__33.html
-- BFSG § 37 fines: https://www.gesetze-im-internet.de/bfsg/__37.html
-- BFSG Annex 1 service monitoring: https://www.gesetze-im-internet.de/bfsg/anlage_1.html
-- BFSG Annex 3 public service accessibility information: https://www.gesetze-im-internet.de/bfsg/anlage_3.html
+- BFSG § 1: https://www.gesetze-im-internet.de/bfsg/__1.html
+- BFSG § 2: https://www.gesetze-im-internet.de/bfsg/__2.html
+- BFSG § 3: https://www.gesetze-im-internet.de/bfsg/__3.html
+- BFSG § 14: https://www.gesetze-im-internet.de/bfsg/__14.html
+- BFSG §§ 16-17: https://www.gesetze-im-internet.de/bfsg/__16.html and https://www.gesetze-im-internet.de/bfsg/__17.html
+- BFSG §§ 28, 32, 33, 37: https://www.gesetze-im-internet.de/bfsg/
+- BFSG Annex 1, Annex 3 and Annex 4: https://www.gesetze-im-internet.de/bfsg/
 - BFSGV §§ 12 and 19: https://www.gesetze-im-internet.de/bfsgv/__12.html and https://www.gesetze-im-internet.de/bfsgv/__19.html
-
-Current German guidance/authority:
-
-- Bundesfachstelle Barrierefreiheit BFSG overview: https://www.bundesfachstelle-barrierefreiheit.de/DE/Barrierefreiheitsstaerkungsgesetz/barrierefreiheitsstaerkungsgesetz
-- Bundesfachstelle e-commerce FAQ: https://www.bundesfachstelle-barrierefreiheit.de/DE/Barrierefreiheitsstaerkungsgesetz/FAQ-elektronischer-Geschaeftsverkehr/faq-elektronischer-Geschaeftsverkehr_node
-- Bundesfachstelle e-commerce guidance: https://www.bundesfachstelle-barrierefreiheit.de/DE/Barrierefreiheitsstaerkungsgesetz/E-Commerce/online-shops_node
+- Bundesfachstelle Barrierefreiheit e-commerce guidance: https://www.bundesfachstelle-barrierefreiheit.de/DE/Barrierefreiheitsstaerkungsgesetz/E-Commerce/online-shops_node
 - MLBF AöR: https://www.mlbf-barrierefrei.de/
 
-Platform engineering references remain separate from German statutory duties. Re-check current Apple App Store accessibility metadata guidance, Google Android accessibility guidance, and the actual Xsolla checkout configuration before relying on a platform/provider accessibility claim.
-
-Provider documentation and standards evolve. Re-check current official sources before relying on a specific standard version, authority address, App Store accessibility label, Google policy, or Xsolla checkout behavior.
+Provider and standards documentation evolves. Re-check current Apple accessibility guidance, Google Android accessibility guidance, the actual Xsolla checkout configuration, and current harmonised standards before relying on a provider, platform, or standards claim.
