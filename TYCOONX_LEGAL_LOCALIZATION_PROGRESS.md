@@ -83,6 +83,30 @@ Localized transfer-rule component commit: `7e790f6c968efa7ac6150afd5cbb2490d390b
 Localized Terms layout integration commit: `6b9e7c554b5566badf67fae0f76ffa51c165e3cb`.
 Canonical rendered Terms layout integration commit: `7584872a1beb1e221dbe43c81c5cecd3448f7ce6`.
 
+## September 5, 2026 genuine-transaction enforcement operations checkpoint
+
+`TYCOONX_GENUINE_TRANSACTION_ENFORCEMENT_RELEASE_GATE.md` now operationalizes the September 5 public Terms rule without changing its player-facing legal meaning. The localization queue therefore remains closed.
+
+The operational checkpoint requires all of the following:
+
+- enforcement applies a genuine-purpose / primary-purpose test rather than an automatic price threshold;
+- art must be bought because the buyer genuinely wants the artwork, while financial help must use the designated Begging feature where available;
+- a high price, generous deal, unusual transaction, friendship, shared household/network signal, or single transaction is not automatically proof of abuse;
+- reasonable corroborated evidence should support a final finding that moving wealth was the transaction's main purpose;
+- detection, temporary containment, transaction correction, and account punishment remain separate decisions;
+- automated scores, thresholds, and relationship graphs may flag transactions, but serious final enforcement must preserve applicable human-review and GDPR Article 22 safeguards where that provision applies;
+- covered DSA Article 17 decisions receive the applicable clear and specific statement of reasons without pretending every gameplay decision globally falls within Article 17;
+- credible account compromise is investigated separately so a legitimate owner is not automatically treated as the intentional transfer abuser;
+- exploit-generated or otherwise invalid value is routed through the existing economy-correction gate and can be unwound without automatically branding every downstream recipient a cheater;
+- unrelated legitimate Apple App Store, Google Play, and Xsolla purchases remain isolated from gameplay-transfer enforcement, including purchased Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP;
+- payment-provider records can prove payment/refund/reversal facts but do not by themselves prove the player's gameplay intent;
+- reliable evidence of real-money, cryptocurrency, gift-card, or other off-platform consideration may support the existing genuine-purpose analysis, but this operational gate does not silently create a broader standalone RMT prohibition beyond the public Terms;
+- the September 5 rule is not used by itself to impose new punitive enforcement retroactively on completed earlier conduct that was not independently prohibited under the Terms then in force; and
+- an in-game correction never becomes an unauthorized real-world card charge, new store purchase, or real-world debt.
+
+Operational gate commit: `2581d25250b3dcd013478dbc424d413f244d0f9f`.
+Dedicated verifier commit: `90972cc44ac6a91389801f6e482c2339ca255e1d`.
+
 ## Existing product invariants
 
 All canonical and localized legal documents must continue to preserve these distinctions:
@@ -108,8 +132,8 @@ All canonical and localized legal documents must continue to preserve these dist
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.7%**
-- **Full commercial/legal/payment readiness:** **95%**
-- **Overall project completion:** **99.0%**
+- **Full commercial/legal/payment readiness:** **95.5%**
+- **Overall project completion:** **99.1%**
 - **Exact next unfinished locale/document:** None — all target locale documents are current
 
 Historical synchronization and release-gate checkpoints remain available in Git history; this tracker intentionally keeps the current state and active invariants concise so future runs can continue without duplicating completed work.
