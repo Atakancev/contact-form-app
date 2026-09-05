@@ -137,6 +137,32 @@ Operational gate original commit: `2581d25250b3dcd013478dbc424d413f244d0f9f`.
 RMT alignment commit: `5c3ef098819ce051851e389b793fd04ceb505058`.
 Dedicated enforcement verifier update: `6e4320538c8b7bd6d8060abfffed8bfda3302fcb`.
 
+## September 5, 2026 transfer/RMT privacy transparency checkpoint
+
+The September 5 transfer and RMT rules expanded the categories of service data that may be relevant to a fraud or game-integrity investigation. The canonical Privacy Policy was therefore materially refreshed so the enforcement rules and privacy disclosures remain aligned instead of relying on a broad generic anti-fraud clause.
+
+All 25 localized Privacy routes are synchronized through `app/tycoonx-legal/TransferRiskPrivacyNotice.tsx`, which renders only on the applicable `/tycoonx-legal/{locale}/privacy` route and uses natural locale-specific wording, genuine regional variants, and RTL for Arabic. The same disclosure is rendered on the canonical English Privacy route, and the canonical Markdown policy contains the underlying processing description directly.
+
+Every canonical and localized Privacy page must preserve all of the following:
+
+- CK-Labs may analyze transaction and ledger records, counterparties, transaction chains, repeated transfers, pricing patterns, feature usage, and account relationships directly observed or reasonably inferred from relevant Service data when reasonably necessary for transfer/RMT, fraud, account-compromise, exploit, or game-integrity investigations;
+- related reports or communications may be reviewed only where that review is reasonably necessary and lawful, and private communications are not reviewed merely because they exist;
+- the purposes include detecting or investigating disguised wealth transfers, account farming, coordinated or circular transfers, exploit proceeds, unauthorized real-money trading, payment abuse, account compromise, and other fraud or game-integrity risks and correcting invalid game state;
+- where the GDPR applies, contract necessity may support processing genuinely necessary to operate the persistent multiplayer economy, while legitimate-interest processing requires the applicable legitimate-interest, necessity and balancing analysis rather than treating the label “fraud prevention” as automatic permission;
+- fraud/security/game-integrity legitimate interests remain subject to user rights and reasonable expectations, data minimization, access controls, appropriate evidence thresholds, retention limits and other suitable safeguards;
+- a high-value transaction, unusual price, friendship, company membership, shared household/network signal, or one unusual event does not by itself prove abuse;
+- automated signals may flag activity for investigation but do not make a single indicator conclusive, and GDPR Article 22 safeguards apply where a solely automated decision falls within that provision;
+- applicable rights to access, correction, deletion, restriction, objection to legitimate-interest processing and automated-decision safeguards remain available under mandatory law;
+- relevant investigation records are kept only for a reasonably necessary security, repeat-abuse, dispute, legal-claim or legal-obligation period rather than indefinitely merely because an investigation occurred; and
+- Apple, Google, Xsolla or other provider payment records may establish payment or entitlement events but do not by themselves determine the gameplay purpose of an in-game transaction.
+
+Canonical Privacy Markdown update commit: `6614fef74927d4906215dad32eb1702cef22abd6`.
+Localized Privacy disclosure component commit: `f7fe54e69a9003723737e10e4a442d6bebbdae00`.
+Localized Privacy layout integration commit: `291267d76e709766df282dd34add2544c9d2979f`.
+Canonical Privacy layout integration commit: `20db8fbb0cb2e8d04c57b55dff8ea8df44d8a170`.
+Canonical rendered Privacy date refresh commit: `8a55cd3c6e5bb44c507fb3266b135b3ec0823274`.
+Dedicated Privacy synchronization verifier commit: `8530099db85594213957ae05f2803219079060cc`.
+
 ## Existing product invariants
 
 All canonical and localized legal documents must continue to preserve these distinctions:
@@ -155,16 +181,16 @@ All canonical and localized legal documents must continue to preserve these dist
 
 - English Terms: materially refreshed **September 5, 2026** for genuine transactions, prohibited player-to-player wealth transfers, and explicit RMT/off-platform-exchange rules.
 - English Purchases & Refunds: materially refreshed **August 28, 2026** for purchased-Diamond withdrawal rights and real-money virtual-currency price transparency.
-- English Privacy Policy: refreshed **August 26, 2026** for third-party data-protection and third-party AI disclosure/permission safeguards.
+- English Privacy Policy: materially refreshed **September 5, 2026** for transfer/RMT investigation transparency, legal-basis safeguards, retention, objections, and automated-decision protections.
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 
 ## Progress metrics
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.8%**
-- **Full commercial/legal/payment readiness:** **96%**
-- **Overall project completion:** **99.2%**
+- **Canonical English legal wording:** **99.85%**
+- **Full commercial/legal/payment readiness:** **96.3%**
+- **Overall project completion:** **99.3%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and release-gate checkpoints remain available in Git history; this tracker intentionally keeps the current state and active invariants concise so future runs can continue without duplicating completed work.
