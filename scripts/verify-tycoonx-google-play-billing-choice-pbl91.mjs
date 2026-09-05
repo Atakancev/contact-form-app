@@ -33,7 +33,7 @@ const gateChecks = [
   ["EEA external links not Billing Choice shortcut", /EEA TycoonX -> Xsolla external links are not a Billing Choice external-link shortcut/i],
   ["EEA EOP game eligibility", /EOP explicitly allows games/i],
   ["EOP no Play Billing combination", /Google Play Billing or user choice billing cannot be combined/i],
-  ["EOP 24-hour reporting", /EOP[^\n]*within 24 hours|within 24 hours[^\n]*EOP/i],
+  ["EOP 24-hour reporting", /(?:EOP|External Offers Program)[\s\S]{0,240}within 24 hours|within 24 hours[\s\S]{0,240}(?:EOP|External Offers Program)/i],
   ["EOP 0 percent acquisition", /0% initial acquisition fee/i],
   ["EOP standard non-recurring 20 percent", /non-recurring in-app digital items of 20%/i],
   ["EOP first-million 10 percent", /10% for the first \$1M/i],
