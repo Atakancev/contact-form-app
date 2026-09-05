@@ -1,6 +1,6 @@
 # TycoonX Custom End User License Agreement
 
-Last updated: August 27, 2026
+Last updated: September 5, 2026
 
 This Custom End User License Agreement ("EULA") governs the license to use the TycoonX application distributed through Apple’s App Store (the "Licensed Application").
 
@@ -20,7 +20,7 @@ The Licensed Application is licensed, not sold.
 
 CK-Labs grants you a limited, personal, non-exclusive, non-transferable, non-sublicensable license to use TycoonX on Apple-branded products that you own or control, as permitted by the applicable Apple Media Services Terms and App Store Usage Rules.
 
-Where Apple’s Usage Rules permit Family Sharing, volume purchasing, or another Apple-supported access mechanism, the Licensed Application may also be accessed by eligible associated accounts in accordance with those rules.
+Where Apple’s Usage Rules permit it, the Licensed Application may also be accessed, acquired, and used by other accounts associated with the purchaser through Family Sharing, volume purchasing, or Legacy Contacts, in accordance with Apple’s applicable rules.
 
 Except where applicable law expressly permits otherwise, you may not copy, distribute, sell, rent, lease, sublicense, transfer, reverse engineer, decompile, disassemble, derive source code from, modify, create derivative works from, or commercially exploit the Licensed Application. You must not bypass security controls, entitlement checks, payment validation, rate limits, or access restrictions, or use unauthorized clients, bots, scripts, macros, exploits, forged receipts, or manipulated software to obtain unauthorized access or an unfair advantage.
 
@@ -71,7 +71,7 @@ Where applicable law requires CK-Labs to provide or notify users about updates, 
 
 CK-Labs is responsible for any applicable product warranties relating to the Licensed Application, whether expressly provided by CK-Labs or imposed by law, to the extent such warranties cannot lawfully be excluded.
 
-If the Licensed Application fails to conform to an applicable warranty, you may notify Apple, and Apple may refund the purchase price, if any, paid for the Licensed Application. To the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the Licensed Application.
+If the Licensed Application fails to conform to an applicable warranty, you may notify Apple, and Apple will refund the purchase price, if any, paid for the Licensed Application to you. To the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the Licensed Application.
 
 Any other claims, losses, liabilities, damages, costs, or expenses attributable to a failure of the Licensed Application to conform to an applicable warranty are the responsibility of CK-Labs to the extent required by applicable law.
 
