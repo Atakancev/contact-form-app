@@ -63,7 +63,7 @@ Future runs must not duplicate completed localization. Continue with repository-
 
 The canonical English Terms were materially updated on September 5, 2026 to prohibit using ordinary TycoonX economic mechanics as disguised donation, assistance, wealth-funneling, parking, hiding, or transfer channels.
 
-All 25 localized Terms routes were synchronized in the required locale order through the shared localized Terms component `app/tycoonx-legal/TransferRuleNotice.tsx`, rendered on every `/tycoonx-legal/{locale}/terms` route. The same rule is rendered on the canonical English Terms route and is also present directly in `tyconx-terms-of-service.md`.
+All 25 localized Terms routes were synchronized in the required locale order through the shared localized Terms component `app/tycoonx-legal/TransferRuleNotice.tsx`, rendered only on the applicable Terms routes. The same rule is rendered on the canonical English Terms route and is also present directly in `tyconx-terms-of-service.md`.
 
 Every canonical and localized Terms page must preserve all of the following:
 
@@ -78,34 +78,64 @@ Every canonical and localized Terms page must preserve all of the following:
 - a high price, generous deal, or unusual transaction is **not automatically a violation** merely because it is large or unusual; reasonable evidence of the prohibited transfer purpose is required before enforcement; and
 - CK-Labs may reverse prohibited transfers and apply proportionate account restrictions while preserving unrelated legitimate paid value and mandatory rights.
 
-Canonical Terms update commit: `d4d744423ce4195991283c43b30378949f687731`.
+Canonical Terms genuine-transaction commit: `d4d744423ce4195991283c43b30378949f687731`.
 Localized transfer-rule component commit: `7e790f6c968efa7ac6150afd5cbb2490d390beb2`.
 Localized Terms layout integration commit: `6b9e7c554b5566badf67fae0f76ffa51c165e3cb`.
 Canonical rendered Terms layout integration commit: `7584872a1beb1e221dbe43c81c5cecd3448f7ce6`.
 
+## September 5, 2026 real-money trading and off-platform exchange invariant
+
+The canonical English Terms were further materially updated on September 5, 2026 to prohibit unauthorized real-money trading (RMT) and off-platform exchange of TycoonX accounts or game value.
+
+All 25 localized Terms routes were synchronized in the required locale order through `app/tycoonx-legal/RealMoneyTradingNotice.tsx`. The component uses natural locale-specific wording, keeps the regional variants distinct, uses RTL for Arabic, and renders only on the canonical or localized Terms routes.
+
+Every canonical and localized Terms page must preserve all of the following:
+
+- unless CK-Labs expressly provides a specific authorized mechanism, users must not buy, sell, broker, advertise, arrange, or exchange a TycoonX account, in-game money, Diamonds, shares, companies, property, products, art, items, services, VIP, paid entitlements, or other game value for real money, cryptocurrency, gift cards, physical goods, outside services, or other real-world consideration;
+- the prohibition covers direct deals and indirect, staged, or middleman arrangements where an outside payment or benefit is linked to an in-game transfer;
+- another person, alternative account, company, art sale, trade, auction, market order, Begging, or another mechanic must not be used to disguise or complete an RMT exchange;
+- official purchases made from CK-Labs through Apple App Store, Google Play, or the official TycoonX web shop using Xsolla are not RMT;
+- a platform-supported gift or TycoonX transfer mechanism expressly enabled for that purpose is not automatically RMT;
+- Begging permits only the in-game assistance allowed by that feature and does not authorize outside payment in exchange for TycoonX value;
+- CK-Labs may reverse in-game transactions reasonably linked to prohibited RMT and apply proportionate account restrictions after reasonable investigation;
+- CK-Labs does not guarantee, escrow, enforce, refund, or mediate unauthorized off-platform user deals;
+- unrelated legitimate paid value and mandatory rights remain protected under their separate rules; and
+- the new RMT wording is not used by itself to impose new punitive enforcement retroactively on completed conduct from before the rule applied, while older independently prohibited conduct remains subject to the Terms then in force.
+
+Current platform-role checks remain separate from this gameplay rule. Apple App Review Guidelines section 3.1.1 continues to permit eligible In-App Purchase gifting under Apple's conditions. Google Play's Payments policy continues to distinguish peer-to-peer payments from digital in-app purchases and requires purchased in-app virtual currency to remain within the app or game title for which it was purchased. Xsolla's current catalog documentation supports authorized sale and delivery of virtual currency/items, and its June 16, 2026 Refund Policy remains transaction-specific. None of those provider rules turns ordinary TycoonX gameplay mechanics into an unauthorized RMT marketplace.
+
+Canonical RMT Terms commit: `4cb6bb969ebd7f54aa268c1ff47d192d9fec78bc`.
+Localized RMT component commit: `264fffa04afb8b61e089685680cb4c75b40b995b`.
+Localized Terms integration commit: `b3abe719cc6980511828f162b38a72975a537e16`.
+Canonical rendered Terms integration commit: `568ca45a65135a615b48ddae5f034e40b07705a3`.
+Transfer/RMT enforcement alignment commit: `5c3ef098819ce051851e389b793fd04ceb505058`.
+Transfer/RMT localization verifier commit: `43ad89e8199f72489a487212f7021c6766c26eaa`.
+Transfer/RMT enforcement verifier commit: `6e4320538c8b7bd6d8060abfffed8bfda3302fcb`.
+
 ## September 5, 2026 genuine-transaction enforcement operations checkpoint
 
-`TYCOONX_GENUINE_TRANSACTION_ENFORCEMENT_RELEASE_GATE.md` now operationalizes the September 5 public Terms rule without changing its player-facing legal meaning. The localization queue therefore remains closed.
+`TYCOONX_GENUINE_TRANSACTION_ENFORCEMENT_RELEASE_GATE.md` operationalizes both September 5 public Terms rules. It does not create secret conduct standards beyond the public wording.
 
 The operational checkpoint requires all of the following:
 
 - enforcement applies a genuine-purpose / primary-purpose test rather than an automatic price threshold;
 - art must be bought because the buyer genuinely wants the artwork, while financial help must use the designated Begging feature where available;
 - a high price, generous deal, unusual transaction, friendship, shared household/network signal, or single transaction is not automatically proof of abuse;
-- reasonable corroborated evidence should support a final finding that moving wealth was the transaction's main purpose;
+- reasonable corroborated evidence should support a final finding that moving wealth was the transaction's main purpose or that a prohibited RMT arrangement existed;
+- disguised wealth-transfer abuse and standalone RMT are separate theories and the evidence record must identify which rule is actually supported;
 - detection, temporary containment, transaction correction, and account punishment remain separate decisions;
 - automated scores, thresholds, and relationship graphs may flag transactions, but serious final enforcement must preserve applicable human-review and GDPR Article 22 safeguards where that provision applies;
 - covered DSA Article 17 decisions receive the applicable clear and specific statement of reasons without pretending every gameplay decision globally falls within Article 17;
 - credible account compromise is investigated separately so a legitimate owner is not automatically treated as the intentional transfer abuser;
 - exploit-generated or otherwise invalid value is routed through the existing economy-correction gate and can be unwound without automatically branding every downstream recipient a cheater;
-- unrelated legitimate Apple App Store, Google Play, and Xsolla purchases remain isolated from gameplay-transfer enforcement, including purchased Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP;
-- payment-provider records can prove payment/refund/reversal facts but do not by themselves prove the player's gameplay intent;
-- reliable evidence of real-money, cryptocurrency, gift-card, or other off-platform consideration may support the existing genuine-purpose analysis, but this operational gate does not silently create a broader standalone RMT prohibition beyond the public Terms;
-- the September 5 rule is not used by itself to impose new punitive enforcement retroactively on completed earlier conduct that was not independently prohibited under the Terms then in force; and
+- unrelated legitimate Apple App Store, Google Play, and Xsolla purchases remain isolated from gameplay-transfer/RMT enforcement, including purchased Diamonds, one-time 30-Day VIP, and limited-window Lifetime VIP;
+- official purchases and expressly authorized platform gifts or TycoonX transfer mechanisms are not misclassified as RMT;
+- the September 5 rules are not used by themselves to impose new punitive enforcement retroactively on completed earlier conduct that was not independently prohibited under the Terms then in force; and
 - an in-game correction never becomes an unauthorized real-world card charge, new store purchase, or real-world debt.
 
-Operational gate commit: `2581d25250b3dcd013478dbc424d413f244d0f9f`.
-Dedicated verifier commit: `90972cc44ac6a91389801f6e482c2339ca255e1d`.
+Operational gate original commit: `2581d25250b3dcd013478dbc424d413f244d0f9f`.
+RMT alignment commit: `5c3ef098819ce051851e389b793fd04ceb505058`.
+Dedicated enforcement verifier update: `6e4320538c8b7bd6d8060abfffed8bfda3302fcb`.
 
 ## Existing product invariants
 
@@ -117,12 +147,13 @@ All canonical and localized legal documents must continue to preserve these dist
 - Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous future availability for purchase;
 - Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels with transaction-specific merchant, refund, tax, chargeback, validation, and entitlement-delivery roles;
 - completed one-time purchases are not retroactively repriced merely because future prices, currencies, taxes, FX, regional prices, bundles, or promotions change, except where mandatory law requires otherwise;
-- obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, game-economy corrections, and permanent service shutdown remain subject to their specific canonical rules; and
+- obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, game-economy corrections, and permanent service shutdown remain subject to their specific canonical rules;
+- genuine-transaction and RMT enforcement must not silently confiscate unrelated legitimate paid value; and
 - mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility, and other non-waivable rights remain intact.
 
 ## Canonical source status
 
-- English Terms: materially refreshed **September 5, 2026** for genuine transaction and prohibited player-to-player wealth-transfer rules.
+- English Terms: materially refreshed **September 5, 2026** for genuine transactions, prohibited player-to-player wealth transfers, and explicit RMT/off-platform-exchange rules.
 - English Purchases & Refunds: materially refreshed **August 28, 2026** for purchased-Diamond withdrawal rights and real-money virtual-currency price transparency.
 - English Privacy Policy: refreshed **August 26, 2026** for third-party data-protection and third-party AI disclosure/permission safeguards.
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
@@ -131,9 +162,9 @@ All canonical and localized legal documents must continue to preserve these dist
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.7%**
-- **Full commercial/legal/payment readiness:** **95.5%**
-- **Overall project completion:** **99.1%**
-- **Exact next unfinished locale/document:** None — all target locale documents are current
+- **Canonical English legal wording:** **99.8%**
+- **Full commercial/legal/payment readiness:** **96%**
+- **Overall project completion:** **99.2%**
+- **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and release-gate checkpoints remain available in Git history; this tracker intentionally keeps the current state and active invariants concise so future runs can continue without duplicating completed work.
