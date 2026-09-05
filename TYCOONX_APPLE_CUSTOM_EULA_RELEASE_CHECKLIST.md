@@ -1,6 +1,6 @@
 # TycoonX Apple Custom EULA Release Checklist
 
-Last reviewed: August 27, 2026
+Last reviewed: September 5, 2026
 
 This is an operational App Store release checklist for the TycoonX Custom End User License Agreement. The current legal source is `TYCOONX_APPLE_CUSTOM_EULA.md`, with a public mirror at `/tycoonx-eula`.
 
@@ -13,22 +13,32 @@ This is an operational App Store release checklist for the TycoonX Custom End Us
 - Keep the public `/tycoonx-eula` page synchronized with the App Store Connect text whenever the legal meaning changes.
 - A public EULA URL is useful for transparency, support, and external legal navigation, but the App Store Connect Custom License Agreement field remains the mechanism that makes the custom EULA apply to the App Store license.
 - When a Custom EULA is configured, Apple displays a License Agreement link on the App Store product page. Do not rely on an App Store description URL as the mechanism that creates the license agreement.
-- **Live storefront evidence:** on August 27, 2026 the public French TycoonX App Store page displays a `Contrat de licence` link. Apple states that the License Agreement link is not shown when only Apple’s Standard EULA applies, so this is strong evidence that a Custom EULA is active for that storefront. It does **not** prove that every intended country/region is selected or that the live App Store Connect text is byte-for-byte/substantively identical to the repository source; those checks remain required.
+- **Live storefront evidence:** on August 27, 2026 the public French TycoonX App Store page displayed a `Contrat de licence` link. Apple states that the License Agreement link is not shown when only Apple’s Standard EULA applies, so this was strong evidence that a Custom EULA was active for that storefront. It does **not** prove that every intended country/region is selected or that the live App Store Connect text is byte-for-byte or substantively identical to the repository source; those checks remain required.
 
 ## Apple minimum-term parity gate
 
-Before every submission after a material EULA change, verify that the Custom EULA still contains all Apple-required minimum categories:
+Before every submission after a material EULA change, verify the current Apple Developer Program License Agreement minimum EULA terms again. As of the September 5, 2026 review, the Custom EULA must preserve all of these categories and must not weaken Apple’s required allocation of responsibility:
 
 1. **Acknowledgement**: the EULA is between the user and CK-Labs, not Apple; CK-Labs is responsible for the app and content.
-2. **Scope of License**: non-transferable license for Apple-branded products owned or controlled by the user, subject to Apple Usage Rules and supported sharing/access mechanisms.
+2. **Scope of License**: non-transferable license for Apple-branded products owned or controlled by the user, subject to Apple Usage Rules. Where Apple’s rules permit it, the app may also be accessed, acquired, and used by other accounts associated with the purchaser through **Family Sharing, volume purchasing, or Legacy Contacts**. Do not replace these named Apple minimum-term exceptions with narrower wording.
 3. **Maintenance and Support**: CK-Labs is responsible; Apple has no maintenance/support obligation.
-4. **Warranty**: CK-Labs bears applicable warranty obligations; Apple’s required refund/warranty allocation remains stated.
-5. **Product Claims**: CK-Labs, not Apple, is responsible for product, regulatory, consumer, privacy, and similar claims concerning TycoonX.
+4. **Warranty**: CK-Labs bears applicable warranty obligations. The EULA must say that if the Licensed Application fails to conform to an applicable warranty, the user may notify Apple and **Apple will refund the purchase price for the Licensed Application** to that user. Do not weaken Apple’s current required wording to “may refund.” Apple otherwise has no warranty obligation to the maximum extent permitted by applicable law, while CK-Labs remains responsible for the other warranty-failure claims allocated to the developer.
+5. **Product Claims**: CK-Labs, not Apple, is responsible for product, regulatory, consumer, privacy, and similar claims concerning TycoonX, and the EULA must not limit CK-Labs liability beyond what applicable law permits.
 6. **Intellectual Property Claims**: CK-Labs, not Apple, handles third-party infringement claims concerning the Licensed Application.
 7. **Legal Compliance**: required U.S. embargo and prohibited/restricted-party representation is present.
 8. **Developer Identity and Contact**: legal provider name, postal address, phone number, and email are present and match the current App Store trader information and `/tycoonx-impressum`.
 9. **Third-Party Terms**: users must comply with applicable third-party terms, including Apple Media Services Terms and Usage Rules.
 10. **Apple Third-Party Beneficiary**: Apple and its subsidiaries are expressly identified as third-party beneficiaries with enforcement rights.
+
+### Minimum-term regression blockers
+
+Treat any of the following as a release blocker until corrected:
+
+- the EULA or public mirror says Apple **may** refund the Licensed Application purchase price instead of preserving Apple’s current required **will refund** wording;
+- Legacy Contacts disappears from the Apple-supported scope exception while Apple’s current minimum terms continue to name it;
+- the repository EULA and `/tycoonx-eula` public mirror have different substantive warranty or license-scope wording;
+- the App Store Connect Custom License Agreement text is older than the repository version after a material EULA change;
+- Apple’s current minimum-term exhibit changes and CK-Labs has not rechecked the EULA before the next submission.
 
 ## Current TycoonX-specific protections
 
@@ -80,23 +90,24 @@ The App Store description may include a short legal/support footer for transpare
 
 Legal/support URLs are not the same thing as a purchase call to action. A Terms, Privacy, Support, Community, EULA, or Impressum link may be appropriate for transparency, but do not turn those legal links into indirect wording that steers users to an external digital-goods checkout in storefronts where Apple does not permit that behavior.
 
-## P0 live App Store metadata drift
+## Historical App Store metadata drift follow-up
 
-A public App Store recheck on **August 27, 2026** still surfaces historical version-history copy using the old `TyconX` spelling. The currently indexed French storefront exposes those stale references in **version 1.0.3** release notes. This is outside the legal repository but remains player-visible.
+A public App Store recheck on **August 27, 2026** surfaced historical version-history copy using a legacy brand spelling in version 1.0.3 release notes. That historical storefront metadata is outside this legal repository.
 
-Before the September 1, 2026 full release:
+For the current post-release service and every future submission:
 
-- if App Store Connect permits editing released version metadata, replace the stale spelling with `TycoonX` and remove any historical wording that could incorrectly imply the current service is still a beta;
-- if released version-history metadata is immutable, do not reuse the old wording anywhere and ensure the current app description, promotional text, screenshots, subtitle, keywords, support copy, EULA, legal pages, and new release notes consistently use `TycoonX` and full-release language;
-- recheck the major localized App Store storefronts after the next release so stale copy is not accidentally copied forward.
+- if App Store Connect permits editing released version metadata, correct stale branding and any historical wording that could incorrectly describe the current live service as pre-release;
+- if released version-history metadata is immutable, never copy the stale wording forward and ensure the current app description, promotional text, screenshots, subtitle, keywords, support copy, EULA, legal pages, and new release notes consistently use **TycoonX** and current full-release language;
+- recheck major localized App Store storefronts after material metadata or legal changes so stale copy is not accidentally copied forward.
 
 ## Release QA
 
-Before the September 1, 2026 full release:
+For the current post-release configuration and before each future App Store submission:
 
 - confirm App Store Connect contains the same substantive EULA as `TYCOONX_APPLE_CUSTOM_EULA.md`;
 - confirm the legal provider identity/contact details still match both the App Store trader information and `/tycoonx-impressum`;
 - confirm all intended countries/regions are selected for the Custom EULA;
+- verify the current Apple minimum-EULA exhibit still uses the same warranty and license-scope requirements, including **will refund** and **Legacy Contacts**;
 - open the public `/tycoonx-eula` route and verify every rendered brand reference says `TycoonX`;
 - open `/tycoonx-impressum` and verify the legal provider address, phone, email, and any applicable register/VAT/business-identification disclosures are current;
 - verify there is no stale pre-release or beta wording in the current EULA;
