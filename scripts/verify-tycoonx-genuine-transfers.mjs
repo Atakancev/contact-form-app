@@ -29,7 +29,7 @@ requireText(terms, 'A high price, generous deal, or unusual transaction is not a
 requireText(terms, 'preserving unrelated legitimate paid value and mandatory rights', 'canonical paid-value safeguard');
 
 for (const locale of locales) {
-  const pattern = new RegExp(`\\n  ${locale.replace('_', '_')}: \\{`);
+  const pattern = new RegExp(`\\n  ${locale}: \\{`);
   if (!pattern.test(localized)) fail(`localized transfer rule missing locale ${locale}`);
 }
 requireText(localized, "en: {", 'English rendered transfer rule');
@@ -42,7 +42,7 @@ requireText(canonicalLayout, '<TransferRuleNotice />', 'canonical rendered Terms
 requireText(progress, 'September 5, 2026 genuine-transaction and money-transfer invariant', 'progress checkpoint');
 requireText(progress, '100/100, **100%**', 'localized full-document completion');
 requireText(progress, '25/25, **100%**', 'localized hub completion');
-requireText(progress, 'Exact next unfinished locale/document:** None', 'closed localization queue');
+requireText(progress, '**Exact next unfinished locale/document: None.', 'closed localization queue');
 
 if (!process.exitCode) {
   console.log(`PASS: genuine-transaction rule is canonical and rendered for English + ${locales.length} localized Terms routes.`);
