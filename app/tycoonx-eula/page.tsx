@@ -10,7 +10,7 @@ const sections = [
     title: 'Scope of License',
     body: [
       'The Licensed Application is licensed, not sold. CK-Labs grants you a limited, personal, non-exclusive, non-transferable, non-sublicensable license to use TycoonX on Apple-branded products that you own or control, as permitted by the applicable Apple Media Services Terms and App Store Usage Rules.',
-      'Where Apple’s Usage Rules permit Family Sharing, volume purchasing, or another Apple-supported access mechanism, the Licensed Application may also be accessed by eligible associated accounts in accordance with those rules.',
+      'Where Apple’s Usage Rules permit it, the Licensed Application may also be accessed, acquired, and used by other accounts associated with the purchaser through Family Sharing, volume purchasing, or Legacy Contacts, in accordance with Apple’s applicable rules.',
       'Except where applicable law expressly permits otherwise, you may not copy, distribute, sell, rent, lease, sublicense, transfer, reverse engineer, decompile, disassemble, derive source code from, modify, create derivative works from, or commercially exploit the Licensed Application. You must not bypass security controls, entitlement checks, payment validation, rate limits, or access restrictions, or use unauthorized clients, bots, scripts, macros, exploits, forged receipts, or manipulated software to obtain unauthorized access or an unfair advantage.',
       'Nothing in this section restricts rights that applicable law does not permit CK-Labs to restrict.',
     ],
@@ -52,7 +52,7 @@ const sections = [
     title: 'Warranty',
     body: [
       'CK-Labs is responsible for any applicable product warranties relating to the Licensed Application, whether expressly provided by CK-Labs or imposed by law, to the extent such warranties cannot lawfully be excluded.',
-      'If the Licensed Application fails to conform to an applicable warranty, you may notify Apple, and Apple may refund the purchase price, if any, paid for the Licensed Application. To the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the Licensed Application.',
+      'If the Licensed Application fails to conform to an applicable warranty, you may notify Apple, and Apple will refund the purchase price, if any, paid for the Licensed Application to you. To the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the Licensed Application.',
       'Any other claims, losses, liabilities, damages, costs, or expenses attributable to a failure of the Licensed Application to conform to an applicable warranty are the responsibility of CK-Labs to the extent required by applicable law.',
       'To the maximum extent permitted by applicable law, the Licensed Application and related online services are provided on an “as available” basis. CK-Labs does not guarantee uninterrupted, error-free, permanently available, latency-free, exploit-free, or maintenance-free operation.',
       'Nothing in this EULA excludes statutory consumer guarantees, conformity rights, warranty rights, refund rights, price-reduction rights, termination rights, update rights, or other remedies that cannot lawfully be excluded.',
@@ -166,7 +166,7 @@ export default function TycoonXCustomEula() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs · Apple App Store</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Custom End User License Agreement</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 27, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated September 5, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             This EULA governs the license to use the TycoonX application distributed through Apple’s App Store. The Licensed Application is provided by Atakan Cevik, trading as CK-Labs. Nothing in this EULA removes mandatory consumer rights that apply to you.
           </p>
