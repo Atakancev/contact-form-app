@@ -1,6 +1,6 @@
 # TycoonX Terms of Service
 
-**Last updated: August 29, 2026**
+**Last updated: September 5, 2026**
 
 These Terms of Service ("Terms") govern use of **TycoonX**, including the mobile and web applications, websites, support services, payment entitlements, community features, and related online services (together, the "Service"). TycoonX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
 
@@ -224,6 +224,16 @@ You must not:
 - bypass security, rate limits, purchase validation, anti-fraud systems, access controls, or game restrictions;
 - evade sanctions, limits, bans, or payment restrictions; or
 - knowingly receive, move, hide, or retain assets generated through exploits, fraud, unauthorized transfers, or manipulated game state.
+
+**Genuine transactions and player-to-player wealth transfers.** Players are expected to build their own in-game wealth through gameplay and genuine economic activity. Player-to-player transfers of in-game money, assets, or other economic value are allowed only when they are part of a genuine gameplay transaction and the relevant feature is being used for its intended purpose.
+
+You must not use a trade, sale, auction, art purchase, company transaction, contract, job, market order, or any other game mechanic merely or mainly to gift, donate, financially help, enrich, funnel, park, hide, or move wealth to another account. Sham, circular, or coordinated transactions used mainly to move value rather than genuinely use the feature are prohibited, including between accounts controlled or coordinated by the same person.
+
+For example, an art purchase must be a genuine purchase because the buyer wants the artwork. Buying art mainly to send money to the artist or financially help that player is not permitted. The same principle applies to every other game mechanic: the real reason for the transaction must match the purpose of the feature being used.
+
+If you want to ask other players for financial help, use TycoonX’s designated **Begging** screen or feature where available. Other gameplay mechanics are not donation or assistance channels.
+
+CK-Labs may assess the surrounding context, including reciprocal value, transaction history, account relationships, repeated transfers, pricing patterns, and relevant communications. A high price, generous deal, or unusual transaction is not automatically a violation. Enforcement requires reasonable evidence that the mechanic was used mainly to transfer wealth without a genuine permitted gameplay purpose. CK-Labs may reverse prohibited transfers and proportionately restrict involved accounts, while preserving unrelated legitimate paid value and mandatory rights.
 
 If an exploit, hack, bug, payment error, unauthorized tool, compromised system, or data corruption creates invalid game state, CK-Labs may use authoritative server records, transaction records, backups, audit logs, and other reliable evidence to restore integrity.
 
