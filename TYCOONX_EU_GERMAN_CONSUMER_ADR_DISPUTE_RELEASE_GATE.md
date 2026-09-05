@@ -1,436 +1,338 @@
 # TycoonX EU/German Consumer ADR & Dispute Release Gate
 
-**Status:** release/legal operations gate
+**Status:** release/legal operations gate  
+**Reviewed against current law and official guidance:** September 5, 2026
 
-**Reviewed against current law and official guidance:** September 2, 2026
+This is the **single TycoonX EU/German consumer ADR / VSBG / former-ODR operational release gate** for CK-Labs. It does not replace the canonical English Terms of Service, Purchases & Refunds Policy, Privacy Policy, Community Standards, transaction-specific platform terms, or mandatory law.
 
-This document is an implementation and support-operations gate for **TycoonX**. It does not replace the canonical English Terms of Service, Purchases & Refunds Policy, Privacy Policy, or Community Standards.
+TycoonX went to full release on **September 1, 2026**. Nothing in this gate may describe the live game, current purchases, users, VIP, Diamonds, rewards, or legal terms as beta.
 
-The purpose is to prevent CK-Labs from accidentally using stale EU Online Dispute Resolution wording, missing German post-dispute information duties, overpromising participation in consumer arbitration, or importing provider-specific dispute clauses into the TycoonX contract in a way that weakens mandatory consumer rights.
+## 1. Core invariant
 
-## 1. Core release invariant
-
-A TycoonX consumer dispute must be handled according to the **actual transaction, contracting party, applicable mandatory law, and dispute type**.
+A consumer dispute must be handled according to the **actual transaction, contracting party, applicable mandatory law, dispute type, payment state, entitlement state, and current ADR rules**.
 
 Do not assume that:
 
-- Apple, Google Play, or Xsolla handling a payment or refund means CK-Labs has no separate legal duties;
-- a payment-provider support process replaces a German statutory consumer-dispute information duty;
-- a user complaint or chargeback is automatically fraud or entitlement abuse;
-- a contractual arbitration clause in a provider's own terms can simply be copied into CK-Labs Terms;
-- the former EU Online Dispute Resolution platform still exists;
-- a consumer loses court, withdrawal, conformity, refund, data-protection, or other mandatory rights merely because an ADR route exists; or
-- CK-Labs must voluntarily participate in every consumer conciliation proceeding merely because it must provide information about a competent conciliation body.
+- Apple, Google Play, or Xsolla handling payment/refund infrastructure removes CK-Labs duties that independently apply;
+- a provider support process replaces a German VSBG notice owed by CK-Labs;
+- a complaint, refund request, chargeback, ADR request, regulator contact, or court claim is itself evidence of fraud or entitlement abuse;
+- provider arbitration wording can be copied into CK-Labs Terms;
+- the former EU ODR platform still exists;
+- the Commission Consumer Redress Portal is simply the old ODR platform under a new name;
+- a small-business employee exemption removes every VSBG duty; or
+- an ADR route removes non-waivable court, withdrawal, conformity, refund, data-protection, accessibility, DSA, or other consumer rights.
 
-## 2. The old EU ODR platform is discontinued
+## 2. Former EU ODR platform: closed
 
-Regulation (EU) 2024/3228 repealed Regulation (EU) No 524/2013 with effect from **July 20, 2025**.
+Regulation (EU) 2024/3228 discontinued the European Online Dispute Resolution platform. New complaints stopped on **March 20, 2025**, and the old platform was discontinued by **July 20, 2025**.
 
-The old European Commission Online Dispute Resolution platform was discontinued. New complaints stopped on **March 20, 2025**, and the platform was discontinued by **July 20, 2025**.
+Release rules:
 
-### Release rules
+- Do **not** add or restore `ec.europa.eu/consumers/odr` as a current TycoonX consumer remedy.
+- Remove stale wording such as “submit your complaint through the EU ODR platform” from live Terms, checkout, support macros, receipts, emails, legal notices, and localized pages.
+- Historical/internal evidence may mention the old system only when clearly labelled as discontinued.
+- Do not invent a replacement mandatory link merely because the old ODR duty disappeared.
 
-- Do **not** add the old ODR platform link to TycoonX Terms, Purchases pages, checkout, support, legal notices, footer text, receipts, or email templates.
-- If an old ODR link or statement is found, remove or replace it only after checking whether another current information duty applies.
-- Do not describe the discontinued ODR platform as a current consumer remedy.
-- Do not confuse the future multilingual EU ADR information tool contemplated by Directive (EU) 2025/2647 with the former ODR platform.
-- Do not publish a placeholder link to a future EU tool until the official destination and applicable legal requirement have been verified.
+Official source: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
 
-**Official source:** Regulation (EU) 2024/3228, especially Articles 1 and 2: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
+## 3. Consumer Redress Portal: current resource, different legal role
 
-## 3. German VSBG § 36: website/Terms information duty
+The European Commission now operates the **Consumer Redress Portal**, including a Solution Finder and directory of certified ADR entities.
 
-Current German law distinguishes the general information duty in **§ 36 VSBG** from the post-dispute duty in **§ 37 VSBG**.
+It can help consumers and traders identify possible redress routes and ADR bodies. It is **not** a substitute for the transaction-specific competent-body information required by German § 37 VSBG where that duty applies, and linking to the portal does not itself create a CK-Labs promise to participate before every listed ADR body.
 
-Under § 36(1) VSBG, a trader that maintains a website or uses standard terms must, where applicable, provide consumers with clear and easily accessible information about the extent to which it is willing or obliged to participate in dispute-resolution proceedings before a consumer conciliation body.
+Current portal: https://consumer-redress.ec.europa.eu/
 
-If the trader has committed itself, or is legally obliged, to participate before a particular consumer conciliation body, the information must identify that body and include the information required by § 36(1)(2) VSBG.
+## 4. German VSBG § 36: general website / Terms information
 
-### Small-business employee exemption
+Current German law separates § 36 from the post-dispute duty in § 37.
 
-Under **§ 36(3) VSBG**, the information duty in **§ 36(1)(1)** does not apply to a trader that employed **10 or fewer persons on December 31 of the preceding year**.
+Under **§ 36(1)(1) VSBG**, a trader that maintains a website or uses general terms must, where applicable, state clearly and accessibly whether it is willing or obliged to participate in consumer-conciliation proceedings.
 
-Important limits:
+Under **§ 36(3)**, the § 36(1)(1) information duty does not apply where the trader employed **10 or fewer persons on December 31 of the preceding year**.
 
-- the threshold is based on the number of persons employed, not FTE weighting;
-- the exemption applies to § 36(1)(1), not automatically to every VSBG duty;
-- it does not remove § 36(1)(2) if CK-Labs has independently committed or is legally obliged to participate before a specific consumer conciliation body; and
-- it does **not** remove the post-dispute duty in § 37 VSBG.
+This exemption is narrow:
 
-### Release evidence
+- it applies to **§ 36(1)(1)**, not every VSBG obligation;
+- it does not remove **§ 36(1)(2)** if CK-Labs has committed or is legally obliged to participate before a particular body;
+- it does **not** remove the post-dispute duty in **§ 37 VSBG**; and
+- it must be based on dated actual headcount evidence, not labels such as `indie`, `solo`, `small`, `individual`, a store-account type, or an FTE assumption.
 
-At least once each calendar year, preserve a dated record of:
+At least annually preserve:
 
-- the number of persons employed by the relevant CK-Labs trader on **December 31 of the preceding year**;
-- whether § 36(1)(1) is currently applicable or the § 36(3) exemption is relied upon;
+- the relevant CK-Labs trader/entity;
+- the actual number of persons employed on the preceding December 31;
+- whether § 36(1)(1) applies or § 36(3) is relied upon;
 - whether CK-Labs has voluntarily committed to ADR participation;
-- whether any law, platform arrangement, association membership, settlement, or other binding commitment creates an ADR-participation obligation; and
-- whether any public TycoonX statement about ADR participation remains accurate.
+- whether law, membership rules, contract, settlement, platform arrangement, or another binding undertaking creates participation duties; and
+- the current public TycoonX wording.
 
-Do not hard-code permanent reliance on the small-business exemption. Re-check it after hiring, restructuring, transfer to a successor operator, merger, sale, or change of contracting entity.
+Reassess after hiring, restructuring, sale, merger, reorganization, successor-operator change, or contracting-entity change.
 
-**Official German source:** § 36 VSBG: https://www.gesetze-im-internet.de/vsbg/__36.html
+Official source: https://www.gesetze-im-internet.de/vsbg/__36.html
 
-**Federal Office of Justice guidance:** https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/Verbraucherstreitbeilegung/Unternehmen/Unternehmen.html
+## 5. German VSBG § 37: unresolved consumer-contract dispute
 
-## 4. German VSBG § 37: duty after an unresolved consumer-contract dispute
+Under **§ 37 VSBG**, if a dispute concerning a consumer contract could not be resolved directly between the trader and consumer, the trader must provide the consumer with information about a competent consumer conciliation body, including its **address and website**, and state whether the trader is **willing or obliged** to participate.
 
-This is the most important operational gap.
+The notice must be provided **in text form**. Employee headcount does not remove this separate post-dispute duty.
 
-Under **§ 37 VSBG**, if a dispute arising from a consumer contract could not be resolved between the trader and the consumer, the trader must inform the consumer of a competent consumer conciliation body, including its **address and website**, and must state whether the trader is **willing or obliged** to participate in dispute-resolution proceedings before that body.
+Do not send a § 37 notice mechanically after a first support message. Also do not suppress it because an internal ticket was labelled `closed`, `denied`, or `resolved` while the consumer still disputes the outcome.
 
-The notice must be provided **in text form**.
+Support should maintain a state such as `consumer_contract_dispute_unresolved_at` only after a genuine attempt at direct resolution has failed. Preserve the complaint, attempted cure/explanation, consumer response, provider dependency where relevant, final internal position, unresolved timestamp, and sent notice.
 
-The Federal Office of Justice states that this duty applies regardless of employee headcount.
+The § 37 notice must use currently verified case-specific data:
 
-### Trigger
+- competent ADR body name;
+- current postal address;
+- current website;
+- whether CK-Labs is willing to participate; and
+- whether CK-Labs is legally or contractually obliged to participate.
 
-A § 37 workflow is required when all of the following are true:
+Providing a § 37 notice is **not an admission of liability**, not a promise of refund, and not a voluntary ADR commitment where none exists.
 
-1. the matter is a dispute arising from a consumer contract or about the existence of such a contract;
-2. German VSBG applies to the relevant trader/dispute;
-3. the consumer and trader have actually attempted resolution; and
-4. the dispute could not be settled through that exchange.
+Official source: https://www.gesetze-im-internet.de/vsbg/__37.html
 
-Do not send the statutory post-dispute notice mechanically after every first support message. Also do not omit it merely because the support ticket is marked `closed`, `denied`, or `resolved internally` if the consumer continues to dispute the outcome.
+## 6. Competent ADR body: verify, do not hard-code forever
 
-### Required § 37 notice data
+Do not permanently hard-code a conciliation body into support tooling without rechecking competence.
 
-Before closing an unresolved covered consumer dispute, Support/legal operations must have a text-form template containing:
+Where no specially competent body applies, the **Universalschlichtungsstelle des Bundes - Zentrum für Schlichtung e. V.** may be relevant within its remit. Current checkpoint reviewed for this gate:
 
-- the name of the competent consumer conciliation body;
-- its current postal address;
-- its current website;
-- a statement whether CK-Labs is willing to participate;
-- a statement whether CK-Labs is legally or contractually obliged to participate; and
-- where CK-Labs is willing or obliged to participate before more than one competent body, the applicable body or bodies.
-
-Do not state that CK-Labs is willing to participate if it has not made that business/legal decision. A § 37 information duty and a voluntary participation commitment are different things.
-
-**Official German source:** § 37 VSBG appears in the current VSBG text: https://www.gesetze-im-internet.de/vsbg/BJNR025410016.html
-
-## 5. Selecting the competent German consumer conciliation body
-
-Do not permanently hard-code a consumer conciliation body without rechecking competence.
-
-The Federal Office of Justice says that when no special-sector body has priority, the **Universalschlichtungsstelle des Bundes** may be competent in cases within its remit.
-
-As of the current BfJ list reviewed for this gate, the federal universal body is:
-
-**Universalschlichtungsstelle des Bundes - Zentrum für Schlichtung e. V.**  
 Straßburger Str. 8  
 77694 Kehl  
 Germany  
 https://www.universalschlichtungsstelle.de
 
-This information must be revalidated before being placed into a production § 37 template because competence, address, website, statutory remit, or organizational details can change.
+Before each production template revision and where competence is uncertain, verify the current official body list, subject-matter competence, address, website, relevant value/language limits, and whether another sector-specific body has priority.
 
-Do not use the universal body if a specifically competent consumer conciliation body has priority under applicable law.
+BfJ guidance / lists: https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/Verbraucherstreitbeilegung/Verbraucherstreitbeilegung_node.html
 
-**Current BfJ list:** https://www.bundesjustizamt.de/SharedDocs/Downloads/DE/Verbraucherschutz/Liste_Verbraucherschlichtungsstellen.pdf
-
-## 6. Safe CK-Labs participation position
-
-The public TycoonX legal documents should not accidentally create a broader ADR obligation than CK-Labs intends or applicable law requires.
+## 7. Do not accidentally create a broader ADR promise
 
 Unless CK-Labs deliberately adopts a participation commitment after legal/business review:
 
-- do not state broadly that CK-Labs “will participate in consumer arbitration”;
-- do not state that every dispute “must” be resolved through ADR;
-- do not describe ADR as a mandatory substitute for a consumer's court rights;
-- do not add a binding-arbitration/class-action waiver copied from a third-party provider's contract; and
-- do not promise acceptance of every proposal made by a conciliation body.
+- do not state that CK-Labs “will participate in consumer arbitration” generally;
+- do not state that every dispute must use ADR;
+- do not describe ADR as a mandatory substitute for court rights;
+- do not add a binding-arbitration or class-action waiver copied from Apple, Google, Xsolla, or another provider;
+- do not promise acceptance of every ADR proposal; and
+- do not state that CK-Labs refuses every ADR process if a legal or contractual participation duty applies.
 
-If CK-Labs later chooses to participate voluntarily, document:
+If CK-Labs later changes its participation position, document scope, body, effective date, contractual/legal basis, and whether the canonical English Terms meaning materially changed enough to require localization resynchronization.
 
-- the relevant conciliation body;
-- scope of disputes covered;
-- start date;
-- whether the commitment is public or transaction-specific;
-- any fees or process consequences;
-- whether the commitment changes § 36 website/Terms wording; and
-- whether the canonical English legal meaning changed materially enough to reopen localization.
+## 8. Payment-channel responsibility remains transaction-specific
 
-## 7. Transaction/channel allocation: Apple App Store
+For every unresolved purchase dispute preserve this chain:
 
-For an Apple App Store In-App Purchase:
+`TycoonX account -> product -> transaction ID -> channel -> contracting merchant -> price/currency/tax -> payment state -> refund/withdrawal route -> entitlement state -> unresolved issue -> competent ADR body -> participation status -> § 37 notice`
 
-- Apple controls the App Store transaction and Apple's own refund route;
-- CK-Labs remains responsible for TycoonX entitlement delivery, product conformity obligations that belong to CK-Labs, account state, and game-specific support;
-- a complaint sent to Apple does not automatically resolve a separate contractual dispute with CK-Labs;
-- an Apple refund does not automatically prove user fraud;
-- an App Store refund decision must be reconciled transaction-specifically against Diamonds, 30-Day VIP, Lifetime VIP, or another entitlement; and
-- if a separate German consumer dispute with CK-Labs remains unresolved and § 37 VSBG applies, the Apple support/refund route does not by itself replace the required CK-Labs text-form § 37 notice.
+### Apple App Store
 
-For EU alternative-payment configurations, Apple's current guidance states that where the developer uses alternative payment options, the developer is responsible for timely customer support for those alternative-payment issues. Do not tell an EU alternative-payment customer to obtain support from Apple for a transaction Apple did not process.
+For Apple In-App Purchase, Apple controls its transaction/refund infrastructure. CK-Labs remains responsible for TycoonX-side entitlement delivery, account mapping, restoration and game-state correction within CK-Labs's control, plus mandatory obligations that independently fall on CK-Labs.
 
-**Current Apple EU alternative-payment support guidance:** https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu
+For EU alternative-payment configurations, current Apple guidance makes the developer responsible for timely customer support for alternative-payment issues and for applicable payment/billing, refund, tax and legal obligations associated with that route. Do not tell a user to seek an Apple refund for a transaction Apple did not process.
 
-## 8. Transaction/channel allocation: Google Play
+Current Apple guidance: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu
 
-For a Google Play purchase:
+### Google Play
 
-- Google controls the Google Play transaction infrastructure and can process eligible refunds;
-- CK-Labs can have its own refund responsibilities and tools under Google Play rules and applicable law;
-- CK-Labs remains responsible for correct TycoonX entitlement delivery and game-state reconciliation after authoritative Google transaction changes;
-- a Google refund or refund request is not automatically fraud or chargeback abuse; and
-- if a separate German consumer dispute with CK-Labs remains unresolved and § 37 VSBG applies, the Play refund/support route does not by itself replace the required CK-Labs text-form § 37 notice.
+Google controls Play transaction infrastructure and provides developer tooling for eligible order/refund actions. CK-Labs remains responsible for correct TycoonX entitlement fulfilment and reconciliation after authoritative Google transaction changes.
 
-Google's current developer guidance states that developers are responsible for their own refund policies and must ensure they comply with applicable law.
+A Google refund or refund request is not automatically fraud. A separate unresolved CK-Labs consumer-contract dispute can still require a CK-Labs § 37 notice where German law applies.
 
-**Current Google Play developer refund guidance:** https://support.google.com/googleplay/android-developer/answer/2741495
+Current Google developer order/refund guidance: https://support.google.com/googleplay/android-developer/answer/2741495
 
-## 9. Transaction/channel allocation: Xsolla webshop
+### Xsolla webshop
 
-Xsolla can act as merchant of record for a TycoonX webshop transaction depending on the actual checkout arrangement.
+For the official TycoonX webshop, the transaction-specific Xsolla entity may act as merchant of record under the checkout arrangement and applicable Xsolla terms. Preserve the actual merchant shown at checkout/receipt, Xsolla transaction ID, product, price, currency, tax treatment, applicable refund-policy type/version, payment/refund/chargeback state, and CK-Labs entitlement action.
 
-For each dispute, preserve the transaction-specific evidence showing:
+Do not misidentify CK-Labs as merchant merely because the purchased value is used inside TycoonX. Do not misidentify Xsolla as responsible for a TycoonX server-side delivery defect merely because it processed payment.
 
-- the contracting merchant/entity shown at checkout and on the receipt;
-- transaction ID;
-- product and entitlement;
-- price and currency;
-- tax/VAT treatment;
-- applicable Xsolla refund-policy version/type;
-- payment/refund/chargeback state;
-- CK-Labs entitlement action; and
-- whether the unresolved issue is fundamentally a payment-contract dispute with Xsolla, a TycoonX delivery/conformity dispute with CK-Labs, or both.
+Do not copy Xsolla's own dispute/arbitration wording into CK-Labs Terms. Provider terms govern the relationship they define and remain subject to mandatory consumer law.
 
-Do not copy Xsolla's own arbitration or dispute clause into CK-Labs Terms merely because Xsolla is merchant of record for a transaction. Xsolla's own current Refund Policy/General Terms contain provider-specific dispute provisions, but those provisions govern the relationship defined in Xsolla's documents and remain subject to applicable mandatory consumer law.
+Current Xsolla legal agreements: https://xsolla.com/legal-agreements  
+Current Xsolla refund policy: https://xsolla.com/refund-policy
 
-If CK-Labs has its own unresolved German consumer-contract dispute, a provider dispute process does not automatically replace § 37 VSBG.
+## 9. Dispute classification must remain separate from enforcement
 
-**Current Xsolla legal agreements:** https://xsolla.com/legal-agreements
+At minimum distinguish:
 
-**Current Xsolla refund policy:** https://xsolla.com/refund-policy
+- purchase not delivered;
+- duplicate/accidental purchase;
+- withdrawal request;
+- non-conforming digital product/service;
+- refund/reversal/chargeback;
+- unauthorized payment or account compromise;
+- regional-pricing/tax/FX disagreement;
+- promotion/coupon dispute;
+- Diamond balance/correction;
+- 30-Day VIP clock dispute;
+- Lifetime VIP validity/restoration;
+- suspension/termination dispute;
+- privacy/data-protection complaint;
+- Community Standards / DSA moderation complaint; and
+- ADR, regulator, or court escalation.
 
-## 10. Dispute type must be separated from account enforcement
+Do not use one generic `fraud` or `chargeback` label to collapse those categories.
 
-Support/moderation/payment operations must distinguish at least:
+A consumer may lawfully request a refund, invoke withdrawal/conformity rights, contact an ADR body, ECC-Net, a regulator, a bank, Apple, Google, Xsolla, or a court. That procedural act is not by itself proof of hacking, exploit use, fraud, chargeback abuse, regional-price abuse, entitlement abuse, account compromise, or harassment.
 
-1. **purchase not delivered**;
-2. **duplicate or accidental purchase**;
-3. **withdrawal request**;
-4. **defective/non-conforming digital product or service**;
-5. **refund/reversal/chargeback**;
-6. **unauthorized payment or account compromise**;
-7. **regional-pricing or tax disagreement**;
-8. **promotion/coupon dispute**;
-9. **Diamond balance or entitlement correction**;
-10. **30-Day VIP clock dispute**;
-11. **Lifetime VIP validity/restoration dispute**;
-12. **suspension/termination dispute**;
-13. **privacy/data-protection complaint**;
-14. **Community Standards/moderation complaint**; and
-15. **consumer ADR/court escalation**.
+Where independent evidence supports forged receipts, stolen instruments, exploit-generated entitlements, manipulated regional eligibility, coordinated refund cycling, or other deliberate abuse, CK-Labs may investigate and enforce proportionately under the applicable Terms and mandatory law.
 
-Do not use a generic `fraud` or `chargeback` status to collapse these categories.
+## 10. No retaliation; payment state still matters
 
-A consumer can pursue a refund, statutory withdrawal, conformity remedy, ADR, regulator complaint, data-protection complaint, or court claim without that procedural act itself proving abuse.
+CK-Labs must not suspend, terminate, reduce unrelated paid value, or otherwise punish an account **solely because** the user exercises a lawful consumer-redress route.
 
-Deliberate forged receipts, coordinated refund cycling, stolen payment instruments, manipulated regional eligibility, exploit-generated entitlements, or repeated bad-faith payment abuse may still be investigated and enforced separately where supported by evidence.
+This does not prevent transaction-specific correction after an authoritative refund, reversal, chargeback, failed payment, duplicate grant, invalid payment, or proven fraud/exploit abuse where lawful.
 
-## 11. No retaliation for lawful consumer redress
+ADR status and payment status are different facts. Provider/store/payment records remain authoritative for payment state, while CK-Labs server records remain authoritative for its entitlement actions subject to mandatory rights and evidence correction.
 
-CK-Labs must not suspend, terminate, reduce unrelated paid value, or otherwise punish an account **solely because** the user:
+## 11. Paid-product invariants during disputes
 
-- contacted Support;
-- requested a refund;
-- exercised or attempted to exercise a statutory withdrawal right;
-- requested cure, termination, or price reduction for a digital-product conformity issue;
-- contacted Apple, Google, Xsolla, a bank, a regulator, a consumer organization, or a consumer conciliation body;
-- challenged a decision through a lawful DSA redress route where applicable; or
-- brought a lawful court claim.
+### Purchased Diamonds
 
-Transaction-specific entitlement correction after an actual refund, reversal, invalid payment, or confirmed abuse remains permitted where lawful. The protected procedural act and the substantive transaction state must be analyzed separately.
+**Purchased Diamonds do not expire solely because time passes.**
 
-## 12. Product isolation during disputes
-
-### Diamonds
-
-A dispute concerning one Diamond transaction must not automatically remove unrelated legitimately purchased Diamonds.
-
-If the disputed transaction is refunded or invalidated, correct only the corresponding paid value and any provably related downstream invalid value, subject to mandatory law and the existing economy-correction/provenance rules.
+A dispute concerning one Diamond transaction must not automatically remove unrelated legitimately purchased Diamonds. If a specific transaction is authoritatively refunded or invalidated, correct that transaction and provably related invalid downstream value only where lawful. Missing valid purchased value should be reconciled and restored exactly once.
 
 ### One-time 30-Day VIP
 
-A support dispute, ADR request, or payment-provider complaint must not restart the original 30-Day VIP clock.
+**30-Day VIP remains a one-time, non-renewing 30-day entitlement.**
 
-If the specific 30-Day VIP purchase is validly refunded or invalidated, correct that entitlement transaction-specifically. Do not remove unrelated purchased Diamonds or Lifetime VIP merely because a separate 30-Day VIP payment is disputed.
+A support, ADR, reinstall, account-recovery, or provider-review event must not restart the original 30-day clock. Any mandatory cure, extension, price reduction, termination, or refund must be handled expressly rather than silently changing the product definition.
 
 ### Lifetime VIP
 
-A dispute or ADR request does not create a hidden Lifetime VIP expiry and does not convert Lifetime VIP into 30-Day VIP.
+**Lifetime VIP remains a one-time promotional entitlement offered only during selected genuine sales windows.** It may be withdrawn from future sale, may never return, and creates **no expectation of continuous future availability for purchase**.
 
-A provider-confirmed refund, reversal, or proven invalid Lifetime VIP purchase can justify a transaction-specific entitlement correction where lawful. A consumer's use of ADR, Support, a court, or another lawful remedy is not by itself grounds to revoke valid Lifetime VIP.
+ADR handling must not reopen a closed sales window, create a second Lifetime entitlement, add an expiry to a valid Lifetime entitlement, convert Lifetime VIP into 30-Day VIP, or force repurchase merely because a dispute exists.
 
-## 13. Court rights and mandatory consumer protections remain intact
+Different genuine future Lifetime VIP sales windows may use different prices. A later price decrease does not automatically create a refund/credit/price-match right, and a later increase does not add a charge to an already completed one-time purchase, except where mandatory law requires otherwise.
 
-Consumer ADR is an additional dispute-resolution mechanism. It must not be described as removing mandatory access to courts or other statutory remedies.
+## 12. Pricing, promotions, tax and regional disputes
 
-Nothing in this gate authorizes CK-Labs to waive or contract around non-waivable rights concerning, where applicable:
+For disputes about an obvious catalog/configuration error, discount/countdown, coupon, regional eligibility, currency, FX, tax/VAT, or displayed provider price, preserve the evidence actually shown before confirmation plus the final authoritative transaction record.
 
-- withdrawal;
-- digital-product conformity and cure;
-- updates;
-- termination;
-- price reduction;
-- refunds and repayment deadlines;
-- unfair commercial practices;
-- unfair contract terms;
-- data protection;
-- DSA redress;
-- product accessibility;
-- payment authorization; or
-- jurisdiction/choice-of-law protections for consumers.
+Completed one-time purchases are not retroactively repriced merely because a later future price, bundle, regional price, tax treatment, exchange rate, or promotion differs, except where mandatory law requires a remedy.
 
-Any future dispute-resolution clause added to the canonical Terms must be reviewed for EU/German unfair-terms and consumer-jurisdiction consequences before publication.
+A pricing complaint is not itself regional-price abuse. Investigate manipulation only on independent evidence.
+
+## 13. Outages, security incidents, shutdown and successor operators
+
+An Apple, Google, Xsolla, hosting, authentication, support, or communications outage can delay operational handling but does not permanently erase a statutory duty. Keep recoverable queues/evidence and do not backdate notices.
+
+A compromised account or payment method may justify proportionate protective security controls, but do not automatically blame the legitimate user for credential stuffing, phishing, stolen sessions, provider compromise, or attacker-initiated purchases/chargebacks. Security evidence and consumer-remedy evidence remain separate.
+
+Lawful permanent TycoonX shutdown, sale, merger, reorganization, or successor-operator transfer does not automatically erase already-arisen consumer disputes or mandatory remedies. Preserve legally required complaint/payment records, identify which entity remains responsible for historical contracts, preserve an accessible dispute route for as long as legally required, and transfer open dispute state lawfully and with appropriate privacy controls.
 
 ## 14. Current EU ADR reform: Directive (EU) 2025/2647
 
-Directive (EU) **2025/2647** amended the EU consumer ADR framework after discontinuation of the old ODR platform.
+Directive (EU) **2025/2647** is in force at EU level. Member States must adopt and publish transposition measures by **March 20, 2028** and apply them from **September 20, 2028**.
 
-As of September 2, 2026:
+The amended framework includes a future trader-response rule when a competent ADR entity asks whether a trader will participate: the response period must not exceed **20 working days**, with extension in complex or exceptional cases up to a maximum of **30 working days**, subject to the Directive's exceptions and national implementation.
 
-- the Directive is **in force** at EU level;
-- it entered into force on **January 19, 2026**;
-- Member States have until **March 20, 2028** for transposition measures identified in the Directive; and
-- the amended national rules are scheduled to apply from **September 20, 2028** under the Directive's timetable.
+As of September 5, 2026, do **not** present that future 20/30-working-day framework as though it were already a current German VSBG deadline unless German transposition makes it applicable earlier.
 
-Therefore:
+Create a legal-watch checkpoint for German implementation and re-audit:
 
-- do not treat every future-rule detail as already applicable German law on September 2, 2026;
-- keep a legal-watch item for German implementation;
-- re-audit VSBG, Support templates, ADR-response deadlines, Terms/website disclosures, and cross-border tooling before the 2028 application date; and
-- do not revive the old EU ODR link when the Commission launches the newer ADR information/tooling infrastructure.
+- VSBG §§ 36/37 wording and triggers;
+- any trader-response deadline;
+- website/Terms information;
+- cross-border ADR tooling and Consumer Redress Portal integration;
+- ADR contact-point changes;
+- data-minimization/human-review obligations relevant to ADR handling; and
+- whether canonical TycoonX legal meaning must be resynchronized across locales.
 
-The updated EU framework also introduces future obligations/expectations around trader responses to ADR-entity contact and modernized cross-border ADR. Implementation timing must be checked against German transposition before converting those future rules into hard production statements.
+Official source: https://eur-lex.europa.eu/eli/dir/2025/2647/oj
 
-**Official source:** Directive (EU) 2025/2647: https://eur-lex.europa.eu/eli/dir/2025/2647/oj
+## 15. DSA Article 21 and public Impressum boundary
 
-## 15. Support workflow for an unresolved German consumer-contract dispute
+German VSBG consumer conciliation remains separate from **DSA Article 21** certified out-of-court dispute settlement for eligible platform-moderation decisions.
 
-Before final closure:
+Do not collapse into one generic appeal flow:
 
-1. **Identify the contracting relationship.** Apple, Google Play, Xsolla merchant-of-record transaction, or direct CK-Labs relationship.
-2. **Identify the disputed product.** Diamonds, 30-Day VIP, Lifetime VIP, another entitlement, free service, account action, or another TycoonX feature.
-3. **Preserve authoritative evidence.** Transaction/provider record, entitlement ledger, account state, offer terms, price/tax display, support conversation, relevant legal-version timestamp, and correction history.
-4. **Try to resolve the substance.** Delivery, restore, refund route, withdrawal, correction, conformity cure, account recovery, or explanation as appropriate.
-5. **Separate payment status from account enforcement.** Do not convert a normal unresolved dispute into a fraud label without evidence.
-6. **If unresolved and § 37 VSBG applies, send the current text-form ADR information notice.** Verify the competent conciliation body immediately before sending.
-7. **State participation accurately.** Do not imply willingness or obligation that does not exist.
-8. **Preserve the notice.** Keep the sent text, date/time, recipient/account reference, dispute reference, named body, and body details current at the time sent.
-9. **Do not remove unrelated entitlements.** Any correction must remain transaction-specific and proportionate.
-10. **Escalate material legal uncertainty.** Especially disputed Lifetime VIP, mass refund events, recurring patterns, regulator correspondence, association claims, or formal ADR/court papers.
+- § 37 VSBG consumer-contract notice;
+- DSA Article 20 internal complaint;
+- DSA Article 21 out-of-court settlement;
+- Apple/Google/Xsolla refund/reversal process;
+- GDPR complaint/data-subject request; or
+- court claim.
 
-## 16. Minimum production evidence
+The TycoonX Impressum may contain provider information, DSA contact information, a conditional § 37 statement, and an accurate retired-ODR statement. A generic Impressum link is **not** a substitute for the case-specific § 37 text-form notice. A conditional § 37 statement is **not** a substitute for a § 36(1)(1) website/Terms participation statement if that general duty applies.
 
-A release/legal evidence pack should include:
+## 16. Minimum unresolved-dispute evidence packet
 
-- annual § 36 employee-threshold assessment;
-- current ADR willingness/obligation decision;
-- evidence that no stale EU ODR link exists in TycoonX legal/support/checkout copy;
-- current § 37 German text-form template;
-- current competent conciliation-body verification source/date;
-- Support trigger rule for when a dispute is actually unresolved;
-- Apple refund/support allocation example;
-- Google Play refund/support allocation example;
-- Xsolla merchant-of-record dispute example;
-- example where a user disputes one Diamond purchase but unrelated paid value remains untouched;
-- example where 30-Day VIP is disputed without resetting its clock;
-- example where Lifetime VIP remains intact during a separate payment dispute;
-- example where a lawful chargeback/refund/ADR request does not automatically create a fraud ban; and
-- calendar reminder for Directive (EU) 2025/2647 German implementation review before September 20, 2028.
+Retain only what is reasonably necessary under privacy/minimization and retention rules:
 
-## 17. QA scenarios
+- case/account reference;
+- product and entitlement;
+- Apple/Google/Xsolla/other channel;
+- transaction/order reference where relevant;
+- contracting merchant;
+- complaint and attempted-resolution chronology;
+- authoritative payment/refund/chargeback state;
+- CK-Labs entitlement state/correction history;
+- `consumer_contract_dispute_unresolved_at` timestamp;
+- competent ADR body source/date checked;
+- body name/address/website;
+- willingness/obligation status;
+- § 37 notice text, timestamp and delivery channel; and
+- later ADR/authority/court correspondence and final remedy.
 
-Release review must be able to answer these correctly:
+Do not include passwords, authentication secrets, full payment-card data, unnecessary provider tokens, or unrelated private messages.
 
-1. **CK-Labs has 10 or fewer employees on the relevant December 31.** The § 36(3) exemption may apply to § 36(1)(1), but do not claim that all VSBG duties disappear.
-2. **CK-Labs later exceeds the § 36 threshold.** Reassess website/Terms information before continuing to rely on the exemption.
-3. **A German consumer dispute remains unresolved after Support exchange.** Send a compliant § 37 text-form notice with the competent body and accurate participation statement.
-4. **A user asks for the former EU ODR platform.** Do not provide the discontinued platform as a current remedy.
-5. **Support copied a 2024 template containing the old ODR link.** Treat it as stale legal copy and correct it.
-6. **A consumer obtains an Apple refund.** Reconcile the specific Apple transaction; do not label the account fraudulent merely because Apple granted a refund.
-7. **A Google Play consumer asks CK-Labs for a refund.** Follow provider/current legal routes and do not falsely say only Google can ever help if CK-Labs has relevant developer tools or legal duties.
-8. **Xsolla is merchant of record and the user disputes billing.** Preserve the Xsolla transaction/merchant/refund path while separately addressing CK-Labs entitlement or conformity issues.
-9. **Xsolla's own terms contain arbitration wording.** Do not paste that wording into CK-Labs Terms as if it automatically governs TycoonX disputes.
-10. **A user starts ADR over 500 Diamonds.** Do not freeze unrelated Lifetime VIP merely because the account has an open dispute.
-11. **A user challenges a 30-Day VIP delivery issue.** Do not restart the clock just because Support re-verifies the purchase.
-12. **A user contests suspension while a payment dispute is also open.** Analyze moderation/security evidence separately from the payment complaint.
-13. **A user threatens court action.** Do not revoke purchased value or terminate solely because the user intends to pursue a legal remedy.
-14. **An ADR body contacts CK-Labs in 2026 referencing the future EU reform.** Apply current German law and actual obligations; keep the 2028 reform timeline distinct.
-15. **A future EU ADR information tool launches.** Verify the legal basis and current official destination before adding it; never restore the old ODR URL by habit.
+## 17. Release evidence / QA scenarios
 
-## 18. Localization rule
+Before marking this area ready, verify at least these scenarios:
 
-This gate does **not** by itself change the public canonical English Terms, Purchases & Refunds Policy, Privacy Policy, or Community Standards.
+1. CK-Labs is at or below the § 36(3) headcount threshold: do not suppress § 37 or § 36(1)(2).
+2. CK-Labs later exceeds the threshold: reassess public § 36 information.
+3. A normal support case resolves: do not send an unnecessary § 37 notice.
+4. A covered consumer-contract dispute genuinely remains unresolved: send the current competent-body notice in text form.
+5. A stale 2024 support macro contains the retired ODR URL: remove it.
+6. A user asks about the Consumer Redress Portal: describe it accurately without implying universal CK-Labs participation.
+7. Apple refunds a Diamond purchase: reconcile only that transaction and do not auto-ban the account.
+8. A Google Play purchase is disputed: separate Play payment state from CK-Labs entitlement obligations.
+9. Xsolla is merchant of record: preserve the Xsolla contract/refund route while still fixing a CK-Labs server-delivery defect.
+10. One Diamond purchase is disputed: unrelated legitimate purchased Diamonds remain untouched.
+11. 30-Day VIP is revalidated: do not restart its original clock.
+12. Lifetime VIP is disputed: do not add an expiry or reopen a closed sales window.
+13. A consumer contacts ADR, ECC-Net, regulator or court: do not treat that act itself as fraud.
+14. An account was compromised: separate account-security restoration from final misconduct findings.
+15. A provider outage blocks support delivery: retain a recoverable queue and send the real notice later without backdating.
+16. TycoonX permanently shuts down or changes operator: unresolved duties/claims are not silently discarded.
+17. An ADR entity cites Directive (EU) 2025/2647 in 2026: apply current German law and keep future 2028 rules distinct.
+18. German transposition of Directive (EU) 2025/2647 becomes applicable: refresh this gate and canonical copy where legally necessary.
 
-Therefore it does not reopen the completed 25-locale queue.
+## 18. Canonical/localization boundary
 
-If CK-Labs later adds a material public ADR commitment, dispute-resolution clause, mandatory-arbitration clause, court/jurisdiction change, or legally required § 36 statement to the canonical Terms, reopen the affected localized document type and resynchronize it in the required order:
+This operational consolidation does **not** by itself change the public canonical English Terms, Purchases & Refunds Policy, Privacy Policy, or Community Standards. Therefore it does not reopen the completed localization queue.
 
-`tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id`.
+If CK-Labs later materially changes the public ADR participation commitment, consumer-dispute clause, mandatory-arbitration position, court/jurisdiction terms, or legally required public § 36 meaning, resynchronize the affected canonical document into the 25 target locales in the required order.
 
-## 19. Release / brand invariants
+## 19. Brand, release and operational invariants
 
-- The game is displayed as **TycoonX** in all legal and player-facing prose.
-- Technical route/file names containing `tyconx` may remain when needed for compatibility.
-- TycoonX is in full release from **September 1, 2026** and must not be described as a beta service.
+- Display the game name exactly as **TycoonX** in player-facing/legal prose.
+- Technical route/file names containing `tyconx` may remain where needed for compatibility.
+- TycoonX has been in full release since **September 1, 2026**.
 - No GitHub Actions or paid service is required by this gate.
 - No database change is required by this gate.
 
-## 20. Current official references
+## 20. Single source of truth
 
-- German VSBG current text: https://www.gesetze-im-internet.de/vsbg/BJNR025410016.html
+Do not create a second overlapping gate or verifier for the same VSBG §§ 36/37, former ODR platform, Consumer Redress Portal, or EU ADR-transition doctrine. Future legal changes belong here and in the surviving verifier.
+
+### Current authoritative references
+
+- VSBG current text: https://www.gesetze-im-internet.de/vsbg/BJNR025410016.html
 - § 36 VSBG: https://www.gesetze-im-internet.de/vsbg/__36.html
 - § 37 VSBG: https://www.gesetze-im-internet.de/vsbg/__37.html
-- Federal Office of Justice business guidance for §§ 36 and 37 VSBG: https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/Verbraucherstreitbeilegung/Unternehmen/Unternehmen.html
-- Federal Office of Justice list of consumer conciliation bodies: https://www.bundesjustizamt.de/SharedDocs/Downloads/DE/Verbraucherschutz/Liste_Verbraucherschlichtungsstellen.pdf
-- Regulation (EU) 2024/3228 discontinuing the old ODR platform: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
-- Directive (EU) 2025/2647 updating EU ADR rules: https://eur-lex.europa.eu/eli/dir/2025/2647/oj
-- Apple EU alternative-payment customer-support guidance: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu
-- Google Play developer order/refund guidance: https://support.google.com/googleplay/android-developer/answer/2741495
+- Federal Office of Justice consumer ADR guidance: https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/Verbraucherstreitbeilegung/Verbraucherstreitbeilegung_node.html
+- Regulation (EU) 2024/3228: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
+- Directive (EU) 2025/2647: https://eur-lex.europa.eu/eli/dir/2025/2647/oj
+- Consumer Redress Portal: https://consumer-redress.ec.europa.eu/
+- Apple EU payment-option guidance: https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu
+- Google Play order/refund guidance: https://support.google.com/googleplay/android-developer/answer/2741495
 - Xsolla legal agreements: https://xsolla.com/legal-agreements
-- Xsolla Refund Policy: https://xsolla.com/refund-policy
-
-## 21. Final go/no-go rule
-
-Do not mark German/EU consumer-dispute handling ready unless CK-Labs can demonstrate all of the following without guessing:
-
-- current § 36 applicability assessment;
-- current § 37 unresolved-dispute workflow;
-- current competent consumer conciliation-body lookup;
-- no stale EU ODR platform link;
-- accurate willingness/obligation statement;
-- text-form evidence for unresolved disputes;
-- Apple/Google/Xsolla dispute-role separation;
-- no automatic fraud punishment merely for lawful consumer redress;
-- transaction-specific Diamonds/30-Day VIP/Lifetime VIP correction;
-- preservation of mandatory consumer and court rights; and
-- a dated legal-watch item for German implementation of Directive (EU) 2025/2647 before the 2028 application date.
-
-## 22. DSA Article 21 and public Impressum boundary
-
-German VSBG consumer conciliation must remain separate from **DSA Article 21** out-of-court dispute settlement for eligible platform-moderation decisions. The same underlying facts can produce more than one route, but they do not share the same legal basis, scope, deadlines, decision-maker, or consequences.
-
-Do not collapse any of the following into one generic `appeal` flow:
-
-- a § 37 VSBG consumer-contract notice;
-- a DSA Article 20 internal complaint;
-- DSA Article 21 certified out-of-court dispute settlement;
-- an Apple, Google Play, or Xsolla refund/reversal process;
-- a GDPR complaint or data-subject request; or
-- a court claim.
-
-The current public TycoonX Impressum contains provider information under § 5 DDG, a DSA contact-point section, a conditional § 37 VSBG statement, and an accurate statement that the former EU ODR platform was discontinued. Preserve those safeguards.
-
-However, the Impressum's conditional § 37 statement is **not a substitute** for a § 36(1)(1) website/Terms participation-status statement if that general duty actually applies to CK-Labs. Likewise, a generic Impressum link is not a substitute for the transaction-specific text-form § 37 notice after an unresolved covered consumer-contract dispute.
-
-Before relying on the § 36(3) employee-count exemption, keep a dated record based on the actual number of persons employed on December 31 of the preceding year. Do not infer the exemption from labels such as `indie`, `solo`, `small`, `individual`, or from a store-account type.
-
-## 23. Single source of truth
-
-This file is the **single TycoonX EU/German consumer ADR / VSBG / former-ODR operational release gate**.
-
-Do not create a second overlapping ADR gate for the same §§ 36/37 VSBG and former-ODR subject. Future legal changes should be merged here, and the surviving verifier should enforce this single-source-of-truth rule.
+- Xsolla refund policy: https://xsolla.com/refund-policy
