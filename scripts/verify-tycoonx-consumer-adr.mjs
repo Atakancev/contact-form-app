@@ -63,7 +63,7 @@ requireText(gate, '10 or fewer persons on December 31 of the preceding year', '�
 requireText(gate, 'it applies to **§ 36(1)(1)**, not every VSBG obligation', 'narrow §36 exemption');
 requireText(gate, '§ 36(1)(2)', '§36(1)(2) survives');
 requireText(gate, 'does **not** remove the post-dispute duty in **§ 37 VSBG**', '§37 survives headcount');
-requireText(gate, 'Do not infer the exemption from labels such as `indie`, `solo`, `small`, `individual`', 'no assumed exemption');
+requireText(gate, 'not labels such as `indie`, `solo`, `small`, `individual`', 'no assumed exemption');
 requireText(gate, 'address and website', '§37 body details');
 requireText(gate, 'willing or obliged', '§37 participation status');
 requireText(gate, 'in text form', '§37 text form');
