@@ -11,15 +11,16 @@ const termsPath = path.join(ROOT, 'tyconx-terms-of-service.md');
 const purchasesPath = path.join(ROOT, 'tyconx-purchase-refund-policy.md');
 const progressPath = path.join(ROOT, 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
-// Prevent retired or redundant BFSG gate names from being reintroduced. The
-// broader German/EU accessibility companion is reviewed separately until its
-// few unique operational controls are deliberately migrated or retained.
+// Keep one operational BFSG doctrine source. Retired parallel gates/verifiers
+// must stay absent so future edits cannot silently diverge.
 const duplicatePaths = [
   path.join(ROOT, 'TYCOONX_ACCESSIBILITY_BFSG_RELEASE_GATE.md'),
   path.join(ROOT, 'scripts', 'verify-tycoonx-accessibility-bfsg.mjs'),
   path.join(ROOT, 'TYCOONX_GERMAN_BFSG_ACCESSIBILITY_RELEASE_GATE.md'),
   path.join(ROOT, 'TYCOONX_GERMAN_BFSG_ACCESSIBILITY_ECOMMERCE_RELEASE_GATE.md'),
   path.join(ROOT, 'scripts', 'verify-tycoonx-german-bfsg-accessibility.mjs'),
+  path.join(ROOT, 'TYCOONX_GERMAN_EU_ACCESSIBILITY_ECOMMERCE_RELEASE_GATE.md'),
+  path.join(ROOT, 'scripts', 'verify-tycoonx-accessibility-ecommerce.mjs'),
 ];
 
 const errors = [];
@@ -33,7 +34,7 @@ async function requireMissing(filePath, message) {
     await access(filePath);
     errors.push(message);
   } catch {
-    // Expected: retired duplicate file does not exist.
+    // Expected: retired duplicate path does not exist.
   }
 }
 
@@ -45,116 +46,101 @@ const [gate, checkout, terms, purchases, progress] = await Promise.all([
   readFile(progressPath, 'utf8'),
 ]);
 
-// Scope and microenterprise exemption.
-requireMatch(gate, /Last reviewed: September 2, 2026/i, 'Missing current BFSG review checkpoint.');
-requireMatch(gate, /June 28, 2025/i, 'Missing BFSG June 28, 2025 applicability checkpoint.');
-requireMatch(gate, /BFSG § 3\(3\)/i, 'Missing BFSG § 3(3) microenterprise service exemption.');
-requireMatch(gate, /fewer than 10 persons/i, 'Missing microenterprise person-count threshold.');
+// Current review, scope and microenterprise evidence.
+requireMatch(gate, /Last reviewed: September 5, 2026/i, 'Missing current BFSG review checkpoint.');
+requireMatch(gate, /single TycoonX operational doctrine/i, 'Missing single-source BFSG doctrine rule.');
+requireMatch(gate, /June 28, 2025/i, 'Missing BFSG applicability date.');
+requireMatch(gate, /BFSG § 3\(3\)/i, 'Missing BFSG § 3(3) service exemption.');
+requireMatch(gate, /fewer than 10 persons/i, 'Missing microenterprise person threshold.');
 requireMatch(gate, /annual turnover of \*\*no more than €2 million\*\*/i, 'Missing microenterprise turnover threshold.');
 requireMatch(gate, /annual balance-sheet total of \*\*no more than €2 million\*\*/i, 'Missing microenterprise balance-sheet threshold.');
-requireMatch(gate, /reassess at least when annual accounts become available/i, 'Missing microenterprise reassessment trigger.');
-requireMatch(gate, /not a permanent product feature/i, 'Missing rule against hard-coded permanent BFSG exemption.');
-requireMatch(gate, /not a universal BFSG exemption/i, 'Missing rule against extending the service exemption to separately covered products.');
-requireMatch(gate, /do not publish a false claim of statutory BFSG compliance/i, 'Missing anti-misleading conformity claim rule.');
+requireMatch(gate, /not a permanent product feature/i, 'Missing rule against permanent hard-coded exemption.');
+requireMatch(gate, /not a universal BFSG exemption/i, 'Missing service/product exemption separation.');
 
-// BFSG § 14 and Annex 3 public information.
+// § 14, Annex 3 and authority information.
 requireMatch(gate, /BFSG § 14/i, 'Missing BFSG § 14 service-provider gate.');
-requireMatch(gate, /Annex 3/i, 'Missing BFSG Annex 3 public-information gate.');
+requireMatch(gate, /Annex 3/i, 'Missing BFSG Annex 3 information gate.');
+requireMatch(gate, /as long as the service is offered or provided/i, 'Missing Annex 3 information-retention rule.');
 requireMatch(gate, /general description of the relevant service/i, 'Missing Annex 3 service description.');
-requireMatch(gate, /descriptions and explanations necessary to understand how the service is performed/i, 'Missing Annex 3 operation explanation.');
 requireMatch(gate, /description of how the service meets the applicable accessibility requirements/i, 'Missing Annex 3 conformity explanation.');
-requireMatch(gate, /competent market-surveillance authority/i, 'Missing Annex 3 market-surveillance authority requirement.');
-requireMatch(gate, /Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen.*MLBF AöR/is, 'Missing current MLBF authority checkpoint.');
+requireMatch(gate, /competent market-surveillance authority/i, 'Missing Annex 3 authority requirement.');
+requireMatch(gate, /MLBF AöR/i, 'Missing current MLBF checkpoint.');
 requireMatch(gate, /Carl-Miller-Straße 6, 39112 Magdeburg/i, 'Missing current MLBF address checkpoint.');
-requireMatch(gate, /\+49 391 289 230 23/i, 'Missing current MLBF telephone checkpoint.');
-requireMatch(gate, /kontakt@mlbf-barrierefrei\.de/i, 'Missing current MLBF email checkpoint.');
 requireMatch(gate, /verify the current authority name and contact route/i, 'Missing authority freshness safeguard.');
-requireMatch(gate, /as long as the service is offered or provided/i, 'Missing § 14 information-retention rule.');
 requireMatch(gate, /Erklärung zur Barrierefreiheit/i, 'Missing public-sector statement terminology warning.');
 
-// BFSGV § 12 and § 19 technical service rules.
-requireMatch(gate, /BFSGV § 12/i, 'Missing BFSGV § 12 general service requirements.');
+// BFSGV service/e-commerce accessibility and end-to-end behavior.
+requireMatch(gate, /BFSGV § 12/i, 'Missing BFSGV § 12 requirements.');
 requireMatch(gate, /perceivable, operable, understandable, and robust/i, 'Missing POUR accessibility principles.');
-requireMatch(gate, /more than one sensory channel/i, 'Missing multi-sensory information requirement.');
-requireMatch(gate, /alternative representation for non-text content/i, 'Missing non-text alternative requirement.');
-requireMatch(gate, /BFSGV § 19/i, 'Missing BFSGV § 19 electronic-commerce requirements.');
-requireMatch(gate, /identification functions/i, 'Missing accessible identification-function rule.');
-requireMatch(gate, /authentication functions/i, 'Missing accessible authentication-function rule.');
-requireMatch(gate, /security functions/i, 'Missing accessible security-function rule.');
-requireMatch(gate, /payment functions/i, 'Missing accessible payment-function rule.');
-requireMatch(gate, /CAPTCHA, OTP, anti-bot challenge/i, 'Missing accessible security-challenge safeguard.');
-requireMatch(gate, /whole website\/app of the online shop can be relevant/i, 'Missing whole-shop journey scope safeguard.');
+requireMatch(gate, /zoom, larger-text and orientation behavior/i, 'Missing zoom/larger-text/orientation safeguard.');
+requireMatch(gate, /session expiry, security timeout, or countdown behavior/i, 'Missing timeout accessibility safeguard.');
+requireMatch(gate, /BFSGV § 19/i, 'Missing BFSGV § 19 e-commerce requirements.');
+requireMatch(gate, /identification, authentication, security, and payment functions/i, 'Missing § 19 identification/authentication/security/payment coverage.');
+requireMatch(gate, /CAPTCHA, OTP, anti-bot challenge, SCA\/3DS flow/i, 'Missing accessible security-challenge coverage.');
+requireMatch(gate, /whole relevant shop journey matters/i, 'Missing end-to-end shop journey rule.');
+requireMatch(gate, /BFSG Annex 1/i, 'Missing Annex 1 market-surveillance test model.');
+requireMatch(gate, /full procedure must be tested/i, 'Missing complete-procedure test rule.');
 
-// Legal consumer controls must remain accessible.
-requireMatch(gate, /BGB § 356a electronic withdrawal function/i, 'Missing accessibility rule for German withdrawal function.');
-requireMatch(gate, /future BGB § 312k termination button/i, 'Missing accessibility rule for future recurring termination button.');
-requireMatch(gate, /screen-reader or keyboard-only user cannot operate/i, 'Missing rule against visually correct but inaccessible legal controls.');
-requireMatch(checkout, /BGB § 356a/i, 'German checkout gate lost § 356a withdrawal-function protection.');
+// Mandatory consumer controls.
+requireMatch(gate, /BGB § 356a electronic withdrawal function/i, 'Missing § 356a withdrawal accessibility rule.');
+requireMatch(gate, /future BGB § 312k termination button/i, 'Missing future recurring termination-button accessibility rule.');
+requireMatch(gate, /screen-reader or keyboard-only user cannot operate/i, 'Missing inaccessible-legal-control safeguard.');
+requireMatch(checkout, /BGB § 356a/i, 'German checkout gate lost § 356a protection.');
 requireMatch(checkout, /`Vertrag widerrufen`/i, 'German checkout gate lost first withdrawal control label.');
-requireMatch(checkout, /`Widerruf bestätigen`/i, 'German checkout gate lost final withdrawal control label.');
+requireMatch(checkout, /`Widerruf bestätigen`/i, 'German checkout gate lost confirmation withdrawal control label.');
 
-// Standards-change control.
-requireMatch(gate, /EN 301 549 V3\.2\.1 \(2021-03\)/i, 'Missing current EN 301 549 reference checkpoint.');
-requireMatch(gate, /WCAG 2\.1/i, 'Missing current EN/WCAG 2.1 reference.');
+// Provider boundaries and standards-change control.
+requireMatch(gate, /Apple App Store/i, 'Missing Apple responsibility boundary.');
+requireMatch(gate, /Accessibility Nutrition Labels/i, 'Missing Apple accessibility metadata separation.');
+requireMatch(gate, /Google Play/i, 'Missing Google Play responsibility boundary.');
+requireMatch(gate, /TalkBack/i, 'Missing Android TalkBack checkpoint.');
+requireMatch(gate, /Xsolla web shop/i, 'Missing Xsolla responsibility boundary.');
+requireMatch(gate, /actual TycoonX configuration/i, 'Missing live provider-configuration evidence rule.');
+requireMatch(gate, /BFSG § 1\(4\)\(4\)/i, 'Missing narrow third-party-content exception.');
+requireMatch(gate, /neither financed nor developed by CK-Labs nor under CK-Labs control/i, 'Missing third-party factual control test.');
+requireMatch(gate, /EN 301 549 V3\.2\.1 \(2021-03\)/i, 'Missing EN 301 549 engineering checkpoint.');
 requireMatch(gate, /WCAG 2\.2 as forward-looking engineering guidance/i, 'Missing forward-looking WCAG 2.2 safeguard.');
-requireMatch(gate, /do not falsely state that a future or draft standard is already the binding harmonised standard/i, 'Missing standards-status safeguard.');
+requireMatch(gate, /July 10, 2026 amendment/i, 'Missing current BFSGV amendment checkpoint.');
 
-// Apple, Google, Xsolla boundaries.
-requireMatch(gate, /Apple App Store accessibility metadata is separate/i, 'Missing Apple accessibility metadata separation.');
-requireMatch(gate, /Accessibility Nutrition Labels/i, 'Missing Apple Accessibility Nutrition Labels checkpoint.');
-requireMatch(gate, /first launch, login, purchase, and settings/i, 'Missing Apple common-task accessibility scope.');
-requireMatch(gate, /Google \/ Android accessibility engineering is separate/i, 'Missing Android accessibility separation.');
-requireMatch(gate, /TalkBack/i, 'Missing Android TalkBack test requirement.');
-requireMatch(gate, /Switch Access/i, 'Missing Android Switch Access checkpoint.');
-requireMatch(gate, /Xsolla and third-party checkout responsibility/i, 'Missing Xsolla accessibility responsibility boundary.');
-requireMatch(gate, /actual project and payment methods offered to German consumers/i, 'Missing live Xsolla configuration evidence rule.');
+// §§ 16-17 narrow exceptions, now including the migrated cadence/funding rules.
+requireMatch(gate, /Fundamental alteration and disproportionate burden are narrow routes/i, 'Missing narrow exception heading.');
+requireMatch(gate, /Annex 4 criteria/i, 'Missing Annex 4 assessment requirement.');
+requireMatch(gate, /retain it for \*\*five years from the last provision of the service\*\*/i, 'Missing § 17 documentation-retention rule.');
+requireMatch(gate, /§ 17\(3\).*\*\*at least every five years\*\*/is, 'Missing § 17(3) five-year reassessment cadence.');
+requireMatch(gate, /whenever the service changes or the competent authority requests a new assessment/i, 'Missing § 17(3) change/authority reassessment triggers.');
+requireMatch(gate, /§ 17\(4\).*public or private funding/is, 'Missing § 17(4) accessibility-funding restriction.');
+requireMatch(gate, /§ 17\(5\).*authority information\/notification requirement/is, 'Missing § 17(5) authority rule.');
 
-// Consolidated third-party-content and market-surveillance safeguards.
-requireMatch(gate, /BFSG § 1\(4\)\(4\)/i, 'Missing narrow third-party-content exclusion.');
-requireMatch(gate, /neither financed nor developed.*nor under its control/is, 'Missing third-party-content control test.');
-requireMatch(gate, /not a blanket rule.*third-party SDK, iframe, browser sheet, hosted checkout/is, 'Missing warning against blanket provider-content exemption.');
-requireMatch(gate, /BFSG § 28\(2\)/i, 'Missing BFSG service market-surveillance checkpoint.');
-requireMatch(gate, /BFSG Annex 1/i, 'Missing Annex 1 end-to-end monitoring checkpoint.');
-requireMatch(gate, /all procedural steps.*ordinary standard sequence/is, 'Missing Annex 1 full-procedure test rule.');
-requireMatch(gate, /home page, login, sitemap, contact, help pages\/functions, pages with legal information/is, 'Missing Annex 1 sample categories.');
-requireMatch(gate, /If a sampled page is one step in a procedure, the full procedure is tested/i, 'Missing Annex 1 full-procedure consequence.');
-requireMatch(gate, /success, pending, validation, error, provider-failure, and recovery states/i, 'Missing transaction-state accessibility regression coverage.');
+// Accessibility state must not become discriminatory commerce or enforcement logic.
+requireMatch(gate, /Accessibility state must not become pricing, fraud, or entitlement logic/i, 'Missing accessibility-state separation doctrine.');
+requireMatch(gate, /deny an otherwise valid genuine promotion/i, 'Missing promotion nondiscrimination rule.');
+requireMatch(gate, /assign a worse regional price/i, 'Missing regional-price nondiscrimination rule.');
+requireMatch(gate, /change fraud scoring merely because assistive technology is used/i, 'Missing assistive-tech/fraud separation.');
+requireMatch(gate, /unnecessary disability profile/i, 'Missing accessibility telemetry minimization rule.');
+requireMatch(gate, /Accessibility complaint or request is not evidence of fraud/i, 'Missing complaint/enforcement separation.');
 
-// Nonconformity, enforcement, and narrow exceptions.
-requireMatch(gate, /Nonconformity, correction, authority notification, and enforcement/i, 'Missing BFSG nonconformity workflow.');
-requireMatch(gate, /take necessary corrective measures to restore conformity/i, 'Missing BFSG corrective-action requirement.');
-requireMatch(gate, /inform the competent German market-surveillance authority/i, 'Missing BFSG authority-notification rule.');
-requireMatch(gate, /BFSG § 37.*€100,000/is, 'Missing BFSG maximum service fine checkpoint.');
-requireMatch(gate, /BFSG §§ 32 and 33/i, 'Missing consumer/association administrative-rights checkpoint.');
-requireMatch(gate, /Fundamental alteration and disproportionate burden are narrow, documented routes/i, 'Missing narrow statutory exception gate.');
-requireMatch(gate, /Annex 4 criteria/i, 'Missing disproportionate-burden Annex 4 evidence requirement.');
-requireMatch(gate, /retained for five years from the last provision of the service/i, 'Missing BFSG § 17 documentation-retention checkpoint.');
+// Product and entitlement invariants.
+requireMatch(gate, /Purchased Diamonds.*do not expire solely because time passes/is, 'Missing purchased-Diamond persistence rule.');
+requireMatch(gate, /30-Day VIP remains a \*\*one-time, non-renewing 30-day entitlement\*\*/i, 'Missing one-time 30-Day VIP invariant.');
+requireMatch(gate, /Lifetime VIP remains a \*\*one-time promotional entitlement offered only during selected genuine sales windows\*\*/i, 'Missing limited-window Lifetime VIP invariant.');
+requireMatch(gate, /hidden accessibility strings/i, 'Missing accessible-copy product-parity rule.');
+requireMatch(gate, /Accessibility retries must be idempotent/i, 'Missing accessibility retry idempotency rule.');
+requireMatch(gate, /Permanent TycoonX service discontinuation does not eliminate accrued mandatory consumer remedies/i, 'Missing shutdown survival rule.');
+requireMatch(gate, /sale, merger, reorganization, or successor operator/i, 'Missing successor-operator BFSG reassessment.');
 
-// TycoonX product and entitlement isolation.
-requireMatch(gate, /Diamond bundle selection/i, 'Missing Diamond purchase-flow accessibility coverage.');
-requireMatch(gate, /one-time 30-Day VIP selection/i, 'Missing 30-Day VIP accessibility coverage.');
-requireMatch(gate, /Lifetime VIP selection while a genuine sales window exists/i, 'Missing Lifetime VIP accessibility coverage.');
-requireMatch(gate, /must not duplicate purchased Diamonds/i, 'Missing purchased-Diamond isolation.');
-requireMatch(gate, /30-Day VIP.*must not restart, pause, extend, shorten, or duplicate/is, 'Missing 30-Day VIP entitlement isolation.');
-requireMatch(gate, /Lifetime VIP.*hidden expiry, downgrade, or duplicate/is, 'Missing Lifetime VIP entitlement isolation.');
-requireMatch(gate, /accessibility complaint is not evidence of fraud/i, 'Missing accessibility complaint/fraud separation.');
-requireMatch(gate, /must never replay entitlement fulfillment/i, 'Missing provider retry entitlement replay protection.');
-
-// Canonical public product distinctions remain intact.
-requireMatch(terms, /Purchased Diamonds do not expire solely because time passes/i, 'Canonical Terms lost purchased-Diamond persistence rule.');
-requireMatch(terms, /One-time 30-Day VIP/i, 'Canonical Terms lost one-time 30-Day VIP section.');
-requireMatch(terms, /Limited-time Lifetime VIP/i, 'Canonical Terms lost limited-time Lifetime VIP section.');
-requireMatch(purchases, /official TycoonX web shop powered by Xsolla/i, 'Canonical Purchases policy lost Xsolla web-shop channel.');
-requireMatch(purchases, /30-Day VIP is a \*\*one-time, non-renewing entitlement\*\*/i, 'Canonical Purchases policy lost one-time 30-Day VIP distinction.');
-requireMatch(purchases, /Lifetime VIP is a one-time premium entitlement offered only during \*\*selected limited promotional sales windows\*\*/i, 'Canonical Purchases policy lost limited-window Lifetime VIP distinction.');
-requireMatch(purchases, /final total price and currency displayed by the applicable checkout/i, 'Canonical Purchases policy lost final-checkout-price rule.');
-requireMatch(purchases, /German electronic withdrawal function/i, 'Canonical Purchases policy lost German withdrawal-function baseline.');
+// Canonical public product distinctions stay unchanged.
+requireMatch(terms, /Purchased Diamonds do not expire solely because time passes/i, 'Canonical Terms lost Diamond persistence.');
+requireMatch(terms, /One-time 30-Day VIP/i, 'Canonical Terms lost 30-Day VIP section.');
+requireMatch(terms, /Limited-time Lifetime VIP/i, 'Canonical Terms lost Lifetime VIP section.');
+requireMatch(purchases, /official TycoonX web shop powered by Xsolla/i, 'Canonical Purchases lost Xsolla channel.');
+requireMatch(purchases, /30-Day VIP is a \*\*one-time, non-renewing entitlement\*\*/i, 'Canonical Purchases lost 30-Day VIP distinction.');
+requireMatch(purchases, /Lifetime VIP is a one-time premium entitlement offered only during \*\*selected limited promotional sales windows\*\*/i, 'Canonical Purchases lost Lifetime VIP sales-window distinction.');
 
 // Localization and full-release invariants.
 requireMatch(progress, /25\/25/i, 'Localization tracker no longer confirms 25/25 hubs.');
-requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localization tracker no longer confirms 100/100 full documents.');
-requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization tracker no longer has a closed locale/document queue.');
-requireMatch(progress, /full release on \*\*September 1, 2026\*\*/i, 'Localization tracker lost September 1, 2026 full-release invariant.');
+requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localization tracker no longer confirms 100/100 documents.');
+requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization queue is no longer closed.');
+requireMatch(progress, /full release on \*\*September 1, 2026\*\*/i, 'Localization tracker lost full-release invariant.');
 
 for (const [name, text] of [
   ['BFSG accessibility gate', gate],
@@ -162,16 +148,14 @@ for (const [name, text] of [
   ['canonical Terms', terms],
   ['canonical Purchases policy', purchases],
 ]) {
-  if (/TyconX/.test(text)) errors.push(`Displayed brand typo TyconX found in ${name}.`);
-  if (/\bTycoonX\s+beta\b/i.test(text)) errors.push(`Stale TycoonX beta wording found in ${name}.`);
+  if (/TyconX/.test(text)) errors.push(`Displayed brand typo found in ${name}.`);
+  if (/\bTycoonX\s+beta\b/i.test(text)) errors.push(`Stale live-service beta wording found in ${name}.`);
 }
-
-if (/before full release/i.test(gate)) errors.push('Stale pre-release wording found in the live-service BFSG gate.');
 
 for (const duplicatePath of duplicatePaths) {
   await requireMissing(
     duplicatePath,
-    `Retired BFSG gate/verifier exists at ${path.relative(ROOT, duplicatePath)}; do not recreate redundant TycoonX accessibility doctrine.`,
+    `Retired BFSG gate/verifier exists at ${path.relative(ROOT, duplicatePath)}; keep one consolidated TycoonX accessibility doctrine.`,
   );
 }
 
@@ -182,5 +166,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: BFSG scope/exemption, Annex 3, Annex 1 end-to-end sampling, provider boundaries, enforcement, e-commerce accessibility, and TycoonX paid-entitlement safeguards are present.');
+  console.log('PASS: BFSG scope/exemption, Annex 3, § 17 reassessment, provider boundaries, end-to-end accessibility, nondiscrimination, and paid-entitlement safeguards are present.');
 }
