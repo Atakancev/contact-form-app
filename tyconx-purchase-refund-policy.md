@@ -1,6 +1,6 @@
 # TycoonX Purchases & Refunds Policy
 
-**Last updated: August 28, 2026**
+**Last updated: September 5, 2026**
 
 This Purchases & Refunds Policy applies to paid digital content and entitlements offered in **TycoonX** by **CK-Labs**. It supplements the TycoonX Terms of Service and does not reduce any rights that cannot legally be waived.
 
@@ -61,6 +61,8 @@ For purchases made through Apple In-App Purchase:
 - If Apple later completes a provider-approved pending transaction, TycoonX may grant the corresponding entitlement at that time even if the original promotion has meanwhile ended, where the Apple transaction validly relates to that offer.
 - If Apple refunds, revokes, reverses, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value so the refunded or invalid purchase is not retained twice.
 
+Where TycoonX expressly enables Apple-supported gifting for an eligible In-App Purchase, the gift remains subject to Apple’s current gifting rules. An Apple-supported gift is distinct from unauthorized real-money trading or an off-platform user deal and does not create a general right to exchange TycoonX value for cash or other real-world consideration.
+
 ## 3. Google Play purchases
 
 For purchases made through Google Play:
@@ -73,6 +75,8 @@ For purchases made through Google Play:
 - If a pending Google Play purchase later becomes a valid completed purchase, TycoonX may grant the applicable entitlement when completion is confirmed, including where completion occurs after a limited promotion has closed but the provider-confirmed transaction validly belongs to that offer.
 - Google may process eligible refund requests directly. CK-Labs may also be able to process eligible Google Play refunds through Google’s developer tools, subject to Google rules and applicable law.
 - If Google refunds, reverses, charges back, cancels, or invalidates a transaction, CK-Labs may revoke or correct the corresponding entitlement or virtual value.
+
+Google Play’s treatment of peer-to-peer payments does not turn a TycoonX player-to-player game transaction into an official Google Play purchase, and purchased in-app virtual currency remains subject to Google Play’s rule that it be used within the app or game title for which it was purchased.
 
 ## 4. TycoonX web shop powered by Xsolla
 
@@ -87,6 +91,22 @@ CK-Labs remains responsible for delivering the corresponding TycoonX entitlement
 If a valid Xsolla transaction is later confirmed after a processing delay, CK-Labs may grant the corresponding entitlement at confirmation time according to the provider-confirmed transaction and applicable offer. If Xsolla refunds, reverses, cancels, charges back, or invalidates a transaction, CK-Labs may revoke or correct the corresponding TycoonX entitlement or virtual value.
 
 A web-shop purchase does not create a right to bypass Apple or Google platform rules inside their apps. Whether TycoonX may display or link to an external web-shop offer inside an app depends on the applicable platform, country, program, and law.
+
+## 4A. Official purchases, player-to-player transfers, and off-platform deals
+
+This Policy governs genuine purchases made through an authorized TycoonX purchase channel. An in-game trade, sale, auction, art purchase, company transaction, contract, job, market order, Begging transfer, or other player-to-player movement of in-game money, assets, or economic value does **not** become an official purchase from CK-Labs merely because value changes hands inside TycoonX.
+
+Unauthorized real-money trading or another off-platform deal between users is not an official TycoonX purchase. CK-Labs is not the seller, payment processor, escrow service, guarantor, debt collector, or refund provider for such a deal and does not promise to recover real money, cryptocurrency, gift cards, physical goods, outside services, or other real-world consideration exchanged between users.
+
+If a user pays another user outside TycoonX and does not receive the promised in-game value, that dispute does not become an Apple App Store, Google Play, Xsolla, or CK-Labs purchase-refund claim merely because the promised performance involved TycoonX. CK-Labs may still investigate or reverse the related in-game activity and apply the Terms where the conduct violates the genuine-transaction, real-money-trading, fraud, exploit, account-compromise, or other applicable rules.
+
+The Begging feature, where available, permits only the in-game assistance that TycoonX expressly allows through that feature. It does not authorize outside payment or other real-world consideration in exchange for TycoonX value.
+
+Where TycoonX expressly enables a platform-supported gift or transfer mechanism, that feature is governed by its disclosed terms and the applicable platform rules. It is not an unrestricted cash-out, resale, exchange, or off-platform settlement system.
+
+A separately completed legitimate Apple, Google Play, or Xsolla purchase keeps the refund, withdrawal, conformity, restoration, and other mandatory rights that apply to that purchase. A player’s unrelated gameplay violation, transfer violation, or real-money-trading violation does not by itself erase those rights, invalidate an unrelated official receipt, or permit CK-Labs to retain money that mandatory law requires to be refunded.
+
+Nothing in this section limits rights that cannot legally be waived. CK-Labs will not use the existence of an unauthorized user-to-user deal as a blanket reason to deny a mandatory remedy for an unrelated valid official purchase.
 
 ## 5. Prices, regional pricing, and future price changes
 
