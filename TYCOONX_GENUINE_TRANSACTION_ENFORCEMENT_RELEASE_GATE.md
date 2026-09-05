@@ -3,22 +3,25 @@
 **Release QA reference. Last reviewed: September 5, 2026.**
 
 Owner: CK-Labs  
-Scope: operational enforcement of the September 5, 2026 TycoonX Terms rule requiring genuine gameplay transactions and prohibiting disguised player-to-player wealth transfers through unrelated mechanics.
+Scope: operational enforcement of the September 5, 2026 TycoonX Terms rules requiring genuine gameplay transactions, prohibiting disguised player-to-player wealth transfers through unrelated mechanics, and prohibiting unauthorized real-money trading or off-platform exchange of TycoonX value.
 
 ## Purpose and source hierarchy
 
-The canonical English TycoonX Terms already state that players are expected to build their own in-game wealth through gameplay and genuine economic activity. Player-to-player movement of in-game money, assets, or other economic value is permitted only where it is part of a genuine gameplay transaction and the relevant feature is used for its intended purpose.
+The canonical English TycoonX Terms state that players are expected to build their own in-game wealth through gameplay and genuine economic activity. Player-to-player movement of in-game money, assets, or other economic value is permitted only where it is part of a genuine gameplay transaction and the relevant feature is used for its intended purpose.
 
-This gate does **not** create a new player-facing prohibition. It explains how CK-Labs should investigate and enforce the existing September 5 Terms rule consistently, proportionately, and with enough evidence to avoid treating legitimate expensive or unusual trades as violations.
+The canonical Terms also separately prohibit buying, selling, brokering, advertising, arranging, or exchanging TycoonX accounts or game value for real money, cryptocurrency, gift cards, physical goods, outside services, or other real-world consideration unless CK-Labs expressly provides a specific authorized mechanism.
+
+This gate does **not** create a new player-facing prohibition. It explains how CK-Labs should investigate and enforce the existing September 5 Terms rules consistently, proportionately, and with enough evidence to avoid treating legitimate expensive or unusual trades as violations.
 
 Use this gate together with:
 
 - `tyconx-terms-of-service.md` as the canonical player-facing source;
 - `TYCOONX_GAME_ECONOMY_RESET_CORRECTION_RELEASE_GATE.md` for invalid-state tracing, corrections, rollbacks, and downstream unwinds;
-- `TYCOONX_ACCOUNT_SUSPENSION_COMPROMISE_TERMINATION_RELEASE_GATE.md` for security holds, suspensions, termination, compromise, notice, and appeals; and
+- `TYCOONX_ACCOUNT_SUSPENSION_COMPROMISE_TERMINATION_RELEASE_GATE.md` for security holds, suspensions, termination, compromise, notice, and appeals;
+- `app/tycoonx-legal/TransferRuleNotice.tsx` and `app/tycoonx-legal/RealMoneyTradingNotice.tsx` for synchronized rendered Terms wording; and
 - `scripts/verify-tycoonx-genuine-transfers.mjs` for canonical/localized Terms parity.
 
-Do not duplicate those doctrines here. This gate answers the narrower question: **when does a transaction stop being a genuine use of a TycoonX mechanic and become a disguised wealth transfer?**
+Do not duplicate those doctrines here. This gate answers the narrower questions: **when does a transaction stop being a genuine use of a TycoonX mechanic and become a disguised wealth transfer, and when does an outside benefit create a separate real-money-trading violation?**
 
 ## 1. Apply the genuine-purpose test
 
@@ -50,13 +53,13 @@ Potential review signals can include:
 - a seller repeatedly receiving extreme prices for low-value or interchangeable items;
 - company, job, contract, art, auction, or market activity that has no credible economic substance beyond moving wealth;
 - messages or other lawful evidence explicitly describing the transaction as a gift, donation, help, funnel, parking arrangement, or way around a restriction; or
-- credible evidence of off-platform consideration that shows the in-game mechanic was being used for a different purpose than the feature represents.
+- credible evidence of off-platform consideration that shows the in-game mechanic was being used for a different purpose than the feature represents or that a separate RMT arrangement existed.
 
 None of those signals is automatically conclusive. A single expensive artwork, a generous bargain, a rare collectible, a strategic company deal, or an unusual market transaction is not a violation merely because CK-Labs would have priced it differently.
 
 ## 3. Require reasonable evidence of the prohibited purpose
 
-Before final enforcement, CK-Labs should be able to articulate why the available evidence reasonably supports the conclusion that moving wealth was the transaction's main purpose rather than an incidental consequence of genuine gameplay.
+Before final enforcement, CK-Labs should be able to articulate why the available evidence reasonably supports the conclusion that moving wealth was the transaction's main purpose rather than an incidental consequence of genuine gameplay, or why the evidence establishes a separate prohibited RMT arrangement.
 
 Useful evidence may include, where lawfully available and relevant:
 
@@ -67,7 +70,8 @@ Useful evidence may include, where lawfully available and relevant:
 - account-linkage or control evidence;
 - relevant company, market, auction, contract, job, art, inventory, or ownership records;
 - relevant in-game communications reviewed under the applicable Privacy Policy, Community Standards, and law;
-- prior warnings or prior confirmed attempts to evade the same rule; and
+- prior warnings or prior confirmed attempts to evade the same rule;
+- reliable evidence of an outside payment or benefit linked to the in-game transaction; and
 - reliable technical or payment evidence where the transfer was connected to another abuse investigation.
 
 Shared IP address, household, device family, geography, friendship, company membership, or a single transaction is not by itself proof that accounts are controlled by one person or that the transaction was a sham. Corroborate material conclusions.
@@ -78,7 +82,7 @@ These are four different decisions:
 
 1. **Detection:** a risk rule, threshold, report, anomaly, or automated model flags a transaction for review.
 2. **Containment:** CK-Labs may temporarily hold a transfer, market function, company function, or related economy feature where reasonably necessary to prevent ongoing harm while evidence is reviewed.
-3. **Correction:** if the transaction violated the genuine-purpose rule, CK-Labs may reverse or unwind the specific prohibited transfer in a proportionate way.
+3. **Correction:** if the transaction violated the genuine-purpose or RMT rule, CK-Labs may reverse or unwind the specific prohibited in-game transfer in a proportionate way.
 4. **Account enforcement:** warnings, feature restrictions, suspension, or final termination require a separate proportionality and evidence assessment under the account-enforcement gate.
 
 A transaction can require reversal without proving that every recipient intentionally cheated. Likewise, suspicious conduct can justify temporary containment without yet justifying a final account penalty.
@@ -110,7 +114,7 @@ A material enforcement record should identify, at minimum:
 
 Where the EU Digital Services Act Article 17 actually applies to a hosting-service decision based on recipient-provided information being illegal or incompatible with the terms, provide the clear and specific statement of reasons required by that Article for covered restrictions, including covered payment, service, or account restrictions. Do not claim that every gameplay-economy decision worldwide is automatically governed by DSA Article 17.
 
-German standard-terms enforcement also benefits from a clear, comprehensible rule. BGB § 307 can invalidate standard terms that unreasonably disadvantage the other party contrary to good faith, including through lack of clarity or comprehensibility. Apply the public TycoonX rule according to its stated genuine-purpose and reasonable-evidence limits rather than inventing hidden enforcement standards after the fact.
+German standard-terms enforcement also benefits from a clear, comprehensible rule. BGB § 307 can invalidate standard terms that unreasonably disadvantage the other party contrary to good faith, including through lack of clarity or comprehensibility. Apply the public TycoonX rules according to their stated genuine-purpose, RMT, proportionality, and reasonable-evidence limits rather than inventing hidden enforcement standards after the fact.
 
 ## 7. Account compromise changes the enforcement analysis
 
@@ -136,15 +140,15 @@ Do not reverse the same invalid value twice simply because it passed through mul
 
 ## 9. Paid entitlements remain isolated from gameplay-transfer enforcement
 
-A prohibited in-game money or asset transfer does not by itself invalidate unrelated purchases through Apple App Store, Google Play, or Xsolla.
+A prohibited in-game money or asset transfer or RMT arrangement does not by itself invalidate unrelated purchases through Apple App Store, Google Play, or Xsolla.
 
 Keep these product invariants intact:
 
-- **Purchased Diamonds do not expire solely because time passes.** A transfer-rule violation does not itself permit CK-Labs to delete unrelated purchased Diamonds. Transaction-specific refund, reversal, chargeback, fraud, duplication, withdrawal, or other lawful correction rules continue to apply separately.
+- **Purchased Diamonds do not expire solely because time passes.** A transfer-rule or RMT violation does not itself permit CK-Labs to delete unrelated purchased Diamonds. Transaction-specific refund, reversal, chargeback, fraud, duplication, withdrawal, or other lawful correction rules continue to apply separately.
 - **30-Day VIP is a one-time, non-renewing 30-day entitlement.** A transfer investigation does not restart, duplicate, or silently extend the 30-day clock, and a temporary hold does not automatically erase the entitlement.
 - **Lifetime VIP is a one-time promotional entitlement available only during selected genuine sales windows.** It may be withdrawn from future sale, may never return, and creates no expectation of continuous availability for purchase. Economy enforcement does not reopen a closed Lifetime VIP sales window, create a second entitlement, or invent a provider refund that did not occur.
 
-A final lawful account termination may affect future access only under the canonical Terms, the account-enforcement gate, applicable platform rules, and mandatory law. Do not use a gameplay-transfer finding as a shortcut to confiscate unrelated legitimate paid value.
+A final lawful account termination may affect future access only under the canonical Terms, the account-enforcement gate, applicable platform rules, and mandatory law. Do not use a gameplay-transfer or RMT finding as a shortcut to confiscate unrelated legitimate paid value.
 
 ## 10. Apple, Google Play, and Xsolla records prove payment facts, not gameplay intent
 
@@ -159,19 +163,37 @@ Keep the roles separate:
 - Xsolla order/payment/refund/reversal/chargeback records remain transaction-specific payment evidence for the TycoonX webshop.
 - CK-Labs remains responsible for the TycoonX gameplay determination and resulting game-state correction where the issue is abuse of a TycoonX mechanic.
 
-Apple currently permits eligible in-app-purchase items to be gifted under its rules, but that platform-level gifting permission does not transform every TycoonX gameplay mechanic into a donation channel. Google Play currently distinguishes peer-to-peer payments from digital in-app purchases and requires in-app virtual currency to stay within the app or game title for which it was purchased. Xsolla's virtual-currency tooling likewise concerns catalog/payment delivery and does not determine the legitimacy of a TycoonX player-to-player gameplay transaction.
+Apple currently permits eligible in-app-purchase items to be gifted under its rules, but that platform-level gifting permission does not transform every TycoonX gameplay mechanic into a donation or RMT channel. Google Play currently distinguishes peer-to-peer payments from digital in-app purchases and requires in-app virtual currency to stay within the app or game title for which it was purchased. Xsolla's virtual-currency tooling concerns authorized catalog/payment delivery and does not authorize player-to-player off-platform RMT.
 
-## 11. Off-platform consideration can be evidence, but this gate does not invent a new standalone RMT rule
+## 11. Real-money trading is separately prohibited
 
-If reliable evidence shows that real money, cryptocurrency, gift cards, outside services, or another off-platform benefit was exchanged specifically to cause a supposedly genuine TycoonX art purchase, trade, company payment, contract, or other transaction, that evidence can support the conclusion that the in-game feature was being used for a different primary purpose than the feature represents.
+The canonical September 5 Terms now separately prohibit unauthorized real-money trading and off-platform exchange of TycoonX value. Unless CK-Labs expressly provides a specific authorized mechanism, players must not buy, sell, broker, advertise, arrange, or exchange TycoonX accounts, in-game money, Diamonds, shares, companies, property, products, art, items, services, VIP, paid entitlements, or other game value for real money, cryptocurrency, gift cards, physical goods, outside services, or any other real-world consideration.
 
-However, this operational gate does **not** create a broader standalone real-money-trading prohibition beyond the canonical public TycoonX Terms. If CK-Labs later wants to prohibit a broader category of RMT even where no existing Terms rule applies, update the canonical English Terms first and resynchronize all 25 localized Terms in the required order before relying on that broader rule.
+This means reliable evidence of outside consideration can support **two different enforcement theories** that must not be confused:
 
-## 12. Do not punish retroactively solely under the September 5 rule
+1. the in-game mechanic was not genuinely used for its intended purpose and instead disguised a wealth transfer; and/or
+2. the parties entered into a separately prohibited RMT or off-platform exchange.
 
-The September 5, 2026 genuine-transaction rule should not be used by itself to impose new punitive account enforcement for conduct completed before that rule was incorporated into the applicable Terms.
+A transaction may violate one rule, both rules, or neither. Record which rule is actually supported by the evidence.
 
-Earlier conduct may still be corrected or sanctioned where an older rule independently covered it, for example because it involved an exploit, fraud, unauthorized transfer, manipulated game state, payment abuse, or another already-prohibited act.
+The RMT prohibition includes direct, indirect, staged, and middleman arrangements where an outside payment or benefit is linked to an in-game transfer. It also covers attempts to disguise the exchange through another person, alternative account, company, art sale, trade, auction, market order, Begging, or another mechanic.
+
+The RMT rule does **not** prohibit:
+
+- purchases made from CK-Labs through an authorized TycoonX channel, including Apple App Store, Google Play, and the official TycoonX web shop using Xsolla;
+- a platform-supported gift that TycoonX expressly enables and that is permitted by the applicable platform rules;
+- a TycoonX transfer mechanism expressly made available by CK-Labs for the relevant purpose; or
+- in-game financial assistance through Begging to the extent that the Begging feature itself permits it and no outside consideration is exchanged.
+
+Do not treat an official CK-Labs purchase or expressly authorized gift/transfer as RMT merely because real money was used in the official purchase channel.
+
+CK-Labs does not guarantee, escrow, enforce, refund, or mediate unauthorized off-platform deals between users. This allocation does not exclude any right or liability that applicable law does not permit CK-Labs to exclude.
+
+## 12. Do not punish retroactively solely under the September 5 rules
+
+The September 5, 2026 genuine-transaction and RMT rules should not be used by themselves to impose new punitive account enforcement for conduct completed before the relevant rule was incorporated into the applicable Terms.
+
+Earlier conduct may still be corrected or sanctioned where an older rule independently covered it, for example because it involved an exploit, fraud, unauthorized transfer, manipulated game state, payment abuse, account sale, or another already-prohibited act.
 
 For continuing or repeated conduct spanning the rule change, identify the post-effective-date conduct relied on for the new rule rather than treating the entire historical pattern as automatically punishable under the new wording.
 
@@ -192,23 +214,25 @@ During an exploit outbreak, account-compromise wave, provider incident, database
 
 A temporary emergency shutdown of a mechanic does not convert previously genuine transactions into violations and does not automatically extend, restart, duplicate, or revoke paid entitlements.
 
-When the feature returns, apply the same genuine-purpose rule consistently rather than selectively allowing disguised transfers for favored users or groups.
+When the feature returns, apply the same genuine-purpose and RMT rules consistently rather than selectively allowing disguised transfers for favored users or groups.
 
 ## 15. Minimum enforcement evidence record
 
-For a material transfer-abuse case, preserve a proportionate record containing:
+For a material transfer-abuse or RMT case, preserve a proportionate record containing:
 
 - case/reference ID;
 - affected account IDs;
 - feature and transaction IDs;
 - timestamps;
 - amounts/assets transferred;
-- reciprocal value, if any;
+- reciprocal in-game value, if any;
+- outside consideration alleged or proven, if relevant;
 - reason the feature's intended purpose was or was not genuinely served;
 - evidence supporting account linkage or coordination, if relied on;
 - relevant communications or reports, only where lawfully processed and necessary;
 - automated flags and their role in the case;
 - human reviewer conclusion for serious final actions;
+- specific rule or rules found violated;
 - correction applied;
 - account restriction applied, if any;
 - provider/payment transaction references only where relevant;
@@ -223,51 +247,56 @@ Avoid retaining unnecessary raw personal data after the applicable purpose and r
 
 Release and Support QA should be able to resolve at least these scenarios consistently:
 
-1. **Genuine expensive art:** a collector buys a rare work at a very high price because they genuinely want it. No contrary evidence exists. Do not treat price alone as a violation.
-2. **Disguised art help:** a buyer purchases art for an extreme price and says in chat that the purpose is to give the artist money because the artist needs help. The main purpose is financial assistance, so the art mechanic is being misused.
+1. **Genuine expensive art:** a collector buys a rare work at a very high in-game price because they genuinely want it. No contrary evidence exists. Do not treat price alone as a violation.
+2. **Disguised art help:** a buyer purchases art for an extreme in-game price and says in chat that the purpose is to give the artist money because the artist needs help. The main purpose is financial assistance, so the art mechanic is being misused.
 3. **One unusual trade:** a player pays far above recent market value once. Flag for review if appropriate; do not auto-ban solely from the deviation.
 4. **Repeated alt-account funnel:** linked accounts repeatedly buy trivial items from one account at extreme prices and reverse/return the items. Strong evidence can support reversal plus proportionate enforcement.
-5. **Proper Begging use:** a player asks for and receives financial help through the designated Begging feature under its rules. Do not classify the help itself as a disguised transfer merely because the recipient is poor.
-6. **Friendly genuine discount:** a friend sells a wanted item cheaply to another friend. If there is a genuine trade purpose and no evidence the mechanic is mainly being used to move wealth, friendship or generosity alone is not a violation.
+5. **Proper Begging use:** a player asks for and receives financial help through the designated Begging feature under its rules, with no outside consideration. Do not classify the help itself as a disguised transfer merely because the recipient is poor.
+6. **Friendly genuine discount:** a friend sells a wanted item cheaply to another friend. If there is a genuine trade purpose and no outside consideration or evidence that the mechanic is mainly being used to move wealth, friendship or generosity alone is not a violation.
 7. **Compromised account:** an attacker drains an account through trades. Freeze and investigate; do not automatically punish the legitimate owner.
 8. **Exploit proceeds reach an innocent buyer:** unwind proven invalid state where necessary, but treat punishment of the buyer as a separate intent question.
 9. **Automated score 0.99:** the score can trigger containment/review. It is not by itself the final factual finding for permanent termination.
-10. **Provider chargeback:** correct the payment-linked entitlement as required, but do not call the player a transfer abuser merely because a chargeback exists.
+10. **Provider chargeback:** correct the payment-linked entitlement as required, but do not call the player a transfer abuser or RMT participant merely because a chargeback exists.
 11. **Lifetime VIP holder violates a market rule:** market enforcement does not create a second Lifetime VIP, reopen a sales window, or invent a purchase refund. Any final account-access consequence follows the separate termination rules.
-12. **Pre-September 5 assistance transaction:** do not impose a new punitive finding solely under the later genuine-transaction rule unless an earlier rule independently prohibited the conduct.
-13. **External payment for an artwork:** reliable evidence that a buyer received real money outside TycoonX to conduct a supposedly genuine art transaction can be considered evidence that the art mechanic had a different primary purpose.
-14. **Large legitimate company deal:** a genuine acquisition, financing, supply, or ownership transaction should not be invalidated merely because it transfers substantial value.
+12. **Pre-September 5 assistance transaction:** do not impose a new punitive finding solely under the later genuine-transaction or RMT wording unless an earlier rule independently prohibited the conduct.
+13. **External payment for artwork:** after the RMT rule applies, reliable evidence that one player paid another €20 outside TycoonX in exchange for an in-game artwork or for conducting a sham art transaction can support a separate RMT finding and, where applicable, a genuine-purpose violation.
+14. **Large legitimate company deal:** a genuine acquisition, financing, supply, or ownership transaction should not be invalidated merely because it transfers substantial in-game value.
 15. **Emergency transfer shutdown:** disabling transfers during an active exploit does not itself change valid payment entitlements or make past legitimate trades invalid.
+16. **Authorized platform gift:** an eligible gift completed through a platform-supported gifting mechanism that TycoonX expressly enables is not RMT merely because the original purchaser paid real money through the authorized platform channel.
 
 ## 17. Release checklist
 
-Before relying on this rule at scale, confirm:
+Before relying on these rules at scale, confirm:
 
-- [ ] the September 5 canonical Terms wording is live;
-- [ ] all 25 localized Terms render the synchronized rule;
-- [ ] Support/admin tooling shows the rule and intended-purpose test;
+- [ ] the September 5 canonical Terms genuine-transaction wording is live;
+- [ ] the September 5 canonical Terms RMT/off-platform-exchange wording is live;
+- [ ] all 25 localized Terms render both synchronized rules;
+- [ ] Support/admin tooling distinguishes genuine-purpose abuse from standalone RMT;
 - [ ] high price or amount alone cannot automatically produce permanent enforcement;
 - [ ] automated detection can create a review/hold without silently becoming a final ban;
 - [ ] serious final actions have a human-review path where required or appropriate;
 - [ ] account compromise is checked separately;
 - [ ] economy correction and account punishment are separate actions;
 - [ ] purchased Diamonds, 30-Day VIP, and Lifetime VIP are isolated from unrelated gameplay corrections;
-- [ ] Apple, Google Play, and Xsolla payment state is not confused with gameplay intent;
+- [ ] Apple, Google Play, and Xsolla official payment state is not confused with unauthorized player-to-player RMT;
+- [ ] expressly authorized platform gifting/transfer mechanisms are not misclassified as RMT;
 - [ ] prohibited-transfer reversals are idempotent and cannot remove the same value twice;
 - [ ] reason/appeal information is available where law or the applicable service framework requires it;
-- [ ] the rule is not applied punitively retroactively solely because the wording became effective on September 5; and
+- [ ] the rules are not applied punitively retroactively solely because the wording became effective on September 5; and
 - [ ] no workflow turns an in-game correction into an unauthorized real-world charge or debt.
 
 ## Reference points
 
 - Canonical TycoonX Terms of Service: `tyconx-terms-of-service.md`
+- Localized genuine-transfer wording: `app/tycoonx-legal/TransferRuleNotice.tsx`
+- Localized RMT wording: `app/tycoonx-legal/RealMoneyTradingNotice.tsx`
 - TycoonX game-economy correction gate: `TYCOONX_GAME_ECONOMY_RESET_CORRECTION_RELEASE_GATE.md`
 - TycoonX account-enforcement gate: `TYCOONX_ACCOUNT_SUSPENSION_COMPROMISE_TERMINATION_RELEASE_GATE.md`
 - GDPR Article 22, Regulation (EU) 2016/679: automated individual decision-making and applicable human-intervention/contest safeguards
 - Digital Services Act Article 17, Regulation (EU) 2022/2065: statements of reasons for covered hosting-service restrictions
 - German BGB § 307: reasonableness, clarity, and comprehensibility of standard terms
 - Apple App Review Guidelines, section 3.1.1: in-app purchases, purchased in-game currency, and eligible gifting rules
-- Google Play Payments policy: digital goods, virtual currency, and payment-system distinctions
-- Xsolla virtual-currency and catalog documentation: payment/catalog mechanics and transaction delivery
+- Google Play Payments policy: digital goods, peer-to-peer payment distinction, and requirement that purchased in-app virtual currency remain within the app or game title
+- Xsolla virtual-currency, catalog, and refund documentation: authorized payment/catalog mechanics and transaction delivery
 
 This document is operational release guidance. It does not replace mandatory law or expand the public TycoonX Terms beyond their actual wording.
