@@ -45,6 +45,22 @@ requireGatePattern(/no reporting API is provided in the initial SRP release/i, '
 requireGatePattern(/voluntary reporting functionality is planned for a later phase/i, 'Missing distinction between mandatory launch reporting and later voluntary reporting.');
 requireGatePattern(/different from the European Vulnerability Database \(EUVD\)/i, 'Missing SRP-versus-EUVD distinction.');
 
+requireGatePattern(/Exact SRP field readiness and immutable submission evidence/i, 'Missing exact SRP field-readiness section.');
+requireGatePattern(/\*\*title\*\* — required/i, 'Missing required Early Warning title field.');
+requireGatePattern(/\*\*summary\*\* — required/i, 'Missing required Early Warning summary field.');
+requireGatePattern(/\*\*manufacturer name\*\* — required/i, 'Missing required Early Warning manufacturer-name field.');
+requireGatePattern(/\*\*product name\*\*: \*\*TycoonX\*\* — required/i, 'Missing required TycoonX product-name field.');
+requireGatePattern(/\*\*product version\*\* — required/i, 'Missing required Early Warning product-version field.');
+requireGatePattern(/Do \*\*not\*\* weaken the product-version field to “where known”/i, 'Missing product-version anti-weakening safeguard.');
+requireGatePattern(/current iOS, Android, web\/backend and relevant remote-processing releases/i, 'Missing incident-ready product-version map.');
+requireGatePattern(/Member States where the product is available.*required if that information is available/is, 'Missing Member-State availability field rule.');
+requireGatePattern(/actively exploited vulnerability[\s\S]*date\/time when CK-Labs became aware — required/is, 'Missing AEV awareness-time field requirement.');
+requireGatePattern(/severe incident[\s\S]*unlawful or malicious acts are suspected[\s\S]*date\/time when CK-Labs became aware — required/is, 'Missing SI early-warning special fields.');
+requireGatePattern(/product type, product class, product category[\s\S]*optional at the 24-hour stage/is, 'Missing optional-classification non-blocker rule.');
+requireGatePattern(/only one notification is required for a given actively exploited vulnerability or severe incident/i, 'Missing one-notification-per-occurrence rule.');
+requireGatePattern(/non-editable after the Final Report is submitted/i, 'Missing post-Final-Report non-editable workflow rule.');
+requireGatePattern(/Preserve the SRP notification ID and all submission timestamps/i, 'Missing immutable SRP identifier/timestamp evidence.');
+
 requireGatePattern(/current \*\*72-hour counter\*\*/i, 'Missing current SRP 72-hour-counter implementation warning.');
 requireGatePattern(/48 hours after the 24-hour report is submitted/i, 'Missing current SRP 48-hours-after-24-hour-submission counter behavior.');
 requireGatePattern(/Calculate the 24-hour and 72-hour deadlines independently from that awareness timestamp/i, 'Missing independent awareness-based deadline calculation.');
@@ -86,6 +102,9 @@ requireGatePattern(/30-Day VIP remains a one-time, non-renewing 30-day entitleme
 requireGatePattern(/Regression scenarios/i, 'Missing CRA production regression scenarios.');
 requireGatePattern(/SRP displays an apparently earlier 72-hour due time/is, 'Missing SRP-counter-mismatch regression scenario.');
 requireGatePattern(/duplicate SRP submission or retry occurs[\s\S]*does not duplicate a Diamond or VIP entitlement event/is, 'Missing duplicate-report entitlement-isolation scenario.');
+requireGatePattern(/tabletop Early Warning lacks a product version, title, or summary/i, 'Missing mandatory-field regression scenario.');
+requireGatePattern(/Two CK-Labs contacts or corporate branches identify the same occurrence/i, 'Missing duplicate-corporate-notification regression scenario.');
+requireGatePattern(/Final Report is submitted and new information appears later/i, 'Missing non-editable-final-report regression scenario.');
 
 requirePageText('Security & Vulnerability Reporting', 'Public TycoonX security page is missing its security-reporting heading.');
 requirePageText('cevikdev@gmail.com', 'Public TycoonX security page is missing a human-reachable email contact.');
@@ -108,5 +127,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('\nPASS: CRA September 2026 reporting, September 4 ENISA SRP workflow, independent awareness-based deadline calculation, outage handling, user notification and paid-entitlement safeguards are present.');
+  console.log('\nPASS: CRA September 2026 reporting, September 4 ENISA SRP required-field matrix, one-notification workflow, independent awareness-based deadline calculation, outage handling, user notification and paid-entitlement safeguards are present.');
 }
