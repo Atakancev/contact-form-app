@@ -36,7 +36,7 @@ const checks = [
   ["Apple separation", /Apple can control the final StoreKit\/App Store purchase confirmation/i],
   ["Google separation", /Google can control the final Play Billing confirmation/i],
   ["Xsolla evidence", /Germany-facing Xsolla checkout[\s\S]*production evidence packet/i],
-  ["merchant of record not enough", /Xsolla is Merchant of Record[\s\S]*does not.*prove German § 312j compliance/i],
+  ["merchant of record not enough", /Do not assume `Xsolla is Merchant of Record` by itself proves German § 312j compliance/i],
   ["Diamonds one time", /Purchased Diamonds[\s\S]*one-time purchase and not a recurring subscription/i],
   ["Diamonds non expiry", /Purchased Diamonds do not expire solely because time passes/i],
   ["Diamonds withdrawal", /must not be abused to characterize purchased Diamonds as immediately supplied digital content/i],
