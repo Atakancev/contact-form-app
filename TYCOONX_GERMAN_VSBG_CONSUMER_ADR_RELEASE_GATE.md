@@ -350,7 +350,7 @@ Before closing this gate, confirm:
 - [ ] mandatory German/EU consumer rights remain intact;
 - [ ] open disputes survive provider migration, business transfer and lawful permanent shutdown where required;
 - [ ] the 2028 EU ADR transposition/application dates are tracked without pretending the future rules are already current German law; and
-- [ ] player-facing brand text is exactly **TycoonX**, with no displayed `TyconX` and no stale live-service beta wording.
+- [ ] player-facing brand text is exactly **TycoonX**, with no legacy brand misspelling and no stale live-service beta wording.
 
 ## 22. Official reference checkpoint
 
