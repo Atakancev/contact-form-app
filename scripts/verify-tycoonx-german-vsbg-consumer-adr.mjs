@@ -58,7 +58,7 @@ const checks = [
   ["2028 transposition", /March 20, 2028/i],
   ["2028 application", /September 20, 2028/i],
   ["20 working day future rule", /20-working-day/i],
-  ["not current 2026 rule", /not present that future 20-working-day trader-response rule as though it were already a current September 2026 German VSBG duty/i],
+  ["not current 2026 rule", /Do \*\*not\*\* present that future 20-working-day trader-response rule as though it were already a current September 2026 German VSBG duty/i],
   ["evidence packet", /Evidence packet for each unresolved German consumer-contract dispute/i],
   ["22 scenarios", /22\. \*\*A 2028 German transposition law enters into force/i],
   ["release checklist", /Release checklist/i],
@@ -74,7 +74,7 @@ requirePattern("progress: 25 hubs current", progress, /25\s*\/\s*25|25\/25/i);
 requirePattern("progress: 100 documents current", progress, /100\s*\/\s*100|100\/100/i);
 requirePattern("progress: none unfinished", progress, /Exact next unfinished locale\/document[^\n]*(None|none)/i);
 
-if (/\bTyconX\b/.test(gate)) failures.push("gate: displayed brand typo TyconX");
+if (/\bTyconX\b/.test(gate)) failures.push("gate: legacy displayed brand spelling");
 if (/TycoonX\s+beta/i.test(gate)) failures.push("gate: stale beta wording");
 if (/goes to full release/i.test(gate)) failures.push("gate: stale future release wording");
 
