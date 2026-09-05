@@ -96,28 +96,38 @@ ENISA's September 4 FAQ gives an explicit rule for temporary platform unavailabi
 
 Do not create an unofficial reporting endpoint or send sensitive exploit details to an unverified address merely because the SRP is unavailable.
 
-## P0 gate 1D: Minimum incident packet and immutable submission evidence
+## P0 gate 1D: Exact SRP field readiness and immutable submission evidence
 
-CK-Labs does not need every final-report fact at the 24-hour stage, but it should be able to assemble the minimum packet quickly:
+CK-Labs does not need every final-report fact at the 24-hour stage, but the **current ENISA SRP field matrix** requires more than a generic incident note. For the Early Warning stage, prepare the following before an incident so the legal clock is not spent discovering form requirements:
 
-- manufacturer/operator legal name;
-- product name **TycoonX** and product/version information where known;
-- notification type: actively exploited vulnerability or severe incident;
-- concise factual title;
-- first reliable awareness timestamp;
-- Member States where TycoonX is available, where known;
-- whether unlawful or malicious acts are suspected for a severe incident;
-- known nature and initial impact;
-- corrective or mitigating measures already taken;
-- corrective or mitigating measures users can take;
-- whether information is especially sensitive;
-- later-stage CVE/EUVD identifiers where applicable;
-- severity, root cause or threat type where known; and
-- date a corrective or mitigating measure became available.
+- **notification type**: actively exploited vulnerability or severe incident — required;
+- **notification level**: 24-hour Early Warning — required;
+- **title** — required;
+- **summary** — required;
+- **manufacturer name** — required;
+- **product name**: **TycoonX** — required;
+- **product version** — required;
+- **Member States where the product is available** — required if that information is available;
+- for an **actively exploited vulnerability**, the date/time when CK-Labs became aware — required; and
+- for a **severe incident**, whether unlawful or malicious acts are suspected and the date/time when CK-Labs became aware — required.
 
-- [ ] Record each field as confirmed, unknown, estimated, or not applicable instead of inventing certainty.
+Do **not** weaken the product-version field to “where known”. Keep an incident-ready version map for the current iOS, Android, web/backend and relevant remote-processing releases. If the exact affected version boundary is genuinely uncertain, provide the most accurate factual version information the SRP accepts, identify the uncertainty in the summary or appropriate field, and update it as facts develop. Do not invent a version and do not delay a required Early Warning merely to achieve perfect root-cause certainty.
+
+The current ENISA matrix treats **product type, product class, product category, end-of-support indicator, component name, expected-shortly mitigation, user action and attack vector** as optional at the 24-hour stage. Collect them when useful, but do not let optional classification work consume the legal filing window.
+
+At the **72-hour stage**, the current matrix requires, among other applicable fields, corrective or mitigating measures taken and measures users can take. For actively exploited vulnerabilities, general vulnerability information becomes required. For severe incidents, general information about the nature of the incident and an initial assessment become required. Continue using the same notification record and update carried-forward fields where the facts have changed.
+
+At the **final-report stage**, complete the type-specific mandatory facts. For an actively exploited vulnerability this includes the date a corrective or mitigating measure became available and the required severity/impact description. For a severe incident this includes the required mitigation, severity, impact and likely threat/root-cause information. Do not copy an old draft forward without checking what became mandatory at the later stage.
+
+ENISA currently states that **only one notification is required for a given actively exploited vulnerability or severe incident**, even where a manufacturer has multiple EU branches or subsidiaries or a parent company outside the EU. CK-Labs must coordinate internally rather than create duplicate corporate filings for the same occurrence.
+
+The current Assigned Representative guidance also states that the notification becomes **non-editable after the Final Report is submitted**. Before final submission, verify the factual record, preserve a local immutable copy, and keep any later authority-requested clarification or correction as separate dated evidence rather than silently rewriting the historical submission.
+
+- [ ] Record each field as confirmed, unknown, estimated, not applicable, or pending verification instead of inventing certainty.
 - [ ] Preserve the submitted **24-hour, 72-hour and final-report versions as immutable evidence**, together with acknowledgements, corrections, supplements, and CSIRT requests.
+- [ ] Preserve the SRP notification ID and all submission timestamps.
 - [ ] Continue later stages on the same incident/notification record where the SRP workflow requires it.
+- [ ] Do not create a second notification merely because another CK-Labs contact, branch, provider, platform, or internal team becomes involved in the same occurrence.
 
 ## P0 gate 2: Know what triggers mandatory reporting
 
@@ -292,6 +302,9 @@ Before treating the September 2026 process as ready, exercise at least these cas
 16. A duplicate SRP submission or retry occurs: it does not duplicate a Diamond or VIP entitlement event.
 17. A security hotfix requires a minimum supported app version: valid paid entitlements remain recoverable and consumer remedies remain separate.
 18. A future Lifetime VIP sales window is closed during an incident: incident handling does not reopen the sales window or invalidate an existing valid Lifetime VIP.
+19. A tabletop Early Warning lacks a product version, title, or summary: the drill fails and the packet is corrected before production reporting begins.
+20. Two CK-Labs contacts or corporate branches identify the same occurrence: they coordinate one SRP notification rather than submitting duplicates.
+21. A Final Report is submitted and new information appears later: the historical final submission remains immutable and the later clarification is preserved and routed appropriately rather than assuming the SRP record can still be edited.
 
 ## December 11, 2027 roadmap, not a September 2026 substitute
 
@@ -329,13 +342,16 @@ The CRA issue is primarily a **security incident detection, awareness, reporting
 4. A backup responsible person or emergency-access route exists.
 5. The operator knows validation runs in parallel and does not block initial reporting where the current ENISA process permits submission.
 6. The runbook does not depend on a reporting API that is not available in the initial SRP release.
-7. The September 4 ENISA reporting fields and staged 24h/72h/final workflow are understood.
-8. Internal legal deadline calculation is based on awareness and does not trust the current SRP 72-hour counter as the legal clock.
-9. SRP outage evidence, direct-CSIRT emergency contact, and later mandatory SRP filing are documented.
-10. Article 14(8) impacted-user security-notification path exists.
-11. Security evidence and GDPR-minimisation rules exist.
-12. A human-reachable vulnerability intake exists.
-13. A server-side emergency mitigation and minimum-supported-version path exists.
-14. Micro/small status is documented without being treated as a blanket reporting exemption.
-15. Paid entitlement isolation is tested for Diamonds, one-time 30-Day VIP, and Lifetime VIP.
-16. The dedicated SRP public URL, launch status, CSIRT list, and ENISA guidance are re-checked immediately before September 11, 2026 and before any real filing.
+7. The September 4 ENISA staged 24h/72h/final field matrix is understood, including required Early Warning title, summary, manufacturer name, TycoonX product name, product version, and type-specific awareness fields.
+8. Current iOS, Android, web/backend and relevant remote-processing version identifiers can be produced quickly during an incident.
+9. Internal legal deadline calculation is based on awareness and does not trust the current SRP 72-hour counter as the legal clock.
+10. SRP outage evidence, direct-CSIRT emergency contact, and later mandatory SRP filing are documented.
+11. Article 14(8) impacted-user security-notification path exists.
+12. Security evidence and GDPR-minimisation rules exist.
+13. A human-reachable vulnerability intake exists.
+14. A server-side emergency mitigation and minimum-supported-version path exists.
+15. Micro/small status is documented without being treated as a blanket reporting exemption.
+16. Paid entitlement isolation is tested for Diamonds, one-time 30-Day VIP, and Lifetime VIP.
+17. Internal responders understand that one occurrence should not be duplicated across branches/contacts and that the same notification progresses through later stages.
+18. Final-report submission is treated as an immutable operational checkpoint because the current SRP guidance says the notification becomes non-editable afterward.
+19. The dedicated SRP public URL, launch status, CSIRT list, and ENISA guidance are re-checked immediately before September 11, 2026 and before any real filing.
