@@ -41,6 +41,24 @@ const entries = await Promise.all(Object.entries(paths).map(async ([key, file]) 
 ]));
 const text = Object.fromEntries(entries);
 
+// Keep the § 312j doctrine in one dedicated gate/verifier. A second full
+// order-button gate previously drifted into the repository and duplicated the
+// same legal rules. Fail QA if those retired paths ever reappear.
+const retiredDuplicatePaths = [
+  'TYCOONX_GERMAN_CHECKOUT_ORDER_BUTTON_RELEASE_GATE.md',
+  'scripts/verify-tycoonx-german-checkout-order-button.mjs',
+];
+for (const file of retiredDuplicatePaths) {
+  try {
+    await readFile(path.join(ROOT, file), 'utf8');
+    errors.push(`Retired duplicate German order-button QA path reappeared: ${file}`);
+  } catch (error) {
+    if (error?.code !== 'ENOENT') {
+      errors.push(`Could not verify retired duplicate path is absent (${file}): ${error?.message ?? error}`);
+    }
+  }
+}
+
 const gateChecks = [
   [/Review date: \*\*September 3, 2026\*\*/i, 'Missing current review date.'],
   [/TycoonX went to full release on \*\*September 1, 2026\*\*/i, 'Missing live-service release checkpoint.'],
