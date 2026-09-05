@@ -95,7 +95,7 @@ requireMatch(gate, /Accessibility Nutrition Labels/i, 'Missing Apple accessibili
 requireMatch(gate, /Google Play/i, 'Missing Google Play responsibility boundary.');
 requireMatch(gate, /TalkBack/i, 'Missing Android TalkBack checkpoint.');
 requireMatch(gate, /Xsolla web shop/i, 'Missing Xsolla responsibility boundary.');
-requireMatch(gate, /actual TycoonX configuration/i, 'Missing live provider-configuration evidence rule.');
+requireMatch(gate, /live TycoonX configuration/i, 'Missing live provider-configuration evidence rule.');
 requireMatch(gate, /BFSG § 1\(4\)\(4\)/i, 'Missing narrow third-party-content exception.');
 requireMatch(gate, /neither financed nor developed by CK-Labs nor under CK-Labs control/i, 'Missing third-party factual control test.');
 requireMatch(gate, /EN 301 549 V3\.2\.1 \(2021-03\)/i, 'Missing EN 301 549 engineering checkpoint.');
@@ -109,7 +109,7 @@ requireMatch(gate, /retain it for \*\*five years from the last provision of the 
 requireMatch(gate, /§ 17\(3\).*\*\*at least every five years\*\*/is, 'Missing § 17(3) five-year reassessment cadence.');
 requireMatch(gate, /whenever the service changes or the competent authority requests a new assessment/i, 'Missing § 17(3) change/authority reassessment triggers.');
 requireMatch(gate, /§ 17\(4\).*public or private funding/is, 'Missing § 17(4) accessibility-funding restriction.');
-requireMatch(gate, /§ 17\(5\).*authority information\/notification requirement/is, 'Missing § 17(5) authority rule.');
+requireMatch(gate, /authority information\/notification requirement.*§ 17\(5\)/is, 'Missing § 17(5) authority rule.');
 
 // Accessibility state must not become discriminatory commerce or enforcement logic.
 requireMatch(gate, /Accessibility state must not become pricing, fraud, or entitlement logic/i, 'Missing accessibility-state separation doctrine.');
