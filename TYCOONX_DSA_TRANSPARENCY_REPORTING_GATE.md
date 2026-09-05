@@ -1,6 +1,6 @@
 # TycoonX DSA Transparency Reporting Release Gate
 
-Last reviewed: **September 2, 2026**  
+Last reviewed: **September 5, 2026**  
 Operator/business name used in player-facing documents: **CK-Labs**
 
 This gate covers EU Digital Services Act transparency-reporting duties that can apply to TycoonX community, chat, hosting, and other intermediary-service features. It complements `TYCOONX_COMMUNITY_MODERATION_RELEASE_CHECKLIST.md`; it does not replace the Article 14, 16, 17, 18, or 24(5) moderation controls already documented there.
@@ -17,17 +17,19 @@ The current baseline is:
 - **Article 24**, which adds online-platform reporting and active-recipient obligations where those provisions apply; and
 - Commission Implementing Regulation **(EU) 2024/2835**, which standardises the form, content, reporting periods, publication deadline, template format, correction/version handling, and retention period for DSA transparency reports.
 
-The harmonised rules have applied since **July 1, 2025**. For providers of intermediary services, hosting services, and online platforms that are subject to Article 15(1), the ordinary annual reporting period is now **January 1 through December 31**, and the report must be made publicly available no later than **two months after the end of the reporting period**. The first full annual reporting cycle that must follow the harmonised templates throughout the entire cycle is **January 1 through December 31, 2026**.
+The harmonised rules have applied since **July 1, 2025**. For providers of intermediary services, hosting services, and online platforms that are subject to Article 15(1), the ordinary annual reporting period is now **January 1 through December 31**, and the report must be made publicly available no later than **two months after the end of the reporting period**. The first full annual reporting cycle that must follow the harmonised templates throughout the entire cycle is **January 1 through December 31, 2026**. If CK-Labs is subject to Article 15(1) for that full 2026 cycle, the report is therefore due by the end of **February 2027**.
 
 The first round of reports using the harmonised framework was published by the end of **February 2026** for the applicable transitional period. Do not confuse that transitional cycle with the first full January-to-December harmonised cycle in 2026.
 
-Official references checked September 2, 2026:
+Official references checked September 5, 2026:
 
 - DSA: https://eur-lex.europa.eu/eli/reg/2022/2065/oj/eng
 - Implementing Regulation (EU) 2024/2835: https://eur-lex.europa.eu/eli/reg_impl/2024/2835/oj/eng
 - Commission transparency-reporting overview: https://digital-strategy.ec.europa.eu/en/news/harmonised-transparency-reporting-rules-under-digital-services-act-now-effect
 - Commission March 2026 update on the first harmonised reports: https://digital-strategy.ec.europa.eu/en/news/harmonised-transparency-reports-under-dsa-bring-enhanced-clarity-content-moderation-practices-online
 - DSA Transparency Database Q&A: https://digital-strategy.ec.europa.eu/en/faqs/dsa-transparency-database-questions-and-answers
+- DSA Transparency Database webform/onboarding documentation: https://transparency.dsa.ec.europa.eu/page/webform-documentation
+- German Digital Services Coordinator provider portal: https://www.bundesnetzagentur.de/DE/Fachthemen/DSC/2_Service/Anbieter/dokument_kopie.html
 
 ## 2. First release question: does Article 15(1) currently apply to CK-Labs?
 
@@ -192,6 +194,26 @@ From **July 1, 2025**, the Commission aligned the Transparency Database content 
 
 The Commission's Q&A currently states that statements can be submitted individually or in batches of up to 100 through the API. That is an implementation option, not a reason to create a paid reporting dependency.
 
+### Current German onboarding path
+
+For an online platform established in Germany, the current Digital Services Coordinator is the **Bundesnetzagentur**. Its provider portal expressly provides onboarding/registration for the DSA Transparency Database and submission of transparency reports.
+
+The Commission's current low-volume webform documentation states that provider access is obtained through the relevant Digital Services Coordinator, followed by access to a **sandbox environment** for testing and then the production environment. The webform is specifically intended for online platforms expecting a low volume of statements of reasons; the API remains available where automation or volume makes it more suitable.
+
+For each Transparency Database environment, preserve:
+
+- [ ] onboarding request date and competent DSC;
+- [ ] TycoonX platform/service identifier used for onboarding;
+- [ ] sandbox-access date and test result;
+- [ ] production-access date;
+- [ ] whether webform or API is the production submission method;
+- [ ] responsible CK-Labs operator; and
+- [ ] one successful non-personal test record/receipt before relying on the production flow.
+
+The webform requires a **platform-unique identifier (`puid`)** for each statement. The PUID must be unique within the platform. Treat it as a reconciliation/idempotency key, not as a field for a player's email, nickname, raw account UUID, payment token, purchase/order ID, IP address, or other personal data.
+
+Do not submit real player personal data to the sandbox. A test environment does not remove GDPR, confidentiality, or security duties.
+
 If Article 19 currently excludes Article 24(5) for a qualifying micro/small TycoonX online-platform feature, preserve the classification evidence and re-evaluate before the exemption is lost. Do not voluntarily upload personal or moderation data to the Transparency Database merely to imitate a statutory submission that is not legally required.
 
 ## 8. Reporting data must remain separate from payment and entitlement enforcement
@@ -256,10 +278,12 @@ Before treating the DSA reporting layer as ready for current operation:
 - [ ] complete and retain the current Article 15(2) enterprise-size assessment;
 - [ ] classify the relevant TycoonX community features as intermediary/hosting/online-platform functions where applicable;
 - [ ] if Article 15(1) applied during the transitional 2025 period, confirm whether the February 2026 harmonised reporting obligation was triggered and remediate any missed obligation without fabricating history;
-- [ ] if Article 15(1) applies for 2026, collect the full January 1 through December 31, 2026 dataset using the current harmonised taxonomy and prepare for publication no later than two months after year-end;
+- [ ] if Article 15(1) applies for 2026, collect the full January 1 through December 31, 2026 dataset using the current harmonised taxonomy and prepare for publication by the end of **February 2027**;
 - [ ] if Article 15(1) is exempt, retain the exemption evidence and a recheck trigger rather than building unnecessary public compliance claims;
 - [ ] ensure moderation data can be aggregated prospectively if status changes;
 - [ ] ensure any applicable Article 24(5) submission uses the current post-July-1-2025 database schema and has personal data removed;
+- [ ] if Article 24(5) applies to a Germany-established TycoonX online-platform surface, complete the current Bundesnetzagentur onboarding path and prove sandbox-to-production submission readiness before relying on the flow;
+- [ ] ensure every production PUID is unique within TycoonX and contains no personal/payment identifier used merely for convenience;
 - [ ] ensure Article 24(3) authority-request readiness is not lost merely because Article 19 excludes other Section 3 duties;
 - [ ] ensure published reports and every corrected version can remain publicly accessible for at least five years; and
 - [ ] keep reporting and Transparency Database workflows separate from entitlement/refund/chargeback reconciliation.
@@ -268,4 +292,4 @@ Before treating the DSA reporting layer as ready for current operation:
 
 The legally safer position is not `publish everything` and not `we are small so nothing applies`.
 
-Use the exact statutory classification, preserve dated evidence for any exemption, publish only what is actually required in the current **CSV/XLSX harmonised format** when the duty applies, retain every published report version for the required **five-year public-access period**, remove personal data from Article 24(5) database submissions, keep security-sensitive information out of public reporting unless law truly requires it, and re-open the analysis whenever CK-Labs, TycoonX, the Commission template, or the Transparency Database schema materially changes.
+Use the exact statutory classification, preserve dated evidence for any exemption, publish only what is actually required in the current **CSV/XLSX harmonised format** when the duty applies, retain every published report version for the required **five-year public-access period**, remove personal data from Article 24(5) database submissions, use the current competent-DSC onboarding path when submission duties actually apply, keep security-sensitive information out of public reporting unless law truly requires it, and re-open the analysis whenever CK-Labs, TycoonX, the Commission template, or the Transparency Database schema materially changes.
