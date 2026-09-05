@@ -95,8 +95,8 @@ requireMatch(
 
 requireText(
   terms,
-  'Do not automatically classify a good-faith account-compromise report, refund request, or chargeback as fraud by the account owner merely because it relates to the account.',
-  'Canonical Terms lost good-faith compromise/refund/chargeback protection.',
+  'Knowingly filing false fraud reports, abusive chargebacks, or repeated payment disputes for purchases that were authorized and received may lead to purchase restrictions or account enforcement after reasonable investigation, without limiting genuine fraud reporting or consumer rights.',
+  'Canonical Terms lost the distinction between proven payment abuse and genuine fraud reporting/consumer rights.',
 );
 
 requireText(
@@ -107,14 +107,20 @@ requireText(
 
 requireText(
   terms,
-  'CK-Labs will not use these correction rights to remove unrelated legitimately purchased value merely because another transaction or part of the account is disputed.',
+  'CK-Labs will not use these corrections to remove unrelated legitimately purchased value except where reasonably necessary to reverse the specific invalid transaction or as otherwise permitted by law.',
   'Canonical Terms lost unrelated-valid-value protection.',
 );
 
 requireText(
   purchases,
-  'A chargeback, refund request, or report of account compromise is not by itself proof that the account owner committed fraud.',
-  'Purchases policy lost chargeback/account-compromise evidentiary protection.',
+  'Users should promptly report suspected unauthorized purchases to the relevant payment provider and TycoonX Support.',
+  'Purchases policy lost unauthorized-purchase reporting and provider-routing language.',
+);
+
+requireText(
+  purchases,
+  'Fraudulent receipts, manipulated clients, payment abuse, deliberate false fraud reports, abusive chargebacks, or attempts to retain refunded digital value may lead to entitlement correction, purchase restrictions, account suspension, or termination in accordance with the TycoonX Terms and applicable law.',
+  'Purchases policy lost evidence-based fraudulent-purchase enforcement language.',
 );
 
 requireText(
