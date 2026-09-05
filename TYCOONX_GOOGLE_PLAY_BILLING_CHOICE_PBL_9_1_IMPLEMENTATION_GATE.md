@@ -2,108 +2,99 @@
 
 Last reviewed: September 5, 2026
 
-This is a narrow Android implementation companion to `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md`. It exists because Google materially refreshed its Billing Choice integration guidance on September 2, 2026 and because the current Play Console enrollment map routes external web links through different programs by market. It does not create a new TycoonX product or payment channel and does not replace Google Play program terms, the public TycoonX Terms of Service, the Purchases & Refunds Policy, or mandatory consumer law.
+This is a narrow Android implementation companion to `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md`. It exists because Google materially refreshed its Billing Choice integration guidance in September 2026 and because the Play Console routes alternative billing and external links through different programs by market. It does not create a new TycoonX product or payment channel and does not replace Google Play program terms, the public TycoonX Terms of Service, the Purchases & Refunds Policy, or mandatory consumer law.
 
 TycoonX went to full release on September 1, 2026. Do not describe this live payment flow, Diamonds, VIP, users, rewards, or the current service as beta.
 
 ## P0 rule
 
-Do not expose a Google Play -> Xsolla Billing Choice path merely because a browser can be opened.
+Do not expose a Google Play -> Xsolla path merely because the app can open a browser.
 
-A production path is allowed only when all of the following are true for the actual user/storefront:
+A production Billing Choice path is allowed only when all of the following are true for the actual user/storefront:
 
 1. CK-Labs/TycoonX is enrolled in the applicable Google Play program for that market and payment mode.
-2. The current Play Billing integration reports the relevant billing program/link capability as available for that user.
-3. The app uses the current APIs for the program that actually governs that market and the correct Google-rendered or developer-rendered scenario.
-4. Required Google information/choice/parental-control UI is not bypassed.
-5. The external transaction token survives app -> browser -> Xsolla -> backend reconciliation without being duplicated or reassigned.
+2. The current Play Billing integration reports the relevant billing program and, where needed, external-link capability as available for that user.
+3. The app uses the API sequence for the exact Google-rendered or developer-rendered scenario returned by Play.
+4. Required Google information, choice, branding, loyalty and parental-control UI is not bypassed, imitated, hidden, or replaced with stale hard-coded content.
+5. The external transaction token survives app -> browser -> Xsolla -> backend reconciliation without duplication or reassignment.
 6. Every reportable authorized external transaction is reported to Google within the applicable current deadline.
 7. The TycoonX entitlement ledger grants value only after authoritative payment confirmation and remains idempotent across retries.
 
-If any of those facts is unknown, fall back to a lawful available payment path rather than guessing.
+If any required fact is unknown, use a lawful available fallback rather than guessing.
 
 ## 0. Market routing is a legal/commercial control, not an API guess
 
-The Billing Choice API can expose multiple technical scenarios, but technical capability does not mean the same enrollment program governs every country. As of this September 5, 2026 review, Google's current Billing Choice enrollment page routes the relevant markets as follows:
+The same Play Billing library can expose several technical programs, but technical capability does not mean the same enrollment program governs every country.
+
+As of this September 5, 2026 checkpoint, keep at least this decision table:
 
 | User market | Alternative billing inside the app | External web link |
 | --- | --- | --- |
 | United Kingdom | Billing Choice program | Billing Choice program |
-| European Economic Area (EEA) | Billing Choice program; existing EEA user-choice / alternative-billing routes also remain available where applicable | **Existing EEA External Offers Program** |
-| United States | Existing US alternative-billing program | **Existing US External Content Links program** |
+| European Economic Area (EEA) | Billing Choice / existing eligible EEA alternative-billing routes as actually enrolled | **Existing EEA External Offers Program** for the external-link route |
+| United States | Existing US alternative-billing program as actually enrolled | **Existing US External Content Links program** |
 
-Google's current Billing Choice eligibility page states that the Billing Choice program can be available to an **app or game** on mobile/tablet in available markets. That does not collapse the three market rows above into one global TycoonX implementation.
+Google's current Billing Choice eligibility materials state that the program can apply to an **app or game** in supported markets. That does not collapse the rows above into one global TycoonX implementation.
 
-**Release rule:** maintain a server-readable market/program decision table. Do not infer the program from language, IP alone, account nationality, a previous purchase, or the presence of a Billing Choice class in the Android binary.
+**Release rule:** maintain a server-readable market -> Google program -> payment-mode decision table. Do not infer the program from language, IP alone, TycoonX profile country, account nationality, a prior purchase, or the presence of Billing Choice classes in the Android binary.
 
-### EEA TycoonX -> Xsolla external links are not a Billing Choice external-link shortcut
+### EEA external links are not a Billing Choice shortcut
 
-For an EEA user, the current Google enrollment map sends external web links to the existing **External Offers Program (EOP)**, not to Billing Choice external-web-link enrollment. The EOP explicitly allows games, including TycoonX if CK-Labs satisfies its other requirements and completes enrollment/approval.
+For an EEA user, do not route a TycoonX -> Xsolla external link through Billing Choice scenario 2A/2B when the enrolled route is the **EEA External Offers Program (EOP)**.
 
-Current EOP constraints include:
+Current operational safeguards include:
 
-- the Play-managed app must be enrolled/approved for the EEA countries where external offers are shown;
-- EOP external-offer links must use the current external-offers APIs and required Google information/user-protection flow rather than a plain arbitrary browser redirect;
-- the enrolled Play-managed app may use alternative billing **without user choice** for native in-app purchases, but Google Play Billing or user choice billing cannot be combined with the EOP external-offer-link mode on that enrolled app/storefront under the current program rules;
-- applicable authorized external transactions must be reported to Google within 24 hours of the external transaction;
-- the current EOP service-fee checkpoint, effective June 4, 2026, states a 0% initial acquisition fee and an ongoing fee for links to non-recurring in-app digital items of 20% under the standard rate, 10% for the first $1M annual-earnings tier where CK-Labs actually qualifies, or 15% when actually participating in the new Apps & Games program; and
-- the Apps & Games program is not something TycoonX may assume it has today merely because Google expects availability in EEA/UK/US/AU from September 30, 2026. Use the rate only after real Play Console eligibility/enrollment is established.
-
-Those percentages are a dated commercial checkpoint, not constants to hard-code into entitlement logic or player-facing checkout copy. Before any pricing decision, verify the current Play Console invoice/program state and Google's then-current terms.
+- use the EOP APIs and required Google information/user-protection flow rather than an arbitrary browser redirect;
+- do not combine Google Play Billing or user-choice billing with an EOP mode where the current EOP rules prohibit that combination;
+- report applicable authorized EOP external transactions within the current 24-hour reporting deadline;
+- do not assume CK-Labs has joined a future or optional Apps & Games program merely because a rate is published; and
+- keep service-fee percentages as dated accounting inputs, never entitlement logic or player-facing tax claims.
 
 ### United States and United Kingdom routing
 
-- For US users, use the existing US alternative-billing or US External Content Links program, as applicable, rather than labeling the flow Billing Choice merely because the same Android library contains unified billing-program APIs. The existing US external-content-links program currently has its own October 1, 2026 reporting/service-fee transition described in the broader payment-transition gate.
-- For UK users, the current enrollment map places both alternative billing and external web links under Billing Choice. Scenarios 2A/2B below are therefore relevant only where Billing Choice external-web-link enrollment is actually the current market route, not as a universal EEA/US recipe.
+- For US users, use the enrolled US alternative-billing or US External Content Links program as applicable. Do not label a US flow Billing Choice merely because PBL 9.1 contains unified billing-program APIs.
+- For UK users, the current enrollment map places alternative billing and external web links under Billing Choice. Scenarios 2A/2B below are therefore relevant only where Billing Choice external-link enrollment is actually active for that storefront.
 
 ## 1. Current API baseline
 
-The broader transition gate currently requires Play Billing Library 9.1 or higher for Billing Choice. Before every Android production release, re-check Google's current minimum/version requirement rather than freezing that number forever.
+The current TycoonX Billing Choice baseline is Play Billing Library 9.1 or higher, subject to re-check before production release.
 
-PBL 9.1.0 was released on June 18, 2026 and added Billing Choice APIs including:
+PBL 9.1.0 introduced or exposes the Billing Choice integration building blocks used by the current guide, including:
 
+- `BillingProgram.BILLING_CHOICE`;
+- `EnableBillingProgramParams` and `enableBillingProgram(...)`;
+- `isBillingProgramAvailableAsync(...)` / the Kotlin availability wrapper;
+- `BillingProgramAvailabilityDetails.BillingChoiceAvailabilityDetails`;
+- `ChoiceScreenType.GOOGLE_RENDERED` and `ChoiceScreenType.DEVELOPER_RENDERED`;
 - `BillingClient.getBillingChoiceInfoAsync()` / `getBillingChoiceInfo()`;
-- `BillingChoiceInfo` and `GetBillingChoiceInfoParams`;
+- `GetBillingChoiceInfoParams` and `BillingChoiceInfo`;
 - `BillingClient.showBillingProgramInformationDialog()`;
 - `BillingProgramInformationDialogParams`;
-- `BillingProgramAvailabilityDetails.BillingChoiceAvailabilityDetails`; and
-- `ChoiceScreenType`.
-
-The September 2, 2026 Billing Choice integration guide also uses the unified billing-program APIs, including:
-
-- `EnableBillingProgramParams`;
-- `BillingProgram.BILLING_CHOICE`;
-- `BillingClient.Builder.enableBillingProgram(...)`;
-- `isBillingProgramAvailableAsync(...)` / the Kotlin availability wrapper;
-- `BillingProgramReportingDetailsParams`;
-- `createBillingProgramReportingDetailsAsync(...)` / the Kotlin reporting-details wrapper;
-- `DeveloperBillingOptionParams`;
-- `BillingFlowParams.Builder.enableDeveloperBillingOption(...)`;
-- `DeveloperProvidedBillingListener` where the Google-rendered scenario requires it;
-- `launchBillingFlow(...)` where the selected scenario uses the Play billing flow; and
+- `BillingProgramReportingDetailsParams` and `createBillingProgramReportingDetailsAsync(...)` / Kotlin equivalent;
+- `DeveloperBillingType.IN_APP` and `DeveloperBillingType.EXTERNAL_LINK`;
+- `DeveloperBillingOptionParams` and `BillingFlowParams.Builder.enableDeveloperBillingOption(...)`;
+- `DeveloperProvidedBillingListener` only in the Google-rendered scenarios that require it;
+- `launchBillingFlow(...)`; and
 - `launchExternalLink(...)` with `LaunchExternalLinkParams` for the developer-rendered external-link scenario.
 
-Do not build a new Billing Choice implementation around an obsolete alternative-billing/external-offer API merely because an old blog post, sample, or cached implementation still compiles. Google has deprecated or removed multiple older APIs across recent PBL releases. Keep the exact APIs aligned with the current program and current PBL version.
+Do not build a new implementation around an obsolete alternative-billing or external-offer API merely because an old sample still compiles.
 
 ## 2. Availability is runtime state, not a country guess
 
-Do not decide that Billing Choice is available merely because:
+For a storefront actually routed to Billing Choice:
 
-- the device language is German, English, or another supported language;
-- the profile country says Germany/EEA/UK;
-- an IP appears to be in an eligible market;
-- the user previously saw Billing Choice on another device; or
-- CK-Labs has enrolled TycoonX somewhere in Play Console.
+1. enable `BillingProgram.BILLING_CHOICE` when constructing `BillingClient`;
+2. connect to the Play Billing service;
+3. call the current billing-program availability API; and
+4. inspect `billingChoiceAvailabilityDetails.choiceScreenType` before selecting an implementation path.
 
-For a market actually routed to Billing Choice, enable `BillingProgram.BILLING_CHOICE` on the `BillingClient`, establish the Billing service connection, and use the current billing-program availability API before exposing the flow.
+Where an external web link is intended, also verify `isExternalLinkAvailable` for the current user. Do not assume every Billing Choice user can be linked to Xsolla.
 
-Inspect `BillingProgramAvailabilityDetails.billingChoiceAvailabilityDetails` and its `ChoiceScreenType`. Where a Billing Choice external web link is intended, also verify the current external-link availability signal rather than assuming every Billing Choice user can be sent to Xsolla.
-
-If Google returns unavailable, an error, a disconnected service, a blocked Play Store, inconsistent details, or a market whose external links belong to another Google program, do not fake a choice screen or silently redirect to Xsolla.
+If Google returns unavailable, an error, a disconnected service, null/inconsistent availability details, the wrong `ChoiceScreenType`, or a market governed by another Google program, do not fake a choice screen or silently redirect to Xsolla.
 
 ## 3. Lock the exact scenario before rendering UI
 
-Google's September 2 guide describes four Billing Choice integration scenarios:
+Google's current Billing Choice integration guide defines four scenarios:
 
 | Scenario | Choice screen | Alternative payment location |
 | --- | --- | --- |
@@ -112,181 +103,192 @@ Google's September 2 guide describes four Billing Choice integration scenarios:
 | 2A | Google-rendered | external web link |
 | 2B | developer-rendered | external web link |
 
-TycoonX must record which scenario it actually ships **and the market/program row that authorizes it**. Do not mix implementation steps from different rows or from the EEA EOP / US External Content Links programs into one purchase attempt.
+TycoonX must record which scenario it actually ships **and the market/program row that authorizes it**. Do not splice steps from different scenarios into the same purchase attempt.
 
-### Scenario 1A: Google-rendered, alternative billing in-app
+### Scenario 1A: Google-rendered choice, alternative billing in-app
 
-- Enable Billing Choice with `EnableBillingProgramParams` and the required `DeveloperProvidedBillingListener`.
+- Construct Billing Choice with the required `DeveloperProvidedBillingListener`.
 - Verify `ChoiceScreenType.GOOGLE_RENDERED` before launching the product flow.
-- Use `DeveloperBillingOptionParams` with `BillingProgram.BILLING_CHOICE` when enabling the developer billing option in the billing flow.
-- If the user selects Google Play Billing, process the normal Play purchase path.
-- If the user selects the alternative option, obtain the `externalTransactionToken` from the developer-provided-billing callback and use it for the required reporting flow.
+- Use `DeveloperBillingOptionParams` with `BillingProgram.BILLING_CHOICE` when enabling the developer billing option in `launchBillingFlow(...)`.
+- If the user selects Google Play Billing, use the normal Play purchase path.
+- If the user selects alternative billing, obtain the `externalTransactionToken` from `DeveloperProvidedBillingDetails` and use it only for the corresponding external-transaction reporting flow.
+- Do not interpret the listener callback as payment success.
 
-### Scenario 1B: developer-rendered, alternative billing in-app
+### Scenario 1B: developer-rendered choice, alternative billing in-app
 
-- Enable Billing Choice without pretending Google rendered the choice screen.
-- Verify the developer-rendered choice-screen availability returned by Google.
-- Create billing-program reporting details with `DeveloperBillingType.IN_APP` and persist the returned `externalTransactionToken` before the alternative transaction.
-- Show Google's required billing-program information dialog before presenting the developer-rendered alternative choice experience where the current guide requires it.
-- Do not proceed to the custom choice UI if Google's information-dialog call fails.
+This scenario has additional UI duties and must not be implemented as a home-made copy of the Google-rendered screen.
 
-### Scenario 2A: Google-rendered, external web link
+- Construct Billing Choice **without `DeveloperProvidedBillingListener`** for this developer-rendered scenario.
+- Require `ChoiceScreenType.DEVELOPER_RENDERED`. If Google returns another screen type, do not show the custom choice UI.
+- Call `getBillingChoiceInfoAsync(...)` / `getBillingChoiceInfo(...)` with `GetBillingChoiceInfoParams` before rendering the choice.
+- Use the current `playBillingChoiceImageUrl` supplied through `BillingChoiceInfo` for the Google Play Billing banner, using the supported image layout such as `GetBillingChoiceInfoParams.ImageLayout.RECTANGULAR_FOUR_BY_ONE` where that is the selected current layout.
+- Render `playBillingLoyaltyInfo` when Google supplies it. Do not invent, translate, shorten, rewrite, or permanently hard-code Google loyalty wording in place of the current returned value.
+- Do not ship a stale local screenshot or custom imitation of Google's Play Billing banner as a substitute for the current Billing Choice information returned by Play.
+- If the Billing Choice information request fails or required returned data cannot be rendered correctly, fail closed to another lawful available path instead of showing an incomplete or misleading developer-rendered choice screen.
+- When the user shows intent to buy, create reporting details with `DeveloperBillingType.IN_APP` and persist the returned `externalTransactionToken`.
+- Call `showBillingProgramInformationDialog(...)` with the current billing program and transaction token before presenting the developer-rendered choice screen.
+- **Launch the custom choice screen only when the information-dialog result is `OK`.** A dismissal, error, parental-control block, service failure, or other non-OK result must not fall through to the alternative checkout.
+- If the user chooses Play Billing, call the standard `launchBillingFlow(...)` path. If the user chooses alternative billing, CK-Labs handles the transaction and reports it using the token created for that attempt.
 
-Use this only where **Billing Choice external web links** are the actual enrolled market route, currently including the UK under the September 5, 2026 enrollment map. Do not use this scenario as the EEA External Offers Program implementation or the US External Content Links implementation.
+### Scenario 2A: Google-rendered choice, external web link
 
-- Verify both Google-rendered Billing Choice and external-link availability.
+Use this only where Billing Choice external links are the enrolled market route, not as the EEA EOP or US External Content Links implementation.
+
+- Construct the Google-rendered scenario with the required `DeveloperProvidedBillingListener`.
+- Require `ChoiceScreenType.GOOGLE_RENDERED` and `isExternalLinkAvailable == true`.
 - Create reporting details using `DeveloperBillingType.EXTERNAL_LINK` and preserve the returned `externalTransactionToken`.
-- Pass the current token and Xsolla/CK-Labs destination through `DeveloperBillingOptionParams` as required by the current API flow.
-- Use the launch mode required by Google's current guidance rather than manually opening a browser before Google completes its Billing Choice flow.
-- Treat the callback as permission to continue the external payment journey, not as proof that an Xsolla payment completed.
+- Pass the current token and approved destination through `DeveloperBillingOptionParams` as required by the current Play flow.
+- Let the Play API control the external-link handoff; do not pre-empt it with an arbitrary browser `Intent`.
+- Treat the Play callback as permission/navigation state, not proof that Xsolla completed a payment.
 
-### Scenario 2B: developer-rendered, external web link
+### Scenario 2B: developer-rendered choice, external web link
 
-Use this only where **Billing Choice external web links** are the actual enrolled market route. Do not use this scenario as a generic EEA or US Xsolla linkout.
+Use this only where Billing Choice external links are the enrolled market route.
 
-- Verify the developer-rendered Billing Choice and external-link availability.
-- Create reporting details with `DeveloperBillingType.EXTERNAL_LINK` and persist the `externalTransactionToken`.
-- Show Google's required information dialog before the developer-rendered choice UI when required by the current flow.
-- If the user chooses the external option, call `launchExternalLink(...)` with `LaunchExternalLinkParams`, the correct billing program, current external transaction token, approved destination URI, link type, and launch mode.
-- Continue to Xsolla only after the Play API indicates that the external-link launch may proceed.
+- Construct Billing Choice **without `DeveloperProvidedBillingListener`** for this developer-rendered scenario.
+- Require `ChoiceScreenType.DEVELOPER_RENDERED` and `isExternalLinkAvailable == true` before showing the custom choice UI.
+- Call `getBillingChoiceInfoAsync(...)` / `getBillingChoiceInfo(...)` and populate the developer-rendered UI with the current Google Play Billing banner and `playBillingLoyaltyInfo` in the same manner as scenario 1B.
+- Do not hard-code or imitate Google-supplied Billing Choice branding/loyalty content.
+- Create reporting details with `DeveloperBillingType.EXTERNAL_LINK` and persist the `externalTransactionToken` for that purchase attempt.
+- Do not blindly import the scenario 1B information-dialog sequence into scenario 2B if the then-current Google guide uses a different prescribed flow. Follow the current 2B sequence exactly.
+- If the user chooses Play Billing, use the standard Play billing flow.
+- If the user chooses the external option, call `launchExternalLink(...)` with `LaunchExternalLinkParams`, the correct billing program, current transaction token, approved destination URI, link type and launch mode.
+- Continue to Xsolla only when the Play API returns the current successful launch result. The launch result still is not payment confirmation.
+- Preserve the Google-controlled parental/supervised-user behavior in the external-link launch and never bypass a blocked result with a direct browser redirect.
 
-## 4. Current Billing Choice fee checkpoint: economics must not become entitlement logic
+## 4. Developer-rendered UI integrity
 
-For the EEA/UK Billing Choice program, Google's current post-June 30, 2026 fee table distinguishes new and existing installs for **alternative billing inside the app**. For non-recurring digital transactions such as TycoonX Diamonds or one-time VIP purchases, the current standard checkpoint is 20% for new installs and 25% for existing installs. The first-$1M tier is shown as 10% where CK-Labs actually qualifies. The new Play Games Level Up / Apps Experience rate is shown as 15% for new installs and 20% for existing installs when actually participating.
+For scenarios 1B and 2B, the developer-rendered screen is part of the regulated Play billing choice flow, not ordinary TycoonX marketing UI.
 
-For **Billing Choice external web links**, Google's current table applies to transactions completed within 24 hours of following the external link and currently shows 20% standard, 10% for the qualifying first-$1M tier, or 15% when actually participating in the new Apps & Games program. The current table does not use separate new/existing-install percentages for that external-link row.
+Release blockers:
 
-Operational rules:
+- `getBillingChoiceInfoAsync` / `getBillingChoiceInfo` is never called;
+- the returned Play Billing banner is omitted, replaced with a stale local asset, or materially obscured;
+- Google loyalty information is available but hidden, rewritten, or replaced with TycoonX-created claims about Play benefits;
+- the UI is rendered before Play confirms `ChoiceScreenType.DEVELOPER_RENDERED`;
+- scenario 1B reaches the custom choice screen after a non-OK `showBillingProgramInformationDialog` result;
+- Play Billing is made visually deceptive or practically unusable compared with the alternative option where the applicable Billing Choice rules require a genuine choice; or
+- a supervised-user/parental-control denial is converted into a direct Xsolla browser launch.
 
-- never infer CK-Labs's fee tier from player behavior, VIP status, country, or a locally calculated annual-revenue estimate;
-- preserve the Google program, storefront, install cohort where relevant, external-link timestamp, external transaction token/ID, Google-reported service-fee category, Xsolla transaction, tax/VAT, refunds/reversals/chargebacks, and final accounting result;
-- do not present Google's service fee as a government tax, mandatory player surcharge, Xsolla fee, or reason to retroactively reprice a completed purchase;
-- do not change Diamonds/VIP because a Google invoice later uses a different service-fee tier than CK-Labs expected; and
-- re-check the live Play Console/program terms before setting future prices or enabling the September 30, 2026 Apps & Games program economics.
+Keep dated screenshots/video from a real eligible Play test account for each developer-rendered scenario actually shipped.
 
-## 5. Supervised users and parental controls
-
-Google's current Billing Choice integration guidance states that parental control is displayed for supervised users in the relevant flows.
-
-TycoonX must not:
-
-- suppress the Google information/parental-control UI;
-- treat an external browser as a way around a supervised-user restriction;
-- silently fall back to a direct Xsolla URL if the Play-controlled step is blocked;
-- infer adulthood merely because the user has a TycoonX account, VIP, or previous purchase; or
-- store extra age/child data just to recreate controls Google already supplies.
-
-If the required Play flow refuses the transaction, preserve the user's existing legitimate Diamonds and VIP and return a clear non-punitive failure state.
-
-## 6. Token lifecycle and Xsolla handoff
+## 5. Token lifecycle and Xsolla handoff
 
 The Google `externalTransactionToken` is transaction/reporting context. It is not payment proof and it is not a TycoonX entitlement.
 
 For every Billing Choice -> Xsolla attempt:
 
-- bind the token to a single TycoonX order attempt and expected product/SKU server-side;
-- record the applicable Google program, storefront/market, Billing Choice scenario, `DeveloperBillingType`, TycoonX account/order ID, and Xsolla transaction reference when one exists;
-- prevent one token from being reused to report unrelated orders or another player's purchase;
-- preserve the token across app/browser/provider transitions and recoverable process death;
-- do not expose account credentials, payment credentials, session secrets, or unnecessary personal data in the external URL;
-- treat a browser return/deep link as navigation evidence, not as authoritative payment confirmation;
-- grant Diamonds/VIP only after authoritative payment confirmation is validated; and
-- make both entitlement delivery and Google reporting idempotent.
+- bind the token to one TycoonX order attempt and expected product/SKU server-side;
+- store the Google program, storefront, scenario, `DeveloperBillingType`, TycoonX order/account reference, and Xsolla transaction reference when one exists;
+- never reuse one token for another player, another product, or another order attempt;
+- preserve the token across recoverable process death and browser/app transitions;
+- treat browser return/deep-link events as navigation evidence only;
+- grant Diamonds/VIP only after authoritative provider payment confirmation; and
+- make entitlement delivery and Google reporting idempotent.
 
-If the Xsolla transaction is `PENDING`, failed, canceled, reversed, refunded, or disputed, do not reinterpret a successful Play linkout callback as a completed purchase.
+If the Xsolla transaction is pending, failed, canceled, reversed, refunded, or disputed, do not reinterpret a successful Play callback as a completed purchase.
 
-## 7. Reporting deadline and retry safety
+## 6. Reporting deadline and retry safety
 
-Google's current Billing Choice enrollment requirements state that authorized transactions must be reported to Google Play within 24 hours using the Billing Choice APIs. The EEA External Offers Program separately requires applicable authorized external transactions to be reported within 24 hours. Keep those reporting queues program-labelled so a Billing Choice retry cannot masquerade as an EOP report or vice versa.
+Google's current Billing Choice enrollment requirements require authorized Billing Choice transactions to be reported to Google Play within the current 24-hour deadline. The EEA External Offers Program separately has its own 24-hour reporting requirement. Keep those reporting queues program-labelled.
 
-Operationally:
+Operational rules:
 
 - enqueue the Google report as soon as authoritative payment completion is known;
-- retry transient failures without creating a second TycoonX entitlement or duplicate external transaction record;
-- alert before the 24-hour deadline is at risk rather than relying on a once-per-day batch;
-- preserve evidence of reporting success/failure and the external transaction ID returned/used by the backend reporting flow;
-- reconcile later refunds, reversals and chargebacks against the same payment/reporting identifiers; and
-- never delay reporting to wait for a promotion, accounting close, support response, or chargeback-risk window.
+- retry transient failures without a second TycoonX entitlement or duplicate external transaction;
+- alert before the deadline is at risk rather than relying on a once-per-day batch;
+- preserve reporting success/failure and the relevant external transaction identifiers;
+- reconcile refunds, reversals and chargebacks against the same payment/reporting identifiers; and
+- never delay reporting for promotion timing, accounting close, support review, or a chargeback-risk window.
 
-A Google reporting outage does not authorize CK-Labs to fabricate a successful report. Preserve the original transaction facts, retry lawfully, and follow Google's current incident/program instructions.
+A Google reporting outage is not permission to fabricate a successful report.
+
+## 7. Service-fee and price safeguards
+
+Current Play fee schedules can distinguish market, program, install cohort, transaction type and optional program participation. Treat published percentages as dated accounting inputs only.
+
+TycoonX must not:
+
+- infer CK-Labs's fee tier from player behavior, VIP status or a local guess;
+- describe a Google service fee as a government tax or Xsolla fee;
+- change a completed user's Diamonds/VIP because Google later invoices CK-Labs differently than expected; or
+- retroactively reprice a completed purchase because a service-fee table changes.
+
+Before setting future regional prices, reconcile gross price, mandatory taxes/VAT, Xsolla/payment costs, refunds/chargebacks and the then-current applicable Google fee.
 
 ## 8. Product-specific TycoonX protections
 
 ### Diamonds
 
-A successful report or linkout must never itself grant Diamonds. The entitlement service must validate the actual completed purchase and grant the purchased Diamond quantity exactly once. Purchased Diamonds do not expire solely because time passes. A later refund/reversal/chargeback may justify correcting only the affected paid value, subject to mandatory law and the canonical TycoonX policies.
+A successful Play choice, token creation, information dialog, external-link launch or reporting call must never itself grant Diamonds. Grant the purchased quantity exactly once only after authoritative payment confirmation. Purchased Diamonds do not expire solely because time passes. Refund/reversal correction remains limited to affected paid value subject to mandatory law.
 
 ### One-time 30-Day VIP
 
-30-Day VIP is a one-time, non-renewing 30-day entitlement. Billing Choice, EOP, or US External Content Links must not transform it into a recurring subscription, restart its clock on app relaunch, or stack duplicate callbacks into extra paid time unless the user actually completed an additional valid purchase whose product rules allow it.
+30-Day VIP is a one-time, non-renewing 30-day entitlement. Billing Choice or an external-link callback must not turn it into a subscription, restart its clock, or duplicate paid time unless a separate valid purchase actually occurred.
 
 ### Lifetime VIP
 
-Lifetime VIP is a limited-time promotional one-time entitlement offered only during selected genuine sales windows. It may be withdrawn from future sale, may never return, and creates no expectation of continuous future availability.
-
-Billing Choice availability, EOP availability, a failed linkout, a Play/Xsolla outage, a later sales window, or a later price difference does not change a previously completed valid Lifetime VIP entitlement. Completed purchases are not retroactively repriced except where mandatory law requires otherwise.
+Lifetime VIP is a limited-time promotional one-time entitlement offered only during selected genuine sales windows. It may be withdrawn from future sale, may never return, and creates no expectation of continuous future availability. A failed Billing Choice/Xsolla path, a later sales window, or a later price difference does not alter a previously completed valid Lifetime VIP entitlement.
 
 ## 9. Future recurring products are a separate launch gate
 
-TycoonX does not currently treat 30-Day VIP or Lifetime VIP as an auto-renewing subscription.
+TycoonX does not currently treat 30-Day VIP or Lifetime VIP as auto-renewing subscriptions.
 
-Google's current Billing Choice guide contains separate subscription-replacement rules, including preserving the original billing choice and using the original external transaction ID for applicable alternative-billing subscription upgrades/downgrades.
+If CK-Labs later introduces a recurring subscription, reopen `TYCOONX_FUTURE_RECURRING_SUBSCRIPTION_RELEASE_GATE.md`, implement Google's then-current subscription replacement/original-external-transaction rules, and update canonical/localized legal wording if the public contract changes.
 
-Do not copy those rules onto the current one-time VIP products. If CK-Labs later introduces a recurring subscription:
+## 10. PBL migration hazards and regression tests
 
-- reopen `TYCOONX_FUTURE_RECURRING_SUBSCRIPTION_RELEASE_GATE.md`;
-- implement the current Google subscription replacement flow, including `setOriginalExternalTransactionId(...)` where applicable;
-- add compliant renewal/price-change/cancellation disclosures and consent handling; and
-- update canonical and localized legal wording if the public contract changes.
+Before shipping, test at minimum:
 
-## 10. PBL migration hazards
-
-Before shipping the Billing Choice build, explicitly test:
-
-- wrong-market routing: an EEA external-link attempt must not fall into Billing Choice scenario 2A/2B when EOP is the enrolled route;
-- wrong-program retry: an EOP reporting retry must not be re-sent as a Billing Choice transaction;
-- `DeveloperProvidedBillingDetails.getLinkUri()` being `null` or empty where the current API permits it;
+- wrong-market routing: an EEA external-link attempt must not fall into Billing Choice 2A/2B when EOP governs it;
+- wrong-program retry: an EOP report must not be retried as Billing Choice;
+- wrong `ChoiceScreenType`: custom UI must not appear for `GOOGLE_RENDERED`, and Google-rendered logic must not be faked when Play returns `DEVELOPER_RENDERED`;
+- scenario 1B and 2B BillingClient construction without `DeveloperProvidedBillingListener`;
+- developer-rendered `getBillingChoiceInfoAsync` success and failure paths;
+- Play Billing banner loading failure and loyalty-info-present / loyalty-info-absent cases;
+- scenario 1B information dialog `OK`, dismissal, error and supervised-user/parental-control denial;
+- `createBillingProgramReportingDetails` failure before alternative checkout;
+- external-link unavailable even though Billing Choice itself is available;
+- `DeveloperProvidedBillingDetails.getLinkUri()` being `null` or empty where the current PBL API permits it;
 - `BILLING_UNAVAILABLE`, service-disconnected, network-error, user-canceled and developer-error paths;
-- process death after a token is generated but before Xsolla completes;
+- process death after token generation but before Xsolla completion;
 - browser close without payment;
-- Xsolla payment success while the app is killed;
-- duplicate provider callbacks;
-- Google-reporting retry after entitlement delivery;
-- refund/reversal after Diamonds were consumed or VIP was activated;
-- supervised-user denial/parental-control paths; and
+- Xsolla success while the app is killed;
+- duplicate provider callbacks and Google-reporting retries;
+- refund/reversal after Diamonds were consumed or VIP activated; and
 - a user switching Play accounts/devices between attempts.
 
-Do not parse a nullable link URI before validating it. Do not grant value merely because `launchBillingFlow(...)` or `launchExternalLink(...)` returned `OK`.
+PBL 9 migration explicitly made `DeveloperProvidedBillingDetails.getLinkUri()` nullable. Do not parse or launch a browser from a null/empty link URI. Do not grant value merely because `launchBillingFlow(...)`, `launchExternalLink(...)`, or an information dialog returned `OK`.
 
 ## 11. Evidence required before production steering
 
 Keep a dated evidence packet containing at minimum:
 
 - Android app version/build and Play Billing Library version;
-- a market -> Google program -> payment mode decision table covering at least EEA, UK, and US;
-- Play Console Billing Choice enrollment markets and separate EEA External Offers / US External Content Links enrollment where used;
-- the exact shipped Billing Choice scenario (1A, 1B, 2A, or 2B) only for markets routed to Billing Choice;
-- screenshots/video of the Google/developer choice flow and supervised-user path;
-- evidence of runtime Billing Choice and external-link availability checks;
-- a sample `externalTransactionToken` lifecycle with secrets/redactions as appropriate;
-- TycoonX order ID <-> Google program/token/report <-> Xsolla transaction <-> entitlement ledger mapping;
-- current Google service-fee category/tier evidence used for commercial reconciliation, without treating a future program as already enrolled;
-- successful Diamond, 30-Day VIP, and any currently sold Lifetime VIP test cases;
-- failed/pending/canceled browser-return tests proving no entitlement is granted;
+- market -> Google program -> payment-mode decision table for EEA, UK and US;
+- Play Console enrollment evidence for the exact programs actually used;
+- the shipped scenario (1A/1B/2A/2B) only for markets routed to Billing Choice;
+- `ChoiceScreenType` and external-link availability evidence;
+- for developer-rendered scenarios, evidence that current `BillingChoiceInfo` populated the Play Billing banner and loyalty field where supplied;
+- scenario 1B evidence that the custom choice screen is shown only after an `OK` billing-program information dialog;
+- supervised-user/parental-control test evidence;
+- a sample `externalTransactionToken` lifecycle with sensitive data redacted;
+- TycoonX order <-> Google program/token/report <-> Xsolla transaction <-> entitlement-ledger mapping;
+- successful Diamond, 30-Day VIP and any currently sold Lifetime VIP test cases;
+- failed/pending/canceled return tests proving no entitlement is granted;
 - duplicate callback/report tests proving idempotency;
-- a completed authorized external transaction reported within 24 hours through the correct Google program;
-- refund/reversal/chargeback reconciliation preserving unrelated legitimate purchases; and
-- current official Google documentation snapshots/links used for the release decision.
+- a completed authorized external transaction reported within the current deadline; and
+- refund/reversal/chargeback reconciliation preserving unrelated legitimate purchases.
 
 ## 12. No legal shortcut through platform configuration
 
-Google's Billing Choice, EEA External Offers, US Alternative Billing, and US External Content Links programs determine what the Play-distributed Android app may do and what must be reported to Google in their respective markets. None of them waive CK-Labs's separate legal duties.
+Google Billing Choice, EEA External Offers, US Alternative Billing and US External Content Links determine what the Play-distributed Android app may do and what must be reported to Google. None waives CK-Labs's separate legal duties.
 
-Where applicable, the TycoonX/Xsolla web purchase must still satisfy the relevant consumer-law requirements, including clear final price/tax presentation, lawful promotional claims, German order-button rules, applicable withdrawal/conformity remedies, and any applicable cancellation-button requirement. Xsolla's Merchant-of-Record role also does not authorize TycoonX to grant entitlements before valid payment confirmation or to ignore provider-specific refund/reversal records.
+Where applicable, the TycoonX/Xsolla purchase still must satisfy consumer-law requirements including clear final price/tax presentation, lawful promotions, German order-button rules, applicable withdrawal/conformity remedies and any applicable cancellation-button requirement. Xsolla's transaction-specific merchant/payment role also does not authorize entitlement delivery before valid payment confirmation or override mandatory rights.
 
 ## 13. Manual verification
 
-Run:
+Run locally:
 
 ```bash
 node scripts/verify-tycoonx-google-play-billing-choice-pbl91.mjs
@@ -294,15 +296,13 @@ node scripts/verify-tycoonx-google-refunds.mjs
 node scripts/verify-tycoonx-legal.mjs
 ```
 
-Then manually re-check Google's current Billing Choice, EEA External Offers, US External Content Links, service-fee, integration, and Play Console enrollment documentation. Program availability, APIs, rollout dates, service fees, and reporting rules can change independently of TycoonX legal prose.
+Then manually re-check Google's current Billing Choice integration guide, Billing Library release/migration notes, Play Console Billing Choice enrollment, EEA External Offers, US External Content Links and current service-fee documentation before any production steering change.
 
 ## Source checkpoints
 
-Re-check the live official sources before production changes:
+Current official sources rechecked on September 5, 2026:
 
-- Google Play Console Help: Billing Choice enrollment, including the market-specific Alternative Billing / External Web Links enrollment table, current fee table, app-or-game eligibility, and 24-hour reporting rule.
-- Google Play Console Help: EEA External Offers Program, including game eligibility, incompatibility with Google Play Billing/user choice billing under current EOP rules, June 4, 2026 fee checkpoint, and 24-hour reporting rule.
-- Google Play Console Help: US External Content Links program, including the October 1, 2026 reporting/service-fee transition.
-- Android Developers: Billing Choice in-app integration guidance, last updated September 2, 2026 at this review.
-- Android Developers: Google Play Billing Library release notes, including PBL 9.1.0 (June 18, 2026).
-- `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` for the wider EEA/UK/US/JP/AU rollout, external-offers, service-fee, RTDN/refund and chargeback controls.
+- Android Developers: **In-app integration guidance for billing choice**, including scenarios 1A, 1B, 2A and 2B; `ChoiceScreenType`; `getBillingChoiceInfoAsync`; Play Billing banner and loyalty information; reporting-token creation; scenario 1B information dialog; `launchBillingFlow`; `launchExternalLink`; and supervised-user parental control.
+- Android Developers: **Migrate to Google Play Billing Library 9 from 7 or 8**, including the nullable `DeveloperProvidedBillingDetails.getLinkUri()` migration requirement.
+- Play Console Help: **Enrolling in the Billing Choice program**, including current eligible market/program routing, user choice, customer-support obligations, fees and the 24-hour external-transaction reporting requirement.
+- `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` for the wider EEA/UK/US/AU/JP rollout, service-fee, RTDN/refund and chargeback controls.
