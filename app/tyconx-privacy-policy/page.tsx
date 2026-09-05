@@ -128,7 +128,7 @@ export default function TycoonXPrivacyPolicy() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Privacy Policy</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 26, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated September 5, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
             This Privacy Policy explains how CK-Labs, operator of TycoonX, processes personal data when you use the TycoonX mobile or web applications, websites, support services, community features, and related online services.
           </p>
