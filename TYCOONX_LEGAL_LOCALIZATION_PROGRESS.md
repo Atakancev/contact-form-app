@@ -163,6 +163,33 @@ Canonical Privacy layout integration commit: `20db8fbb0cb2e8d04c57b55dff8ea8df44
 Canonical rendered Privacy date refresh commit: `8a55cd3c6e5bb44c507fb3266b135b3ec0823274`.
 Dedicated Privacy synchronization verifier commit: `8530099db85594213957ae05f2803219079060cc`.
 
+## September 5, 2026 official-purchase and off-platform-refund boundary checkpoint
+
+The canonical Purchases & Refunds Policy was materially refreshed on September 5, 2026 so unauthorized player-to-player or off-platform deals cannot be presented as official CK-Labs, Apple, Google Play, or Xsolla purchases while legitimate official purchase rights remain protected.
+
+All 25 localized Purchases & Refunds routes are synchronized through `app/tycoonx-legal/OfficialPurchaseRefundNotice.tsx`, rendered only on `/tycoonx-legal/{locale}/purchases`. The localized copies use natural language, keep the required regional variants distinct, and use RTL for Arabic. The canonical rendered Purchases & Refunds page and canonical Markdown now contain the same legal boundary directly.
+
+Every canonical and localized Purchases & Refunds page must preserve all of the following:
+
+- the Purchases & Refunds Policy governs genuine purchases made through authorized TycoonX purchase channels such as Apple App Store In-App Purchase, Google Play, and the official TycoonX web shop using Xsolla;
+- an in-game trade, art purchase, company transaction, Begging transfer, or other player-to-player movement of game value does not become an official purchase from CK-Labs merely because value changes hands in TycoonX;
+- unauthorized real-money trading or another off-platform user deal is not an official TycoonX purchase;
+- CK-Labs is not the seller, payment processor, escrow provider, guarantor, debt collector, or refund provider for an unauthorized off-platform user deal and does not promise to recover outside consideration exchanged between users;
+- failure by another user to deliver promised in-game value after an outside payment does not transform that user dispute into an Apple, Google Play, Xsolla, or CK-Labs purchase-refund claim, while CK-Labs may still investigate and correct the related in-game conduct under the Terms;
+- Begging authorizes only the in-game assistance expressly allowed by that feature and does not authorize outside consideration in exchange for TycoonX value;
+- an expressly enabled platform-supported gift or transfer mechanism follows its disclosed terms and applicable platform rules rather than becoming an unrestricted cash-out or resale system;
+- a separately completed legitimate Apple, Google Play, or Xsolla purchase retains its applicable refund, withdrawal, conformity, restoration, and mandatory rights even if the player separately violates a gameplay, transfer, or RMT rule;
+- unauthorized user-to-user conduct is not a blanket basis for denying mandatory remedies on an unrelated valid official purchase; and
+- mandatory non-waivable consumer rights remain intact.
+
+Current platform checks remain aligned: Apple App Review Guidelines 3.1.1 allows eligible In-App Purchase gifting under Apple’s conditions, including that gifts may be refunded only to the original purchaser and may not be exchanged. Google Play’s Payments policy distinguishes peer-to-peer payments from ordinary digital in-app purchases and requires purchased in-app virtual currency to be used within the app or game title for which it was purchased. Xsolla’s current Refund Policy remains transaction-specific and identifies the applicable refund policy at checkout.
+
+Localized purchase-boundary component commit: `37a8a8bc4ba5872cec64542223c793b6377b9f28`.
+Localized Purchases layout integration commit: `a8e80877518f98b1410f0aec4017bf5596d3cb6b`.
+Canonical Purchases Markdown update commit: `e416b514691ce835584c8b0b67a8f5e29f8c4309`.
+Canonical rendered Purchases synchronization commit: `093e1f078db1f1892f1ff2a798ead33e412802ea`.
+Dedicated purchase-boundary verifier commit: `d58c0786504c58f56c55c4e7c8f3573e64752eed`.
+
 ## Existing product invariants
 
 All canonical and localized legal documents must continue to preserve these distinctions:
@@ -180,7 +207,7 @@ All canonical and localized legal documents must continue to preserve these dist
 ## Canonical source status
 
 - English Terms: materially refreshed **September 5, 2026** for genuine transactions, prohibited player-to-player wealth transfers, and explicit RMT/off-platform-exchange rules.
-- English Purchases & Refunds: materially refreshed **August 28, 2026** for purchased-Diamond withdrawal rights and real-money virtual-currency price transparency.
+- English Purchases & Refunds: materially refreshed **September 5, 2026** for the official-purchase/off-platform-deal refund boundary while preserving purchased-Diamond withdrawal rights and virtual-currency price transparency.
 - English Privacy Policy: materially refreshed **September 5, 2026** for transfer/RMT investigation transparency, legal-basis safeguards, retention, objections, and automated-decision protections.
 - English Community Standards: refreshed **August 26, 2026** for age-gating and child-safety flexibility around any future anonymous/random-chat feature.
 
@@ -188,9 +215,9 @@ All canonical and localized legal documents must continue to preserve these dist
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.85%**
-- **Full commercial/legal/payment readiness:** **96.3%**
-- **Overall project completion:** **99.3%**
+- **Canonical English legal wording:** **99.9%**
+- **Full commercial/legal/payment readiness:** **96.8%**
+- **Overall project completion:** **99.4%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and release-gate checkpoints remain available in Git history; this tracker intentionally keeps the current state and active invariants concise so future runs can continue without duplicating completed work.
