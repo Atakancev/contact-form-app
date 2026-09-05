@@ -26,12 +26,14 @@ function forbidRegex(text, regex, label) {
 }
 
 // The personal-data-breach gate is the single GDPR breach doctrine source of truth.
-// These older overlapping gates/verifiers were intentionally removed on September 3, 2026.
+// Overlapping gates/verifiers must remain absent so the 72-hour clock and risk doctrine cannot diverge.
 for (const stalePath of [
   'TYCOONX_GDPR_BREACH_INCIDENT_RESPONSE_GATE.md',
   'TYCOONX_GDPR_SECURITY_INCIDENT_RESPONSE_GATE.md',
+  'TYCOONX_GDPR_PERSONAL_DATA_BREACH_RESPONSE_RELEASE_GATE.md',
   'scripts/verify-tycoonx-gdpr-breach.mjs',
   'scripts/verify-tycoonx-gdpr-incidents.mjs',
+  'scripts/verify-tycoonx-gdpr-breach-response.mjs',
 ]) {
   if (fs.existsSync(path.join(root, stalePath))) {
     failures.push(`Duplicate GDPR incident-response source reappeared: ${stalePath}`);
