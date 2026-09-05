@@ -53,10 +53,10 @@ requireText(xsolla, 'Never use a blanket "no refunds" statement for Diamonds, 30
 requireText(xsolla, 'where mandatory law gives a consumer a refund, price reduction, termination, conformity remedy, or other right, that right overrides this operational gate', 'existing mandatory-rights override');
 
 requireText(terms, 'Nothing in these Terms excludes statutory withdrawal, conformity, update, warranty, price-reduction, termination, refund, or other rights that cannot legally be waived.', 'canonical Terms mandatory-rights safeguard');
-requireText(terms, 'merely crediting purchased Diamonds as immediately supplied digital content that automatically removes the statutory withdrawal right', 'canonical Diamond withdrawal safeguard');
+requireText(terms, 'does not treat the mere crediting of purchased Diamonds as immediately supplied digital content that automatically removes the statutory withdrawal right', 'canonical Diamond withdrawal safeguard');
 requireText(terms, 'A 30-Day VIP and Lifetime VIP are supplied over time.', 'canonical VIP digital-service safeguard');
 
-requireText(purchases, 'transaction-specific Xsolla terms and refund policy shown for that purchase apply together with mandatory consumer law', 'canonical Purchases Xsolla mandatory-law parity');
+requireText(purchases, 'The transaction-specific Xsolla terms and refund policy shown for that purchase apply together with mandatory consumer law.', 'canonical Purchases Xsolla mandatory-law parity');
 requireText(purchases, 'A player’s unrelated gameplay violation, transfer violation, or real-money-trading violation does not by itself erase those rights', 'canonical unrelated-enforcement safeguard');
 requireText(purchases, 'does not reduce any rights that cannot legally be waived', 'canonical Purchases non-waiver');
 
