@@ -14,7 +14,8 @@ const forbidText = (text, needle, label) => {
 
 const gate = read('TYCOONX_GENUINE_TRANSACTION_ENFORCEMENT_RELEASE_GATE.md');
 const terms = read('tyconx-terms-of-service.md');
-const localized = read('app/tycoonx-legal/TransferRuleNotice.tsx');
+const transferLocalized = read('app/tycoonx-legal/TransferRuleNotice.tsx');
+const rmtLocalized = read('app/tycoonx-legal/RealMoneyTradingNotice.tsx');
 const economyGate = read('TYCOONX_GAME_ECONOMY_RESET_CORRECTION_RELEASE_GATE.md');
 const accountGate = read('TYCOONX_ACCOUNT_SUSPENSION_COMPROMISE_TERMINATION_RELEASE_GATE.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
@@ -44,33 +45,46 @@ requireText(gate, '**30-Day VIP is a one-time, non-renewing 30-day entitlement.*
 requireText(gate, '**Lifetime VIP is a one-time promotional entitlement available only during selected genuine sales windows.**', 'Lifetime VIP invariant');
 requireText(gate, 'may never return', 'Lifetime VIP future availability');
 requireText(gate, 'Apple, Google Play, and Xsolla records prove payment facts, not gameplay intent', 'provider-role separation');
-requireText(gate, 'does **not** create a broader standalone real-money-trading prohibition', 'no hidden RMT expansion');
-requireText(gate, 'Do not punish retroactively solely under the September 5 rule', 'non-retroactivity safeguard');
+requireText(gate, 'Real-money trading is separately prohibited', 'explicit RMT doctrine');
+requireText(gate, 'buy, sell, broker, advertise, arrange, or exchange TycoonX accounts', 'RMT prohibited acts');
+requireText(gate, 'real money, cryptocurrency, gift cards, physical goods, outside services', 'RMT consideration scope');
+requireText(gate, 'direct, indirect, staged, and middleman arrangements', 'indirect RMT scope');
+requireText(gate, 'official TycoonX web shop using Xsolla', 'official Xsolla exception');
+requireText(gate, 'Begging to the extent that the Begging feature itself permits it', 'Begging RMT exception boundary');
+requireText(gate, 'Do not punish retroactively solely under the September 5 rules', 'non-retroactivity safeguard');
 requireText(gate, 'A gameplay correction is not a real-world debt', 'no real-world debt');
 requireText(gate, 'Regression scenarios', 'regression scenarios');
 requireText(gate, 'Proper Begging use', 'Begging regression scenario');
 requireText(gate, 'Automated score 0.99', 'automation regression scenario');
 requireText(gate, 'Pre-September 5 assistance transaction', 'retroactivity regression scenario');
+requireText(gate, 'External payment for artwork', 'RMT regression scenario');
+requireText(gate, 'Authorized platform gift', 'authorized gift regression scenario');
 
 requireText(terms, '**Genuine transactions and player-to-player wealth transfers.**', 'canonical transfer rule');
 requireText(terms, 'Buying art mainly to send money to the artist or financially help that player is not permitted', 'canonical art rule');
 requireText(terms, 'A high price, generous deal, or unusual transaction is not automatically a violation', 'canonical proportionality safeguard');
 requireText(terms, 'use TycoonX’s designated **Begging** screen or feature', 'canonical Begging route');
-requireText(localized, "en: {", 'localized rule component');
-requireText(localized, "locale === 'ar'", 'Arabic RTL handling');
+requireText(terms, '**Real-money trading and off-platform exchange.**', 'canonical RMT rule');
+requireText(terms, 'direct deals and indirect, staged, or middleman arrangements', 'canonical indirect RMT rule');
+requireText(terms, 'does not guarantee, escrow, enforce, refund, or mediate unauthorized off-platform deals', 'canonical unauthorized-deal boundary');
+requireText(transferLocalized, "en: {", 'localized transfer component');
+requireText(transferLocalized, "locale === 'ar'", 'transfer Arabic RTL handling');
+requireText(rmtLocalized, "en: {", 'localized RMT component');
+requireText(rmtLocalized, "locale === 'ar'", 'RMT Arabic RTL handling');
 requireText(economyGate, 'Correction and punishment are separate decisions', 'economy gate integration');
 requireText(accountGate, 'A security freeze, a moderation action, a payment-risk hold, and a final contractual termination are different decisions', 'account gate integration');
 requireText(progress, 'September 5, 2026 genuine-transaction and money-transfer invariant', 'progress transfer invariant');
+requireText(progress, 'September 5, 2026 real-money trading and off-platform exchange invariant', 'progress RMT invariant');
 requireText(progress, 'September 5, 2026 genuine-transaction enforcement operations checkpoint', 'progress enforcement checkpoint');
 requireText(progress, '100/100, **100%**', 'localized full-document completion');
 requireText(progress, '25/25, **100%**', 'localized hub completion');
-requireText(progress, '**Full commercial/legal/payment readiness:** **95.5%**', 'commercial readiness metric');
-requireText(progress, '**Overall project completion:** **99.1%**', 'overall completion metric');
+requireText(progress, '**Full commercial/legal/payment readiness:** **96%**', 'commercial readiness metric');
+requireText(progress, '**Overall project completion:** **99.2%**', 'overall completion metric');
 requireText(progress, '**Exact next unfinished locale/document: None.', 'closed localization queue');
 
 forbidText(gate, 'TyconX', 'brand rule');
 forbidText(gate, 'TycoonX beta', 'release-status rule');
 
 if (!process.exitCode) {
-  console.log('PASS: TycoonX genuine-transaction enforcement gate preserves evidence, proportionality, paid-value, compromise, provider, and localization boundaries.');
+  console.log('PASS: TycoonX transfer/RMT enforcement gate preserves evidence, proportionality, paid-value, compromise, provider, and localization boundaries.');
 }
