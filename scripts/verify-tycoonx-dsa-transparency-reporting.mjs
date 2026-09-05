@@ -16,12 +16,14 @@ function requireMatch(text, pattern, message) {
 const gate = await readFile(gatePath, 'utf8');
 const community = await readFile(communityPath, 'utf8');
 
+requireMatch(gate, /Last reviewed: \*\*September 5, 2026\*\*/i, 'DSA transparency gate review date is stale.');
 requireMatch(gate, /Article 15\(2\).*micro or small enterprise/is, 'Missing Article 15(2) micro/small exemption analysis.');
 requireMatch(gate, /Implementing Regulation \*\*\(EU\) 2024\/2835\*\*/i, 'Missing current harmonised reporting regulation.');
 requireMatch(gate, /July 1, 2025/i, 'Missing harmonised-reporting application date.');
 requireMatch(gate, /January 1 through December 31/i, 'Missing ordinary calendar-year reporting period.');
 requireMatch(gate, /no later than \*\*two months after the end of the reporting period\*\*/i, 'Missing two-month publication deadline.');
 requireMatch(gate, /first full annual reporting cycle.*January 1 through December 31, 2026/is, 'Missing first full 2026 harmonised cycle.');
+requireMatch(gate, /February 2027/i, 'Missing end-February 2027 deadline checkpoint for an applicable full 2026 annual report.');
 requireMatch(gate, /February 2026/i, 'Missing February 2026 transitional harmonised-report checkpoint.');
 requireMatch(gate, /transition period ended on \*\*December 31, 2025\*\*/i, 'Missing end of reporting transition period.');
 requireMatch(gate, /do not backdate or fabricate a report/i, 'Missing missed-report remediation safeguard.');
@@ -50,6 +52,11 @@ requireMatch(gate, /From \*\*July 1, 2025\*\*.*aligned the Transparency Database
 requireMatch(gate, /remove personal data before database submission/i, 'Missing Article 24(5) personal-data removal safeguard.');
 requireMatch(gate, /web form or API/i, 'Missing current Transparency Database submission-channel awareness.');
 requireMatch(gate, /batches of up to 100/i, 'Missing current Transparency Database batch-API limit checkpoint.');
+requireMatch(gate, /Bundesnetzagentur/i, 'Missing current German Digital Services Coordinator onboarding path.');
+requireMatch(gate, /sandbox environment/i, 'Missing Transparency Database sandbox-before-production checkpoint.');
+requireMatch(gate, /platform-unique identifier \(`puid`\)/i, 'Missing current Transparency Database PUID requirement.');
+requireMatch(gate, /PUID must be unique within the platform/i, 'Missing PUID uniqueness safeguard.');
+requireMatch(gate, /Do not submit real player personal data to the sandbox/i, 'Missing sandbox personal-data safeguard.');
 requireMatch(gate, /Do \*\*not\*\* import Article 19's 12-month transition/i, 'Missing Article 15 versus Article 19 transition distinction.');
 
 requireMatch(gate, /Do not publish Apple, Google Play, or Xsolla order IDs/i, 'Missing payment-data isolation safeguard.');
@@ -77,5 +84,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Article 15/24 classification, 2024/2835 cycles and CSV/XLSX format, five-year version retention, Transparency Database alignment, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Article 15/24 classification, 2024/2835 cycles and CSV/XLSX format, February 2027 checkpoint, five-year version retention, German DSC onboarding, Transparency Database PUID/sandbox safeguards, privacy, and entitlement safeguards are present.');
 }
