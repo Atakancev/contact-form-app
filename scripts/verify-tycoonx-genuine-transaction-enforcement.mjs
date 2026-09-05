@@ -61,8 +61,11 @@ requireText(localized, "locale === 'ar'", 'Arabic RTL handling');
 requireText(economyGate, 'Correction and punishment are separate decisions', 'economy gate integration');
 requireText(accountGate, 'A security freeze, a moderation action, a payment-risk hold, and a final contractual termination are different decisions', 'account gate integration');
 requireText(progress, 'September 5, 2026 genuine-transaction and money-transfer invariant', 'progress transfer invariant');
+requireText(progress, 'September 5, 2026 genuine-transaction enforcement operations checkpoint', 'progress enforcement checkpoint');
 requireText(progress, '100/100, **100%**', 'localized full-document completion');
 requireText(progress, '25/25, **100%**', 'localized hub completion');
+requireText(progress, '**Full commercial/legal/payment readiness:** **95.5%**', 'commercial readiness metric');
+requireText(progress, '**Overall project completion:** **99.1%**', 'overall completion metric');
 requireText(progress, '**Exact next unfinished locale/document: None.', 'closed localization queue');
 
 forbidText(gate, 'TyconX', 'brand rule');
