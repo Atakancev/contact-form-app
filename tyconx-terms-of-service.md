@@ -235,6 +235,14 @@ If you want to ask other players for financial help, use TycoonX’s designated 
 
 CK-Labs may assess the surrounding context, including reciprocal value, transaction history, account relationships, repeated transfers, pricing patterns, and relevant communications. A high price, generous deal, or unusual transaction is not automatically a violation. Enforcement requires reasonable evidence that the mechanic was used mainly to transfer wealth without a genuine permitted gameplay purpose. CK-Labs may reverse prohibited transfers and proportionately restrict involved accounts, while preserving unrelated legitimate paid value and mandatory rights.
 
+**Real-money trading and off-platform exchange.** Unless CK-Labs expressly provides a specific authorized mechanism, you must not buy, sell, broker, advertise, arrange, or exchange a TycoonX account, in-game money, Diamonds, shares, companies, property, products, art, items, services, VIP, paid entitlements, or other game value for real money, cryptocurrency, gift cards, physical goods, outside services, or any other real-world consideration.
+
+This includes direct deals and indirect, staged, or middleman arrangements where an outside payment or benefit is linked to an in-game transfer. You must not use another person, alternate account, company, art sale, trade, auction, market order, Begging, or any other mechanic to disguise or complete such an exchange.
+
+This rule does not prohibit purchases made from CK-Labs through an authorized TycoonX channel, including Apple App Store, Google Play, or the official TycoonX web shop using Xsolla, nor a platform-supported gift or TycoonX transfer mechanism expressly made available for that purpose. Begging allows only the in-game assistance permitted by that feature; it does not authorize outside payment in exchange for TycoonX value.
+
+CK-Labs may reverse in-game transactions reasonably linked to prohibited real-money trading and may apply proportionate account restrictions after reasonable investigation. CK-Labs does not guarantee, escrow, enforce, refund, or mediate unauthorized off-platform deals between users. This does not limit rights or liabilities that cannot legally be excluded.
+
 If an exploit, hack, bug, payment error, unauthorized tool, compromised system, or data corruption creates invalid game state, CK-Labs may use authoritative server records, transaction records, backups, audit logs, and other reliable evidence to restore integrity.
 
 CK-Labs may invalidate, reverse, remove, recalculate, or roll back affected transactions, balances, assets, items, rewards, entitlements, scores, company state, market activity, or other records. Corrections may affect accounts that received invalid assets even if the current holder did not create the exploit, provided CK-Labs acts reasonably and preserves any remedy required for legitimate paid value.
