@@ -1,6 +1,6 @@
 # TycoonX German E-Commerce Checkout & Contract-Formation Release Gate
 
-Last reviewed: September 4, 2026
+Last reviewed: September 6, 2026
 Owner: CK-Labs
 Scope: paid TycoonX web checkout, Xsolla-powered webshop handoff, CK-Labs-owned order screens, and release evidence for Apple App Store and Google Play purchases where the platform controls the final payment interface.
 
@@ -155,9 +155,9 @@ If CK-Labs later launches a recurring TycoonX product through a German website, 
 
 Do not remove or disable the § 356a function merely because TycoonX value was delivered immediately.
 
-For a paid contract for non-physical digital content, current BGB § 356(5) requires the statutory conditions before an existing withdrawal right can expire early, including commencement of performance, the consumer's express consent to begin before the period ends, acknowledgement that this causes loss of the withdrawal right when performance begins, and the required confirmation under § 312f.
+For a paid contract for non-physical digital content, current **BGB § 356(6)** requires the statutory conditions before an existing withdrawal right can expire early, including commencement of performance, the consumer's express consent to begin before the period ends, acknowledgement that this causes loss of the withdrawal right when performance begins, and the required confirmation under § 312f.
 
-For a paid service, current BGB § 356(4) uses a different rule and requires full performance plus the applicable express consent/knowledge conditions before early expiry. Classify the product before applying an expiry rule.
+For a paid service, current **BGB § 356(5)** uses a different rule and requires full performance plus the applicable express consent/knowledge conditions before early expiry. **BGB § 356(4) is the current general twelve-month-and-14-day long-stop rule, not the paid-service early-expiry subsection.** Classify the product before applying an expiry rule.
 
 The separate `TYCOONX_GERMAN_WITHDRAWAL_DIGITAL_CONTENT_SERVICE_VALUE_RELEASE_GATE.md` controls the current digital-content/service classification evidence and BGB § 357a value-compensation boundary. In particular, a service start is not automatically full performance, and BGB § 357a(3) does not create a value-compensation claim for withdrawn non-tangible digital content.
 
@@ -275,7 +275,7 @@ Before go-live or after a material checkout/withdrawal change, capture at least 
 15. duplicate withdrawal submission is idempotent;
 16. consumer identifies only part of a contract/order where partial withdrawal is legally possible;
 17. wrong or unverifiable order identifier receives a safe review path without exposing another user's data;
-18. right has genuinely expired early and the evidence satisfies the correct § 356 rule;
+18. right has genuinely expired early and the evidence satisfies the correct current § 356 subsection;
 19. provider outage or notification delay during withdrawal;
 20. Apple-controlled purchase/refund route;
 21. Google-controlled purchase/refund route;
@@ -304,7 +304,7 @@ For each material German checkout release, retain a dated evidence packet contai
 - fields collected in the withdrawal flow;
 - durable-medium withdrawal receipt example with timestamp;
 - server-side receipt timestamp behavior near the deadline;
-- evidence supporting any early expiry of the withdrawal right;
+- evidence supporting any early expiry of the withdrawal right under current § 356(5) or § 356(6), as applicable;
 - provider role mapping for Apple, Google, or Xsolla;
 - idempotency/reconciliation evidence; and
 - proof that unrelated Diamonds, one-time 30-Day VIP, and Lifetime VIP remain unaffected.
@@ -331,10 +331,10 @@ This gate must never be weakened to say that:
 
 ## Current legal/platform checkpoint
 
-Reviewed against current sources available September 4, 2026:
+Reviewed against current sources available September 6, 2026:
 
 - German BGB § 356a, including `Vertrag widerrufen`, continuous/prominent/easy availability, the required name/contract/contact fields, `Widerruf bestätigen`, immediate durable-medium receipt, and the timely-submission rule;
-- current German BGB § 356(4) for services and § 356(5) for non-tangible digital content, which use different conditions for early expiry of withdrawal rights;
+- current German **BGB § 356(4) as the general twelve-month-and-14-day long-stop**, **§ 356(5) for services**, and **§ 356(6) for non-tangible digital content**;
 - German BGB § 357a(2) for proportionate service value compensation and § 357a(3) for the no-value-compensation rule on withdrawn non-tangible digital content;
 - EGBGB Article 246a § 1, including withdrawal information and, where applicable, information about the existence and placement of the § 356a function;
 - German BGB § 312i, § 312j, § 312e, and § 312f;
