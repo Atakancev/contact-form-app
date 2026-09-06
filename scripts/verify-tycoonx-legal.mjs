@@ -32,6 +32,7 @@ const REQUIRED_RELEASE_FILES = [
   'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md',
   'TYCOONX_APPLE_SOCIAL_MEDIA_AGE_RELEASE_GATE.md',
   'TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md',
+  'TYCOONX_GOOGLE_PLAY_CHARGEBACK_REVIEW_RELEASE_GATE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE.md',
   'TYCOONX_GERMAN_LEGAL_NOTICE_RELEASE_CHECKLIST.md',
   'TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md',
@@ -356,10 +357,24 @@ if (await exists(googlePaymentGate)) {
     fail('Google Play 2026 payment gate no longer requires Xsolla/Google/TycoonX reconciliation.');
   }
   if (!text.includes('PendingRefundReviewNotification') || !text.includes('orders.reviewrefund') || !/24-hour response window/i.test(text)) {
-    fail('Google Play 2026 payment gate is missing the collaborative chargeback-review 24-hour safeguard.');
+    fail('Google Play 2026 payment gate is missing the collaborative chargeback-review cross-check.');
   }
-  if (!/never fabricate/i.test(text) || !/excessive personal data/i.test(text)) {
+}
+
+const googleChargebackGate = path.join(ROOT, 'TYCOONX_GOOGLE_PLAY_CHARGEBACK_REVIEW_RELEASE_GATE.md');
+if (await exists(googleChargebackGate)) {
+  const text = await readFile(googleChargebackGate, 'utf8');
+  if (!text.includes('PendingRefundReviewNotification') || !text.includes('orders.reviewrefund') || !/24 hours|24-hour/i.test(text)) {
+    fail('Google Play chargeback gate is missing the current collaborative review workflow/deadline.');
+  }
+  if (!/first API call|first successful `ReviewRefund` submission/i.test(text)) {
+    fail('Google Play chargeback gate is missing first-submission finality safeguards.');
+  }
+  if (!/not fabricate evidence|Never invent/i.test(text) || !/excessive personal data/i.test(text)) {
     fail('Google Play chargeback gate is missing evidence-integrity/privacy safeguards.');
+  }
+  if (!/must not automatically trigger account suspension or termination/i.test(text)) {
+    fail('Google Play chargeback gate is missing the no-automatic-punishment safeguard.');
   }
 }
 
