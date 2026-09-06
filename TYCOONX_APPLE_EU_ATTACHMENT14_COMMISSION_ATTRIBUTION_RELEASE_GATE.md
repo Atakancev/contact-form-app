@@ -1,6 +1,6 @@
 # TycoonX Apple EU Attachment 14 Commission & Attribution Release Gate
 
-Last reviewed: September 4, 2026
+Last reviewed: September 6, 2026
 
 TycoonX went to full release on **September 1, 2026**. This is an internal production/commercial control for the Apple App Store EU transition. It complements, rather than replaces, `TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md`, `TYCOONX_APPLE_EU_SELLER_MERCHANT_AUDIT_RELEASE_GATE.md`, the TycoonX Terms, Purchases & Refunds Policy, and the Xsolla payment gates.
 
@@ -10,7 +10,7 @@ Apple's August 18, 2026 Developer Program License Agreement added Attachment 14 
 
 The existing transition gate correctly requires CK-Labs to determine the exact commission model before enabling alternative payments. This gate makes the current rate card, attribution window, and reconciliation rules explicit so a payment-routing decision cannot be based on the false assumption that an Xsolla transaction triggered from the iOS app owes only Xsolla fees.
 
-The percentages below are operational checkpoints from Apple's current September 4, 2026 materials. **Recheck the signed Apple agreement and current Apple materials before production activation and after any Apple terms change.** The signed/current Apple terms control if Apple later changes a rate, eligibility rule, attribution rule, tax treatment, or reporting method.
+The percentages below are operational checkpoints from Apple's current September 6, 2026 materials. **Recheck the signed Apple agreement and current Apple materials before production activation and after any Apple terms change.** The signed/current Apple terms control if Apple later changes a rate, eligibility rule, attribution rule, tax treatment, or reporting method.
 
 ## 1. Current Attachment 14 EU rate card
 
@@ -34,6 +34,30 @@ Before production activation, record for the CK-Labs account:
 - who owns monthly Apple commission reconciliation.
 
 Never hard-code a reduced rate merely because annual revenue appears below a threshold. Program enrollment and transaction eligibility must be verified against Apple's actual account state and current program rules.
+
+### 1A. October 2026 unified-fee migration guard
+
+Apple's August 18, 2026 public transition materials add a second distinction that must not be lost in implementation or finance estimates:
+
+- the old **Core Technology Fee** is being replaced under the unified EU terms by a **Core Technology Commission** of **5%** on qualifying digital transactions in iOS/iPadOS apps distributed **outside the App Store**;
+- the former **Initial Acquisition Fee** and **Store Services Fee** are being eliminated under the unified model; and
+- Apple still separately describes a **Store Services Commission** for qualifying out-of-app offers with an actionable link from an App Store-distributed app.
+
+These names are similar but are not interchangeable. In particular, elimination of the old **Store Services Fee** does **not** mean that an actionable TycoonX webshop link from an EU App Store build has no Apple charge. The current App Store route shown in the table above still carries the applicable Store Services Commission when Apple's attribution conditions are met.
+
+Likewise, the new 5% Core Technology Commission is **not** the default rate for an ordinary TycoonX Xsolla purchase merely because payment finishes outside Apple IAP. It concerns the current unified terms for qualifying apps distributed outside the App Store. If TycoonX remains distributed through the App Store, classify the transaction under the App Store route that actually applies. If CK-Labs later uses Web Distribution or an alternative app marketplace in the EU, perform a separate distribution-and-fee review before launch rather than reusing the App Store/Xsolla model.
+
+For every commercial forecast or reconciliation model, classify the transaction in this order:
+
+1. how the TycoonX app itself was distributed for that user/storefront;
+2. which payment/offer route the user used;
+3. whether an actionable-link attribution window applies;
+4. which CK-Labs Apple program/status and reduced-rate eligibility actually applied at the transaction time; and
+5. which current Attachment 14 commission, tax, reporting, and invoice rules apply to that exact combination.
+
+Do not blindly stack the 5% Core Technology Commission on top of an App Store commission, or replace an App Store commission with 5%, unless the signed/current Attachment 14 terms say that treatment applies to the exact distribution and transaction route. Preserve the source date, signed agreement version, program status, and calculation basis so a later Apple terms change does not silently rewrite historical accounting.
+
+The **seven-day actionable-link attribution window** and the **15-day-after-month-end reporting deadline** are separate clocks. A purchase can be within the attribution window while its report is not yet due, and meeting the reporting deadline does not by itself establish whether the purchase was commissionable under the seven-day rule.
 
 ## 2. Seven-calendar-day actionable-link attribution
 
@@ -186,6 +210,9 @@ Before launch, separately review:
 Do not enable the Attachment 14 alternative-payment configuration for TycoonX if any of the following remains true:
 
 - CK-Labs does not know which Apple rate currently applies to its actual account/program status;
+- the system cannot distinguish the app's distribution route before choosing the applicable Apple fee model;
+- a finance model treats the 5% Core Technology Commission as the default rate for an App Store-distributed Xsolla purchase;
+- a finance model treats elimination of the old Store Services Fee as elimination of the current actionable-link Store Services Commission;
 - actionable-link events are not timestamped;
 - the system cannot distinguish an independent webshop visit from an Apple actionable-link referral where the distinction matters;
 - Xsolla settlement is treated as final net revenue without Apple reconciliation;
@@ -218,16 +245,21 @@ Before activation, test at least:
 16. Regional-price difference with correct total-price display.
 17. Future price change leaving earlier completed one-time purchases untouched.
 18. Apple or Xsolla outage leaving entitlement/reporting state recoverable and idempotent.
+19. App Store-distributed purchase is not misclassified as a 5% outside-App-Store Core Technology Commission transaction.
+20. Future Web Distribution/alternative-marketplace sale is not forced into the App Store 15% actionable-link model without a fresh Attachment 14 classification.
+21. Finance reconciliation keeps seven-day attribution and month-end-plus-15-day reporting as separate clocks.
 
 ## Source checkpoint
 
-Apple's official EU payment-options guidance and current Developer Program License Agreement were rechecked on **September 4, 2026**. The current materials state, for the unified Attachment 14 EU model, that:
+Apple's official EU payment-options guidance and current Developer Program License Agreement transition materials were rechecked on **September 6, 2026**. The current materials state, for the unified Attachment 14 EU model, that:
 
 - Apple IAP uses a **26%** rate, with **15%** for the currently specified reduced-rate cases;
 - alternative payment processing within the app uses a **20%** rate, with **10%** for the currently specified reduced-rate cases;
-- actionable out-of-app offers use a **15% store services commission**, with **10%** for the currently specified reduced-rate cases;
-- the actionable-link store services commission covers qualifying promoted digital-goods/service sales initiated within **seven calendar days** after the link tap/scan;
-- Apple reporting for alternative payment activity remains separate from TycoonX entitlement delivery;
+- actionable out-of-app offers use a **15% Store Services Commission**, with **10%** for the currently specified reduced-rate cases;
+- the actionable-link Store Services Commission covers qualifying promoted digital-goods/service sales initiated within **seven calendar days** after the link tap/scan;
+- the old Core Technology Fee is replaced by a **5% Core Technology Commission** for qualifying digital transactions in apps distributed outside the App Store;
+- the old Initial Acquisition Fee and Store Services Fee are eliminated under the unified business terms, which must not be confused with the current Store Services Commission for actionable App Store out-of-app offers;
+- Apple reporting for alternative payment activity remains separate from TycoonX entitlement delivery and is due monthly within 15 days after the end of the calendar month where applicable;
 - refunds, reversals, and chargebacks affect commission reconciliation under Apple's terms; and
 - these unified terms apply from October 1, 2026 or the Account Holder's later acceptance date for the agreement including Attachment 14.
 
