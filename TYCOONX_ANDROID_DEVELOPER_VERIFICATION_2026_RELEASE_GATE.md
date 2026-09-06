@@ -1,14 +1,19 @@
 # TycoonX Android Developer Verification 2026 Release Gate
 
-Last reviewed: September 5, 2026
+Last reviewed: September 6, 2026
 
 TycoonX went to full release on September 1, 2026. This document is an operational, platform and consumer-continuity release gate for the Android build. It complements the public TycoonX Terms of Service, Privacy Policy, Purchases & Refunds Policy, Community Standards and the existing Google Play payment gates. It does not replace Google Play or Android program terms, mandatory law, or Play Console instructions for the actual developer account.
 
 ## Why this gate exists
 
-Android developer verification is no longer only a future planning item. Google currently requires developers to verify their identity and register Android package names. Enforcement starts on **September 30, 2026** for certified Android devices in **Brazil, Indonesia, Singapore and Thailand**, initially across Google Play, HONOR App Market, OPPO App Market, Galaxy Store, Palm Store, V-Appstore and GetApps. Google states that the requirement expands globally in 2027.
+Android developer verification is no longer only a future planning item. Google currently requires developers to verify their identity and register Android package names.
 
-For Play developers, the separate Play Console Requirements policy also becomes effective on **September 30, 2026**. Google states that Play apps that are not registered by that date can be removed from Google Play globally. TycoonX therefore must not assume that an existing live Play listing, an already verified payment profile, or Google's automatic registration attempt is sufficient evidence that the production package is actually registered.
+Two different September 30, 2026 rules must not be mixed together:
+
+1. **Android installation/update enforcement:** beginning September 30, 2026, Android's user-facing verification protection initially applies to installations and updates from the participating stores listed below in **Brazil, Indonesia, Singapore and Thailand**, on **certified Android devices running Android 7 or later**. Google's current FAQ says this first phase does not yet apply to direct sideloading or stores outside the initial participating-store list.
+2. **Google Play package-registration policy:** effective September 30, 2026, Play packages must be registered under the Play Console requirements. Google states that Play apps left unregistered can be removed from Google Play. This Play policy consequence is not limited to the four first-rollout countries.
+
+Google currently says more than 99% of Play apps were automatically registered, but TycoonX must not treat that statistic, an existing live listing, an already verified payment profile, or an assumed auto-registration as proof that the production package is actually registered.
 
 ## P0 release rule
 
@@ -22,25 +27,40 @@ Before the September 30, 2026 deadline, CK-Labs must preserve evidence from the 
 
 If any of those points is unknown, treat Android developer verification as an unresolved release/commercial blocker. Do not infer a pass from the fact that TycoonX is already published.
 
-## 1. September 30, 2026 enforcement boundary
+## 1. September 30, 2026 scope must be modeled correctly
 
-Current Android guidance states:
+Current Android guidance states that the initial OS-level enforcement:
 
-- the initial user-facing enforcement date is **September 30, 2026**;
-- the first affected countries are Brazil, Indonesia, Singapore and Thailand;
-- the requirement applies on certified Android devices and is not limited to Google Play installs;
-- the initial participating stores include Google Play, HONOR App Market, OPPO App Market, Galaxy Store, Palm Store, V-Appstore and GetApps;
-- ADB and Android's advanced sideloading flow remain distinct paths for unregistered apps; and
-- Android intends to expand verification globally in 2027.
+- begins on **September 30, 2026**;
+- starts in **Brazil, Indonesia, Singapore and Thailand**;
+- covers **certified devices running Android 7 or later**;
+- initially verifies installations from these participating stores: **Google Play, HONOR App Market, OPPO App Market, Galaxy Store, Palm Store, V-Appstore and GetApps**;
+- does not yet apply in this first phase to direct sideloading or stores outside that initial participating-store list;
+- allows ADB and Android's advanced flow as distinct paths for unregistered apps; and
+- is planned to expand globally in 2027 and beyond.
+
+The initial country/store/device scope is an Android installation-enforcement rule. It is **not** a safe basis for concluding that an unregistered Play package can remain listed outside those four countries after September 30. The separate Play Console requirements apply to Play package registration and can create a global Play-distribution consequence.
 
 Operational rules:
 
-- Do not hard-code the four-country list as a permanent business rule. It is the initial rollout, not a permanent territorial limit.
+- Do not hard-code the four-country or seven-store list as a permanent business rule. It is the initial rollout, not a permanent territorial/channel limit.
+- Do not falsely tell users of direct sideloading or a non-participating store that the September 30 Android installation check already applies there when Google's current first-phase FAQ says it does not.
+- Conversely, do not use the first-phase store limitation as an excuse to leave a Play package unregistered.
 - Do not tell players that TycoonX is unsupported in a country merely because Android developer verification is not yet enforced there.
-- Do not advertise the advanced sideloading flow as the ordinary substitute for maintaining a valid Play registration.
+- Do not advertise ADB or the advanced sideloading flow as the ordinary substitute for maintaining a valid Play registration.
 - Do not use an old installed copy as proof that new installs or updates will continue to work after enforcement.
 
-## 2. Play Console developers must verify identity and register package names
+## 2. Form-factor scope is not identical inside and outside Google Play
+
+Google's current FAQ distinguishes Play distribution from the initial off-Play enforcement scope.
+
+For **Google Play distribution**, TycoonX apps across all Play-distributed form factors must be registered where Google requires registration. Do not assume that a phone/tablet check alone proves every Play form factor is covered.
+
+For **distribution outside Google Play**, Google currently recommends registering apps across form factors for future continuity, while the September 30, 2026 initial enforcement in the selected regions applies to **mobile and tablet** form factors. This narrower first-phase enforcement must not be misrepresented as a permanent exemption for another Android form factor.
+
+Release evidence should therefore record package name, signing identity, distribution channel and form factor together rather than using one generic `android_verified=true` flag.
+
+## 3. Play Console developers must verify identity and register package names
 
 Google's current Play Console guidance says Play developers must complete two separate tasks:
 
@@ -57,13 +77,14 @@ Release evidence must therefore record separately:
 - package name;
 - package registration state;
 - signing certificate fingerprint or Play-provided key reference needed to identify the registered key without exposing the private key;
+- distribution channel and form factor;
 - date/time checked;
 - operator who checked it; and
 - screenshot/export or other durable evidence from Play Console.
 
-## 3. Do not rely blindly on auto-registration
+## 4. Do not rely blindly on auto-registration
 
-Google states that it attempts to auto-register eligible existing and new Play apps, and that most Play apps have already been registered automatically. That is useful automation, not a legal or operational presumption.
+Google states that it attempts to auto-register eligible existing and new Play apps and that more than 99% of Play apps have been registered automatically. That is useful automation, not a legal or operational presumption.
 
 TycoonX must check the actual package status shown in Play Console. If the production package is not registered, CK-Labs must use the current Play Console registration/request flow before the deadline.
 
@@ -75,7 +96,7 @@ Google's current package-eligibility rules can distinguish among:
 
 A package/key that is not automatically eligible can require a registration request or justification. Do not create a new package name, abandon player continuity, or rotate production signing identity merely to bypass a registration conflict without first assessing account ownership, update continuity, purchased entitlements and the current Google transfer/registration process.
 
-## 4. Signing-key ownership proof
+## 5. Signing-key ownership proof
 
 Current Android developer verification documentation can require proof that the developer controls a known private signing key. Depending on the flow, proof can involve a Google-generated verification token placed in `adi-registration.properties`, followed by creation and upload of an APK signed with the relevant private key.
 
@@ -87,9 +108,9 @@ Security rules:
 - If Play App Signing or another store-managed signing model applies, preserve which key Google recognizes as authoritative for the production package.
 - A lost key, wrong certificate or package-ownership conflict is a security/release incident, not a reason to invent a new entitlement ledger.
 
-## 5. Accurate Play Console account information
+## 6. Accurate Play Console account information
 
-The Play Console Requirements policy effective September 30, 2026 requires accurate developer and app information, including applicable legal name/address, contact details, payment profile and, for organization accounts, the required organization information such as D-U-N-S data.
+The Play Console Requirements policy effective September 30, 2026 requires accurate developer and app information, including applicable legal name/address, contact details, payment profile and, for organization accounts, required organization information such as D-U-N-S data.
 
 TycoonX rules:
 
@@ -101,14 +122,14 @@ TycoonX rules:
 
 Google currently states that verified information can be displayed on Google Play. For personal accounts, current guidance says the legal name, country and developer email are displayed, and monetizing personal developers can have the full address displayed. Organization developer profiles have broader public organization/contact disclosure requirements. Do not promise that information supplied to Play verification is private when Google's current rules make it public.
 
-## 6. Business sale, merger, reorganization or successor operator
+## 7. Business sale, merger, reorganization or successor operator
 
 TycoonX legal documents already preserve the possibility of a lawful sale, merger, reorganization or successor operator. Android developer verification adds a separate package/account continuity requirement.
 
 If ownership or operator identity changes:
 
 - use the official Google Play account/app transfer process where applicable;
-- preserve the package registration and signing-key state through the authorized transfer process;
+- preserve package registration and signing-key state through the authorized transfer process;
 - treat a package state such as `PENDING_TRANSFER` as incomplete until the transfer is actually resolved;
 - do not sell, lease or transfer a Play developer account through an unofficial marketplace or informal credential handoff;
 - preserve transaction and entitlement reconciliation across the transfer; and
@@ -116,7 +137,7 @@ If ownership or operator identity changes:
 
 A corporate/business transfer does not authorize replaying old Apple, Google or Xsolla purchases as new grants.
 
-## 7. Off-Play distribution
+## 8. Off-Play distribution
 
 If CK-Labs distributes the same or another TycoonX Android package outside Google Play, do not assume the Play listing automatically covers every off-Play package/key combination.
 
@@ -128,25 +149,39 @@ For each off-Play distribution path, preserve:
 - exact signing certificate fingerprint;
 - Android developer verification registration status;
 - store/channel;
+- form factor;
+- whether that channel is in the current enforcement phase;
 - whether the package/key differs from the Play build; and
-- tested installation/update behavior on an affected certified Android device.
+- tested installation/update behavior on an affected certified Android device where the requirement applies.
 
 Do not create a second developer identity simply because an alternative store is used.
 
-## 8. 2027 global expansion
+### Initial non-participating-store/direct-sideload treatment
 
-The current rollout plan says Android developer verification expands globally in 2027. Treat this as a monitored platform requirement, not as a promise that every country activates on one identical date.
+Google's current FAQ says that on September 30, 2026 the new requirement is initially limited to the participating stores. Direct sideloading and other stores outside that list are not yet subject to the new check during this first phase.
+
+That is a temporary rollout fact, not a founder promise or permanent player right. Before CK-Labs enables or markets any off-Play route, recheck the current Android verification coverage and store requirements. Do not tell users that direct website APK distribution will remain exempt through 2027 or indefinitely.
+
+## 9. Android Enterprise/private-app exceptions must not leak into the public game
+
+Current Android Enterprise guidance contains separate treatment for certain private apps on managed enterprise devices. TycoonX is a public consumer game, so CK-Labs must not borrow a private-enterprise-app exemption to justify leaving the public production package unregistered.
+
+If CK-Labs ever distributes a genuinely private managed build for internal testing or an enterprise-controlled environment, document that build/package separately. Never let an enterprise/private-build exception, test signing key or managed-device package overwrite the registration or entitlement identity of the public TycoonX build.
+
+## 10. 2027 global expansion
+
+The current rollout plan says Android developer verification expands globally in 2027 and beyond. Treat this as a monitored platform requirement, not as a promise that every country, store and form factor activates on one identical date.
 
 Before any new Android distribution market or store is enabled:
 
 - check the current Android developer verification coverage;
 - confirm the TycoonX package/key is registered for the intended path;
-- confirm the store is participating or has additional requirements; and
+- confirm the store/form factor is participating or has additional requirements; and
 - retain the date and source of the decision.
 
 Do not freeze September 2026 guidance into permanent code.
 
-## 9. User-facing installation/update failures are not fraud
+## 11. User-facing installation/update failures are not fraud
 
 An Android developer verification failure can stop a legitimate user from installing or updating TycoonX. That state is not by itself evidence that the player:
 
@@ -162,7 +197,7 @@ Account enforcement must use independent evidence.
 
 Likewise, a Play registration outage, wrong signing association, pending transfer or CK-Labs verification mistake must not silently alter a player's balances or paid-product history.
 
-## 10. Paid-entitlement invariants
+## 12. Paid-entitlement invariants
 
 ### Purchased Diamonds
 
@@ -183,7 +218,7 @@ Likewise, a Play registration outage, wrong signing association, pending transfe
 - It may be withdrawn from future sale, may never return, and creates no expectation of continuous availability for purchase.
 - Android developer verification, package migration, store removal or reinstall must not add an expiry to a valid Lifetime VIP, duplicate it, convert it to 30-Day VIP, or reopen a closed sales window.
 
-## 11. Refunds and mandatory consumer remedies remain separate
+## 13. Refunds and mandatory consumer remedies remain separate
 
 A store installation/update restriction is not automatically a refund event. However, CK-Labs must not use Android developer verification as a contractual excuse to remove mandatory EU/German consumer rights.
 
@@ -193,7 +228,7 @@ Do not tell a consumer that "Google blocked the app, therefore no remedy exists"
 
 Provider-caused outages and platform rule changes should be documented separately from CK-Labs-caused configuration failures. The allocation of platform responsibility does not erase CK-Labs responsibilities that mandatory law places on CK-Labs as contracting trader/operator.
 
-## 12. Old and unsupported app versions
+## 14. Old and unsupported app versions
 
 Developer verification must not become a reason to keep insecure old versions alive indefinitely.
 
@@ -206,18 +241,21 @@ CK-Labs may require supported app versions for security, platform compatibility,
 
 If package registration prevents delivery of a necessary security/conformity update, escalate the issue as a release and consumer-continuity incident.
 
-## 13. Evidence packet
+## 15. Evidence packet
 
 For release readiness, keep a dated Android developer verification evidence packet containing at least:
 
 - official source review date;
 - September 30, 2026 deadline acknowledgment;
+- distinction between the initial four-country/seven-store Android installation scope and the Play Console package-registration obligation;
+- Android 7+ certified-device scope for the initial installation checks;
 - Play developer identity verification state;
 - Play Console account type;
 - required legal/contact/payment-profile consistency check;
 - each TycoonX package name;
 - package registration state;
 - public signing certificate fingerprint/key reference;
+- distribution channel and form factor;
 - whether auto-registration succeeded or manual/request flow was needed;
 - any registration justification/request and final outcome;
 - transfer state if relevant;
@@ -228,42 +266,51 @@ For release readiness, keep a dated Android developer verification evidence pack
 
 Do not put private signing keys, government-ID scans, payment credentials or unnecessary personal data in this evidence packet.
 
-## 14. Regression scenarios
+## 16. Regression scenarios
 
 Release QA should cover at least these scenarios:
 
-1. **Play app shows REGISTERED**: evidence is saved and installation/update succeeds.
-2. **Identity verified but package not registered**: release gate fails.
-3. **Package auto-registration assumed but Play shows IN_REVIEW**: release gate fails.
-4. **Package is PENDING_TRANSFER**: ownership migration is not treated as complete.
-5. **Wrong signing key**: do not ship a replacement package merely to bypass verification.
-6. **Registration request requires justification**: preserve the request and wait for the authoritative outcome rather than assuming approval.
-7. **Brazil install after September 30**: verified registered build installs normally.
-8. **Indonesia update after September 30**: update path works with the registered production identity.
-9. **Singapore/Thailand store variant**: exact off-Play/store package and signing key are verified, not inferred from the Play build.
-10. **Registration status temporarily unavailable**: do not change Diamonds/VIP while investigating.
-11. **Existing user cannot update because of CK-Labs registration error**: escalate consumer-continuity and mandatory-remedy assessment.
-12. **Purchased Diamonds after reinstall**: reconcile exactly once, with no expiry and no duplicate grant.
-13. **30-Day VIP reinstall**: preserve the original one-time non-renewing 30-day period.
-14. **Lifetime VIP reinstall**: preserve exactly one valid Lifetime VIP and do not reopen a closed sales window.
-15. **Business transfer**: use official transfer process and preserve package/entitlement continuity.
-16. **2027 new market**: query current coverage rather than relying on the September 2026 four-country list.
-17. **Old unsupported app version**: block only under a documented supported-version policy while preserving mandatory rights and account recovery.
-18. **Player reports install failure**: do not label the player fraudulent or compromised based on the verification error.
+1. **Play app shows REGISTERED:** evidence is saved and installation/update succeeds.
+2. **Identity verified but package not registered:** release gate fails.
+3. **Package auto-registration assumed but Play shows IN_REVIEW:** release gate fails.
+4. **Package is PENDING_TRANSFER:** ownership migration is not treated as complete.
+5. **Wrong signing key:** do not ship a replacement package merely to bypass verification.
+6. **Registration request requires justification:** preserve the request and wait for the authoritative outcome rather than assuming approval.
+7. **Brazil Play install after September 30 on certified Android 7+:** verified registered build installs normally.
+8. **Indonesia Play update after September 30 on certified Android 7+:** update path works with the registered production identity.
+9. **Singapore/Thailand participating-store variant:** exact package and signing key are verified, not inferred from the Play build.
+10. **Direct sideload on September 30:** do not falsely apply the first-phase participating-store enforcement to that path, while still preparing it for the 2027 expansion.
+11. **Non-participating store on September 30:** do not falsely claim initial OS-level enforcement, but separately verify whether Play or that store imposes its own package/account requirements.
+12. **Play app outside the four initial countries remains unregistered:** do not treat geography as an exemption from the Play Console package-registration policy.
+13. **Play non-phone form factor:** package registration is checked rather than assuming the first-phase mobile/tablet off-Play scope controls Play registration.
+14. **Registration status temporarily unavailable:** do not change Diamonds/VIP while investigating.
+15. **Existing user cannot update because of CK-Labs registration error:** escalate consumer-continuity and mandatory-remedy assessment.
+16. **Purchased Diamonds after reinstall:** reconcile exactly once, with no expiry and no duplicate grant.
+17. **30-Day VIP reinstall:** preserve the original one-time non-renewing 30-day period.
+18. **Lifetime VIP reinstall:** preserve exactly one valid Lifetime VIP and do not reopen a closed sales window.
+19. **Business transfer:** use official transfer process and preserve package/entitlement continuity.
+20. **2027 new market/store/form factor:** query current coverage rather than relying on the September 2026 initial scope.
+21. **Old unsupported app version:** block only under a documented supported-version policy while preserving mandatory rights and account recovery.
+22. **Player reports install failure:** do not label the player fraudulent or compromised based on the verification error.
+23. **Enterprise/private test package:** do not use a managed/private-app exception to excuse public TycoonX registration.
 
-## 15. Source checkpoint
+## 17. Source checkpoint
 
 Current official sources reviewed for this gate:
 
+- Android developer verification overview: https://developer.android.com/developer-verification
 - Android developer verification guide: https://developer.android.com/developer-verification/guides
-- Android Developers Blog, Android developer verification: https://android-developers.googleblog.com/2026/06/android-developer-verification.html
-- Google Play upcoming deadlines: https://developer.android.com/distribute/play-policies
+- Android developer verification FAQ, last updated August 27, 2026: https://developer.android.com/developer-verification/guides/faq
+- Android Developers Blog, June 18, 2026 rollout update: https://developer.android.com/blog/posts/android-developer-verification-building-a-safer-ecosystem-together
+- Play Console policy deadline table: https://support.google.com/googleplay/android-developer/table/12921780
 - Play Console Help, Registering Play package names: https://support.google.com/googleplay/android-developer/answer/16984799
-- Play Console Requirements: https://support.google.com/googleplay/android-developer/answer/10788890
-- Play Console developer-account information: https://support.google.com/googleplay/android-developer/answer/13628312
+- Preview of Play Console Requirements effective September 30, 2026: https://support.google.com/googleplay/android-developer/answer/17125096
+- Android Enterprise private-app guidance: https://support.google.com/work/android/answer/17266330
 
 The source pages can change. Recheck them before the September 30 deadline and again when the 2027 rollout details become concrete.
 
 ## Final release rule
 
-TycoonX Android distribution is not considered verification-ready merely because the game is already live. The authoritative production developer identity and each intended package/signing identity must be registered under the current Android/Play requirements, with evidence preserved before enforcement. Verification failures must remain isolated from fraud findings and from purchased Diamonds, one-time 30-Day VIP and limited-window Lifetime VIP, while mandatory consumer remedies remain intact.
+TycoonX Android distribution is not considered verification-ready merely because the game is already live. The authoritative production developer identity and each intended package/signing identity must be registered under the current Android/Play requirements, with evidence preserved before enforcement.
+
+Do not collapse the September 30 rules into one geography flag: Play package-registration compliance and the initial Android installation-enforcement scope are related but separate. The first OS-level phase currently covers the named participating stores in four countries on certified Android 7+ devices, while Google's Play requirements can affect Play distribution globally. Verification failures must remain isolated from fraud findings and from purchased Diamonds, one-time 30-Day VIP and limited-window Lifetime VIP, while mandatory consumer remedies remain intact.
