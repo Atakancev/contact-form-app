@@ -83,7 +83,9 @@ requireText(gate, 'Straßburger Str. 8', 'current body address');
 requireText(gate, 'https://www.universalschlichtungsstelle.de', 'current body website');
 
 // The German legal-notice checklist is an implementation surface of the same doctrine,
-// not a second independent ADR verifier.
+// not a second independent ADR verifier. Preserve all useful assertions from the
+// former standalone VSBG verifier here before delegating its old command name.
+requireText(checklist, 'Last reviewed: September 4, 2026', 'legal-notice review date');
 requireText(checklist, 'German VSBG §§ 36 and 37 impose different duties', 'legal-notice §36/§37 distinction');
 requireText(checklist, 'ten or fewer persons on 31 December of the preceding year', 'legal-notice §36 headcount');
 requireText(checklist, 'headcount, not full-time-equivalent working hours', 'legal-notice headcount method');
@@ -91,8 +93,14 @@ requireText(checklist, 'does **not** remove § 36(1) no. 2', 'legal-notice narro
 requireText(checklist, 'The § 36(3) headcount exemption does **not** exempt CK-Labs from § 37.', 'legal-notice §37 survives');
 requireText(checklist, 'current postal address and website', 'legal-notice §37 body details');
 requireText(checklist, 'provide that information in **text form**', 'legal-notice §37 text form');
+requireText(checklist, 'Universalschlichtungsstelle des Bundes', 'legal-notice current universal body checkpoint');
+requireText(checklist, 'Straßburger Str. 8, 77694 Kehl, Germany', 'legal-notice current body address');
+requireText(checklist, 'https://www.universalschlichtungsstelle.de', 'legal-notice current body website');
 requireText(checklist, 'An ADR request, a § 37 notice, or a consumer’s decision to contact a conciliation body is not by itself evidence of fraud', 'legal-notice no-retaliation');
+requireText(checklist, 'one-time non-renewing 30-Day VIP entitlement', 'legal-notice 30-Day VIP isolation');
+requireText(checklist, 'reopen a closed Lifetime VIP sales window', 'legal-notice Lifetime VIP sales-window isolation');
 requireText(checklist, 'Directive (EU) **2025/2647**', 'legal-notice future ADR reform');
+requireText(checklist, 'January 19, 2026', 'legal-notice future ADR reform entry into force');
 requireText(checklist, 'March 20, 2028', 'legal-notice transposition deadline');
 requireText(checklist, 'September 20, 2028', 'legal-notice application date');
 requireText(checklist, '20 working days', 'legal-notice future response period');
@@ -144,8 +152,15 @@ requireText(impressum, 'Die frühere EU-Plattform für Online-Streitbeilegung (O
 forbidText(impressum, 'ec.europa.eu/consumers/odr', 'public Impressum stale ODR URL');
 
 requireText(terms, '## 34. Consumer dispute resolution', 'canonical ADR section');
+requireText(terms, '§ 37 VSBG', 'canonical §37 reference');
 requireText(terms, 'whether CK-Labs is willing or legally obliged to participate', 'canonical truthful participation status');
+requireText(terms, 'Nothing in these Terms creates a voluntary general commitment to participate', 'canonical no accidental ADR commitment');
+requireText(terms, 'These Terms do not impose mandatory arbitration', 'canonical no mandatory arbitration');
 requireText(terms, 'The former European Commission Online Dispute Resolution platform was discontinued in 2025.', 'canonical ODR sunset');
+requireText(terms, 'Purchased Diamonds do not expire solely because time passes.', 'canonical Diamonds non-expiry');
+requireText(terms, 'one-time, non-renewing digital entitlement', 'canonical 30-Day VIP');
+requireText(terms, 'limited promotional sales windows', 'canonical Lifetime VIP sales-window rule');
+requireText(terms, 'Mandatory consumer remedies remain unaffected.', 'canonical mandatory-remedy caveat');
 requireText(terms, 'Nothing in these Terms excludes, limits, or overrides rights that cannot legally be excluded or limited', 'canonical mandatory rights');
 requireText(purchases, 'does not reduce any rights that cannot legally be waived', 'Purchases mandatory rights');
 requireText(purchases, 'CK-Labs remains responsible for delivering the corresponding TycoonX entitlement after receiving valid confirmation of successful payment.', 'CK-Labs entitlement responsibility');
