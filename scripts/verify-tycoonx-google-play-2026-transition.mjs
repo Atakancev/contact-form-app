@@ -10,7 +10,6 @@ const trackerPath = path.join(ROOT, 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
 const gate = await readFile(gatePath, 'utf8');
 const tracker = await readFile(trackerPath, 'utf8');
-
 const errors = [];
 
 function requireText(text, needle, label) {
@@ -30,10 +29,8 @@ const requiredGate = [
   'Do not assume the US is enrolled through the new UK/EEA Billing Choice program',
   'Play Billing Library **9.1 or higher**',
   'order history, subscription management where a subscription exists, customer service, and refund requests',
-  'Google\'s current US alternative-billing program, updated July 22, 2026',
   'starting **October 1, 2026**',
   'all authorized US alternative-billing transactions can be reported to Google within **24 hours**',
-  'Google\'s current US external content links program, also updated July 22, 2026',
   '$0 transactions arising from free-trial purchases',
   'Purchase links versus external-app-download links',
   '24-hour external-link attribution and reporting are different concepts',
@@ -43,8 +40,16 @@ const requiredGate = [
   'Xsolla transaction ID',
   'Google external transaction ID',
   'September 30, 2026: Australia and Japan fee/billing-choice rollout',
-  'Apps Experience Program / revamped Play Games Level Up Program',
-  'do not claim TycoonX participates until CK-Labs has reviewed the final eligibility/integration requirements and actual Play Console acceptance/enrollment',
+  'TycoonX is a game: Level Up, not Apps Experience Program',
+  'Google Play Games Level Up',
+  'September 3, 2026',
+  'Enrollment being available does not equal approval',
+  'Mobile, Foldables, and Tablets',
+  'Japan: external payments and User Choice Billing are mutually exclusive',
+  'cannot offer External Payments and User Choice Billing at the same time',
+  'Do not infer an Australia external-link permission',
+  'Apps Experience Program is not an automatic fallback',
+  'explicit enrollment, implementation/maintenance of applicable guidelines, Google validation, and approval',
   'Voided Purchases API (`purchases.voidedpurchases.list`)',
   '`PendingRefundReviewNotification`',
   '`orders.reviewrefund`',
@@ -53,7 +58,6 @@ const requiredGate = [
   'one-time, non-renewing 30-day entitlement',
   'selected genuine sales windows',
   'Do not bypass Google parental/supervised-user controls to reach Xsolla.',
-  'a US user is routed through UK/EEA Billing Choice enrollment assumptions without the correct US program',
   'node scripts/verify-tycoonx-google-play-2026-transition.mjs',
 ];
 
@@ -68,16 +72,32 @@ requireText(tracker, 'Localized full documents:** 100/100, **100%**', 'localizat
 requireText(tracker, 'Localized hubs:** 25/25, **100%**', 'localization tracker');
 requireText(tracker, 'Exact next unfinished locale/document: None.', 'localization tracker');
 
-if (!/October 1, 2026[\s\S]{0,5000}24 hours/i.test(gate)) {
-  errors.push('Google Play 2026 gate: October 1 US transition is not tied to an operational 24-hour reporting control.');
-}
-
-if (!/order history[\s\S]{0,300}refund requests/i.test(gate)) {
-  errors.push('Google Play 2026 gate: required US alternative-billing post-purchase support links are incomplete.');
+if (!/October 1, 2026[\s\S]{0,4000}24 hours/i.test(gate)) {
+  errors.push('Google Play 2026 gate: October 1 US transition is not tied to a 24-hour reporting control.');
 }
 
 if (!/linkout time[\s\S]{0,1000}report-submission time/i.test(gate)) {
-  errors.push('Google Play 2026 gate: linkout attribution and report-deadline timestamps are not independently preserved.');
+  errors.push('Google Play 2026 gate: attribution and report-deadline timestamps are not independently preserved.');
+}
+
+if (!/TycoonX is a game[\s\S]{0,500}Level Up/i.test(gate)) {
+  errors.push('Google Play 2026 gate: TycoonX is not explicitly classified into the games program review path.');
+}
+
+if (!/Level Up[\s\S]{0,1500}validation\/approval[\s\S]{0,1500}regional rollout date/i.test(gate)) {
+  errors.push('Google Play 2026 gate: lower Level Up rates are not conditioned on approval and rollout timing.');
+}
+
+if (!/Mobile, Foldables, and Tablets/.test(gate)) {
+  errors.push('Google Play 2026 gate: September 30 Level Up form-factor checkpoint is missing.');
+}
+
+if (!/Japan[\s\S]{0,2000}cannot offer External Payments and User Choice Billing at the same time/i.test(gate)) {
+  errors.push('Google Play 2026 gate: Japan program exclusivity is missing.');
+}
+
+if (!/Australia[\s\S]{0,1500}external-link permission/i.test(gate)) {
+  errors.push('Google Play 2026 gate: Australia external-link fail-closed rule is missing.');
 }
 
 if (!/30-Day VIP remains a \*\*one-time, non-renewing 30-day entitlement\*\*/.test(gate)) {
