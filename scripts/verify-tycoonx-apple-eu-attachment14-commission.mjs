@@ -10,13 +10,26 @@ const purchases = await readFile('tyconx-purchase-refund-policy.md', 'utf8');
 const progress = await readFile('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md', 'utf8');
 
 const requiredGate = [
-  ['Last reviewed: September 4, 2026', 'current review date'],
+  ['Last reviewed: September 6, 2026', 'current review date'],
   ['TycoonX went to full release on **September 1, 2026**', 'full-release status'],
   ['October 1, 2026', 'Attachment 14 transition date'],
   ['whichever is later', 'later acceptance/effective-date rule'],
   ['Apple In-App Purchase | **26%** | **15%**', 'Apple IAP 26/15 rate card'],
   ['Alternative payment processing within the app | **20%** | **10%**', 'alternative in-app 20/10 rate card'],
   ['**15% store services commission**', 'out-of-app 15 percent rate'],
+  ['Core Technology Fee', 'legacy Core Technology Fee transition'],
+  ['Core Technology Commission', 'Core Technology Commission distinction'],
+  ['**5%** on qualifying digital transactions', 'outside-App-Store 5 percent checkpoint'],
+  ['distributed **outside the App Store**', 'outside-App-Store distribution scope'],
+  ['Initial Acquisition Fee', 'legacy Initial Acquisition Fee elimination'],
+  ['Store Services Fee', 'legacy Store Services Fee elimination'],
+  ['Store Services Commission', 'current actionable-link Store Services Commission distinction'],
+  ['does **not** mean that an actionable TycoonX webshop link', 'old-fee/new-commission naming safeguard'],
+  ['not** the default rate for an ordinary TycoonX Xsolla purchase', 'no false 5 percent Xsolla default'],
+  ['how the TycoonX app itself was distributed', 'distribution-route-first classification'],
+  ['Do not blindly stack the 5% Core Technology Commission', 'no fee stacking without contractual basis'],
+  ['seven-day actionable-link attribution window', 'attribution clock distinction'],
+  ['15-day-after-month-end reporting deadline', 'reporting clock distinction'],
   ['within **seven (7) calendar days', 'seven-calendar-day attribution window'],
   ['all digital goods and services usable within that app can be treated as promoted', 'broad promoted-goods attribution rule'],
   ['independently visits the public TycoonX webshop', 'standalone-webshop distinction'],
@@ -37,8 +50,10 @@ const requiredGate = [
   ['Do not create a misleading `Apple surcharge` label', 'no misleading consumer surcharge label'],
   ['TycoonX currently has no recurring subscription product', 'no-current-recurring-product invariant'],
   ['Do not enable the Attachment 14 alternative-payment configuration', 'P0 fail-closed rule'],
+  ['App Store-distributed purchase is not misclassified as a 5% outside-App-Store Core Technology Commission transaction', 'distribution regression'],
+  ['Finance reconciliation keeps seven-day attribution and month-end-plus-15-day reporting as separate clocks', 'dual-clock regression'],
   ['Minimum production regression scenarios', 'production regression matrix'],
-  ["Apple's official EU payment-options guidance and current Developer Program License Agreement were rechecked on **September 4, 2026**", 'dated Apple source checkpoint'],
+  ["Apple's official EU payment-options guidance and current Developer Program License Agreement transition materials were rechecked on **September 6, 2026**", 'dated Apple source checkpoint'],
 ];
 
 const requiredTransition = [
@@ -84,5 +99,5 @@ if (missing.length || forbiddenHits.length) {
   for (const [, label] of forbiddenHits) console.error(`- Found ${label}`);
   process.exitCode = 1;
 } else {
-  console.log('\nPASS: current Apple EU Attachment 14 commission rates, seven-day actionable-link attribution, entitlement isolation, pricing, consumer-rights, and localization invariants are present.');
+  console.log('\nPASS: current Apple EU Attachment 14 commission rates, unified-fee migration, distribution-route classification, seven-day actionable-link attribution, entitlement isolation, pricing, consumer-rights, and localization invariants are present.');
 }
