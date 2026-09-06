@@ -9,8 +9,8 @@ const gatePath = path.join(ROOT, 'TYCOONX_LIFETIME_VIP_LIMITED_PROMOTIONAL_ENTIT
 const termsPath = path.join(ROOT, 'tyconx-terms-of-service.md');
 const purchasesPath = path.join(ROOT, 'tyconx-purchase-refund-policy.md');
 const crossPlatformPath = path.join(ROOT, 'TYCOONX_CROSS_PLATFORM_ENTITLEMENT_PARITY_RELEASE_GATE.md');
-const shutdownPath = path.join(ROOT, 'TYCOONX_PERMANENT_SHUTDOWN_OPERATIONAL_RELEASE_GATE.md');
-const promotionsPath = path.join(ROOT, 'TYCOONX_PROMOTIONS_DARK_PATTERNS_RELEASE_GATE.md');
+const shutdownPath = path.join(ROOT, 'TYCOONX_PERMANENT_SHUTDOWN_END_OF_SERVICE_RELEASE_GATE.md');
+const promotionsPath = path.join(ROOT, 'TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md');
 const conformityPath = path.join(ROOT, 'TYCOONX_EU_DIGITAL_PRODUCT_CONFORMITY_REMEDIES_RELEASE_GATE.md');
 const accountPath = path.join(ROOT, 'TYCOONX_ACCOUNT_SUSPENSION_COMPROMISE_TERMINATION_RELEASE_GATE.md');
 const progressPath = path.join(ROOT, 'TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
@@ -144,6 +144,8 @@ requireMatch(purchases, /restorable or re-linked after verification/i, 'Canonica
 // Existing operational gates must still cover related risks.
 requireMatch(crossPlatform, /Lifetime VIP/i, 'Cross-platform entitlement gate no longer covers Lifetime VIP.');
 requireMatch(shutdown, /Lifetime VIP/i, 'Permanent shutdown gate no longer covers Lifetime VIP.');
+requireMatch(shutdown, /at least 31 days before removal/i, 'Permanent shutdown gate lost Apple IAP removal notice guidance.');
+requireMatch(shutdown, /Developer Removed from Sale.*customers who already purchased it retain access.*StoreKit\/App Store Server API/is, 'Permanent shutdown gate lost Apple removed-from-sale retention/transaction-access safeguard.');
 requireMatch(promotions, /Lifetime VIP/i, 'Promotions/dark-pattern gate no longer covers Lifetime VIP.');
 requireMatch(conformity, /Lifetime VIP/i, 'Digital conformity gate no longer covers Lifetime VIP.');
 requireMatch(account, /Lifetime VIP/i, 'Account enforcement gate no longer covers Lifetime VIP.');
