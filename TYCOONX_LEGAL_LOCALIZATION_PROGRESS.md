@@ -69,6 +69,14 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Lifetime VIP verifier/runtime-path and Apple formal-removal checkpoint
+
+Repository-wide QA found that `scripts/verify-tycoonx-lifetime-vip.mjs` referenced two stale/nonexistent release-gate filenames. The verifier therefore could fail at file loading before it reached the substantive Lifetime VIP assertions. The references were corrected to the actual existing gates: `TYCOONX_PERMANENT_SHUTDOWN_END_OF_SERVICE_RELEASE_GATE.md` and `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md`.
+
+The verifier now also cross-checks the existing shutdown gate's current Apple formal In-App Purchase removal safeguards. Apple currently advises announcing an IAP removal and stopping merchandising at least 31 days before removal, and its `Developer Removed from Sale` status preserves access for customers who already purchased while keeping transaction information available through StoreKit/App Store Server API. This formal App Store Connect removal lifecycle is distinct from merely closing a genuine Lifetime VIP promotional sales window, but both states must preserve already-purchased entitlement and mandatory-remedy logic.
+
+This checkpoint is verifier/runtime and platform-lifecycle hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 German BFSG e-commerce accessibility checkpoint
 
 The existing `TYCOONX_BFSG_ECOMMERCE_ACCESSIBILITY_RELEASE_GATE.md` and `scripts/verify-tycoonx-bfsg-accessibility.mjs` were hardened against the current BFSG/BFSGV rather than creating a duplicate accessibility doctrine.
@@ -129,8 +137,8 @@ Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.9%**
-- **Overall project completion:** **99.88%**
+- **Full commercial/legal/payment readiness:** **99.0%**
+- **Overall project completion:** **99.90%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
