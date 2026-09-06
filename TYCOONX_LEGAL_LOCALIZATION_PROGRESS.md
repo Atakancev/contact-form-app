@@ -80,6 +80,28 @@ For the TycoonX personal-data processing described in the Privacy Policy, the cu
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Apple Japan alternative-payment checkpoint
+
+A dedicated `TYCOONX_APPLE_JAPAN_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` now covers Apple's current Japan App Store alternative-payment framework without treating the existing U.S. or EU steering rules as globally interchangeable.
+
+The active implementation controls now preserve that:
+
+- Apple's current Japan program applies to the Japan storefront on iPhone running iOS 26.2 or later and requires the StoreKit External Purchases or Offers Entitlement plus the current Japan business terms before TycoonX exposes an alternative payment route;
+- the entitlement uses the current Japan allowed-region value `jp`, and StoreKit/program eligibility must not be guessed from GPS, IP, device language, SIM country, or a TycoonX profile country;
+- where TycoonX offers an in-app alternative processor or an actionable website purchase link under the Japan program, Apple In-App Purchase must remain available on the relevant merchandising/payment screens and at least as prominent as the alternative option under Apple's current rules;
+- the Japan App Store product page must not be used to advertise purchasing on the TycoonX website or with alternative payment processing where Apple's current program prohibits that metadata;
+- the current actionable flow checks `canMakePayments`, then `ExternalPurchaseCustomLink.isEligible`, and uses the Apple-required `showNotice` disclosure before routing to the alternative purchase path;
+- current child-safety rules require parental purchasing controls for alternative payments, prohibit an out-of-app website purchase offer to users under 13, and require the relevant parental gate for users under 18 as specified by Apple;
+- Xsolla/browser/client success state is never payment authority: TycoonX grants paid value only after authoritative server-side confirmation and keeps Apple reporting, Xsolla payment, and TycoonX entitlement states distinct and idempotent;
+- Apple currently requires alternative-payment reporting that includes refunds/corrections and other relevant outcomes, with monthly reporting within 15 days after the calendar month, and directs iOS 26.4+ implementations to the External Purchase Server API while iOS 26.2/26.3 follow the then-current transitional reporting instructions;
+- Apple's current actionable out-of-app offer terms describe a 7-day attribution period for the store-services commission, but fee percentages/program status remain time-sensitive and must be reverified rather than hard-coded into player-facing legal copy;
+- Apple IAP and Xsolla/webshop refund/support histories remain transaction-specific and must not be routed to the wrong provider; and
+- purchased Diamonds, one-time non-renewing 30-Day VIP, limited-window Lifetime VIP, anti-double-recovery protections, and mandatory consumer rights remain unchanged.
+
+Dedicated verifier: `scripts/verify-tycoonx-apple-japan-alternative-payment.mjs`.
+
+This checkpoint is operational/platform hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Apple U.S. storefront external-purchase steering checkpoint
 
 A dedicated `TYCOONX_APPLE_US_STOREFRONT_EXTERNAL_PURCHASE_RELEASE_GATE.md` now covers the current Apple U.S. storefront steering rule without duplicating the existing EU alternative-payment gates.
@@ -118,7 +140,7 @@ The canonical Privacy Policy and all 25 localized Privacy routes directly disclo
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklist, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions, Apple U.S. storefront steering, Google Play Billing Choice and U.S. payment-program transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
+Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Google Play Billing Choice and U.S. payment-program transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
 
 ## Canonical source status
 
@@ -132,8 +154,8 @@ Completed hardening includes Apple Custom EULA parity, Apple EU alternative-paym
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.1%**
-- **Overall project completion:** **99.72%**
+- **Full commercial/legal/payment readiness:** **98.2%**
+- **Overall project completion:** **99.74%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
