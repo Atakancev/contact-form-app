@@ -69,6 +69,26 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Apple South Korea alternative-payment checkpoint
+
+`TYCOONX_APPLE_SOUTH_KOREA_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` now preserves Apple's current South Korea StoreKit External Purchase Entitlement boundary as a distinct program rather than reusing the Apple Japan, U.S., EU, Google Play South Korea, or ordinary TycoonX webshop architecture.
+
+Current controls preserve that:
+
+- the entitlement uses a **South Korea-only binary** and Apple currently limits assignment to an eligible bundle ID that has not already been published on the App Store;
+- Apple's current South Korea rule makes the entitlement mutually exclusive with Apple In-App Purchase in the same app, unlike the current Japan coexistence/prominence model;
+- Apple currently requires one PSP per entitlement and lists KCP, Inicis, Toss, and NICE as pre-approved providers; Xsolla must not be assumed approved and must be submitted/accepted for the exact entitlement before CK-Labs uses it;
+- the payment flow must be a **native in-app payment experience**, not an ordinary webshop/webview reuse; the user may leave the app only where legally required and permitted by Apple's current terms;
+- the production binary must preserve the current `com.apple.developer.storekit.external-purchase` entitlement, `SKExternalPurchase` with `KR`, `canMakePayments`, South Korea Storefront/SKStorefront checks, and Apple's required External Purchase Modal Sheet;
+- Apple currently documents a 26% commission on the price paid gross of VAT, monthly reporting within 15 calendar days after the end of Apple's fiscal month, invoicing/payment within 45 days after the fiscal month, and audit rights; those time-sensitive commercial terms are not hard-coded into player-facing legal prose;
+- PSP payment state, TycoonX entitlement state, Apple reporting state, tax state, and later refunds/reversals/chargebacks remain separate authorities;
+- purchased Diamonds, one-time non-renewing 30-Day VIP, limited-window Lifetime VIP, truthful price/tax/FX rules, provider-specific refund responsibilities, security fail-closed behavior, and mandatory consumer rights remain intact; and
+- if the second binary/PSP/reporting stack is not commercially justified, the safer default remains ordinary Apple In-App Purchase in South Korea.
+
+Dedicated verifier: `scripts/verify-tycoonx-apple-south-korea-alternative-payment.mjs`.
+
+This checkpoint is operational/commercial hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Google Play India / South Korea / Australia eligibility checkpoint
 
 The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was hardened again rather than creating another overlapping Google payment gate.
@@ -119,7 +139,7 @@ The canonical Privacy Policy and all 25 localized Privacy routes directly disclo
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklists, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions/unified fee reconciliation, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Google Play Billing Choice, Google Play Level Up/Japan/U.S./India/South Korea payment transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
+Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions/unified fee reconciliation, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Apple South Korea alternative-payment controls, Google Play Billing Choice, Google Play Level Up/Japan/U.S./India/South Korea payment transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
 
 ## Canonical source status
 
@@ -133,8 +153,8 @@ Completed hardening includes Apple Custom EULA parity, Apple EU alternative-paym
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.5%**
-- **Overall project completion:** **99.80%**
+- **Full commercial/legal/payment readiness:** **98.6%**
+- **Overall project completion:** **99.82%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
