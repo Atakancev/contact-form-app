@@ -23,6 +23,9 @@ function forbid(text, needle, label) {
 const requiredGate = [
   'Last reviewed: September 6, 2026',
   'TycoonX is in full release.',
+  'one **one program per region at a time**'.replace('one **one', '**one'),
+  'Treat a program switch as a controlled Play Console/backend transition',
+  'A blog announcement is evidence of an announcement, not a substitute for later operative program terms or actual account eligibility.',
   'United Kingdom:** Billing Choice program',
   'United States:** use Google\'s **existing alternative billing in the United States** program',
   '**existing external content links program**',
@@ -40,6 +43,13 @@ const requiredGate = [
   'Xsolla transaction ID',
   'Google external transaction ID',
   'September 30, 2026: Australia and Japan fee/billing-choice rollout',
+  'Source-precedence and conflicting-date control',
+  'earlier Google/Android Developers announcement listed **Japan with the December 31, 2026 Korea phase**',
+  'current Play Console Help timeline now lists **Japan with Australia on September 30, 2026**',
+  'Treat this as a live policy-source divergence',
+  'use the most current operative program-specific Google Play documentation and actual Play Console eligibility/enrollment',
+  '**fail closed** for the new route and do not book the lower fee',
+  'Never rewrite historical economics because Google later changes a rollout date or documentation.',
   'December 31, 2026: South Korea rollout',
   'TycoonX is a game: Level Up, not Apps Experience Program',
   'Google Play Games Level Up',
@@ -63,6 +73,8 @@ const requiredGate = [
   'embedded webview',
   '10% Korean VAT',
   'India and South Korea are not waiting-room markets',
+  'source-publication/retrieval/effective dates for policy decisions',
+  'any official-source conflict and how it was resolved',
   'Voided Purchases API (`purchases.voidedpurchases.list`)',
   '`PendingRefundReviewNotification`',
   '`orders.reviewrefund`',
@@ -92,6 +104,18 @@ if (!/October 1, 2026[\s\S]{0,4000}24 hours/i.test(gate)) {
 
 if (!/linkout time[\s\S]{0,1000}report-submission time/i.test(gate)) {
   errors.push('Google Play 2026 gate: attribution and report-deadline timestamps are not independently preserved.');
+}
+
+if (!/one \*\*one program per region at a time\*\*/i.test(gate)) {
+  errors.push('Google Play 2026 gate: current regional program exclusivity rule is missing.');
+}
+
+if (!/source-precedence[\s\S]{0,1800}December 31, 2026[\s\S]{0,1000}September 30, 2026[\s\S]{0,1600}fail closed/i.test(gate)) {
+  errors.push('Google Play 2026 gate: Google policy-source divergence is not tied to a fail-closed precedence rule.');
+}
+
+if (!/official source title\/URL[\s\S]{0,1000}retrieved[\s\S]{0,1000}accepted program terms/i.test(gate)) {
+  errors.push('Google Play 2026 gate: dated source/Play Console decision evidence is incomplete.');
 }
 
 if (!/TycoonX is a game[\s\S]{0,500}Level Up/i.test(gate)) {
