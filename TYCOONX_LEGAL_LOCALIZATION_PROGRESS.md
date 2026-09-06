@@ -69,6 +69,20 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Google Play policy-source precedence / regional-program checkpoint
+
+The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was hardened instead of creating another overlapping Google payment gate.
+
+Current controls now preserve that Google's own 2026 public materials can diverge during a staged rollout: an earlier Google/Android Developers announcement grouped Japan with the December 31, 2026 Korea phase, while the current Play Console Help lower-service-fee timeline lists Japan with Australia on September 30, 2026. TycoonX therefore uses the most current operative program-specific Google Play documentation plus actual Play Console eligibility/enrollment at the decision time rather than selecting an older announcement because it produces a commercially preferred date or rate. If current official sources still conflict materially or Play Console does not confirm the expected program, the affected new route/rate fails closed until the operative state is resolved.
+
+The gate also records Google's current regional-program exclusivity rule: TycoonX may participate in multiple Google billing programs overall, but where a region offers multiple program options the app can be enrolled in only **one program per region at a time**. A program switch must be a controlled Play Console/backend transition rather than simultaneous client feature flags.
+
+For each material fee/routing decision, CK-Labs now retains the official source/title, source publication or update date where available, retrieval date, effective date relied on, applicable Play Console enrollment state, accepted program-term version/date, and historical production configuration. Later documentation changes are applied prospectively where required and do not silently rewrite historical transaction economics.
+
+Dedicated verifier: `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
+
+This checkpoint is operational/commercial hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Apple South Korea alternative-payment checkpoint
 
 `TYCOONX_APPLE_SOUTH_KOREA_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` now preserves Apple's current South Korea StoreKit External Purchase Entitlement boundary as a distinct program rather than reusing the Apple Japan, U.S., EU, Google Play South Korea, or ordinary TycoonX webshop architecture.
@@ -153,8 +167,8 @@ Completed hardening includes Apple Custom EULA parity, Apple EU alternative-paym
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.6%**
-- **Overall project completion:** **99.82%**
+- **Full commercial/legal/payment readiness:** **98.7%**
+- **Overall project completion:** **99.84%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
