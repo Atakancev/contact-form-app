@@ -69,6 +69,16 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Google Play Billing Library version-lifecycle checkpoint
+
+A dedicated `TYCOONX_GOOGLE_PLAY_BILLING_LIBRARY_VERSION_LIFECYCLE_RELEASE_GATE.md` and `scripts/verify-tycoonx-google-play-billing-library-lifecycle.mjs` now preserve the current Google Play Billing Library submission lifecycle without conflating it with the separate Billing Choice program minimum.
+
+Google's current deprecation table says Play Billing Library 7 reached its normal new-app/update deadline on **August 31, 2026**, with an account-specific extension path only until **November 1, 2026** where the extension is actually available and obtained. Existing installed apps can continue to function, but that does not make an unsupported library version acceptable for a new TycoonX submission. Ordinary post-deadline submissions should use a currently supported version; TycoonX Billing Choice remains separately subject to the stricter current **Play Billing Library 9.1+** requirement.
+
+The gate also requires verification of the effective dependency in the release artifact, transitive SDK/plugin dependencies, merged billing-library manifest metadata, maintained Play tracks, and actual Play Console policy state. A deprecated library or old installed client is treated as a release-maintenance issue, not evidence of player fraud, hacking, chargeback abuse, or entitlement abuse. Purchased Diamonds, one-time non-renewing 30-Day VIP, Lifetime VIP, refunds, restores, acknowledgement, and idempotent fulfillment remain isolated from the migration itself.
+
+This checkpoint is implementation/platform-lifecycle hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Lifetime VIP verifier/runtime-path and Apple formal-removal checkpoint
 
 Repository-wide QA found that `scripts/verify-tycoonx-lifetime-vip.mjs` referenced two stale/nonexistent release-gate filenames. The verifier therefore could fail at file loading before it reached the substantive Lifetime VIP assertions. The references were corrected to the actual existing gates: `TYCOONX_PERMANENT_SHUTDOWN_END_OF_SERVICE_RELEASE_GATE.md` and `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md`.
@@ -123,7 +133,7 @@ The canonical Privacy Policy and all 25 localized Privacy routes directly disclo
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklists, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South Korea payment routing and fee/reporting controls; Google Play Billing Choice, Level Up and regional payment transitions; Xsolla mandatory-consumer-rights override; refunded/transferred-value reconciliation; temporary restriction review lifecycle; CRA reporting; German legal notice/ADR, e-commerce checkout, BGB § 356a withdrawal function and current § 356 subsection mapping; entitlement reconciliation; permanent shutdown; business transfer/successor operation; digital-product conformity/modification; accessibility; DSA/UGC moderation; youth/minor protections; VAT/tax/FX; pricing/promotions; and security/privacy controls.
+Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South Korea payment routing and fee/reporting controls; Google Play Billing Choice, Level Up, regional payment transitions, and Billing Library version lifecycle; Xsolla mandatory-consumer-rights override; refunded/transferred-value reconciliation; temporary restriction review lifecycle; CRA reporting; German legal notice/ADR, e-commerce checkout, BGB § 356a withdrawal function and current § 356 subsection mapping; entitlement reconciliation; permanent shutdown; business transfer/successor operation; digital-product conformity/modification; accessibility; DSA/UGC moderation; youth/minor protections; VAT/tax/FX; pricing/promotions; and security/privacy controls.
 
 ## Canonical source status
 
@@ -137,8 +147,8 @@ Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **99.0%**
-- **Overall project completion:** **99.90%**
+- **Full commercial/legal/payment readiness:** **99.1%**
+- **Overall project completion:** **99.91%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
