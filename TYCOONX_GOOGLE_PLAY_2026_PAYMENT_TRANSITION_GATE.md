@@ -29,6 +29,7 @@ A generic `external_checkout_enabled` flag is not enough. Program, market, insta
 - If the applicable Google program requires a choice between Google Play Billing and an alternative method, do not suppress, degrade, delay, or visually disadvantage the required Google Play option.
 - If the program permits alternative billing in lieu of Google Play Billing, do not accidentally import a user-choice requirement from a different program.
 - Reverify current Google documentation and Play Console state before a material rollout because eligibility, court-order programs, fees, APIs, and market coverage can change.
+- Where Google offers more than one program option for the same region, do not enroll or operate TycoonX in two mutually exclusive programs for that region at the same time. Google's current User Choice Billing overview states that an app may enroll in more than one program overall, but if a region has multiple program options the app can be enrolled in only **one program per region at a time**. Treat a program switch as a controlled Play Console/backend transition, not as two simultaneous client feature flags.
 
 ### 1A. Current market/program map: do not treat every market as Billing Choice
 
@@ -80,6 +81,8 @@ Treat the EEA External Offers Program as a distinct program rather than another 
 ### 1D. Storefront/program decision table
 
 Maintain a live decision table containing at least the user market/storefront, exact enrolled Google program, enrollment/approval evidence and date, whether Google Play Billing is shown, whether alternative in-app billing is allowed, whether an external web link is allowed, required Play Billing Library/API version, choice/information/parental-control behavior, reporting token/API and transaction classification, reporting deadline, service-fee model and install-cohort dependency, payment/refund/chargeback authority, customer-support owner, and last official-source recheck date.
+
+For each material rollout or fee decision, retain the official source title/URL, source publication or last-update date where Google exposes one, the date CK-Labs retrieved it, the effective date relied on, the applicable Play Console program/enrollment state, and the version/date of any accepted program terms. A blog announcement is evidence of an announcement, not a substitute for later operative program terms or actual account eligibility.
 
 If a row is unknown, contradictory, stale, or not backed by actual enrollment, fail closed and do not expose Xsolla steering for that storefront.
 
@@ -165,14 +168,22 @@ If Google changes fees or program rules, future TycoonX prices may be changed wh
 
 ## 8. September 30, 2026 and later rollout checkpoints
 
-Google's current lower-service-fee timeline states:
+Google's current Play Console Help page **Understanding Google Play's lower service fees**, retrieved for this September 6, 2026 review, states:
 
 - June 30, 2026: EEA, UK, and US fee/billing-choice changes;
 - September 30, 2026: Australia and Japan fee/billing-choice rollout;
 - December 31, 2026: South Korea rollout;
 - September 30, 2027: rest-of-world rollout.
 
-### 8A. TycoonX is a game: Level Up, not Apps Experience Program
+### 8A. Source-precedence and conflicting-date control
+
+Google's 2026 public materials have not always shown the same Japan rollout date. An earlier Google/Android Developers announcement listed **Japan with the December 31, 2026 Korea phase**, while the current Play Console Help timeline now lists **Japan with Australia on September 30, 2026**. Treat this as a live policy-source divergence, not as permission to pick whichever date produces the lower fee sooner.
+
+For production routing, entitlement/payment UX, and fee accrual, use the most current operative program-specific Google Play documentation and actual Play Console eligibility/enrollment available to CK-Labs at the decision time. A dated developer blog announcement does not override later operative Help Center/program terms or the Play Console state of the TycoonX app. If current official Google sources still conflict materially, or Play Console does not yet expose/confirm the expected program for TycoonX, **fail closed** for the new route and do not book the lower fee until the conflict is resolved by the operative program terms/account state.
+
+Never rewrite historical economics because Google later changes a rollout date or documentation. Preserve the policy snapshot and program state that governed each historical transaction, while applying later valid changes prospectively where required.
+
+### 8B. TycoonX is a game: Level Up, not Apps Experience Program
 
 Google published the revamped **Google Play Games Level Up** guidelines on September 3, 2026. TycoonX is a game, so do not model it as an ordinary app merely to obtain the Apps Experience Program rate card. The relevant new games program is Play Games Level Up unless Google expressly classifies TycoonX otherwise in Play Console.
 
@@ -188,7 +199,7 @@ Current Level Up technical/experience checkpoints include Google Play Games Serv
 
 For the September 30, 2026 phase specifically, Google's current Level Up guideline set requires distribution across **Mobile, Foldables, and Tablets** with the applicable quality requirements. It also sets game-specific crash/ANR/performance criteria and a title-availability rule affecting comparable non-Android launches from September 30, 2026 onward. Do not claim Level Up eligibility while TycoonX knowingly fails a mandatory applicable guideline or while a required exemption has not been established.
 
-### 8B. Japan: external payments and User Choice Billing are mutually exclusive
+### 8C. Japan: external payments and User Choice Billing are mutually exclusive
 
 Google's current Japan External Payments enrollment page states that the program is limited to users in Japan, allows games to participate, requires external payment links to be offered side-by-side with Google Play Billing through Google's External Payments API, and says enrolled apps cannot offer External Payments and User Choice Billing at the same time.
 
@@ -198,17 +209,17 @@ For Japan External Payments, preserve Google's required user experience, parenta
 
 Google's consumer-facing help currently identifies external payment links as available in Japan. Do not infer an Australia external-link permission from Japan's program or from the September 30 Australia fee/billing-choice rollout.
 
-### 8C. Apps Experience Program is not an automatic fallback
+### 8D. Apps Experience Program is not an automatic fallback
 
 Google's Apps Experience Program opened Play Console enrollment on September 1, 2026 and requires explicit enrollment, implementation/maintenance of applicable guidelines, Google validation, and approval before its program rate card applies to eligible transactions. If a future TycoonX companion app or other non-game product is considered for AEP, apply those requirements to that separate product. Do not use AEP enrollment as a workaround for TycoonX game-program eligibility.
 
-### 8D. Australia pre-September-30 fail-closed rule
+### 8E. Australia pre-September-30 fail-closed rule
 
 Do not confuse an announced future expansion with present game eligibility. As of this September 6 review, Google's existing User Choice Billing pilot says games are eligible in the EEA and Japan, while the other listed pilot locations are non-gaming mobile/tablet apps. TycoonX therefore must not ship Australian alternative billing under that old pilot merely because Australia appears in the pilot country list.
 
 Before September 30, 2026, the Australian Play build should remain on the currently authorized payment path unless Google has separately approved a TycoonX-specific alternative route. On or after September 30, re-read the then-effective expanded Billing Choice terms, confirm game eligibility and Play Console enrollment, confirm API/UX/reporting/service-fee requirements, and only then enable any new route. If the final terms are delayed, incomplete, or contradictory, continue to fail closed.
 
-### 8E. India and South Korea are not waiting-room markets
+### 8F. India and South Korea are not waiting-room markets
 
 India and South Korea already have current alternative-billing programs for games. The later expanded-billing-choice dates govern future model changes, not whether the current special programs exist.
 
@@ -253,7 +264,7 @@ Use obfuscated/server-side identifiers where supported, do not put unprotected p
 
 ## 14. Play review and audit evidence
 
-Maintain a dated internal packet with enrolled programs/markets, Play Console evidence, storefront/program routing, Android purchase UI, Play Billing Library/API versions, Google-token/Xsolla/TycoonX entitlement mapping, success/refund/chargeback/idempotency evidence, reporting-deadline evidence, supervised-user paths, required US support links, September 30 Australia/Japan evidence, India and South Korea enrollment/API/reporting evidence, South Korea tax treatment, Level Up enrollment/validation and applicable guideline evidence, and dated copies of official Google materials relied on for production decisions.
+Maintain a dated internal packet with enrolled programs/markets, Play Console evidence, storefront/program routing, Android purchase UI, Play Billing Library/API versions, Google-token/Xsolla/TycoonX entitlement mapping, success/refund/chargeback/idempotency evidence, reporting-deadline evidence, supervised-user paths, required US support links, September 30 Australia/Japan evidence, India and South Korea enrollment/API/reporting evidence, South Korea tax treatment, Level Up enrollment/validation and applicable guideline evidence, source-publication/retrieval/effective dates for policy decisions, any official-source conflict and how it was resolved, and dated copies of official Google materials relied on for production decisions.
 
 Do not store payment credentials, identity documents, or sensitive user evidence in this public repository.
 
@@ -265,6 +276,9 @@ Fail release or disable the affected steering flow if any of these occur:
 - a storefront has no proven program enrollment;
 - Xsolla is exposed globally from the Play app using one feature flag;
 - Google Play Billing is required to remain available but is selectively hidden or degraded;
+- two mutually exclusive Google billing/steering programs are enabled for the same region at the same time;
+- an older blog-announcement rollout date is used to override a later operative Play Console Help/program term or actual TycoonX enrollment state;
+- an unresolved conflict between current official Google sources is resolved by choosing the commercially cheaper date instead of failing closed;
 - an Oct 1 US transaction cannot be reported within the required window;
 - linkout attribution time is confused with reporting-deadline time;
 - a report or payment retry duplicates a Google report or TycoonX entitlement;
