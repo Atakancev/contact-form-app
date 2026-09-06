@@ -47,23 +47,28 @@ const [gate, checkout, terms, purchases, progress] = await Promise.all([
 ]);
 
 // Current review, scope and microenterprise evidence.
-requireMatch(gate, /Last reviewed: September 5, 2026/i, 'Missing current BFSG review checkpoint.');
+requireMatch(gate, /Last reviewed: September 6, 2026/i, 'Missing current BFSG review checkpoint.');
 requireMatch(gate, /single TycoonX operational doctrine/i, 'Missing single-source BFSG doctrine rule.');
 requireMatch(gate, /June 28, 2025/i, 'Missing BFSG applicability date.');
 requireMatch(gate, /BFSG § 3\(3\)/i, 'Missing BFSG § 3(3) service exemption.');
 requireMatch(gate, /fewer than 10 persons/i, 'Missing microenterprise person threshold.');
 requireMatch(gate, /annual turnover of \*\*no more than €2 million\*\*/i, 'Missing microenterprise turnover threshold.');
 requireMatch(gate, /annual balance-sheet total of \*\*no more than €2 million\*\*/i, 'Missing microenterprise balance-sheet threshold.');
+requireMatch(gate, /financial limb is an \*\*OR\*\*, not an AND/i, 'Missing correct statutory turnover-or-balance-sheet test.');
+requireMatch(gate, /person-count requirement still has to be satisfied/i, 'Missing person-count conjunction safeguard.');
 requireMatch(gate, /not a permanent product feature/i, 'Missing rule against permanent hard-coded exemption.');
 requireMatch(gate, /not a universal BFSG exemption/i, 'Missing service/product exemption separation.');
 
-// § 14, Annex 3 and authority information.
+// § 14, Annex 3, formal nonconformity and authority information.
 requireMatch(gate, /BFSG § 14/i, 'Missing BFSG § 14 service-provider gate.');
 requireMatch(gate, /Annex 3/i, 'Missing BFSG Annex 3 information gate.');
 requireMatch(gate, /as long as the service is offered or provided/i, 'Missing Annex 3 information-retention rule.');
+requireMatch(gate, /terms and conditions or in another clearly perceptible manner/i, 'Missing Annex 3 publication-location rule.');
+requireMatch(gate, /hidden, orphaned, non-indexed, inaccessible, or support-only document/i, 'Missing hidden-Annex-3 safeguard.');
 requireMatch(gate, /general description of the relevant service/i, 'Missing Annex 3 service description.');
 requireMatch(gate, /description of how the service meets the applicable accessibility requirements/i, 'Missing Annex 3 conformity explanation.');
 requireMatch(gate, /competent market-surveillance authority/i, 'Missing Annex 3 authority requirement.');
+requireMatch(gate, /BFSG § 30.*formal nonconformity/is, 'Missing BFSG § 30 formal-nonconformity rule.');
 requireMatch(gate, /MLBF AöR/i, 'Missing current MLBF checkpoint.');
 requireMatch(gate, /Carl-Miller-Straße 6, 39112 Magdeburg/i, 'Missing current MLBF address checkpoint.');
 requireMatch(gate, /verify the current authority name and contact route/i, 'Missing authority freshness safeguard.');
@@ -76,6 +81,9 @@ requireMatch(gate, /zoom, larger-text and orientation behavior/i, 'Missing zoom/
 requireMatch(gate, /session expiry, security timeout, or countdown behavior/i, 'Missing timeout accessibility safeguard.');
 requireMatch(gate, /BFSGV § 19/i, 'Missing BFSGV § 19 e-commerce requirements.');
 requireMatch(gate, /identification, authentication, security, and payment functions/i, 'Missing § 19 identification/authentication/security/payment coverage.');
+requireMatch(gate, /information on the accessibility of products for sale and services offered/i, 'Missing § 19 accessibility-information duty.');
+requireMatch(gate, /insofar as that information is supplied by the responsible economic operator/i, 'Missing § 19 responsible-economic-operator limitation.');
+requireMatch(gate, /do not invent an accessibility characteristic, certification, or provider statement/i, 'Missing unsupported accessibility-claim safeguard.');
 requireMatch(gate, /CAPTCHA, OTP, anti-bot challenge, SCA\/3DS flow/i, 'Missing accessible security-challenge coverage.');
 requireMatch(gate, /whole relevant shop journey matters/i, 'Missing end-to-end shop journey rule.');
 requireMatch(gate, /BFSG Annex 1/i, 'Missing Annex 1 market-surveillance test model.');
@@ -89,7 +97,7 @@ requireMatch(checkout, /BGB § 356a/i, 'German checkout gate lost § 356a protec
 requireMatch(checkout, /`Vertrag widerrufen`/i, 'German checkout gate lost first withdrawal control label.');
 requireMatch(checkout, /`Widerruf bestätigen`/i, 'German checkout gate lost confirmation withdrawal control label.');
 
-// Provider boundaries and standards-change control.
+// Provider boundaries and standards/change control.
 requireMatch(gate, /Apple App Store/i, 'Missing Apple responsibility boundary.');
 requireMatch(gate, /Accessibility Nutrition Labels/i, 'Missing Apple accessibility metadata separation.');
 requireMatch(gate, /Google Play/i, 'Missing Google Play responsibility boundary.');
@@ -100,9 +108,13 @@ requireMatch(gate, /BFSG § 1\(4\)\(4\)/i, 'Missing narrow third-party-content e
 requireMatch(gate, /neither financed nor developed by CK-Labs nor under CK-Labs control/i, 'Missing third-party factual control test.');
 requireMatch(gate, /EN 301 549 V3\.2\.1 \(2021-03\)/i, 'Missing EN 301 549 engineering checkpoint.');
 requireMatch(gate, /WCAG 2\.2 as forward-looking engineering guidance/i, 'Missing forward-looking WCAG 2.2 safeguard.');
-requireMatch(gate, /July 10, 2026 amendment/i, 'Missing current BFSGV amendment checkpoint.');
+requireMatch(gate, /BFSG § 14.*service-provider duty/is, 'Missing BFSG § 14 service-provider numbering distinction.');
+requireMatch(gate, /BFSGV § 14.*telecommunications services/is, 'Missing BFSGV § 14 telecommunications numbering distinction.');
+requireMatch(gate, /July 10, 2026 and effective July 16, 2026/i, 'Missing exact BFSGV 2026 amendment/effective-date checkpoint.');
+requireMatch(gate, /amended BFSGV § 7.*replaced BFSGV § 14/is, 'Missing scope of July 2026 BFSGV amendment.');
+requireMatch(gate, /did \*\*not\*\* replace BFSGV § 19/i, 'Missing safeguard that 2026 amendment did not replace e-commerce § 19.');
 
-// §§ 16-17 narrow exceptions, now including the migrated cadence/funding rules.
+// §§ 16-17 narrow exceptions, including cadence/funding rules.
 requireMatch(gate, /Fundamental alteration and disproportionate burden are narrow routes/i, 'Missing narrow exception heading.');
 requireMatch(gate, /Annex 4 criteria/i, 'Missing Annex 4 assessment requirement.');
 requireMatch(gate, /retain it for \*\*five years from the last provision of the service\*\*/i, 'Missing § 17 documentation-retention rule.');
@@ -166,5 +178,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: BFSG scope/exemption, Annex 3, § 17 reassessment, provider boundaries, end-to-end accessibility, nondiscrimination, and paid-entitlement safeguards are present.');
+  console.log('PASS: BFSG scope/exemption, Annex 3/§ 30 formal compliance, § 19 e-commerce information/functions, 2026 numbering/change control, provider boundaries, end-to-end accessibility, nondiscrimination, and paid-entitlement safeguards are present.');
 }
