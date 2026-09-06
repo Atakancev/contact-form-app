@@ -38,7 +38,12 @@ As of this September 6, 2026 review, Google's current program materials require 
 - **EEA:** Billing Choice is available for alternative billing; Google's existing EEA External Offers Program remains a separate route for external offers, and legacy EEA program paths may remain available where Google says they do.
 - **United States:** use Google's **existing alternative billing in the United States** program for alternative billing, and the **existing external content links program** for external web links. Do not assume the US is enrolled through the new UK/EEA Billing Choice program merely because Android APIs share concepts.
 - **Japan:** current Google materials distinguish User Choice Billing from the Japan-only External Payments program. These programs are not interchangeable and, under Google's current External Payments enrollment rules, an enrolled app cannot offer External Payments and User Choice Billing at the same time in Japan.
-- **Australia:** User Choice Billing is an existing alternative-billing route for eligible apps/games. Do not infer that a September 30 fee/billing-choice rollout automatically authorizes an external web purchase link. A linkout needs its own current Google program authority.
+- **Australia:** as of September 6, 2026, the existing User Choice Billing pilot does **not** make a game such as TycoonX eligible merely because Australia is listed as a pilot market; Google's current pilot eligibility allows games in the EEA and Japan, while the other listed pilot markets are non-gaming-app routes. Google's announced expanded billing-choice rollout for Australia is September 30, 2026. Until the new Australian program terms are actually effective and TycoonX is eligible/enrolled, fail closed for alternative billing and external web steering from the Play-distributed game. Do not infer that the September 30 fee/billing-choice rollout automatically authorizes an external web purchase link; a linkout needs its own current Google program authority.
+- **India:** India has a separate current alternative-billing program that expressly permits apps **and games** on mobile/tablet to offer an alternative billing system alongside Google Play Billing. TycoonX may use that route only after completing the India-specific Play Console onboarding and current alternative-billing API requirements. This is not the same as permission to place a generic browser link to the TycoonX webshop.
+- **South Korea:** South Korea has a separate current alternative-billing program that expressly permits apps **and games** on mobile/tablet to offer an alternative billing system alongside Google Play Billing. TycoonX may use that route only after South-Korea-specific onboarding and alternative-billing API integration. Google's separate 2026 expanded-billing-choice/service-fee rollout for South Korea is scheduled for December 31, 2026; that future transition does not erase the current South Korea program before then.
+- **Brazil, Indonesia, and South Africa:** these markets appear in Google's existing User Choice Billing pilot, but Google's current pilot eligibility outside the EEA and Japan is for **non-gaming** mobile/tablet apps. TycoonX is a game, so do not expose the pilot alternative-billing flow in these markets unless Google later makes the game eligible under the applicable expanded program and CK-Labs actually enrolls.
+
+Google's consumer-facing material may describe users in additional countries as sometimes seeing a choice of billing systems, but developer eligibility is controlled by the applicable developer program. Consumer-facing availability text is not a substitute for TycoonX game eligibility, enrollment, API, fee, reporting, or storefront requirements.
 
 If Google's current program-specific page, Play Console enrollment, or governing terms change, update the TycoonX routing table before changing production behavior.
 
@@ -78,13 +83,39 @@ Maintain a live decision table containing at least the user market/storefront, e
 
 If a row is unknown, contradictory, stale, or not backed by actual enrollment, fail closed and do not expose Xsolla steering for that storefront.
 
+### 1E. India and South Korea current-program controls
+
+India and South Korea are active special-market programs now; do not wait for the global 2027 rollout to model them correctly, and do not force them through a UK/EEA Billing Choice flow.
+
+For **India**:
+
+- TycoonX is currently game-eligible on mobile/tablet under Google's India alternative-billing program.
+- Google Play Billing remains alongside the alternative billing system under the current program.
+- Complete India-specific Play Console onboarding, current trust/safety requirements, PCI-DSS responsibility where CK-Labs or its provider handles card data, payment-method configuration, and the alternative billing APIs before enabling the route.
+- Report all authorized India alternative-billing transactions to Google within **24 hours** using the applicable APIs.
+- If any legacy active subscription ever existed from an older manual/non-automated flow, migrate it as Google's current ExternalTransactions requirements prescribe. Current TycoonX 30-Day VIP is not a subscription and must not be treated as one merely because the API also supports subscriptions.
+- Pay the applicable Google service fee. Under Google's current pre-global-rollout model, qualifying India alternative-billing transactions use the otherwise applicable Play service fee reduced by 4%; do not advertise that commercial reduction to players as a guaranteed consumer discount.
+- Do not turn India alternative billing into a generic external-webshop steering permission. If TycoonX wants to open the official Xsolla webshop outside the app, verify a separately applicable current Google program before doing so.
+
+For **South Korea**:
+
+- TycoonX is currently game-eligible on mobile/tablet under Google's South Korea alternative-billing program.
+- Google Play Billing must remain alongside the alternative billing system under the current program.
+- Complete South-Korea-specific Play Console onboarding, trust/safety requirements, PCI-DSS responsibility where applicable, payment-method configuration, and the current alternative billing APIs.
+- Report all authorized South Korea alternative-billing transactions within **24 hours**.
+- Under Google's current pre-December-31 model, qualifying alternative-billing transactions use the otherwise applicable Play service fee reduced by 4%.
+- Google's current South Korea program also permits a web-based alternative-payment method subject to that program's requirements. Do not replace the prescribed alternative-billing UX with an arbitrary normal-browser redirect. Google's current South Korea guidance describes the outlink payment as being presented through the required in-app alternative-billing experience, including an embedded webview and the applicable Google UX/trust-and-safety controls. Reverify this before shipping any Xsolla web flow there.
+- CK-Labs is outside South Korea. Google's current tax guidance says Google collects the required 10% Korean VAT from developers for sales to South Korean customers processed through qualifying additional in-app billing systems and remits it to the Korean authority. Finance must therefore model the South Korea tax treatment separately from Xsolla settlement and from the Google service fee; do not assume the alternative processor alone settles every Korean tax obligation.
+
+For both markets, a successful Xsolla payment may support TycoonX entitlement delivery only after authoritative server confirmation, but it does not prove that the required Google transaction report was submitted. Likewise, Google reporting success does not prove payment or authorize an entitlement.
+
 ## 2. New-install / existing-install cohorts
 
 For the EEA, UK, and US, Google's current service-fee framework distinguishes relevant transactions by whether the transacting user's first-time install or first update from Google Play occurred before or on/after June 30, 2026.
 
 Do not infer this cohort from TycoonX account creation, signup date, device age, first purchase date, Xsolla customer creation date, or a user-selected region. Preserve Google reporting/attribution data needed to apply the correct treatment, do not manipulate install/update routing to manufacture a cheaper cohort, and model market, program, product type, earnings tier, program participation, billing path, and install cohort separately.
 
-For Australia and Japan, the corresponding rollout boundary is September 30, 2026. Do not reuse the June 30 cohort date in those markets after the new model applies.
+For Australia and Japan, the corresponding rollout boundary is September 30, 2026. For South Korea, the announced expanded-model rollout boundary is December 31, 2026. Do not reuse the June 30 cohort date in those markets after their respective new models apply.
 
 Google currently applies an additional billing fee where its rules say a transaction uses Google Play Billing. Do not apply that fee mechanically to an external-web-link transaction where Google's current fee table excludes it, and do not assume external billing is fee-free.
 
@@ -128,6 +159,8 @@ Do not expose endpoints that let client-supplied `success=true`, price, product 
 
 Do not advertise Xsolla as cheaper merely because CK-Labs assumes Google takes no fee. Model gross price, VAT/tax, Xsolla/payment costs, refunds/chargebacks, Google service fees, and any applicable billing fee before setting regional Diamond/VIP prices. Do not hard-code current percentage tables into player-facing legal terms.
 
+For India and South Korea before their respective expanded-model transitions, keep the current special-market 4-percentage-point service-fee reduction for qualifying alternative-billing transactions separate from Xsolla/payment costs and tax treatment. In South Korea, also account for Google's current collection/remittance mechanics for the applicable 10% Korean VAT on qualifying additional-billing sales by developers located outside South Korea. Do not treat the 4-point service-fee reduction as a tax reduction or as permission to omit tax-inclusive consumer pricing where required.
+
 If Google changes fees or program rules, future TycoonX prices may be changed where commercially necessary, but completed one-time purchases are not retroactively repriced. A later price decrease does not automatically create a refund/credit/price-match right and a later increase does not create an extra charge on an already completed one-time purchase, except where mandatory law requires otherwise. Lifetime VIP can have different prices in different genuine sales windows, but fee changes must not be used to fabricate a fake discount or fake scarcity claim.
 
 ## 8. September 30, 2026 and later rollout checkpoints
@@ -169,6 +202,19 @@ Google's consumer-facing help currently identifies external payment links as ava
 
 Google's Apps Experience Program opened Play Console enrollment on September 1, 2026 and requires explicit enrollment, implementation/maintenance of applicable guidelines, Google validation, and approval before its program rate card applies to eligible transactions. If a future TycoonX companion app or other non-game product is considered for AEP, apply those requirements to that separate product. Do not use AEP enrollment as a workaround for TycoonX game-program eligibility.
 
+### 8D. Australia pre-September-30 fail-closed rule
+
+Do not confuse an announced future expansion with present game eligibility. As of this September 6 review, Google's existing User Choice Billing pilot says games are eligible in the EEA and Japan, while the other listed pilot locations are non-gaming mobile/tablet apps. TycoonX therefore must not ship Australian alternative billing under that old pilot merely because Australia appears in the pilot country list.
+
+Before September 30, 2026, the Australian Play build should remain on the currently authorized payment path unless Google has separately approved a TycoonX-specific alternative route. On or after September 30, re-read the then-effective expanded Billing Choice terms, confirm game eligibility and Play Console enrollment, confirm API/UX/reporting/service-fee requirements, and only then enable any new route. If the final terms are delayed, incomplete, or contradictory, continue to fail closed.
+
+### 8E. India and South Korea are not waiting-room markets
+
+India and South Korea already have current alternative-billing programs for games. The later expanded-billing-choice dates govern future model changes, not whether the current special programs exist.
+
+- **India:** keep using the current India program requirements until Google actually replaces or migrates them. Do not assume the September 30, 2027 rest-of-world rollout retroactively defines current India reporting, fees, or UX.
+- **South Korea:** keep using the current South Korea program requirements through the applicable December 31, 2026 transition unless Google publishes an earlier mandatory migration. Before December 31, preserve the current 24-hour reporting, side-by-side Google Play Billing, adjusted service-fee, and trust/safety requirements. Revalidate the new install cohort, fee model, API path, and any external-web-link treatment before switching to the expanded model.
+
 A dated official-source snapshot, Play Console evidence, and exact production configuration should be retained for every major transition. Repeat the same review before South Korea on December 31, 2026 and rest-of-world rollout on September 30, 2027.
 
 ## 9. Refunds, chargebacks, and entitlement corrections
@@ -207,7 +253,7 @@ Use obfuscated/server-side identifiers where supported, do not put unprotected p
 
 ## 14. Play review and audit evidence
 
-Maintain a dated internal packet with enrolled programs/markets, Play Console evidence, storefront/program routing, Android purchase UI, Play Billing Library/API versions, Google-token/Xsolla/TycoonX entitlement mapping, success/refund/chargeback/idempotency evidence, reporting-deadline evidence, supervised-user paths, required US support links, September 30 Australia/Japan evidence, Level Up enrollment/validation and applicable guideline evidence, and dated copies of official Google materials relied on for production decisions.
+Maintain a dated internal packet with enrolled programs/markets, Play Console evidence, storefront/program routing, Android purchase UI, Play Billing Library/API versions, Google-token/Xsolla/TycoonX entitlement mapping, success/refund/chargeback/idempotency evidence, reporting-deadline evidence, supervised-user paths, required US support links, September 30 Australia/Japan evidence, India and South Korea enrollment/API/reporting evidence, South Korea tax treatment, Level Up enrollment/validation and applicable guideline evidence, and dated copies of official Google materials relied on for production decisions.
 
 Do not store payment credentials, identity documents, or sensitive user evidence in this public repository.
 
@@ -228,7 +274,14 @@ Fail release or disable the affected steering flow if any of these occur:
 - TycoonX books a Level Up/AEP lower fee merely because enrollment was submitted or a rollout date arrived, without actual program approval;
 - TycoonX, as a game, is routed into AEP as a shortcut around Level Up eligibility;
 - Japan External Payments and Japan User Choice Billing are simultaneously enabled for the same enrolled app/region;
-- an Australia user is shown a Japan-style external-payment link without independent Google authority; or
+- an Australia user is shown a Japan-style external-payment link without independent Google authority;
+- before September 30, 2026, TycoonX enables the old Australia User Choice Billing pilot merely because Australia is listed, without accounting for the current non-gaming eligibility restriction;
+- TycoonX enables the existing UCB pilot for the game in Brazil, Indonesia, or South Africa without a later game-eligibility change and actual enrollment;
+- an India alternative-billing transaction is granted but cannot be reported to Google within 24 hours;
+- a South Korea alternative-billing transaction is granted but cannot be reported to Google within 24 hours;
+- an India flow turns current alternative-billing permission into an unsupported generic browser link to Xsolla;
+- a South Korea flow bypasses the current Google-required alternative-billing UX or tax treatment;
+- Google reporting success is treated as payment success, or payment success is treated as Google reporting success; or
 - a Google/provider outage is treated as proof of player fraud.
 
 ## Manual verification
