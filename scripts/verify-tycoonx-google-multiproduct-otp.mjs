@@ -57,7 +57,7 @@ requireMatch(terms, /Nothing in these Terms excludes statutory withdrawal, confo
 
 // Localization and release invariants.
 requireMatch(progress, /25\/25.*target locales/is, 'Localized hub completion invariant missing.');
-requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localized full-document completion invariant missing.');
+requireMatch(progress, /All 25 target locales and all 100 localized full documents are current\./i, 'Localized full-document completion invariant missing.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization queue is unexpectedly open.');
 requireMatch(gate, /TycoonX/i, 'TycoonX brand invariant missing.');
 requireMatch(terms, /TycoonX/i, 'Canonical TycoonX brand invariant missing.');
