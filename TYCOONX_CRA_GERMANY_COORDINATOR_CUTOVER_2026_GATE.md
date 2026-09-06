@@ -1,6 +1,6 @@
 # TycoonX CRA Germany Coordinator Cutover 2026 Gate
 
-Last reviewed: September 6, 2026
+Last reviewed: September 7, 2026
 
 This is a narrow September 2026 cutover supplement for CK-Labs. It does **not** duplicate or replace the substantive CRA reporting rules already maintained in `TYCOONX_EU_CYBER_RESILIENCE_ACT_2026_REPORTING_GATE.md`, `TYCOONX_CRA_SRP_ROUTING_USER_NOTIFICATION_RELEASE_GATE.md`, or `TYCOONX_CRA_SENSITIVE_NOTIFICATION_DISSEMINATION_2026_881_GATE.md`.
 
@@ -10,13 +10,14 @@ Its purpose is to prevent a routing or operational mistake during the final days
 
 ENISA updated its CRA Single Reporting Platform materials on **September 4, 2026** and published a current list of CSIRTs designated as coordinators. The current list identifies **Germany** with **CERT-Bund / the German Federal Office for Information Security (BSI)** contact pages.
 
-At the same time, the current ENISA SRP FAQ contains an internal legal cross-reference inconsistency:
+At the same time, the current ENISA SRP materials contain operational inconsistencies that must not be mistaken for the Regulation itself:
 
-- its general routing answer correctly says the relevant national CSIRT is determined under **CRA Article 14(7)**;
-- its answer about the September 11 platform launch currently contains a reference to **Article 15(7)**; but
-- Regulation (EU) 2024/2847 itself places mandatory manufacturer routing in **Article 14(7)**. Article 15 governs voluntary reporting and currently contains paragraphs 1 through 5, not an Article 15(7).
+- the general routing answer correctly says the relevant national CSIRT is determined under **CRA Article 14(7)**;
+- the answer about the September 11 platform launch currently contains a reference to **Article 15(7)**, but Regulation (EU) 2024/2847 itself places mandatory manufacturer routing in **Article 14(7)** and Article 15 governs voluntary reporting with paragraphs 1 through 5;
+- the September 4 FAQ says a non-validated Assigned Representative may submit up to **20 notifications** for one manufacturer before validation becomes mandatory, while ENISA's current August interface guidance says an unverified AR may submit only up to **10 notifications**; and
+- the September 4 FAQ warns that the current **72hrs counter** is calculated from submission of the 24-hour report rather than the legal awareness time and can therefore display a notification as overdue before 72 hours have actually elapsed from awareness.
 
-For TycoonX operations, the Regulation controls the legal routing analysis. The inconsistent FAQ cross-reference must not be copied into code, incident runbooks, legal notices, support copy, or an SRP filing workflow.
+For TycoonX operations, the Regulation controls the legal routing and deadline analysis. Current ENISA guidance controls platform operation only to the extent it is consistent with the Regulation and the actual live SRP. Guidance inconsistencies must be preserved as dated evidence and resolved conservatively rather than copied into code, incident runbooks, legal notices, support copy, or automated deadline logic.
 
 ## P0 before September 11, 2026
 
@@ -70,7 +71,36 @@ Until the real public endpoint is published and verified:
 - keep EU Login and MFA readiness separate from proof that the production SRP endpoint is live; and
 - immediately before a real notification, navigate from current ENISA official material or another verified official route rather than relying on an old copied link.
 
-### 5. SRP outage contact does not replace the SRP filing
+### 5. Do not wait for CSIRT validation before a time-critical filing
+
+ENISA's current registration guidance says validation of the Assigned Representative (AR) association by the CSIRT designated as coordinator happens **in parallel with reporting and is not a prerequisite for fulfilling the CRA reporting obligation**. A Primary AR needs a personal EU Login account with MFA and can create the initial manufacturer association when a notification is needed.
+
+For TycoonX:
+
+- keep at least one responsible operator able to use EU Login + MFA before an incident consumes the legal reporting window;
+- do not postpone a mandatory notification merely because the AR-manufacturer association still shows pending/unverified validation when the live SRP permits submission;
+- preserve the registration/association status and the submission receipt separately;
+- do not treat CSIRT validation as retroactive permission to move the original legal awareness timestamp; and
+- follow ENISA's current advice not to create SRP manufacturer registrations merely for speculative pre-validation when no notification is needed, while still maintaining EU Login/MFA readiness.
+
+Current ENISA materials disagree on the pre-validation submission cap. The FAQ updated September 4 says **20 notifications**, while the August interface guidance says **10 notifications**. This numerical platform limit is not a statutory reporting deadline and must not be hard-coded as one. Until the live SRP/current official guidance resolves the discrepancy, CK-Labs must not rely on being able to submit more than 10 unvalidated notifications; if an incident volume could approach the lower published limit, contact the current coordinator/ENISA through verified official channels without waiting for the quota to become a blocker.
+
+### 6. SRP counters are advisory, not the legal deadline clock
+
+ENISA's September 4 FAQ explicitly warns that the current **72hrs counter** can be misleading: the current release calculates the displayed due time **48hrs after the submission of the 24hrs report**, so in some cases the platform can show a report as overdue before 72 hours have elapsed from when the manufacturer actually became aware of the event. ENISA says the counters provide visibility and do not replace the manufacturer's duty to comply with Article 14.
+
+TycoonX incident handling must therefore:
+
+- preserve the original awareness date/time independently of the SRP UI;
+- calculate Article 14 deadlines from the legally relevant awareness/event facts and the current Regulation, not from a platform badge, countdown, email reminder, browser-local clock, or dashboard status;
+- preserve the 24-hour/early-warning submission receipt and later submission receipts as separate evidence;
+- never postpone a filing because an SRP counter appears to offer more time than the independently calculated legal deadline;
+- never fabricate an earlier or later awareness time merely to make the dashboard status look correct; and
+- if the SRP counter conflicts with the independent deadline calculation, capture the discrepancy and use the legally safer deadline while checking current ENISA/CSIRT guidance.
+
+A platform counter bug cannot create extra legal time, and it also does not by itself prove CK-Labs filed late. The authoritative record must preserve the actual awareness facts, applicable statutory deadline and submission receipts.
+
+### 7. SRP outage contact does not replace the SRP filing
 
 The existing CRA gate already preserves ENISA's outage guidance. This supplement adds the Germany-specific operational mapping without changing that rule.
 
@@ -84,9 +114,9 @@ If the documented Article 14(7) route is Germany and the SRP is temporarily unav
 
 A provider outage, SRP outage, failed login, expired session, MFA issue, or browser failure is not permission to fabricate a later awareness timestamp.
 
-### 6. Keep reporting state separate from player enforcement and paid entitlements
+### 8. Keep reporting state separate from player enforcement and paid entitlements
 
-A CRA notification, a decision to contact CERT-Bund/BSI, an SRP registration problem, a coordinator-routing question, or a security investigation is **not itself** proof that a TycoonX player hacked the game, committed fraud, caused a chargeback, abused an entitlement, or compromised an account.
+A CRA notification, a decision to contact CERT-Bund/BSI, an SRP registration problem, a coordinator-routing question, a misleading SRP deadline counter, or a security investigation is **not itself** proof that a TycoonX player hacked the game, committed fraud, caused a chargeback, abused an entitlement, or compromised an account.
 
 Do not mutate paid value merely because a CRA workflow exists:
 
@@ -96,7 +126,7 @@ Do not mutate paid value merely because a CRA workflow exists:
 
 A separately supported exploit, fraud, compromised-payment, refund, reversal, duplicate grant, or account-security finding can still be handled under the applicable TycoonX rules. Keep that evidence and legal basis separate from the CRA filing itself.
 
-### 7. Minimum cutover evidence
+### 9. Minimum cutover evidence
 
 Before treating CRA reporting as operationally ready, retain dated evidence showing that:
 
@@ -106,8 +136,10 @@ Before treating CRA reporting as operationally ready, retain dated evidence show
 4. if Germany is the resolved route, the current coordinator evidence points to **CERT-Bund / BSI**;
 5. the production SRP URL was obtained from a verified current official source once published;
 6. at least one responsible operator has usable EU Login + MFA before a real incident consumes the 24-hour window;
-7. the SRP-outage process preserves the original awareness timestamp and later completes the SRP filing; and
-8. CRA incident/reporting state cannot directly grant, revoke, subtract, restart, or otherwise mutate Diamonds, 30-Day VIP, or Lifetime VIP.
+7. the runbook states that pending AR-manufacturer validation does not itself postpone a mandatory filing and records the current 20-versus-10 pre-validation quota conflict without relying on the higher number;
+8. Article 14 deadlines are calculated independently from the original awareness facts rather than trusting the current SRP 72hrs counter;
+9. the SRP-outage process preserves the original awareness timestamp and later completes the SRP filing; and
+10. CRA incident/reporting state cannot directly grant, revoke, subtract, restart, or otherwise mutate Diamonds, 30-Day VIP, or Lifetime VIP.
 
 ## Release blockers
 
@@ -117,10 +149,13 @@ Do not declare the CRA cutover path ready if any of the following is true:
 - Germany is selected solely from a postal/controller/trader/payment/provider address without the Article 14(7) cybersecurity-decision analysis;
 - the Germany coordinator is hard-coded without dated ENISA/BSI evidence;
 - an unofficial or guessed SRP endpoint can receive real incident data;
+- the runbook waits for CSIRT validation of the AR-manufacturer association before submitting a time-critical report that the live SRP permits;
+- code assumes the disputed 20-notification pre-validation quota is guaranteed and has no conservative lower-limit handling;
+- a legal deadline is derived from the current SRP 72hrs counter instead of the original awareness facts and Article 14;
 - direct CERT-Bund/BSI contact during an SRP outage is treated as eliminating the later SRP filing requirement;
-- an SRP outage can reset or postpone the recorded legal awareness timestamp;
+- an SRP outage, misleading counter, or validation state can reset or postpone the recorded legal awareness timestamp;
 - a CRA filing automatically suspends a player or mutates paid entitlements; or
-- current official guidance changes materially and the runbook continues using a stale route without review.
+- current official guidance changes materially and the runbook continues using a stale route, quota, deadline calculation, or endpoint without review.
 
 ## Player-facing legal and localization impact
 
@@ -128,10 +163,12 @@ This cutover supplement changes no player-facing contractual meaning. It does no
 
 Accordingly, this checkpoint does **not** reopen the completed 25-locale localization queue. If a future CRA implementation change materially changes canonical player-facing Privacy, security-notice, Terms, Purchases, or Community wording, reopen only the affected document type and resynchronize all 25 locales in the required order.
 
-## Official sources checked September 6, 2026
+## Official sources checked September 7, 2026
 
 - Regulation (EU) 2024/2847, Articles 14-16: https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng
 - ENISA CRA Single Reporting Platform FAQ, updated September 4, 2026: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
+- ENISA CRA SRP AR User Registration guidance, current page last updated August 3, 2026: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-guidance-ar-user-registration
+- ENISA CRA SRP AR Interface Functions guidance, current page last updated August 14, 2026: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-guidance-ar-interface-functions
 - ENISA List of CSIRTs Designated as Coordinators, updated September 4, 2026: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/list-of-csirts-designated-as-coordinators
 - BSI CERT-Bund: https://www.bsi.bund.de/CERT-Bund/
 - BSI CERT-Bund English: https://www.bsi.bund.de/EN/CERT-Bund/
