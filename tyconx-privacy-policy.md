@@ -1,8 +1,8 @@
 # TycoonX Privacy Policy
 
-**Last updated: September 5, 2026**
+**Last updated: September 6, 2026**
 
-This Privacy Policy explains how **CK-Labs**, operator of TycoonX ("CK-Labs", "TycoonX", "we", "us", or "our"), processes personal data when you use the TycoonX mobile or web applications, websites, support services, and related online services (together, the "Service").
+This Privacy Policy explains how **Atakan Cevik, trading as CK-Labs**, operator of TycoonX ("CK-Labs", "TycoonX", "we", "us", or "our"), processes personal data when you use the TycoonX mobile or web applications, websites, support services, and related online services (together, the "Service").
 
 This Policy explains what information we process, why we process it, how long we keep it, who may receive it, and the rights available to you. Where consent is legally required, we ask for it separately. Merely using TycoonX is not treated as consent to processing that requires consent under applicable law.
 
@@ -235,9 +235,14 @@ We may update this Policy to reflect changes to TycoonX, data practices, provide
 
 We will update the “Last updated” date and provide additional notice where applicable law requires it. If a change requires your consent, we will request that consent rather than treating continued use alone as consent.
 
-## 16. Contact
+## 16. Controller and Contact
 
-TycoonX is operated by **CK-Labs**.
+For the personal-data processing described in this Policy, the controller is:
+
+**Atakan Cevik, trading as CK-Labs**  
+Prämonstratenserstraße 80  
+51069 Köln  
+Germany
 
 For privacy requests, account deletion, security reports, purchase-related privacy questions, moderation-data questions, economy-integrity investigation questions, or other data-protection concerns, contact TycoonX Support or:
 
@@ -245,4 +250,6 @@ For privacy requests, account deletion, security reports, purchase-related priva
 
 Where applicable, you also have the right to contact the data-protection supervisory authority competent for your place of residence or for CK-Labs’ establishment.
 
-Additional legally required operator identity and address details must be made available in the applicable legal notice or imprint for the Service.
+Apple, Google, Xsolla, and other providers may separately act as independent controllers for their own processing where described in this Policy. Their independent controller role does not replace CK-Labs’ responsibility for the TycoonX processing for which CK-Labs is the controller.
+
+The same operator identity and address are also available in the TycoonX legal notice / Impressum.
