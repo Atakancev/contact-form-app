@@ -69,77 +69,27 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 German BGB § 356 withdrawal-numbering / § 356a checkpoint
+
+The existing `TYCOONX_GERMAN_WITHDRAWAL_DIGITAL_CONTENT_SERVICE_VALUE_RELEASE_GATE.md`, `TYCOONX_GERMAN_ECOMMERCE_CHECKOUT_RELEASE_GATE.md`, and `scripts/verify-tycoonx-german-withdrawal-value.mjs` were corrected against the current German BGB rather than creating a duplicate withdrawal gate.
+
+Current controls now preserve that **BGB § 356(4)** is the general twelve-month-and-14-day long-stop, **BGB § 356(5)** is the current services early-expiry subsection, and **BGB § 356(6)** is the current non-tangible digital-content early-expiry subsection. The prior internal mapping of § 356(4) to services and § 356(5) to digital content was stale after the June 19, 2026 statutory restructuring and is now a verifier-blocked regression.
+
+The checkout gate continues to enforce current **BGB § 356a** electronic-withdrawal-function requirements, including `Vertrag widerrufen`, continuous/prominent/easy availability while the withdrawal period runs, contract-identification/contact fields, `Widerruf bestätigen`, immediate durable-medium receipt containing declaration content/date/time, preservation of the submission timestamp, and separation from the BGB § 312k termination button. The function must not be suppressed merely because entitlement delivery started when the correct § 356(5) or § 356(6) evidence does not prove lawful early expiry.
+
+This checkpoint is operational/current-law hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Google Play policy-source precedence / regional-program checkpoint
 
-The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was hardened instead of creating another overlapping Google payment gate.
+The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` preserves that Google's staged-rollout materials can diverge, so TycoonX uses the most current operative program-specific documentation plus actual Play Console eligibility/enrollment rather than whichever older announcement gives a commercially preferred date or rate. Where current official sources materially conflict or Play Console does not confirm the expected program, the affected route/rate fails closed.
 
-Current controls now preserve that Google's own 2026 public materials can diverge during a staged rollout: an earlier Google/Android Developers announcement grouped Japan with the December 31, 2026 Korea phase, while the current Play Console Help lower-service-fee timeline lists Japan with Australia on September 30, 2026. TycoonX therefore uses the most current operative program-specific Google Play documentation plus actual Play Console eligibility/enrollment at the decision time rather than selecting an older announcement because it produces a commercially preferred date or rate. If current official sources still conflict materially or Play Console does not confirm the expected program, the affected new route/rate fails closed until the operative state is resolved.
-
-The gate also records Google's current regional-program exclusivity rule: TycoonX may participate in multiple Google billing programs overall, but where a region offers multiple program options the app can be enrolled in only **one program per region at a time**. A program switch must be a controlled Play Console/backend transition rather than simultaneous client feature flags.
-
-For each material fee/routing decision, CK-Labs now retains the official source/title, source publication or update date where available, retrieval date, effective date relied on, applicable Play Console enrollment state, accepted program-term version/date, and historical production configuration. Later documentation changes are applied prospectively where required and do not silently rewrite historical transaction economics.
+It also preserves the one-program-per-region rule, controlled program switching, dated policy evidence, historical transaction treatment, Level Up/game eligibility, current India and South Korea special-market controls, Australia fail-closed handling before actual game eligibility, Japan program exclusivity, U.S. reporting, refunds, RTDN, chargeback review, and separation of Google reporting state, Xsolla payment state, and TycoonX entitlement state.
 
 Dedicated verifier: `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
 
-This checkpoint is operational/commercial hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+### September 6, 2026 Apple regional payment checkpoints
 
-### September 6, 2026 Apple South Korea alternative-payment checkpoint
-
-`TYCOONX_APPLE_SOUTH_KOREA_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` now preserves Apple's current South Korea StoreKit External Purchase Entitlement boundary as a distinct program rather than reusing the Apple Japan, U.S., EU, Google Play South Korea, or ordinary TycoonX webshop architecture.
-
-Current controls preserve that:
-
-- the entitlement uses a **South Korea-only binary** and Apple currently limits assignment to an eligible bundle ID that has not already been published on the App Store;
-- Apple's current South Korea rule makes the entitlement mutually exclusive with Apple In-App Purchase in the same app, unlike the current Japan coexistence/prominence model;
-- Apple currently requires one PSP per entitlement and lists KCP, Inicis, Toss, and NICE as pre-approved providers; Xsolla must not be assumed approved and must be submitted/accepted for the exact entitlement before CK-Labs uses it;
-- the payment flow must be a **native in-app payment experience**, not an ordinary webshop/webview reuse; the user may leave the app only where legally required and permitted by Apple's current terms;
-- the production binary must preserve the current `com.apple.developer.storekit.external-purchase` entitlement, `SKExternalPurchase` with `KR`, `canMakePayments`, South Korea Storefront/SKStorefront checks, and Apple's required External Purchase Modal Sheet;
-- Apple currently documents a 26% commission on the price paid gross of VAT, monthly reporting within 15 calendar days after the end of Apple's fiscal month, invoicing/payment within 45 days after the fiscal month, and audit rights; those time-sensitive commercial terms are not hard-coded into player-facing legal prose;
-- PSP payment state, TycoonX entitlement state, Apple reporting state, tax state, and later refunds/reversals/chargebacks remain separate authorities;
-- purchased Diamonds, one-time non-renewing 30-Day VIP, limited-window Lifetime VIP, truthful price/tax/FX rules, provider-specific refund responsibilities, security fail-closed behavior, and mandatory consumer rights remain intact; and
-- if the second binary/PSP/reporting stack is not commercially justified, the safer default remains ordinary Apple In-App Purchase in South Korea.
-
-Dedicated verifier: `scripts/verify-tycoonx-apple-south-korea-alternative-payment.mjs`.
-
-This checkpoint is operational/commercial hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 Google Play India / South Korea / Australia eligibility checkpoint
-
-The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was hardened again rather than creating another overlapping Google payment gate.
-
-Current controls now preserve that:
-
-- TycoonX is a **game**, so Google's current legacy User Choice Billing pilot must not be read as making every listed country game-eligible;
-- Google's current pilot eligibility permits games in the EEA and Japan, while Australia, Brazil, Indonesia, South Africa and the other listed legacy-pilot markets outside those game-eligible regions are non-gaming-app routes under the current pilot terms;
-- therefore, as of September 6, TycoonX must not enable the old Australian User Choice Billing pilot merely because Australia is on the pilot country list; Google's announced expanded Australia billing-choice rollout is September 30, 2026 and TycoonX must reverify game eligibility, enrollment, APIs, UX, fees and any external-link authority when the final effective terms apply;
-- Brazil, Indonesia and South Africa remain fail-closed for the existing pilot in the TycoonX game unless Google later changes game eligibility and CK-Labs actually enrolls;
-- India has a separate **current** alternative-billing program that expressly permits apps and games on mobile/tablet, requires Google Play Billing alongside the alternative system, current Play Console onboarding/trust-and-safety/API controls, and reporting of authorized alternative-billing transactions within 24 hours;
-- South Korea likewise has a separate **current** alternative-billing program for apps and games, requires Google Play Billing alongside the alternative system, current onboarding/trust-and-safety/API controls, and 24-hour reporting;
-- the current pre-transition India and South Korea service-fee treatment for qualifying alternative-billing transactions is the otherwise applicable Google Play service fee reduced by 4 percentage points, which is a developer commercial term rather than a promised consumer discount;
-- Google's current South Korea guidance permits web-based alternative payment subject to that specific alternative-billing program and its prescribed UX, including the current embedded-webview treatment, rather than creating a generic normal-browser Xsolla steering permission;
-- because CK-Labs is outside South Korea, the current Google tax guidance for qualifying additional in-app billing requires the applicable 10% Korean VAT to be collected from the developer by Google and remitted to the Korean authority; that tax state must be modeled separately from Xsolla settlement and the Google service fee;
-- South Korea's announced expanded-model rollout remains December 31, 2026, while India is already an active special-market program and must not be incorrectly treated as unavailable until the September 30, 2027 rest-of-world rollout; and
-- Google reporting state, Xsolla payment state and TycoonX entitlement state remain separate authorities; neither reporting success nor payment success substitutes for the other.
-
-Dedicated verifier: `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
-
-This checkpoint is operational/commercial hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 Google Play Level Up / Japan transition checkpoint
-
-The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` also preserves that TycoonX is a game and therefore follows the Google Play Games **Level Up** program review path rather than using the ordinary Apps Experience Program as a shortcut; Level Up enrollment alone does not activate a lower rate; Japan External Payments and Japan User Choice Billing are mutually exclusive under the current program rules; and Australia external-link authority must not be inferred from Japan or from a future fee rollout.
-
-### September 6, 2026 Apple EU unified fee-model checkpoint
-
-The existing Attachment 14 gate distinguishes the 5% Core Technology Commission for qualifying outside-App-Store distribution from the separately named Store Services Commission for qualifying actionable out-of-app offers from an App Store-distributed app. It preserves the current App Store/IAP/alternative-processing distinctions, the seven-day attribution clock versus the 15-day-after-month-end reporting clock, and requires distribution route + payment route + Apple program status to be classified before calculating Apple economics.
-
-### September 6, 2026 Apple Japan alternative-payment checkpoint
-
-`TYCOONX_APPLE_JAPAN_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` preserves Japan storefront/iOS eligibility, the required Apple entitlement and disclosures, IAP prominence, child safeguards, Xsolla server authority, monthly reporting, attribution, refund-provider separation, and TycoonX product invariants.
-
-### September 6, 2026 Apple U.S. storefront steering checkpoint
-
-`TYCOONX_APPLE_US_STOREFRONT_EXTERNAL_PURCHASE_RELEASE_GATE.md` preserves the U.S.-storefront-specific steering rule, StoreKit storefront authority, fail-closed behavior outside eligible U.S. storefronts, global metadata protection, server-side Xsolla confirmation, and provider-specific refund responsibilities.
+The repository already has distinct current release gates/verifiers for Apple EU alternative payment/unified fee reconciliation, U.S. storefront steering, Japan alternative payments, and South Korea alternative payments. These remain separate architectures rather than being reused interchangeably. They preserve storefront/program eligibility, Apple-specific disclosures/APIs, fee/reporting evidence, refund/provider boundaries, Xsolla/payment authority, product invariants, and fail-closed behavior when eligibility is not established.
 
 ### September 6, 2026 German promotion-price checkpoint
 
@@ -153,7 +103,7 @@ The canonical Privacy Policy and all 25 localized Privacy routes directly disclo
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklists, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions/unified fee reconciliation, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Apple South Korea alternative-payment controls, Google Play Billing Choice, Google Play Level Up/Japan/U.S./India/South Korea payment transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
+Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South Korea payment routing and fee/reporting controls; Google Play Billing Choice, Level Up and regional payment transitions; Xsolla mandatory-consumer-rights override; refunded/transferred-value reconciliation; temporary restriction review lifecycle; CRA reporting; German legal notice/ADR, e-commerce checkout, BGB § 356a withdrawal function and current § 356 subsection mapping; entitlement reconciliation; permanent shutdown; business transfer/successor operation; digital-product conformity/modification; accessibility; DSA/UGC moderation; youth/minor protections; VAT/tax/FX; pricing/promotions; and security/privacy controls.
 
 ## Canonical source status
 
@@ -167,8 +117,8 @@ Completed hardening includes Apple Custom EULA parity, Apple EU alternative-paym
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.7%**
-- **Overall project completion:** **99.84%**
+- **Full commercial/legal/payment readiness:** **98.8%**
+- **Overall project completion:** **99.86%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
