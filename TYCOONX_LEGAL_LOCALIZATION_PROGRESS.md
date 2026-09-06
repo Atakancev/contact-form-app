@@ -80,6 +80,25 @@ For the TycoonX personal-data processing described in the Privacy Policy, the cu
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 Apple EU unified fee-model checkpoint
+
+The existing Attachment 14 commission/attribution gate was hardened against a material October 2026 accounting mistake: Apple's August 18, 2026 unified EU terms use several similarly named fee concepts that must not be treated as interchangeable.
+
+The active implementation/commercial controls now preserve that:
+
+- Apple's current public transition materials replace the old Core Technology Fee with a **5% Core Technology Commission** for qualifying digital transactions in iOS/iPadOS apps distributed outside the App Store;
+- the former Initial Acquisition Fee and Store Services Fee are eliminated under the unified model, but that does **not** eliminate the separately named Store Services Commission that currently applies to qualifying actionable out-of-app offers from an App Store-distributed app;
+- the current App Store EU rate checkpoints remain 26%/15% for Apple IAP, 20%/10% for alternative in-app processing, and 15%/10% Store Services Commission for qualifying actionable out-of-app offers, subject to actual CK-Labs program eligibility and the signed/current Apple terms;
+- a normal TycoonX Xsolla purchase reached from an App Store build must not be misclassified as a 5% outside-App-Store Core Technology Commission transaction merely because checkout completes on the web;
+- future Web Distribution or alternative-marketplace distribution requires its own Attachment 14 classification instead of reusing the App Store/Xsolla model;
+- the app distribution route, payment/offer route, actionable-link attribution, actual Apple program status, and transaction-time agreement version must be classified before calculating Apple economics;
+- the seven-day actionable-link attribution window and the 15-day-after-month-end reporting deadline are separate clocks; and
+- historical completed purchases are not retroactively repriced merely because Apple later changes its commercial terms.
+
+Dedicated verifier: `scripts/verify-tycoonx-apple-eu-attachment14-commission.mjs`.
+
+This checkpoint is operational/commercial hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 Apple Japan alternative-payment checkpoint
 
 A dedicated `TYCOONX_APPLE_JAPAN_ALTERNATIVE_PAYMENT_RELEASE_GATE.md` now covers Apple's current Japan App Store alternative-payment framework without treating the existing U.S. or EU steering rules as globally interchangeable.
@@ -120,7 +139,7 @@ The active implementation controls now preserve that:
 
 Dedicated verifier: `scripts/verify-tycoonx-apple-us-storefront-steering.mjs`.
 
-This checkpoint is operational hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+This checkpoint is operational hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document needed reopening.
 
 ### September 6, 2026 Google Play U.S. payment-program checkpoint
 
@@ -140,7 +159,7 @@ The canonical Privacy Policy and all 25 localized Privacy routes directly disclo
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklist, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Google Play Billing Choice and U.S. payment-program transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
+Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions and unified fee-model reconciliation, Apple U.S. storefront steering, Apple Japan alternative-payment controls, Google Play Billing Choice and U.S. payment-program transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
 
 ## Canonical source status
 
@@ -154,8 +173,8 @@ Completed hardening includes Apple Custom EULA parity, Apple EU alternative-paym
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.2%**
-- **Overall project completion:** **99.74%**
+- **Full commercial/legal/payment readiness:** **98.3%**
+- **Overall project completion:** **99.76%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
