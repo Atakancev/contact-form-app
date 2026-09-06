@@ -150,7 +150,7 @@ requireMatch(purchases, /Lifetime VIP is a one-time premium entitlement offered 
 
 // Localization and full-release invariants.
 requireMatch(progress, /25\/25/i, 'Localization tracker no longer confirms 25/25 hubs.');
-requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localization tracker no longer confirms 100/100 documents.');
+requireMatch(progress, /All 25 target locales and all 100 localized full documents are current/i, 'Localization tracker no longer confirms 100/100 documents.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization queue is no longer closed.');
 requireMatch(progress, /full release on \*\*September 1, 2026\*\*/i, 'Localization tracker lost full-release invariant.');
 
