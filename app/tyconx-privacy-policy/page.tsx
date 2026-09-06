@@ -128,9 +128,9 @@ export default function TycoonXPrivacyPolicy() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Privacy Policy</h1>
-          <p className="text-zinc-500 text-sm">Last updated September 5, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated September 6, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            This Privacy Policy explains how CK-Labs, operator of TycoonX, processes personal data when you use the TycoonX mobile or web applications, websites, support services, community features, and related online services.
+            This Privacy Policy explains how Atakan Cevik, trading as CK-Labs and operating TycoonX, processes personal data when you use the TycoonX mobile or web applications, websites, support services, community features, and related online services.
           </p>
         </div>
       </div>
@@ -152,14 +152,19 @@ export default function TycoonXPrivacyPolicy() {
 
         <section className="rounded-xl border border-white/10 bg-[#111111] p-6 mt-8">
           <h2 className="text-white font-semibold mb-3">Controller & contact</h2>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4">CK-Labs is the controller for the TycoonX processing described in this Policy. For privacy requests, account deletion, security reports, purchase-related privacy questions, moderation-data questions, or other data-protection concerns, use TycoonX Support or email us.</p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+            For the personal-data processing described in this Privacy Policy, the controller is <strong className="text-zinc-200">Atakan Cevik, trading as CK-Labs</strong>, Prämonstratenserstraße 80, 51069 Köln, Germany.
+          </p>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+            For privacy requests, account deletion, security reports, purchase-related privacy questions, moderation-data questions, economy-integrity investigation questions, or other data-protection concerns, use TycoonX Support or email us. Apple, Google, Xsolla, and other providers may separately act as independent controllers for their own processing where described in this Policy.
+          </p>
           <div className="flex flex-wrap gap-3">
             <a href="/tyconx-support" className="inline-flex bg-indigo-600 hover:bg-indigo-500 transition text-white text-sm font-medium px-4 py-2 rounded-lg">TycoonX Support</a>
             <a href="mailto:cevikdev@gmail.com" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">cevikdev@gmail.com</a>
+            <a href="/tycoonx-impressum" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Impressum / Legal Notice</a>
             <a href="/tyconx-terms-of-service" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Terms of Service</a>
             <a href="/tycoonx-community-standards" className="inline-flex border border-white/10 hover:bg-white/5 transition text-zinc-300 text-sm font-medium px-4 py-2 rounded-lg">Community Standards</a>
           </div>
-          <p className="text-zinc-600 text-xs leading-relaxed mt-4">Additional legally required operator identity and address details must be made available in the applicable legal notice or imprint for the Service.</p>
         </section>
       </div>
     </main>
