@@ -128,6 +128,25 @@ The existing `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md` was hardened ra
 
 This was operational/current-law hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy or Community Standards, so no localized document was reopened.
 
+### September 6, 2026 Google Play US payment-program checkpoint
+
+The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was materially hardened against Google's current September 2026 program map instead of creating a duplicate payment doctrine.
+
+The active operational rules now explicitly preserve that:
+
+- the US is currently routed through Google's existing **alternative billing in the United States** program for in-app alternative billing and the existing **external content links** program for external web links; TycoonX must not assume the UK/EEA Billing Choice enrollment model applies to US users merely because related Android APIs share concepts;
+- Google's July 22, 2026 US program updates make **October 1, 2026** a production transition date for transaction/successful-download reporting and relevant Play service fees;
+- once required, authorized US alternative-billing transactions must be reportable within Google's current 24-hour deadline, with payment authority, Google reporting state, and TycoonX entitlement state kept separate and idempotent;
+- the US alternative-billing flow must expose Google's required post-purchase routes for order history, subscription management where applicable, customer service, and refund requests, and Google Play Billing must remain consistently/reliably available when the chosen program requires it;
+- US external-content-link flows must preserve destination/purpose disclosure, parental controls, PII-safe URLs, refund/support handling, reporting context, and the distinction between a webshop purchase link and a separate external-app-download event;
+- reportable external-content-link transaction logic must not silently omit `$0` free-trial transactions if TycoonX ever introduces such a product;
+- the 24-hour external-link attribution window and a 24-hour transaction-reporting deadline are separate clocks and must be logged separately; and
+- Google's current lower-fee timeline says the new Apps Experience / revamped Play Games Level Up programs are scheduled for initial availability on September 30, 2026 in Australia, EEA, Japan, UK and US, but TycoonX must not assume lower fees or participation until final requirements and actual Play Console eligibility/enrollment are verified.
+
+A dedicated local verifier now guards these current US/2026 transition invariants in `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
+
+This checkpoint did not change player-facing canonical Terms, Purchases & Refunds, Privacy Policy, or Community Standards meaning, so no localized document was reopened.
+
 ## Canonical source status
 
 - English Terms: materially refreshed **September 5, 2026** for genuine transactions and unauthorized RMT/off-platform exchange.
@@ -140,8 +159,8 @@ This was operational/current-law hardening only. It did not materially change th
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **97.9%**
-- **Overall project completion:** **99.68%**
+- **Full commercial/legal/payment readiness:** **98.0%**
+- **Overall project completion:** **99.70%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
