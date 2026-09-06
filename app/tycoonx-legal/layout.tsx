@@ -3,6 +3,7 @@ import LegalInlineFormatting from './LegalInlineFormatting';
 import TransferRuleNotice from './TransferRuleNotice';
 import RealMoneyTradingNotice from './RealMoneyTradingNotice';
 import TransferRiskPrivacyNotice from './TransferRiskPrivacyNotice';
+import ControllerIdentityPrivacyNotice from './ControllerIdentityPrivacyNotice';
 import OfficialPurchaseRefundNotice from './OfficialPurchaseRefundNotice';
 
 export default function TycoonXLegalLayout({ children }: { children: ReactNode }) {
@@ -13,6 +14,7 @@ export default function TycoonXLegalLayout({ children }: { children: ReactNode }
       <TransferRuleNotice />
       <RealMoneyTradingNotice />
       <TransferRiskPrivacyNotice />
+      <ControllerIdentityPrivacyNotice />
       <OfficialPurchaseRefundNotice />
     </div>
   );
