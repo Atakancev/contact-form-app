@@ -31,6 +31,10 @@ const requiredSupplementTokens = [
   'EU Login',
   'MFA',
   'awareness timestamp',
+  '20 notifications',
+  '10 notifications',
+  '72hrs counter',
+  '48hrs after the submission of the 24hrs report',
   'Diamonds',
   '30-Day VIP',
   'Lifetime VIP',
@@ -43,15 +47,15 @@ for (const token of requiredSupplementTokens) {
   }
 }
 
-if (!/internal legal cross-reference inconsistency/i.test(supplement)) {
-  failures.push('ENISA FAQ Article 14(7)/15(7) cross-reference inconsistency is not documented.');
+if (!/operational inconsistencies/i.test(supplement)) {
+  failures.push('Current ENISA SRP operational inconsistencies are not documented.');
 }
 
 if (!/Regulation \(EU\) 2024\/2847 itself places mandatory manufacturer routing in \*\*Article 14\(7\)\*\*/i.test(supplement)) {
   failures.push('The operative CRA Article 14(7) routing authority is not explicit.');
 }
 
-if (!/Article 15 governs voluntary reporting and currently contains paragraphs 1 through 5/i.test(supplement)) {
+if (!/Article 15 governs voluntary reporting with paragraphs 1 through 5/i.test(supplement)) {
   failures.push('Article 15 voluntary-reporting boundary is missing.');
 }
 
@@ -73,6 +77,38 @@ if (!/If the documented Article 14\(7\) analysis resolves the TycoonX manufactur
 
 if (!/do not invent an SRP URL/i.test(supplement)) {
   failures.push('Unverified SRP endpoint protection is missing.');
+}
+
+if (!/validation of the Assigned Representative \(AR\) association by the CSIRT designated as coordinator happens \*\*in parallel with reporting and is not a prerequisite for fulfilling the CRA reporting obligation\*\*/i.test(supplement)) {
+  failures.push('Pending AR-manufacturer validation must not be treated as a prerequisite for reporting.');
+}
+
+if (!/do not postpone a mandatory notification merely because the AR-manufacturer association still shows pending\/unverified validation/i.test(supplement)) {
+  failures.push('Time-critical reporting must not wait for CSIRT association validation.');
+}
+
+if (!/FAQ updated September 4 says \*\*20 notifications\*\*, while the August interface guidance says \*\*10 notifications\*\*/i.test(supplement)) {
+  failures.push('Current ENISA 20-versus-10 unvalidated-notification quota conflict is missing.');
+}
+
+if (!/must not rely on being able to submit more than 10 unvalidated notifications/i.test(supplement)) {
+  failures.push('Conservative handling of the disputed unvalidated-notification quota is missing.');
+}
+
+if (!/SRP counters are advisory, not the legal deadline clock/i.test(supplement)) {
+  failures.push('SRP counter/legal-deadline separation is missing.');
+}
+
+if (!/current \*\*72hrs counter\*\*[\s\S]*\*\*48hrs after the submission of the 24hrs report\*\*/i.test(supplement)) {
+  failures.push('Current ENISA 72-hour counter calculation warning is missing.');
+}
+
+if (!/calculate Article 14 deadlines from the legally relevant awareness\/event facts and the current Regulation, not from a platform badge, countdown, email reminder, browser-local clock, or dashboard status/i.test(supplement)) {
+  failures.push('Independent CRA deadline calculation safeguard is missing.');
+}
+
+if (!/A platform counter bug cannot create extra legal time, and it also does not by itself prove CK-Labs filed late/i.test(supplement)) {
+  failures.push('SRP counter bug legal-effect safeguard is missing.');
 }
 
 if (!/do not treat that direct contact as the completed CRA SRP notification/i.test(supplement)) {
