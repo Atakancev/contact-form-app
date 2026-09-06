@@ -23,7 +23,7 @@ function forbid(text, needle, label) {
 const requiredGate = [
   'Last reviewed: September 6, 2026',
   'TycoonX is in full release.',
-  'one **one program per region at a time**'.replace('one **one', '**one'),
+  '**one program per region at a time**',
   'Treat a program switch as a controlled Play Console/backend transition',
   'A blog announcement is evidence of an announcement, not a substitute for later operative program terms or actual account eligibility.',
   'United Kingdom:** Billing Choice program',
@@ -106,7 +106,7 @@ if (!/linkout time[\s\S]{0,1000}report-submission time/i.test(gate)) {
   errors.push('Google Play 2026 gate: attribution and report-deadline timestamps are not independently preserved.');
 }
 
-if (!/one \*\*one program per region at a time\*\*/i.test(gate)) {
+if (!/only \*\*one program per region at a time\*\*/i.test(gate)) {
   errors.push('Google Play 2026 gate: current regional program exclusivity rule is missing.');
 }
 
