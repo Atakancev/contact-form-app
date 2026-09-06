@@ -116,6 +116,18 @@ The repository already contains dedicated release gates and verifier scripts for
 
 Recent completed hardening includes Apple Custom EULA parity, Google Play Billing Choice PBL 9.1, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, Apple/Google/Xsolla entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
 
+### September 6, 2026 German promotion-price operational checkpoint
+
+The existing `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md` was hardened rather than duplicating promotion doctrine. The current operational rules now explicitly preserve that:
+
+- ordinary TycoonX Diamonds, one-time 30-Day VIP and Lifetime VIP remain purely digital products and are not automatically subject to the goods-only PAngV § 11 / Article 6a prior-price regime;
+- if CK-Labs later sells an in-scope good and uses a stepwise uninterrupted increasing reduction, PAngV § 11(2)'s progressive-reduction rule, pre-campaign reference price and uninterrupted campaign evidence must be preserved;
+- current German PAngV § 11 does not contain Article 6a(4)'s optional shorter reference period for newly marketed goods, so that optional EU exception must not be invented for a German campaign;
+- changed Diamond quantities, VIP benefits or other material bundle contents must not be compared as though they were an identical product; and
+- on a CK-Labs-owned TycoonX surface that is concrete enough about characteristics and price to enable a consumer transaction, the applicable German UWG §§ 5a/5b material information must not be hidden, ambiguous or supplied too late.
+
+This was operational/current-law hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy or Community Standards, so no localized document was reopened.
+
 ## Canonical source status
 
 - English Terms: materially refreshed **September 5, 2026** for genuine transactions and unauthorized RMT/off-platform exchange.
@@ -128,8 +140,8 @@ Recent completed hardening includes Apple Custom EULA parity, Google Play Billin
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **97.8%**
-- **Overall project completion:** **99.66%**
+- **Full commercial/legal/payment readiness:** **97.9%**
+- **Overall project completion:** **99.68%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
