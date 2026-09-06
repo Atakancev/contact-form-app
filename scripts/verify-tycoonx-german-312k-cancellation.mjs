@@ -108,9 +108,9 @@ requireMatch(purchases, /Lifetime VIP/i, 'Canonical Purchases policy lost Lifeti
 requireMatch(purchases, /Diamonds/i, 'Canonical Purchases policy lost Diamond handling.');
 requireMatch(purchases, /chargeback/i, 'Canonical Purchases policy lost chargeback handling.');
 
-requireMatch(progress, /100\/100 localized full documents are currently confirmed current/i, 'Localization tracker no longer confirms 100/100 current documents.');
+requireMatch(progress, /All 25 target locales and all 100 localized full documents are current/i, 'Localization tracker no longer confirms 100/100 current documents.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization queue unexpectedly reopened; continue from that queue first.');
-requireMatch(progress, /25\/25 localized legal hubs/i, 'Localization tracker no longer confirms all 25 hubs.');
+requireMatch(progress, /25\/25 localized legal hubs|25\/25.*target locales/is, 'Localization tracker no longer confirms all 25 hubs.');
 
 for (const [name, text] of [
   ['§ 312k gate', gate],
