@@ -69,6 +69,18 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 ## Recent operational/current-law checkpoints
 
+### September 6, 2026 German BFSG e-commerce accessibility checkpoint
+
+The existing `TYCOONX_BFSG_ECOMMERCE_ACCESSIBILITY_RELEASE_GATE.md` and `scripts/verify-tycoonx-bfsg-accessibility.mjs` were hardened against the current BFSG/BFSGV rather than creating a duplicate accessibility doctrine.
+
+The gate now preserves the exact BFSG § 2 no. 17 microenterprise structure: **fewer than 10 persons AND either annual turnover of no more than €2 million OR annual balance-sheet total of no more than €2 million**. The turnover/balance-sheet limb must not be incorrectly converted into an AND test. Reliance on the service exemption remains evidence-based and subject to reassessment after accounts, hiring, financial change, restructuring, sale, merger, or successor-operator change.
+
+For a non-exempt in-scope service, Annex 3 information must be made available in the terms and conditions or another clearly perceptible manner and in accessible form. Missing, incomplete, or not-accessibly-published Annex 3 information is now tracked separately as **formal nonconformity under BFSG § 30**, not merely as a generic UI defect. The gate also now preserves BFSGV § 19's requirement to provide accessibility information supplied by the responsible economic operator for products/services offered through the electronic-commerce service, while prohibiting invented accessibility claims.
+
+The July 2026 regulation change is now scoped precisely: the BFSGV amendment dated July 10 and effective July 16, 2026 changed BFSGV § 7 and the telecommunications provision in BFSGV § 14. It did **not** replace BFSGV § 19. The gate explicitly separates **BFSG § 14** service-provider duties from **BFSGV § 14** telecommunications requirements so matching section numbers cannot cause a future e-commerce compliance error.
+
+This checkpoint is operational/current-law hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
 ### September 6, 2026 German BGB § 356 withdrawal-numbering / § 356a checkpoint
 
 The existing `TYCOONX_GERMAN_WITHDRAWAL_DIGITAL_CONTENT_SERVICE_VALUE_RELEASE_GATE.md`, `TYCOONX_GERMAN_ECOMMERCE_CHECKOUT_RELEASE_GATE.md`, and `scripts/verify-tycoonx-german-withdrawal-value.mjs` were corrected against the current German BGB rather than creating a duplicate withdrawal gate.
@@ -117,8 +129,8 @@ Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.8%**
-- **Overall project completion:** **99.86%**
+- **Full commercial/legal/payment readiness:** **98.9%**
+- **Overall project completion:** **99.88%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
 Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
