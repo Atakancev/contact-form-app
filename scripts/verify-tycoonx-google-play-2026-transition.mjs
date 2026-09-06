@@ -40,6 +40,7 @@ const requiredGate = [
   'Xsolla transaction ID',
   'Google external transaction ID',
   'September 30, 2026: Australia and Japan fee/billing-choice rollout',
+  'December 31, 2026: South Korea rollout',
   'TycoonX is a game: Level Up, not Apps Experience Program',
   'Google Play Games Level Up',
   'September 3, 2026',
@@ -50,6 +51,18 @@ const requiredGate = [
   'Do not infer an Australia external-link permission',
   'Apps Experience Program is not an automatic fallback',
   'explicit enrollment, implementation/maintenance of applicable guidelines, Google validation, and approval',
+  'Australia pre-September-30 fail-closed rule',
+  'existing User Choice Billing pilot says games are eligible in the EEA and Japan',
+  'Brazil, Indonesia, and South Africa',
+  'India and South Korea current-program controls',
+  'India has a separate current alternative-billing program that expressly permits apps **and games**',
+  'South Korea has a separate current alternative-billing program that expressly permits apps **and games**',
+  'Report all authorized India alternative-billing transactions to Google within **24 hours**',
+  'Report all authorized South Korea alternative-billing transactions within **24 hours**',
+  'service fee reduced by 4%',
+  'embedded webview',
+  '10% Korean VAT',
+  'India and South Korea are not waiting-room markets',
   'Voided Purchases API (`purchases.voidedpurchases.list`)',
   '`PendingRefundReviewNotification`',
   '`orders.reviewrefund`',
@@ -66,6 +79,7 @@ for (const needle of requiredGate) requireText(gate, needle, 'Google Play 2026 g
 forbid(gate, 'TyconX', 'Google Play 2026 gate');
 forbid(gate, 'TycoonX beta', 'Google Play 2026 gate');
 forbid(gate, 'TycoonX is in beta', 'Google Play 2026 gate');
+forbid(gate, '**Australia:** User Choice Billing is an existing alternative-billing route for eligible apps/games.', 'Google Play 2026 gate');
 
 requireText(tracker, 'All 25 target locales and all 100 localized full documents are current.', 'localization tracker');
 requireText(tracker, 'Localized full documents:** 100/100, **100%**', 'localization tracker');
@@ -96,8 +110,32 @@ if (!/Japan[\s\S]{0,2000}cannot offer External Payments and User Choice Billing 
   errors.push('Google Play 2026 gate: Japan program exclusivity is missing.');
 }
 
-if (!/Australia[\s\S]{0,1500}external-link permission/i.test(gate)) {
-  errors.push('Google Play 2026 gate: Australia external-link fail-closed rule is missing.');
+if (!/Australia[\s\S]{0,2500}existing User Choice Billing pilot[\s\S]{0,1200}non-gaming/i.test(gate)) {
+  errors.push('Google Play 2026 gate: Australia pre-rollout game-eligibility fail-closed rule is missing.');
+}
+
+if (!/Brazil, Indonesia, and South Africa[\s\S]{0,800}non-gaming/i.test(gate)) {
+  errors.push('Google Play 2026 gate: non-game UCB pilot markets are not kept closed for TycoonX.');
+}
+
+if (!/India[\s\S]{0,1200}apps \*\*and games\*\*[\s\S]{0,2500}within \*\*24 hours\*\*/i.test(gate)) {
+  errors.push('Google Play 2026 gate: India game eligibility and 24-hour alternative-billing reporting are not jointly enforced.');
+}
+
+if (!/South Korea[\s\S]{0,1200}apps \*\*and games\*\*[\s\S]{0,3000}within \*\*24 hours\*\*/i.test(gate)) {
+  errors.push('Google Play 2026 gate: South Korea game eligibility and 24-hour alternative-billing reporting are not jointly enforced.');
+}
+
+if (!/South Korea[\s\S]{0,4500}embedded webview/i.test(gate)) {
+  errors.push('Google Play 2026 gate: current South Korea web-based alternative-payment UX safeguard is missing.');
+}
+
+if (!/South Korea[\s\S]{0,6000}10% Korean VAT/i.test(gate)) {
+  errors.push('Google Play 2026 gate: current South Korea alternative-billing tax treatment is missing.');
+}
+
+if (!/India[\s\S]{0,4000}generic external-webshop steering permission/i.test(gate)) {
+  errors.push('Google Play 2026 gate: India alternative billing is not separated from generic Xsolla browser steering.');
 }
 
 if (!/30-Day VIP remains a \*\*one-time, non-renewing 30-day entitlement\*\*/.test(gate)) {
