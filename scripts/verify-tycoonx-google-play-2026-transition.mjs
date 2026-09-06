@@ -58,8 +58,9 @@ forbid(gate, 'TyconX', 'Google Play 2026 gate');
 forbid(gate, 'TycoonX beta', 'Google Play 2026 gate');
 forbid(gate, 'TycoonX is in beta', 'Google Play 2026 gate');
 
-requireText(tracker, '100/100 localized full documents are current', 'localization tracker');
-requireText(tracker, '25/25', 'localization tracker');
+requireText(tracker, 'All 25 target locales and all 100 localized full documents are current.', 'localization tracker');
+requireText(tracker, 'Localized full documents:** 100/100, **100%**', 'localization tracker');
+requireText(tracker, 'Localized hubs:** 25/25, **100%**', 'localization tracker');
 requireText(tracker, 'Exact next unfinished locale/document: None.', 'localization tracker');
 
 if (!/October 1, 2026[\s\S]{0,5000}24 hours/i.test(gate)) {
