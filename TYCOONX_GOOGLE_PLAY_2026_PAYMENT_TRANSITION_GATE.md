@@ -157,9 +157,9 @@ TycoonX's current use case is an external link to purchase TycoonX digital items
 
 If CK-Labs later adds links to download an external app, build a separate reviewed flow because Google currently applies different registration, destination, reporting, and fixed-fee rules to external app download events.
 
-## 5. 24-hour attribution and reporting are different concepts
+## 5. 24-hour external-link attribution and reporting are different concepts
 
-Google currently uses a **24-hour linkout window** for relevant external-content-link fee attribution and also uses a **24-hour transaction-reporting deadline** in applicable alternative/external billing programs. Do not collapse these into one timestamp.
+Google currently uses a **24-hour external-link attribution window** for relevant external-content-link fee treatment and also uses a **24-hour transaction-reporting deadline** in applicable alternative/external billing programs. Do not collapse these into one timestamp.
 
 TycoonX must preserve at least:
 
@@ -181,13 +181,15 @@ The system must:
 
 ## 6. External transaction backend authority
 
+Use Google's **Externaltransactions APIs** where the applicable alternative/external program requires backend transaction reporting or management.
+
 For alternative/external transactions:
 
 - Xsolla payment success remains the payment-provider authority for the Xsolla charge itself;
 - the TycoonX server remains the entitlement-delivery authority for Diamonds/VIP after valid payment confirmation;
-- Google external/alternative transaction state remains an additional platform reporting/commercial obligation where the applicable Play program requires it;
+- Google external transaction state remains an additional platform reporting/commercial obligation where the applicable Play program requires it;
 - none of these records may silently overwrite the others;
-- use stable cross-references between TycoonX order ID, Xsolla transaction ID, Google reporting token/external transaction ID, user/account ID, product ID, storefront/program, install cohort, and entitlement-ledger event;
+- use stable cross-references between TycoonX order ID, **Xsolla transaction ID**, **Google external transaction ID** or reporting token, user/account ID, product ID, storefront/program, install cohort, and entitlement-ledger event;
 - make payment webhook handling, Google reporting, refunds, and entitlement corrections idempotent; and
 - retain transaction evidence needed for refunds/chargebacks after account deletion only for a lawful and proportionate retention period.
 
@@ -263,9 +265,9 @@ Release evidence should include a successful purchase, a pending purchase cancel
 
 ## 11. Google collaborative chargeback review
 
-Where Google sends a `PendingRefundReviewNotification` and the collaborative review flow is available:
+Where Google sends a `PendingRefundReviewNotification` and the collaborative review flow is available, use the current Google developer flow, including `orders.reviewrefund` where that operation remains the applicable endpoint. Preserve the current **24-hour response window** as an operational deadline while Google's documentation requires it.
 
-- route it to a queue monitored often enough for Google's current response deadline;
+- route the event to a queue monitored often enough for the response deadline;
 - fetch authoritative purchase/account state before responding;
 - submit only accurate evidence lawfully held for transaction, fraud, security, entitlement, or support purposes;
 - never fabricate IP, geography, consumption, login, gameplay, or entitlement evidence;
@@ -273,7 +275,7 @@ Where Google sends a `PendingRefundReviewNotification` and the collaborative rev
 - record the Google outcome and reconcile any later refund/reversal exactly once; and
 - do not punish a player merely for using a good-faith payment-dispute route.
 
-If the response deadline cannot be met reliably, do not rely on the collaborative review process as the only fraud-loss control.
+If the 24-hour response window cannot be met reliably, do not rely on the collaborative review process as the only fraud-loss control.
 
 ## 12. Product invariants across every Google payment program
 
