@@ -22,7 +22,7 @@ Last synchronized: **September 6, 2026**.
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales.
 
-All four full localized legal documents are current for every target locale. This means **100/100 localized full documents are currently confirmed current**.
+All four full localized legal documents are current for every target locale. **All 25 target locales and all 100 localized full documents are current.**
 
 ### Locale status
 
@@ -60,44 +60,7 @@ All four full localized legal documents are current for every target locale. Thi
 
 Future runs must not duplicate completed localization. Continue with repository-wide legal QA, stale-brand/stale-release-status checks, canonical-English drift checks, duplicate-doctrine cleanup, current-law/platform verification, and remaining commercial/legal/payment-readiness hardening. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize it in the required locale order.
 
-## September 6, 2026 GDPR controller-identity invariant
-
-The canonical Privacy Policy was materially clarified so the legal controller is identified directly in the Privacy Policy rather than only by the CK-Labs trade name plus a separate Impressum reference.
-
-For the TycoonX personal-data processing described in the Privacy Policy, the current controller identity disclosed by the repository is **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with privacy contact at `cevikdev@gmail.com` and TycoonX Support.
-
-All 25 localized Privacy routes are synchronized through `app/tycoonx-legal/ControllerIdentityPrivacyNotice.tsx`, rendered only on `/tycoonx-legal/{locale}/privacy`. The copies use natural locale-specific terminology for the data controller, keep the regional variants distinct, use proper language tags for locale variants, and use RTL for Arabic.
-
-Every canonical and localized Privacy page must preserve all of the following:
-
-- the legal controller must be identified, not only the `CK-Labs` trade name;
-- the controller address and an effective privacy contact route must be available directly with the Privacy disclosure;
-- privacy questions and applicable data-subject-rights requests may be sent through the published email or TycoonX Support;
-- Apple, Google, Xsolla, and other providers may separately act as independent controllers for their own processing where the Policy describes that role, but their independent role does not replace CK-Labs' responsibility for TycoonX processing for which CK-Labs is controller;
-- the Privacy identity must remain consistent with the public TycoonX Impressum / legal notice after an address, operator, business-transfer, or successor change;
-- if a data protection officer or representative becomes legally applicable, the corresponding legally required contact details must be added rather than inferred or invented; and
-- controller identity/contact transparency must remain concise, intelligible, and easily accessible along with the rest of the Privacy information.
-
-Canonical Privacy Markdown controller update commit: `e81857caba7f602babc2ad685bc05686a2a363b9`.
-Canonical rendered Privacy update commit: `ad34d332dc18f49622f7c4036c2719e83fe68a42`.
-Localized controller-identity component commit: `9c179a25dc46ca627f615049e813926eea663a0f`.
-Localized Privacy layout integration commit: `0719456968278d3d4ff66edce31a9cb31f4452ea`.
-Controller-identity verifier commit: `59805a235238aa2ef96e08c09872cfe10058aa14`.
-
-## Active September 5, 2026 gameplay/economy invariants
-
-The canonical Terms and synchronized localized Terms already preserve both of these rules and they must not be recreated as separate doctrine:
-
-- ordinary trades, sales, auctions, art purchases, company transactions, contracts, jobs, market orders, or other mechanics must have a genuine gameplay purpose and must not be used mainly as disguised donations, financial help, wealth funneling, parking, hiding, or transfer channels; financial help belongs in TycoonX's designated Begging feature where available; and
-- unauthorized real-money trading or off-platform exchange of TycoonX accounts or game value for real money, cryptocurrency, gift cards, physical goods, outside services, or other real-world consideration is prohibited unless CK-Labs expressly provides a specific authorized mechanism.
-
-High prices, generous deals, friendships, company membership, shared-household/network signals, or single unusual transactions are not automatic proof of abuse. Serious enforcement requires reasonable evidence and must preserve account-compromise safeguards, applicable human review, unrelated legitimate paid value, and mandatory rights.
-
-The Privacy Policy and all localized Privacy routes already disclose proportionate transfer/RMT analysis, relevant transaction/account-relationship data, private-communications safeguards, retention limits, objection rights, and applicable automated-decision safeguards.
-
-The Purchases & Refunds Policy and all localized Purchases routes already distinguish official Apple App Store, Google Play, and official TycoonX/Xsolla purchases from unauthorized player-to-player or off-platform deals.
-
-## Existing product and payment invariants
+## Active legal and product invariants
 
 All canonical and localized legal documents must continue to preserve these distinctions:
 
@@ -107,45 +70,55 @@ All canonical and localized legal documents must continue to preserve these dist
 - Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous future availability for purchase;
 - Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels with transaction-specific merchant, refund, tax, chargeback, validation, and entitlement-delivery roles;
 - completed one-time purchases are not retroactively repriced merely because future prices, currencies, taxes, FX, regional prices, bundles, or promotions change, except where mandatory law requires otherwise;
-- obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, economy corrections, and permanent service shutdown remain subject to their specific canonical rules; and
+- obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, economy corrections, and permanent service shutdown remain subject to their specific canonical rules;
+- ordinary gameplay transactions must not be used as disguised donations, wealth funneling, value parking, or unauthorized real-money trading; unusual/high-value transactions alone are not automatic proof of abuse; and
 - mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility, and other non-waivable rights remain intact.
+
+## Active privacy/controller invariant
+
+For the TycoonX personal-data processing described in the Privacy Policy, the current controller identity is disclosed directly as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. All 25 localized Privacy routes preserve that controller identity/contact meaning and the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla, or other providers.
+
+## Recent operational/current-law checkpoints
+
+### September 6, 2026 Apple U.S. storefront external-purchase steering checkpoint
+
+A dedicated `TYCOONX_APPLE_US_STOREFRONT_EXTERNAL_PURCHASE_RELEASE_GATE.md` now covers the current Apple U.S. storefront steering rule without duplicating the existing EU alternative-payment gates.
+
+The active implementation controls now preserve that:
+
+- Apple App Review Guideline 3.1.1(a) currently allows buttons, external links, and other calls to action to alternative purchase methods in **United States storefront** apps without the external-purchase-link entitlement that applies to certain other storefront programs;
+- this is storefront-specific, not a global permission, and TycoonX must use current StoreKit storefront information (`Storefront.current`, alpha-3 `USA`) rather than IP, GPS, device locale, or a stale cached country to decide whether the U.S. CTA is eligible;
+- Apple documents that storefront information can change at any time, so TycoonX must refresh/re-evaluate near offer display and fail closed if the storefront cannot be verified or changes;
+- the U.S. steering rule is permission for external steering, not blanket authorization to embed an Xsolla/card checkout inside the iOS app and not, by itself, a reason to remove or degrade an otherwise approved Apple IAP path;
+- U.S.-only purchase CTAs must not leak through globally shared App Store metadata or in-app UI into storefronts where a separate entitlement/program would be required;
+- the external destination should be an official CK-Labs/TycoonX web purchase surface, with server-side Xsolla payment confirmation required before TycoonX grants an entitlement;
+- Apple purchase state/refunds, Xsolla payment state/refunds, and TycoonX entitlement state remain transaction-specific and separate;
+- Apple-versus-webshop price comparisons must be current and truthful about product quantity, currency, tax basis, FX, and actual availability; and
+- purchased Diamonds, one-time non-renewing 30-Day VIP, limited-window Lifetime VIP, anti-double-recovery safeguards, and mandatory consumer rights remain unchanged.
+
+Dedicated verifier: `scripts/verify-tycoonx-apple-us-storefront-steering.mjs`.
+
+This checkpoint is operational hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
+
+### September 6, 2026 Google Play U.S. payment-program checkpoint
+
+The existing Google Play 2026 transition gate preserves the current separation between the U.S. alternative-billing/external-content-links programs and UK/EEA Billing Choice, the October 1, 2026 U.S. reporting/service-fee transition, 24-hour reporting controls, Externaltransactions APIs, Xsolla-versus-Google-versus-TycoonX authority boundaries, parental/supervised-user controls, refunds/chargeback review, and current product invariants.
+
+Dedicated verifier: `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
+
+### September 6, 2026 German promotion-price checkpoint
+
+The existing EU promotion/dark-pattern gate preserves the goods-only scope of PAngV § 11 / Article 6a, the German progressive-reduction rule for in-scope goods, the absence of an invented German new-goods exception, truthful changed-bundle comparisons, and UWG §§ 5a/5b material-information requirements for sufficiently concrete transactional offers. Ordinary TycoonX Diamonds and VIP remain digital products rather than being incorrectly forced into the goods-only prior-price rule.
+
+### September 6, 2026 GDPR controller-identity checkpoint
+
+The canonical Privacy Policy and all 25 localized Privacy routes directly disclose the legal controller identity/contact rather than relying only on the CK-Labs trade name plus a separate Impressum lookup. The disclosure remains consistent with the public TycoonX legal notice and preserves applicable provider independent-controller distinctions.
 
 ## Repository hardening status
 
 The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklist, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
 
-Recent completed hardening includes Apple Custom EULA parity, Google Play Billing Choice PBL 9.1, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, Apple/Google/Xsolla entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
-
-### September 6, 2026 German promotion-price operational checkpoint
-
-The existing `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md` was hardened rather than duplicating promotion doctrine. The current operational rules now explicitly preserve that:
-
-- ordinary TycoonX Diamonds, one-time 30-Day VIP and Lifetime VIP remain purely digital products and are not automatically subject to the goods-only PAngV § 11 / Article 6a prior-price regime;
-- if CK-Labs later sells an in-scope good and uses a stepwise uninterrupted increasing reduction, PAngV § 11(2)'s progressive-reduction rule, pre-campaign reference price and uninterrupted campaign evidence must be preserved;
-- current German PAngV § 11 does not contain Article 6a(4)'s optional shorter reference period for newly marketed goods, so that optional EU exception must not be invented for a German campaign;
-- changed Diamond quantities, VIP benefits or other material bundle contents must not be compared as though they were an identical product; and
-- on a CK-Labs-owned TycoonX surface that is concrete enough about characteristics and price to enable a consumer transaction, the applicable German UWG §§ 5a/5b material information must not be hidden, ambiguous or supplied too late.
-
-This was operational/current-law hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 Google Play US payment-program checkpoint
-
-The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` was materially hardened against Google's current September 2026 program map instead of creating a duplicate payment doctrine.
-
-The active operational rules now explicitly preserve that:
-
-- the US is currently routed through Google's existing **alternative billing in the United States** program for in-app alternative billing and the existing **external content links** program for external web links; TycoonX must not assume the UK/EEA Billing Choice enrollment model applies to US users merely because related Android APIs share concepts;
-- Google's July 22, 2026 US program updates make **October 1, 2026** a production transition date for transaction/successful-download reporting and relevant Play service fees;
-- once required, authorized US alternative-billing transactions must be reportable within Google's current 24-hour deadline, with payment authority, Google reporting state, and TycoonX entitlement state kept separate and idempotent;
-- the US alternative-billing flow must expose Google's required post-purchase routes for order history, subscription management where applicable, customer service, and refund requests, and Google Play Billing must remain consistently/reliably available when the chosen program requires it;
-- US external-content-link flows must preserve destination/purpose disclosure, parental controls, PII-safe URLs, refund/support handling, reporting context, and the distinction between a webshop purchase link and a separate external-app-download event;
-- reportable external-content-link transaction logic must not silently omit `$0` free-trial transactions if TycoonX ever introduces such a product;
-- the 24-hour external-link attribution window and a 24-hour transaction-reporting deadline are separate clocks and must be logged separately; and
-- Google's current lower-fee timeline says the new Apps Experience / revamped Play Games Level Up programs are scheduled for initial availability on September 30, 2026 in Australia, EEA, Japan, UK and US, but TycoonX must not assume lower fees or participation until final requirements and actual Play Console eligibility/enrollment are verified.
-
-A dedicated local verifier now guards these current US/2026 transition invariants in `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
-
-This checkpoint did not change player-facing canonical Terms, Purchases & Refunds, Privacy Policy, or Community Standards meaning, so no localized document was reopened.
+Completed hardening includes Apple Custom EULA parity, Apple EU alternative-payment transitions, Apple U.S. storefront steering, Google Play Billing Choice and U.S. payment-program transitions, Xsolla mandatory-consumer-rights override, refunded/transferred-value reconciliation, temporary restriction review lifecycle, CRA reporting, German legal notice/ADR, entitlement reconciliation, permanent shutdown, business transfer/successor operation, digital-product conformity/modification, accessibility, DSA/UGC moderation, youth/minor protections, withdrawal flows, VAT/tax/FX, pricing/promotions, and security/privacy controls.
 
 ## Canonical source status
 
@@ -159,8 +132,8 @@ This checkpoint did not change player-facing canonical Terms, Purchases & Refund
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **98.0%**
-- **Overall project completion:** **99.70%**
+- **Full commercial/legal/payment readiness:** **98.1%**
+- **Overall project completion:** **99.72%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Historical synchronization and release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
+Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
