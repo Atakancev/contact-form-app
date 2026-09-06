@@ -16,10 +16,14 @@ const failures = [];
 const requireText = (key, needle, label = needle) => {
   if (!text[key].includes(needle)) failures.push(`${files[key]} missing: ${label}`);
 };
+const forbidText = (key, needle, label = needle) => {
+  if (text[key].includes(needle)) failures.push(`${files[key]} contains stale/forbidden text: ${label}`);
+};
 
-// Current German-law classification and early-expiry controls.
-requireText('gate', 'BGB § 356(4)', 'current paid-service early-expiry rule');
-requireText('gate', 'BGB § 356(5)', 'current non-tangible digital-content early-expiry rule');
+// Current German-law classification after the June 19, 2026 BGB renumbering.
+requireText('gate', 'BGB § 356(4)', 'current twelve-month-and-14-day long-stop rule');
+requireText('gate', 'BGB § 356(5)', 'current paid-service early-expiry rule');
+requireText('gate', 'BGB § 356(6)', 'current non-tangible digital-content early-expiry rule');
 requireText('gate', 'BGB § 357a(2)', 'paid-service value-compensation rule');
 requireText('gate', 'BGB § 357a(3)', 'no digital-content value compensation');
 requireText('gate', 'BGB § 312f', 'contract-confirmation evidence');
@@ -28,6 +32,16 @@ requireText('gate', 'starting performance does **not** by itself mean the withdr
 requireText('gate', 'there is no consumer value-compensation claim for withdrawn non-tangible digital content', 'digital-content no-Wertersatz boundary');
 requireText('gate', 'preselected checkbox', 'no inferred/preselected consent');
 requireText('gate', 'full-performance timestamp', 'full-performance evidence');
+requireText('gate', 'a developer still treats **BGB § 356(4)** as the current paid-service early-expiry rule', 'stale subsection mapping is a P0 blocker');
+
+// Electronic withdrawal function and its separation from termination.
+for (const needle of ['BGB § 356a', 'Vertrag widerrufen', 'Widerruf bestätigen', 'durable-medium receipt']) {
+  requireText('gate', needle);
+  requireText('checkout', needle);
+}
+requireText('gate', 'BGB § 312k', 'withdrawal/termination distinction');
+requireText('checkout', 'BGB § 312k', 'checkout withdrawal/termination distinction');
+requireText('checkout', 'BGB § 356a(5)', 'timely electronic-withdrawal submission rule');
 
 // TycoonX product invariants.
 requireText('gate', 'purchased Diamonds do not expire solely because time passes', 'purchased-Diamond non-expiry');
@@ -41,22 +55,18 @@ requireText('gate', 'must not remove unrelated paid purchases', 'transaction-sco
 for (const needle of ['Apple App Store', 'Google Play', 'Xsolla']) requireText('gate', needle);
 requireText('gate', 'A withdrawal request, missing consent record, or successful statutory withdrawal is not fraud', 'withdrawal is not fraud');
 requireText('gate', 'pending, failed, rejected, or unconfirmed payment', 'failed/pending payment separation');
-requireText('gate', 'provider/platform refund', 'provider refund separated from statutory withdrawal');
+requireText('gate', 'Provider refunds and statutory withdrawal are separate routes', 'provider refund separated from statutory withdrawal');
 requireText('gate', 'transaction-scoped and idempotent', 'idempotent transaction-scoped unwind');
 
-// Existing German checkout gate must remain the general electronic-withdrawal control and use current subsection mapping.
-requireText('checkout', 'BGB § 356a', 'electronic withdrawal function');
-requireText('checkout', 'Vertrag widerrufen', 'first statutory withdrawal control');
-requireText('checkout', 'Widerruf bestätigen', 'final statutory withdrawal control');
-requireText('checkout', 'For a paid contract for non-physical digital content, current BGB § 356(5)', 'current digital-content subsection mapping');
-requireText('checkout', 'For a paid service, current BGB § 356(4)', 'current service subsection mapping');
-requireText('checkout', 'BGB § 357a(3) does not create a value-compensation claim for withdrawn non-tangible digital content', 'checkout gate no-Wertersatz cross-reference');
-if (text.checkout.includes('For a paid contract for non-physical digital content, BGB § 356(6)')) {
-  failures.push(`${files.checkout} contains stale digital-content subsection mapping`);
-}
-if (text.checkout.includes('For a paid service, BGB § 356(5)')) {
-  failures.push(`${files.checkout} contains stale service subsection mapping`);
-}
+// Checkout gate must use current subsection mapping and retain the § 356a flow.
+requireText('checkout', 'For a paid contract for non-physical digital content, current **BGB § 356(6)**', 'current digital-content subsection mapping');
+requireText('checkout', 'For a paid service, current **BGB § 356(5)**', 'current service subsection mapping');
+requireText('checkout', 'BGB § 356(4) is the current general twelve-month-and-14-day long-stop rule', 'current § 356(4) long-stop mapping');
+requireText('checkout', 'BGB § 357a(3) does not create a value-compensation claim for withdrawn non-tangible digital content', 'checkout no-Wertersatz cross-reference');
+forbidText('checkout', 'For a paid contract for non-physical digital content, current BGB § 356(5)', 'pre-June-19 digital-content subsection mapping');
+forbidText('checkout', 'For a paid service, current BGB § 356(4)', 'pre-June-19 service subsection mapping');
+forbidText('gate', '**BGB § 356(4)** governs early expiry of the withdrawal right for contracts for services', 'pre-June-19 service subsection mapping');
+forbidText('gate', '**BGB § 356(5)** governs early expiry for digital content not supplied on a tangible medium', 'pre-June-19 digital-content subsection mapping');
 
 // Canonical legal invariants must remain unchanged unless localized documents are resynchronized.
 requireText('terms', 'Purchased Diamonds do not expire solely because time passes.');
