@@ -64,7 +64,7 @@ requireMatch(refundGate, /transaction ID.*sole refund authority|sole refund auth
 
 requireMatch(progress, /100\/100/i, 'Localization tracker no longer confirms all 100 localized full documents.');
 requireMatch(progress, /25\/25/i, 'Localization tracker no longer confirms all 25 localized hubs.');
-requireMatch(progress, /Exact next unfinished locale\/document:\s*\*\*None|Exact next unfinished locale\/document.*None/is, 'Localization tracker no longer confirms that the locale queue is closed.');
+requireMatch(progress, /Exact next unfinished locale\/document:\s*None\. All 25 target locales and all 100 localized full documents are current\./i, 'Localization tracker no longer confirms that the locale queue is closed.');
 
 for (const [label, text] of [['gate', gate], ['refund gate', refundGate]]) {
   if (/TyconX/.test(text)) errors.push(`${label} contains displayed brand typo "TyconX".`);
