@@ -41,7 +41,7 @@ requireMatch(gate, /single verified Apple transaction.*once/is, 'Promoted-IAP ga
 // Lifetime VIP limited-sale integrity.
 requireMatch(gate, /Lifetime VIP remains a limited-time promotional offering available only during selected genuine sales windows/i, 'Promoted-IAP gate lost limited Lifetime VIP sale meaning.');
 requireMatch(gate, /Do not intentionally leave Lifetime VIP promoted after.*sale has closed/is, 'Promoted-IAP gate lost closed-window de-merchandising rule.');
-requireMatch(gate, /previously purchased Lifetime VIP must remain restorable.*does not require.*continue merchandising/is, 'Promoted-IAP gate lost restore-vs-new-sale distinction.');
+requireMatch(gate, /previously purchased Lifetime VIP must remain restorable.*does \*\*not\*\* require.*continue merchandising/is, 'Promoted-IAP gate lost restore-vs-new-sale distinction.');
 requireMatch(gate, /visible disappearance.*must not be the only technical control/i, 'Promoted-IAP gate lost 24-hour propagation sale-cutoff safeguard.');
 requireMatch(gate, /enforce the campaign's current buy eligibility in TycoonX/i, 'Promoted-IAP gate lost in-app campaign eligibility check.');
 requireMatch(gate, /stale Apple merchandising surface must not by itself become evidence of/is, 'Promoted-IAP gate lost stale-promotion abuse boundary.');
@@ -79,7 +79,7 @@ requireMatch(gate, /false statement.*only for a very limited time/is, 'Promoted-
 requireMatch(gate, /mandatory German\/EU withdrawal, conformity, update, cure, price-reduction, termination, refund, liability/i, 'Promoted-IAP gate lost mandatory-rights preservation.');
 
 // Fraud, refund, and transaction isolation.
-requireMatch(gate, /screenshot of the promoted App Store item.*not.*proof/is, 'Promoted-IAP gate lost screenshot-evidence boundary.');
+requireMatch(gate, /Do not treat any of the following alone as proof.*screenshot of the promoted App Store item/is, 'Promoted-IAP gate lost screenshot-evidence boundary.');
 requireMatch(gate, /separate account-recovery\/security analysis from payment\/refund/i, 'Promoted-IAP gate lost account-compromise separation.');
 requireMatch(gate, /do not create a special no-refund rule/i, 'Promoted-IAP gate lost refund-channel neutrality.');
 requireMatch(gate, /reconcile only the entitlement\/value attributable to the affected transaction/i, 'Promoted-IAP gate lost transaction-specific refund correction.');
