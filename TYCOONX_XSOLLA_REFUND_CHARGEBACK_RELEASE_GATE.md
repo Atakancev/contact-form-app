@@ -49,6 +49,18 @@ Xsolla currently states that required webhooks can be sent sequentially and that
 - **Do not assume CK-Labs-initiated refunds receive webhook retries.** Xsolla currently states that when the refund is initiated on the publisher's side, the `refund` webhook is **not resent**, and the payment is refunded to the user regardless of the webhook response. Before submitting a manual/provider API refund, durably record the intended transaction and requested scope. After submission, reconcile the authoritative provider status even if no refund webhook arrives. Do not resubmit the same refund merely because a callback was lost, and do not leave refunded Diamonds or VIP active merely because TycoonX never received a retried callback.
 - Do not intentionally return an error in an attempt to stop a provider-initiated refund. Xsolla expressly notes that an Xsolla-initiated refund can still complete even if the webhook receives `4xx`, `5xx`, or exhausts retries. The TycoonX handler must reconcile to authoritative payment state rather than trying to veto the refund through HTTP status codes.
 
+### 3A. Refund API credential scope and request-versus-settlement safety
+
+Xsolla's current full-refund and partial-refund API methods are merchant-level transaction endpoints under `/merchants/{merchant_id}/reports/transactions/{transaction_id}/...`. Xsolla expressly notes that these calls have **no `project_id` path parameter** and therefore require an API key that is valid across all projects of the company. Treat that credential as a high-impact merchant-wide secret.
+
+- Keep the merchant-wide refund API credential strictly server-side. Never ship it in the TycoonX client, expose it to a browser, place it in a support form, or log it in application/analytics output.
+- Before a refund request is sent, resolve the transaction from TycoonX's own authoritative order mapping and verify the expected Xsolla merchant, project/order context, TycoonX account, product, environment, original amount, and currency. A transaction ID typed or supplied by a player/support agent must never be the sole refund authority.
+- Do not let a sandbox/test transaction identifier reach the production refund path, and do not let a transaction from another CK-Labs project be refunded merely because the merchant-wide API credential can technically access it.
+- Durably record a refund intent before calling Xsolla: exact transaction, requested amount/scope, reason, operator/system actor, and an idempotency/reconciliation key. Blind retries after timeouts or lost callbacks can otherwise create duplicate or excessive refunds.
+- Treat a successful refund-API HTTP response as **request acceptance**, not automatically as proof that money has already settled back to the player. Xsolla currently documents successful full-refund responses that can mean Customer Support will manually complete the refund, potentially taking up to two business days, or that the user will be contacted for an alternative refund method.
+- Do not revoke Diamonds, 30-Day VIP, or Lifetime VIP solely because the refund API returned `200`/`204` or a request was accepted. Reconcile entitlement only from the provider's authoritative completed refund/cancellation state, the corresponding verified webhook/provider record, and the TycoonX transaction ledger, subject to mandatory law.
+- Likewise, a temporary API error or timeout is not proof that the refund failed. Reconcile the transaction before deciding whether another refund request is safe.
+
 ### 4. Transaction-specific refund policy
 
 - Do not promise that every Xsolla purchase is governed by the same refund policy. Xsolla currently states that the applicable refund-policy type is shown at the bottom of checkout.
@@ -63,14 +75,23 @@ Xsolla currently states that required webhooks can be sent sequentially and that
 
 Xsolla currently supports partial refunds only for eligible payment methods and transaction states. Before CK-Labs attempts a partial refund:
 
-- verify that the payment method supports it;
+- verify that the payment method currently supports partial refunds rather than assuming every payment rail that supports a full refund also supports a partial one;
 - verify that the transaction status allows a refund and that cumulative partial refunds will not exceed the original payment;
-- do not assume discounted purchases, subscription payments, Xsolla-balance payments, or older transactions are eligible for partial refund merely because a full refund route exists;
-- preserve the original transaction/entitlement mapping because Xsolla can report a partial refund as a related transaction and send a dedicated partial-refund webhook;
-- reconcile only the refunded portion of the entitlement where technically and legally possible, rather than deleting unrelated paid value; and
-- if the product cannot be meaningfully divided, route the case for a transaction-specific full-refund or other lawful remedy instead of inventing an unsupported partial entitlement state.
+- enforce the provider's current minimum-remainder/payment-system constraints after the partial refund;
+- do not assume discounted purchases, subscription payments, Xsolla-balance payments, or transactions more than **180 days** old are eligible for partial refund merely because a full refund route exists;
+- calculate the request in the **purchase currency** and from the actual transaction amount, not from a Diamond count or VIP duration alone. Xsolla's current API defines `refund_amount` in the purchase currency;
+- preserve the original transaction/entitlement mapping and a separate identity for each partial-refund occurrence. Xsolla currently allows more than one partial refund of a charge, so idempotency keyed only by the original transaction ID can wrongly discard a later legitimate partial refund;
+- on a verified `partial_refund` event, use the actual partial-refund amount reported for that event and the cumulative refunded amount. Do not accidentally treat the original full payment amount as the amount to claw back;
+- reconcile only the refunded portion of the attributable entitlement where technically and legally possible, rather than deleting unrelated paid value; and
+- if the product cannot be meaningfully divided, route the case for a transaction-specific full-refund or other lawful remedy instead of inventing an unsupported fractional VIP state.
 
-Current Xsolla documentation also notes that refund mechanics can vary by payment method, including automatic refunds, support-assisted refunds, and alternative refund routes such as PayPal or Xsolla balance for payment methods that cannot return funds normally. Support copy must not promise a specific return rail before the provider confirms it for the actual transaction.
+Do **not** remove paid value merely because a partial-refund API request was accepted. Xsolla's current refund flow says the partial-refund webhook is sent when the user receives the funds. Until authoritative provider state confirms the refund completed, keep the request and entitlement state separately reconcilable.
+
+For Diamonds, a partial refund must never claw back more than the portion attributable to that exact transaction. For one-time 30-Day VIP and Lifetime VIP, do not invent fractional-duration or fractional-lifetime access from a partial monetary result. If the provider can legally issue a partial refund for an indivisible VIP purchase, put the entitlement into a deliberate reconciliation path rather than guessing.
+
+Current Xsolla documentation also notes that refund mechanics can vary by payment method, including automatic refunds, support-assisted refunds, and alternative refund routes such as PayPal or Xsolla balance for payment methods that cannot return funds normally. Support copy must not promise a specific return rail before the provider confirms it for the actual transaction. Xsolla also currently warns that a WeChat payment made in CNY can be converted to USD during refund processing, which can create a discrepancy between the requested and received refund amount. Do not promise an exact local-currency return where the provider/payment rail says conversion can occur.
+
+Refund metadata must not be over-read as fraud proof. Integration-error, test-payment, user-request, or game-request refund reasons can be legitimate operational outcomes. A refund reason, author field, or provider risk signal may support a transaction-specific review, but it does not by itself justify confiscating unrelated purchases or permanently terminating the account.
 
 ### 6. Merchant-of-record and tax responsibility
 
@@ -173,7 +194,12 @@ As of September 7, 2026:
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
 - Xsolla currently states that a publisher-initiated `refund` webhook is not resent and that the payment is refunded regardless of the webhook response. Manual-refund reconciliation must therefore use authoritative provider state rather than assuming a callback retry will repair a missed event.
 - Xsolla currently requires signature verification against the raw request body and documents HTTPS, valid certificates and IP allowlisting as webhook-security practices.
-- Xsolla's refund documentation says refunds can take approximately 5–10 banking days depending on payment method, an issued refund cannot be canceled, and partial-refund eligibility depends on payment method and transaction conditions.
+- Xsolla's current full/partial refund API uses merchant-level transaction endpoints without a `project_id` parameter and requires an API key valid across the company's projects. TycoonX therefore treats the refund credential as a high-impact merchant-wide server secret and validates the exact TycoonX transaction before every request.
+- A successful full-refund API response can mean only that the refund request was accepted for later manual completion or an alternative-refund flow. API acceptance is not itself entitlement-revocation authority.
+- Xsolla's refund documentation says refunds can take approximately 5–10 banking days depending on payment method and an issued refund cannot be canceled.
+- Xsolla's partial-refund documentation, last updated August 28, 2026, says multiple partial refunds can be made against one charge, but partial refunds are rejected for unsupported payment methods, over-refund, invalid payment state, payment-system minimum remainder, discounted purchases, subscription payments, Xsolla-balance payments, and payments more than 180 days old. `refund_amount` is expressed in the purchase currency.
+- Xsolla says the `partial_refund` webhook is sent when the user receives the funds. TycoonX must therefore separate a refund request's accepted/pending state from completed provider refund state and idempotently process multiple partial-refund occurrences for the same original purchase.
+- Xsolla currently warns that WeChat CNY refunds can be converted to USD, which may create a difference between the requested and received refund amount.
 - Xsolla's chargeback evidence documentation, last updated August 5, 2026, says evidence requests are selective; a requested file must currently be uploaded as PDF through Publisher Account within **3 calendar days from the request date**; late evidence cannot be submitted through the registry; a submitted file cannot be replaced there; and a payment-system decision typically takes **30–60 days** after evidence submission.
 - Xsolla currently identifies potentially useful evidence such as proof of digital delivery, relevant user activity/login logs, purchase confirmation/details, screenshots of item use, applicable refund-policy excerpts, or correspondence about the disputed transaction, while expressly instructing partners to include only data necessary for the chargeback.
 - Xsolla's Publisher Account documentation currently describes a dispute/chargeback fee that can be charged when a chargeback reaches a final status. Treat that as a commercial-cost input, not as permission to impose an undisclosed fee on players.
