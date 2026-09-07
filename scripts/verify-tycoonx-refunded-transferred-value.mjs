@@ -61,8 +61,9 @@ requireText(apple, '`CONSUMPTION_REQUEST`: Apple is asking for information that 
 requireText(google, 'The review response must not itself grant or revoke TycoonX value', 'Google review/final distinction');
 requireText(xsolla, 'A chargeback request alone is not proof of fraud.', 'Xsolla dispute/fraud distinction');
 
-requireText(progress, '100/100 localized full documents are currently confirmed current', 'localized full-document completion');
-requireText(progress, '25/25', 'localized hub completion');
+requireText(progress, 'All 25 target locales and all 100 localized full documents are current.', 'localized full-document completion');
+requireText(progress, 'Localized full documents:** 100/100', 'localized full-document metric');
+requireText(progress, 'Localized hubs:** 25/25', 'localized hub completion');
 requireText(progress, 'Exact next unfinished locale/document: None', 'closed localization queue');
 
 forbidText(gate, 'TyconX', 'player-facing brand typo');
