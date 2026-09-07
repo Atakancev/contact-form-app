@@ -30,9 +30,20 @@ const required = [
   'REFUND_DECLINED',
   'REFUND',
   'REVOKE',
-  'Send Consumption Information V2',
+  'Send Consumption Information',
+  'Send Consumption Information V1',
   '12-hour',
   'App Tracking Transparency',
+  'revocationType',
+  'REFUND_FULL',
+  'REFUND_PRORATED',
+  'FAMILY_REVOKE',
+  'revocationPercentage',
+  'Transaction.revocationPercentage',
+  'consumptionPercentage',
+  'GRANT_PRORATED',
+  'customerConsented: false',
+  'five-minute sandbox decisioning window',
   'Transaction.currentEntitlements',
   '30-Day VIP',
   'Lifetime VIP',
@@ -87,12 +98,60 @@ if (!/do not revoke paid value merely because a refund was \*\*requested\*\*/i.t
   failures.push('Refund-request-versus-refund-decision safeguard is missing.');
 }
 
-if (!/customer gave valid consent for this specific data sharing/i.test(text)) {
-  failures.push('Apple consumption-data consent safeguard is missing.');
+if (!/For `REFUND_PRORATED`, use Apple's final signed `revocationPercentage` as the authoritative refunded\/revoked fraction/i.test(text)) {
+  failures.push('Prorated refunds must use Apple final revocationPercentage.');
 }
 
-if (!/do not send consumption data in response to the `CONSUMPTION_REQUEST`/i.test(text)) {
+if (!/Do \*\*not\*\* use the earlier `consumptionPercentage` submitted by CK-Labs as if it were Apple's final refund result/i.test(text)) {
+  failures.push('Consumption percentage must not be mistaken for final refund percentage.');
+}
+
+if (!/integer in \*\*milliunits from 0 through 100000\*\*/i.test(text)) {
+  failures.push('Server revocationPercentage milliunit range safeguard is missing.');
+}
+
+if (!/`Transaction\.revocationPercentage`, the value is a `Decimal` percentage from \*\*0\.0 through 100\.0\*\*/i.test(text)) {
+  failures.push('StoreKit revocationPercentage decimal range safeguard is missing.');
+}
+
+if (!/1000x over-clawback or under-clawback/i.test(text)) {
+  failures.push('Apple prorated-refund unit mismatch blocker is missing.');
+}
+
+if (!/a prorated correction must be derived from the original verified Diamond grant for that exact transaction/i.test(text)) {
+  failures.push('Transaction-specific prorated Diamond correction rule is missing.');
+}
+
+if (!/never remove more purchased Diamond value than that transaction originally granted/i.test(text)) {
+  failures.push('Prorated Diamond over-clawback cap is missing.');
+}
+
+if (!/do not invent a fractional entitlement solely from a percentage field/i.test(text)) {
+  failures.push('VIP fractional-entitlement guessing safeguard is missing.');
+}
+
+if (!/Send Consumption Information V1.*deprecated/is.test(text)) {
+  failures.push('Deprecated Apple consumption V1 migration safeguard is missing.');
+}
+
+if (!/customer did not consent, do not send consumption data in response to the `CONSUMPTION_REQUEST`/i.test(text)) {
   failures.push('No-consent/no-send rule for Apple consumption data is missing.');
+}
+
+if (!/request with `customerConsented: false` is rejected/i.test(text)) {
+  failures.push('Apple current customerConsented=false behavior is missing.');
+}
+
+if (!/If `GRANT_PRORATED` is used.*`consumptionPercentage`.*greater than `0` and less than `100000`/is.test(text)) {
+  failures.push('Apple GRANT_PRORATED percentage validation is missing.');
+}
+
+if (!/If `deliveryStatus` is not `DELIVERED`, the consumption percentage must be `0`/i.test(text)) {
+  failures.push('Undelivered Apple purchase consumptionPercentage rule is missing.');
+}
+
+if (!/Wait for the authoritative refund decision and signed revocation state/i.test(text)) {
+  failures.push('No pre-emptive consumption-based clawback safeguard is missing.');
 }
 
 if (!/must not restart an expired 30-Day VIP/i.test(text)) {
@@ -101,6 +160,14 @@ if (!/must not restart an expired 30-Day VIP/i.test(text)) {
 
 if (!/one and only one grant even if both the client and `ONE_TIME_CHARGE` are received/i.test(text)) {
   failures.push('Client/server duplicate-grant release test is missing.');
+}
+
+if (!/40% server-side `revocationPercentage` represented as `40000`.*StoreKit percentage represented as `40\.0`/is.test(text)) {
+  failures.push('Prorated-refund server-versus-StoreKit unit regression test is missing.');
+}
+
+if (!/prorated Diamond refund proving only the matching transaction's refunded share is corrected/i.test(text)) {
+  failures.push('Prorated Diamond transaction-isolation QA case is missing.');
 }
 
 if (!/refunded entitlement is not resurrected/i.test(text)) {
