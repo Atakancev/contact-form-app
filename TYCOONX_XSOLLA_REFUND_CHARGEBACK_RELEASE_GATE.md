@@ -1,6 +1,6 @@
 # TycoonX Xsolla Refund & Chargeback Release Gate
 
-Last reviewed: September 4, 2026
+Last reviewed: September 7, 2026
 
 This is an operational release gate for purchases made through the official CK-Labs TycoonX webshop using Xsolla. It complements the public TycoonX Terms of Service, Purchases & Refunds Policy, and Privacy Policy. It does not replace the transaction-specific Xsolla checkout terms, mandatory consumer law, or Xsolla's current Partner/Publisher terms.
 
@@ -46,6 +46,7 @@ Xsolla currently states that required webhooks can be sent sequentially and that
 - Durably record the verified event and its idempotency key/transaction identity before acknowledging success. Business logic may then run asynchronously so a process crash after `2xx` does not silently lose the event.
 - For current combined `order_paid` / `order_canceled` webhooks, Xsolla documents retries after no response or `5xx`, up to 20 delivery attempts within 12 hours. Build idempotency for the whole retry window.
 - For current third-party-initiated `refund` webhooks, Xsolla documents increasing-interval retries after `5xx`, up to 12 attempts within 48 hours. Do not let repeated delivery subtract Diamonds or revoke VIP more than once.
+- **Do not assume CK-Labs-initiated refunds receive webhook retries.** Xsolla currently states that when the refund is initiated on the publisher's side, the `refund` webhook is **not resent**, and the payment is refunded to the user regardless of the webhook response. Before submitting a manual/provider API refund, durably record the intended transaction and requested scope. After submission, reconcile the authoritative provider status even if no refund webhook arrives. Do not resubmit the same refund merely because a callback was lost, and do not leave refunded Diamonds or VIP active merely because TycoonX never received a retried callback.
 - Do not intentionally return an error in an attempt to stop a provider-initiated refund. Xsolla expressly notes that an Xsolla-initiated refund can still complete even if the webhook receives `4xx`, `5xx`, or exhausts retries. The TycoonX handler must reconcile to authoritative payment state rather than trying to veto the refund through HTTP status codes.
 
 ### 4. Transaction-specific refund policy
@@ -163,13 +164,14 @@ Xsolla's chargeback documentation notes that disputes may arise from game-condit
 
 ## Current Xsolla checkpoint
 
-As of September 4, 2026:
+As of September 7, 2026:
 
 - Xsolla's legal index lists its Refund Policy as updated June 16, 2026 and its Privacy Policy as updated June 3, 2026.
 - Xsolla states that the applicable Refund Policy type is identified in checkout.
 - Xsolla states that the relevant Xsolla group company for a purchase depends on the transaction/payment method and is shown in checkout/receipt.
 - Xsolla's current Store/Payments webhook documentation distinguishes combined and separate webhook modes based on Publisher Account setup, with January 22, 2025 as the documented default split and migration possible through Xsolla.
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
+- Xsolla currently states that a publisher-initiated `refund` webhook is not resent and that the payment is refunded regardless of the webhook response. Manual-refund reconciliation must therefore use authoritative provider state rather than assuming a callback retry will repair a missed event.
 - Xsolla currently requires signature verification against the raw request body and documents HTTPS, valid certificates and IP allowlisting as webhook-security practices.
 - Xsolla's refund documentation says refunds can take approximately 5–10 banking days depending on payment method, an issued refund cannot be canceled, and partial-refund eligibility depends on payment method and transaction conditions.
 - Xsolla's chargeback evidence documentation, last updated August 5, 2026, says evidence requests are selective; a requested file must currently be uploaded as PDF through Publisher Account within **3 calendar days from the request date**; late evidence cannot be submitted through the registry; a submitted file cannot be replaced there; and a payment-system decision typically takes **30–60 days** after evidence submission.
