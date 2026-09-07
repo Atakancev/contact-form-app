@@ -43,9 +43,23 @@ requireMatch(gate, /publisher['’]?s side.*not resent|CK-Labs-initiated refunds
 requireMatch(gate, /reconcile.*authoritative provider status.*no refund webhook|manual-refund reconciliation.*authoritative provider state|authoritative provider status even if no refund webhook/is, 'Xsolla gate must reconcile publisher-initiated refunds from authoritative provider state when the webhook is lost.');
 requireMatch(gate, /do not resubmit the same refund.*callback was lost/i, 'Xsolla gate must not duplicate a refund merely because its callback was lost.');
 requireMatch(gate, /still complete.*4xx.*5xx|4xx.*5xx.*veto|veto.*refund/is, 'Xsolla gate no longer warns that HTTP errors cannot safely veto a provider-initiated refund.');
+requireMatch(gate, /no `project_id` path parameter|no project_id path parameter/i, 'Xsolla gate is missing the merchant-wide refund API scope warning.');
+requireMatch(gate, /API key.*valid.*all projects|API key.*all projects.*company|valid across all projects/is, 'Xsolla gate is missing the company-wide Xsolla refund credential requirement.');
+requireMatch(gate, /merchant-wide.*server-side|server-side.*merchant-wide/is, 'Xsolla gate must keep the merchant-wide refund credential server-side.');
+requireMatch(gate, /transaction ID.*sole refund authority|sole refund authority.*transaction ID/is, 'Xsolla gate must not accept an arbitrary transaction ID as sole refund authority.');
+requireMatch(gate, /request acceptance.*not.*proof|successful refund-API HTTP response.*request acceptance/is, 'Xsolla gate must distinguish refund request acceptance from completed settlement.');
+requireMatch(gate, /up to two business days/i, 'Xsolla gate is missing the current manual refund-completion warning.');
+requireMatch(gate, /Do not revoke Diamonds, 30-Day VIP, or Lifetime VIP solely because.*200.*204/is, 'Xsolla gate must not revoke entitlements merely from refund API acceptance.');
 requireMatch(gate, /5.?10 banking days/i, 'Xsolla gate is missing the current payment-method-dependent refund timing warning.');
 requireMatch(gate, /refund.*cannot be canceled|cannot be canceled.*refund/is, 'Xsolla gate is missing the irreversible-issued-refund warning.');
 requireMatch(gate, /partial refunds are payment-method and transaction specific/i, 'Xsolla gate is missing transaction-specific partial-refund handling.');
+requireMatch(gate, /180 days/i, 'Xsolla gate is missing the current 180-day partial-refund eligibility limit.');
+requireMatch(gate, /refund_amount.*purchase currency|purchase currency.*refund_amount/is, 'Xsolla gate is missing purchase-currency handling for Xsolla partial refunds.');
+requireMatch(gate, /more than one partial refund|multiple partial refunds/is, 'Xsolla gate is missing multiple-partial-refund handling for one charge.');
+requireMatch(gate, /idempotency keyed only by the original transaction ID|separate identity for each partial-refund occurrence/is, 'Xsolla gate must not collapse later legitimate partial refunds under the original transaction ID.');
+requireMatch(gate, /partial-refund webhook is sent when the user receives the funds|partial_refund.*when the user receives the funds/is, 'Xsolla gate must distinguish accepted partial-refund requests from completed refunds.');
+requireMatch(gate, /WeChat.*CNY.*USD/is, 'Xsolla gate is missing the documented WeChat CNY-to-USD refund discrepancy warning.');
+requireMatch(gate, /refund metadata must not be over-read as fraud proof|Integration-error.*test-payment.*legitimate/is, 'Xsolla gate must not classify ordinary refund metadata as automatic fraud proof.');
 requireMatch(gate, /do not fabricate evidence/i, 'Xsolla gate is missing evidence-integrity protection.');
 requireMatch(gate, /unrelated private chats|private messages/i, 'Xsolla gate is missing privacy minimization for dispute evidence.');
 requireMatch(gate, /record what evidence was disclosed/i, 'Xsolla gate is missing an evidence-disclosure audit trail.');
@@ -87,5 +101,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Xsolla webhook, refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Xsolla webhook, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
 }
