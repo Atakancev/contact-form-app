@@ -65,11 +65,18 @@ requireMatch(gate, /do not copy it into Apple-side account metadata/i, 'Missing 
 // Significant changes and revocations.
 requireMatch(gate, /installId.*revocation/is, 'Missing installId revocation purpose.');
 requireMatch(gate, /do not use it as a cross-device advertising ID, fingerprint/i, 'Missing installId anti-tracking safeguard.');
-requireMatch(gate, /revoked app approvals Play Console functionality is not yet live/i, 'Missing current revoked-approval availability warning.');
+requireMatch(gate, /Revoked app approvals.*Age signals page.*Google Play Console/is, 'Missing current Revoked app approvals Play Console workflow.');
+requireMatch(gate, /download a CSV.*revoked `installID`/is, 'Missing current revoked-approval CSV workflow.');
+requireMatch(gate, /listed values remain available for 90 days/i, 'Missing current revoked-approval 90-day retention checkpoint.');
+requireMatch(gate, /previous TycoonX gate statement.*not yet live.*obsolete/is, 'Missing stale revoked-approval availability regression blocker.');
+requireMatch(gate, /same `installID` can appear as a new row again/i, 'Missing repeat-revocation semantics.');
+requireMatch(gate, /Do not deduplicate all future revocations forever on `installID` alone/i, 'Missing repeat-revocation deduplication safeguard.');
+requireMatch(gate, /revoking app approval is an access\/consent event, not by itself proof of fraud/is, 'Missing revocation-vs-fraud separation.');
+requireMatch(gate, /revocation does not itself manufacture a refund, reverse a payment, delete the purchase ledger/is, 'Missing revocation-vs-payment-state separation.');
 requireMatch(gate, /significantChangeStatus.*APPROVED.*PENDING.*DECLINED/is, 'Missing significant-change status handling.');
 requireMatch(gate, /significantChangeApprovalDate/i, 'Missing significant-change approval date.');
 requireMatch(gate, /can submit.*significant change.*Age signals page.*Play Console/is, 'Missing current live Play Console significant-change submission checkpoint.');
-requireMatch(gate, /previous TycoonX gate statement.*not yet live.*obsolete/is, 'Missing stale significant-change availability regression blocker.');
+requireMatch(gate, /significant-change Play Console functionality was "not yet live".*obsolete/is, 'Missing stale significant-change availability regression blocker.');
 requireMatch(gate, /independently of app releases/i, 'Missing significant-change-vs-app-release separation.');
 requireMatch(gate, /00:00 UTC/i, 'Missing significant-change UTC effective-time boundary.');
 requireMatch(gate, /shown verbatim to parents/i, 'Missing parent-description verbatim warning.');
@@ -79,7 +86,7 @@ requireMatch(gate, /more than two days apart/i, 'Missing current significant-cha
 requireMatch(gate, /at most the 10 most recent descriptions/i, 'Missing current parent-display description limit.');
 requireMatch(gate, /significant changes as cumulative/i, 'Missing cumulative significant-change approval model.');
 requireMatch(gate, /Only \*\*supervised users\*\*, not verified users, have a significant-change approval status/i, 'Missing supervised-vs-verified significant-change status boundary.');
-requireMatch(gate, /does not.*transaction-specific authorization.*Diamonds.*30-Day VIP.*Lifetime VIP/is, 'Missing significant-change-vs-purchase-authorization safeguard.');
+requireMatch(gate, /significant-change approval as transaction-specific authorization for Diamonds, 30-Day VIP, Lifetime VIP/i, 'Missing significant-change-vs-purchase-authorization safeguard.');
 requireMatch(gate, /Before an upcoming significant change's effective date.*previously approved.*significantChangeApprovalDate/is, 'Missing pre-effective-date status handling.');
 requireMatch(gate, /From the effective date.*PENDING.*DECLINED.*restrict only the content\/functionality related to that unapproved significant change/is, 'Missing proportionate significant-change restriction from effective date.');
 
@@ -150,5 +157,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Google Play Age Signals purpose limits, 0.0.4 flow, live significant-change workflow, parental-state boundaries, purchase isolation, privacy, security, and localization invariants are present.');
+  console.log('PASS: Google Play Age Signals purpose limits, 0.0.4 flow, current significant-change and revoked-approval workflows, parental-state boundaries, purchase isolation, privacy, security, and localization invariants are present.');
 }
