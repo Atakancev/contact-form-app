@@ -71,6 +71,21 @@ const requiredGate = [
   'All users',
   'do not misuse `setIsOfferPersonalized()` as a general sales-window switch',
   'purchase-flow recommendation configuration, including selected purchase-option IDs, countries/regions, audience and enabled/paused status',
+  'Multi-quantity purchase safety',
+  'enable multi-quantity only for a Diamond product',
+  'do not enable multi-quantity for one-time 30-Day VIP or Lifetime VIP',
+  '`Purchase.getQuantity()`',
+  '`Purchases.products.quantity`',
+  'grant **600 Diamonds exactly once** for that transaction',
+  'Do not assume quantity 1 merely because the RTDN contains a product ID and purchase token but no quantity field',
+  'Google Play billing country is ephemeral billing-flow data',
+  '`getBillingConfigAsync()`',
+  '**must not be stored**',
+  'must not be used to create or enhance a user profile',
+  'advertising or marketing',
+  'do not treat the Google Play billing country as citizenship',
+  'do not treat a billing-country change or mismatch',
+  'stop the rollout and recheck the then-current Google rule and privacy/legal basis',
   '`Purchase.getProducts()`',
   'authoritative Google Play Developer API purchase `lineItems`',
   'do not use `orderId` alone as the deduplication or database primary key',
@@ -87,6 +102,11 @@ const requiredGate = [
   'an ineligible one-time offer can fall back to an underlying purchase option that improperly reopens a closed Lifetime VIP',
   'a Google Play purchase-flow recommendation remains public after the corresponding Lifetime VIP sales window has closed',
   '`setIsOfferPersonalized()` is used as a fake availability switch',
+  'a verified multi-quantity Diamond purchase is provisioned as quantity 1',
+  'multi-quantity is enabled for 30-Day VIP or Lifetime VIP',
+  'a one-time-product RTDN is assumed to have quantity 1 without retrieving authoritative purchase quantity',
+  '`getBillingConfigAsync()` country/configuration data is persisted into a player profile',
+  'a Google Play billing-country change or mismatch is treated by itself as proof of VPN use',
   'a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle/recommendation path',
   'a multi-product RTDN with no `sku` is guessed into a single TycoonX entitlement without authoritative lookup',
   'node scripts/verify-tycoonx-google-play-billing-library-lifecycle.mjs',
@@ -152,6 +172,30 @@ requireMatch(
   gate,
   /configuration mistake[\s\S]{0,1400}player fraud[\s\S]{0,1400}honor[\s\S]{0,800}unwind\/refund/i,
   'Google Play Billing Library lifecycle gate: unintended completed purchase is not separated from player fraud and lawful unwind.',
+);
+
+requireMatch(
+  gate,
+  /Multi-quantity purchase safety[\s\S]{0,2200}Purchase\.getQuantity\(\)[\s\S]{0,1600}600 Diamonds exactly once[\s\S]{0,3000}30-Day VIP[\s\S]{0,1200}Lifetime VIP/i,
+  'Google Play Billing Library lifecycle gate: multi-quantity provisioning and VIP exclusion controls are incomplete.',
+);
+
+requireMatch(
+  gate,
+  /RTDN[\s\S]{0,800}authoritative purchase state and quantity[\s\S]{0,1000}assume quantity 1/i,
+  'Google Play Billing Library lifecycle gate: multi-quantity RTDN lookup requirement is incomplete.',
+);
+
+requireMatch(
+  gate,
+  /getBillingConfigAsync\(\)[\s\S]{0,900}must not be stored[\s\S]{0,1200}user profile[\s\S]{0,1200}advertising or marketing/i,
+  'Google Play Billing Library lifecycle gate: billing-configuration storage/profile/marketing restrictions are incomplete.',
+);
+
+requireMatch(
+  gate,
+  /billing country[\s\S]{0,1600}citizenship[\s\S]{0,1600}billing-country change or mismatch[\s\S]{0,1200}regional-price abuse/i,
+  'Google Play Billing Library lifecycle gate: billing-country identity and abuse boundaries are incomplete.',
 );
 
 requireMatch(
