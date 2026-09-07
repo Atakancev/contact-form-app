@@ -61,6 +61,16 @@ const requiredGate = [
   'Client callbacks alone are not payment authority.',
   'Query current `ProductDetails` before presenting or launching a Google Play purchase flow.',
   'Do not rely on a cached `ProductDetails`, stale offer token, old local price, or previously eligible promotion',
+  'Ineligible-offer fallback must not reopen a closed sales window',
+  'TycoonX must not use offer eligibility as the only control for a genuinely closed Lifetime VIP sales window.',
+  'Hiding the TycoonX purchase button, removing an offer token from the app, or relying on stale-client rejection is not enough',
+  'CK-Labs must not keep the payment while refusing the corresponding paid entitlement.',
+  'Play purchase-flow recommendations are a separate sale surface',
+  'Monetize with Play > Purchase recommendations',
+  'License testers only',
+  'All users',
+  'do not misuse `setIsOfferPersonalized()` as a general sales-window switch',
+  'purchase-flow recommendation configuration, including selected purchase-option IDs, countries/regions, audience and enabled/paused status',
   '`Purchase.getProducts()`',
   'authoritative Google Play Developer API purchase `lineItems`',
   'do not use `orderId` alone as the deduplication or database primary key',
@@ -74,8 +84,11 @@ const requiredGate = [
   'after August 31, 2026, a new TycoonX update is submitted with Play Billing Library 7 without verified extension coverage',
   'November 1, 2026 is treated as an automatic grace period without Play Console evidence',
   'a cached/stale `ProductDetails` or offer token is treated as authoritative current pricing/eligibility',
+  'an ineligible one-time offer can fall back to an underlying purchase option that improperly reopens a closed Lifetime VIP',
+  'a Google Play purchase-flow recommendation remains public after the corresponding Lifetime VIP sales window has closed',
+  '`setIsOfferPersonalized()` is used as a fake availability switch',
+  'a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle/recommendation path',
   'a multi-product RTDN with no `sku` is guessed into a single TycoonX entitlement without authoritative lookup',
-  'a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle path',
   'node scripts/verify-tycoonx-google-play-billing-library-lifecycle.mjs',
 ];
 
@@ -115,6 +128,30 @@ requireMatch(
   gate,
   /ProductDetails[\s\S]{0,1800}stale offer token[\s\S]{0,2200}future purchases/i,
   'Google Play Billing Library lifecycle gate: one-time offer freshness and future-price boundary are incomplete.',
+);
+
+requireMatch(
+  gate,
+  /ineligible[\s\S]{0,900}purchase-option offer[\s\S]{0,2200}closed Lifetime VIP sales window/i,
+  'Google Play Billing Library lifecycle gate: ineligible-offer fallback is not blocked from reopening Lifetime VIP.',
+);
+
+requireMatch(
+  gate,
+  /purchase-flow recommendations[\s\S]{0,2200}Lifetime VIP[\s\S]{0,2200}closing time/i,
+  'Google Play Billing Library lifecycle gate: Play recommendation surface is not synchronized with Lifetime VIP closing state.',
+);
+
+requireMatch(
+  gate,
+  /License testers only[\s\S]{0,600}All users[\s\S]{0,1600}setIsOfferPersonalized\(\)/i,
+  'Google Play Billing Library lifecycle gate: recommendation testing/personalized-price separation is incomplete.',
+);
+
+requireMatch(
+  gate,
+  /configuration mistake[\s\S]{0,1400}player fraud[\s\S]{0,1400}honor[\s\S]{0,800}unwind\/refund/i,
+  'Google Play Billing Library lifecycle gate: unintended completed purchase is not separated from player fraud and lawful unwind.',
 );
 
 requireMatch(
