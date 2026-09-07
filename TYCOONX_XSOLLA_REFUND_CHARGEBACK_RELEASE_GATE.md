@@ -40,6 +40,8 @@ Xsolla currently states that required webhooks can be sent sequentially and that
 
 - Use HTTPS with a valid certificate for the webhook endpoint.
 - Verify the Xsolla webhook signature against the **raw request body** before parsing/re-encoding it. Do not verify a reconstructed JSON string.
+- Follow Xsolla's current signature format and algorithm exactly. Read the `authorization` header in the form `Signature <signature_value>`, append the **project webhook secret to the exact raw JSON payload** as `raw_body + secret`, calculate **SHA-1**, encode the digest as lowercase hexadecimal, and compare that value with the supplied signature. Do not silently substitute HMAC-SHA256, `secret + body`, parsed/re-serialized JSON, or another locally preferred construction.
+- Capture the raw request bytes before JSON/body middleware mutates them. A signature failure caused by middleware, encoding, whitespace normalization, or secret mismatch must fail closed and must not grant, revoke, refund, or otherwise mutate a TycoonX entitlement.
 - Use constant-time comparison where practical and protect the Xsolla project secret from logs, client code, analytics, and error responses.
 - Follow the current Xsolla IP allowlist guidance where compatible with the deployment architecture, without using IP checks as a substitute for signature verification.
 - Return only the response codes appropriate to the verified event. Xsolla currently documents `200`, `201`, or `204` for success, `400` for invalid user/signature-type problems, and `5xx` for temporary server failures.
@@ -49,7 +51,19 @@ Xsolla currently states that required webhooks can be sent sequentially and that
 - **Do not assume CK-Labs-initiated refunds receive webhook retries.** Xsolla currently states that when the refund is initiated on the publisher's side, the `refund` webhook is **not resent**, and the payment is refunded to the user regardless of the webhook response. Before submitting a manual/provider API refund, durably record the intended transaction and requested scope. After submission, reconcile the authoritative provider status even if no refund webhook arrives. Do not resubmit the same refund merely because a callback was lost, and do not leave refunded Diamonds or VIP active merely because TycoonX never received a retried callback.
 - Do not intentionally return an error in an attempt to stop a provider-initiated refund. Xsolla expressly notes that an Xsolla-initiated refund can still complete even if the webhook receives `4xx`, `5xx`, or exhausts retries. The TycoonX handler must reconcile to authoritative payment state rather than trying to veto the refund through HTTP status codes.
 
-### 3A. Refund API credential scope and request-versus-settlement safety
+### 3A. Xsolla webhook secret rotation and endpoint-change safety
+
+Xsolla's current webhook settings support creation of **up to 5 secret keys per project**, but only **one secret key can be active at a time**. The generated secret is shown only when created, and Xsolla says it must be stored server-side, not in binaries or frontend code.
+
+- Treat activation of a new webhook secret as a production security change. Deploy the new secret to the server-side secret store before switching it to active in Publisher Account, then run the exact Xsolla webhook tests and verify real signed traffic before deleting the deactivated key.
+- Do not expose any current or deactivated webhook secret in the TycoonX client, web bundle, source maps, logs, support tickets, screenshots, analytics, crash reports, CI output, or public repository content.
+- Do not assume undocumented overlap semantics for queued or retried webhooks across a key rotation. If an otherwise plausible payment/refund callback fails signature verification near a rotation, quarantine the event and reconcile the transaction from authoritative Xsolla state. Never bypass signature verification merely because a rotation just happened.
+- Keep a dated rotation record containing the Xsolla project/environment, key label or internal identifier, activation time, deployment revision, test result, and deletion time for the superseded key. Do not record the secret value itself.
+- Xsolla currently allows only **one webhook server URL at a time** for a project. Replacing the production URL with a temporary testing endpoint can therefore divert live payment, cancellation, or refund notifications. Do not point the live TycoonX Xsolla project at `webhook.site`, `ngrok`, a developer laptop, or another temporary receiver merely to test a callback.
+- Prefer an isolated test/sandbox project or a controlled production endpoint capable of safely recording test traffic. If the live webhook URL must be changed, treat the change like a payment-system migration: preserve the previous URL/configuration evidence, make the new receiver production-ready first, test immediately, monitor failed callbacks, and reconcile authoritative Xsolla transaction state for the change window.
+- A webhook endpoint or secret rotation incident is not evidence that the player committed fraud, hacking, chargeback abuse, entitlement abuse, or regional-price abuse. Enforcement requires independent transaction/account evidence.
+
+### 3B. Refund API credential scope and request-versus-settlement safety
 
 Xsolla's current full-refund and partial-refund API methods are merchant-level transaction endpoints under `/merchants/{merchant_id}/reports/transactions/{transaction_id}/...`. Xsolla expressly notes that these calls have **no `project_id` path parameter** and therefore require an API key that is valid across all projects of the company. Treat that credential as a high-impact merchant-wide secret.
 
@@ -193,7 +207,9 @@ As of September 7, 2026:
 - Xsolla's current Store/Payments webhook documentation distinguishes combined and separate webhook modes based on Publisher Account setup, with January 22, 2025 as the documented default split and migration possible through Xsolla.
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
 - Xsolla currently states that a publisher-initiated `refund` webhook is not resent and that the payment is refunded regardless of the webhook response. Manual-refund reconciliation must therefore use authoritative provider state rather than assuming a callback retry will repair a missed event.
-- Xsolla currently requires signature verification against the raw request body and documents HTTPS, valid certificates and IP allowlisting as webhook-security practices.
+- Xsolla currently requires signature verification against the exact raw request body. The documented signature is the lowercase hexadecimal **SHA-1 of `raw_body + project_secret`**, compared with the value in `Authorization: Signature <signature_value>`.
+- Xsolla's current webhook settings allow up to **5 project secret keys**, only **one active key at a time**, and recommend server-side storage plus deletion of deactivated keys after a successful rotation. The generated secret is shown only when created.
+- Xsolla currently permits only **one webhook server URL at a time** for a project. A temporary test URL therefore must not silently replace the production TycoonX receiver and divert live payment/refund events.
 - Xsolla's current full/partial refund API uses merchant-level transaction endpoints without a `project_id` parameter and requires an API key valid across the company's projects. TycoonX therefore treats the refund credential as a high-impact merchant-wide server secret and validates the exact TycoonX transaction before every request.
 - A successful full-refund API response can mean only that the refund request was accepted for later manual completion or an alternative-refund flow. API acceptance is not itself entitlement-revocation authority.
 - Xsolla's refund documentation says refunds can take approximately 5–10 banking days depending on payment method and an issued refund cannot be canceled.
