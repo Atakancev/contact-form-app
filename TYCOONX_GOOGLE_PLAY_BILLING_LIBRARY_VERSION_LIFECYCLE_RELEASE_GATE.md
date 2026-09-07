@@ -20,6 +20,8 @@ Google also says existing apps can continue to work on an older library, while *
 
 Google's current Billing integration guidance, updated September 1, 2026, also documents multiple purchase options and offers for one-time products. Current Play Billing can return multiple user-eligible one-time offers, and Google specifically advises against caching `ProductDetails` because stale objects can cause `launchBillingFlow()` failures. Current guidance also supports multi-product one-time-product purchases where one `Purchase` can contain several products. These newer catalog features create additional entitlement and refund risks that must be handled deliberately rather than inferred from older single-SKU assumptions.
 
+Google's current one-time-product purchase-flow guidance also says that if an app tries to launch an offer for which the user is no longer eligible, Play can inform the user and let the user choose the product's purchase-option offer instead. Separately, Play Console purchase-flow recommendations can proactively show selected one-time-product **Buy purchase options** after a purchase or abandoned basket. These are additional Google-controlled sale paths. Hiding a TycoonX in-app button or expiring only a promotional offer is therefore not, by itself, proof that a limited-time product can no longer be bought.
+
 ## P0 release rules
 
 ### 1. Normal Google Play Billing path
@@ -126,7 +128,7 @@ A billing-library migration must preserve transaction authority boundaries.
 
 ### 8A. One-time purchase offers and multi-product bundle safety
 
-If TycoonX uses Google Play one-time product offers, multiple purchase options, or multi-product one-time-product bundles, the release must preserve the exact catalog and entitlement meaning that Google actually sold.
+If TycoonX uses Google Play one-time product offers, multiple purchase options, multi-product one-time-product bundles, or Play purchase-flow recommendations, the release must preserve the exact catalog and entitlement meaning that Google actually sold.
 
 #### Fresh offer and price data
 
@@ -135,6 +137,32 @@ If TycoonX uses Google Play one-time product offers, multiple purchase options, 
 - Google currently returns only one-time offers for which the user is eligible. If a stale UI points to an ineligible offer, do not silently substitute a different TycoonX bundle, price, quantity, VIP duration, or Lifetime VIP offer on the server.
 - The Play purchase sheet and authoritative purchase response determine what was purchased. TycoonX checkout copy must accurately describe the current product contents and total price before confirmation, subject to mandatory consumer law.
 - A later offer, price, tax, FX, regional-price, or bundle change applies to future purchases and does not retroactively reprice a completed one-time transaction merely because the current catalog is different.
+
+#### Ineligible-offer fallback must not reopen a closed sales window
+
+Google's current integration guidance says a user who is no longer eligible for a one-time-product offer can be allowed by Play to choose the underlying purchase-option offer instead. TycoonX must not use offer eligibility as the only control for a genuinely closed Lifetime VIP sales window.
+
+- Do not model a closed Lifetime VIP window merely by expiring or hiding a discount/offer while leaving an underlying Buy purchase option continuously purchasable if that fallback would still sell Lifetime VIP.
+- Before a Lifetime VIP window closes, audit the actual Google Play product, purchase-option and offer state so no Play fallback path can complete a new Lifetime VIP sale after the disclosed closing time.
+- Hiding the TycoonX purchase button, removing an offer token from the app, or relying on stale-client rejection is not enough if Play can still present a valid fallback purchase option.
+- Apply the same principle to a genuinely closed Diamond/VIP promotion where the fallback purchase option would materially differ from what the player was told they were buying.
+- If a player validly completes a Google transaction through a CK-Labs configuration mistake after a window was intended to close, do not treat the completed transaction as player fraud merely because the catalog should have been closed. CK-Labs must either honor the valid transaction where lawful and consistent with the offer, or promptly unwind/refund it through an available lawful Google process where cancellation is permitted. CK-Labs must not keep the payment while refusing the corresponding paid entitlement.
+
+#### Play purchase-flow recommendations are a separate sale surface
+
+Google Play Console can proactively recommend selected one-time-product Buy purchase options after a successful purchase or an abandoned basket. A product can therefore remain commercially exposed even when TycoonX itself no longer shows a purchase button.
+
+For TycoonX:
+
+- audit **Monetize with Play > Purchase recommendations** whenever a limited-time product or promotion opens or closes;
+- do not include Lifetime VIP in a public purchase-flow recommendation unless its genuine sales window is open for the relevant countries/regions and the recommended purchase option is intentionally authorized for that window;
+- pause/remove the Lifetime VIP recommendation and any unintended active Buy purchase option by the closing time rather than assuming the in-app UI controls Google-controlled recommendations;
+- review backwards-compatible active purchase options as well as newer featured options because Google says eligible active purchase options can be recommended in some configurations;
+- test recommendation changes with **License testers only** before selecting **All users** where practical, and retain dated evidence of the selected products, purchase-option IDs, countries/regions, audience and status;
+- do not misuse `setIsOfferPersonalized()` as a general sales-window switch. That flag is for legally relevant personalized-pricing disclosure and Google separately notes that products tagged this way are excluded from recommendations for users in the EEA; and
+- when a regional or promotional restriction is intentional, keep the Play Console recommendation audience/region configuration aligned with the TycoonX offer and checkout disclosures.
+
+A Google-generated recommendation does not change the underlying product terms. Purchased Diamonds remain purchased Diamonds, 30-Day VIP remains one-time and non-renewing, and Lifetime VIP remains a limited-time promotional entitlement even if Google presented the purchase option outside the main TycoonX storefront UI.
 
 #### Multi-product purchase authority
 
@@ -171,7 +199,7 @@ Accordingly:
 #### TycoonX product-specific bundle blockers
 
 - Do not place Lifetime VIP into a Google multi-product bundle unless the Lifetime VIP sales window is genuinely open and the exact bundle is deliberately authorized for that window.
-- Closing a Lifetime VIP sales window must disable every bundle/offer path that could still sell it, including stale purchase options, cached offers, server catalog mappings, and Play Console products where applicable.
+- Closing a Lifetime VIP sales window must disable every bundle/offer path that could still sell it, including stale purchase options, cached offers, server catalog mappings, Play purchase-flow recommendations, and Play Console products where applicable.
 - A valid Lifetime VIP already purchased in an authorized bundle remains a valid one-time promotional entitlement unless the underlying transaction is lawfully refunded/reversed or another canonical rule applies.
 - 30-Day VIP inside a bundle remains one-time and non-renewing; bundle retries cannot restart the 30-day clock.
 - Diamond quantities and quality/content mappings must come from the authoritative catalog version tied to the completed purchase, not from the newest future bundle definition.
@@ -189,6 +217,8 @@ For every TycoonX Android production submission after August 31, 2026, retain a 
 - production/test track reviewed;
 - Billing Choice or other program-specific minimum where applicable;
 - one-time offer/multi-product bundle configuration if those features are enabled;
+- purchase-flow recommendation configuration, including selected purchase-option IDs, countries/regions, audience and enabled/paused status, where that feature is used;
+- limited-time product closing-state evidence showing that app UI, Play purchase options/offers, recommendations and server catalog agree;
 - purchase/acknowledgement/refund smoke-test result; and
 - current official Google support-table and billing-document retrieval date.
 
@@ -205,9 +235,13 @@ Fail the affected Android release if any of these occur:
 - the declared Gradle version is current but the production artifact or transitive dependency still exposes a stale billing library;
 - a billing-library migration duplicates an entitlement, acknowledgement, consumption, refund, or correction;
 - a cached/stale `ProductDetails` or offer token is treated as authoritative current pricing/eligibility;
+- an ineligible one-time offer can fall back to an underlying purchase option that improperly reopens a closed Lifetime VIP or other genuinely closed promotion;
+- a Google Play purchase-flow recommendation remains public after the corresponding Lifetime VIP sales window has closed;
+- `setIsOfferPersonalized()` is used as a fake availability switch instead of for the personalized-pricing purpose it represents;
+- CK-Labs keeps payment from an unintended but validly completed Google purchase while refusing the paid entitlement without a lawful refund/unwind;
 - a multi-product RTDN with no `sku` is guessed into a single TycoonX entitlement without authoritative lookup;
 - a multi-product refund revokes unrelated purchases or is represented to the player as a provider-level partial item refund when Google refunded the whole bundle;
-- a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle path;
+- a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle/recommendation path;
 - a player loses valid paid value solely because their installed build is old; or
 - billing-library deprecation is treated as evidence of player fraud or entitlement abuse.
 
@@ -227,4 +261,4 @@ node scripts/verify-tycoonx-30-day-vip.mjs
 node scripts/verify-tycoonx-legal.mjs
 ```
 
-Immediately before a Google Play submission, recheck the current official Play Billing Library deprecation table, current one-time-product/multi-product documentation, and the TycoonX Play Console policy-status page. Platform deadlines, offer mechanics, refund mechanics, and program-specific minimum versions can change.
+Immediately before a Google Play submission or a limited-time Google Play promotion opens/closes, recheck the current official Play Billing Library deprecation table, current one-time-product/multi-product documentation, current Play Console purchase-flow recommendation configuration, and the TycoonX Play Console policy-status page. Platform deadlines, offer mechanics, recommendation surfaces, refund mechanics, and program-specific minimum versions can change.
