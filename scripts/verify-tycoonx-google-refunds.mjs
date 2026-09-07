@@ -62,6 +62,12 @@ const modernizationRequired = [
   'Purchased Diamonds',
   'One-time 30-Day VIP',
   'Lifetime VIP',
+  'REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND',
+  'refundableQuantity',
+  'Purchase.getProducts()',
+  'lineItems',
+  'multi-product one-time purchase',
+  'original verified purchased quantity',
   'mandatory consumer remedy',
 ];
 
@@ -154,6 +160,50 @@ if (!/Do not deliberately create acknowledgement failures as a pseudo-refund mec
 
 if (!/Never double-remove the same Diamond value/i.test(modernizationText)) {
   failures.push('Diamond refund idempotency safeguard is missing.');
+}
+
+if (!/same purchase can be partially voided more than once/i.test(modernizationText)) {
+  failures.push('Repeated quantity-based partial-refund handling is missing.');
+}
+
+if (!/remaining quantity is finally refunded[\s\S]*`REFUND_TYPE_FULL_REFUND`/i.test(modernizationText)) {
+  failures.push('Final-full-refund-after-partials transition is missing.');
+}
+
+if (!/`REFUND_TYPE_FULL_REFUND` must not be interpreted as[\s\S]*remove the original full quantity again/i.test(modernizationText)) {
+  failures.push('Full-refund double-correction blocker after earlier partial refunds is missing.');
+}
+
+if (!/total corrected quantity[\s\S]*must never exceed the original verified purchased quantity/i.test(modernizationText)) {
+  failures.push('Cumulative multi-quantity correction cap is missing.');
+}
+
+if (!/quantity 5 of a 200-Diamond product[\s\S]*1,000 Diamonds[\s\S]*400 attributable Diamonds[\s\S]*600 attributable Diamonds/i.test(modernizationText)) {
+  failures.push('Concrete 5-unit partial-then-final refund regression example is missing.');
+}
+
+if (!/events are missing, out of order, contradictory[\s\S]*reconciliation rather than guessing a quantity/i.test(modernizationText)) {
+  failures.push('Ambiguous quantity state no-guessing safeguard is missing.');
+}
+
+if (!/RTDN `sku` field is not provided[\s\S]*authoritative purchase data/i.test(modernizationText)) {
+  failures.push('Multi-product RTDN missing-SKU recovery safeguard is missing.');
+}
+
+if (!/does not support refunding an individual item[\s\S]*refunded as a whole/i.test(modernizationText)) {
+  failures.push('Multi-product whole-purchase refund limitation is missing.');
+}
+
+if (!/fulfilled exactly once across every included TycoonX line item/i.test(modernizationText)) {
+  failures.push('Multi-product fulfillment idempotency safeguard is missing.');
+}
+
+if (!/provider bundle limitations do not remove a mandatory consumer remedy/i.test(modernizationText)) {
+  failures.push('Multi-product mandatory-remedy override safeguard is missing.');
+}
+
+if (!/Bundling must not create a hidden continuous Lifetime VIP sales route/i.test(modernizationText)) {
+  failures.push('Lifetime VIP multi-product sales-window invariant is missing.');
 }
 
 if (!/30-Day VIP remains a one-time, non-renewing 30-day entitlement/i.test(modernizationText)) {
