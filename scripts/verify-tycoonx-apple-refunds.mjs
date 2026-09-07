@@ -38,12 +38,21 @@ const required = [
   'REFUND_FULL',
   'REFUND_PRORATED',
   'FAMILY_REVOKE',
+  'refundPercentage',
   'revocationPercentage',
   'Transaction.revocationPercentage',
   'consumptionPercentage',
   'GRANT_PRORATED',
   'customerConsented: false',
   'five-minute sandbox decisioning window',
+  'Advanced Commerce API',
+  'refundRiskingPreference',
+  'default value is **true**',
+  'RateLimitExceededError',
+  'Retry-After',
+  '50 requests per second',
+  'five requests per second',
+  'App Store Connect remains the source of truth',
   'Transaction.currentEntitlements',
   '30-Day VIP',
   'Lifetime VIP',
@@ -98,12 +107,28 @@ if (!/do not revoke paid value merely because a refund was \*\*requested\*\*/i.t
   failures.push('Refund-request-versus-refund-decision safeguard is missing.');
 }
 
-if (!/For `REFUND_PRORATED`, use Apple's final signed `revocationPercentage` as the authoritative refunded\/revoked fraction/i.test(text)) {
-  failures.push('Prorated refunds must use Apple final revocationPercentage.');
+if (!/For `REFUND_PRORATED`, use Apple's final provider-authoritative refund information, not CK-Labs' earlier consumption estimate/i.test(text)) {
+  failures.push('Prorated refunds must use Apple final provider-authoritative refund information.');
+}
+
+if (!/`refundPercentage`.*`revocationPercentage`.*same refund decision/is.test(text)) {
+  failures.push('refundPercentage/revocationPercentage same-refund normalization safeguard is missing.');
+}
+
+if (!/Do \*\*not\*\* let `refundPercentage`.*`revocationPercentage` independently trigger two Diamond deductions or two VIP corrections/is.test(text)) {
+  failures.push('Apple refund-percentage duplicate-clawback safeguard is missing.');
 }
 
 if (!/Do \*\*not\*\* use the earlier `consumptionPercentage` submitted by CK-Labs as if it were Apple's final refund result/i.test(text)) {
   failures.push('Consumption percentage must not be mistaken for final refund percentage.');
+}
+
+if (!/materially disagree.*put that transaction into reconciliation/is.test(text)) {
+  failures.push('Contradictory Apple refund-percentage reconciliation rule is missing.');
+}
+
+if (!/Never choose the larger percentage merely "to be safe"/i.test(text)) {
+  failures.push('Largest-refund-percentage guessing blocker is missing.');
 }
 
 if (!/integer in \*\*milliunits from 0 through 100000\*\*/i.test(text)) {
@@ -154,6 +179,34 @@ if (!/Wait for the authoritative refund decision and signed revocation state/i.t
   failures.push('No pre-emptive consumption-based clawback safeguard is missing.');
 }
 
+if (!/`refundRiskingPreference`.*default value is \*\*true\*\*/is.test(text)) {
+  failures.push('Advanced Commerce default-true refundRiskingPreference warning is missing.');
+}
+
+if (!/If TycoonX does not have the required customer-consent flow.*set it to `false` or block that product's release/is.test(text)) {
+  failures.push('Advanced Commerce refund-risk release blocker is missing.');
+}
+
+if (!/Setting it to `false` does not restrict the player's Apple or mandatory consumer refund rights/i.test(text)) {
+  failures.push('Advanced Commerce refund-rights preservation rule is missing.');
+}
+
+if (!/HTTP `429` with `RateLimitExceededError`.*`Retry-After`/is.test(text)) {
+  failures.push('Apple 429 Retry-After handling safeguard is missing.');
+}
+
+if (!/A provider rate limit or retry delay is not player fraud, chargeback abuse, hacking, or entitlement abuse/i.test(text)) {
+  failures.push('Apple rate-limit non-fraud safeguard is missing.');
+}
+
+if (!/A no-consent case must not be queued for later sending at all/i.test(text)) {
+  failures.push('No-consent retry prohibition is missing.');
+}
+
+if (!/When a verified refund or revocation changes a player's TycoonX Diamond balance or VIP access, inform the player clearly about what changed/i.test(text)) {
+  failures.push('Post-refund balance/access notice requirement is missing.');
+}
+
 if (!/must not restart an expired 30-Day VIP/i.test(text)) {
   failures.push('30-Day VIP restore must not restart an expired entitlement.');
 }
@@ -168,6 +221,22 @@ if (!/40% server-side `revocationPercentage` represented as `40000`.*StoreKit pe
 
 if (!/prorated Diamond refund proving only the matching transaction's refunded share is corrected/i.test(text)) {
   failures.push('Prorated Diamond transaction-isolation QA case is missing.');
+}
+
+if (!/`refundPercentage` plus signed `revocationPercentage`.*one correction/is.test(text)) {
+  failures.push('Dual Apple refund-percentage QA case is missing.');
+}
+
+if (!/mismatched or contradictory refund-percentage evidence.*quarantines the transaction for reconciliation/is.test(text)) {
+  failures.push('Contradictory Apple refund-percentage QA case is missing.');
+}
+
+if (!/Advanced Commerce configuration proving `refundRiskingPreference` is explicitly reviewed/i.test(text)) {
+  failures.push('Advanced Commerce refundRiskingPreference QA case is missing.');
+}
+
+if (!/Send Consumption Information HTTP `429` test proving `RateLimitExceededError` and `Retry-After` are handled/i.test(text)) {
+  failures.push('Apple rate-limit QA case is missing.');
 }
 
 if (!/refunded entitlement is not resurrected/i.test(text)) {
