@@ -143,7 +143,7 @@ requireMatch(
 
 requireText(
   purchases,
-  'completed purchases are not retroactively repriced',
+  'A completed one-time purchase is not retroactively repriced merely because CK-Labs later changes a price.',
   'Canonical Purchases policy lost the no-retroactive-repricing baseline.',
 );
 
