@@ -22,6 +22,8 @@ Google's current Billing integration guidance, updated September 1, 2026, also d
 
 Google's current one-time-product purchase-flow guidance also says that if an app tries to launch an offer for which the user is no longer eligible, Play can inform the user and let the user choose the product's purchase-option offer instead. Separately, Play Console purchase-flow recommendations can proactively show selected one-time-product **Buy purchase options** after a purchase or abandoned basket. These are additional Google-controlled sale paths. Hiding a TycoonX in-app button or expiring only a promotional offer is therefore not, by itself, proof that a limited-time product can no longer be bought.
 
+The same current integration guidance also documents **multi-quantity one-time-product purchases**. Google says multi-quantity is intended for consumable one-time products that can be purchased, consumed, and purchased again; the app must provision the verified purchase quantity, and the feature should not be enabled before that logic exists. Google also documents `getBillingConfigAsync()` for the current Google Play billing country and expressly says not to store returned billing-configuration data, because it is designed for one-time use, can change at any time, and must not be used to create or enhance a user profile or to target/track users for advertising or marketing.
+
 ## P0 release rules
 
 ### 1. Normal Google Play Billing path
@@ -128,7 +130,7 @@ A billing-library migration must preserve transaction authority boundaries.
 
 ### 8A. One-time purchase offers and multi-product bundle safety
 
-If TycoonX uses Google Play one-time product offers, multiple purchase options, multi-product one-time-product bundles, or Play purchase-flow recommendations, the release must preserve the exact catalog and entitlement meaning that Google actually sold.
+If TycoonX uses Google Play one-time product offers, multiple purchase options, multi-product one-time-product bundles, multi-quantity purchases, or Play purchase-flow recommendations, the release must preserve the exact catalog, quantity, and entitlement meaning that Google actually sold.
 
 #### Fresh offer and price data
 
@@ -163,6 +165,41 @@ For TycoonX:
 - when a regional or promotional restriction is intentional, keep the Play Console recommendation audience/region configuration aligned with the TycoonX offer and checkout disclosures.
 
 A Google-generated recommendation does not change the underlying product terms. Purchased Diamonds remain purchased Diamonds, 30-Day VIP remains one-time and non-renewing, and Lifetime VIP remains a limited-time promotional entitlement even if Google presented the purchase option outside the main TycoonX storefront UI.
+
+#### Multi-quantity purchase safety
+
+Google Play can let a player purchase more than one unit of the same one-time product in a single transaction. Google says this is intended for **consumable one-time products** that can be purchased, consumed, and purchased again, and warns developers to support quantity-aware provisioning before enabling the feature in Play Console.
+
+For TycoonX:
+
+- enable multi-quantity only for a Diamond product that CK-Labs deliberately classifies as repeatable consumable paid value and only after the production backend has passed quantity-aware provisioning tests;
+- do not enable multi-quantity for one-time 30-Day VIP or Lifetime VIP. Those products are not repeatable consumables merely because Google can technically expose a quantity selector for some one-time products;
+- after server-side purchase verification, use the authoritative quantity from `Purchase.getQuantity()` and/or `Purchases.products.quantity` as applicable to the integration. A client cart, button tap count, cached selection, or assumed default quantity is not entitlement authority;
+- if one verified purchase is for quantity 3 of a 200-Diamond product, grant **600 Diamonds exactly once** for that transaction. Do not grant 200 by silently assuming quantity 1, and do not grant 600 again when the same token/callback is retried;
+- validate quantity and the catalog's per-unit Diamond amount with bounded integer arithmetic before crediting value so malformed, stale, or overflowed arithmetic cannot create an accidental grant;
+- do not grant any quantity while the transaction is still `PENDING`; quantity becomes fulfillable only with the verified completed purchase state;
+- treat a one-time-product RTDN as a trigger to retrieve the authoritative purchase state and quantity. Do not assume quantity 1 merely because the RTDN contains a product ID and purchase token but no quantity field;
+- quantity limits, user eligibility, and purchase-option fallback are catalog/payment state, not automatic proof of hacking, fraud, account compromise, regional-price abuse, or entitlement abuse; and
+- refund, chargeback, void, and correction logic must remain bound to the affected transaction and verified quantity without touching unrelated Diamond purchases.
+
+Google's current guidance says multi-quantity support applies to purchase options such as Buy or Rent, not one-time-product offers. TycoonX must not infer that an offer itself supports quantity merely because its underlying product has a multi-quantity-capable purchase option.
+
+If a CK-Labs catalog/configuration error ever allows a valid quantity greater than 1 for 30-Day VIP or Lifetime VIP, do not multiply the VIP duration, create multiple Lifetime VIP entitlements, or label the buyer abusive solely because Google accepted the transaction. Freeze only the ambiguous entitlement portion for prompt reconciliation and either honor the legally supportable product meaning or lawfully refund/unwind the excess or affected transaction through Google, preserving mandatory consumer remedies. CK-Labs must not keep payment for duplicate units while providing no corresponding lawful remedy.
+
+#### Google Play billing country is ephemeral billing-flow data
+
+Google's current `getBillingConfigAsync()` guidance says the returned billing configuration, including the user's Google Play country, is designed for one-time use, can change at any time, and **must not be stored**. Google also says it may not be used to create or enhance a user profile or to target or track users for advertising or marketing.
+
+For TycoonX:
+
+- use `getBillingConfigAsync()` only for the immediate billing/configuration decision for which Google exposes it, then discard that response instead of persisting it into the TycoonX profile, moderation record, fraud score, marketing segment, analytics audience, or long-term regional-pricing history;
+- do not treat the Google Play billing country as citizenship, domicile, habitual residence, exact physical location, tax residence, or permanent account region;
+- do not treat a billing-country change or mismatch with a TycoonX profile/language/device setting as automatic proof of VPN use, fraud, regional-price abuse, account compromise, or entitlement abuse;
+- if a current purchase path genuinely depends on Google Play country, query the current value for that billing flow rather than reusing a previously cached country; if the required current value cannot be obtained, fail the affected regional purchase route closed instead of guessing;
+- after a purchase completes, use authoritative Google transaction/provider records and the TycoonX entitlement ledger for reconciliation. Do not preserve the ephemeral `getBillingConfigAsync()` response merely to create a second permanent country record; and
+- if engineering later proposes persistent use of this billing-configuration response, stop the rollout and recheck the then-current Google rule and privacy/legal basis rather than changing the Privacy Policy to legitimize a platform-prohibited use.
+
+This restriction does not prevent CK-Labs from retaining transaction, tax, invoice, fraud-defense, refund, chargeback, or accounting records that another authoritative Google/provider record lawfully supplies and that CK-Labs is otherwise required or permitted to keep. Keep those distinct from the ephemeral BillingClient configuration response and apply the Privacy Policy, data-minimization, retention, and mandatory legal rules to them.
 
 #### Multi-product purchase authority
 
@@ -217,8 +254,10 @@ For every TycoonX Android production submission after August 31, 2026, retain a 
 - production/test track reviewed;
 - Billing Choice or other program-specific minimum where applicable;
 - one-time offer/multi-product bundle configuration if those features are enabled;
+- multi-quantity configuration per enabled product, backend quantity test results, and proof that VIP products do not expose repeatable quantity purchasing;
 - purchase-flow recommendation configuration, including selected purchase-option IDs, countries/regions, audience and enabled/paused status, where that feature is used;
 - limited-time product closing-state evidence showing that app UI, Play purchase options/offers, recommendations and server catalog agree;
+- a check that `getBillingConfigAsync()` results are not persisted or repurposed for user profiling, advertising/marketing targeting, or automatic regional-abuse accusations;
 - purchase/acknowledgement/refund smoke-test result; and
 - current official Google support-table and billing-document retrieval date.
 
@@ -239,6 +278,11 @@ Fail the affected Android release if any of these occur:
 - a Google Play purchase-flow recommendation remains public after the corresponding Lifetime VIP sales window has closed;
 - `setIsOfferPersonalized()` is used as a fake availability switch instead of for the personalized-pricing purpose it represents;
 - CK-Labs keeps payment from an unintended but validly completed Google purchase while refusing the paid entitlement without a lawful refund/unwind;
+- a verified multi-quantity Diamond purchase is provisioned as quantity 1, multiplied more than once on callback retry, or calculated from an unverified client-side quantity;
+- multi-quantity is enabled for 30-Day VIP or Lifetime VIP, or an accidental quantity greater than 1 is turned into duplicate/fractional VIP entitlements without lawful reconciliation;
+- a one-time-product RTDN is assumed to have quantity 1 without retrieving authoritative purchase quantity;
+- `getBillingConfigAsync()` country/configuration data is persisted into a player profile, fraud/moderation record, analytics audience, or marketing segment;
+- a Google Play billing-country change or mismatch is treated by itself as proof of VPN use, fraud, regional-price abuse, account compromise, or entitlement abuse;
 - a multi-product RTDN with no `sku` is guessed into a single TycoonX entitlement without authoritative lookup;
 - a multi-product refund revokes unrelated purchases or is represented to the player as a provider-level partial item refund when Google refunded the whole bundle;
 - a closed Lifetime VIP window remains purchasable through a stale Google offer/bundle/recommendation path;
@@ -261,4 +305,4 @@ node scripts/verify-tycoonx-30-day-vip.mjs
 node scripts/verify-tycoonx-legal.mjs
 ```
 
-Immediately before a Google Play submission or a limited-time Google Play promotion opens/closes, recheck the current official Play Billing Library deprecation table, current one-time-product/multi-product documentation, current Play Console purchase-flow recommendation configuration, and the TycoonX Play Console policy-status page. Platform deadlines, offer mechanics, recommendation surfaces, refund mechanics, and program-specific minimum versions can change.
+Immediately before a Google Play submission or a limited-time Google Play promotion opens/closes, recheck the current official Play Billing Library deprecation table, current one-time-product/multi-product/multi-quantity documentation, current `getBillingConfigAsync()` usage restrictions, current Play Console purchase-flow recommendation configuration, and the TycoonX Play Console policy-status page. Platform deadlines, offer mechanics, quantity mechanics, recommendation surfaces, privacy/use restrictions, refund mechanics, and program-specific minimum versions can change.
