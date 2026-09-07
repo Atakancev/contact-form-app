@@ -1,6 +1,6 @@
 # TycoonX German E-Commerce Checkout & Contract-Formation Release Gate
 
-Last reviewed: September 6, 2026
+Last reviewed: September 7, 2026
 Owner: CK-Labs
 Scope: paid TycoonX web checkout, Xsolla-powered webshop handoff, CK-Labs-owned order screens, and release evidence for Apple App Store and Google Play purchases where the platform controls the final payment interface.
 
@@ -120,6 +120,21 @@ The withdrawal function must allow the consumer to provide or confirm, without u
 After those details are provided or confirmed, the consumer must be able to submit the withdrawal declaration through a clearly readable confirmation function labelled **`Widerruf bestätigen`** or another genuinely equivalent, unambiguous formulation.
 
 Do not force unrelated data collection, marketing consent, a reason for withdrawal, a telephone call, a chat with Support, or an upsell/win-back step as a condition of using the statutory function.
+
+### Part-of-contract and multi-item withdrawals
+
+Current **BGB § 356a(2)(2)** expressly requires the function to let the consumer identify the contract **or the part of the contract** they want to withdraw from. The German legislative explanation confirms that where several contracts were concluded or one contract contains several goods or services, the requested contract or contract part must be identifiable concretely, for example through a selection in an order overview.
+
+For TycoonX this means:
+
+- do not force an all-or-nothing withdrawal merely because one provider order, checkout session, cart, receipt, or internal ledger entry contains several separable products or services;
+- where the consumer wants to identify only one part, present enough transaction information to distinguish it safely, such as product, quantity, purchase date, provider/order reference, and line item where available, without exposing another user's data;
+- preserve the consumer's exact selection in the submitted withdrawal declaration, immediate durable-medium receipt, internal case record, provider/refund handoff, and entitlement-reconciliation record;
+- do not silently expand a request concerning one identified part into withdrawal, refund, or revocation of the entire order unless the applicable contract, provider mechanics, and law actually require whole-order treatment;
+- if a provider or bundle architecture does not support an item-level refund directly, still accept and timestamp the withdrawal declaration for the part identified by the consumer and route it for lawful processing instead of rewriting or rejecting the declaration at the interface; and
+- do not overstate the opposite point either: the technical ability to select a part does not by itself decide that a substantive partial-withdrawal right exists in every bundled or inseparable contractual structure. Preserve the declaration and determine its legal effect under the actual contract and mandatory law.
+
+For Apple, Google Play, or Xsolla flows controlled by the provider or merchant, do not invent a contradictory CK-Labs partial-refund path. Verify that the responsible route can preserve the consumer's identified contract/part and that TycoonX entitlement reconciliation remains transaction- and item-specific where the provider's authoritative records distinguish those items.
 
 ### Immediate durable-medium receipt
 
@@ -274,6 +289,8 @@ Before go-live or after a material checkout/withdrawal change, capture at least 
 14. withdrawal sent seconds before the deadline and processed later remains recorded as timely;
 15. duplicate withdrawal submission is idempotent;
 16. consumer identifies only part of a contract/order where partial withdrawal is legally possible;
+16a. one order contains separable TycoonX products and the withdrawal declaration, receipt, provider handoff, and entitlement correction preserve only the selected part;
+16b. a bundle/provider limitation prevents direct item-level refund and the interface still accepts and timestamps the identified-part declaration without silently converting it into a whole-order withdrawal;
 17. wrong or unverifiable order identifier receives a safe review path without exposing another user's data;
 18. right has genuinely expired early and the evidence satisfies the correct current § 356 subsection;
 19. provider outage or notification delay during withdrawal;
@@ -302,6 +319,7 @@ For each material German checkout release, retain a dated evidence packet contai
 - screenshot or recording of the § 356a function and its placement;
 - labels used for both withdrawal steps;
 - fields collected in the withdrawal flow;
+- where an order contains several distinguishable items/services, the exact contract or contract-part identifiers offered for selection and evidence that the selected part is preserved in the declaration and receipt;
 - durable-medium withdrawal receipt example with timestamp;
 - server-side receipt timestamp behavior near the deadline;
 - evidence supporting any early expiry of the withdrawal right under current § 356(5) or § 356(6), as applicable;
@@ -322,6 +340,9 @@ This gate must never be weakened to say that:
 - `Vertrag widerrufen` can replace the § 312k termination function for a recurring contract;
 - immediate delivery or activation automatically extinguishes every withdrawal right;
 - crediting Diamonds automatically extinguishes an applicable statutory withdrawal right;
+- a § 356a function may force whole-order withdrawal merely because the backend or payment provider uses one order identifier;
+- a request identifying one contract part may be silently expanded into withdrawal or revocation of unrelated parts;
+- presenting a part-selection control automatically proves that substantive partial withdrawal is legally effective for every bundle or contractual structure;
 - the consumer must give a reason, accept marketing, call Support, or accept a win-back offer before withdrawing;
 - a queue or email delay can make a declaration late when the consumer submitted it through the function before the deadline;
 - a hidden fee becomes collectible merely because a provider later charged it;
@@ -331,9 +352,10 @@ This gate must never be weakened to say that:
 
 ## Current legal/platform checkpoint
 
-Reviewed against current sources available September 6, 2026:
+Reviewed against current sources available September 7, 2026:
 
-- German BGB § 356a, including `Vertrag widerrufen`, continuous/prominent/easy availability, the required name/contract/contact fields, `Widerruf bestätigen`, immediate durable-medium receipt, and the timely-submission rule;
+- German BGB § 356a, including `Vertrag widerrufen`, continuous/prominent/easy availability, the required name/contract/contact fields, **§ 356a(2)(2) identification of the contract or part of the contract**, `Widerruf bestätigen`, immediate durable-medium receipt, and the timely-submission rule;
+- the German legislative explanation to § 356a(2), which confirms concrete identification where several contracts or several goods/services are involved and explains that selection from an order overview can support withdrawal of an identified contract part;
 - current German **BGB § 356(4) as the general twelve-month-and-14-day long-stop**, **§ 356(5) for services**, and **§ 356(6) for non-tangible digital content**;
 - German BGB § 357a(2) for proportionate service value compensation and § 357a(3) for the no-value-compensation rule on withdrawn non-tangible digital content;
 - EGBGB Article 246a § 1, including withdrawal information and, where applicable, information about the existence and placement of the § 356a function;
@@ -350,4 +372,4 @@ Provider rules and product interfaces can change. Re-check the actual production
 
 This gate does not prevent CK-Labs from changing future prices, using different genuine regional prices, correcting an obvious catalog/configuration error before a binding order is formed, ending a genuine Lifetime VIP sales window, refusing an unconfirmed payment, investigating fraud, or using Apple, Google, or Xsolla as the responsible payment/merchant interface where lawfully configured.
 
-It protects CK-Labs by making the moment of contract formation, payment obligation, withdrawal receipt, merchant responsibility, refund/reversal state, and entitlement correction provable. A lawful withdrawal can be processed precisely without converting every refund request into fraud and without damaging unrelated TycoonX purchases.
+It protects CK-Labs by making the moment of contract formation, payment obligation, withdrawal receipt, merchant responsibility, requested contract part, refund/reversal state, and entitlement correction provable. A lawful withdrawal can be processed precisely without converting every refund request into fraud, over-refunding an unrelated part of an order, or damaging unrelated TycoonX purchases.
