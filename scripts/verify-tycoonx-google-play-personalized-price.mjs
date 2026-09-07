@@ -102,14 +102,8 @@ requireText(
 
 requireText(
   progress,
-  '100/100 localized full documents are currently confirmed current',
-  'Localization progress no longer confirms all 100 localized full documents current.',
-);
-
-requireText(
-  progress,
-  '25/25 localized hub pages are currently confirmed current',
-  'Localization progress no longer confirms all 25 localized hubs current.',
+  'All 25 target locales and all 100 localized full documents are current.',
+  'Localization progress no longer confirms all 25 hubs and 100 localized full documents current.',
 );
 
 requireText(
