@@ -122,13 +122,13 @@ requireMatch(
 
 requireMatch(
   gate,
-  /EEA and UK[\s\S]{0,1500}right of withdrawal[\s\S]{0,3200}mandatory consumer law/i,
+  /pre-ordered items in the EEA and UK[\s\S]{0,600}right of withdrawal[\s\S]{0,6500}mandatory German\/EU consumer rights/i,
   'Google Play pending purchase attribution gate: EEA/UK pre-order withdrawal treatment and mandatory-rights override are incomplete.',
 );
 
 requireMatch(
   gate,
-  /canceling the pre-order offer[\s\S]{0,1400}pending orders[\s\S]{0,1600}not automatic player abuse[\s\S]{0,1800}chargeback penalties/i,
+  /existing pending orders are an operational\/configuration incident, not automatic player abuse[\s\S]{0,2200}canceling the pre-order offer cancels the associated pending orders[\s\S]{0,1200}chargeback penalties/i,
   'Google Play pending purchase attribution gate: provider/CK-Labs pre-order cancellation is not safely separated from player abuse.',
 );
 
