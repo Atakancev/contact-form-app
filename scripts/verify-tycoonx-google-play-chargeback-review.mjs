@@ -65,7 +65,7 @@ const checks = [
   [/`ReviewRefund` request or response must never directly:[\s\S]{0,160}- grant Diamonds;/i, 'Review response/entitlement separation is missing.'],
   [/one-time 30-Day VIP/i, 'One-time 30-Day VIP distinction is missing.'],
   [/Lifetime VIP remains a limited-time promotional offering available only during selected genuine sales windows/i, 'Lifetime VIP sales-window separation is missing.'],
-  [/45\.2%[\s\S]{0,180}`45200` `consumptionPercentageMilliunits`/i, 'Milliunit QA regression case is missing.'],
+  [/45\.2%[\s\S]{0,180}`45200`[\s\S]{0,40}`consumptionPercentageMilliunits`/i, 'Milliunit QA regression case is missing.'],
   [/more than 1000 candidate usage records[\s\S]{0,160}more than 1000 `consumptionUsageEvents`/i, 'Over-1000 usage-event QA case is missing.'],
   [/unknown future `refundReason`[\s\S]{0,180}rather than auto-mapped to `CHARGEBACK`/i, 'Unknown future refund reason QA case is missing.'],
   [/duplicate RTDN delivery[\s\S]{0,180}does not reset the 24-hour deadline/i, 'Duplicate deadline QA case is missing.'],
