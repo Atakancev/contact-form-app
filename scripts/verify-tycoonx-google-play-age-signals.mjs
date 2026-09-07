@@ -68,10 +68,20 @@ requireMatch(gate, /do not use it as a cross-device advertising ID, fingerprint/
 requireMatch(gate, /revoked app approvals Play Console functionality is not yet live/i, 'Missing current revoked-approval availability warning.');
 requireMatch(gate, /significantChangeStatus.*APPROVED.*PENDING.*DECLINED/is, 'Missing significant-change status handling.');
 requireMatch(gate, /significantChangeApprovalDate/i, 'Missing significant-change approval date.');
-requireMatch(gate, /significant-change Play Console functionality is not yet live/i, 'Missing current significant-change availability warning.');
-requireMatch(gate, /up to 90 days in advance/i, 'Missing current significant-change advance window.');
+requireMatch(gate, /can submit.*significant change.*Age signals page.*Play Console/is, 'Missing current live Play Console significant-change submission checkpoint.');
+requireMatch(gate, /previous TycoonX gate statement.*not yet live.*obsolete/is, 'Missing stale significant-change availability regression blocker.');
+requireMatch(gate, /independently of app releases/i, 'Missing significant-change-vs-app-release separation.');
+requireMatch(gate, /00:00 UTC/i, 'Missing significant-change UTC effective-time boundary.');
+requireMatch(gate, /shown verbatim to parents/i, 'Missing parent-description verbatim warning.');
+requireMatch(gate, /English \(`en-US`\)/i, 'Missing required English en-US description rule.');
+requireMatch(gate, /up to three submitted significant changes.*up to 90 days in advance/is, 'Missing current significant-change submission limits.');
 requireMatch(gate, /more than two days apart/i, 'Missing current significant-change spacing rule.');
-requireMatch(gate, /restrict only the content\/functionality related to that unapproved significant change/i, 'Missing proportionate significant-change restriction.');
+requireMatch(gate, /at most the 10 most recent descriptions/i, 'Missing current parent-display description limit.');
+requireMatch(gate, /significant changes as cumulative/i, 'Missing cumulative significant-change approval model.');
+requireMatch(gate, /Only \*\*supervised users\*\*, not verified users, have a significant-change approval status/i, 'Missing supervised-vs-verified significant-change status boundary.');
+requireMatch(gate, /does not.*transaction-specific authorization.*Diamonds.*30-Day VIP.*Lifetime VIP/is, 'Missing significant-change-vs-purchase-authorization safeguard.');
+requireMatch(gate, /Before an upcoming significant change's effective date.*previously approved.*significantChangeApprovalDate/is, 'Missing pre-effective-date status handling.');
+requireMatch(gate, /From the effective date.*PENDING.*DECLINED.*restrict only the content\/functionality related to that unapproved significant change/is, 'Missing proportionate significant-change restriction from effective date.');
 
 // Jurisdiction and legal-mandate boundary.
 requireMatch(gate, /Google Play itself does not universally mandate developers to use the Age Signals features/i, 'Missing non-universal-mandate safeguard.');
@@ -140,5 +150,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Google Play Age Signals purpose limits, 0.0.4 flow, parental-state boundaries, purchase isolation, privacy, security, and localization invariants are present.');
+  console.log('PASS: Google Play Age Signals purpose limits, 0.0.4 flow, live significant-change workflow, parental-state boundaries, purchase isolation, privacy, security, and localization invariants are present.');
 }
