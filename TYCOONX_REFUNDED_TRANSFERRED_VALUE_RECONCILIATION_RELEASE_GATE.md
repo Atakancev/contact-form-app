@@ -2,7 +2,7 @@
 
 **Status:** P0 payment-integrity / economy-correction gate
 
-**Last reviewed:** September 5, 2026
+**Last reviewed:** September 7, 2026
 
 This operational gate governs the narrow case where value from a TycoonX purchase is later refunded, reversed, charged back, cancelled, or otherwise invalidated after some or all corresponding in-game value has already been consumed, exchanged, traded, transferred, routed through a company, spent in a market, or moved to another account.
 
@@ -222,6 +222,34 @@ For Google Play in particular:
 
 If a provider refund necessarily invalidates several line items, TycoonX must reconcile those line items without touching purchases outside the affected provider transaction.
 
+## 12A. Apple IAP gifting: purchaser, recipient, refund, and exchange must remain distinct
+
+Apple App Review Guideline 3.1.1 currently permits apps to enable gifting of items that are eligible for In-App Purchase, but states that such gifts may be refunded **only to the original purchaser** and may **not be exchanged**.
+
+If TycoonX ever enables an Apple-supported IAP gift flow, preserve at least four distinct identities/state facts:
+
+- the Apple purchaser who paid for the transaction;
+- the TycoonX recipient account that received the gifted entitlement or value;
+- the authoritative Apple transaction/refund state; and
+- the TycoonX entitlement state created from that specific gift.
+
+Operational rules:
+
+- never send an Apple monetary refund to the gift recipient merely because the recipient currently holds or used the gifted TycoonX value;
+- never promise the gift recipient a cash-equivalent exchange, another Apple IAP, Diamonds, VIP, or another paid item merely because Apple says the original gift cannot be exchanged;
+- if Apple authoritatively refunds the gifted purchase to the original purchaser, reconcile only the entitlement/value traceable to that gifted transaction, subject to the same correction-budget and mandatory-rights safeguards in this gate;
+- a recipient who innocently received a later-refunded gift is not automatically committing fraud, chargeback abuse, RMT, entitlement abuse, or account compromise;
+- support must be able to distinguish `purchaser`, `recipient`, and `current holder` rather than assuming they are the same account; and
+- do not disclose the purchaser's protected payment data to the recipient, or the recipient's unrelated account data to the purchaser, merely because a gift is disputed.
+
+Do **not** automatically classify an ordinary TycoonX in-game transfer of already-held Diamonds, money, assets, or items as Apple's IAP gifting feature. A normal gameplay transfer and an Apple-supported purchase-as-a-gift flow can have different provider records and refund consequences. Preserve the actual transaction mechanics instead of choosing whichever classification is more convenient for a clawback.
+
+Likewise, the Apple rule does not authorize CK-Labs to take money from the gift recipient, create real-world debt, or override a mandatory consumer remedy that applies to the actual purchaser/transaction under applicable law.
+
+### Example
+
+Player A purchases an Apple-supported gift that grants Player B a paid TycoonX entitlement. If Apple later authoritatively refunds that gift, the refund is tied to A as the original purchaser. TycoonX may need to reconcile B's traceable gifted entitlement, but B does not become the refund payee and does not become a fraudster merely because B received or used the gift before the refund.
+
 ## 13. Mandatory EU/German consumer rights remain outside the clawback shortcut
 
 This gate does not decide whether a consumer was entitled to withdraw, terminate, obtain a price reduction, receive a refund, or exercise another statutory remedy. Those questions remain governed by the canonical policies, the actual transaction, the responsible merchant/payment channel, and mandatory law.
@@ -274,8 +302,12 @@ Before relying on automated downstream reconciliation, test at minimum:
 14. chargeback later resolved with the purchase remaining valid: stale correction/restriction is reversed idempotently where appropriate;
 15. compromised purchaser account: payment/economy correction and owner fault are assessed separately;
 16. statutory withdrawal: corresponding value is reconciled without labelling the consumer a cheater merely for exercising the right;
-17. refunded 30-Day VIP: no restart of the 30-day clock and no unrelated VIP period removed; and
-18. refunded Lifetime VIP: only the specific invalidated entitlement provenance is corrected and no sales window is reopened.
+17. refunded 30-Day VIP: no restart of the 30-day clock and no unrelated VIP period removed;
+18. refunded Lifetime VIP: only the specific invalidated entitlement provenance is corrected and no sales window is reopened;
+19. Apple-supported IAP gift refunded after delivery: refund remains tied to the original purchaser and only the traceable gifted entitlement enters correction;
+20. innocent gift recipient: no automatic fraud/RMT/chargeback-abuse finding merely because the gifted purchase was later refunded;
+21. gift dispute: support distinguishes purchaser, recipient, and current holder without leaking protected payment/account data; and
+22. ordinary in-game transfer of already-held value: not automatically reclassified as an Apple IAP gift.
 
 ## 17. Release blockers
 
@@ -291,11 +323,14 @@ Treat downstream refunded-value automation as **not production-ready** if any of
 - the system can charge a real payment method or create real-world debt as an automatic game-state correction;
 - a stale dispute state can leave valid value permanently revoked after the purchase becomes valid again;
 - 30-Day VIP can restart during refund reconciliation;
-- a closed Lifetime VIP sales window can be reopened by restore/reconciliation logic; or
+- a closed Lifetime VIP sales window can be reopened by restore/reconciliation logic;
+- an Apple gift recipient can be treated as the monetary refund payee merely because they received the gifted entitlement;
+- an ordinary TycoonX in-game transfer is automatically treated as an Apple-supported IAP gift without matching provider evidence; or
 - unrelated legitimate Apple, Google Play, or Xsolla purchases can be confiscated by the same correction case.
 
-## 18. Current official references checked September 5, 2026
+## 18. Current official references checked September 7, 2026
 
+- Apple App Review Guideline 3.1.1, including purchased-currency non-expiry and IAP gifting/refund/exchange rules: https://developer.apple.com/app-store/review/guidelines/
 - Apple App Store Server API and refund history / notification recovery: https://developer.apple.com/documentation/appstoreserverapi/
 - Apple StoreKit refund request lifecycle: https://developer.apple.com/documentation/storekit/transaction/beginrefundrequest(in:)
 - Google Play RTDN / VoidedPurchaseNotification: https://developer.android.com/google/play/billing/rtdn-reference
@@ -305,6 +340,6 @@ Treat downstream refunded-value automation as **not production-ready** if any of
 
 ## Public-law / localization decision
 
-No new public player-facing legal meaning is introduced by this gate. The canonical TycoonX Terms already permit transaction-specific correction where refunded value was consumed or transferred while protecting unrelated legitimate paid value, and the Purchases & Refunds Policy already preserves provider-specific and mandatory consumer rights.
+No new public player-facing legal meaning is introduced by this gate. The canonical TycoonX Terms already permit transaction-specific correction where refunded value was consumed or transferred while protecting unrelated legitimate paid value, and the Purchases & Refunds Policy already preserves provider-specific and mandatory consumer rights. The Apple gifting rules in this checkpoint are provider-operational safeguards that apply only if CK-Labs actually enables an Apple-supported IAP gift flow; they do not convert ordinary in-game transfers into Apple gifts.
 
-Therefore this operational hardening does **not** reopen Terms, Purchases & Refunds, Privacy, or Community Standards localization. If CK-Labs later chooses a materially broader player-facing clawback power than the canonical wording currently allows, update the canonical English document first and then reopen only the affected localized document type in the required locale order.
+Therefore this operational hardening does **not** reopen Terms, Purchases & Refunds, Privacy, or Community Standards localization. If CK-Labs later chooses to launch a materially new player-facing paid gifting product or a broader clawback power than the canonical wording currently allows, update the canonical English document first and then reopen only the affected localized document type in the required locale order.
