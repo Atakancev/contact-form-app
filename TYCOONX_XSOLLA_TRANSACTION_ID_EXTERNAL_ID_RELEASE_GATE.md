@@ -31,7 +31,7 @@ The safe TycoonX model therefore treats Xsolla's transaction ID and CK-Labs' ext
 Before production release, test the Xsolla integration with identifier values that expose common truncation bugs:
 
 - Xsolla's documented example: `4,300,000,000`, which is greater than `2^32`;
-- `9,007,199,254,740,993`, which is one above JavaScript's largest exactly representable safe integer and must survive as the exact decimal identifier rather than being rounded; and
+- `9,007,199,254,740,993`, which is above JavaScript's largest safe integer and is not exactly representable as a `Number`; and
 - the documented Xsolla `int64` upper bound `9,223,372,036,854,775,807`, where the applicable test surface permits it.
 
 The test must cover every path that handles a transaction identity: token/order correlation, webhook ingestion, durable persistence, lookup, support display, refund preparation, chargeback evidence, logs and any return/redirect parser. A test that succeeds only at checkout but fails during refund reconciliation is not sufficient.
