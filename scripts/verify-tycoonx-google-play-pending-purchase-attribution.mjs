@@ -60,7 +60,7 @@ const requiredGate = [
   'may be withdrawn from future sale, may never return, and creates no expectation of continuous availability',
   'completion timestamp is later than the sales-window closing timestamp',
   'CK-Labs must not keep a completed payment while refusing the paid Lifetime VIP entitlement',
-  'mandatory German/EU consumer rights remain intact',
+  'Mandatory German/EU consumer rights remain intact',
   'An attribution problem must not be used to run down a legal remedy period unfairly.',
   'Legitimate promo purchase has no `orderId`',
   'same purchase token can grant paid entitlement to more than one TycoonX account',
