@@ -43,6 +43,15 @@ requireText('gate', 'BGB § 312k', 'withdrawal/termination distinction');
 requireText('checkout', 'BGB § 312k', 'checkout withdrawal/termination distinction');
 requireText('checkout', 'BGB § 356a(5)', 'timely electronic-withdrawal submission rule');
 
+// BGB § 356a(2)(2) requires the function to preserve the contract/part identified by the consumer.
+requireText('checkout', 'BGB § 356a(2)(2)', 'current contract-or-contract-part identification rule');
+requireText('checkout', 'do not force an all-or-nothing withdrawal', 'no forced whole-order withdrawal for separable parts');
+requireText('checkout', "preserve the consumer's exact selection", 'selected contract-part preserved through receipt and reconciliation');
+requireText('checkout', 'still accept and timestamp the withdrawal declaration for the part identified by the consumer', 'provider limitation must not block part-identified declaration');
+requireText('checkout', 'does not by itself decide that a substantive partial-withdrawal right exists', 'part-selection UI does not overstate substantive entitlement');
+requireText('checkout', 'may force whole-order withdrawal merely because the backend or payment provider uses one order identifier', 'whole-order coercion regression blocker');
+requireText('checkout', 'may be silently expanded into withdrawal or revocation of unrelated parts', 'silent scope-expansion regression blocker');
+
 // TycoonX product invariants.
 requireText('gate', 'purchased Diamonds do not expire solely because time passes', 'purchased-Diamond non-expiry');
 requireText('gate', '30-Day VIP is a one-time, non-renewing 30-day entitlement', '30-Day VIP exact one-time/non-renewing model');
