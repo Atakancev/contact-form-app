@@ -75,7 +75,7 @@ for (const [regex, message] of checks) {
   if (!regex.test(text)) failures.push(message);
 }
 
-if (!/purchases made outside the app may not contain `obfuscatedAccountId` or `obfuscatedProfileId`/i.test(pending)) {
+if (!/purchases made outside the app (?:may|might) not contain `obfuscatedAccountId` or `obfuscatedProfileId`/i.test(pending)) {
   failures.push('Existing pending-purchase gate no longer preserves missing-identifier behavior.');
 }
 
