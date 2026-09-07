@@ -1,6 +1,6 @@
 # TycoonX Google Play Age Signals & Parental-State Release Gate
 
-Last reviewed: 2026-09-04  
+Last reviewed: 2026-09-07  
 Operator/business name used in player-facing documents: **CK-Labs**
 
 This is an operational release gate for TycoonX use of Google Play Age Signals. It complements, and does not replace, the TycoonX Privacy Policy, Terms of Service, Purchases & Refunds Policy, German youth-protection gate, German minor-purchase gate, DSA minors gate, Google Play payment gates, or case-specific legal analysis.
@@ -244,24 +244,43 @@ Current documented concepts include:
 - significant changes are cumulative; and
 - the approval state is relevant to supervised users in applicable jurisdictions, not a general global contract-consent field.
 
-### Current Play Console availability warning
+### September 7, 2026 Play Console availability checkpoint
 
-As of this review, Google's active documentation says the **significant-change Play Console functionality is not yet live**.
+Google's current Android Developers guidance, last updated September 4, 2026, now says developers **can submit** a significant change on the Age signals page in Play Console. Current Play Console Help likewise says developers can notify Google Play of a significant change without publishing a new version of the app.
 
-Do not make a current TycoonX production feature depend on a workflow that Google has not yet activated.
+The previous TycoonX gate statement that significant-change Play Console functionality was "not yet live" is therefore obsolete and must not return. This status is separate from the revoked-app-approval report in section 10, which Google's current dedicated documentation still describes as not yet live.
 
-When Google activates it, current documentation indicates that CK-Labs should expect to provide an upcoming effective date and a short description shown to parents. The currently documented configuration rules include:
+Release rules for the currently documented significant-change workflow:
 
-- English (`en-US`) description required, with optional additional supported-language descriptions;
-- up to three submitted significant changes;
-- submission up to 90 days in advance; and
-- significant-change effective dates more than two days apart.
+- [ ] significant-change notice is handled **independently of app releases**; publishing or updating TycoonX does not by itself notify Google Play of a significant change;
+- [ ] submit the change through the Play Console Age signals page when a real jurisdictional/legal trigger requires that notice;
+- [ ] the required effective-from date is treated as effective at **00:00 UTC**, not device-local midnight, operator-local midnight, or the player's local timezone;
+- [ ] the description is short, accurate, and not misleading because Google says it is **shown verbatim to parents**;
+- [ ] provide the required English (`en-US`) description and add other supported-language descriptions where useful and operationally appropriate;
+- [ ] current documented configuration supports up to three submitted significant changes, up to 90 days in advance, with effective dates more than two days apart;
+- [ ] if multiple significant changes are pending, Google says parents see at most the 10 most recent descriptions, so this Play UI must not be treated as the sole legal notice mechanism for a change that independently requires consumer notice, consent, durable-medium communication, or a TycoonX legal-document update;
+- [ ] preserve dated evidence of the submitted description, effective date, Play Console state, applicable jurisdiction, and affected TycoonX feature set; and
+- [ ] re-check the live Play Console and current official documentation before relying on a configuration limit because Age Signals tooling is still evolving.
 
-Before relying on those limits in production, re-check Google's live documentation because this tooling is still evolving.
+### Cumulative approvals must not become overbroad consent
 
-### P0 decision rule once live
+Google currently documents significant changes as cumulative. A new significant-change request includes pending and declined significant changes since the last approval, and a later parental approval can approve all such pending changes in one action.
 
-If a supervised user's status for a legally relevant significant change is `PENDING` or `DECLINED`, restrict only the content/functionality related to that unapproved significant change to the extent the applicable law requires.
+Therefore:
+
+- [ ] map each submitted significant change and effective date to the specific affected TycoonX content/functionality;
+- [ ] do not interpret the newest `APPROVED` status as consent to unrelated features that were never part of the cumulative request;
+- [ ] do not interpret a significant-change approval as transaction-specific authorization for Diamonds, 30-Day VIP, Lifetime VIP, or another purchase;
+- [ ] do not interpret a significant-change approval as acceptance of materially changed TycoonX Terms where applicable law requires a separate notice, consent, or contract-change process; and
+- [ ] preserve enough versioned evidence to explain which cumulative feature changes were covered by the approval state.
+
+Only **supervised users**, not verified users, have a significant-change approval status in Google's current API model. A missing/null significant-change status for a verified user must not be treated as an API failure, fraud signal, parental refusal, or account-compromise indicator.
+
+Before an upcoming significant change's effective date, Google's documented example continues returning the previously approved `significantChangeApprovalDate`. Do not prematurely lock the new feature solely because a future-dated notice has been submitted unless applicable law independently requires earlier restriction.
+
+### P0 decision rule from the effective date
+
+From the effective date, if a supervised user's status for a legally relevant significant change is `PENDING` or `DECLINED`, restrict only the content/functionality related to that unapproved significant change to the extent the applicable law requires.
 
 Do not automatically:
 
@@ -394,7 +413,7 @@ Before enabling Age Signals-dependent behavior, preserve a dated evidence packag
 - mapping from `ageLower`, `ageUpper`, and `ageRangeSource` to the minimum necessary age-gated decisions;
 - evidence that Age Signals are excluded from marketing, ad-tech, analytics, business intelligence, monetization targeting, and ordinary Xsolla data flows;
 - Data Safety assessment and Privacy Policy delta assessment;
-- significant-change feature availability and configuration evidence, once Google activates it;
+- significant-change Play Console availability evidence plus submitted description/effective-date/configuration evidence where the workflow is used;
 - revoked-app-approval feature availability and retention evidence, once Google activates it;
 - test evidence for device reset, account switching, supervision/sharing changes, API errors, Play Store outage, unsupported client, and process death;
 - test evidence proving an Age Signals event cannot independently grant, remove, restart, or expire Diamonds/30-Day VIP/Lifetime VIP;
@@ -409,7 +428,11 @@ Do **not** enable Age Signals-dependent production behavior if any of the follow
 - TycoonX assumes `NOT_SHARED` means adult or minor;
 - TycoonX hard-codes obsolete `userStatus` logic from SDK 0.0.3 into a new integration;
 - the app calls `checkAgeSignals(...)` without respecting the current access/sharing flow;
-- a significant-change or revoked-approval workflow is treated as live before Google actually activates the corresponding Play Console functionality;
+- a significant-change workflow is treated as unavailable based on the obsolete pre-September 4 documentation instead of the current Google guidance and actual Play Console state;
+- publishing an app release is treated as equivalent to notifying Google Play of a significant change;
+- a significant-change effective date is implemented using local midnight instead of the documented 00:00 UTC boundary;
+- a verified user's absent significant-change status is treated as a refusal, fraud signal, or API failure;
+- a revoked-app-approval workflow is treated as live before Google actually activates the corresponding Play Console functionality;
 - a parent's app/significant-change approval is treated as authorization for a specific purchase;
 - age state can independently delete legitimate paid Diamonds, restart/shorten 30-Day VIP, or expire Lifetime VIP;
 - `installId` is repurposed as a tracking/fingerprinting/monetization identifier;
@@ -438,9 +461,11 @@ Re-check these current official sources before production activation because Goo
 - Request age signals: `https://developer.android.com/google/play/age-signals/request-age-signals`
 - Understand age signals responses: `https://developer.android.com/google/play/age-signals/understand-age-signals-responses`
 - Release notes: `https://developer.android.com/google/play/age-signals/release-notes`
-- Significant changes: `https://developer.android.com/google/play/age-signals/notify-significant-changes`
+- Significant changes, current implementation page last updated September 4, 2026: `https://developer.android.com/google/play/age-signals/notify-significant-changes`
 - Revoked app approvals: `https://developer.android.com/google/play/age-signals/revoked-app-approval`
 - Google Play Age Signals API / User Data policy: `https://support.google.com/googleplay/android-developer/answer/16909972`
 - Google Play applicable U.S.-state guidance: `https://support.google.com/googleplay/android-developer/answer/16569691`
+
+As of the September 7, 2026 checkpoint, Google's current significant-change implementation page and current Play Console Help both permit significant-change notification through the Age signals page. The revoked-app-approval report remains a separate feature with its own availability state.
 
 This gate intentionally does not promise that any current SDK version, U.S.-state legal status, Console feature availability, age band, or provider workflow will remain unchanged. Re-check current primary sources when the implementation or law changes.
