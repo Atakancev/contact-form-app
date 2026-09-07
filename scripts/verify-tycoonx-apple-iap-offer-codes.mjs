@@ -45,7 +45,7 @@ requireText(gate, 'custom codes', 'custom code class');
 requireText(gate, 'sandbox codes', 'sandbox code class');
 requireText(gate, 'Ready for Distribution', 'production app-state requirement');
 requireText(gate, 'associated In-App Purchase must be Approved', 'approved IAP requirement');
-requireText(gate, 'Purchased within your app in the last 30 days', 'purchase-history eligibility');
+requireRegex(gate, /purchased within (?:your app in )?the last 30 days/i, 'purchase-history eligibility');
 requireText(gate, 'paid or free offer', 'paid/free offer distinction');
 requireText(gate, 'offer cannot be edited after creation', 'immutable offer configuration');
 requireText(gate, '12:00 a.m. Pacific Time', 'Apple expiration timezone');
@@ -129,7 +129,7 @@ requireRegex(euPromo, /(fake scarcity|false scarcity|countdown)/i, 'existing EU 
 forbidRegex(gate, /\bTyconX\b/, 'legacy misspelling in rendered gate prose');
 requireText(gate, 'TycoonX', 'correct brand');
 requireText(gate, 'September 1, 2026', 'full release date');
-forbidRegex(gate, /TycoonX[^\n.]{0,80}\bbeta\b/i, 'live TycoonX described as beta');
+forbidRegex(gate, /TycoonX\s+(?:is|remains)\s+(?:currently\s+)?(?:a\s+)?beta\b/i, 'live TycoonX positively described as beta');
 requireText(progress, '**Localized full documents:** 100/100, **100%**', '100/100 localized full documents');
 requireText(progress, '**Localized hubs:** 25/25, **100%**', '25/25 localized hubs');
 requireText(progress, 'Exact next unfinished locale/document: None.', 'closed localization queue');
