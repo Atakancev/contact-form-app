@@ -7,7 +7,7 @@ const file = 'TYCOONX_APPLE_EU_OCTOBER_2026_TRANSITION_GATE.md';
 const text = await readFile(file, 'utf8');
 
 const required = [
-  ['Last reviewed: September 3, 2026', 'current review checkpoint'],
+  ['Last reviewed: September 7, 2026', 'current review checkpoint'],
   ['TycoonX went to full release on **September 1, 2026**', 'live full-release status'],
   ['October 1, 2026', 'October 1, 2026 effective date'],
   ['whichever is later', 'later-of October 1 / agreement effective-date rule'],
@@ -19,6 +19,8 @@ const required = [
   ['StoreKit External Purchases or Offers Entitlement', 'StoreKit entitlement'],
   ['ExternalPurchaseCustomLink', 'ExternalPurchaseCustomLink API'],
   ['canMakePayments', 'canMakePayments runtime check'],
+  ['payment-authorization signal', 'canMakePayments authorization-only boundary'],
+  ['not as proof that the user is an adult or as an age-band classifier', 'no canMakePayments age inference'],
   ['isEligible', 'ExternalPurchaseCustomLink eligibility check'],
   ['showNotice', 'Apple disclosure sheet call'],
   ['at least as prominently', 'Apple IAP prominence requirement'],
@@ -31,18 +33,26 @@ const required = [
   ['EU-specific VAT ID', 'EU alternative-payment VAT-ID requirement'],
   ['one EU VAT ID is sufficient for all EU storefronts', 'single-EU-VAT-ID coverage rule'],
   ['within 30 days of receiving the invoice', 'Apple invoice payment deadline'],
+  ['all apps that offer alternative payment options in the EU', 'all-apps EU child-safety scope'],
   ['parental gate', 'child-safety parental gate'],
+  ['Declared Age Range API', 'Declared Age Range separation'],
+  ['AgeRangeService.isEligibleForAgeFeatures', 'age-feature eligibility signal'],
+  ['AgeRangeService.requiredRegulatoryFeatures', 'current regulatory-feature signal'],
+  ['future software update', 'future Apple child-safety API checkpoint'],
+  ['RESCIND_CONSENT', 'parental consent-revocation notification'],
+  ['Sandbox can test age-range scenarios', 'age-assurance sandbox coverage'],
+  ['least information needed for the payment/age decision', 'age-data minimization'],
   ['Apple In-App Purchase', 'Apple IAP channel distinction'],
   ['Xsolla', 'Xsolla alternative-payment channel distinction'],
-  ['Diamonds', 'Diamond purchase-screen coverage'],
-  ['30-Day VIP', 'one-time 30-Day VIP coverage'],
-  ['Lifetime VIP', 'limited-window Lifetime VIP coverage'],
+  ['Diamonds', 'Diamond entitlement protection'],
+  ['one-time non-renewing 30-Day VIP', 'one-time 30-Day VIP protection'],
+  ['valid Lifetime VIP', 'limited-window Lifetime VIP protection'],
   ['refunds', 'refund reconciliation'],
   ['chargebacks', 'chargeback reconciliation'],
   ['tax', 'alternative-payment tax responsibility'],
   ['Current rollout decision after full release', 'post-release rollout decision'],
   ['must not be used to extend a Lifetime VIP countdown', 'promotion countdown transition safeguard'],
-  ['Apple’s current guidance was rechecked on **September 3, 2026**', 'dated current Apple source checkpoint'],
+  ['Apple’s current guidance was rechecked on **September 7, 2026**', 'dated current Apple source checkpoint'],
 ];
 
 const missing = required.filter(([needle]) => !text.includes(needle));
@@ -51,6 +61,7 @@ const forbidden = [
   [/TycoonX goes to full release on September 1, 2026/i, 'stale future-tense release wording'],
   [/\bTyconX\b/, 'displayed TycoonX brand typo'],
   [/\bTycoonX\b[^\n]{0,100}\bbeta\b|\bbeta\b[^\n]{0,100}\bTycoonX\b/i, 'live-service beta wording'],
+  [/canMakePayments[^\n]{0,120}(?:proves?|confirms?|means?)\s+(?:the\s+)?(?:user\s+)?(?:is\s+)?(?:an\s+)?adult/i, 'unsafe canMakePayments adult inference'],
 ];
 const forbiddenHits = forbidden.filter(([pattern]) => pattern.test(text));
 
@@ -63,5 +74,5 @@ if (missing.length || forbiddenHits.length) {
   for (const [, label] of forbiddenHits) console.error(`- Found ${label}`);
   process.exitCode = 1;
 } else {
-  console.log('\nPASS: Apple EU October transition gate contains the current post-release payment, reporting, entitlement, consumer-support, and brand checkpoints.');
+  console.log('\nPASS: Apple EU October transition gate contains the current post-release payment, child-safety, age-assurance, reporting, entitlement, consumer-support, and brand checkpoints.');
 }
