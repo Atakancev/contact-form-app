@@ -36,11 +36,22 @@ const requiredGate = [
   'pending purchase can be approved on another device',
   'out-of-app purchases such as promotion redemptions',
   'might not contain `obfuscatedAccountId` or `obfuscatedProfileId`',
+  'pre-order, the purchase remains `PENDING` before the configured release time',
+  'changes to `PURCHASED` at release without another player action',
+  'pre-order offers are attached to a **Buy** purchase option',
+  'lower-price guarantee is enabled',
+  'pre-ordered items in the EEA and UK are treated by Play as having a right of withdrawal',
   '**not to use `orderId` to detect duplicate purchases or as a database primary key**',
   'do not grant purchased Diamonds, start one-time 30-Day VIP, or grant Lifetime VIP while the purchase is still `PENDING`',
   'call `queryPurchasesAsync()` after a successful Billing Library connection and when the app returns to the foreground',
   'same purchase discovered through listener, foreground query, RTDN, retry, or support reconciliation is granted exactly once',
   'grants the 200 Diamonds exactly once',
+  'Current TycoonX paid products must not be silently converted into Google pre-orders',
+  'do not intentionally configure purchased Diamonds, one-time 30-Day VIP, or Lifetime VIP as Google pre-order offers',
+  'do not use a pre-order acquisition window as a hidden way to extend, reopen, or evade the disclosed closing time of a Lifetime VIP sales window',
+  'reconcile the authoritative completed Google charge rather than labelling a lower final charge a pricing error',
+  'existing pending orders are an operational/configuration incident, not automatic player abuse',
+  'canceling the pre-order offer cancels the associated pending orders',
   'do not reinterpret parental/family approval as consent to unrelated TycoonX features',
   'do not use another-device approval itself as evidence of account sharing, account compromise, or entitlement abuse',
   'absence of an obfuscated identifier is not automatic proof of fraud',
@@ -52,6 +63,7 @@ const requiredGate = [
   'not as the sole entitlement identity',
   'acknowledgement deadline from the moment the user first opens the payment flow',
   'when Google reports `PURCHASED`',
+  'For a pre-order, the same principle means the acknowledgement period is not measured from the day the pre-order was placed while still `PENDING`',
   'automatic refund/revocation as player fraud or chargeback abuse',
   '`ONE_TIME_PRODUCT_CANCELED` notification is a state transition to reconcile, not evidence that the user performed a chargeback',
   'Do not turn CK-Labs\' premature-fulfillment bug into an accusation against the player.',
@@ -61,11 +73,18 @@ const requiredGate = [
   'completion timestamp is later than the sales-window closing timestamp',
   'CK-Labs must not keep a completed payment while refusing the paid Lifetime VIP entitlement',
   'Mandatory German/EU consumer rights remain intact',
+  'For a Google Play pre-order in the EEA or UK',
   'An attribution problem must not be used to run down a legal remedy period unfairly.',
   'Legitimate promo purchase has no `orderId`',
+  'A Google pre-order remains `PENDING` until release',
+  'pre-order with Google\'s lower-price guarantee completes at a lower authoritative price',
+  'pre-order affecting an EEA/UK player reaches release',
   'same purchase token can grant paid entitlement to more than one TycoonX account',
   'the acknowledgement clock is measured from `PENDING` initiation instead of the transition to `PURCHASED`',
+  'a current TycoonX Diamond, one-time 30-Day VIP, or Lifetime VIP product is intentionally exposed as a Google pre-order',
+  'Google pre-order handling in the EEA/UK suppresses the current provider withdrawal/refund path',
   'Google Play Billing integration guidance, last updated September 1, 2026',
+  'Google Play Console one-time-product overview / pre-order guidance, checked September 7, 2026',
   'node scripts/verify-tycoonx-google-play-pending-purchase-attribution.mjs',
 ];
 
@@ -81,6 +100,36 @@ requireMatch(
   gate,
   /`PENDING`[\s\S]{0,1200}`PURCHASED`[\s\S]{0,2400}queryPurchasesAsync\(\)[\s\S]{0,1800}exactly once/i,
   'Google Play pending purchase attribution gate: pending-to-purchased recovery/idempotency controls are incomplete.',
+);
+
+requireMatch(
+  gate,
+  /pre-order[\s\S]{0,900}`PENDING`[\s\S]{0,700}release[\s\S]{0,900}`PURCHASED`[\s\S]{0,2400}lower-price guarantee/i,
+  'Google Play pending purchase attribution gate: pre-order pending/release/price lifecycle is incomplete.',
+);
+
+requireMatch(
+  gate,
+  /Current TycoonX paid products must not be silently converted into Google pre-orders[\s\S]{0,2200}Diamonds[\s\S]{0,1000}30-Day VIP[\s\S]{0,1000}Lifetime VIP[\s\S]{0,2200}sales window/i,
+  'Google Play pending purchase attribution gate: current TycoonX product definitions are not protected from pre-order conversion.',
+);
+
+requireMatch(
+  gate,
+  /lower-price guarantee[\s\S]{0,1600}authoritative completed Google charge[\s\S]{0,1600}pricing error[\s\S]{0,1000}fraud/i,
+  'Google Play pending purchase attribution gate: lower-price-guarantee reconciliation is not separated from pricing/fraud enforcement.',
+);
+
+requireMatch(
+  gate,
+  /EEA and UK[\s\S]{0,1500}right of withdrawal[\s\S]{0,3200}mandatory consumer law/i,
+  'Google Play pending purchase attribution gate: EEA/UK pre-order withdrawal treatment and mandatory-rights override are incomplete.',
+);
+
+requireMatch(
+  gate,
+  /canceling the pre-order offer[\s\S]{0,1400}pending orders[\s\S]{0,1600}not automatic player abuse[\s\S]{0,1800}chargeback penalties/i,
+  'Google Play pending purchase attribution gate: provider/CK-Labs pre-order cancellation is not safely separated from player abuse.',
 );
 
 requireMatch(
