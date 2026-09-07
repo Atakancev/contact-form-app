@@ -28,7 +28,7 @@ const gate = await read(GATE, 'Xsolla chargeback release gate');
 const purchases = await read(PURCHASES, 'canonical Purchases & Refunds page');
 const privacy = await read(PRIVACY, 'canonical Privacy Policy page');
 
-requireMatch(gate, /September 4, 2026/, 'Xsolla gate is missing the current review checkpoint.');
+requireMatch(gate, /September 7, 2026/, 'Xsolla gate is missing the current review checkpoint.');
 requireMatch(gate, /applicable refund-policy type is shown/i, 'Xsolla gate no longer preserves transaction-specific refund-policy handling.');
 requireMatch(gate, /group company.*checkout.*receipt|checkout.*receipt.*group company/is, 'Xsolla gate no longer preserves transaction-specific merchant identity.');
 requireMatch(gate, /server-side confirmation/i, 'Xsolla gate no longer requires server-side payment authority.');
@@ -38,7 +38,10 @@ requireMatch(gate, /combined.*order_paid.*order_canceled/is, 'Xsolla gate is mis
 requireMatch(gate, /separate.*payment.*refund.*order_paid.*order_canceled/is, 'Xsolla gate is missing the separate Store\/Payments webhook model.');
 requireMatch(gate, /raw request body/i, 'Xsolla gate no longer requires signature verification against the raw webhook body.');
 requireMatch(gate, /20.*attempts.*12 hours/is, 'Xsolla gate is missing the current combined-webhook retry window.');
-requireMatch(gate, /12.*attempts.*48 hours/is, 'Xsolla gate is missing the current refund-webhook retry window.');
+requireMatch(gate, /12.*attempts.*48 hours/is, 'Xsolla gate is missing the current third-party refund-webhook retry window.');
+requireMatch(gate, /publisher['’]?s side.*not resent|CK-Labs-initiated refunds.*not.*retries|initiated on the publisher['’]?s side.*not resent/is, 'Xsolla gate is missing the no-retry rule for publisher-initiated refund webhooks.');
+requireMatch(gate, /reconcile.*authoritative provider status.*no refund webhook|manual-refund reconciliation.*authoritative provider state|authoritative provider status even if no refund webhook/is, 'Xsolla gate must reconcile publisher-initiated refunds from authoritative provider state when the webhook is lost.');
+requireMatch(gate, /do not resubmit the same refund.*callback was lost/i, 'Xsolla gate must not duplicate a refund merely because its callback was lost.');
 requireMatch(gate, /still complete.*4xx.*5xx|4xx.*5xx.*veto|veto.*refund/is, 'Xsolla gate no longer warns that HTTP errors cannot safely veto a provider-initiated refund.');
 requireMatch(gate, /5.?10 banking days/i, 'Xsolla gate is missing the current payment-method-dependent refund timing warning.');
 requireMatch(gate, /refund.*cannot be canceled|cannot be canceled.*refund/is, 'Xsolla gate is missing the irreversible-issued-refund warning.');
