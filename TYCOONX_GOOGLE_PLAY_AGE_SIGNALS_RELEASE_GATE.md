@@ -217,21 +217,28 @@ If CK-Labs stores it:
 - [ ] do not use it as a cross-device advertising ID, fingerprint, permanent account ID, ban-evasion identifier, monetization key, or analytics identity;
 - [ ] expect it not to persist across device resets;
 - [ ] do not infer account takeover merely because it changes after a reset; and
-- [ ] handle repeat revocation events idempotently because the same `installId` may appear again after re-approval and a later revocation.
+- [ ] handle repeat revocation events idempotently without incorrectly deduplicating every future event by `installId` alone.
 
 Google's current documentation says revoked identifiers shown in the Play Console report are listed for 90 days before deletion.
 
-### Current feature-availability warning
+### September 7, 2026 revoked-app-approval availability checkpoint
 
-As of this review, Google's active documentation says the **revoked app approvals Play Console functionality is not yet live**.
+Google's current dedicated documentation, last updated September 4, 2026, now describes the **Revoked app approvals** tab on the Age signals page in Google Play Console as an available workflow. It says CK-Labs can download a CSV containing revoked `installID` values, and that listed values remain available for 90 days before deletion.
 
-Do not:
+The previous TycoonX gate statement that this Play Console functionality was "not yet live" is obsolete and must not return.
 
-- claim in player-facing copy that CK-Labs receives a live revocation feed when it does not;
-- make production access depend on a Console feed that is not yet available; or
-- build a fake replacement by over-collecting age/identity data.
+Current handling rules:
 
-When Google activates the feature, re-check the then-current documentation before enabling the production workflow.
+- [ ] preserve only the minimum `installID` linkage needed for the legally required revocation workflow;
+- [ ] regularly retrieve/reconcile the current Revoked app approvals data at a frequency appropriate to the applicable legal obligation instead of assuming a push webhook exists where Google documents a Console report/CSV workflow;
+- [ ] do not use `installID` for advertising, fingerprinting, monetization, unrelated analytics, general fraud scoring, or cross-service tracking;
+- [ ] a parent revoking app approval is an access/consent event, not by itself proof of fraud, hacking, chargeback abuse, account compromise, regional-price abuse, or entitlement abuse;
+- [ ] a revocation does not itself manufacture a refund, reverse a payment, delete the purchase ledger, or change the original semantics of Diamonds, one-time 30-Day VIP, or Lifetime VIP;
+- [ ] where the applicable rule requires the supervised user to lose app access, enforce that access restriction while preserving the authoritative payment/entitlement history needed for refunds, restores, disputes, re-approval, accounting, and mandatory consumer remedies;
+- [ ] if the parent later re-approves the same app on a device that has not been reset, Google says the same `installID` can return; do not create a duplicate permanent ban merely because the identifier reappears; and
+- [ ] if approval is later revoked again, Google says the same `installID` can appear as a new row again. Do not deduplicate all future revocations forever on `installID` alone; process each actual revocation occurrence idempotently using the best available event/report evidence.
+
+A device reset can legitimately change the `installID`. That change alone is not evidence of ban evasion or account takeover.
 
 ## 11. Significant app changes and parental approval
 
@@ -248,7 +255,7 @@ Current documented concepts include:
 
 Google's current Android Developers guidance, last updated September 4, 2026, now says developers **can submit** a significant change on the Age signals page in Play Console. Current Play Console Help likewise says developers can notify Google Play of a significant change without publishing a new version of the app.
 
-The previous TycoonX gate statement that significant-change Play Console functionality was "not yet live" is therefore obsolete and must not return. This status is separate from the revoked-app-approval report in section 10, which Google's current dedicated documentation still describes as not yet live.
+The previous TycoonX gate statement that significant-change Play Console functionality was "not yet live" is therefore obsolete and must not return. Significant-change submissions and revoked-app-approval reporting are separate Age Signals workflows and must be implemented according to their own current Google documentation.
 
 Release rules for the currently documented significant-change workflow:
 
@@ -414,7 +421,7 @@ Before enabling Age Signals-dependent behavior, preserve a dated evidence packag
 - evidence that Age Signals are excluded from marketing, ad-tech, analytics, business intelligence, monetization targeting, and ordinary Xsolla data flows;
 - Data Safety assessment and Privacy Policy delta assessment;
 - significant-change Play Console availability evidence plus submitted description/effective-date/configuration evidence where the workflow is used;
-- revoked-app-approval feature availability and retention evidence, once Google activates it;
+- Revoked app approvals tab/CSV availability, retrieval, 90-day retention, and repeat-revocation reconciliation evidence where applicable;
 - test evidence for device reset, account switching, supervision/sharing changes, API errors, Play Store outage, unsupported client, and process death;
 - test evidence proving an Age Signals event cannot independently grant, remove, restart, or expire Diamonds/30-Day VIP/Lifetime VIP;
 - purchase test evidence proving parental age/supervision status is not substituted for transaction-specific authorization; and
@@ -428,11 +435,13 @@ Do **not** enable Age Signals-dependent production behavior if any of the follow
 - TycoonX assumes `NOT_SHARED` means adult or minor;
 - TycoonX hard-codes obsolete `userStatus` logic from SDK 0.0.3 into a new integration;
 - the app calls `checkAgeSignals(...)` without respecting the current access/sharing flow;
-- a significant-change workflow is treated as unavailable based on the obsolete pre-September 4 documentation instead of the current Google guidance and actual Play Console state;
+- a significant-change workflow is treated as unavailable based on obsolete pre-September 4 documentation instead of the current Google guidance and actual Play Console state;
 - publishing an app release is treated as equivalent to notifying Google Play of a significant change;
 - a significant-change effective date is implemented using local midnight instead of the documented 00:00 UTC boundary;
 - a verified user's absent significant-change status is treated as a refusal, fraud signal, or API failure;
-- a revoked-app-approval workflow is treated as live before Google actually activates the corresponding Play Console functionality;
+- the Revoked app approvals tab/CSV is treated as unavailable based on obsolete earlier documentation instead of the current September 4 Google workflow;
+- repeat revocations are deduplicated forever by `installID` even though Google documents that the same identifier can legitimately appear again for a later revocation;
+- a parent revocation is treated as a refund, payment reversal, permanent ban, or fraud finding without the separate authoritative basis required for that consequence;
 - a parent's app/significant-change approval is treated as authorization for a specific purchase;
 - age state can independently delete legitimate paid Diamonds, restart/shorten 30-Day VIP, or expire Lifetime VIP;
 - `installId` is repurposed as a tracking/fingerprinting/monetization identifier;
@@ -462,10 +471,10 @@ Re-check these current official sources before production activation because Goo
 - Understand age signals responses: `https://developer.android.com/google/play/age-signals/understand-age-signals-responses`
 - Release notes: `https://developer.android.com/google/play/age-signals/release-notes`
 - Significant changes, current implementation page last updated September 4, 2026: `https://developer.android.com/google/play/age-signals/notify-significant-changes`
-- Revoked app approvals: `https://developer.android.com/google/play/age-signals/revoked-app-approval`
+- Revoked app approvals, current workflow page last updated September 4, 2026: `https://developer.android.com/google/play/age-signals/revoked-app-approval`
 - Google Play Age Signals API / User Data policy: `https://support.google.com/googleplay/android-developer/answer/16909972`
 - Google Play applicable U.S.-state guidance: `https://support.google.com/googleplay/android-developer/answer/16569691`
 
-As of the September 7, 2026 checkpoint, Google's current significant-change implementation page and current Play Console Help both permit significant-change notification through the Age signals page. The revoked-app-approval report remains a separate feature with its own availability state.
+As of the September 7, 2026 checkpoint, Google's current significant-change page permits notification through the Age signals page, and Google's current revoked-app-approval page documents the Revoked app approvals tab plus downloadable CSV. Earlier TycoonX operational statements that either workflow was still not live must not return.
 
 This gate intentionally does not promise that any current SDK version, U.S.-state legal status, Console feature availability, age band, or provider workflow will remain unchanged. Re-check current primary sources when the implementation or law changes.
