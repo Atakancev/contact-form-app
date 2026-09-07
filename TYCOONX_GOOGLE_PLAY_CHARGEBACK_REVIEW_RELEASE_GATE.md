@@ -2,7 +2,7 @@
 
 **Status:** P0 payment / entitlement / dispute-evidence gate
 
-**Last reviewed:** August 31, 2026
+**Last reviewed:** September 7, 2026
 
 **Applies to:** TycoonX purchases made through Google Play when Google sends a `PendingRefundReviewNotification` and permits CK-Labs to submit a response through `orders.reviewrefund` / the `ReviewRefund` API.
 
@@ -14,16 +14,20 @@ Google's current documentation states that:
 
 - Google Play can send a `PendingRefundReviewNotification` when a user initiates a chargeback that requires developer review;
 - the developer should evaluate the request and respond within **24 hours** by calling the `ReviewRefund` API;
-- current pending refund reviews support **`CHARGEBACK`** as the refund reason;
-- the response can include a refund preference and relevant purchase-usage evidence;
-- the current refund-preference values are **`APPROVE`**, **`DECLINE`**, and **`NEUTRAL`**; and
+- current pending refund reviews support **`CHARGEBACK`** as the refund reason, while Google's RTDN documentation says integrations should safely handle new refund reasons if Google adds them later;
+- the required `ReviewRefund` request fields include the matching `pendingRefundToken`, `sampleContentProvided`, and `refundPreference`;
+- the current refund-preference values are **`APPROVE`**, **`DECLINE`**, and **`NEUTRAL`**;
+- optional `consumptionPercentageMilliunits` is an integer from **0 through 100000 milliunits**, where **`45200` means `45.2%`**, not 45,200 percent;
+- optional `consumptionUsageEvents` is limited to **1000 events** and requests with more than 1000 events are rejected;
+- a usage event's free-form `consumptionItemDescription` is limited to **5000 characters**;
+- when coarse location evidence is supplied, Google's `regionCode` is **never inferred** by Google and CK-Labs is responsible for its correctness; and
 - critically, Google records the **first API call** made in response to the notification and ignores later calls even though later calls can still return an `OK` status.
 
 Official checkpoints reviewed for this gate:
 
 - Google Play Billing, *Help Google dispute chargebacks*, last updated July 20, 2026: https://developer.android.com/google/play/billing/provide-refund-and-chargeback-suggestions
-- Google Play Billing, *Real-time developer notifications reference guide*: https://developer.android.com/google/play/billing/rtdn-reference
-- Google Play Developer API, `orders.reviewrefund`: https://developers.google.com/android-publisher/api-ref/rest/v3/orders/reviewrefund
+- Google Play Billing, *Real-time developer notifications reference guide*, last updated September 1, 2026: https://developer.android.com/google/play/billing/rtdn-reference
+- Google Play Developer API, `orders.reviewrefund`, last updated July 6, 2026: https://developers.google.com/android-publisher/api-ref/rest/v3/orders/reviewrefund
 
 Because Google can change this workflow, CK-Labs must re-check the current official documentation before materially changing the production integration.
 
@@ -56,11 +60,17 @@ At minimum preserve:
 
 - Google `pendingRefundToken`;
 - Google `orderId`;
-- Pub/Sub `messageId` and notification event time where available;
+- Pub/Sub `messageId`;
+- Google's RTDN `eventTimeMillis` where available;
+- the **first CK-Labs receipt timestamp** for the notification;
+- raw notification version and `refundReason` value;
 - TycoonX account/order reference;
 - product ID and product type;
 - response deadline;
 - selected preference (`APPROVE`, `DECLINE`, or `NEUTRAL`);
+- the exact required `sampleContentProvided` value and the factual basis for it;
+- any submitted `consumptionPercentageMilliunits`, its source calculation, and the underlying transaction-specific numerator/denominator where applicable;
+- the exact `consumptionUsageEvents` submitted and the selection rule used if more relevant events existed than Google accepts;
 - exact evidence fields submitted;
 - an immutable request hash or equivalent audit fingerprint;
 - submission timestamp;
@@ -72,17 +82,19 @@ Use Pub/Sub `messageId` deduplication for duplicate RTDN delivery, but do not re
 
 ## 4. 24-hour deadline handling
 
-The 24-hour response period is a real operational deadline.
+The 24-hour response period is a real operational deadline. Google's current guidance says to respond within 24 hours of receiving the notification.
 
 TycoonX should:
 
-- calculate and store the review deadline as soon as the notification is accepted;
+- calculate and store the review deadline from the **first CK-Labs receipt timestamp**, not from a later worker start, queue retry, app restart, or duplicate Pub/Sub delivery;
+- preserve Google's `eventTimeMillis` separately so delivery delay and event chronology remain auditable;
+- never reset the 24-hour deadline because the same notification is redelivered or requeued;
 - surface approaching deadlines in internal monitoring;
 - prioritize review evidence collection over unrelated batch work;
 - preserve whether the deadline was met or missed; and
 - not fabricate evidence merely because the deadline is close.
 
-If the evidence is genuinely inconclusive, `NEUTRAL` can be more appropriate than inventing facts or automatically opposing the chargeback. The preference must reflect CK-Labs' real position based on evidence available at submission time.
+If delivery appears materially delayed or the first-receipt time is uncertain, escalate the review and preserve the uncertainty rather than manufacturing additional response time. If the evidence is genuinely inconclusive, `NEUTRAL` can be more appropriate than inventing facts or automatically opposing the chargeback. The preference must reflect CK-Labs' real position based on evidence available at submission time.
 
 Missing the collaborative-review window must not become a reason to punish the player or remove value before Google reports the authoritative transaction outcome.
 
@@ -101,7 +113,7 @@ Keep these paths distinct:
 
 A user exercising a lawful refund, withdrawal, conformity, or dispute right is not automatically committing fraud or chargeback abuse.
 
-## 6. Evidence quality and data minimization
+## 6. Evidence quality, field fidelity, and data minimization
 
 Only submit evidence that is accurate, relevant, proportionate, and already lawfully held for legitimate purchase, entitlement, security, fraud-prevention, support, or dispute purposes.
 
@@ -119,7 +131,51 @@ Do not submit unrelated private chat, support conversations, contacts, message c
 
 Never invent, infer beyond reliable evidence, or alter IP, geography, device, login, consumption, gameplay, entitlement, or account-compromise facts.
 
-## 7. Preference rules
+### `consumptionPercentageMilliunits` unit safety
+
+If CK-Labs submits `consumptionPercentageMilliunits`:
+
+- it must be a whole-number integer from **0 through 100000**;
+- **`45200` means `45.2%`**;
+- do not send a normal decimal percentage such as `45.2` into the milliunit field;
+- do not interpret `100000` as 100,000 percent;
+- derive the value from usage attributable to the exact Google purchase under review rather than unrelated purchases, promotional/gameplay-earned Diamonds, or unrelated VIP periods;
+- do not silently clamp an impossible or out-of-range value merely to make the API accept it; and
+- if the percentage cannot be calculated reliably, omit this optional field rather than guess.
+
+For example, suppose a Google Play transaction granted **500 purchased Diamonds** and reliable transaction-level records show that **226 Diamonds attributable to that exact grant** were consumed. `226 / 500 = 45.2%`, so the corresponding API value is `45200`. This value is **dispute evidence only**. It is not Google's final refund percentage, is not an instruction to remove 226 Diamonds, and must not itself trigger an entitlement clawback.
+
+### `sampleContentProvided` must reflect reality
+
+`sampleContentProvided` is a required boolean. Set it according to what was actually provided before the purchase for the product under review.
+
+- Do not set it to `true` merely because TycoonX itself is free-to-play.
+- Do not set it to `true` merely because the player could see a Diamond or VIP product card, price, description, or ordinary game functionality.
+- Set it to `true` only when the relevant free sample, trial, or product/function preview contemplated by Google's field was genuinely provided and CK-Labs can support that fact.
+- Otherwise set it to `false`; do not guess.
+
+### Usage-event count and descriptions
+
+Google currently rejects a `ReviewRefund` request with more than **1000 `consumptionUsageEvents`**. TycoonX therefore must not blindly attach every raw gameplay event.
+
+If more than 1000 potentially relevant records exist, select a truthful, transaction-specific, proportionate set under a documented and repeatable selection rule. The selection must not cherry-pick only facts that exaggerate CK-Labs' position, manufacture usage, or hide known contradictory evidence. Preserve the larger internal audit trail where lawfully appropriate even though only the permitted subset is submitted.
+
+Each free-form `consumptionItemDescription` sent to Google must remain within the current **5000 characters** limit and must not contain credentials, authentication secrets, full payment data, or unnecessary private communications.
+
+### Coarse location must not be invented
+
+When a usage event includes Google's coarse location object, `regionCode` is **never inferred** by Google. CK-Labs must therefore send a region only when it is accurately and lawfully known for the relevant usage event.
+
+TycoonX must not:
+
+- convert a guessed IP geolocation into asserted consumption location without a reliable factual basis;
+- treat the player's regional-price catalog, storefront, currency, billing country, language, or VPN suspicion as proof of where gameplay consumption occurred;
+- manufacture a region to strengthen a regional-price-abuse or chargeback theory; or
+- populate optional locality fields merely because they are available.
+
+If reliable location evidence is unavailable, omit optional location evidence rather than guess. Regional pricing and regional-price abuse remain separate questions that require their own evidence.
+
+## 7. Preference and future-refund-reason rules
 
 Use the current Google preference values intentionally:
 
@@ -128,6 +184,8 @@ Use the current Google preference values intentionally:
 - **`NEUTRAL`** when CK-Labs does not have a justified preference or the available evidence is insufficient to recommend approval or rejection.
 
 Do not configure `DECLINE` as the universal default simply because chargebacks cost money. Do not configure `APPROVE` merely to avoid manual review where the evidence clearly indicates entitlement abuse. The goal is accurate evidence, not maximizing either approvals or denials.
+
+Google currently documents `CHARGEBACK` as the supported pending-review refund reason, but its RTDN documentation says developers should handle new reasons as they become available. Therefore an unknown future `refundReason` must enter a safe current-documentation/manual-review path. TycoonX must not automatically map an unknown value to `CHARGEBACK`, auto-decline it, auto-approve it, label it fraud, or change paid entitlements merely because the integration does not recognize the new enum yet.
 
 ## 8. The review response must not itself grant or revoke TycoonX value
 
@@ -167,6 +225,7 @@ If Google later reports a final refund, void, reversal, or chargeback affecting 
 - A pending review alone does not justify revocation.
 - Do not revoke a different valid Lifetime VIP record from another authorized transaction or provider merely because one order is disputed.
 - Ending or withdrawing Lifetime VIP from future sale remains separate from the validity of an already completed purchase.
+- Lifetime VIP remains a limited-time promotional offering available only during selected genuine sales windows; a chargeback workflow must not reopen a closed sales window or create an expectation that the offer will continuously remain available or return.
 
 ## 10. Account compromise and unauthorized purchases
 
@@ -208,21 +267,28 @@ Stronger enforcement should require separate evidence of conduct such as:
 - exploit-linked refund cycling; or
 - deliberate retention or laundering of refunded paid value.
 
-Even then, enforcement must remain proportionate, preserve mandatory rights, and avoid confiscating unrelated legitimate purchases.
+Even then, enforcement must remain proportionate, preserve mandatory consumer rights, and avoid confiscating unrelated legitimate purchases.
 
 ## 13. Release tests
 
 Before relying on this workflow in production, keep dated test evidence covering at least:
 
 - [ ] receipt of a test `PendingRefundReviewNotification`;
-- [ ] correct extraction/storage of `pendingRefundToken`, `orderId`, and deadline;
-- [ ] duplicate RTDN delivery does not create a second substantive review;
+- [ ] correct extraction/storage of `pendingRefundToken`, `orderId`, `eventTimeMillis`, raw `refundReason`, first CK-Labs receipt time, and deadline;
+- [ ] duplicate RTDN delivery does not create a second substantive review and does not reset the 24-hour deadline;
 - [ ] two workers cannot race to submit different preferences;
 - [ ] the system refuses to send a placeholder review before evidence is ready;
 - [ ] `APPROVE`, `DECLINE`, and `NEUTRAL` are supported without inventing evidence;
+- [ ] an unknown future `refundReason` is preserved and routed for review rather than auto-mapped to `CHARGEBACK`;
+- [ ] `sampleContentProvided=true` and `sampleContentProvided=false` are both tested against real factual scenarios rather than guessed defaults;
+- [ ] a **45.2%** transaction-specific consumption calculation becomes exactly **`45200`** `consumptionPercentageMilliunits` and does not become `45.2`, `452`, or `45200000`;
+- [ ] an unreliable consumption percentage is omitted rather than guessed or silently clamped;
+- [ ] more than 1000 candidate usage records cannot produce an API request containing more than 1000 `consumptionUsageEvents`;
+- [ ] a generated `consumptionItemDescription` cannot exceed 5000 characters;
+- [ ] optional coarse `regionCode` is omitted when location is not reliably known and is never inferred from regional price, currency, language, or VPN suspicion;
 - [ ] the exact first submitted payload is stored immutably;
 - [ ] a simulated later retry cannot silently replace the stored first response merely because an API call returns `OK`;
-- [ ] the `ReviewRefund` response itself does not change Diamonds or VIP;
+- [ ] the `ReviewRefund` response and `consumptionPercentageMilliunits` evidence itself do not change Diamonds or VIP;
 - [ ] a later final Google void/refund corrects the matching entitlement exactly once;
 - [ ] unrelated purchased Diamonds, another 30-Day VIP, and unrelated Lifetime VIP remain untouched; and
 - [ ] chargeback evidence excludes unnecessary private messages, credentials, and excessive personal data.
@@ -234,9 +300,14 @@ Google's Play Billing testing documentation currently includes a test instrument
 Treat the Google collaborative chargeback-review integration as **not production-ready** if any of the following is true:
 
 - there is no reliable 24-hour queue/owner;
+- duplicate delivery, worker restart, or requeue can reset the response deadline;
 - the backend can submit a placeholder response before evidence is ready;
 - retries can submit a different preference/evidence package after the first call;
 - the system assumes a later `OK` means the first review was replaced;
+- a normal decimal percentage can be sent into `consumptionPercentageMilliunits` or the milliunit scale can be interpreted as a normal percentage;
+- optional consumption, usage-event, sample, or location evidence can be guessed or fabricated;
+- more than 1000 `consumptionUsageEvents` can be submitted;
+- an unknown future `refundReason` is automatically treated as fraud, automatically approved/declined, or mapped to `CHARGEBACK` without review;
 - `ReviewRefund` directly grants or revokes TycoonX value;
 - chargeback review is automatically classified as fraud;
 - evidence collection is excessive or fabricated;
