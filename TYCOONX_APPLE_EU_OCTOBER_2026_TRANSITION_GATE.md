@@ -1,6 +1,6 @@
 # TycoonX Apple EU October 2026 Transition Gate
 
-Last reviewed: September 3, 2026
+Last reviewed: September 7, 2026
 
 TycoonX went to full release on **September 1, 2026**. This gate now governs the post-release transition to Apple’s updated EU business terms announced on August 18, 2026 and taking effect for an account on **October 1, 2026 or the date the Account Holder agrees to the updated terms, whichever is later**. It is an operational checklist, not public legal copy. It complements the TycoonX Terms, Purchases & Refunds Policy, Apple Custom EULA, Privacy Policy, Payment & Entitlement Release Gates, and Xsolla release gates.
 
@@ -189,19 +189,57 @@ TycoonX Support must therefore be able to identify whether a purchase came from:
 
 Support must not tell an Xsolla purchaser to use Apple’s refund flow or tell an Apple IAP purchaser that Xsolla controls the transaction. Where Xsolla or another merchant controls a refund procedure, TycoonX Support should still handle TycoonX-side entitlement-delivery defects and provide the correct transaction-routing information.
 
-### 11. Child-safety payment gates
+### 11. Child-safety payment gates and age-assurance separation
 
-Apple’s unified EU alternative-payment rules include child-safety requirements.
+Apple’s unified EU alternative-payment rules apply child-safety requirements to **all apps that offer alternative payment options in the EU**, not only apps in the Kids category.
 
 If TycoonX uses alternative payment options in EU storefronts:
 
 - users under 13, or under a higher locally applicable parental-consent threshold, must have alternative in-app payment processing behind the required parental gate and must not receive out-of-app offers where Apple prohibits them;
 - users aged 13 to 17, or the corresponding higher local band, must have both alternative in-app payment processing and out-of-app purchase offers behind a parental gate;
 - call `canMakePayments` before initiating a payment path;
-- do not infer age solely from an editable TycoonX profile field if Apple requires platform-age information or another approved mechanism; and
-- document fail-closed behavior when required age/eligibility information is unknown or unavailable.
+- treat `canMakePayments` as a payment-authorization signal, **not as proof that the user is an adult or as an age-band classifier**;
+- do not infer adult status from the fact that an Apple Account, device, payment method, Xsolla session, or TycoonX account can technically reach checkout;
+- do not infer age solely from an editable TycoonX profile field; and
+- document fail-closed behavior when the age/eligibility state needed to comply with the applicable Apple rule or law is unknown or unavailable.
 
-If TycoonX is ever listed in Apple’s Kids category, apply the stricter Kids-category restrictions, including the prohibition on out-of-app offers where Apple imposes it.
+If TycoonX is ever listed in Apple’s Kids category, apply the stricter Kids-category restrictions: alternative-payment processor purchase flows must be behind a parental gate, and out-of-app offers to purchase on a website must not be shown where Apple prohibits them.
+
+#### Declared Age Range and evolving Apple APIs
+
+Apple’s current age-assurance documentation is a separate but related control surface. As of September 7, 2026:
+
+- the Declared Age Range API is available worldwide;
+- Apple says that in regions where age checking is legally required, developers are responsible for checking the age category of people using their app;
+- to enable Apple’s full current age-assurance technology set, the app must be built with the iOS 26.2 / iPadOS 26.2 SDK or later using the supported Xcode version;
+- on iOS/iPadOS 26.2 and later, `AgeRangeService.isEligibleForAgeFeatures` and related Declared Age Range signals can indicate region/age-feature eligibility and age-assurance characteristics where available; and
+- on iOS/iPadOS 26.4 and later, Apple also exposes `AgeRangeService.requiredRegulatoryFeatures` and significant-update acknowledgement support for applicable regional obligations.
+
+Do **not** collapse this into the StoreKit purchase check. Where Apple, App Review, or applicable law requires Declared Age Range or another approved age-assurance signal for the actual storefront/user, use the then-current Apple API and legal rule in addition to `canMakePayments`. Conversely, do not claim that Declared Age Range is universally mandatory for every EU player merely because TycoonX has an alternative-payment feature if Apple’s current rule for that specific case does not require it.
+
+Apple’s EU alternative-payment page currently says that **new APIs will be released in a future software update to better support the alternative-payment child-safety requirements**. Therefore:
+
+- do not code against an undocumented future API or assume its final semantics;
+- recheck Apple’s EU payment page, age-assurance documentation, SDK release notes, and App Review requirements before the October 1 cutover and before each subsequent payment release;
+- if Apple releases a dedicated signal or parental-gate API for this requirement, evaluate and adopt it before relying on an older workaround where Apple requires the new path; and
+- if a required compliant age/parental decision cannot be established, keep the alternative payment or out-of-app offer fail-closed for that user rather than fabricating an adult/eligible result.
+
+#### Privacy, consent-revocation, and testing safeguards
+
+Age-assurance data can be sensitive. Use the least information needed for the payment/age decision. Prefer Apple-provided age categories or eligibility signals over collecting an exact date of birth, government ID, payment-card proof, or other unnecessary identity evidence. Do not retain raw age-verification evidence merely because it may be useful later unless there is a documented lawful necessity and retention period.
+
+Starting with iOS/iPadOS 26.2, Apple’s Sandbox can test age-range scenarios, location-based restrictions, approval-state changes, and consent revocation. Before enabling EU alternative payments, test at least:
+
+- the under-threshold band where out-of-app offers must not be shown;
+- the teen band where both in-app alternative processing and out-of-app offers require a parental gate;
+- an adult/eligible path;
+- age information unavailable or declined where the applicable rule still requires a compliant decision;
+- `canMakePayments == false` even if another age signal would otherwise permit the feature;
+- storefront/region changes between sessions;
+- parental approval-state changes; and
+- consent revocation where Apple supplies the applicable server notification or system state.
+
+Apple’s age-assurance guidance currently documents a `RESCIND_CONSENT` App Store server notification for a parent or guardian revoking a child’s consent to use an app. Treat that as an access/consent event, not automatically as a refund, chargeback, fraud, hacking, account-compromise, regional-pricing-abuse, or entitlement-abuse event. Do not delete transaction history or manufacture a reversal merely because access is blocked. Purchased Diamonds, the original one-time non-renewing 30-Day VIP period, and a valid Lifetime VIP remain subject to their actual transaction/refund state and mandatory consumer-law remedies.
 
 ### 12. Public legal and checkout parity
 
@@ -222,13 +260,13 @@ Do not promise that Apple handles refunds for an Xsolla alternative-payment tran
 
 ## Current rollout decision after full release
 
-TycoonX went to full release on **September 1, 2026**. Do not enable an EU alternative-payment implementation merely because the Xsolla webshop exists. Keep the currently compliant storefront behavior while completing the October unified-terms acceptance, payment election, entitlement, runtime API, in-app alternative-processing requirement where applicable, VAT-ID setup, reporting, support, child-safety, commission, invoice, tax and App Review work. Enable the unified-EU alternative-payment path only after the full flow is verified end to end.
+TycoonX went to full release on **September 1, 2026**. Do not enable an EU alternative-payment implementation merely because the Xsolla webshop exists. Keep the currently compliant storefront behavior while completing the October unified-terms acceptance, payment election, entitlement, runtime API, in-app alternative-processing requirement where applicable, VAT-ID setup, reporting, support, child-safety, age-assurance, commission, invoice, tax and App Review work. Enable the unified-EU alternative-payment path only after the full flow is verified end to end.
 
 Do not describe this live transition as a beta or pre-release phase. A delayed Apple transition also must not be used to extend a Lifetime VIP countdown, create fake scarcity, or alter the price or entitlement of a purchase that was already completed under the applicable transaction terms.
 
 ## Source checkpoint
 
-Apple’s current guidance was rechecked on **September 3, 2026**. The August 18, 2026 Developer Program License Agreement update and Attachment 14 transition materials currently state that:
+Apple’s current guidance was rechecked on **September 7, 2026**. The August 18, 2026 Developer Program License Agreement update, Attachment 14 transition materials, EU alternative-payment guidance, and current age-assurance Q&A currently state that:
 
 - the updated Apple Developer Program License Agreement was published August 18, 2026;
 - the unified EU terms apply starting October 1, 2026 or the date the Account Holder agrees, whichever is later;
@@ -241,5 +279,7 @@ Apple’s current guidance was rechecked on **September 3, 2026**. The August 18
 - qualifying EU transactions on Apple OS versions 26.4 and later use the External Purchase Server API, while earlier-version reporting follows Apple’s prescribed manual/example route;
 - developers using EU alternative payment options must provide Apple with an EU-specific VAT ID demonstrating VAT registration, with one EU VAT ID sufficient for all EU storefronts;
 - qualifying Apple invoices are payable within 30 days of receipt;
-- child-safety parental-gate restrictions apply; and
-- developers using alternative payments take on additional support, payment, tax, reporting, reconciliation, and compliance responsibilities.
+- all apps offering alternative payment options in the EU are subject to Apple’s child-safety requirements, with stricter handling for under-threshold users, teens, and Kids-category apps;
+- `canMakePayments` is required before a payment flow but must not be treated as an age-classification result;
+- Apple’s Declared Age Range / age-assurance frameworks provide separate age-related signals, and Apple says future APIs will further support the EU alternative-payment child-safety requirements; and
+- developers using alternative payments take on additional support, payment, tax, reporting, reconciliation, child-safety, privacy, and compliance responsibilities.
