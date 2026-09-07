@@ -37,6 +37,22 @@ requireMatch(gate, /January 22, 2025/, 'Xsolla gate no longer records the combin
 requireMatch(gate, /combined.*order_paid.*order_canceled/is, 'Xsolla gate is missing the combined order webhook model.');
 requireMatch(gate, /separate.*payment.*refund.*order_paid.*order_canceled/is, 'Xsolla gate is missing the separate Store\/Payments webhook model.');
 requireMatch(gate, /raw request body/i, 'Xsolla gate no longer requires signature verification against the raw webhook body.');
+requireMatch(gate, /Signature <signature_value>/i, 'Xsolla gate is missing Xsolla\'s Authorization signature-header format.');
+requireMatch(gate, /raw_body \+ secret|raw JSON payload.*secret.*SHA-1/is, 'Xsolla gate is missing Xsolla\'s exact raw-body-plus-secret signing construction.');
+requireMatch(gate, /SHA-1.*lowercase hexadecimal|lowercase hexadecimal.*SHA-1/is, 'Xsolla gate is missing the lowercase SHA-1 digest requirement.');
+requireMatch(gate, /HMAC-SHA256.*secret \+ body|secret \+ body.*HMAC-SHA256/is, 'Xsolla gate no longer blocks substituting a different webhook-signature algorithm.');
+requireMatch(gate, /signature failure.*fail closed.*not grant.*revoke.*refund|signature failure.*must fail closed/is, 'Xsolla gate must fail closed on webhook signature failure without entitlement mutation.');
+requireMatch(gate, /constant-time comparison/i, 'Xsolla gate no longer requires timing-safe signature comparison where practical.');
+requireMatch(gate, /up to \*\*5 secret keys per project\*\*|up to 5 secret keys per project/i, 'Xsolla gate is missing the current five-key rotation capacity.');
+requireMatch(gate, /only \*\*one secret key can be active at a time\*\*|only one secret key can be active at a time/i, 'Xsolla gate is missing the one-active-webhook-secret rule.');
+requireMatch(gate, /shown only when created|view.*only once/is, 'Xsolla gate is missing the one-time-display handling for a generated webhook secret.');
+requireMatch(gate, /server-side.*not.*binaries.*frontend|stored server-side.*not.*binaries.*frontend/is, 'Xsolla gate is missing server-only webhook-secret storage.');
+requireMatch(gate, /deploy the new secret.*before switching.*active|before switching it to active.*deploy/is, 'Xsolla gate is missing safe secret-rotation deployment ordering.');
+requireMatch(gate, /do not assume undocumented overlap semantics|queued or retried webhooks across a key rotation/i, 'Xsolla gate must not invent old/new signing-key overlap semantics during rotation.');
+requireMatch(gate, /fails signature verification near a rotation.*reconcile|rotation.*signature.*reconcile/is, 'Xsolla gate must reconcile provider state instead of bypassing signature checks after a rotation.');
+requireMatch(gate, /only \*\*one webhook server URL at a time\*\*|only one webhook server URL at a time/i, 'Xsolla gate is missing the one-webhook-URL project limitation.');
+requireMatch(gate, /webhook\.site.*ngrok.*developer laptop/is, 'Xsolla gate must block casual replacement of the live endpoint with a temporary webhook receiver.');
+requireMatch(gate, /webhook endpoint or secret rotation incident is not evidence.*fraud|rotation incident.*not evidence.*fraud/is, 'Xsolla gate must not classify player fraud from CK-Labs webhook rotation/configuration incidents.');
 requireMatch(gate, /20.*attempts.*12 hours/is, 'Xsolla gate is missing the current combined-webhook retry window.');
 requireMatch(gate, /12.*attempts.*48 hours/is, 'Xsolla gate is missing the current third-party refund-webhook retry window.');
 requireMatch(gate, /publisher['’]?s side.*not resent|CK-Labs-initiated refunds.*not.*retries|initiated on the publisher['’]?s side.*not resent/is, 'Xsolla gate is missing the no-retry rule for publisher-initiated refund webhooks.');
@@ -101,5 +117,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Xsolla webhook, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Xsolla webhook-signature, key-rotation, endpoint-change, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
 }
