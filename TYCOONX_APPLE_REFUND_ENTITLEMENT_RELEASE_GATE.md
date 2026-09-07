@@ -1,6 +1,6 @@
 # TycoonX Apple Refund & Entitlement Reconciliation Release Gate
 
-Last reviewed: August 30, 2026
+Last reviewed: September 7, 2026
 
 This is an internal release and operations gate for Apple App Store In-App Purchases used by TycoonX. It does not replace the TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, Apple Custom EULA, mandatory consumer law, or Apple rules.
 
@@ -109,6 +109,26 @@ Treat the Apple refund lifecycle as separate events:
 - `REFUND`: reconcile the corresponding TycoonX entitlement/value because Apple has refunded the transaction.
 - `REVOKE`: handle the specific revocation reason and current entitlement state. Do not assume every revocation is the purchaser receiving a cash refund.
 
+Apple's current signed transaction data also distinguishes the result through `revocationType`:
+
+- `REFUND_FULL`: the transaction has a full refund;
+- `REFUND_PRORATED`: the transaction has a prorated refund; and
+- `FAMILY_REVOKE`: access was revoked through Family Sharing and must not be misclassified as a purchaser refund.
+
+For `REFUND_PRORATED`, use Apple's final signed `revocationPercentage` as the authoritative refunded/revoked fraction for entitlement correction. Do **not** use the earlier `consumptionPercentage` submitted by CK-Labs as if it were Apple's final refund result, because Apple expressly states that the final refund percentage may differ from the consumption percentage supplied during decisioning.
+
+There is an important unit boundary that must be regression-tested:
+
+- in App Store Server API / signed transaction data, `revocationPercentage` is an integer in **milliunits from 0 through 100000**, where `40000` means 40%;
+- in StoreKit's `Transaction.revocationPercentage`, the value is a `Decimal` percentage from **0.0 through 100.0**, where `40.0` means 40%; and
+- never feed one representation into code written for the other representation. A milliunit/decimal mix-up can create a 1000x over-clawback or under-clawback.
+
+For TycoonX Diamonds, a prorated correction must be derived from the original verified Diamond grant for that exact transaction and Apple's final `revocationPercentage`. Apply the correction idempotently and never remove more purchased Diamond value than that transaction originally granted. If the proportional result cannot be represented exactly in whole Diamonds, use one deterministic documented rounding rule that never expands the correction beyond the provider-authoritative refunded share, preserve any calculation remainder in the ledger if needed for later reconciliation, and never debit an unrelated Diamond purchase merely to make the arithmetic convenient.
+
+For 30-Day VIP and Lifetime VIP, do not invent a fractional entitlement solely from a percentage field. Reconcile the current verified Apple transaction/entitlement state and the product's public legal meaning. A prorated monetary refund must not restart a 30-Day VIP clock, turn a one-time 30-Day VIP into recurring access, reopen a closed Lifetime VIP sales window, or silently create a new Lifetime VIP entitlement. Where an indivisible VIP entitlement cannot be safely mapped automatically from a prorated result, fail into a reviewable reconciliation state rather than guessing.
+
+If a refund is later reversed or authoritative current state no longer contains a non-reversed refund, do not replay an old `REFUND` snapshot or stale local transaction to claw back value again. Apple documents `revocationPercentage` as absent when the refund is reversed; resolve current state before any compensating entitlement action.
+
 Corrections must stay transaction-specific:
 
 - refunded Lifetime VIP: remove the refunded Lifetime VIP entitlement, not unrelated purchases;
@@ -117,23 +137,27 @@ Corrections must stay transaction-specific:
 
 Never classify a lawful consumer refund request as fraud merely because the entitlement must be corrected after Apple grants the refund.
 
-### 7. `CONSUMPTION_REQUEST` data requires separate customer consent
+### 7. `CONSUMPTION_REQUEST` data requires separate customer consent and current V2 semantics
 
-Apple's current **Send Consumption Information V2** endpoint supports refund-request information for consumables, non-consumables, non-renewing subscriptions, and auto-renewable subscriptions.
+Apple's current **Send Consumption Information** endpoint uses the current `ConsumptionRequest` model and supports refund-request information for consumables, non-consumables, non-renewing subscriptions, and auto-renewable subscriptions. Apple's earlier **Send Consumption Information V1** path is deprecated and must not be the design target for new TycoonX work.
 
 If TycoonX chooses to send consumption information to Apple:
 
-- respond within Apple's current **12-hour** window when the information is to be used for refund decisioning;
+- respond within Apple's current **12-hour** production window when the information is to be used for refund decisioning;
 - send it only where the customer gave valid consent for this specific data sharing;
 - do not use the App Tracking Transparency prompt as a substitute for this consent;
-- if the customer did not consent, do not send consumption data in response to the `CONSUMPTION_REQUEST`;
+- if the customer did not consent, do not send consumption data in response to the `CONSUMPTION_REQUEST`; Apple's current documentation says not to respond, and a request with `customerConsented: false` is rejected;
 - keep the submitted data accurate, transaction-specific, and no broader than needed for the refund purpose;
 - review the TycoonX Privacy Policy and App Store privacy-label disclosures before enabling this data flow in production; and
 - provide a way to stop future sharing if the consent is withdrawn or otherwise ceases to be valid.
 
-The optional developer `refundPreference` is input to Apple's refund decision process. It is not permission to misstate consumption, obstruct a statutory remedy, or override Apple/mandatory consumer rights.
+The optional developer `refundPreference` is input to Apple's refund decision process. It is not permission to misstate consumption, obstruct a statutory remedy, or override Apple/mandatory consumer rights. If CK-Labs does not have a defensible preference, omit the optional preference rather than manufacturing one.
 
-**Release blocker:** do not enable Send Consumption Information in production until the CK-Labs implementation has a lawful consent flow, privacy-disclosure parity, and a verified 12-hour response path.
+If `GRANT_PRORATED` is used for Diamonds, a non-consumable, or a non-renewing 30-Day VIP purchase, the submitted `consumptionPercentage` must follow Apple's current rules: greater than `0` and less than `100000` milliunits. If `deliveryStatus` is not `DELIVERED`, the consumption percentage must be `0`. Do not send `consumptionPercentage` for a future auto-renewable subscription because Apple calculates that value itself for that product type.
+
+`consumptionPercentage` describes CK-Labs' accurate evidence of consumption for refund decisioning. It does not authorize CK-Labs to pre-emptively claw back that percentage and it is not the final refund percentage. Wait for the authoritative refund decision and signed revocation state.
+
+**Release blocker:** do not enable Send Consumption Information in production until the CK-Labs implementation has a lawful consent flow, privacy-disclosure parity, a verified 12-hour response path, and correct V2 request/percentage validation.
 
 ### 8. Keep 30-Day VIP time logic server-authoritative
 
@@ -192,10 +216,14 @@ Before declaring the Apple IAP path fully payment-ready, retain dated QA evidenc
 8. duplicate V2 notification replay proving no duplicate grant or duplicate clawback;
 9. missed-webhook recovery using Notification History / transaction reconciliation;
 10. `CONSUMPTION_REQUEST` with consent and without consent, proving no consumption data is sent in the no-consent case;
-11. `REFUND_DECLINED` proving the entitlement is not wrongly removed;
-12. confirmed `REFUND` proving only the matching paid value is corrected;
-13. Lifetime VIP restore after refund proving refunded entitlement is not resurrected; and
-14. Family Sharing revocation behavior if Family Sharing is enabled for any relevant non-consumable.
+11. current Send Consumption Information sandbox test using `GRANT_PRORATED`, proving the resulting `REFUND` carries `REFUND_PRORATED` plus `revocationPercentage` and that the correction uses the final Apple value rather than the submitted consumption percentage;
+12. sandbox prorated-refund timing test proving the response is sent inside Apple's current **five-minute sandbox decisioning window** even though the production response window is 12 hours;
+13. a 40% server-side `revocationPercentage` represented as `40000` and the corresponding StoreKit percentage represented as `40.0`, proving the two unit systems cannot produce a 1000x correction error;
+14. prorated Diamond refund proving only the matching transaction's refunded share is corrected, the action is idempotent, and unrelated Diamond purchases remain untouched;
+15. `REFUND_DECLINED` proving the entitlement is not wrongly removed;
+16. confirmed full `REFUND` proving only the matching paid value is corrected;
+17. Lifetime VIP restore after refund proving refunded entitlement is not resurrected; and
+18. Family Sharing revocation behavior if Family Sharing is enabled for any relevant non-consumable.
 
 ## Public-legal parity check
 
@@ -203,7 +231,7 @@ This operational gate does not itself require a new public contract clause. The 
 
 If CK-Labs actually enables Apple's Send Consumption Information data flow, the Privacy Policy and App Store privacy disclosures must be checked against the precise personal data sent and the consent flow **before** production use. A material new disclosure would require the canonical English Privacy Policy to be updated and the 25 localized Privacy pages to be reopened in the required locale order.
 
-## Official Apple references checked August 30, 2026
+## Official Apple references checked September 7, 2026
 
 - App Store Server Notifications V2: https://developer.apple.com/documentation/appstoreservernotifications/app-store-server-notifications-v2
 - Responding to App Store Server Notifications: https://developer.apple.com/documentation/appstoreservernotifications/responding-to-app-store-server-notifications
@@ -211,6 +239,11 @@ If CK-Labs actually enables Apple's Send Consumption Information data flow, the 
 - Get Notification History: https://developer.apple.com/documentation/appstoreserverapi/get-notification-history
 - App Store Server API: https://developer.apple.com/documentation/appstoreserverapi/
 - Send Consumption Information: https://developer.apple.com/documentation/appstoreserverapi/send-consumption-information
+- `consumptionPercentage`: https://developer.apple.com/documentation/appstoreserverapi/consumptionpercentage
+- `revocationType`: https://developer.apple.com/documentation/appstoreserverapi/revocationtype
+- App Store Server API `revocationPercentage`: https://developer.apple.com/documentation/appstoreserverapi/revocationpercentage
+- StoreKit `Transaction.revocationPercentage`: https://developer.apple.com/documentation/storekit/transaction/revocationpercentage
+- Testing refund requests: https://developer.apple.com/documentation/storekit/testing-refund-requests
 - `Transaction.currentEntitlements`: https://developer.apple.com/documentation/storekit/transaction/currententitlements
 - `Product.PurchaseResult`: https://developer.apple.com/documentation/storekit/product/purchaseresult
 - `Transaction.updates`: https://developer.apple.com/documentation/storekit/transaction/updates
