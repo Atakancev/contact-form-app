@@ -2,7 +2,7 @@
 
 Last reviewed: September 7, 2026
 
-This operational release gate protects TycoonX Google Play purchases that are delayed, completed while the app is offline, approved on another device, redeemed outside the app, or missing the in-app account identifiers CK-Labs normally attaches. It complements the broader Google Play billing, refund, chargeback, account-binding, and consumer-rights gates. It does not replace Google Play terms or current Android Developers guidance.
+This operational release gate protects TycoonX Google Play purchases that are delayed, completed while the app is offline, approved on another device, redeemed outside the app, missing the in-app account identifiers CK-Labs normally attaches, or exposed through Google Play pre-order mechanics. It complements the broader Google Play billing, refund, chargeback, account-binding, and consumer-rights gates. It does not replace Google Play terms or current Android Developers guidance.
 
 TycoonX is in full release. The paid products covered here are purchased Diamonds, one-time non-renewing 30-Day VIP, and Lifetime VIP when that limited-time promotional product is genuinely on sale.
 
@@ -16,10 +16,13 @@ Google's current Play Billing integration guidance, updated September 1, 2026, s
 - a pending purchase can be approved on another device, including by a family member;
 - out-of-app purchases such as promotion redemptions can be discovered by the same processing flow;
 - purchases made outside the app might not contain `obfuscatedAccountId` or `obfuscatedProfileId`; Google says the app may then grant to the logged-in user or ask the user to choose a preferred account;
-- the three-day acknowledgement period begins only after a pending purchase becomes `PURCHASED`; and
+- the three-day acknowledgement period begins only after a pending purchase becomes `PURCHASED`;
+- for a Google Play pre-order, the purchase remains `PENDING` before the configured release time, then completes and changes to `PURCHASED` at release without another player action; and
 - Google's current fraud guidance says **not to use `orderId` to detect duplicate purchases or as a database primary key**, because not every purchase has an order ID, including some promo-code purchases.
 
-These rules mean a missing callback, missing `orderId`, or missing obfuscated account identifier is not by itself evidence that the purchase is invalid or abusive.
+Google's current Play Console one-time-product guidance also says pre-order offers are attached to a **Buy** purchase option. The pre-order has its own acquisition window and later release time. On release, Google charges the user and completes the transaction. If CK-Labs cancels an active pre-order offer, Google cancels the pending orders associated with that pre-order. If a lower-price guarantee is enabled, the amount ultimately charged can be lower than the amount displayed when the user originally placed the pre-order. Google also currently says pre-ordered items in the EEA and UK are treated by Play as having a right of withdrawal, with refund requests honored from the day the pre-order is released.
+
+These rules mean a missing callback, missing `orderId`, missing obfuscated account identifier, delayed completion, later pre-order release, or provider-side pre-order cancellation is not by itself evidence that the purchase is invalid or abusive.
 
 ## P0 release rules
 
@@ -48,6 +51,24 @@ TycoonX must:
 - make fulfillment idempotent so the same purchase discovered through listener, foreground query, RTDN, retry, or support reconciliation is granted exactly once.
 
 Example: a player starts a 200-Diamond purchase, closes TycoonX, then completes the delayed payment later. On the next launch, `queryPurchasesAsync()` finds the now-`PURCHASED` transaction. After backend verification, TycoonX grants the 200 Diamonds exactly once even though the original app session never received the completion callback.
+
+### 2A. Current TycoonX paid products must not be silently converted into Google pre-orders
+
+TycoonX currently sells purchased Diamonds for immediate paid-value fulfillment after payment completion, one-time non-renewing 30-Day VIP for its disclosed original 30-day period, and Lifetime VIP only during genuine selected promotional sales windows. None of those product definitions should be changed into a Google Play pre-order merely because the current one-time-product object model makes pre-order offers available.
+
+For the current TycoonX catalog:
+
+- do not intentionally configure purchased Diamonds, one-time 30-Day VIP, or Lifetime VIP as Google pre-order offers without a separate product/legal/payment review and an explicit update to the affected player-facing terms and checkout disclosures;
+- do not use a pre-order acquisition window as a hidden way to extend, reopen, or evade the disclosed closing time of a Lifetime VIP sales window;
+- do not treat a later pre-order release timestamp as a new Lifetime VIP sales window or as proof that the player bought outside the genuine window if the pre-order was validly acquired while an authorized window was open;
+- do not use a pre-order to delay Diamond or VIP delivery when the checkout and canonical product description promise the current immediate-after-payment product model;
+- do not assume that the price seen when a pre-order was placed is necessarily the final charged amount if Google's lower-price guarantee was enabled; reconcile the authoritative completed Google charge rather than labelling a lower final charge a pricing error, coupon abuse, regional-price abuse, or fraud;
+- do not silently substitute a materially different Diamond quantity, VIP duration, bundle, or Lifetime VIP entitlement between pre-order acquisition and release. If the product meaning must materially change, follow Google's then-current pre-order cancellation/change rules and mandatory consumer law rather than changing what the player will receive after the order is already pending; and
+- preserve Google's current EEA/UK pre-order withdrawal/refund treatment and all independently applicable mandatory German/EU consumer rights. A platform pre-order rule is not a waiver of statutory withdrawal, conformity, information, refund, liability, or other non-waivable rights.
+
+If CK-Labs accidentally activates a pre-order for a current TycoonX product, existing pending orders are an operational/configuration incident, not automatic player abuse. Do not manufacture a completed entitlement while Google still says `PENDING`. Before release, either keep the exact authorized offer and fulfill valid completed purchases lawfully, or cancel/unwind the affected pre-orders through Google's available process with accurate user communication and any required remedy. CK-Labs must not collect a completed payment and then refuse the corresponding paid entitlement merely because the pre-order should not have been configured.
+
+Google currently says canceling the pre-order offer cancels the associated pending orders and that removing a region from an active pre-order can lead to cancellation of orders in that region before release. Those provider-side cancellations must not become chargeback penalties, fraud flags, Diamond deductions, VIP revocations, or account sanctions when no completed paid entitlement existed.
 
 ### 3. Parent or family approval on another device does not change the product
 
@@ -101,6 +122,8 @@ For a pending purchase:
 - backend/server processing should not wait for the player to reopen the app if authoritative Google notification already establishes a valid completed purchase and the entitlement can be safely attributed; and
 - if CK-Labs misses acknowledgement because of its own processing outage, do not classify Google's resulting automatic refund/revocation as player fraud or chargeback abuse.
 
+For a pre-order, the same principle means the acknowledgement period is not measured from the day the pre-order was placed while still `PENDING`; operational acknowledgement starts after Google actually completes the purchase at release and reports `PURCHASED`.
+
 The acknowledgement deadline is a platform-processing obligation. It is not a contractual excuse to keep money without providing the paid entitlement or a lawful refund/remedy.
 
 ### 7. Cancellation before completion creates no paid entitlement to claw back
@@ -138,9 +161,11 @@ If a bug granted value while the transaction was only pending, correct the speci
 
 ### 9. Mandatory German/EU consumer rights remain intact
 
-Nothing in pending-state, account-attribution, promo-redemption, acknowledgement, or anti-fraud logic waives mandatory rights.
+Nothing in pending-state, pre-order, account-attribution, promo-redemption, acknowledgement, or anti-fraud logic waives mandatory rights.
 
 Where applicable, preserve statutory rights concerning clear pre-contract information, total price, withdrawal, consent to early digital performance where legally required, conformity, updates, cure, price reduction, termination, refund, damages/liability, and other non-waivable remedies.
+
+For a Google Play pre-order in the EEA or UK, preserve Google's current platform treatment that such pre-ordered items have a withdrawal/refund route from the day of release, while also applying any broader or different mandatory consumer remedy that applicable law requires. Do not present Google's provider flow as an exclusive waiver of statutory rights.
 
 An attribution problem must not be used to run down a legal remedy period unfairly. CK-Labs should preserve the verified transaction evidence and the player's timely support/remedy request while ownership is being securely resolved.
 
@@ -162,6 +187,10 @@ Test at least:
 12. Lifetime VIP was initiated during an open sale window and validly completes later: transaction is reconciled without treating the later completion timestamp alone as abuse.
 13. A completed transaction cannot be safely attributed: it remains claimable/reconcilable rather than being guessed onto the wrong account or discarded.
 14. A completed purchase is acknowledged/consumed promptly after fulfillment; the operational deadline is not incorrectly measured from the original pending initiation time.
+15. A Google pre-order remains `PENDING` until release: no Diamonds/VIP are granted and no acknowledgement clock is started from acquisition time.
+16. An accidentally configured TycoonX pre-order is canceled by CK-Labs or by a regional-availability change before completion: no chargeback/fraud sanction or unrelated entitlement deduction occurs.
+17. A pre-order with Google's lower-price guarantee completes at a lower authoritative price than the acquisition-time display: TycoonX fulfills the verified product once and does not classify the lower completed charge as pricing, coupon, regional-price, or fraud abuse.
+18. A pre-order affecting an EEA/UK player reaches release: the current Google withdrawal/refund route and independently applicable mandatory consumer remedies remain available.
 
 ## Release blockers
 
@@ -178,7 +207,11 @@ Block the relevant Google Play purchase rollout if any of these are true:
 - a canceled pending purchase causes a chargeback penalty or deduction from unrelated paid value;
 - the acknowledgement clock is measured from `PENDING` initiation instead of the transition to `PURCHASED`;
 - a later-discovered completed one-time 30-Day VIP restarts its 30-day period;
-- a pending Lifetime VIP transaction is used to reopen a new sales window after closure; or
+- a pending Lifetime VIP transaction is used to reopen a new sales window after closure;
+- a current TycoonX Diamond, one-time 30-Day VIP, or Lifetime VIP product is intentionally exposed as a Google pre-order without the separate product/legal/payment review and matching player-facing disclosures;
+- a pre-order lower-price guarantee or later release price is treated as proof of pricing abuse instead of reconciling the authoritative completed Google charge;
+- a CK-Labs or Google pre-order cancellation is treated by itself as a player chargeback/fraud event when no completed paid entitlement existed;
+- Google pre-order handling in the EEA/UK suppresses the current provider withdrawal/refund path or any broader mandatory consumer remedy; or
 - CK-Labs' own processing or attribution failure is used to waive mandatory German/EU consumer remedies.
 
 ## Evidence to retain
@@ -189,7 +222,8 @@ Retain only what is necessary and lawful for payment, accounting, fraud preventi
 - authoritative transition timestamps and acknowledgement/consumption state;
 - safe internal account-binding decision and reason;
 - order ID if Google actually provides one;
-- provider refund/void state where applicable; and
+- provider refund/void state where applicable;
+- for any intentionally tested or accidentally exposed pre-order, the Google product/purchase-option/offer identifiers, acquisition window, release time, relevant region, lower-price-guarantee state, cancellation/completion state, and authoritative completed charge where necessary for reconciliation; and
 - idempotency/reconciliation result.
 
 Do not retain extra identity or device data merely to compensate for an absent obfuscated account identifier. Apply the TycoonX Privacy Policy, data minimization, purpose limitation, security, and retention rules.
@@ -199,10 +233,11 @@ Do not retain extra identity or device data merely to compensate for an absent o
 Current official references checked September 7, 2026:
 
 - Google Play Billing integration guidance, last updated September 1, 2026: `https://developer.android.com/google/play/billing/integrate`
+- Google Play Console one-time-product overview / pre-order guidance, checked September 7, 2026: `https://support.google.com/googleplay/android-developer/answer/16430488`
 - Google Play Billing fraud/security guidance: `https://developer.android.com/google/play/billing/security`
 - Google Play RTDN reference, last updated September 1, 2026: `https://developer.android.com/google/play/billing/rtdn-reference`
 
-Recheck current Google documentation and Play Console behavior before a material billing change or release. If Google changes identifier, pending-state, acknowledgement, or out-of-app purchase behavior, update this gate before relying on the old assumptions.
+Recheck current Google documentation and Play Console behavior before a material billing change or release. If Google changes identifier, pending-state, pre-order, acknowledgement, or out-of-app purchase behavior, update this gate before relying on the old assumptions.
 
 ## Verification
 
