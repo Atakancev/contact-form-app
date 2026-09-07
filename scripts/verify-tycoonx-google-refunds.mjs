@@ -7,9 +7,11 @@ import process from 'node:process';
 const root = process.cwd();
 const gatePath = path.join(root, 'TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md');
 const chargebackGatePath = path.join(root, 'TYCOONX_GOOGLE_PLAY_CHARGEBACK_REVIEW_RELEASE_GATE.md');
-const [text, chargebackText] = await Promise.all([
+const modernizationGatePath = path.join(root, 'TYCOONX_GOOGLE_PLAY_REFUND_API_MODERNIZATION_2026_GATE.md');
+const [text, chargebackText, modernizationText] = await Promise.all([
   readFile(gatePath, 'utf8'),
   readFile(chargebackGatePath, 'utf8'),
+  readFile(modernizationGatePath, 'utf8'),
 ]);
 
 const required = [
@@ -23,7 +25,6 @@ const required = [
   'REFUND_TYPE_FULL_REFUND',
   'REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND',
   'refundableQuantity',
-  'queryPurchaseHistory()',
   'duplicate RTDN replay',
   'pending purchase canceled before completion',
 ];
@@ -48,6 +49,22 @@ const chargebackRequired = [
   'unrelated purchased Diamonds',
 ];
 
+const modernizationRequired = [
+  'queryPurchaseHistory()',
+  'deprecated since Play Billing Library 7',
+  'queryPurchasesAsync(QueryPurchaseParams, PurchasesResponseListener)',
+  'purchases.voidedpurchases.list',
+  'orders.refund',
+  'purchases.subscriptions.refund',
+  'revoke=true',
+  'Consumed in-app items',
+  'TycoonX backend ledger',
+  'Purchased Diamonds',
+  'One-time 30-Day VIP',
+  'Lifetime VIP',
+  'mandatory consumer remedy',
+];
+
 const failures = [];
 for (const token of required) {
   if (!text.includes(token)) {
@@ -58,6 +75,12 @@ for (const token of required) {
 for (const token of chargebackRequired) {
   if (!chargebackText.includes(token)) {
     failures.push(`Missing collaborative chargeback safeguard: ${token}`);
+  }
+}
+
+for (const token of modernizationRequired) {
+  if (!modernizationText.includes(token)) {
+    failures.push(`Missing Google Play refund API modernization safeguard: ${token}`);
   }
 }
 
@@ -105,12 +128,56 @@ if (!/chargeback review must not automatically trigger account suspension or ter
   failures.push('Good-faith chargeback review is no longer isolated from automatic account enforcement.');
 }
 
-if (/\bTyconX\b/.test(chargebackText)) {
-  failures.push('Displayed/internal legal prose contains stale TyconX branding.');
+if (!/Do not reintroduce `queryPurchaseHistory\(\)` as a required refund, restoration, fraud, chargeback, or entitlement-reconciliation dependency/i.test(modernizationText)) {
+  failures.push('Deprecated queryPurchaseHistory dependency blocker is missing.');
 }
 
-if (/\bbeta\b/i.test(chargebackText)) {
-  failures.push('Chargeback gate contains stale live-service beta wording.');
+if (!/For purchases that need processing on-device, use `queryPurchasesAsync/i.test(modernizationText)) {
+  failures.push('Current on-device purchase processing path is missing.');
+}
+
+if (!/voided or cancelled purchases[\s\S]*server-side Voided Purchases API/i.test(modernizationText)) {
+  failures.push('Voided purchases are no longer explicitly routed to the server-side API.');
+}
+
+if (!/historical purchase record[\s\S]*TycoonX backend/i.test(modernizationText)) {
+  failures.push('Historical purchase authority is no longer assigned to the backend ledger.');
+}
+
+if (!/legacy `purchases\.subscriptions\.refund` endpoint is deprecated[\s\S]*`orders\.refund`/i.test(modernizationText)) {
+  failures.push('Deprecated subscription refund endpoint migration rule is missing.');
+}
+
+if (!/Do not deliberately create acknowledgement failures as a pseudo-refund mechanism/i.test(modernizationText)) {
+  failures.push('Explicit-refund versus acknowledgement-failure safeguard is missing.');
+}
+
+if (!/Never double-remove the same Diamond value/i.test(modernizationText)) {
+  failures.push('Diamond refund idempotency safeguard is missing.');
+}
+
+if (!/30-Day VIP remains a one-time, non-renewing 30-day entitlement/i.test(modernizationText)) {
+  failures.push('30-Day VIP refund invariant is missing.');
+}
+
+if (!/Lifetime VIP remains a one-time promotional entitlement available only during selected genuine sales windows/i.test(modernizationText)) {
+  failures.push('Lifetime VIP limited-sales-window refund invariant is missing.');
+}
+
+if (!/API\/tool limitation is used to deny a mandatory consumer remedy/i.test(modernizationText)) {
+  failures.push('Mandatory consumer remedy safeguard is missing from refund modernization gate.');
+}
+
+for (const [label, candidate] of [
+  ['chargeback gate', chargebackText],
+  ['refund modernization gate', modernizationText],
+]) {
+  if (/\bTyconX\b/.test(candidate)) {
+    failures.push(`${label} contains stale displayed TyconX branding.`);
+  }
+  if (/\bTycoonX\s+beta\b/i.test(candidate)) {
+    failures.push(`${label} contains stale live-service beta wording.`);
+  }
 }
 
 if (failures.length > 0) {
@@ -119,4 +186,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('TycoonX Google Play refund and collaborative chargeback verifier passed.');
+console.log('TycoonX Google Play refund, refund-API modernization, and collaborative chargeback verifier passed.');
