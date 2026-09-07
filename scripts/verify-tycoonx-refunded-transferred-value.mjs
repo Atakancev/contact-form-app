@@ -20,7 +20,7 @@ const google = read('TYCOONX_GOOGLE_PLAY_CHARGEBACK_REVIEW_RELEASE_GATE.md');
 const xsolla = read('TYCOONX_XSOLLA_REFUND_CHARGEBACK_RELEASE_GATE.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 
-requireText(gate, '**Last reviewed:** September 5, 2026', 'gate review date');
+requireText(gate, '**Last reviewed:** September 7, 2026', 'gate review date');
 requireText(gate, 'Final payment state first, economy correction second', 'authoritative-state ordering');
 requireText(gate, 'One invalid source transaction creates one correction budget', 'single correction budget');
 requireText(gate, 'remaining_correction_budget = attributable_invalid_value - value_already_recovered_for_this_case', 'anti-double-recovery invariant');
@@ -36,6 +36,14 @@ requireText(gate, '30-Day VIP remains a one-time, non-renewing 30-day entitlemen
 requireText(gate, 'Lifetime VIP remains a one-time promotional entitlement offered only during selected genuine sales windows', 'Lifetime VIP invariant');
 requireText(gate, 'Provider webhook/event IDs can be useful for delivery deduplication but should not replace the underlying business transaction identity', 'provider identity safeguard');
 requireText(gate, 'multi-product one-time purchase can contain several product IDs under one purchase token', 'Google multi-product scope');
+requireText(gate, 'Apple IAP gifting: purchaser, recipient, refund, and exchange must remain distinct', 'Apple gifted-IAP boundary');
+requireText(gate, 'such gifts may be refunded **only to the original purchaser** and may **not be exchanged**', 'Apple original-purchaser refund and no-exchange rule');
+requireText(gate, 'the Apple purchaser who paid for the transaction', 'Apple gift purchaser identity');
+requireText(gate, 'the TycoonX recipient account that received the gifted entitlement or value', 'Apple gift recipient identity');
+requireText(gate, 'support must be able to distinguish `purchaser`, `recipient`, and `current holder`', 'gift support identity separation');
+requireText(gate, 'Do **not** automatically classify an ordinary TycoonX in-game transfer', 'ordinary-transfer versus Apple-gift separation');
+requireText(gate, 'does not authorize CK-Labs to take money from the gift recipient, create real-world debt', 'gift recipient no-debt safeguard');
+requireText(gate, 'an Apple gift recipient can be treated as the monetary refund payee merely because they received the gifted entitlement', 'gift-refund release blocker');
 requireText(gate, 'contract termination can require repayment of payments under BGB § 327o', 'German digital-product remedy');
 requireText(gate, 'Do not inspect private communications merely because a refund occurred', 'privacy minimization');
 requireText(gate, 'Minimum regression matrix', 'regression coverage');
@@ -61,5 +69,5 @@ forbidText(gate, 'TyconX', 'player-facing brand typo');
 forbidText(gate, 'TycoonX beta', 'stale live-service beta wording');
 
 if (!process.exitCode) {
-  console.log('PASS: refunded/transferred paid-value reconciliation has provider authority, anti-double-clawback, downstream-context, mandatory-rights, and product-invariant safeguards.');
+  console.log('PASS: refunded/transferred paid-value reconciliation has provider authority, anti-double-clawback, Apple gifted-IAP purchaser/recipient separation, downstream-context, mandatory-rights, and product-invariant safeguards.');
 }
