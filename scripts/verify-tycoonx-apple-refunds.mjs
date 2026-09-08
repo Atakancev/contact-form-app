@@ -26,6 +26,13 @@ const required = [
   'Get Refund History',
   '180 days in production',
   '30 days in sandbox',
+  'onlyFailures=true',
+  'currently retrying',
+  'paginationToken',
+  'hasMore',
+  '20 notification history records',
+  'firstSendAttemptResult',
+  'Get Test Notification Status',
   'CONSUMPTION_REQUEST',
   'REFUND_DECLINED',
   'REFUND',
@@ -75,6 +82,18 @@ if (!/latest transaction for a non-renewing subscription can appear even when th
   failures.push('Non-renewing subscription finished-state warning is missing.');
 }
 
+if (!/if a production URL exists but no sandbox URL is configured, Apple sends sandbox notifications to the production URL too/i.test(text)) {
+  failures.push('Apple sandbox-to-production-endpoint routing warning is missing.');
+}
+
+if (!/if only a sandbox URL is configured, Apple sends no production notifications/i.test(text)) {
+  failures.push('Apple sandbox-only URL production-gap warning is missing.');
+}
+
+if (!/Sandbox traffic arriving at the production HTTP endpoint must remain sandbox data and must never grant or revoke production Diamonds, 30-Day VIP, Lifetime VIP/i.test(text)) {
+  failures.push('Apple notification environment isolation safeguard is missing.');
+}
+
 if (!/`pending` is \*\*not\*\* a paid transaction and must grant no Diamonds, 30-Day VIP time, or Lifetime VIP access/i.test(text)) {
   failures.push('Pending Apple purchase must grant no paid value.');
 }
@@ -101,6 +120,50 @@ if (!/Ask to Buy decline or `userCancelled` proving no entitlement is granted an
 
 if (!/interrupted\/SCA-style purchase.*later completes after backgrounding or relaunch/is.test(text)) {
   failures.push('Interrupted/SCA relaunch recovery test is missing.');
+}
+
+if (!/`startDate` and `endDate` are required.*`startDate` must be inside the applicable retention window and precede `endDate`/is.test(text)) {
+  failures.push('Notification History date-window constraints are missing.');
+}
+
+if (!/older `originalTransactionId` request property is deprecated.*current `transactionId` may itself be an original transaction identifier/is.test(text)) {
+  failures.push('Notification History current transactionId filter migration safeguard is missing.');
+}
+
+if (!/Do not send both `transactionId` and `notificationType` because Apple treats those filters as mutually exclusive/i.test(text)) {
+  failures.push('Notification History mutually exclusive filter safeguard is missing.');
+}
+
+if (!/If a `notificationSubtype` filter is supplied, also supply its related `notificationType`/i.test(text)) {
+  failures.push('Notification History subtype/type filter dependency is missing.');
+}
+
+if (!/`onlyFailures=true`.*notifications Apple is \*\*currently retrying\*\*/is.test(text)) {
+  failures.push('Notification History onlyFailures retry semantics are missing.');
+}
+
+if (!/absence from `onlyFailures` does not prove TycoonX completed the entitlement mutation/i.test(text)) {
+  failures.push('Notification History successful-delivery versus successful-processing distinction is missing.');
+}
+
+if (!/response contains at most \*\*20 notification history records\*\*.*`paginationToken`.*`hasMore`/is.test(text)) {
+  failures.push('Notification History pagination safeguards are missing.');
+}
+
+if (!/Verify that JWS exactly as for a live notification and feed it through the same `notificationUUID` deduplication\/idempotency path/i.test(text)) {
+  failures.push('Recovered notification JWS/deduplication safeguard is missing.');
+}
+
+if (!/`firstSendAttemptResult` as delivery diagnostics, not as payment or entitlement authority/i.test(text)) {
+  failures.push('Notification History firstSendAttemptResult authority boundary is missing.');
+}
+
+if (!/50 Get Notification History requests per second in production.*sandbox limits at \*\*10%\*\*/is.test(text)) {
+  failures.push('Get Notification History rate-limit safeguard is missing.');
+}
+
+if (!/Get Notification History.*HTTP `429` \/ `RateLimitExceededError`.*`Retry-After`/is.test(text)) {
+  failures.push('Get Notification History 429/Retry-After handling is missing.');
 }
 
 if (!/do not revoke paid value merely because a refund was \*\*requested\*\*/i.test(text)) {
@@ -237,6 +300,26 @@ if (!/Advanced Commerce configuration proving `refundRiskingPreference` is expli
 
 if (!/Send Consumption Information HTTP `429` test proving `RateLimitExceededError` and `Retry-After` are handled/i.test(text)) {
   failures.push('Apple rate-limit QA case is missing.');
+}
+
+if (!/App Store Connect environment-routing tests proving a missing sandbox URL routes sandbox notifications to the production endpoint/is.test(text)) {
+  failures.push('Apple environment-routing QA case is missing.');
+}
+
+if (!/Notification History recovery with more than 20 records proving every page is consumed until `hasMore=false`/i.test(text)) {
+  failures.push('Apple Notification History pagination QA case is missing.');
+}
+
+if (!/`onlyFailures=true` recovery proving currently retrying notifications are not treated as permanently lost/i.test(text)) {
+  failures.push('Apple onlyFailures QA case is missing.');
+}
+
+if (!/current `transactionId` Notification History filtering proving deprecated `originalTransactionId` is not required/i.test(text)) {
+  failures.push('Apple Notification History transactionId QA case is missing.');
+}
+
+if (!/Get Notification History HTTP `429` recovery proving `Retry-After` is respected/i.test(text)) {
+  failures.push('Apple Notification History rate-limit QA case is missing.');
 }
 
 if (!/refunded entitlement is not resurrected/i.test(text)) {
