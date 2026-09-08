@@ -35,7 +35,7 @@ requireGate(/required: `customerConsented`[\s\S]*required: `deliveryStatus`[\s\S
 requireGate(/within \*\*12 hours\*\* of receiving `CONSUMPTION_REQUEST`/i, 'Missing 12-hour Apple response window.');
 requireGate(/deadline is not permission to[\s\S]*infer consent[\s\S]*send stale or guessed consumption data/i, 'Missing deadline fail-closed safeguards.');
 requireGate(/If the customer has not consented, \*\*do not respond\*\*/i, 'Missing no-consent no-call rule.');
-requireGate(/App Tracking Transparency permission[\s\S]*not be silently bundled/i, 'Missing ATT/consumption-consent separation.');
+requireGate(/must not be silently bundled into:[\s\S]*App Tracking Transparency permission/i, 'Missing ATT/consumption-consent separation.');
 requireGate(/withdrawn, expires, or becomes invalid[\s\S]*do not send further consumption information/i, 'Missing consent withdrawal rule.');
 requireGate(/freely given, specific, informed and unambiguous consent/i, 'Missing GDPR consent-quality rule.');
 requireGate(/HTTP 202 Accepted/i, 'Missing Apple 202 acknowledgement boundary.');
@@ -81,7 +81,7 @@ for (const [name, text] of [
 if (!/100\/100/.test(progress) || !/25\/25/.test(progress)) {
   failures.push('Localization progress is no longer complete; re-open the required locale/document queue first.');
 }
-if (!/full release date is \*\*September 1, 2026\*\*/i.test(progress)) {
+if (!/went to full release on \*\*September 1, 2026\*\*/i.test(progress)) {
   failures.push('Localization tracker lost the September 1, 2026 full-release rule.');
 }
 
