@@ -92,7 +92,7 @@ requireMatch('xsollaGate', /Do not confiscate unrelated legitimate purchases/i, 
 requireMatch('purchases', /TycoonX web shop powered by Xsolla/i, 'canonical Xsolla purchase channel missing');
 requireMatch('purchases', /refunds, reversals, and chargebacks/i, 'canonical refund/reversal framework missing');
 requireMatch('purchases', /unrelated legitimately purchased value/i, 'canonical unrelated-value protection missing');
-requireMatch('purchases', /30-Day VIP is a \*\*one-time, non-renewing entitlement\*\*/i, 'canonical 30-Day VIP model changed');
+requireMatch('purchases', /30-Day VIP is a one-time, non-renewing entitlement lasting 30 consecutive days/i, 'canonical 30-Day VIP model changed');
 requireMatch('purchases', /selected limited promotional sales windows/i, 'canonical Lifetime VIP sales-window rule changed');
 requireMatch('purchases', /does not reduce any rights that cannot legally be waived/i, 'canonical mandatory-rights caveat missing');
 
