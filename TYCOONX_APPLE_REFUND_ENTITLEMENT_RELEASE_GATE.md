@@ -1,6 +1,6 @@
 # TycoonX Apple Refund & Entitlement Reconciliation Release Gate
 
-Last reviewed: September 7, 2026
+Last reviewed: September 8, 2026
 
 This is an internal release and operations gate for Apple App Store In-App Purchases used by TycoonX. It does not replace the TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, Apple Custom EULA, mandatory consumer law, or Apple rules.
 
@@ -35,6 +35,13 @@ Therefore:
 ### 2. Use App Store Server Notifications V2 plus StoreKit transaction updates
 
 Configure **App Store Server Notifications V2** for both production and sandbox and verify the actual endpoints in App Store Connect.
+
+Apple's current App Store Connect routing has an important environment trap:
+
+- if a production URL exists but no sandbox URL is configured, Apple sends sandbox notifications to the production URL too; and
+- if only a sandbox URL is configured, Apple sends no production notifications.
+
+Therefore the receiver must verify the signed notification's environment before entitlement mutation. Sandbox traffic arriving at the production HTTP endpoint must remain sandbox data and must never grant or revoke production Diamonds, 30-Day VIP, Lifetime VIP, refunds, chargeback evidence, or payment history. A production release must also verify that a production notification URL is actually configured rather than assuming the sandbox URL covers both environments.
 
 For every incoming V2 notification:
 
@@ -94,9 +101,21 @@ Keep a recovery process that can use Apple's current server APIs, including:
 - **Get Refund History** when support or reconciliation needs authoritative refunded-transaction evidence; and
 - StoreKit/current entitlement state for the device-side restore path.
 
-Apple currently makes notification history available for up to **180 days in production** and **30 days in sandbox**. A historical notification is a snapshot of state at the time it was signed; where current status matters, re-check the authoritative current transaction state rather than assuming an old notification still represents the present state.
+Apple currently makes notification history available for up to **180 days in production** and **30 days in sandbox**. `startDate` and `endDate` are required; `startDate` must be inside the applicable retention window and precede `endDate`. If an `endDate` is in the future, Apple uses the current date instead.
 
-Run Apple's test-notification flow during release QA and after any infrastructure, domain, TLS, routing, proxy, or webhook-secret/certificate change.
+For targeted recovery, use the current `transactionId` filter. Apple's older `originalTransactionId` request property is deprecated for Notification History; a current `transactionId` may itself be an original transaction identifier. Do not send both `transactionId` and `notificationType` because Apple treats those filters as mutually exclusive. If a `notificationSubtype` filter is supplied, also supply its related `notificationType`.
+
+`onlyFailures=true` is useful for missed-delivery recovery, but it has narrow semantics: Apple returns notifications that have not reached the server successfully, including notifications Apple is **currently retrying**. It is not a list of only permanently lost events. Conversely, absence from `onlyFailures` does not prove TycoonX completed the entitlement mutation; a notification may have reached the endpoint successfully and still have failed later in CK-Labs' own processing. Use the durable TycoonX entitlement ledger and authoritative transaction/refund state for that distinction.
+
+Notification History is paginated. A response contains at most **20 notification history records**. Continue with the returned `paginationToken` while `hasMore` is true and keep the request body constraints consistent across pages. Stopping after the first page is not a complete recovery scan.
+
+Every recovered history item contains the signed notification payload. Verify that JWS exactly as for a live notification and feed it through the same `notificationUUID` deduplication/idempotency path. Recovery must not become a second fulfillment pipeline. Treat `firstSendAttemptResult` as delivery diagnostics, not as payment or entitlement authority.
+
+A historical notification is a snapshot of state at the time it was signed; where current status matters, re-check the authoritative current transaction state rather than assuming an old notification still represents the present state. For current non-subscription In-App Purchases, use current transaction history/state as appropriate rather than treating a six-month-old refund or purchase snapshot as automatically current.
+
+Apple currently lists **50 Get Notification History requests per second in production**, with sandbox limits at **10%** of the production limit, while reserving the right to change limits. Do not hard-code this as guaranteed capacity. If Apple responds with HTTP `429` / `RateLimitExceededError`, respect `Retry-After` (a UNIX timestamp in milliseconds) and resume the same idempotent recovery job later. A rate-limit delay must not create a Diamond/VIP grant, clawback, fraud flag, chargeback-abuse flag, or assumption that no refund exists.
+
+Run Apple's test-notification flow during release QA and after any infrastructure, domain, TLS, routing, proxy, or webhook-secret/certificate change. Use Get Test Notification Status when needed to diagnose delivery; Apple currently allows that test-notification token to be checked for up to six months.
 
 ### 6. Distinguish refund request, refund decision, and entitlement correction
 
@@ -237,8 +256,13 @@ Before declaring the Apple IAP path fully payment-ready, retain dated QA evidenc
 19. a prorated `REFUND` containing `refundPercentage` plus signed `revocationPercentage`, proving both representations reconcile into one correction and cannot double-claw back the same transaction;
 20. deliberately mismatched or contradictory refund-percentage evidence proving TycoonX quarantines the transaction for reconciliation instead of selecting the larger percentage;
 21. Advanced Commerce configuration proving `refundRiskingPreference` is explicitly reviewed and is `false` unless the consent, privacy-disclosure, and 12-hour processing prerequisites are genuinely enabled;
-22. a Send Consumption Information HTTP `429` test proving `RateLimitExceededError` and `Retry-After` are handled without pre-emptive entitlement removal or a fraud flag; and
-23. a completed refund/revocation correction proving the player receives a clear balance/access-change notice without unnecessary payment data.
+22. a Send Consumption Information HTTP `429` test proving `RateLimitExceededError` and `Retry-After` are handled without pre-emptive entitlement removal or a fraud flag;
+23. a completed refund/revocation correction proving the player receives a clear balance/access-change notice without unnecessary payment data;
+24. App Store Connect environment-routing tests proving a missing sandbox URL routes sandbox notifications to the production endpoint without creating production entitlements, and proving a sandbox-only URL does not masquerade as a configured production notification path;
+25. Notification History recovery with more than 20 records proving every page is consumed until `hasMore=false`, the `paginationToken` is advanced correctly, and replayed history events still deduplicate through the normal `notificationUUID` path;
+26. `onlyFailures=true` recovery proving currently retrying notifications are not treated as permanently lost, and that a notification absent from the failure-only response is not assumed to have completed TycoonX entitlement processing;
+27. current `transactionId` Notification History filtering proving deprecated `originalTransactionId` is not required, mutually exclusive `transactionId`/`notificationType` filters are not combined, and subtype filtering includes its related notification type; and
+28. Get Notification History HTTP `429` recovery proving `Retry-After` is respected and a delayed recovery scan cannot itself grant/revoke value or create a fraud/chargeback-abuse inference.
 
 ## Public-legal parity check
 
@@ -246,12 +270,16 @@ This operational gate does not itself require a new public contract clause. The 
 
 If CK-Labs actually enables Apple's Send Consumption Information data flow, the Privacy Policy and App Store privacy disclosures must be checked against the precise personal data sent and the consent flow **before** production use. A material new disclosure would require the canonical English Privacy Policy to be updated and the 25 localized Privacy pages to be reopened in the required locale order.
 
-## Official Apple references checked September 7, 2026
+## Official Apple references checked September 8, 2026
 
 - App Store Server Notifications V2: https://developer.apple.com/documentation/appstoreservernotifications/app-store-server-notifications-v2
 - Responding to App Store Server Notifications: https://developer.apple.com/documentation/appstoreservernotifications/responding-to-app-store-server-notifications
 - App Store Server Notifications changelog: https://developer.apple.com/documentation/appstoreservernotifications/app-store-server-notifications-changelog
+- Enter server URLs for App Store Server Notifications: https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications
 - Get Notification History: https://developer.apple.com/documentation/appstoreserverapi/get-notification-history
+- `NotificationHistoryRequest`: https://developer.apple.com/documentation/appstoreserverapi/notificationhistoryrequest
+- `NotificationHistoryResponse`: https://developer.apple.com/documentation/appstoreserverapi/notificationhistoryresponse
+- Get Test Notification Status: https://developer.apple.com/documentation/appstoreserverapi/get-test-notification-status
 - App Store Server API: https://developer.apple.com/documentation/appstoreserverapi/
 - Send Consumption Information: https://developer.apple.com/documentation/appstoreserverapi/send-consumption-information
 - `consumptionPercentage`: https://developer.apple.com/documentation/appstoreserverapi/consumptionpercentage
