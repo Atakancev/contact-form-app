@@ -86,12 +86,16 @@ if (/\bTycoonX\s+beta\b/i.test(text)) {
   failures.push('Stale TycoonX beta wording found in Apple signed-data gate.');
 }
 
-if (!/Localized full documents[^\n]*100\/100[^\n]*100%/i.test(progress)) {
-  failures.push('Localization tracker no longer confirms 100/100 localized full documents.');
+if (!/all 100 localized full documents are current/i.test(progress)) {
+  failures.push('Localization tracker no longer confirms all 100 localized full documents are current.');
 }
 
-if (!/Localized hubs[^\n]*25\/25[^\n]*100%/i.test(progress)) {
-  failures.push('Localization tracker no longer confirms 25/25 localized hubs.');
+if (!/25\/25[^\n]*target locales/i.test(progress)) {
+  failures.push('Localization tracker no longer confirms 25/25 localized hubs/locales.');
+}
+
+if (!/Exact next unfinished locale\/document: None/i.test(progress)) {
+  failures.push('Localization tracker unexpectedly reports unfinished localization work.');
 }
 
 if (failures.length) {
