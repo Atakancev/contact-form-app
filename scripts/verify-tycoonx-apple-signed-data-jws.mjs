@@ -43,7 +43,7 @@ const required = [
   '30-Day VIP',
   'Lifetime VIP',
   'ONE_TIME_CHARGE',
-  'mandatory German/EU consumer rights',
+  'Mandatory German/EU consumer rights',
 ];
 
 for (const token of required) {
