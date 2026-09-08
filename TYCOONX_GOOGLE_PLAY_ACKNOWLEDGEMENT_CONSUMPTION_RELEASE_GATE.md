@@ -1,6 +1,6 @@
 # TycoonX Google Play Acknowledgement & Consumption Release Gate
 
-Last reviewed: September 8, 2026
+Last reviewed: September 9, 2026
 
 This is a narrow operational release gate for Google Play purchase settlement in TycoonX. It complements `TYCOONX_GOOGLE_PLAY_BILLING_LIBRARY_VERSION_LIFECYCLE_RELEASE_GATE.md`, `TYCOONX_GOOGLE_PLAY_PENDING_PURCHASE_ATTRIBUTION_RELEASE_GATE.md`, and `TYCOONX_PAYMENT_ENTITLEMENT_RELEASE_GATES.md`. It does not replace Google Play rules, the canonical TycoonX Purchases & Refunds Policy, or mandatory consumer law.
 
@@ -17,6 +17,8 @@ For consumable one-time products, Google's current guidance says a secure-backen
 For non-consumable one-time products, Google's current guidance says a secure-backend integration should use `Purchases.products:acknowledge` where possible, or `BillingClient.acknowledgePurchase()` for a client-side flow, after checking whether acknowledgement has already occurred. Google exposes authoritative acknowledgement state, including `acknowledgementState` / `isAcknowledged()` depending on the API surface.
 
 Google also recommends secure-backend processing because network loss or an app that is not reopened can otherwise prevent acknowledgement before the deadline. A server-side acknowledgement/consumption worker does not replace purchase verification or the TycoonX exactly-once entitlement ledger.
+
+Google's current **Query Purchase History** guidance is also important for consumables. The deprecated purchase-history query was removed from Play Billing Library 8. Google now directs apps to use `queryPurchasesAsync()` for purchases that are currently active/owned and to keep consumed purchase history on the app's own backend; canceled or voided purchases should be checked through the Voided Purchases developer API. This means a client ownership query is not an authoritative historical purchase ledger and an absent consumed purchase is not evidence that its previously granted TycoonX value never existed.
 
 ## P0 release rules
 
@@ -49,6 +51,24 @@ Purchased Diamonds are repeatable consumable paid value. For a Google Play Diamo
 Example: Google verifies a completed 500-Diamond purchase. TycoonX credits 500 Diamonds once and then successfully consumes the purchase token. The player's balance still contains those 500 Diamonds until gameplay, a valid refund/reversal, or another lawful transaction-specific correction changes it. The Google word “consume” does not mean the player already spent the Diamonds.
 
 For multi-quantity Diamond purchases, the existing multi-quantity gate remains controlling: provision the authoritative purchased quantity exactly once and keep consumption/acknowledgement idempotent at the provider-purchase level.
+
+### 2A. `queryPurchasesAsync()` is not a historical ledger or a negative refund verdict
+
+Current Google Play Billing Library code must not try to recreate the removed purchase-history API by treating `queryPurchasesAsync()` as a complete lifetime list of purchases.
+
+For TycoonX:
+
+- `queryPurchasesAsync()` may be used to discover purchases that are currently active/owned and still need processing;
+- a successfully consumed Diamond purchase can legitimately disappear from that client ownership query after settlement;
+- the absence of an old transaction from `queryPurchasesAsync()` does **not** prove that the purchase never occurred, that the player was refunded, that the entitlement should be removed, or that the player is lying;
+- the presence of a purchase in the client query does not by itself authorize a grant until the normal server verification and idempotency rules succeed;
+- historical consumed Diamond purchases must be retained in the durable TycoonX backend purchase/entitlement ledger rather than reconstructed from a device query;
+- canceled/refunded/voided status must be reconciled through the appropriate authoritative Google server records, including the existing RTDN and Voided Purchases paths, not inferred from disappearance on a device; and
+- a reinstall, device change, Play Store cache reset, old/unsupported client, or transient empty query must never erase server-side purchase history.
+
+Example: a player bought 1,000 Diamonds six months ago, TycoonX granted them once, and Google consumption completed. The player later spent 700 of those Diamonds in normal gameplay. A fresh `queryPurchasesAsync()` result may contain no record for that consumed purchase. TycoonX must not interpret that absence as a refund and remove the remaining 300 Diamonds, nor may a restore flow re-grant the historical 1,000 merely because a different legacy/local history surface later exposes the old transaction. The server ledger and authoritative Google reversal records control both directions.
+
+This distinction is also founder-protective. Support tooling must not accept “the transaction is absent from the current device query” as proof that CK-Labs owes a new grant or refund, and it must not accept a stale/local historical record as proof that a transaction remains valid if authoritative server records show a refund or void. Preserve the evidence and reconcile the provider transaction once.
 
 ### 3. One-time 30-Day VIP must not be confused with a Google subscription or with provider consumption
 
@@ -93,6 +113,8 @@ Required behavior:
 - do not depend on the player reopening TycoonX before Google can be notified; and
 - treat an approaching settlement deadline as an operational incident.
 
+Here, “foreground query” means discovery of currently active/owned purchases that still need processing. It must not be treated as the historical source of truth for already consumed Diamond transactions. Historical consumed purchases come from the durable TycoonX backend ledger, while refunds/voids are reconciled through authoritative Google server-side evidence.
+
 A Google automatic refund/revocation caused by CK-Labs failing to acknowledge or consume in time is **not by itself evidence of player fraud, chargeback abuse, hacking, account compromise, regional-price abuse, or entitlement abuse**.
 
 When such a provider reversal is authoritative, reconcile only the value attributable to that transaction under the normal refund/correction rules. Do not use CK-Labs' processing failure to confiscate unrelated purchased Diamonds, unrelated VIP, promotional value from another transaction, or the player's general game economy.
@@ -127,6 +149,8 @@ The following are operational/payment signals, not automatic proof of misconduct
 - an automatic refund caused by missed acknowledgement; or
 - a product accidentally configured with the wrong consumable/non-consumable behavior.
 
+Likewise, a consumed purchase being absent from `queryPurchasesAsync()` is normal ownership-query behavior and is not evidence of fraud, account compromise, entitlement abuse, or a fabricated receipt.
+
 Fraud, chargeback abuse, regional-price abuse, hacking, or entitlement abuse requires separate reliable evidence and the proportionate enforcement rules already defined elsewhere in the TycoonX legal/payment gates.
 
 ### 8. Refunds, reversals, chargebacks, and restores remain transaction-specific
@@ -139,6 +163,7 @@ Acknowledgement or consumption does not make a purchase immune from a later vali
 - A refund/revocation affecting 30-Day VIP cannot be transformed into a Diamond deduction from another purchase.
 - A valid acknowledged Lifetime VIP remains restorable/reconcilable from authoritative records unless the underlying transaction is validly refunded, reversed, invalidated, or another lawful basis applies.
 - Restore/reconciliation must not consume a non-consumable Lifetime VIP merely to make a restore operation succeed.
+- Restore tooling must not depend on the removed/deprecated client purchase-history API for consumed transactions; historical purchase evidence belongs in the durable backend ledger and provider-side reconciliation records.
 
 ### 9. Mandatory German/EU consumer rights remain intact
 
@@ -161,6 +186,9 @@ Before shipping a Google Play billing change, retain evidence that:
 - backend recovery can settle a purchase even if the player never reopens the app;
 - entitlement-grant and provider-settlement idempotency are separately persisted;
 - settlement retries cannot duplicate Diamonds or VIP;
+- consumed historical purchases remain durably attributable on the backend even after they disappear from `queryPurchasesAsync()`;
+- support/restore tooling never treats an empty active-purchase query as proof of refund/non-purchase and never re-grants historical consumed purchases from a local history surface;
+- voided/canceled purchases are reconciled through the authoritative Google Voided Purchases/server paths rather than inferred from client-query absence;
 - provider automatic refunds are reconciled transaction-specifically without automatic player sanctions; and
 - the current Google guidance was rechecked close to release because provider behavior and APIs can change.
 
@@ -186,10 +214,17 @@ Test at least:
 16. Refund occurs after a consumed Diamond purchase: only the attributable transaction value is corrected, subject to existing refund and mandatory-rights rules.
 17. Restore/reconciliation sees an acknowledged Lifetime VIP: it restores/reconciles from authority and never consumes the product to make it purchasable again.
 18. Purchase lacks `orderId` but has a valid verified purchase token: processing remains possible and deduplication does not rely on `orderId` alone.
+19. Six-month-old 1,000-Diamond purchase was validly consumed and is absent from `queryPurchasesAsync()`: the backend purchase history remains intact and no Diamond balance or abuse state changes merely because the active query is empty.
+20. A local/legacy history surface shows an old consumed 1,000-Diamond transaction after it was already fulfilled: restore/recovery does not grant another 1,000 Diamonds.
+21. A refunded consumed Diamond transaction is absent from the active client query: refund reconciliation comes from authoritative Google server evidence and produces one bounded transaction-specific correction, not an inference from client absence.
+22. Player reinstalls TycoonX or changes devices and the new device has no local historical purchase data: valid server-side purchase/entitlement records remain intact.
+23. Support receives a screenshot showing an empty Google ownership query: it is not accepted as proof of non-purchase/refund and does not override the server/provider ledger.
 
 ## Current source references
 
 - Google Play Billing integration and purchase processing: https://developer.android.com/google/play/billing/integrate
+- Google Play Query Purchase History alternatives (updated September 1, 2026): https://developer.android.com/google/play/billing/query-purchase-history
+- Google Play Billing Library release notes (purchase-history API removal in PBL 8): https://developer.android.com/google/play/billing/release-notes
 - Google Play Billing fraud/security guidance: https://developer.android.com/google/play/billing/security
 - Google Play Android Developer API (`purchases.products` acknowledge/consume/get): https://developers.google.com/android-publisher/api-ref/rest
 
