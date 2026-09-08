@@ -56,6 +56,14 @@ for (const token of [
   'PBL 7 or older',
 ]) requireText(gate, token, `Google Play one-time-product safeguard missing: ${token}`);
 
+for (const token of [
+  'multi-product for one-time products',
+  'Purchase.getProducts()',
+  '`lineItems`',
+  'same Order ID',
+  'Lifetime VIP is itself a Lifetime VIP sales path',
+]) requireText(gate, token, `Google Play multi-product safeguard missing: ${token}`);
+
 requireMatch(
   gate,
   /obviousness alone is not a replacement for the statutory analysis and required declaration/i,
@@ -134,6 +142,78 @@ requireMatch(
   'Missing Google Play purchase-option price-experiment classification safeguard.',
 );
 
+requireMatch(
+  gate,
+  /subscriptions cannot be included in a multi-product one-time bundle/i,
+  'Missing Google Play multi-product subscription exclusion.',
+);
+
+requireMatch(
+  gate,
+  /digital content and products classified as a service cannot be mixed in the same bundle/i,
+  'Missing Google Play multi-product content/service compatibility rule.',
+);
+
+requireMatch(
+  gate,
+  /pre-order product cannot be placed in the bundle/i,
+  'Missing Google Play multi-product immediate-delivery/pre-order rule.',
+);
+
+requireMatch(
+  gate,
+  /multi-product feature does not support the \*\*Rent\*\* purchase option/i,
+  'Missing Google Play multi-product Rent exclusion.',
+);
+
+requireMatch(
+  gate,
+  /all `ProductDetails` used for the purchase flow must belong to the same app/i,
+  'Missing Google Play multi-product same-app rule.',
+);
+
+requireMatch(
+  gate,
+  /enumerate the complete `Purchase\.getProducts\(\)` result/i,
+  'Missing client-side multi-product product enumeration safeguard.',
+);
+
+requireMatch(
+  gate,
+  /enumerate the complete `lineItems` from the current Google Play Developer API response/i,
+  'Missing server-side multi-product line-item enumeration safeguard.',
+);
+
+requireMatch(
+  gate,
+  /`sku` field is not provided for multi-product one-time purchases/i,
+  'Missing Google Play multi-product RTDN no-sku safeguard.',
+);
+
+requireMatch(
+  gate,
+  /does \*\*not\*\* support a player or developer refund for only one item inside a multi-product one-time purchase/i,
+  'Missing Google Play whole-bundle refund boundary.',
+);
+
+requireMatch(
+  gate,
+  /all discovery paths must converge on one purchase-level correction state/i,
+  'Missing Google Play multi-product cross-path refund idempotency.',
+);
+
+requireMatch(
+  gate,
+  /separate financial rows for the individual products in a multi-product purchase while using the same Order ID/i,
+  'Missing Google Play multi-product financial-report fan-out handling.',
+);
+
+requireMatch(
+  gate,
+  /Any Google bundle or offer that contains Lifetime VIP is itself a Lifetime VIP sales path and must be deactivated/i,
+  'Missing Lifetime VIP multi-product sales-window closure safeguard.',
+);
+
 for (const scenario of [
   '**Two Google Play purchase options:**',
   '**Stale Google offer:**',
@@ -143,6 +223,12 @@ for (const scenario of [
   '**Lifetime VIP closed sale:**',
   '**Rent misconfiguration:**',
   '**Google price experiment:**',
+  '**Multi-product fulfillment:**',
+  '**Multi-product RTDN:**',
+  '**Whole-bundle refund:**',
+  '**Invalid bundle composition:**',
+  '**Lifetime VIP bundle closure:**',
+  '**Financial-report fan-out:**',
 ]) requireText(gate, scenario, `Missing pricing/catalog regression scenario: ${scenario}`);
 
 requireText(
@@ -224,4 +310,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('PASS: German mistake-law safeguards, contract/merchant separation, no silent retroactive repricing, fulfillment-versus-pricing classification, Google Play purchase-option/offer integrity, provider reconciliation, entitlement isolation, localization, brand and release invariants are present.');
+console.log('PASS: German mistake-law safeguards, contract/merchant separation, no silent retroactive repricing, fulfillment-versus-pricing classification, Google Play purchase-option/offer and multi-product integrity, provider reconciliation, entitlement isolation, localization, brand and release invariants are present.');
