@@ -28,14 +28,26 @@ const gate = await read(GATE, 'Xsolla chargeback release gate');
 const purchases = await read(PURCHASES, 'canonical Purchases & Refunds page');
 const privacy = await read(PRIVACY, 'canonical Privacy Policy page');
 
-requireMatch(gate, /September 7, 2026/, 'Xsolla gate is missing the current review checkpoint.');
+requireMatch(gate, /September 8, 2026/, 'Xsolla gate is missing the current review checkpoint.');
 requireMatch(gate, /applicable refund-policy type is shown/i, 'Xsolla gate no longer preserves transaction-specific refund-policy handling.');
 requireMatch(gate, /group company.*checkout.*receipt|checkout.*receipt.*group company/is, 'Xsolla gate no longer preserves transaction-specific merchant identity.');
 requireMatch(gate, /server-side confirmation/i, 'Xsolla gate no longer requires server-side payment authority.');
 requireMatch(gate, /idempotent/i, 'Xsolla gate no longer requires idempotent payment/refund processing.');
 requireMatch(gate, /January 22, 2025/, 'Xsolla gate no longer records the combined/separate webhook model split.');
 requireMatch(gate, /combined.*order_paid.*order_canceled/is, 'Xsolla gate is missing the combined order webhook model.');
+requireMatch(gate, /combined mode[\s\S]{0,1200}do not process legacy `payment` \/ `refund` as production entitlement mutation events/i, 'Xsolla combined mode must not process legacy payment/refund as production entitlement mutations.');
+requireMatch(gate, /unexpected signed legacy event[\s\S]{0,500}fail closed[\s\S]{0,500}provider transaction/i, 'Unexpected legacy events in combined mode must fail closed and reconcile instead of mutating value.');
 requireMatch(gate, /separate.*payment.*refund.*order_paid.*order_canceled/is, 'Xsolla gate is missing the separate Store\/Payments webhook model.');
+requireMatch(gate, /`payment` is a financial\/payment record while `order_paid` is the purchased-item fulfillment event/i, 'Separate mode must distinguish the financial payment record from item fulfillment.');
+requireMatch(gate, /`refund` is the financial reversal record while `order_canceled` carries purchased-item cancellation state/i, 'Separate mode must distinguish the financial reversal from item cancellation state.');
+requireMatch(gate, /do not grant twice.*payment.*order_paid/is, 'Separate mode must block duplicate grants across payment and order_paid.');
+requireMatch(gate, /do not revoke twice.*refund.*order_canceled/is, 'Separate mode must block duplicate deductions across refund and order_canceled.');
+requireMatch(gate, /migration from separate to combined webhooks.*payment-system change/is, 'Xsolla gate is missing migration change-control between webhook models.');
+requireMatch(gate, /transaction\.dry_run: 1/i, 'Xsolla gate is missing the legacy test transaction marker.');
+requireMatch(gate, /order\.mode: "sandbox"/i, 'Xsolla gate is missing the combined-order sandbox marker.');
+requireMatch(gate, /valid signature.*does[^\n]*not.*prove.*real money moved/is, 'Xsolla gate must not treat a valid signature as proof that a test transaction moved real money.');
+requireMatch(gate, /route `transaction\.dry_run: 1` and `order\.mode: "sandbox"` away from production Diamonds, 30-Day VIP, Lifetime VIP/is, 'Xsolla gate must isolate both documented test markers from production paid value.');
+requireMatch(gate, /Publisher Account webhook tests.*production entitlement/is, 'Xsolla gate must prevent signed Publisher Account tests from granting production entitlements.');
 requireMatch(gate, /raw request body/i, 'Xsolla gate no longer requires signature verification against the raw webhook body.');
 requireMatch(gate, /Signature <signature_value>/i, 'Xsolla gate is missing Xsolla\'s Authorization signature-header format.');
 requireMatch(gate, /raw_body \+ secret|raw JSON payload.*secret.*SHA-1/is, 'Xsolla gate is missing Xsolla\'s exact raw-body-plus-secret signing construction.');
@@ -117,5 +129,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Xsolla webhook-signature, key-rotation, endpoint-change, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Xsolla webhook-model, sandbox/test isolation, signature, key-rotation, endpoint-change, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
 }
