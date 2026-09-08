@@ -175,6 +175,50 @@ Treat a properly configured experiment price as genuine provider pricing unless 
 
 Price-experiment, purchase-option, offer, region, tax, and FX differences must not be collapsed into an automatic fraud score.
 
+### 7C. Multi-product one-time bundles are one provider purchase with multiple line items
+
+Google Play's current **multi-product for one-time products** feature can combine several one-time products into one purchase flow. This changes fulfillment and refund shape enough that TycoonX must not treat a multi-product purchase like a normal single-SKU purchase.
+
+Do not enable a Google Play multi-product one-time bundle for TycoonX unless the client, backend, refund reconciliation, support tooling, and catalog evidence all understand the bundle as one provider purchase containing multiple product line items.
+
+Current Google constraints must be preserved:
+
+- subscriptions cannot be included in a multi-product one-time bundle;
+- products classified as digital content and products classified as a service cannot be mixed in the same bundle;
+- every bundled product must be available for immediate delivery, so a pre-order product cannot be placed in the bundle;
+- the multi-product feature does not support the **Rent** purchase option; and
+- all `ProductDetails` used for the purchase flow must belong to the same app.
+
+Do not assume that Diamonds, 30-Day VIP, and Lifetime VIP may be combined merely because all are TycoonX products. Confirm the Google Play product classification and current platform eligibility for every proposed bundle before publication. If a combination is not currently supported, fail closed rather than changing the legal/product meaning to fit the catalog.
+
+Fulfillment rules:
+
+- one multi-product purchase is still represented by a single Google Play `Purchase`, but it is associated with all products acquired in that transaction;
+- on the client, enumerate the complete `Purchase.getProducts()` result rather than reading only one product ID;
+- on the server, retrieve the authoritative purchase and enumerate the complete `lineItems` from the current Google Play Developer API response;
+- preserve the shared purchase token/order identity plus each line item's `productId` and relevant purchase-option/offer/quantity state;
+- grant each verified included TycoonX entitlement exactly once, while keeping all line items linked to the same provider purchase; and
+- never infer a missing bundle item from the displayed bundle name or local catalog if the authoritative Google response does not confirm it.
+
+For RTDN, Google currently states that the `sku` field is not provided for multi-product one-time purchases because the purchase represents more than one product. A multi-product RTDN must therefore trigger authoritative Google Play Developer API reconciliation. Do not interpret a missing RTDN `sku` as an unknown purchase, and do not guess the bundle contents from a cached client screen.
+
+Refund and correction rules:
+
+- Google currently does **not** support a player or developer refund for only one item inside a multi-product one-time purchase; refund/cancellation is for the entire multi-product purchase;
+- when Google authoritatively refunds or cancels that purchase, reconcile all entitlements associated with that provider purchase, subject to transaction-specific consumption, downstream-value, conformity, and mandatory-rights rules;
+- do not invent a provider-side item-level partial refund that Google does not support;
+- if a mandatory consumer remedy is triggered by a defect affecting only one included product, route the case through the applicable legal/provider remedy analysis rather than falsely representing that Google can refund only that line item;
+- refunded multi-product orders can be discovered through Voided Purchases and RTDN, so all discovery paths must converge on one purchase-level correction state and must not claw back the same bundle twice; and
+- a refund/cancellation event is not automatically proof that the player committed fraud, chargeback abuse, regional-price abuse, hacking, or entitlement abuse.
+
+Financial and reporting rules:
+
+- Google currently reports separate financial rows for the individual products in a multi-product purchase while using the same Order ID for the related transaction rows;
+- do not count those itemized financial rows as separate customer purchases merely because the report has multiple lines; and
+- reconcile charges, fees, taxes, refunds, and TycoonX entitlement delivery against the shared provider order plus its line-item set.
+
+TycoonX product invariants still control. Purchased Diamonds do not expire merely because time passes. One-time 30-Day VIP remains one non-renewing entitlement lasting **30 consecutive days**. Lifetime VIP remains a limited-time promotional one-time entitlement available only during selected genuine sales windows. **Any Google bundle or offer that contains Lifetime VIP is itself a Lifetime VIP sales path and must be deactivated when that genuine sales window closes**, while a genuine historical completed purchase remains restorable/reconcilable without reopening the sale.
+
 ## 8. Xsolla webshop handling
 
 For the official TycoonX webshop, preserve the actual Xsolla order/transaction record, item/SKU, amount, currency, tax presentation, merchant/contracting entity where applicable, successful-payment state, refund/reversal state, and the matching TycoonX entitlement action.
@@ -256,7 +300,7 @@ Do not use a pricing-error correction as evidence that the player committed char
 When a pricing/catalog/configuration incident is reported:
 
 1. freeze further publication of the erroneous offer if still live;
-2. preserve the exact catalog, purchase option/offer where relevant, checkout, transaction, entitlement, and timestamp evidence;
+2. preserve the exact catalog, purchase option/offer where relevant, bundle line items where relevant, checkout, transaction, entitlement, and timestamp evidence;
 3. identify the contracting merchant and contract-formation state;
 4. classify the incident using the P0 categories above;
 5. stop duplicate fulfillment but do not automatically confiscate unrelated value;
@@ -274,7 +318,7 @@ When a pricing/catalog/configuration incident is reported:
 For a material pricing/catalog incident, retain a proportionate evidence packet containing:
 
 - incident identifier and detection time;
-- affected product/SKU/product ID and, where relevant, purchase option/offer identity;
+- affected product/SKU/product ID and, where relevant, purchase option/offer identity and multi-product line-item set;
 - affected storefronts/countries;
 - intended price/quantity/product mapping;
 - actually published price/quantity/product mapping;
@@ -321,6 +365,12 @@ The production implementation should be able to demonstrate all of these without
 21. **Lifetime VIP closed sale:** every active/backwards-compatible Google sale path for Lifetime VIP is closed when the genuine sale window ends, while a valid historical purchase remains restorable.
 22. **Rent misconfiguration:** Diamonds, 30-Day VIP, or Lifetime VIP appear as a Google Rent purchase option; release is blocked rather than silently changing TycoonX product meaning.
 23. **Google price experiment:** a valid user receives an experiment price at the purchase-option level; the completed provider-confirmed transaction is not treated as a configuration error merely because another cohort paid a different price.
+24. **Multi-product fulfillment:** one Google purchase contains a Diamond product and another eligible one-time product; the backend enumerates all authoritative `lineItems` and grants each confirmed entitlement once without turning one purchase into duplicate payments.
+25. **Multi-product RTDN:** Google sends RTDN for a multi-product purchase without `sku`; TycoonX queries the Play Developer API and resolves the complete line-item set instead of guessing from the client catalog.
+26. **Whole-bundle refund:** Google refunds a multi-product order; all entitlements associated with that provider purchase enter one idempotent reconciliation flow, and TycoonX does not pretend Google issued an unsupported one-item provider refund.
+27. **Invalid bundle composition:** a proposed bundle mixes product classifications Google does not permit, includes a pre-order, or uses Rent; publication is blocked rather than silently changing the offer.
+28. **Lifetime VIP bundle closure:** a Google bundle containing Lifetime VIP is active when the limited sales window closes; that bundle sales path is deactivated while genuine historical purchases remain restorable.
+29. **Financial-report fan-out:** one multi-product order appears as multiple itemized financial rows with the same Order ID; reconciliation does not count them as multiple customer purchases.
 
 ## Current legal and platform checkpoint
 
@@ -332,13 +382,13 @@ This gate reflects, as of September 8, 2026:
 - **BGB § 143** requiring the avoidance declaration to the proper counterparty;
 - mandatory German/EU digital-product, withdrawal, conformity, unfair-commercial-practice, checkout, personalized-pricing, and liability rules preserved by the canonical TycoonX legal documents;
 - Apple's current App Store transaction-price records and current IAP price-scheduling model;
-- Google Play's current one-time-product object model, including multiple purchase options and offers, `ProductDetails`/`UnfetchedProduct`, eligible-offer behavior, offer tokens, backwards-compatible Buy options for old PBL clients, Rent purchase options, purchase-option price experiments, purchase-state, purchase-token, backend-verification, refund, and void lifecycle; and
+- Google Play's current one-time-product object model, including multiple purchase options and offers, `ProductDetails`/`UnfetchedProduct`, eligible-offer behavior, offer tokens, backwards-compatible Buy options for old PBL clients, Rent purchase options, purchase-option price experiments, multi-product one-time bundles and their `lineItems`/whole-bundle refund semantics, purchase-state, purchase-token, backend-verification, refund, and void lifecycle; and
 - Xsolla's current transaction/webhook/refund/reversal model.
 
 ## Founder-protective interpretation
 
-Nothing here forces CK-Labs to honor a nonbinding manipulated screenshot, stale cached display, invalid pending payment, stale or ineligible Google offer, duplicate entitlement grant, fraudulent coupon replay, or transaction that the law and applicable merchant rules validly allow to be canceled or avoided.
+Nothing here forces CK-Labs to honor a nonbinding manipulated screenshot, stale cached display, invalid pending payment, stale or ineligible Google offer, unsupported bundle composition, duplicate entitlement grant, fraudulent coupon replay, or transaction that the law and applicable merchant rules validly allow to be canceled or avoided.
 
-Likewise, nothing here gives a consumer a perpetual right to an accidental future catalog price, expired offer, obsolete backwards-compatible purchase option, or closed Lifetime VIP sales window.
+Likewise, nothing here gives a consumer a perpetual right to an accidental future catalog price, expired offer, obsolete backwards-compatible purchase option, unsupported Google bundle, or closed Lifetime VIP sales window.
 
 The protection is stronger when CK-Labs avoids overclaiming. A real completed transaction should be corrected through the actual legal and merchant path, not through a blanket clause that may be unenforceable. Transaction-specific evidence, prompt action, narrow correction, and preservation of mandatory rights protect both CK-Labs and legitimate TycoonX players.
