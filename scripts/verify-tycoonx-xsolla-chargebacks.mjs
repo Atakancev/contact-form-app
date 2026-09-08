@@ -48,6 +48,23 @@ requireMatch(gate, /order\.mode: "sandbox"/i, 'Xsolla gate is missing the combin
 requireMatch(gate, /valid signature.*does[^\n]*not.*prove.*real money moved/is, 'Xsolla gate must not treat a valid signature as proof that a test transaction moved real money.');
 requireMatch(gate, /route `transaction\.dry_run: 1` and `order\.mode: "sandbox"` away from production Diamonds, 30-Day VIP, Lifetime VIP/is, 'Xsolla gate must isolate both documented test markers from production paid value.');
 requireMatch(gate, /Publisher Account webhook tests.*production entitlement/is, 'Xsolla gate must prevent signed Publisher Account tests from granting production entitlements.');
+requireMatch(gate, /User-validation webhook is a one-shot account gate, not purchase authority/i, 'Xsolla gate is missing the user-validation trust-boundary section.');
+requireMatch(gate, /`user_validation` webhook at multiple stages|sent multiple times during checkout/is, 'Xsolla gate is missing repeated user-validation behavior during checkout.');
+requireMatch(gate, /successful `user_validation` response must never grant Diamonds.*30-Day VIP.*Lifetime VIP/is, 'Xsolla gate must not treat successful user validation as payment authority.');
+requireMatch(gate, /`user_validation` is \*\*not retried\*\*|`user_validation` is not retried/i, 'Xsolla gate is missing the current no-retry behavior for user validation.');
+requireMatch(gate, /subsequent payment \/ successful-order webhook is not sent|subsequent `payment`.*`order_paid`.*not sent/is, 'Xsolla gate is missing the downstream-payment consequence of failed user validation.');
+requireMatch(gate, /infrastructure problem.*operational checkout failure.*not.*fraud|timeout.*not.*fraud/is, 'Xsolla gate must not turn validation infrastructure failures into player fraud findings.');
+requireMatch(gate, /`user\.id`.*`user_validation`.*legacy `payment`.*`user\.external_id`.*combined `order_paid`/is, 'Xsolla gate is missing the documented user.id versus user.external_id field split.');
+requireMatch(gate, /one canonical TycoonX account-mapping layer/i, 'Xsolla gate must normalize Xsolla identity fields through one canonical account mapping.');
+requireMatch(gate, /silently fall back to email\/name\/phone|email.*display name.*device.*IP.*non-authoritative/is, 'Xsolla gate must not redirect purchases using weak identity attributes.');
+requireMatch(gate, /validation success proves only.*account gate|does not prove.*legitimate account owner.*payment method/is, 'Xsolla validation success must not be treated as proof of payment authorization or account ownership.');
+requireMatch(gate, /Send only necessary user parameters without sensitive data/i, 'Xsolla gate is missing the current least-data webhook setting.');
+requireMatch(gate, /limits user-validation data to the user ID and country/i, 'Xsolla gate is missing the least-data user-validation field set.');
+requireMatch(gate, /Do not enable email, phone, IP, name, or custom-token parameters/i, 'Xsolla gate must keep optional user-validation personal data disabled without a documented need.');
+requireMatch(gate, /GDPR data-minimisation principle/i, 'Xsolla gate is missing the GDPR data-minimisation boundary for validation data.');
+requireMatch(gate, /valid signed `user_validation` for an existing account.*no Diamonds, VIP, paid-history or revenue grant/is, 'Xsolla regression cases are missing validation-without-fulfillment coverage.');
+requireMatch(gate, /`user\.id` maps to account A.*`order_paid\.user\.external_id` maps to account B.*quarantine\/reconcile/is, 'Xsolla regression cases are missing cross-account identity mismatch coverage.');
+requireMatch(gate, /least-data webhook configuration.*user ID\/country.*extra email\/phone\/IP\/name\/custom parameters remain disabled/is, 'Xsolla regression cases are missing least-data configuration coverage.');
 requireMatch(gate, /raw request body/i, 'Xsolla gate no longer requires signature verification against the raw webhook body.');
 requireMatch(gate, /Signature <signature_value>/i, 'Xsolla gate is missing Xsolla\'s Authorization signature-header format.');
 requireMatch(gate, /raw_body \+ secret|raw JSON payload.*secret.*SHA-1/is, 'Xsolla gate is missing Xsolla\'s exact raw-body-plus-secret signing construction.');
@@ -129,5 +146,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: Xsolla webhook-model, sandbox/test isolation, signature, key-rotation, endpoint-change, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
+  console.log('PASS: Xsolla webhook-model, user-validation/account-binding, sandbox/test isolation, signature, key-rotation, endpoint-change, refund, partial-refund, chargeback-evidence, privacy, and entitlement safeguards are present.');
 }
