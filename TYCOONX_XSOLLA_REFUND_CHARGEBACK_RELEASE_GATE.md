@@ -1,6 +1,6 @@
 # TycoonX Xsolla Refund & Chargeback Release Gate
 
-Last reviewed: September 7, 2026
+Last reviewed: September 8, 2026
 
 This is an operational release gate for purchases made through the official CK-Labs TycoonX webshop using Xsolla. It complements the public TycoonX Terms of Service, Purchases & Refunds Policy, and Privacy Policy. It does not replace the transaction-specific Xsolla checkout terms, mandatory consumer law, or Xsolla's current Partner/Publisher terms.
 
@@ -24,17 +24,38 @@ Xsolla's current webhook documentation also distinguishes between **combined** a
 - Keep a stable mapping between the Xsolla transaction identity, the TycoonX order, the purchasing account, the product, the amount/currency, the entitlement delivery event, and any later refund/reversal/chargeback event.
 - Never use a mutable client-side identifier as the sole authority for entitlement grant, refund, or revocation.
 
-### 2. Confirm the actual Xsolla webhook model
+### 2. Confirm and lock the actual Xsolla webhook model
 
 Before go-live, record in the release evidence which webhook mode the CK-Labs Xsolla project actually uses:
 
-- **Combined mode:** for Publisher Accounts registered after January 22, 2025, Xsolla currently documents `order_paid` as carrying payment data, transaction details and purchased-item information, and `order_canceled` as carrying canceled-payment, transaction and purchased-item information. In this mode, Store/Payments fulfillment should not depend on legacy `payment` / `refund` webhooks that the project is not configured to receive.
-- **Separate mode:** for Publisher Accounts registered on or before January 22, 2025, Xsolla currently documents `payment` / `refund` for payment and transaction data plus `order_paid` / `order_canceled` for purchased-item state. Process all required incoming webhooks for this mode and correlate the events idempotently.
-- Do not infer the mode from account age alone when the project may have been migrated. Verify the current Publisher Account webhook settings and run Xsolla's webhook tests for the exact project.
+- **Combined mode:** for Publisher Accounts registered after January 22, 2025, Xsolla currently documents `order_paid` as carrying payment data, transaction details and purchased-item information, and `order_canceled` as carrying canceled-payment, transaction and purchased-item information. In this mode, **do not process legacy `payment` / `refund` as production entitlement mutation events**. Current Xsolla guidance says newer combined-mode projects do not need to process those legacy Store/Payments webhooks. If an unexpected signed legacy event appears in a project believed to be combined mode, authenticate and preserve it as needed for reconciliation, but fail closed on granting or clawing back value until the actual Publisher Account configuration and provider transaction are confirmed.
+- **Separate mode:** for Publisher Accounts registered on or before January 22, 2025, Xsolla currently documents `payment` / `refund` for payment and transaction data plus `order_paid` / `order_canceled` for purchased-item state. Process all required incoming webhooks for this mode and correlate them idempotently. In this model, `payment` is a financial/payment record while `order_paid` is the purchased-item fulfillment event; similarly, `refund` is the financial reversal record while `order_canceled` carries purchased-item cancellation state. Do not grant twice because both `payment` and `order_paid` exist, and do not revoke twice because both `refund` and `order_canceled` exist.
+- Do not infer the mode from account age alone when the project may have been migrated. Verify the current Publisher Account webhook settings and run Xsolla's webhook tests for the exact project. Xsolla currently says the testing section itself differs by model, so retain dated evidence of the test surface actually shown for the CK-Labs project.
+- Treat a migration from separate to combined webhooks as a payment-system change. Freeze the expected model in server configuration, update handlers deliberately, and use one underlying provider transaction/order ledger across the transition so late legacy events, combined events, retries, or support reconciliation cannot duplicate a grant or correction.
 - Treat `order_paid` or the configured successful-payment authority as the entitlement-grant event only after signature verification and transaction/account/product validation.
 - Treat `order_canceled`, `refund`, partial-refund events, chargeback/dispute events, and authoritative provider status changes as reconciliation inputs. Never rely on a missing webhook as proof that a refund or cancellation did not happen.
 
 Xsolla currently states that required webhooks can be sent sequentially and that failure to process one can prevent later webhooks from being sent. A handler that accepts one event but permanently fails before durable recording can therefore strand later entitlement or cancellation state.
+
+#### 2A. Test and sandbox webhook markers are authoritative environment inputs
+
+Xsolla's current SDK/webhook guidance documents different test markers for the two Store/Payments models:
+
+- legacy `payment` and `refund` test transactions can arrive with `transaction.dry_run: 1`; and
+- combined `order_paid` and `order_canceled` test orders can arrive with `order.mode: "sandbox"`.
+
+These test callbacks can still carry a valid Xsolla signature. A valid signature proves integrity/authenticity under the configured webhook secret; it does **not** prove that real money moved.
+
+For TycoonX:
+
+- route `transaction.dry_run: 1` and `order.mode: "sandbox"` away from production Diamonds, 30-Day VIP, Lifetime VIP, paid-purchase history, refunds, fraud sanctions, chargeback sanctions, accounting entries, and production revenue reporting;
+- never drop the environment/test marker before idempotency and entitlement decisions;
+- do not infer production status merely because an order or transaction ID looks realistic, the amount/currency is plausible, or the webhook signature verifies;
+- do not let Publisher Account webhook tests create a production entitlement even when the test uses the same user identifier or SKU as a real player;
+- if a test/sandbox marker conflicts with local production mapping, quarantine and investigate the integration instead of choosing the state that grants or removes the most value; and
+- preserve the existing rule that a valid historical production purchase can be restored/reconciled without turning a test event into production authority.
+
+This isolation does not make sandbox and production identifiers interchangeable. The dedicated transaction/external-ID gate continues to require exact identifier preservation and cross-environment `external_id` uniqueness where Xsolla requires it.
 
 ### 3. Webhook security, acknowledgement, retries, and durable processing
 
@@ -197,14 +218,33 @@ Xsolla's chargeback documentation notes that disputes may arise from game-condit
 - if a paid product cannot be delivered, do not manufacture a successful-delivery event simply to resist a refund or chargeback; and
 - where mandatory law gives a consumer a refund, price reduction, termination, conformity remedy, or other right, that right overrides this operational gate.
 
+### 12. Minimum webhook-model and test-isolation regression cases
+
+Before enabling or materially changing the Xsolla webshop, preserve evidence for at least these model-specific cases in addition to the other Xsolla verifier suites:
+
+1. combined production `order_paid` -> exactly one correct entitlement after verification;
+2. combined production `order_canceled` for that order -> at most one attributable correction;
+3. unexpected legacy `payment` in a project configured for combined mode -> no second production grant;
+4. unexpected legacy `refund` in combined mode -> no second production clawback;
+5. separate-model `payment` followed by `order_paid` -> one financial record and one item grant, not two grants;
+6. separate-model `refund` followed by `order_canceled` -> one reconciled reversal/correction, not two deductions;
+7. legacy signed `transaction.dry_run: 1` -> no production Diamonds, VIP, revenue, refund, sanction, or paid-history mutation;
+8. combined signed `order.mode: "sandbox"` -> no production Diamonds, VIP, revenue, refund, sanction, or paid-history mutation;
+9. realistic test amount, SKU, user and transaction/order IDs with a valid signature -> still isolated because the provider test marker controls environment classification;
+10. migration from separate to combined mode with a delayed legacy event and a combined event for the same provider purchase -> one underlying purchase/correction budget;
+11. model configuration disagreement between code and Publisher Account -> fail closed for paid-value mutation and reconcile instead of guessing; and
+12. legitimate historical production Lifetime VIP -> remains restorable under provider/ledger evidence without reopening its sales window or treating a sandbox event as production authority.
+
 ## Current Xsolla checkpoint
 
-As of September 7, 2026:
+As of September 8, 2026:
 
 - Xsolla's legal index lists its Refund Policy as updated June 16, 2026 and its Privacy Policy as updated June 3, 2026.
 - Xsolla states that the applicable Refund Policy type is identified in checkout.
 - Xsolla states that the relevant Xsolla group company for a purchase depends on the transaction/payment method and is shown in checkout/receipt.
 - Xsolla's current Store/Payments webhook documentation distinguishes combined and separate webhook modes based on Publisher Account setup, with January 22, 2025 as the documented default split and migration possible through Xsolla.
+- In the current combined model, `order_paid` / `order_canceled` carry the payment/transaction and item state needed for Store/Payments handling, and current Xsolla guidance says not to process legacy `payment` / `refund` for that model. In the separate model, `payment` / `refund` carry payment/transaction data while `order_paid` / `order_canceled` carry purchased-item state; the pair must converge idempotently instead of duplicating grants or deductions.
+- Xsolla currently documents `transaction.dry_run: 1` for legacy test payment/refund traffic and `order.mode: "sandbox"` for combined test order traffic. Test callbacks can be correctly signed even though no real money moves, so signature success does not override environment isolation.
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
 - Xsolla currently states that a publisher-initiated `refund` webhook is not resent and that the payment is refunded regardless of the webhook response. Manual-refund reconciliation must therefore use authoritative provider state rather than assuming a callback retry will repair a missed event.
 - Xsolla currently requires signature verification against the exact raw request body. The documented signature is the lowercase hexadecimal **SHA-1 of `raw_body + project_secret`**, compared with the value in `Authorization: Signature <signature_value>`.
