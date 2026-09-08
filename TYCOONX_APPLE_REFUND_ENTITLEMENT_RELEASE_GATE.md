@@ -54,6 +54,8 @@ For every incoming V2 notification:
 
 The iOS client may also see a verified purchase or transaction update. A single Apple purchase can therefore reach TycoonX through both client-side StoreKit and the server-notification path. Grant exactly once.
 
+For the HTTP receiver itself, separate fast durable ingest from slower entitlement work. Apple's current V2 documentation treats HTTP `200` through `206` as successful notification delivery and `40x` or `50x` as unsuccessful responses that request retry. TycoonX should verify the signed payload/app/environment context and durably record or enqueue enough notification identity for replay-safe processing before returning a success code. Time-intensive entitlement processing may then continue asynchronously. Do not return a success code merely to suppress retries while the only copy of the event still exists in process memory; if durable ingest fails, return an appropriate unsuccessful response and let the same `notificationUUID` retry safely. A retry caused by CK-Labs latency or infrastructure failure is not player fraud, hacking, chargeback abuse, or entitlement abuse.
+
 ### 3. Handle `ONE_TIME_CHARGE` as a server-side purchase signal
 
 Apple made the V2 `ONE_TIME_CHARGE` notification available in production on **May 27, 2025** for one-time In-App Purchases.
@@ -103,7 +105,11 @@ Keep a recovery process that can use Apple's current server APIs, including:
 
 Apple currently makes notification history available for up to **180 days in production** and **30 days in sandbox**. `startDate` and `endDate` are required; `startDate` must be inside the applicable retention window and precede `endDate`. If an `endDate` is in the future, Apple uses the current date instead.
 
+The Notification History date window has an important clock boundary: Apple returns notifications it **first attempted to send** during the requested `startDate`/`endDate` interval. That is not necessarily the transaction purchase date, refund date, `signedDate`, or the time TycoonX first noticed the transaction. Keep outage/recovery intervals separately from transaction chronology. Do not use purchase/refund timestamps or the largest `signedDate` alone as a durable Notification History recovery watermark. Where clock uncertainty or an outage boundary could otherwise leave a gap, scan a small deliberate overlap and rely on `notificationUUID` idempotency. Do not advance a durable recovery boundary until every page for the interval has been durably reconciled. Completing one first-send interval also does not prove that an older transaction remains currently valid; current entitlement/refund decisions still use authoritative current Apple state.
+
 For targeted recovery, use the current `transactionId` filter. Apple's older `originalTransactionId` request property is deprecated for Notification History; a current `transactionId` may itself be an original transaction identifier. Do not send both `transactionId` and `notificationType` because Apple treats those filters as mutually exclusive. If a `notificationSubtype` filter is supplied, also supply its related `notificationType`.
+
+Notification-type filtering has a second, easy-to-miss trap. Apple's current migration guidance says that when `notificationType` is supplied but `notificationSubtype` is omitted, the result contains only matching notifications that also **do not have a subtype**. For example, a type-only `DID_RENEW` query does not return `DID_RENEW` notifications with subtype `BILLING_RECOVERY`. Therefore a broad outage-recovery scan must not assume that a type-only query means "all notifications of this type." Prefer an unfiltered recovery scan when completeness matters, or intentionally enumerate the known type/subtype combinations required by the recovery plan. Absence from a narrow filtered response is not proof that no relevant event exists. Unknown future Apple types/subtypes must fail closed into review/reconciliation rather than being guessed into the nearest current event.
 
 `onlyFailures=true` is useful for missed-delivery recovery, but it has narrow semantics: Apple returns notifications that have not reached the server successfully, including notifications Apple is **currently retrying**. It is not a list of only permanently lost events. Conversely, absence from `onlyFailures` does not prove TycoonX completed the entitlement mutation; a notification may have reached the endpoint successfully and still have failed later in CK-Labs' own processing. Use the durable TycoonX entitlement ledger and authoritative transaction/refund state for that distinction.
 
@@ -261,8 +267,11 @@ Before declaring the Apple IAP path fully payment-ready, retain dated QA evidenc
 24. App Store Connect environment-routing tests proving a missing sandbox URL routes sandbox notifications to the production endpoint without creating production entitlements, and proving a sandbox-only URL does not masquerade as a configured production notification path;
 25. Notification History recovery with more than 20 records proving every page is consumed until `hasMore=false`, the `paginationToken` is advanced correctly, and replayed history events still deduplicate through the normal `notificationUUID` path;
 26. `onlyFailures=true` recovery proving currently retrying notifications are not treated as permanently lost, and that a notification absent from the failure-only response is not assumed to have completed TycoonX entitlement processing;
-27. current `transactionId` Notification History filtering proving deprecated `originalTransactionId` is not required, mutually exclusive `transactionId`/`notificationType` filters are not combined, and subtype filtering includes its related notification type; and
-28. Get Notification History HTTP `429` recovery proving `Retry-After` is respected and a delayed recovery scan cannot itself grant/revoke value or create a fraud/chargeback-abuse inference.
+27. current `transactionId` Notification History filtering proving deprecated `originalTransactionId` is not required, mutually exclusive `transactionId`/`notificationType` filters are not combined, and subtype filtering includes its related notification type;
+28. Get Notification History HTTP `429` recovery proving `Retry-After` is respected and a delayed recovery scan cannot itself grant/revoke value or create a fraud/chargeback-abuse inference;
+29. V2 receiver acknowledgement testing proving TycoonX does not return HTTP `200`-`206` before the verified event is durably recorded/queued, and that an ingest failure returns an unsuccessful response so Apple's retry remains safe and idempotent;
+30. Notification History outage-window recovery proving `startDate`/`endDate` select Apple's **first send attempt** rather than purchase/refund/`signedDate` chronology, every page is processed before the durable recovery boundary advances, and an overlapping scan cannot duplicate a grant or correction; and
+31. notification-filter recovery proving a type-only `DID_RENEW` query does not silently stand in for subtype-bearing `DID_RENEW` events such as `BILLING_RECOVERY`, and that a complete outage-recovery plan either runs unfiltered or deliberately covers the required type/subtype combinations.
 
 ## Public-legal parity check
 
@@ -288,6 +297,8 @@ If CK-Labs actually enables Apple's Send Consumption Information data flow, the 
 - StoreKit `Transaction.revocationPercentage`: https://developer.apple.com/documentation/storekit/transaction/revocationpercentage
 - Advanced Commerce API `refundRiskingPreference`: https://developer.apple.com/documentation/advancedcommerceapi/refundriskingpreference
 - App Store Server API rate limits: https://developer.apple.com/documentation/appstoreserverapi/identifying-rate-limits
+- WWDC22, What's new with in-app purchase: https://developer.apple.com/videos/play/wwdc2022/10007/
+- WWDC22, Explore in-app purchase integration and migration: https://developer.apple.com/videos/play/wwdc2022/10040/
 - WWDC25, Dive into App Store server APIs for In-App Purchase: https://developer.apple.com/videos/play/wwdc2025/249/
 - Testing refund requests: https://developer.apple.com/documentation/storekit/testing-refund-requests
 - `Transaction.currentEntitlements`: https://developer.apple.com/documentation/storekit/transaction/currententitlements
