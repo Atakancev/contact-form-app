@@ -14,6 +14,12 @@ const required = [
   'appTransactionId',
   'inAppOwnershipType',
   'Set App Account Token',
+  '`originalTransactionId`',
+  'AppTransactionIdNotSupportedError',
+  'TransactionIdIsNotOriginalTransactionIdError',
+  'FamilyTransactionNotSupportedError',
+  '20 Set App Account Token requests per second in production',
+  'binding/version epoch',
   'REFUND_FULL',
   'REFUND_PRORATED',
   'FAMILY_REVOKE',
@@ -60,8 +66,60 @@ if (!/new value overrides the previous `appAccountToken`/i.test(text)) {
   failures.push('Set App Account Token overwrite behavior must be documented.');
 }
 
-if (!/never expose this endpoint directly to an untrusted client/i.test(text)) {
+if (!/path requires the transaction's \*\*`originalTransactionId`\*\*/i.test(text)) {
+  failures.push('Set App Account Token must require originalTransactionId rather than an arbitrary Apple identifier.');
+}
+
+if (!/an `appTransactionId` is not accepted for this endpoint/i.test(text)) {
+  failures.push('Set App Account Token appTransactionId rejection safeguard is missing.');
+}
+
+if (!/a non-original transaction identifier is rejected rather than silently redirected/i.test(text)) {
+  failures.push('Set App Account Token non-original transaction rejection safeguard is missing.');
+}
+
+if (!/Family Sharing transactions with `inAppOwnershipType: FAMILY_SHARED` are not supported/i.test(text)) {
+  failures.push('Set App Account Token Family Sharing unsupported-path safeguard is missing.');
+}
+
+if (!/supports the operation for consumables, non-consumables, non-renewing subscriptions, and auto-renewable subscriptions/i.test(text)) {
+  failures.push('Set App Account Token supported-product scope is missing.');
+}
+
+if (!/current renewal transaction and subsequent renewals.*does not rewrite past transactions/is.test(text)) {
+  failures.push('Auto-renewable Set App Account Token forward-only history rule is missing.');
+}
+
+if (!/never expose it directly to an untrusted client/i.test(text)) {
   failures.push('Set App Account Token must remain a privileged server-side operation.');
+}
+
+if (!/resolve and verify the correct Apple environment, bundle\/app context, original transaction identity, product, current refund\/revocation state, and current TycoonX binding before mutation/i.test(text)) {
+  failures.push('Pre-mutation Set App Account Token authority check is missing.');
+}
+
+if (!/A `200 OK` from Set App Account Token means Apple accepted the attribution update.*does \*\*not\*\* itself prove a new payment/is.test(text)) {
+  failures.push('Set App Account Token 200-versus-payment-authority boundary is missing.');
+}
+
+if (!/20 Set App Account Token requests per second in production.*sandbox App Store Server API limits are 10% of production limits/is.test(text)) {
+  failures.push('Set App Account Token current rate-limit safeguard is missing.');
+}
+
+if (!/HTTP `429` and retryable provider\/server failures must not become evidence of player fraud or a reason to duplicate\/move paid value/i.test(text)) {
+  failures.push('Set App Account Token rate-limit/provider-failure non-fraud safeguard is missing.');
+}
+
+if (!/blindly replaying the older request can overwrite the newer valid association/i.test(text)) {
+  failures.push('Set App Account Token stale-retry overwrite hazard is missing.');
+}
+
+if (!/every retry or asynchronous replay must re-check the current CK-Labs ownership decision and binding\/version epoch immediately before calling Apple/i.test(text)) {
+  failures.push('Set App Account Token retry-time binding-version check is missing.');
+}
+
+if (!/A stale retry must be discarded or quarantined rather than allowed to roll back a newer binding/i.test(text)) {
+  failures.push('Set App Account Token stale-retry rollback blocker is missing.');
 }
 
 if (!/a prorated refund must not be processed as though Apple refunded 100% of the purchase/i.test(text)) {
@@ -82,6 +140,22 @@ if (!/`FAMILY_REVOKE` must be handled as Family Sharing loss of access, not auto
 
 if (!/same Apple transaction presented while signed into TycoonX account B, proving no duplicate grant and no silent transfer/i.test(text)) {
   failures.push('Cross-account restore regression test is missing.');
+}
+
+if (!/Set App Account Token with a non-original `transactionId`, an `appTransactionId`, and a `FAMILY_SHARED` transaction/is.test(text)) {
+  failures.push('Unsupported Set App Account Token identifier regression matrix is missing.');
+}
+
+if (!/delayed\/retried Set App Account Token request created under binding epoch A.*moved to epoch B.*cannot overwrite the newer binding/is.test(text)) {
+  failures.push('Stale Set App Account Token retry regression test is missing.');
+}
+
+if (!/Set App Account Token HTTP `429` or retryable provider error.*retry revalidates the current binding before resubmission/is.test(text)) {
+  failures.push('Set App Account Token rate-limit/retry regression test is missing.');
+}
+
+if (!/auto-renewable test fixture.*current\/future renewals.*not back-written into historical past transactions/is.test(text)) {
+  failures.push('Set App Account Token auto-renewable forward-only regression test is missing.');
 }
 
 if (!/`REFUND_PRORATED` test proving `revocationPercentage` is applied transaction-specifically and is not rounded into a full refund/i.test(text)) {
