@@ -57,6 +57,25 @@ For TycoonX:
 
 This isolation does not make sandbox and production identifiers interchangeable. The dedicated transaction/external-ID gate continues to require exact identifier preservation and cross-environment `external_id` uniqueness where Xsolla requires it.
 
+#### 2B. User-validation webhook is a one-shot account gate, not purchase authority
+
+Xsolla currently sends the `user_validation` webhook at multiple stages of the payment process to verify that the referenced player exists in the game. Current documentation says this can occur when the player selects a payment method, enters payment-form data, clicks the final pay action, and again when the payment completes and the transaction becomes `done`.
+
+The validation handler is therefore security- and availability-critical, but it is **not evidence that a purchase completed**:
+
+- verify the Xsolla signature against the exact raw request body before trusting `user.id`, country, email, phone, IP address, custom parameters, or any other validation field;
+- return success only when the authoritative TycoonX account represented by the expected server-side identifier exists and is eligible to proceed with that checkout. A successful `user_validation` response must never grant Diamonds, start or extend 30-Day VIP, grant Lifetime VIP, create paid-revenue history, or mark a transaction paid;
+- Xsolla currently states that `user_validation` is **not retried**. If the listener does not respond or returns `400` or `5xx`, the player sees an error and the subsequent payment / successful-order webhook is not sent. Treat a timeout, deployment failure, database outage, or other CK-Labs infrastructure problem as an operational checkout failure, not as proof that the player is invalid, fraudulent, compromised, hacking, or abusing entitlements;
+- use the documented invalid-user response only when the account really cannot be accepted for the checkout. Do not intentionally misclassify a temporary server failure as `INVALID_USER` merely to suppress a payment attempt or to avoid reconciling an account problem;
+- preserve the distinction between webhook identity fields. Current Xsolla SDK guidance places the player identifier in `user.id` for `user_validation` and legacy `payment`, while the combined `order_paid` model identifies the player using `user.external_id`. Normalize both through one canonical TycoonX account-mapping layer. Never compare the wrong field, coerce identifiers through lossy numeric conversion, trim meaningful characters, or silently fall back to email/name/phone when the provider identifier does not map;
+- never allow a valid `user_validation` for account A to authorize fulfillment to account B merely because both accounts share an email address, display name, device, IP address, country, support contact, or another non-authoritative attribute;
+- validation success proves only that the supplied TycoonX identifier passed the configured account gate at that moment. It does not prove that the human controlling the browser is the legitimate account owner, that the payment method is authorized, that Xsolla accepted payment, that fraud screening passed, or that the later `order_paid` belongs to the same account unless the provider/order mapping independently confirms it;
+- when an account is suspended, deleted, compromised, transferred, merged, or under a temporary security restriction, use the dedicated account-state rules to decide whether purchasing should proceed. Do not repurpose `user_validation` into a hidden sanction that permanently confiscates existing entitlements or decides an unresolved account-compromise dispute;
+- if a previously valid TycoonX identifier is replaced or migrated, preserve historical transaction-to-account evidence so old paid purchases remain reconcilable/restorable without permitting a new checkout token for one account to be rebound to another account; and
+- record only the validation facts needed for security, payment support, audit, and dispute handling. A repeated validation callback is not a reason to create multiple player records or retain duplicate sensitive payloads indefinitely.
+
+Xsolla's Publisher Account webhook settings currently provide a **"Send only necessary user parameters without sensitive data"** option that limits user-validation data to the user ID and country. CK-Labs should keep this least-data mode enabled unless a documented TycoonX payment/support need requires additional fields. Do not enable email, phone, IP, name, or custom-token parameters merely because Xsolla can send them. Any additional fields must have a defined purpose, lawful basis, retention rule, access control, and Privacy Policy/App disclosure coverage as applicable. This follows the GDPR data-minimisation principle and does not reduce Xsolla's separate responsibility for its own payment processing.
+
 ### 3. Webhook security, acknowledgement, retries, and durable processing
 
 - Use HTTPS with a valid certificate for the webhook endpoint.
@@ -218,7 +237,7 @@ Xsolla's chargeback documentation notes that disputes may arise from game-condit
 - if a paid product cannot be delivered, do not manufacture a successful-delivery event simply to resist a refund or chargeback; and
 - where mandatory law gives a consumer a refund, price reduction, termination, conformity remedy, or other right, that right overrides this operational gate.
 
-### 12. Minimum webhook-model and test-isolation regression cases
+### 12. Minimum webhook-model, validation, and test-isolation regression cases
 
 Before enabling or materially changing the Xsolla webshop, preserve evidence for at least these model-specific cases in addition to the other Xsolla verifier suites:
 
@@ -232,8 +251,14 @@ Before enabling or materially changing the Xsolla webshop, preserve evidence for
 8. combined signed `order.mode: "sandbox"` -> no production Diamonds, VIP, revenue, refund, sanction, or paid-history mutation;
 9. realistic test amount, SKU, user and transaction/order IDs with a valid signature -> still isolated because the provider test marker controls environment classification;
 10. migration from separate to combined mode with a delayed legacy event and a combined event for the same provider purchase -> one underlying purchase/correction budget;
-11. model configuration disagreement between code and Publisher Account -> fail closed for paid-value mutation and reconcile instead of guessing; and
-12. legitimate historical production Lifetime VIP -> remains restorable under provider/ledger evidence without reopening its sales window or treating a sandbox event as production authority.
+11. model configuration disagreement between code and Publisher Account -> fail closed for paid-value mutation and reconcile instead of guessing;
+12. legitimate historical production Lifetime VIP -> remains restorable under provider/ledger evidence without reopening its sales window or treating a sandbox event as production authority;
+13. valid signed `user_validation` for an existing account -> checkout may proceed but no Diamonds, VIP, paid-history or revenue grant is created;
+14. repeated `user_validation` during one checkout -> no duplicate account, order, entitlement or purchase record;
+15. temporary CK-Labs outage during `user_validation` -> checkout fails safely without an entitlement grant and without creating a fraud/abuse finding against the player;
+16. `user.id` maps to account A while combined `order_paid.user.external_id` maps to account B -> quarantine/reconcile and grant neither account until the authoritative mapping is resolved;
+17. valid validation for account A plus matching email/display name on account B -> non-authoritative attributes do not redirect the purchase to B; and
+18. least-data webhook configuration -> user ID/country are sufficient by default and extra email/phone/IP/name/custom parameters remain disabled unless a documented lawful need exists.
 
 ## Current Xsolla checkpoint
 
@@ -245,6 +270,9 @@ As of September 8, 2026:
 - Xsolla's current Store/Payments webhook documentation distinguishes combined and separate webhook modes based on Publisher Account setup, with January 22, 2025 as the documented default split and migration possible through Xsolla.
 - In the current combined model, `order_paid` / `order_canceled` carry the payment/transaction and item state needed for Store/Payments handling, and current Xsolla guidance says not to process legacy `payment` / `refund` for that model. In the separate model, `payment` / `refund` carry payment/transaction data while `order_paid` / `order_canceled` carry purchased-item state; the pair must converge idempotently instead of duplicating grants or deductions.
 - Xsolla currently documents `transaction.dry_run: 1` for legacy test payment/refund traffic and `order.mode: "sandbox"` for combined test order traffic. Test callbacks can be correctly signed even though no real money moves, so signature success does not override environment isolation.
+- Xsolla currently documents `user_validation` as a required Store/Payments gate sent multiple times during checkout. A failed/no-response validation is not retried; the player sees an error and the subsequent payment / successful-order webhook is not sent. Validation therefore must verify the real TycoonX account but must never be treated as proof that payment completed.
+- Current Xsolla SDK guidance uses `user.id` for `user_validation` and legacy `payment`, but `user.external_id` for combined `order_paid`. TycoonX must map those documented fields into one canonical account identity and fail closed on a mismatch rather than redirecting value through email, display name, phone, IP, or another weak attribute.
+- Xsolla's current webhook advanced settings provide a `Send only necessary user parameters without sensitive data` mode that limits validation data to user ID and country. Keep that least-data setting unless a documented payment/support purpose requires additional personal data.
 - Xsolla currently documents sequential required-webhook delivery, combined-webhook retries up to 20 attempts within 12 hours, and third-party refund-webhook retries up to 12 attempts within 48 hours.
 - Xsolla currently states that a publisher-initiated `refund` webhook is not resent and that the payment is refunded regardless of the webhook response. Manual-refund reconciliation must therefore use authoritative provider state rather than assuming a callback retry will repair a missed event.
 - Xsolla currently requires signature verification against the exact raw request body. The documented signature is the lowercase hexadecimal **SHA-1 of `raw_body + project_secret`**, compared with the value in `Authorization: Signature <signature_value>`.
