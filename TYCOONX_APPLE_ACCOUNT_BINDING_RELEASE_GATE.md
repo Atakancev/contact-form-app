@@ -1,6 +1,6 @@
 # TycoonX Apple Account Binding & Proportional Revocation Release Gate
 
-Last reviewed: August 30, 2026
+Last reviewed: September 8, 2026
 Owner: CK-Labs
 Scope: Apple App Store In-App Purchases for TycoonX, including Diamonds, one-time 30-Day VIP, Lifetime VIP, purchase restoration, account compromise, entitlement migration, Family Sharing, refunds, and revocations.
 
@@ -71,20 +71,39 @@ For a valid account migration or correction that CK-Labs supports, move a restor
 
 Consumed Diamonds are not a transferable non-consumable restore right. Do not recreate already consumed Diamond value on a second account merely because a historical consumable transaction is discoverable.
 
-### 5. Treat `Set App Account Token` as a privileged correction operation
+### 5. Treat `Set App Account Token` as a privileged, versioned correction operation
 
 Apple's current App Store Server API allows CK-Labs to use **Set App Account Token** to set a token for a transaction completed outside the app or to update an existing token. Apple states that the new value overrides the previous `appAccountToken` for that transaction.
 
-Because that can change the server-side association of a purchase:
+The endpoint has narrower identity semantics than a generic transaction-update API:
 
-- never expose this endpoint directly to an untrusted client;
+- the path requires the transaction's **`originalTransactionId`**;
+- an `appTransactionId` is not accepted for this endpoint;
+- a non-original transaction identifier is rejected rather than silently redirected to the original transaction;
+- Family Sharing transactions with `inAppOwnershipType: FAMILY_SHARED` are not supported;
+- Apple supports the operation for consumables, non-consumables, non-renewing subscriptions, and auto-renewable subscriptions; and
+- for an auto-renewable subscription, the new token applies to the current renewal transaction and subsequent renewals, including later upgrade/downgrade/cross-grade renewals, but does not rewrite past transactions.
+
+Do not broaden those rules locally. In particular, do not take any Apple transaction-like identifier from a client, place it into this endpoint, and assume a `200 OK` proves ownership.
+
+Because the endpoint can replace an existing server-side purchase association:
+
+- never expose it directly to an untrusted client;
 - require a verified server-side ownership decision before changing the association;
-- record the old token, new token, Apple transaction identifier, reason, actor/service, and timestamp in a security/audit record with appropriate retention controls;
+- resolve and verify the correct Apple environment, bundle/app context, original transaction identity, product, current refund/revocation state, and current TycoonX binding before mutation;
+- record the old token, new token, Apple `originalTransactionId`, reason, actor/service, binding/version epoch, and timestamp in a security/audit record with appropriate retention controls;
 - do not use the endpoint as an automatic response to every client-side mismatch;
-- if an account is suspected compromised, resolve account ownership before re-binding valuable purchases; and
-- after a change, re-run entitlement reconciliation so the purchase exists on only the intended eligible TycoonX account.
+- if an account is suspected compromised, resolve account ownership before re-binding valuable purchases;
+- treat `AppTransactionIdNotSupportedError`, `TransactionIdIsNotOriginalTransactionIdError`, `FamilyTransactionNotSupportedError`, or a not-found result as a reconciliation failure, not permission to guess another identity or create an entitlement; and
+- after a successful update, re-run entitlement reconciliation so the purchase exists on only the intended eligible TycoonX account.
 
-A Set App Account Token update is an attribution correction. It must not create a second paid entitlement or erase mandatory consumer remedies.
+A `200 OK` from Set App Account Token means Apple accepted the attribution update. It does **not** itself prove a new payment, authorize a Diamond grant, start or restart 30-Day VIP, create Lifetime VIP, reverse a refund, or transfer an entitlement before CK-Labs' own verified reconciliation completes.
+
+Apple currently lists **20 Set App Account Token requests per second in production** and states that sandbox App Store Server API limits are 10% of production limits, while reserving the right to change limits. Do not hard-code that capacity into entitlement correctness. HTTP `429` and retryable provider/server failures must not become evidence of player fraud or a reason to duplicate/move paid value.
+
+The overwrite behavior also creates a stale-retry hazard. If a legitimate binding changes from account/token A to account/token B while an earlier A-side request is delayed or queued, blindly replaying the older request can overwrite the newer valid association. Therefore every retry or asynchronous replay must re-check the current CK-Labs ownership decision and binding/version epoch immediately before calling Apple. A stale retry must be discarded or quarantined rather than allowed to roll back a newer binding.
+
+A Set App Account Token update is an attribution correction. It must not create a second paid entitlement, rewrite historical past-renewal attribution that Apple does not update, or erase mandatory consumer remedies.
 
 ### 6. Family Sharing must not look like purchase theft
 
@@ -135,11 +154,15 @@ Before considering Apple account-binding and restore behavior production-ready, 
 3. a Lifetime VIP reinstall/restore where `appTransactionId` supports continuity and the entitlement remains attached to the correct eligible TycoonX account;
 4. a legacy or intentionally tokenless verified transaction proving absence of `appAccountToken` does not automatically become a fraud decision;
 5. a controlled Set App Account Token correction proving the old/new association is audited and only one entitlement remains active;
-6. a suspected-account-compromise case proving high-value entitlement migration requires ownership verification;
-7. Family Sharing behavior, if enabled, proving a family entitlement is not confused with a direct purchase;
-8. a `REFUND_FULL` test proving only the matching paid value is corrected;
-9. a `REFUND_PRORATED` test proving `revocationPercentage` is applied transaction-specifically and is not rounded into a full refund; and
-10. a `FAMILY_REVOKE` test proving the system checks for any separate direct purchase before removing access.
+6. Set App Account Token with a non-original `transactionId`, an `appTransactionId`, and a `FAMILY_SHARED` transaction, proving each unsupported identity path fails closed without an entitlement mutation or fraud accusation;
+7. a delayed/retried Set App Account Token request created under binding epoch A after the authoritative TycoonX binding has moved to epoch B, proving the stale A request cannot overwrite the newer binding;
+8. a Set App Account Token HTTP `429` or retryable provider error proving no duplicate/moved entitlement is created and the retry revalidates the current binding before resubmission;
+9. an auto-renewable test fixture, if TycoonX ever introduces one, proving a token update affects current/future renewals but is not back-written into historical past transactions;
+10. a suspected-account-compromise case proving high-value entitlement migration requires ownership verification;
+11. Family Sharing behavior, if enabled, proving a family entitlement is not confused with a direct purchase;
+12. a `REFUND_FULL` test proving only the matching paid value is corrected;
+13. a `REFUND_PRORATED` test proving `revocationPercentage` is applied transaction-specifically and is not rounded into a full refund; and
+14. a `FAMILY_REVOKE` test proving the system checks for any separate direct purchase before removing access.
 
 ## Public-legal parity check
 
@@ -147,11 +170,14 @@ This gate does not by itself require a new public contract clause. The current T
 
 If CK-Labs later introduces a player-facing entitlement-transfer feature, changes the public meaning of Lifetime VIP restoration, or begins exposing additional Apple-linked identifiers to players or third parties, review the canonical English Terms/Privacy wording first. A material change to public legal meaning requires reopening only the affected localized document type in the required locale order.
 
-## Official Apple references checked August 30, 2026
+## Official Apple references checked September 8, 2026
 
 - `appAccountToken`: https://developer.apple.com/documentation/appstoreserverapi/appaccounttoken
 - StoreKit `appAccountToken(_:)`: https://developer.apple.com/documentation/storekit/product/purchaseoption/appaccounttoken(_:)
+- Set App Account Token: https://developer.apple.com/documentation/appstoreserverapi/set-app-account-token
+- `UpdateAppAccountTokenRequest`: https://developer.apple.com/documentation/appstoreserverapi/updateappaccounttokenrequest
 - App Store Server API: https://developer.apple.com/documentation/appstoreserverapi
+- App Store Server API rate limits: https://developer.apple.com/documentation/appstoreserverapi/identifying-rate-limits
 - `JWSTransactionDecodedPayload`: https://developer.apple.com/documentation/appstoreservernotifications/jwstransactiondecodedpayload
 - `revocationType`: https://developer.apple.com/documentation/appstoreserverapi/revocationtype
 - StoreKit `revocationPercentage`: https://developer.apple.com/documentation/storekit/transaction/revocationpercentage
