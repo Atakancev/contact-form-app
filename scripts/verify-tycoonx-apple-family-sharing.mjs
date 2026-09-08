@@ -38,9 +38,9 @@ requireMatch(gate, /30-Day VIP remains a one-time, non-renewing 30-consecutive-d
 requireMatch(gate, /Family Sharing must never restart a 30-Day VIP clock/i, 'Family Sharing gate lost 30-Day VIP restart protection.');
 requireMatch(gate, /clone purchased Diamonds to family members/i, 'Family Sharing gate lost Diamond duplication protection.');
 
-// Direct purchaser versus derivative family access.
+// Direct purchaser versus derivative family/organization access.
 requireMatch(gate, /Family Sharing beneficiary is not automatically the purchaser/i, 'Family Sharing gate lost purchaser-vs-beneficiary distinction.');
-requireMatch(gate, /direct\/purchased or family-shared/i, 'Family Sharing gate lost ownership-provenance classification.');
+requireMatch(gate, /direct\/purchased, family-shared, assigned, or another Apple-reported value/i, 'Family Sharing gate lost expanded ownership-provenance classification.');
 requireMatch(gate, /derivative entitlement.*not a second paid Lifetime VIP purchase record/is, 'Family Sharing gate lost derivative-entitlement accounting rule.');
 requireMatch(gate, /Never count family-shared access as extra Lifetime VIP sales revenue/i, 'Family Sharing gate lost revenue-accounting separation.');
 requireMatch(gate, /family member later buying Lifetime VIP directly.*separate direct-purchase provenance/is, 'Family Sharing gate lost later-direct-purchase provenance.');
@@ -51,6 +51,17 @@ requireMatch(gate, /`isFamilyShareable`/i, 'Family Sharing gate lost StoreKit fa
 requireMatch(gate, /provider-backed product configuration/i, 'Family Sharing gate lost provider-backed UI/configuration rule.');
 requireMatch(gate, /must not be shown the purchaser's protected payment information/i, 'Family Sharing gate lost purchaser payment privacy boundary.');
 requireMatch(gate, /ownership type and revocation state rather than inferring ownership/i, 'Family Sharing gate lost authoritative Apple ownership-state rule.');
+
+// September 2026 StoreKit ownership-surface asymmetry.
+requireMatch(gate, /Transaction\.OwnershipType.*purchased.*familyShared.*assigned/is, 'Family Sharing gate lost current StoreKit assigned ownership type.');
+requireMatch(gate, /user has access to the transaction through an organization/i, 'Family Sharing gate lost Apple assigned-access meaning.');
+requireMatch(gate, /App Store Server API `inAppOwnershipType`.*only `PURCHASED` and `FAMILY_SHARED`/is, 'Family Sharing gate lost current App Store Server API two-value ownership surface.');
+requireMatch(gate, /must not be treated as interchangeable exhaustive enums/i, 'Family Sharing gate lost StoreKit/server ownership-enum asymmetry rule.');
+requireMatch(gate, /treat StoreKit `assigned` as a distinct Apple-reported organizational-access state, not as `purchased` and not as `familyShared`/i, 'Family Sharing gate lost assigned-provenance separation.');
+requireMatch(gate, /do not count `assigned` access as a new Lifetime VIP sale/i, 'Family Sharing gate lost assigned-access revenue separation.');
+requireMatch(gate, /do not force an `assigned` StoreKit value into App Store Server API `PURCHASED` or `FAMILY_SHARED`/i, 'Family Sharing gate lost no-force-cast rule for assigned ownership.');
+requireMatch(gate, /Never use an `else = purchased` or equivalent fallback/i, 'Family Sharing gate lost future-ownership fail-closed rule.');
+requireMatch(gate, /unknown, newly introduced, or organizational ownership state is not evidence.*hacked.*fraud.*regional pricing.*chargeback.*compromised/is, 'Family Sharing gate lost enforcement isolation for unknown/assigned ownership.');
 
 // REVOKE versus REFUND and enforcement isolation.
 requireMatch(gate, /`REVOKE` is not the same thing as `REFUND`/i, 'Family Sharing gate lost REVOKE-vs-REFUND distinction.');
@@ -78,6 +89,12 @@ requireMatch(gate, /Family Sharing is not a regional-price bypass mechanism by i
 requireMatch(gate, /must not automatically be accused of regional-price abuse/i, 'Family Sharing gate lost no-auto-abuse rule for legitimate family access.');
 requireMatch(gate, /legitimate family-group change as account compromise by default/i, 'Family Sharing gate lost family-change vs account-compromise distinction.');
 
+// New release evidence and regression cases must protect assigned/future ownership values.
+requireMatch(gate, /StoreKit `assigned` ownership is not silently mapped to direct purchase or Family Sharing/i, 'Family Sharing gate lost assigned-ownership release evidence.');
+requireMatch(gate, /future\/unrecognized ownership values fail closed for irreversible paid-value mutation/i, 'Family Sharing gate lost unknown-ownership release evidence.');
+requireMatch(gate, /StoreKit returns ownership type `assigned`.*does not count it as a direct paid Lifetime VIP sale/is, 'Family Sharing gate lost assigned-ownership regression case.');
+requireMatch(gate, /future\/unrecognized ownership value.*does not default it to `purchased`/is, 'Family Sharing gate lost unknown-ownership regression case.');
+
 // Existing adjacent gates must still preserve the underlying product meaning.
 requireMatch(lifetime, /Apple currently describes a \*\*Non-Consumable\*\* In-App Purchase/i, 'Lifetime VIP gate lost Apple non-consumable mapping.');
 requireMatch(lifetime, /offered only during selected limited promotional sales windows/i, 'Lifetime VIP gate lost limited promotional product meaning.');
@@ -92,7 +109,7 @@ requireMatch(progress, /100\/100 localized full documents/i, 'Localization track
 requireMatch(progress, /25\/25.*target locales/is, 'Localization tracker no longer confirms all 25 target locales/hubs.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization tracker unexpectedly reports unfinished locale/document work.');
 requireMatch(progress, /September 1, 2026/i, 'Localization tracker lost TycoonX full-release date.');
-requireMatch(gate, /Last reviewed:\*\* September 7, 2026/i, 'Family Sharing gate review date is stale.');
+requireMatch(gate, /Last reviewed:\*\* September 8, 2026/i, 'Family Sharing gate review date is stale.');
 
 // Player-facing brand and stale-release guard.
 for (const [name, text] of [
@@ -113,5 +130,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: irreversible Apple Family Sharing configuration, product isolation, derivative entitlement provenance, revocation handling, sales-window integrity, localization, and mandatory-rights safeguards are present.');
+  console.log('PASS: irreversible Apple Family Sharing configuration, StoreKit ownership provenance, derivative entitlement handling, sales-window integrity, localization, and mandatory-rights safeguards are present.');
 }
