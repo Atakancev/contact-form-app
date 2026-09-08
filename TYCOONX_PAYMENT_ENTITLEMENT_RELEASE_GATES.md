@@ -1,6 +1,6 @@
 # TycoonX Payment & Entitlement Release Gates
 
-Last reviewed: September 4, 2026
+Last reviewed: September 8, 2026
 
 This is an operational release gate for TycoonX purchases through Apple App Store, Google Play, and the official CK-Labs TycoonX webshop using Xsolla. It complements the public legal documents and does not replace mandatory law, platform rules, or the transaction-specific payment-provider terms.
 
@@ -193,6 +193,76 @@ Before enabling a multi-product Google Play offer, test at minimum:
 Until those tests pass in the actual production architecture, keep Google multi-product one-time purchases disabled for TycoonX and continue using independently verifiable purchase flows.
 
 **Current Google checkpoint:** rechecked September 4, 2026 against Google's multi-product one-time product, Play Billing integration, RTDN and Developer API guidance, including documentation updated September 1, 2026.
+
+### 13. Google Play multi-quantity one-time product purchases
+
+Google Play supports purchases of more than one unit of the same one-time product in one transaction. Google describes multi-quantity as intended for consumable one-time products that can be purchased and consumed repeatedly, and instructs developers to make the app honor quantity before enabling the feature for a product in Play Console.
+
+**Default TycoonX production rule:** keep Google Play multi-quantity disabled unless CK-Labs deliberately enables it for a specific consumable Diamond product after the backend, refund handling, UI, analytics, support tooling, and regression tests below all pass. Keep it disabled for 30-Day VIP, Lifetime VIP, and any entitlement that is not intended to be purchased repeatedly.
+
+Before enabling multi-quantity for a Diamond product:
+
+- use Google Play Billing / Developer API quantity as authoritative purchase evidence; never assume every purchase has quantity 1;
+- after server-side verification and `PURCHASED` state, grant `Diamond bundle amount × verified purchased quantity` exactly once for the purchase token;
+- bind the fulfillment ledger to the purchase token, product, original purchased quantity, granted Diamond quantity, and later refunded/voided quantity so retries cannot multiply the grant;
+- quarantine impossible or materially conflicting quantity evidence instead of silently guessing quantity 1;
+- do not infer paid quantity from button taps, local cart state, a client-side success screen, or local arithmetic after checkout;
+- consume/acknowledge through the applicable Google flow only after valid processing, preserving the existing three-day acknowledgement protection;
+- show the current Google checkout before confirmation and do not replace provider-confirmed price/quantity with stale client data; and
+- do not classify a legitimate larger multi-quantity Diamond grant as entitlement abuse, fraud, hacking, or regional-price abuse merely because it exceeds the ordinary one-unit grant.
+
+Example: if one verified Google purchase has quantity 3 for a 500-Diamond consumable, TycoonX grants 1,500 Diamonds once. Replaying the app callback, RTDN, or backend reconciliation for that same purchase must not grant another 1,500 Diamonds.
+
+#### Quantity-based partial refund and void handling
+
+Google's current RTDN rules distinguish a full refund from `REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND`, which applies only to multi-quantity purchases. Google also states that one purchase can be partially voided multiple times and that refunding the final remaining quantity produces a full-refund notification.
+
+For TycoonX:
+
+- preserve the original verified purchase `quantity` and reconcile the current provider `refundableQuantity` or equivalent authoritative state before changing Diamond value;
+- treat a quantity-based partial refund as a unit correction for that purchase, not as a one-product refund from a multi-product bundle;
+- make every correction idempotent. Repeated or reordered notifications must not deduct the same refunded units twice;
+- calculate the newly refunded/voided units from authoritative cumulative state where available rather than trusting notification arrival order;
+- never claw back more Diamond value than `verified refunded unit count × original per-unit Diamond grant`, and never deduct unrelated Diamonds or VIP from separate valid purchases merely to balance a provider refund;
+- if quantity/refund evidence materially conflicts or cannot be reconciled safely, quarantine the transaction and stop automatic value correction until authoritative provider state is resolved;
+- when the remaining quantity is later fully refunded, deduct only the not-yet-corrected remainder rather than reprocessing units already handled by earlier partial refunds; and
+- preserve mandatory German/EU withdrawal, conformity, cure, price-reduction, termination, refund, liability, and other non-waivable rights regardless of Google's technical refund shape.
+
+**Voided Purchases API trap:** Google's current `purchases.voidedpurchases.list` default does not include quantity-based partial refunds. If TycoonX uses the Voided Purchases API as a recovery/reconciliation path for a multi-quantity-enabled Diamond product, request `includeQuantityBasedPartialRefund=true` and process `voidedQuantity`; otherwise a valid partial refund can be silently missed. RTDN remains a signal, and authoritative Google purchase/void state remains the reconciliation source.
+
+Example: one Google transaction buys quantity 4 of a 500-Diamond product, so TycoonX grants 2,000 Diamonds once. If Google authoritatively voids 1 unit, TycoonX may correct up to 500 Diamonds attributable to that unit. If another unit is later voided, the cumulative correction is up to 1,000 Diamonds. If Google then fully refunds the two remaining units, the total correction reaches up to 2,000 Diamonds, not 3,000 or 4,000.
+
+#### TycoonX product invariants for multi-quantity
+
+- Purchased Diamonds remain consumable virtual currency and do not expire solely because time passes.
+- 30-Day VIP remains one one-time, non-renewing 30-consecutive-day entitlement. Multi-quantity stays disabled for it; quantity 2 must never become 60 days, two overlapping clocks, or two replayable grants.
+- Lifetime VIP remains one promotional entitlement available only during selected genuine sales windows. Multi-quantity stays disabled for it; no quantity setting, stale product state, refund transition, or reconciliation path may reopen a closed sales window or create multiple Lifetime VIP entitlements.
+- Future Diamond bundle sizes, prices, eligible quantity limits, regional prices, currencies, taxes, and genuine promotions may change for future purchases. Completed one-time purchases are not retroactively repriced; a later decrease does not automatically create a refund/credit/price-match right and a later increase does not create an extra charge, except where mandatory law requires otherwise.
+
+#### Multi-quantity regression matrix
+
+Before enabling multi-quantity for any TycoonX Diamond product, test at minimum:
+
+1. quantity 1 remains unchanged;
+2. quantity 2 and the maximum intended quantity grant the exact verified amount once;
+3. duplicate app callback, RTDN, and backend retry do not duplicate the grant;
+4. a `PENDING` quantity purchase grants nothing until it becomes `PURCHASED`;
+5. app restart/backend recovery reconstructs the authoritative purchased quantity from Google;
+6. partial refund of 1 of N corrects only one unit once;
+7. duplicate or reordered partial-refund RTDN is idempotent;
+8. multiple partial refunds on one purchase use cumulative authoritative state correctly;
+9. Voided Purchases recovery with `includeQuantityBasedPartialRefund=true` sees and applies `voidedQuantity` exactly once;
+10. the same recovery call without the flag is treated as insufficient evidence that no partial refund exists;
+11. a partial refund followed by a full refund of the remaining quantity does not double-deduct prior refunded units;
+12. unrelated purchases and entitlements survive;
+13. quantity mismatch/corrupt evidence quarantines instead of guessing;
+14. 30-Day VIP and Lifetime VIP remain quantity-disabled;
+15. a closed Lifetime VIP sales window cannot be bypassed; and
+16. analytics/revenue treats one higher-quantity order as one provider purchase transaction with N units instead of inventing N independent provider charges.
+
+Until this matrix passes in the actual production architecture, keep Google Play multi-quantity disabled for TycoonX.
+
+**Current Google multi-quantity checkpoint:** rechecked September 8, 2026 against Google's current Play Billing integration, ProductPurchaseV2, RTDN, and Voided Purchases API guidance.
 
 ## Apple Custom EULA gate
 
