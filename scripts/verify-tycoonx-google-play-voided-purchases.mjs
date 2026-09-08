@@ -144,8 +144,8 @@ if (!/duplicate RTDN delivery[\s\S]*Voided Purchases polling/i.test(modernizatio
   failures.push('Existing modernization cross-path idempotency rule is missing.');
 }
 
-if (!/state-change signal/i.test(rtdn) || !/authoritative Google/i.test(rtdn)) {
-  failures.push('RTDN gate no longer requires authoritative Google reconciliation.');
+if (!/purchase state changed/i.test(rtdn) || !/authoritative current purchase\/refund\/subscription state/i.test(rtdn)) {
+  failures.push('RTDN gate no longer requires authoritative Google reconciliation after a state-change notification.');
 }
 
 if (!/25\/25/i.test(progress) || !/all 100 localized full documents are current/i.test(progress)) {
