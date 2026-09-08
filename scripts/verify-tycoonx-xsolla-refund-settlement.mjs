@@ -42,7 +42,7 @@ requireMatch('settlementGate', /September 9, 2026/, 'missing current review date
 requireMatch('settlementGate', /up to 5-10 banking days/i, 'missing current payment-method-dependent settlement window');
 requireMatch('settlementGate', /once a refund is issued, it \*\*cannot be canceled\*\*/i, 'missing irreversible-issued-refund provider rule');
 requireMatch('settlementGate', /alternative refund.*PayPal or Xsolla balance/is, 'missing alternative refund-method handling');
-requireMatch('settlementGate', /email.*alternative refunds.*contact/is, 'missing alternative-refund email requirement');
+requireMatch('settlementGate', /alternative refunds.*email.*contact/is, 'missing alternative-refund email requirement');
 requireMatch('settlementGate', /Refund webhook is sent \*\*only after the money is transferred back to the user\*\*/i, 'missing full-refund settlement timing');
 requireMatch('settlementGate', /partial-refund webhook.*when the user receives the funds/is, 'missing partial-refund settlement timing');
 requireMatch('settlementGate', /WeChat.*CNY.*USD/is, 'missing documented refund-currency discrepancy case');
