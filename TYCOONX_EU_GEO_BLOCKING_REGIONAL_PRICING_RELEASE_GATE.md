@@ -1,6 +1,6 @@
 # TycoonX EU Geo-Blocking & Regional Pricing Release Gate
 
-Last reviewed: 2026-09-01
+Last reviewed: 2026-09-09
 Owner: CK-Labs
 Scope: TycoonX official webshop, legal/marketing pages, country selectors, regional prices, Apple/Google storefront messaging, Xsolla purchase links, payment acceptance, promotions, account-region checks, and support decisions involving country or region.
 
@@ -202,19 +202,32 @@ CK-Labs still controls its own TycoonX webpages, marketing claims, country selec
 
 #### Xsolla country-source hierarchy and local-price safety
 
-Xsolla's current catalog model can determine a user's country from an explicit country value supplied by the integration or from IP-derived data when the integration does not supply the relevant country value. The integration must record which source actually selected the catalog/offer whenever that source is relevant to a dispute.
+Xsolla currently uses the user's country to select catalog prices, payment currency, and available payment methods. TycoonX must preserve which country-resolution path was actually used rather than treating every Xsolla `country` value as equivalent evidence of residence.
 
-For server-side Catalog API use, Xsolla documents `user.country.value` as taking precedence when it and `X-User-Ip` are both supplied. Xsolla also documents IPv4-specific behavior for IP-based country determination. CK-Labs must not silently assume that any IP-derived country is a verified statement of residence, nationality, tax residence, or fraudulent intent.
+The two API patterns must stay distinct:
+
+- **Catalog requests:** the Catalog subsection can receive a `country` parameter. If it is omitted, Xsolla can determine country from the request IP.
+- **Client-side payment-token/order methods:** Xsolla determines country from the IP address of the request. Xsolla warns that these client-side methods must not be called from CK-Labs' backend, because the backend/server IP can then select the wrong country, currency, and Pay Station payment methods.
+- **Server-side payment-token creation:** CK-Labs must provide either `user.country.value` or the user's IPv4 address in `X-User-Ip`. If both are supplied, Xsolla documents that `user.country.value` takes precedence.
+
+Xsolla currently documents IPv4-only support for IP-based country determination. Passing IPv6 may produce incorrect country and currency selection. If CK-Labs uses the server-side token method and cannot provide a reliable user IPv4 address, it should pass a supportable `user.country.value` rather than silently forwarding IPv6 as though Xsolla could resolve it reliably.
 
 Operational rules:
 
-- If CK-Labs sends an explicit country value to Xsolla, the value must come from a supportable source and be used for the intended catalog/payment purpose, not fabricated to obtain a cheaper offer.
-- If country is omitted and Xsolla falls back to IP, record that the source was IP fallback. IP-based country detection is not proof of residence.
-- A VPN, mobile carrier exit node, hotel Wi-Fi, roaming connection, IPv6/IPv4 handling issue, or travel can create a mismatch without fraud.
-- Where Xsolla regional restrictions are used, test both catalog visibility and order creation because Xsolla can enforce region availability at both stages.
-- Distinguish the catalog country, payment/checkout country, payment-instrument country, billing/tax evidence, and TycoonX account country rather than collapsing them into one `country` field.
+- Never accept a raw client-supplied `user.country.value` as conclusive regional-price eligibility merely because Xsolla accepts the field. If CK-Labs supplies an explicit country, bind it to the intended checkout/account flow and a supportable source.
+- If both `user.country.value` and `X-User-Ip` are sent, record that the explicit country wins under Xsolla's current precedence rule. Do not later claim the IP selected the price.
+- If country is omitted and Xsolla falls back to IP, record that the source was IP fallback. IP-based country detection is not proof of residence, nationality, tax residence, or fraudulent intent.
+- Do not run a client-side Xsolla payment-token endpoint from a server or edge function merely to keep token creation secret. That changes the country signal to the server's network location and can cause wrong currency/payment-method selection. Use the documented server-side flow when token creation belongs on the backend.
+- Xsolla exposes `user.country.allow_modify`; where a country value is passed, the documented default is `false`. Choose this deliberately. If CK-Labs sets `allow_modify: true`, a user changing the country through the provider-authorized UI is not by itself proof of fraud. If CK-Labs keeps it locked, an incorrect locked country must be correctable through an appropriate support/checkout path rather than forcing a knowingly wrong regional price.
+- A VPN, mobile carrier exit node, hotel Wi-Fi, roaming connection, IPv6/IPv4 handling issue, travel, or provider routing can create a mismatch without fraud.
+- Where Xsolla regional restrictions are used, test both catalog visibility and order creation because Xsolla can enforce region availability at both stages. A catalog item that later fails the order-stage region check is not, by itself, proof that the player manipulated the region.
+- Distinguish catalog country, payment/checkout country, payment-instrument country, billing/tax evidence, and TycoonX account country rather than collapsing them into one `country` field.
+- If country signals disagree, do not automatically choose whichever signal gives CK-Labs the higher price or supports a sanction. Reconcile the actual provider checkout state and the offer's disclosed eligibility rule.
 - If Xsolla converts a default catalog price to a user's local payment currency using its current pricing/payment rules, the final transaction total and currency confirmed for that completed purchase remain authoritative. Later FX movement does not reprice the historical purchase.
 - If a regional price is configured explicitly, keep its country, currency, amount, effective period, and SKU evidence so support can reconstruct the offer without relying on today's catalog.
+- A CK-Labs integration mistake, including server-side use of a client-side endpoint, an invalid IPv6 country input, a stale country value, or a bad proxy/header configuration, is an operational/configuration failure. It is not evidence of hacking, chargeback abuse, regional-price abuse, or entitlement abuse by the player.
+
+Founder-protective outcome: CK-Labs can enforce genuine regional offers and deliberate falsification where the evidence supports it, while avoiding false fraud findings caused by its own country-resolution architecture. The final price/currency/tax total actually shown and confirmed for a completed purchase remains the transaction reference, subject to mandatory law and lawful obvious-error correction; a later country mismatch does not retroactively reprice the completed one-time purchase.
 
 ### 12. Cross-channel price parity is not promised
 
@@ -306,6 +319,31 @@ Before changing regional price logic or provider country routing, retain evidenc
    - unjustified domestic nationality/residence discrimination is tested as well as cross-border treatment;
    - unrelated Diamonds, 30-Day VIP, and Lifetime VIP remain isolated from any correction or complaint.
 
+14. **Xsolla client-side payment endpoint accidentally called from CK-Labs backend**
+   - QA detects that Xsolla would see the backend/server IP instead of the player request IP;
+   - checkout does not silently publish the resulting wrong country/currency as an authoritative regional-price decision;
+   - the integration is moved to the documented client-side flow or documented server-side payment-token flow.
+
+15. **Xsolla server-side token contains both explicit country and `X-User-Ip`**
+   - logs/evidence record that `user.country.value` had precedence;
+   - support does not later claim that the IP selected the offer;
+   - an unexplained mismatch enters reconciliation rather than automatic sanction.
+
+16. **Xsolla receives IPv6 where country determination supports IPv4 only**
+   - the implementation does not treat an IPv6-derived country/currency result as reliable;
+   - a supportable explicit country is used for the documented server-side flow when reliable IPv4 is unavailable;
+   - no player fraud flag is created merely because CK-Labs supplied an unsupported address family.
+
+17. **Xsolla country is editable in Pay Station**
+   - `user.country.allow_modify` is an intentional configuration decision;
+   - a provider-authorized country change is not automatically treated as regional-price fraud;
+   - the final checkout eligibility, price, currency, and transaction evidence are retained.
+
+18. **Xsolla item visible in catalog but rejected at order creation by region check**
+   - the two-stage regional restriction is recognized;
+   - the order failure is not automatically classified as user manipulation;
+   - any stale country/catalog/configuration mismatch is corrected before sanctioning or repricing.
+
 ## Evidence to retain
 
 For each material regional-pricing configuration, retain a lightweight record of:
@@ -325,14 +363,14 @@ For each material regional-pricing configuration, retain a lightweight record of
 - Apple base country/region and whether each material storefront price is Apple-managed or manually managed;
 - Apple scheduled/temporary price windows used for a campaign;
 - Google product ID, applicable offer token, displayed formatted price/currency, and the time the ProductDetails were refreshed;
-- Xsolla SKU, configured regional/default price, country-selection source (`user.country.value`, country parameter, IP/X-User-Ip fallback as applicable), and final transaction currency/amount;
+- Xsolla SKU, configured regional/default price, catalog country source, payment-token integration mode (client-side or server-side), `user.country.value` when supplied, whether `X-User-Ip` supplied a supported IPv4 address, `user.country.allow_modify` when applicable, and final transaction currency/amount;
 - the historical transaction-time price/currency/provider record needed to reject retrospective repricing.
 
 Do not collect or retain extra nationality/residence/payment data merely to prove compliance. Apply GDPR data-minimization and retention rules.
 
 ## Current legal and platform checkpoint
 
-Reviewed against the law and official guidance available on 2026-09-01:
+Reviewed against the law and official guidance available on 2026-09-09:
 
 - Regulation (EU) 2018/302 on unjustified geo-blocking, especially Articles 3, 4, and 5;
 - Article 4(1)(b), which excludes electronically supplied copyright-content services from that specific equal-general-conditions rule;
@@ -342,7 +380,7 @@ Reviewed against the law and official guidance available on 2026-09-01:
 - Article 5 payment non-discrimination within accepted payment means where its statutory conditions are satisfied;
 - current Apple App Store Connect guidance on IAP availability, Apple Account storefront selection, base-country pricing, automatic tax/FX adjustments, and manual storefront pricing;
 - current Google Play Billing guidance on querying current ProductDetails/user-eligible offers and Google Play tax-inclusive pricing in Germany and other listed countries;
-- current Xsolla Catalog documentation on regional prices/restrictions and country/currency determination from explicit country values or IP-derived inputs.
+- current Xsolla Catalog/Pay Station documentation on regional prices/restrictions, client-side versus server-side payment-token country determination, `user.country.value` precedence over `X-User-Ip`, IPv4-only IP country determination, and `user.country.allow_modify`.
 
 Primary references:
 
@@ -358,6 +396,10 @@ Primary references:
 - https://support.google.com/googleplay/android-developer/answer/138000
 - https://developers.xsolla.com/items-catalog/catalog-features/regional-restrictions/
 - https://developers.xsolla.com/api/catalog/section/country-and-currency-determination
+- https://developers.xsolla.com/api/catalog/payment-client-side
+- https://developers.xsolla.com/api/catalog/payment-server-side
+- https://developers.xsolla.com/doc/shop-builder/features/pricing-policy/
+- https://developers.xsolla.com/dev-resources/faq/payments/
 
 ## Founder-protective interpretation
 
@@ -365,4 +407,4 @@ Nothing here requires CK-Labs to charge the same TycoonX price in every EU count
 
 The Article 4(1)(b) copyright-content carve-out also must not be used as a shortcut around Article 20(2) / § 22c DDG. Where a public TycoonX access condition differentiates directly by nationality or residence, retain the actual objective-criteria analysis rather than assuming that "regional pricing" is self-justifying.
 
-The protection comes from keeping the evidence straight: platform-generated future price changes are not retroactive repricing, an IP-derived country is not automatically residence or fraud, a stale Google catalog value is not price authority, a manually managed Apple storefront needs its own QA, Xsolla country-source selection must be reproducible, and any correction must remain tied to the actually invalid transaction while preserving mandatory consumer rights and unrelated legitimate purchases.
+The protection comes from keeping the evidence straight: platform-generated future price changes are not retroactive repricing, an IP-derived country is not automatically residence or fraud, a stale Google catalog value is not price authority, a manually managed Apple storefront needs its own QA, Xsolla country-source selection must be reproducible, a client-side Xsolla payment method must not accidentally run from CK-Labs' backend, unsupported IPv6 country inference must not become player misconduct, and any correction must remain tied to the actually invalid transaction while preserving mandatory consumer rights and unrelated legitimate purchases.
