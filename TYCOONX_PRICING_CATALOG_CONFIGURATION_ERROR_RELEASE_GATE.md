@@ -1,6 +1,6 @@
 # TycoonX Pricing, Catalog & Configuration Error Release Gate
 
-**Last reviewed: September 1, 2026**
+**Last reviewed: September 8, 2026**
 
 Owner: CK-Labs  
 Scope: TycoonX Diamonds, one-time 30-Day VIP, limited-window Lifetime VIP, Apple App Store purchases, Google Play purchases, the official TycoonX webshop using Xsolla, promotions, regional prices, currencies, taxes, cached prices, product mapping, duplicate grants, and mistaken catalog configuration.
@@ -20,11 +20,11 @@ This gate does not change the canonical TycoonX Terms or Purchases & Refunds Pol
 For every incident, record which of these actually happened:
 
 1. **non-authoritative display/cache error**: an old or local screen showed the wrong price but the legally relevant checkout showed the correct final total before confirmation;
-2. **catalog configuration error before contract formation**: the wrong price, currency, bundle size, SKU, product title, eligibility rule, or promotion was published but no binding transaction was yet concluded;
+2. **catalog configuration error before contract formation**: the wrong price, currency, bundle size, SKU, product title, eligibility rule, purchase option, offer, or promotion was published but no binding transaction was yet concluded;
 3. **completed transaction at the configured price**: Apple, Google Play, Xsolla, or another contracting merchant confirmed a purchase at the mistaken configured price;
 4. **product-mapping or fulfillment error**: the customer paid for one product but TycoonX delivered another product or the wrong quantity;
 5. **duplicate or excess entitlement grant**: the payment was correct, but retries, a race condition, webhook replay, restore bug, or server defect granted more value than the valid transaction purchased;
-6. **tax/currency/provider adjustment**: the local price changed because of VAT, tax, foreign exchange, provider price-tier, or storefront rules rather than a CK-Labs typo;
+6. **tax/currency/provider adjustment**: the local price changed because of VAT, tax, foreign exchange, provider price-tier, storefront, purchase-option, or provider experiment rules rather than a CK-Labs typo;
 7. **promotion/coupon misuse**: the displayed offer itself was genuine but the user bypassed an eligibility, redemption, region, or technical restriction through fraud or abuse; or
 8. **account compromise or payment fraud**: the purchase may be valid in provider records while the legitimate account owner disputes authorization.
 
@@ -35,7 +35,7 @@ These categories can lead to different legal and operational outcomes. Never lab
 Before canceling, refunding, repricing, or removing value, identify:
 
 - whether the relevant contract is with CK-Labs, Apple, Google Play, an Xsolla entity, or another merchant;
-- the exact offer and product identifier;
+- the exact offer, purchase option where applicable, and product identifier;
 - what the user saw at the legally relevant final confirmation step;
 - whether the transaction was only initiated/pending or was already completed;
 - the provider-confirmed price and currency;
@@ -124,18 +124,56 @@ Where the payment contract or refund decision is controlled by Apple, do not sen
 
 ## 7. Google Play handling
 
-Google Play's current one-time-product flow requires the backend to verify the purchase state and recommends authoritative server-side handling. Current `ProductDetails` offer data provides the user-facing formatted price, currency, offer token, valid time window, and discounted/full-price information where applicable.
+Google Play's current one-time-product object model separates **what is sold** from **how it is sold**. A one-time product can have multiple purchase options, and a purchase option can have multiple offers. The purchase option defines how the entitlement is granted, its price, and regional availability; an offer can modify the linked purchase-option price, for example through a discount or pre-order. Product ID alone is therefore not sufficient evidence of the price or eligibility that applied to a particular checkout.
+
+Current `queryProductDetailsAsync()` can return multiple user-eligible one-time offers. `QueryProductDetailsResult` can also return `UnfetchedProduct` entries explaining products that could not be fetched. Google advises against caching `ProductDetails` because stale objects can cause `launchBillingFlow()` failures.
 
 Release rules:
 
-- fetch eligible current `ProductDetails` near checkout rather than relying on a stale locally cached price;
-- use the selected offer token for the actual eligible one-time offer where required;
+- fetch eligible current `ProductDetails` near checkout rather than relying on a stale locally cached price or offer token;
+- if a product is `UnfetchedProduct`, has no currently eligible safe purchase option/offer, or the catalog response is incomplete, do not resurrect a stale cached offer merely to keep checkout available;
+- model and preserve the relevant `productId`, purchase-option identity, selected offer token/offer identity, storefront or region context, formatted displayed price/currency, purchase token/order state, and TycoonX entitlement mapping as distinct data;
+- use the selected offer token for the actual eligible one-time offer where required and do not choose an offer merely because it is the first or cheapest entry returned by an API list;
 - do not grant value while a purchase remains pending;
 - verify the completed purchase token/state before fulfillment;
 - treat the purchase token/order/provider state as separate from the mutable current catalog; and
 - use Google's refund/void state for the provider-side reversal path instead of inventing a client-only cancellation state.
 
 A stale local price should not override the actual Google Play billing sheet that clearly showed the final payable price before confirmation. Conversely, if Google Play actually completed the transaction at the configured mistaken offer price, do not silently charge or claw back the price difference without the legally applicable correction/refund path.
+
+### 7A. Multiple purchase options, offers, old clients, and fallback behavior
+
+The current Google Play model can legitimately expose different purchase options for the same product in different regions or under different sales configurations. This is not automatically a pricing error. TycoonX must not compare a completed transaction to another purchase option for the same product and conclude that the player “underpaid.”
+
+When multiple eligible offers exist, TycoonX must apply a deterministic product/merchandising rule and launch the exact offer token that matches what was shown to the player. List order is not a contractual pricing rule. A backend or client must not silently substitute the cheapest, most expensive, first returned, or previously cached offer.
+
+Google currently states that one-time-product queries return only user-eligible offers. If the user nevertheless attempts to purchase an offer for which they are no longer eligible, Google Play may inform the user and allow purchase using the underlying purchase-option offer instead. TycoonX must therefore:
+
+- not promise that a discount remains available merely because the app previously displayed it;
+- not grant a discounted quantity or promotional entitlement based only on the stale offer token if the completed provider transaction used a different eligible purchase path;
+- treat the final provider purchase sheet/confirmed transaction as the relevant provider-side purchase evidence while preserving any separate misleading-advertising or mandatory-consumer issue caused by stale TycoonX copy; and
+- never use such a fallback as evidence of player fraud, regional-price abuse, or entitlement abuse.
+
+For Play Billing Library 7 or older purchase flows, Google currently requires at least one **Buy** purchase option to be marked backwards compatible, and only Buy purchase options can be backwards compatible. Backwards compatibility is a client-compatibility mechanism, not a promise that an old price or promotion remains available forever.
+
+Release rules for old clients:
+
+- do not keep an obsolete promotional Buy purchase option active solely so an old client can continue obtaining a historic discount;
+- if the current product cannot be sold correctly and lawfully to an old client, fail closed or require an app update rather than exposing a stale/mismatched price;
+- closing a Lifetime VIP sales window must also close/deactivate every Play purchase option or offer that could still sell Lifetime VIP, including any backwards-compatible Buy path, without affecting restoration of a genuine historical purchase; and
+- unsupported/old-client behavior is an implementation issue, not proof that a player attempted abuse.
+
+Google also supports a **Rent** purchase option that grants access for a provider-defined fixed rental period. Current TycoonX Diamonds, one-time 30-Day VIP, and Lifetime VIP must not be configured as Google Play Rent products merely because one of them has a duration. The 30-Day VIP duration comes from the TycoonX product contract: it is one non-renewing entitlement for 30 consecutive days. Converting it to Google Rent semantics, or converting Lifetime VIP to a rental, would be a material product change requiring separate legal/product review and localization synchronization before release.
+
+Multi-quantity is a separate feature. Where TycoonX ever enables Google multi-quantity for an eligible consumable Diamond purchase option, use the dedicated payment-entitlement gate. Do not assume that every discount offer supports the same multi-quantity behavior.
+
+### 7B. Purchase-option price experiments and genuine price differences
+
+Google Play price experiments for one-time products operate on selected purchase options. A user can therefore legitimately receive an experiment price that differs from another user, another region, another purchase option, or the later post-experiment price.
+
+Treat a properly configured experiment price as genuine provider pricing unless evidence shows a separate configuration error. Do not retroactively reprice a completed experiment transaction when the experiment ends or a winning price is applied. If the price is personalized using automated decision-making in a situation where the EU disclosure rule applies, the separate TycoonX personalized-pricing gate and Google's `setIsOfferPersonalized()` flow remain controlling.
+
+Price-experiment, purchase-option, offer, region, tax, and FX differences must not be collapsed into an automatic fraud score.
 
 ## 8. Xsolla webshop handling
 
@@ -183,9 +221,9 @@ Where a user merely accepted an offer the official interface normally presented 
 
 ## 11. Regional pricing, tax, and FX are not automatically errors
 
-Different Apple, Google Play, Xsolla, country, currency, tax, and genuine promotion prices can be lawful.
+Different Apple, Google Play, Xsolla, country, currency, tax, purchase-option, experiment, and genuine promotion prices can be lawful.
 
-Do not call a price “wrong” merely because another country is cheaper.
+Do not call a price “wrong” merely because another country, purchase option, experiment cohort, or channel is cheaper.
 
 Before correcting an apparent discrepancy, determine whether it resulted from:
 
@@ -193,11 +231,12 @@ Before correcting an apparent discrepancy, determine whether it resulted from:
 - currency conversion;
 - provider-created comparable price tiers;
 - an intentional CK-Labs regional price;
+- a Google Play purchase option or price experiment;
 - a genuine promotional window;
 - a personalized automated price, which has its own disclosure gate; or
 - an actual catalog/configuration mistake.
 
-Travel, migration, multiple storefronts, or payment-provider routing are not by themselves proof of regional-price abuse.
+Travel, migration, multiple storefronts, provider-assigned experiment cohorts, or payment-provider routing are not by themselves proof of regional-price abuse.
 
 ## 12. Account compromise remains separate
 
@@ -217,7 +256,7 @@ Do not use a pricing-error correction as evidence that the player committed char
 When a pricing/catalog/configuration incident is reported:
 
 1. freeze further publication of the erroneous offer if still live;
-2. preserve the exact catalog, checkout, transaction, entitlement, and timestamp evidence;
+2. preserve the exact catalog, purchase option/offer where relevant, checkout, transaction, entitlement, and timestamp evidence;
 3. identify the contracting merchant and contract-formation state;
 4. classify the incident using the P0 categories above;
 5. stop duplicate fulfillment but do not automatically confiscate unrelated value;
@@ -235,7 +274,7 @@ When a pricing/catalog/configuration incident is reported:
 For a material pricing/catalog incident, retain a proportionate evidence packet containing:
 
 - incident identifier and detection time;
-- affected product/SKU/product ID;
+- affected product/SKU/product ID and, where relevant, purchase option/offer identity;
 - affected storefronts/countries;
 - intended price/quantity/product mapping;
 - actually published price/quantity/product mapping;
@@ -274,24 +313,32 @@ The production implementation should be able to demonstrate all of these without
 13. **Account compromise:** a valid low-price transaction is disputed as unauthorized; authorization and price validity are investigated separately.
 14. **German avoidance:** if CK-Labs relies on BGB § 119 for a completed CK-Labs contract, the file shows a timely § 121 decision, a § 143 counterparty declaration, and § 122 consideration rather than only an internal “void” flag.
 15. **Unrelated value isolation:** correction of one mistaken Diamond order does not remove a separate valid Lifetime VIP or unrelated purchased Diamonds.
+16. **Two Google Play purchase options:** the same product has different active regional purchase options; TycoonX uses the eligible option and does not call the cheaper region fraudulent or retroactively reprice it.
+17. **Stale Google offer:** a previously displayed discount is no longer eligible; Google Play offers the underlying purchase-option path, and TycoonX neither promises the expired discount nor grants value from the stale offer token rather than the completed transaction.
+18. **Multiple eligible Google offers:** two offers are returned; TycoonX selects according to a deterministic eligibility/merchandising rule rather than array order or cheapest-price guessing.
+19. **Unfetched product:** `queryProductDetailsAsync()` returns the product as `UnfetchedProduct`; TycoonX does not launch checkout from a cached stale `ProductDetails`/offer token.
+20. **Old Play client:** a PBL 7-or-older client can see only the intended backwards-compatible Buy path; an obsolete promotional price is not kept alive merely for compatibility.
+21. **Lifetime VIP closed sale:** every active/backwards-compatible Google sale path for Lifetime VIP is closed when the genuine sale window ends, while a valid historical purchase remains restorable.
+22. **Rent misconfiguration:** Diamonds, 30-Day VIP, or Lifetime VIP appear as a Google Rent purchase option; release is blocked rather than silently changing TycoonX product meaning.
+23. **Google price experiment:** a valid user receives an experiment price at the purchase-option level; the completed provider-confirmed transaction is not treated as a configuration error merely because another cohort paid a different price.
 
 ## Current legal and platform checkpoint
 
-This gate reflects, as of September 1, 2026:
+This gate reflects, as of September 8, 2026:
 
 - **BGB § 119** on avoidance for qualifying mistakes in declarations;
 - **BGB § 121** requiring avoidance under §§ 119/120 without culpable delay after knowledge of the ground;
 - **BGB § 122** on potential reliance damages and the knowledge/negligent-ignorance exception;
 - **BGB § 143** requiring the avoidance declaration to the proper counterparty;
-- mandatory German/EU digital-product, withdrawal, conformity, unfair-commercial-practice, checkout, and liability rules preserved by the canonical TycoonX legal documents;
+- mandatory German/EU digital-product, withdrawal, conformity, unfair-commercial-practice, checkout, personalized-pricing, and liability rules preserved by the canonical TycoonX legal documents;
 - Apple's current App Store transaction-price records and current IAP price-scheduling model;
-- Google Play's current one-time-product `ProductDetails`, purchase-state, purchase-token, backend-verification, refund, and void lifecycle; and
+- Google Play's current one-time-product object model, including multiple purchase options and offers, `ProductDetails`/`UnfetchedProduct`, eligible-offer behavior, offer tokens, backwards-compatible Buy options for old PBL clients, Rent purchase options, purchase-option price experiments, purchase-state, purchase-token, backend-verification, refund, and void lifecycle; and
 - Xsolla's current transaction/webhook/refund/reversal model.
 
 ## Founder-protective interpretation
 
-Nothing here forces CK-Labs to honor a nonbinding manipulated screenshot, stale cached display, invalid pending payment, duplicate entitlement grant, fraudulent coupon replay, or transaction that the law and applicable merchant rules validly allow to be canceled or avoided.
+Nothing here forces CK-Labs to honor a nonbinding manipulated screenshot, stale cached display, invalid pending payment, stale or ineligible Google offer, duplicate entitlement grant, fraudulent coupon replay, or transaction that the law and applicable merchant rules validly allow to be canceled or avoided.
 
-Likewise, nothing here gives a consumer a perpetual right to an accidental future catalog price.
+Likewise, nothing here gives a consumer a perpetual right to an accidental future catalog price, expired offer, obsolete backwards-compatible purchase option, or closed Lifetime VIP sales window.
 
 The protection is stronger when CK-Labs avoids overclaiming. A real completed transaction should be corrected through the actual legal and merchant path, not through a blanket clause that may be unenforceable. Transaction-specific evidence, prompt action, narrow correction, and preservation of mandatory rights protect both CK-Labs and legitimate TycoonX players.
