@@ -42,8 +42,19 @@ for (const token of [
   'Promotion and coupon mistakes',
   'Regional pricing, tax, and FX are not automatically errors',
   'Account compromise remains separate',
-  'September 1, 2026',
+  'September 8, 2026',
 ]) requireText(gate, token);
+
+for (const token of [
+  'multiple purchase options',
+  'purchase option can have multiple offers',
+  'UnfetchedProduct',
+  'selected offer token',
+  'backwards compatible',
+  'Rent',
+  'price experiments',
+  'PBL 7 or older',
+]) requireText(gate, token, `Google Play one-time-product safeguard missing: ${token}`);
 
 requireMatch(
   gate,
@@ -86,6 +97,53 @@ requireMatch(
   /valid low-price transaction is disputed as unauthorized/i,
   'Missing account-compromise versus price-validity separation.',
 );
+
+requireMatch(
+  gate,
+  /do not choose an offer merely because it is the first or cheapest entry returned/i,
+  'Google Play multiple-offer selection is not protected against array-order/cheapest-offer guessing.',
+);
+
+requireMatch(
+  gate,
+  /allow purchase using the underlying purchase-option offer instead/i,
+  'Missing Google Play stale/ineligible-offer fallback handling.',
+);
+
+requireMatch(
+  gate,
+  /do not keep an obsolete promotional Buy purchase option active solely so an old client can continue obtaining a historic discount/i,
+  'Missing old-client backwards-compatible purchase-option price safeguard.',
+);
+
+requireMatch(
+  gate,
+  /closing a Lifetime VIP sales window must also close\/deactivate every Play purchase option or offer/i,
+  'Missing Lifetime VIP Google Play purchase-option/offer sales-window closure safeguard.',
+);
+
+requireMatch(
+  gate,
+  /Current TycoonX Diamonds, one-time 30-Day VIP, and Lifetime VIP must not be configured as Google Play Rent products/i,
+  'Missing Google Play Rent product-semantic safeguard.',
+);
+
+requireMatch(
+  gate,
+  /properly configured experiment price as genuine provider pricing/i,
+  'Missing Google Play purchase-option price-experiment classification safeguard.',
+);
+
+for (const scenario of [
+  '**Two Google Play purchase options:**',
+  '**Stale Google offer:**',
+  '**Multiple eligible Google offers:**',
+  '**Unfetched product:**',
+  '**Old Play client:**',
+  '**Lifetime VIP closed sale:**',
+  '**Rent misconfiguration:**',
+  '**Google price experiment:**',
+]) requireText(gate, scenario, `Missing pricing/catalog regression scenario: ${scenario}`);
 
 requireText(
   purchases,
@@ -144,7 +202,7 @@ if (/\bbeta\b/i.test(purchases)) failures.push('Stale live-service beta wording 
 
 requireText(
   progress,
-  '100/100 localized full documents are currently confirmed current',
+  'All 25 target locales and all 100 localized full documents are current.',
   'Localization progress no longer confirms all 100 localized full documents as current.',
 );
 requireText(
@@ -166,4 +224,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('PASS: German mistake-law safeguards, contract/merchant separation, no silent retroactive repricing, fulfillment-versus-pricing classification, provider reconciliation, entitlement isolation, localization, brand and release invariants are present.');
+console.log('PASS: German mistake-law safeguards, contract/merchant separation, no silent retroactive repricing, fulfillment-versus-pricing classification, Google Play purchase-option/offer integrity, provider reconciliation, entitlement isolation, localization, brand and release invariants are present.');
