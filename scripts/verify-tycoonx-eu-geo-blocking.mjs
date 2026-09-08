@@ -35,7 +35,7 @@ requireText(gate, 'Apple and Google storefront restrictions must be classified c
 requireText(gate, 'Xsolla merchant/payment role does not remove CK-Labs interface obligations', 'geo-blocking gate');
 requireText(gate, 'No entitlement over-correction', 'geo-blocking gate');
 requireText(gate, 'unrelated purchased Diamonds, active 30-Day VIP, or valid Lifetime VIP', 'geo-blocking gate');
-requireText(gate, 'Reviewed against the law and official guidance available on 2026-09-01', 'geo-blocking gate');
+requireText(gate, 'Reviewed against the law and official guidance available on 2026-09-09', 'geo-blocking gate');
 
 // Services Directive Article 20(2) and German enforcement from 2026-07-01
 requireText(gate, 'Services Directive Article 20(2) and German § 22c DDG require a separate discrimination check', 'Services Directive gate');
@@ -54,7 +54,7 @@ requireText(gate, 'The Article 4(1)(b) copyright-content carve-out also must not
 requireText(gate, "customer's Apple Account country or region setting determine the storefront", 'Apple storefront authority');
 requireText(gate, 'Apple-managed from the base price or manually managed by CK-Labs', 'Apple pricing mode');
 requireText(gate, 'Apple may periodically update non-base storefront prices for taxes and foreign-exchange changes', 'Apple tax/FX adjustments');
-requireText(gate, 'manually managed storefront becomes CK-Labs\' responsibility', 'Apple manual storefront ownership');
+requireText(gate, "manually managed storefront becomes CK-Labs' responsibility", 'Apple manual storefront ownership');
 requireText(gate, "Do not compare today's App Store tier to an old purchase", 'Apple no retrospective comparison');
 
 // Google Play current-price authority
@@ -66,11 +66,23 @@ requireText(gate, 'tax-inclusive markets such as Germany', 'Google tax-inclusive
 
 // Xsolla country/currency authority
 requireText(gate, 'Xsolla country-source hierarchy and local-price safety', 'Xsolla country hierarchy');
+requireText(gate, 'Catalog requests:', 'Xsolla catalog country path');
+requireText(gate, 'Client-side payment-token/order methods:', 'Xsolla client-side country path');
+requireText(gate, 'Server-side payment-token creation:', 'Xsolla server-side country path');
 requireText(gate, 'user.country.value', 'Xsolla explicit country');
 requireText(gate, 'X-User-Ip', 'Xsolla IP source');
+requireText(gate, 'user.country.value` takes precedence', 'Xsolla country precedence');
+requireText(gate, 'IPv4-only support for IP-based country determination', 'Xsolla IPv4 limitation');
+requireText(gate, 'client-side methods must not be called from CK-Labs\' backend', 'Xsolla client/server boundary');
+requireText(gate, 'Never accept a raw client-supplied `user.country.value` as conclusive regional-price eligibility', 'Xsolla untrusted country input');
+requireText(gate, 'user.country.allow_modify', 'Xsolla editable-country configuration');
 requireText(gate, 'IP-based country detection is not proof of residence', 'Xsolla IP limitation');
 requireText(gate, 'catalog visibility and order creation', 'Xsolla regional restriction stages');
 requireText(gate, 'later FX movement does not reprice the historical purchase', 'Xsolla no retrospective FX');
+requireText(gate, 'server-side use of a client-side endpoint', 'Xsolla configuration-failure isolation');
+requireText(gate, 'invalid IPv6 country input', 'Xsolla configuration-failure isolation');
+requireText(gate, 'is an operational/configuration failure', 'Xsolla configuration-failure isolation');
+requireText(gate, 'It is not evidence of hacking, chargeback abuse, regional-price abuse, or entitlement abuse by the player.', 'Xsolla no false sanction');
 
 // Cross-channel pricing and transaction isolation
 requireText(gate, 'Cross-channel price parity is not promised', 'cross-channel pricing');
@@ -79,6 +91,15 @@ requireText(gate, 'Apple automatic tax/FX storefront update', 'regional test mat
 requireText(gate, 'Google Play price changed since the last app session', 'regional test matrix');
 requireText(gate, 'Xsolla explicit country value vs IP fallback', 'regional test matrix');
 requireText(gate, 'Xsolla default-price currency conversion', 'regional test matrix');
+requireText(gate, 'Xsolla client-side payment endpoint accidentally called from CK-Labs backend', 'regional test matrix');
+requireText(gate, 'Xsolla server-side token contains both explicit country and `X-User-Ip`', 'regional test matrix');
+requireText(gate, 'Xsolla receives IPv6 where country determination supports IPv4 only', 'regional test matrix');
+requireText(gate, 'Xsolla country is editable in Pay Station', 'regional test matrix');
+requireText(gate, 'Xsolla item visible in catalog but rejected at order creation by region check', 'regional test matrix');
+requireText(gate, 'payment-token integration mode (client-side or server-side)', 'regional evidence');
+requireText(gate, 'https://developers.xsolla.com/api/catalog/payment-client-side', 'Xsolla client-side reference');
+requireText(gate, 'https://developers.xsolla.com/api/catalog/payment-server-side', 'Xsolla server-side reference');
+requireText(gate, 'https://developers.xsolla.com/doc/shop-builder/features/pricing-policy/', 'Xsolla local-pricing reference');
 
 requireText(terms, 'Prices may differ between Apple App Store, Google Play, the official TycoonX web shop, countries, regions, currencies, and separate promotional sales windows.', 'canonical Terms');
 requireText(terms, 'A completed one-time purchase is not retroactively repriced', 'canonical Terms');
