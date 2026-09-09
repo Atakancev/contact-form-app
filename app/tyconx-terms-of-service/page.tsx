@@ -328,9 +328,9 @@ export default function TycoonXTermsOfService() {
             <span className="text-indigo-400 text-xs font-medium tracking-wide">TycoonX · CK-Labs</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Terms of Service</h1>
-          <p className="text-zinc-500 text-sm">Last updated August 29, 2026</p>
+          <p className="text-zinc-500 text-sm">Last updated September 10, 2026</p>
           <p className="text-zinc-400 text-sm leading-relaxed mt-6">
-            These Terms govern TycoonX accounts, gameplay, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, purchases, pricing, Apple App Store, Google Play, the official Xsolla-powered web shop, security, service changes, outages, enforcement, community features, and permanent discontinuation.
+            These Terms govern TycoonX accounts, gameplay, virtual assets, Diamonds, one-time 30-Day VIP, limited-time Lifetime VIP, purchases, pricing, Apple App Store, Google Play, the official Xsolla-powered web shop, security, Company and Union economy mechanics, tenders, service changes, outages, enforcement, community features, and permanent discontinuation.
           </p>
         </div>
       </div>
