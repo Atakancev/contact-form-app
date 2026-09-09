@@ -1,6 +1,6 @@
 # TycoonX Terms of Service
 
-**Last updated: September 5, 2026**
+**Last updated: September 10, 2026**
 
 These Terms of Service ("Terms") govern use of **TycoonX**, including the mobile and web applications, websites, support services, payment entitlements, community features, and related online services (together, the "Service"). TycoonX is operated by **CK-Labs** ("CK-Labs", "we", "us", or "our").
 
@@ -231,15 +231,19 @@ You must not use a trade, sale, auction, art purchase, company transaction, cont
 
 For example, an art purchase must be a genuine purchase because the buyer wants the artwork. Buying art mainly to send money to the artist or financially help that player is not permitted. The same principle applies to every other game mechanic: the real reason for the transaction must match the purpose of the feature being used.
 
-If you want to ask other players for financial help, use TycoonX’s designated **Begging** screen or feature where available. Other gameplay mechanics are not donation or assistance channels.
+If you want to ask other players for financial help, use TycoonX’s designated **Begging** screen or another TycoonX feature expressly designed for contributions or assistance, such as an available **Union Project** donation feature, and follow that feature’s stated purpose and limits. Gameplay mechanics that are not expressly designed for gifts, donations, contributions, or assistance are not substitute donation channels.
 
-CK-Labs may assess the surrounding context, including reciprocal value, transaction history, account relationships, repeated transfers, pricing patterns, and relevant communications. A high price, generous deal, or unusual transaction is not automatically a violation. Enforcement requires reasonable evidence that the mechanic was used mainly to transfer wealth without a genuine permitted gameplay purpose. CK-Labs may reverse prohibited transfers and proportionately restrict involved accounts, while preserving unrelated legitimate paid value and mandatory rights.
+TycoonX also contains gameplay mechanics intentionally designed to move or distribute in-game value, including company salaries and payroll, authorized company-treasury withdrawals, dividends, IPO subscriptions, buybacks, secondary offerings, tenders, and Union Project contributions. Using one of these features for its genuine intended gameplay purpose is not prohibited merely because money or value changes hands.
+
+A current server-side cap, permission, cooldown, formula, or visible UI action defines technical feature behavior but does not by itself prove that every possible use is permitted or abusive under these Terms. Sham salaries or company distributions, collusive or manipulated tender bids, circular stock or company transactions, coordinated self-dealing, alternate accounts used to evade feature limits, and similar arrangements may be investigated when there is reasonable evidence that their real purpose was prohibited value transfer, manipulation, exploit abuse, or real-money trading. A legitimate salary, dividend, tender bid, company financing decision, or Union Project contribution is not automatically a violation merely because it is generous, unusual, or economically significant.
+
+CK-Labs may assess the surrounding context, including reciprocal value, transaction history, account relationships, repeated transfers, pricing patterns, relevant company or Union records, and relevant communications. A high price, generous deal, unusual transaction, large salary, dividend, tender bid, or contribution is not automatically a violation. Enforcement requires reasonable evidence that the mechanic was used mainly for a prohibited purpose rather than its genuine permitted gameplay purpose. CK-Labs may reverse prohibited transfers and proportionately restrict involved accounts, while preserving unrelated legitimate paid value and mandatory rights.
 
 **Real-money trading and off-platform exchange.** Unless CK-Labs expressly provides a specific authorized mechanism, you must not buy, sell, broker, advertise, arrange, or exchange a TycoonX account, in-game money, Diamonds, shares, companies, property, products, art, items, services, VIP, paid entitlements, or other game value for real money, cryptocurrency, gift cards, physical goods, outside services, or any other real-world consideration.
 
-This includes direct deals and indirect, staged, or middleman arrangements where an outside payment or benefit is linked to an in-game transfer. You must not use another person, alternate account, company, art sale, trade, auction, market order, Begging, or any other mechanic to disguise or complete such an exchange.
+This includes direct deals and indirect, staged, or middleman arrangements where an outside payment or benefit is linked to an in-game transfer. You must not use another person, alternate account, company, art sale, trade, auction, market order, Begging, Union Project contribution, or any other mechanic to disguise or complete such an exchange.
 
-This rule does not prohibit purchases made from CK-Labs through an authorized TycoonX channel, including Apple App Store, Google Play, or the official TycoonX web shop using Xsolla, nor a platform-supported gift or TycoonX transfer mechanism expressly made available for that purpose. Begging allows only the in-game assistance permitted by that feature; it does not authorize outside payment in exchange for TycoonX value.
+This rule does not prohibit purchases made from CK-Labs through an authorized TycoonX channel, including Apple App Store, Google Play, or the official TycoonX web shop using Xsolla, nor a platform-supported gift or TycoonX transfer mechanism expressly made available for that purpose. Begging, Union Project contributions, and any other expressly authorized assistance or contribution feature allow only the in-game assistance or contributions permitted by that feature; they do not authorize outside payment in exchange for TycoonX value.
 
 CK-Labs may reverse in-game transactions reasonably linked to prohibited real-money trading and may apply proportionate account restrictions after reasonable investigation. CK-Labs does not guarantee, escrow, enforce, refund, or mediate unauthorized off-platform deals between users. This does not limit rights or liabilities that cannot legally be excluded.
 
