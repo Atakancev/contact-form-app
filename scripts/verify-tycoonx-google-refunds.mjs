@@ -57,6 +57,11 @@ const modernizationRequired = [
   'orders.refund',
   'purchases.subscriptions.refund',
   'revoke=true',
+  'orders older than 3 years cannot be refunded',
+  'refund-only',
+  'refund-and-revoke',
+  'successful `orders.refund` response body is empty',
+  'full-order refund endpoint',
   'Consumed in-app items',
   'TycoonX backend ledger',
   'Purchased Diamonds',
@@ -154,12 +159,56 @@ if (!/legacy `purchases\.subscriptions\.refund` endpoint is deprecated[\s\S]*`or
   failures.push('Deprecated subscription refund endpoint migration rule is missing.');
 }
 
+if (!/orders older than 3 years cannot be refunded[\s\S]*API\/tooling limit[\s\S]*not a statement that every consumer claim/i.test(modernizationText)) {
+  failures.push('Three-year orders.refund API limit is not separated from substantive consumer-right limitation periods.');
+}
+
+if (!/Refund-only versus refund-and-revoke must be explicit/i.test(modernizationText)) {
+  failures.push('Refund-only versus refund-and-revoke operational distinction is missing.');
+}
+
+if (!/successful refund-only request must \*\*not automatically revoke the TycoonX entitlement/i.test(modernizationText)) {
+  failures.push('Refund-only entitlement-preservation safeguard is missing.');
+}
+
+if (!/successful `orders\.refund` response body is empty[\s\S]*does not by itself prove every downstream TycoonX entitlement correction/i.test(modernizationText)) {
+  failures.push('Empty orders.refund success response is incorrectly treated as complete entitlement proof.');
+}
+
+if (!/refund workflow is complete only when the refund command[\s\S]*entitlement correction or intentional retention[\s\S]*finance record/i.test(modernizationText)) {
+  failures.push('End-to-end refund reconciliation completion rule is missing.');
+}
+
+if (!/do not present the three-year API limit as a contractual limitation period/i.test(modernizationText)) {
+  failures.push('Three-year API limit contractual-cutoff blocker is missing.');
+}
+
+if (!/do not rewrite the original purchase date to force an older order through the endpoint/i.test(modernizationText)) {
+  failures.push('Old-order date-rewrite blocker is missing.');
+}
+
+if (!/`orders\.refund` is a full-order refund endpoint[\s\S]*Do not invent a partial amount parameter/i.test(modernizationText)) {
+  failures.push('Full-order orders.refund versus partial-refund separation is missing.');
+}
+
 if (!/Do not deliberately create acknowledgement failures as a pseudo-refund mechanism/i.test(modernizationText)) {
   failures.push('Explicit-refund versus acknowledgement-failure safeguard is missing.');
 }
 
 if (!/Never double-remove the same Diamond value/i.test(modernizationText)) {
   failures.push('Diamond refund idempotency safeguard is missing.');
+}
+
+if (!/refund-only outcome[\s\S]*does not authorize a Diamond clawback/i.test(modernizationText)) {
+  failures.push('Diamond refund-only keep-value safeguard is missing.');
+}
+
+if (!/documented refund-only outcome can leave the original 30-Day VIP period running[\s\S]*does not restart or extend/i.test(modernizationText)) {
+  failures.push('30-Day VIP refund-only clock safeguard is missing.');
+}
+
+if (!/refund-only goodwill outcome[\s\S]*preserving a valid Lifetime VIP[\s\S]*does not reopen Lifetime VIP for new buyers/i.test(modernizationText)) {
+  failures.push('Lifetime VIP refund-only sales-window safeguard is missing.');
 }
 
 if (!/same purchase can be partially voided more than once/i.test(modernizationText)) {
@@ -214,6 +263,10 @@ if (!/Lifetime VIP remains a one-time promotional entitlement available only dur
   failures.push('Lifetime VIP limited-sales-window refund invariant is missing.');
 }
 
+if (!/ability to refund up to three years of Google orders is a high-impact financial operation[\s\S]*minimum necessary roles/i.test(modernizationText)) {
+  failures.push('Refund credential least-privilege safeguard is missing.');
+}
+
 if (!/API\/tool limitation is used to deny a mandatory consumer remedy/i.test(modernizationText)) {
   failures.push('Mandatory consumer remedy safeguard is missing from refund modernization gate.');
 }
@@ -236,4 +289,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('TycoonX Google Play refund, refund-API modernization, and collaborative chargeback verifier passed.');
+console.log('TycoonX Google Play refund, refund/revoke-mode, refund-API modernization, and collaborative chargeback verifier passed.');
