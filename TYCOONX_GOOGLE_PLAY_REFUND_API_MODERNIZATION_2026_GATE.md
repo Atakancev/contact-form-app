@@ -1,6 +1,6 @@
 # TycoonX Google Play Refund API Modernization Gate
 
-Last reviewed: September 7, 2026
+Last reviewed: September 9, 2026
 
 This gate governs Google Play refund and purchase-history tooling for TycoonX. It complements the TycoonX Purchases & Refunds Policy, `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md`, and `TYCOONX_GOOGLE_PLAY_CHARGEBACK_REVIEW_RELEASE_GATE.md`.
 
@@ -8,13 +8,16 @@ TycoonX is in full release. This gate is an operational control and does not red
 
 ## Current Google API baseline
 
-As of September 7, 2026:
+As of September 9, 2026:
 
 - Google documents `queryPurchaseHistory()` as deprecated since Play Billing Library 7.
 - For purchases that need processing on-device, use `queryPurchasesAsync(QueryPurchaseParams, PurchasesResponseListener)` where appropriate.
 - For voided or cancelled purchases, use Google's server-side Voided Purchases API rather than `queryPurchaseHistory()`.
 - If TycoonX needs a historical purchase record, maintain that history on the TycoonX backend from authoritative provider/server events rather than treating an old client purchase-history call as the ledger.
-- Google documents `orders.refund` as the current Orders API method for refunding a user's subscription or in-app purchase order.
+- Google documents `orders.refund` as the current Orders API method for issuing a **full refund** for a user's subscription or in-app purchase order.
+- Google documents that **orders older than 3 years cannot be refunded through `orders.refund`**. This is an API/tooling limit, not a statement that every consumer claim, statutory remedy, chargeback right, or other legal right automatically expires after three years.
+- `orders.refund` exposes an optional `revoke` parameter. A refund and a revocation are therefore separate operational choices: with `revoke=true`, access to the purchased item is terminated immediately according to Google's API behavior; without revocation, the refund operation must not be treated as proof that access was also terminated.
+- A successful `orders.refund` response body is empty. An HTTP/API success proves that Google accepted the refund request; it does not by itself prove every downstream TycoonX entitlement correction, RTDN delivery, Voided Purchases reconciliation step, or user-notification step completed.
 - Google's legacy `purchases.subscriptions.refund` endpoint is deprecated and points developers to `orders.refund` instead.
 - Google's current RTDN schema distinguishes `REFUND_TYPE_FULL_REFUND` from `REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND`. Quantity-based partial refunds apply only to multi-quantity purchases and the same purchase can be partially voided more than once.
 - For partially voided multi-quantity purchases, Google documents `purchases.productsv2` `refundableQuantity` as the remaining purchased quantity that has not yet been voided.
@@ -32,6 +35,56 @@ Not every legitimate Google transaction should be assumed to have an order ID us
 
 The TycoonX entitlement ledger must continue to use authoritative purchase/provider state and stable idempotency keys. An order ID is useful for refund administration, but it must not become the sole universal proof that a purchase existed or the sole deduplication key for every Google entitlement.
 
+## Refund-only versus refund-and-revoke must be explicit
+
+Do not collapse `refund` and `revoke` into one database boolean or one generic support button.
+
+Before CK-Labs calls `orders.refund`, persist at least:
+
+- the authoritative Google order ID and mapped purchase/entitlement;
+- whether the intended operation is `refund-only` or `refund-and-revoke`;
+- the legal/support/business reason for that choice;
+- who or what authorized it;
+- the time and provider environment;
+- the expected TycoonX entitlement consequence; and
+- the reconciliation/idempotency key that prevents the same order from being corrected twice.
+
+### Refund-only
+
+A refund-only operation can be intentional, for example where CK-Labs or Google grants a goodwill or promotional refund while allowing access/value to remain. A successful refund-only request must **not automatically revoke the TycoonX entitlement merely because the word `refund` appears in an RTDN, Voided Purchases result, support event, or finance record**.
+
+Reconcile the actual Google operation, authoritative provider state, the recorded refund mode, the underlying contract, and mandatory law. If another later provider event separately revokes or invalidates the purchase, process that event on its own evidence and exactly once.
+
+Do not use refund-only as a hidden way to create recurring free value, duplicate a paid grant, evade tax/accounting records, or reopen a closed promotion.
+
+### Refund-and-revoke
+
+Where the intended operation is refund-and-revoke and `revoke=true` is used, TycoonX should terminate/correct only the entitlement attributable to that Google order, subject to mandatory law and transaction-specific state.
+
+For consumed in-app items such as purchased Diamonds, Google cannot reconstruct TycoonX's internal spent/remaining balance. CK-Labs must perform the intended developer-side correction against the transaction ledger, using the existing single-correction-budget and proportionality rules. Do not double-remove value because the same refund later appears through RTDN, the Voided Purchases API, support tooling, or a retry.
+
+For a non-consumable or time entitlement, do not treat the empty `orders.refund` response as the only entitlement record. Persist the requested refund mode and reconcile the provider transaction so a transport timeout, duplicate request, or delayed notification cannot leave payment and entitlement state silently inconsistent.
+
+### API success is not an entitlement transaction
+
+The `orders.refund` HTTP/API response is not permission to grant replacement Diamonds, restart VIP, create a new purchase, reopen Lifetime VIP, or mark unrelated transactions invalid.
+
+A refund workflow is complete only when the refund command, Google provider state/events, TycoonX entitlement correction or intentional retention, finance record, and user/support record reconcile to one transaction-specific outcome.
+
+## Three-year API window is not a three-year legal cutoff
+
+Google's current `orders.refund` documentation says orders older than three years cannot be refunded through that endpoint.
+
+Operational consequences:
+
+- do not present the three-year API limit as a contractual limitation period;
+- do not deny a mandatory German/EU remedy solely because `orders.refund` refuses an older order;
+- do not rewrite the original purchase date to force an older order through the endpoint;
+- do not create a fake replacement order solely to manufacture a refundable order ID; and
+- where a legally required outcome exists outside the endpoint window, use a lawful Google Play Console/support/provider process or another legally valid remedy path.
+
+The historical purchase and entitlement record can need to outlive the refund endpoint's availability where tax, accounting, fraud, dispute, restoration, or mandatory consumer-law retention/use remains lawful and necessary.
+
 ## Explicit refunds instead of ambiguous acknowledgement failure
 
 For a purchase that CK-Labs determines is illegitimate after proper server-side validation or abuse checks, Google's current security guidance recommends explicitly refunding through `orders.refund` or another applicable Play Developer API with revocation where appropriate instead of intentionally leaving the purchase unacknowledged and relying on an automatic refund.
@@ -46,11 +99,15 @@ Purchased Diamonds do not expire solely because time passes. If Google lawfully 
 
 Where Google states that a consumed in-app item must be handled by the developer's app, TycoonX must reconcile the server-side Diamond ledger idempotently. Never double-remove the same Diamond value because both `orders.refund`, RTDN, Voided Purchases API, support tooling, or a replayed event report the same underlying refund.
 
+If CK-Labs intentionally chooses a documented refund-only outcome, the mere existence of a refund record does not authorize a Diamond clawback that contradicts that chosen outcome. If refund-and-revoke/correction is intended, correct only the attributable transaction value once.
+
 A legitimate refund does not by itself prove hacking, fraud, regional-price abuse, account compromise, or entitlement abuse.
 
 ### One-time 30-Day VIP
 
 30-Day VIP remains a one-time, non-renewing 30-day entitlement. A Google refund/revoke operation may end or correct the affected entitlement where lawful, but API retries must not restart its original 30-day clock, silently convert it into recurring billing, or remove unrelated purchases.
+
+A documented refund-only outcome can leave the original 30-Day VIP period running; it does not restart or extend that period. A refund-and-revoke outcome can end the affected remaining access where lawful, but cannot create a replacement 30-Day VIP or alter unrelated VIP purchases.
 
 If access was already partly consumed, apply the actual provider state, applicable contract, and mandatory consumer law rather than inventing a second refund or an extra punitive entitlement removal.
 
@@ -58,15 +115,18 @@ If access was already partly consumed, apply the actual provider state, applicab
 
 Lifetime VIP remains a one-time promotional entitlement available only during selected genuine sales windows. It may be withdrawn from future sale and may never return.
 
-Migrating refund APIs, changing an order-management endpoint, or closing a sales window does not by itself revoke a valid Lifetime VIP purchase. A valid Lifetime VIP may be corrected or revoked only when the underlying transaction is actually refunded, reversed, voided, invalidated, or another lawful canonical entitlement rule applies.
+Migrating refund APIs, changing an order-management endpoint, or closing a sales window does not by itself revoke a valid Lifetime VIP purchase. A valid Lifetime VIP may be corrected or revoked only when the underlying transaction is actually refunded/revoked, reversed, voided, invalidated, or another lawful canonical entitlement rule applies.
 
-A refund retry must not reopen a closed Lifetime VIP sales window or create a replacement purchase at a historical price.
+If CK-Labs intentionally authorizes a refund-only goodwill outcome while preserving a valid Lifetime VIP, record that exceptional decision explicitly. It does not reopen Lifetime VIP for new buyers, reserve an old promotional price, or create a right to the same treatment for another transaction.
+
+A refund-and-revoke action may terminate the affected Lifetime VIP where lawful, but a refund retry must not reopen a closed Lifetime VIP sales window or create a replacement purchase at a historical price.
 
 ## Whole-order, quantity and multi-product safety
 
 Do not assume every Google refund has the same granularity.
 
 - Preserve the exact Google order, product/line-item, quantity, refund, void, and entitlement relationships available from authoritative Google records.
+- `orders.refund` is a full-order refund endpoint. Do not invent a partial amount parameter or represent an item-level/quantity-level partial refund as an `orders.refund` operation when that endpoint did not perform it.
 - Quantity-based partial-refund events must correct only the affected quantity/value.
 - A whole-order refund must not be implemented as a second independent refund for each TycoonX ledger event unless the provider record actually requires that treatment.
 - For Google multi-product one-time purchases, follow the dedicated multi-product rules and do not manufacture an item-level provider refund when Google's applicable purchase/refund mechanism does not support it.
@@ -137,7 +197,9 @@ Google's API limits and operational tooling do not remove statutory remedies. If
 
 Do not tell a consumer that a mandatory remedy is unavailable merely because a deprecated API was removed, an automated refund endpoint rejected the request, an order is too old for that endpoint, or CK-Labs must use a different provider process.
 
-## Security and account compromise
+## Security, access control, and account compromise
+
+The ability to refund up to three years of Google orders is a high-impact financial operation. Restrict production refund credentials and support tooling to the minimum necessary roles, log the authoritative order and requested refund mode, and require transaction-specific review for unusual or high-value refunds. Do not expose Google API credentials, purchase tokens, or refund controls in client code.
 
 A suspected account compromise, device change, refund request, chargeback, provider mismatch, or missing historical client record is a reason to verify authoritative evidence, not an automatic admission of fraud.
 
@@ -150,7 +212,13 @@ Fail the affected refund/reconciliation workflow if any of these occur:
 - production logic depends on deprecated `queryPurchaseHistory()` for historical authority;
 - a voided purchase is ignored because it does not appear in a client purchase-history call;
 - a developer fabricates an order ID or product mapping to force `orders.refund` through;
+- an order older than three years is silently rewritten or replaced only to force `orders.refund` through;
+- the three-year `orders.refund` API limit is presented as an automatic three-year cutoff for mandatory consumer remedies;
+- support cannot distinguish `refund-only` from `refund-and-revoke`;
+- a refund-only operation automatically removes the corresponding TycoonX entitlement without transaction-specific authority;
+- a successful empty `orders.refund` response is treated as proof that entitlement correction and provider reconciliation also completed;
 - a refund API success directly grants a replacement entitlement;
+- a developer invents a partial-amount parameter for the full-order `orders.refund` endpoint;
 - the same refund removes purchased value twice through API, RTDN, Voided Purchases, support tooling, or replay;
 - a quantity-based partial refund is treated as the full original purchase without authoritative quantity reconciliation;
 - a final `REFUND_TYPE_FULL_REFUND` after earlier partial refunds removes the original quantity a second time;
@@ -160,9 +228,13 @@ Fail the affected refund/reconciliation workflow if any of these occur:
 - TycoonX promises or fabricates an item-level Google refund inside a multi-product one-time purchase when the applicable Google refund route supports only the whole purchase;
 - an acknowledgement timeout is intentionally used as the refund mechanism;
 - a lawful refund is automatically labelled fraud;
-- a Diamond refund removes unrelated purchased Diamonds;
-- a 30-Day VIP refund restarts the 30-day clock or creates recurring billing;
-- a Lifetime VIP refund or bundle migration reopens a closed sales window;
+- a refund-only Diamond order is clawed back despite an authoritative intentional keep-value decision;
+- a Diamond refund-and-revoke removes unrelated purchased Diamonds;
+- a refund-only 30-Day VIP is restarted or extended instead of preserving only its original period;
+- a 30-Day VIP refund-and-revoke restarts the 30-day clock or creates recurring billing;
+- a Lifetime VIP refund-only goodwill decision is used to reopen or reserve a closed sales window;
+- a Lifetime VIP refund/revoke or bundle migration reopens a closed sales window;
+- production refund credentials are exposed to the client or an untrusted support surface;
 - a deprecated subscription-refund endpoint is used for a newly launched recurring product; or
 - an API/tool limitation is used to deny a mandatory consumer remedy.
 
@@ -170,6 +242,7 @@ Fail the affected refund/reconciliation workflow if any of these occur:
 
 Re-check before material refund-tooling changes:
 
+- Google Play Billing, Manage subscriptions and one-time purchases: https://developer.android.com/google/play/billing/manage-purchases
 - Google Play Billing, Query Purchase History: https://developer.android.com/google/play/billing/query-purchase-history
 - Google Play Developer API, `orders.refund`: https://developers.google.com/android-publisher/api-ref/rest/v3/orders/refund
 - Deprecated `purchases.subscriptions.refund`: https://developers.google.com/android-publisher/deprecated-apis/purchases.subscriptions/refund
