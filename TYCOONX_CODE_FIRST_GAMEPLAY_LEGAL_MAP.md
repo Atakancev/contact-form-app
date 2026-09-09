@@ -29,7 +29,7 @@ Therefore the public rule is now correctly narrower:
 - mechanics not designed for gifts, donations, contributions or assistance are not substitute donation channels; and
 - an authorized contribution feature still cannot be used for RMT, exploit laundering, coordinated limit evasion or another separately prohibited arrangement.
 
-This clarification is already synchronized to all 25 localized Terms routes.
+This clarification is synchronized to all 25 localized Terms routes.
 
 ## 3. Company employment, treasury and public-company mechanics already reviewed
 
@@ -91,7 +91,7 @@ That matters legally: CK-Labs should not silently treat every such specialist cr
 
 However, technical availability does not protect deliberate abuse. Repeated or coordinated use mainly to extract treasury value outside the genuine supply purpose, especially together with manipulated request terms or controlled accounts, may be reviewed. Ordinary one-off use of a visible control should not automatically be punished as knowing exploit abuse without evidence of knowledge, repetition or another relevant factor.
 
-## 7. New integrity finding: linked supply-request update price validation is asymmetric
+## 7. Company integrity finding: linked supply-request update price validation is asymmetric
 
 The current richer `company_supply_request_create(...)` validates a linked legacy export contract or V2 offer and prevents the initial supply-request unit price from exceeding the linked commercial price.
 
@@ -187,7 +187,7 @@ Code-first enforcement rules therefore remain:
 
 ## 13. Player-facing synchronization for the Company commerce audit
 
-`app/tycoonx-legal/CompanyCommerceRuleNotice.tsx` now provides the same substantive clarification in English plus all 25 target locales. It is route-gated to:
+`app/tycoonx-legal/CompanyCommerceRuleNotice.tsx` provides the same substantive clarification in English plus all 25 target locales. It is route-gated to:
 
 - `/tyconx-terms-of-service`; and
 - `/tycoonx-legal/{locale}/terms`.
@@ -198,19 +198,69 @@ The notice clarifies that supply, warehouse fulfillment, exports and tenders are
 
 Detailed internal control: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.
 
-## 14. Union contribution mechanics already confirmed
+## 14. Union treasury/governance now reviewed from current Flutter + production server behavior
 
-`donate_union_project(...)` is an expressly authorized contribution mechanic. Legitimate contributions within the feature’s stated purpose and current limits are not prohibited disguised gifts.
+The current Flutter Union service invokes dedicated RPCs for membership fees, maintenance, leader treasury deposits/withdrawals, projects/donations, level upgrades, polls, member removal and Union closure. Ordinary Union settings such as description, membership fee, approval mode and payment mode are currently updated directly on the `unions` table.
 
-Attempts to split activity across controlled accounts primarily to defeat feature limits, manipulate project rewards, recycle invalid value or exchange outside consideration for in-game outcomes remain reviewable under anti-evasion, exploit, genuine-purpose and RMT rules.
+Current production behavior reviewed:
 
-The next Union review must go beyond projects and inspect treasury deposits/withdrawals, membership fees, maintenance, governance, closure, polls and upgrades.
+- `pay_union_membership_fee()` moves the active member’s player money into Union treasury and advances the next fee-due time;
+- `union_leader_deposit(...)` is leader-only and intentionally moves player value into Union treasury;
+- `union_leader_withdraw(...)` is leader-only and intentionally moves Union treasury value into the leader’s wallet;
+- `pay_union_maintenance_now()` can pay one currently unpaid maintenance day from Union treasury;
+- active `union_daily_sweep()` automatically handles due auto-pay membership fees and daily Union maintenance;
+- the current maintenance sweep closes an active Union after seven unpaid maintenance days and marks active members as left;
+- `donate_union_project(...)` enforces the current 50% cumulative per-user project-contribution cap, moves completed project value into Union treasury, grants Union XP, and can distribute a configured portion of project value among active members;
+- `start_union_level_upgrade()` is leader-only, immediately debits current upgrade cost and stores a future completion time; `sync_union_level_upgrade(...)` later spends the required XP, raises the level and updates the member limit;
+- Union polls are gameplay governance tools whose vote behavior follows the poll configuration; and
+- `collapse_union()` is leader-only, closes the Union, marks active members left, cancels pending applications, disables recruitment and records the closure.
 
-## 15. Other deployed economy surfaces identified for continuing code-first review
+Legal baseline:
+
+- these are genuine gameplay mechanics, so a legitimate high membership fee, deposit, leader withdrawal, project contribution/reward, maintenance charge or upgrade expense is not automatically cheating merely because significant value moves;
+- Union treasury is shared in-game state rather than a bank account, real-world escrow, partnership asset or personal member claim;
+- inability to afford a fee or maintenance consequence is gameplay, not fraud;
+- a legitimate project reward is a feature-defined Union distribution rather than a disguised gift by another player;
+- current numeric fees, thresholds, contribution caps, reward percentages, upgrade costs/durations and member limits are implementation/balance rules, not permanent contractual promises;
+- controlled-account limit evasion, modified-client state manipulation, prohibited RMT, exploit-created value and duplicate/replay abuse remain reviewable where evidence supports them; and
+- outages, duplicate jobs, stale state and account compromise must be separated from intentional abuse.
+
+Detailed internal control: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.
+
+## 15. Union authority security finding: generic `unions` UPDATE is broader than the normal UI
+
+The production `unions` table currently has RLS enabled. Its UPDATE policy allows an active Union leader or officer to update the relevant Union row through `is_union_leader_or_officer(id)`. Authenticated UPDATE privileges currently cover all `unions` columns, including `leader_id`, `status`, `union_level`, `union_xp`, `member_limit`, maintenance state and treasury.
+
+The current Finance V2 deferred authority trigger checks treasury consistency while Finance V2 is in `FULL_AUTHORITY`, but the reviewed trigger does not make non-treasury governance/progression fields immutable. The reviewed Union constraints likewise do not make `leader_id` immutable.
+
+This produces an important server-authority distinction:
+
+- the ordinary Flutter settings UI writes only a small intended subset of settings;
+- a modified/direct client may be able to attempt broader state changes that the UI never offers;
+- server acceptance caused by an over-broad authorization surface is not proof that manipulated state was intended gameplay; and
+- later leader-only RPCs must not rely on a manipulable leadership field without a hardened transition path.
+
+Engineering follow-up outside this legal project should narrow generic Union UPDATE to intended mutable settings, make server-owned state non-writable by ordinary clients, and implement any intended leadership transfer through a dedicated constrained/audited server operation. No production policy or function was modified by this review.
+
+## 16. Player-facing synchronization for the Union audit
+
+`app/tycoonx-legal/UnionGovernanceRuleNotice.tsx` now provides the Union clarification in English plus all 25 required locales and is route-gated to the canonical English Terms route and every localized Terms route.
+
+It explains that:
+
+- membership fees, leader treasury movements, projects/rewards, maintenance, upgrades and polls are genuine mechanics;
+- current repeated unpaid maintenance can close a Union, with the present implementation using seven unpaid days;
+- current numeric mechanics may be rebalanced prospectively;
+- Union treasury is shared fictional game state rather than an individual real-money claim;
+- outages, duplicate jobs, stale state and account compromise can justify transaction/state reconciliation where reliable evidence exists; and
+- modified-client state changes, alternate-account limit evasion, replay/duplicate exploits and prohibited RMT remain prohibited even where a defective server authorization surface accepts a request.
+
+Arabic is rendered RTL and the regional language variants remain separately localized.
+
+## 17. Other deployed economy surfaces identified for continuing code-first review
 
 The read-only production inventory and Flutter repository confirm additional active or retained systems requiring implementation-first legal review:
 
-- Union treasury, fees, projects, polls, maintenance, upgrades and closure;
 - social art bidding, art-auction finalization, direct offers, moderation and Begging;
 - player markets, producer/shop/industrial purchases, auto-fill/auto-market and market events;
 - Government Market bidding, awards, delivery and synchronization;
@@ -223,7 +273,7 @@ The read-only production inventory and Flutter repository confirm additional act
 - Football Manager listings, bids, offers, salaries and auctions; and
 - leaderboards, competitions, rewards and ranking systems.
 
-## 16. Code-first enforcement principles
+## 18. Code-first enforcement principles
 
 For each remaining mechanic:
 
@@ -240,21 +290,21 @@ For each remaining mechanic:
 
 German BGB § 307 remains relevant because standard terms must be clear and understandable and must not unreasonably disadvantage users. Mandatory digital-product conformity/remedy rules remain separate from gameplay discipline.
 
-## 17. Next code-first gameplay legal audit order
+## 19. Next code-first gameplay legal audit order
 
 Completed substantive clusters:
 
 1. **Company governance/value movement:** salaries, payroll, treasury distributions, IPO/dividends/buybacks/offerings.
 2. **Company commerce:** supply requests, member delivery, warehouse specialist fulfillment, export/procurement offers, live/blind tenders, completion, failure/penalties and authority.
 3. **Union contribution exception:** Union Project donation as an authorized contribution mechanic.
+4. **Union treasury/governance:** membership fees, leader deposits/withdrawals, daily maintenance/closure, projects/rewards, polls, level upgrades, closure, alternate-account/limit evasion and the generic Union UPDATE authority risk.
 
 Next queue:
 
-1. **Union treasury/governance:** membership fees, leader deposits/withdrawals, maintenance, projects/rewards, polls, level upgrades, closure and alternate-account/limit-evasion boundaries.
-2. **Art/Begging:** auction bids, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, collusion and self-bidding.
-3. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery and award correction.
-4. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
-5. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
-6. **Social/UGC:** Company/Union chat, rooms, art/music/books, impersonation, scams, moderation, appeals and user-content rights.
+1. **Art/Begging:** auction bids, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, collusion and self-bidding.
+2. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery and award correction.
+3. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
+4. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
+5. **Social/UGC:** Company/Union chat, rooms, art/music/books, impersonation, scams, moderation, appeals and user-content rights.
 
 Future runs should continue from this deployed implementation inventory rather than generic game-policy templates.
