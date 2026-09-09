@@ -1,6 +1,6 @@
 # TycoonX Apple Send Consumption Information V2 Release Gate
 
-Last reviewed: September 8, 2026
+Last reviewed: September 9, 2026
 
 This is an internal release, privacy, refund-evidence, and operations gate for TycoonX. It is intentionally narrow. It governs CK-Labs participation in Apple's refund-decision process through **Send Consumption Information V2** after a verified `CONSUMPTION_REQUEST` notification. It does not replace `TYCOONX_APPLE_REFUND_ENTITLEMENT_RELEASE_GATE.md`, `TYCOONX_APPLE_SIGNED_DATA_JWS_VERIFICATION_RELEASE_GATE.md`, the TycoonX Privacy Policy, Purchases & Refunds Policy, mandatory EU/German consumer law, or Apple rules.
 
@@ -75,6 +75,8 @@ If consent is withdrawn, expires, or becomes invalid because the purpose or data
 
 Where GDPR consent is the applicable legal basis for this optional sharing, apply the GDPR standard of freely given, specific, informed and unambiguous consent, and make withdrawal as easy as giving consent. Do not make continued access to ordinary TycoonX gameplay conditional on consent to this optional Apple refund-evidence sharing unless a separate lawful necessity can actually be established.
 
+The presence of `consumptionRequestReason` in Apple's incoming notification is **not** proof that the customer consented to CK-Labs sending its own consumption data back to Apple. Receiving Apple's notification and responding with CK-Labs-held evidence are separate processing steps.
+
 ## 4. `202 Accepted` is not a refund decision
 
 A successful Send Consumption Information call returns **HTTP 202 Accepted**. Treat that response only as confirmation that Apple received the consumption information.
@@ -127,6 +129,43 @@ Apple treats the developer preference as only one factor in its refund decision.
 Use a preference only where CK-Labs has a documented, transaction-specific basis that is consistent with the actual delivery/consumption evidence and mandatory consumer rights. If the evidence is incomplete or the product cannot be mapped fairly, omitting this optional field is preferable to manufacturing certainty.
 
 A refund preference is not a fraud finding and must not be copied into account sanctions, chargeback-abuse flags, exploit enforcement, or account-compromise conclusions.
+
+## 7A. `consumptionRequestReason` is the customer's stated reason, not verified fact
+
+Apple includes `consumptionRequestReason` in `CONSUMPTION_REQUEST` notifications. Apple's current ordinary reason values are:
+
+- `UNINTENDED_PURCHASE`;
+- `FULFILLMENT_ISSUE`;
+- `UNSATISFIED_WITH_PURCHASE`;
+- `LEGAL`; and
+- `OTHER`.
+
+Apple describes this field as the **customer-provided reason for a refund request**. It can inform CK-Labs' optional `refundPreference` together with the verified transaction and TycoonX server-side evidence, but it is not independently verified proof of what occurred.
+
+Accordingly:
+
+- `UNINTENDED_PURCHASE` does not by itself prove a minor purchase, account compromise, payment-authentication failure, fraud, or abuse;
+- `FULFILLMENT_ISSUE` must trigger reconciliation against delivery, entitlement, outage, and provider evidence. If CK-Labs actually failed to deliver or TycoonX was unavailable, `deliveryStatus` must reflect the facts rather than contradicting the customer merely to support `DECLINE`;
+- `UNSATISFIED_WITH_PURCHASE` is not proof that the digital product was legally defective, and it is not proof that the product was fully consumed;
+- `LEGAL` is not a legal conclusion by Apple and must not be mapped automatically to `DECLINE` or `GRANT_FULL`. Where applicable, route it for consumer-rights/legal review so mandatory German/EU remedies remain independently available; and
+- `OTHER` is only Apple's catch-all reason category. Do not invent free-text details, sensitive facts, or a misconduct narrative that Apple did not provide.
+
+There must be **no static reason-to-decision table** such as `UNINTENDED_PURCHASE -> DECLINE`, `UNSATISFIED_WITH_PURCHASE -> DECLINE`, or `FULFILLMENT_ISSUE -> GRANT_FULL`. A reason may contribute to the refund preference only when combined with transaction-specific, supportable evidence.
+
+A reason code must never by itself create or increase a fraud score, chargeback strike, suspension, regional-price-abuse flag, exploit flag, account-compromise finding, or entitlement-abuse label. Do not use refund reasons as durable player reputation, marketing segmentation, offer targeting, or unrelated behavioral analytics.
+
+### Forward compatibility
+
+Apple can add or change enum values. If TycoonX receives an unknown future `consumptionRequestReason`:
+
+1. verify the signed notification normally;
+2. preserve the raw provider value only in the narrowly scoped refund/reconciliation record where needed;
+3. do not coerce the unknown value to `OTHER`, `LEGAL`, or another known reason;
+4. do not default the refund preference to `DECLINE`;
+5. do not mutate paid entitlements or account enforcement state; and
+6. route the case to safe reconciliation until the current Apple documentation and TycoonX mapping are reviewed.
+
+Repeated or replayed `CONSUMPTION_REQUEST` notifications for the same transaction must converge on one refund-evidence case. A duplicate reason notification cannot create a second sanction, second entitlement correction, or conflicting provider submission.
 
 ## 8. `consumptionPercentage` means consumed share, not Apple's final refund share
 
@@ -219,8 +258,9 @@ Before enabling this flow in production:
 - confirm the TycoonX Privacy Policy accurately describes the categories shared with Apple and the refund-review purpose;
 - keep App Store Connect privacy answers accurate and up to date for the deployed data flow;
 - collect/share no more than the current V2 payload and the minimum transaction context needed to produce it;
-- retain only the evidence reasonably necessary to prove what was sent, under which consent, for which transaction, and Apple's response/status;
-- do not place App Store Connect private keys, bearer tokens, or unnecessary full payloads into general analytics, crash logs, or support transcripts; and
+- treat `consumptionRequestReason` as refund-case data, not as a general analytics or marketing attribute;
+- retain only the evidence reasonably necessary to prove what Apple reported, what CK-Labs sent, under which consent, for which transaction, and Apple's response/status;
+- do not place App Store Connect private keys, bearer tokens, unnecessary full payloads, or refund reasons into general analytics, crash logs, or support transcripts; and
 - distinguish CK-Labs-held records from consumption data Apple independently holds. Apple's current documentation directs customers seeking access to or deletion of consumption information Apple holds to Apple's own privacy-request channel.
 
 The current canonical TycoonX Privacy Policy already states that consent-required processing is requested separately, that purchase/refund/entitlement data is processed, and that Apple may receive information needed for refunds and entitlement validation. If the deployed consumption-information implementation introduces data categories, purposes, or retention materially beyond that description, update the canonical Privacy Policy first and synchronize all 25 localized Privacy Policies before release.
@@ -233,6 +273,7 @@ In particular:
 
 - do not use `DECLINE` systematically to resist a remedy that mandatory law requires;
 - an Apple refund decision cannot contract away statutory conformity, cure, price-reduction, termination, repayment, withdrawal, liability, or other non-waivable rights where they apply;
+- a `LEGAL` consumption request reason cannot be treated as a waiver of a statutory remedy or as proof that no statutory remedy exists;
 - a player who refuses optional Apple consumption-data sharing must not lose ordinary contractual gameplay/service merely for refusing that consent; and
 - where GDPR consent is relied upon, withdrawal applies prospectively and must not be treated as fraud or bad faith.
 
@@ -265,8 +306,14 @@ Do not enable or rely on this integration in production until test evidence cove
 21. arbitrary client/support-provided transaction ID -> cannot trigger provider evidence submission;
 22. Apple/CK-Labs outage or rate limit -> reconciliation/retry, not player sanction;
 23. privacy label or Privacy Policy no longer matches deployed sharing -> production use blocked until corrected;
-24. consent withdrawal -> future sharing stops without retroactively changing prior valid Apple refund decisions; and
-25. mandatory EU/German remedy -> remains available independently of CK-Labs' optional refund preference.
+24. consent withdrawal -> future sharing stops without retroactively changing prior valid Apple refund decisions;
+25. mandatory EU/German remedy -> remains available independently of CK-Labs' optional refund preference;
+26. `FULFILLMENT_ISSUE` + verified CK-Labs server outage -> truthful undelivered status rather than automatic denial;
+27. `UNINTENDED_PURCHASE` -> no automatic minor/fraud/account-compromise finding;
+28. `LEGAL` -> consumer-rights/legal review path rather than automatic grant or denial;
+29. unknown future `consumptionRequestReason` -> no coercion to `OTHER`, no default `DECLINE`, and no entitlement mutation;
+30. duplicate/replayed reason notification for one transaction -> one refund-evidence case and no duplicate sanction/correction; and
+31. incoming reason present but no consent to share CK-Labs consumption data -> reason may be recorded minimally for the refund case, but no Send Consumption Information call.
 
 ## Operational owner checklist
 
@@ -278,6 +325,8 @@ Before release, the payment/privacy owner should be able to answer yes to all of
 - [ ] We can prove consent scope/version/time and process withdrawal for future sharing.
 - [ ] Every payload is transaction-specific and derived from the durable TycoonX ledger.
 - [ ] `deliveryStatus`, `sampleContentProvided`, `consumptionPercentage`, and `refundPreference` are truthful rather than optimized for denial.
+- [ ] `consumptionRequestReason` is treated as the customer's stated reason, not verified fact or enforcement authority.
+- [ ] Unknown future Apple reason values fail safe without automatic denial.
 - [ ] A `202` response cannot mutate paid entitlement state.
 - [ ] Final Diamond/VIP correction happens only from authoritative Apple refund/revocation evidence.
 - [ ] Production and sandbox are isolated.
@@ -290,10 +339,12 @@ Before release, the payment/privacy owner should be able to answer yes to all of
 
 - Apple Developer Documentation, **Send Consumption Information**: https://developer.apple.com/documentation/appstoreserverapi/send-consumption-information
 - Apple Developer Documentation, **ConsumptionRequest**: https://developer.apple.com/documentation/appstoreserverapi/consumptionrequest
+- Apple Developer Documentation, **consumptionRequestReason**: https://developer.apple.com/documentation/appstoreservernotifications/consumptionrequestreason
 - Apple Developer Documentation, **customerConsented**: https://developer.apple.com/documentation/appstoreserverapi/customerconsented
 - Apple Developer Documentation, **consumptionPercentage**: https://developer.apple.com/documentation/appstoreserverapi/consumptionpercentage
 - Apple Developer Documentation, **deliveryStatus**: https://developer.apple.com/documentation/appstoreserverapi/deliverystatus
 - Apple Developer Documentation, **refundPreference**: https://developer.apple.com/documentation/appstoreserverapi/refundpreference
+- Apple WWDC24, **Explore App Store server APIs for In-App Purchase**: https://developer.apple.com/videos/play/wwdc2024/10062/
 - Apple WWDC25, **Dive into App Store server APIs for In-App Purchase**: https://developer.apple.com/videos/play/wwdc2025/249/
 - Apple, **App privacy details on the App Store**: https://developer.apple.com/app-store/app-privacy-details/
 - GDPR, Regulation (EU) 2016/679, Articles 4 and 7: https://eur-lex.europa.eu/eli/reg/2016/679/oj
@@ -301,4 +352,4 @@ Before release, the payment/privacy owner should be able to answer yes to all of
 
 ## Release decision
 
-**FAIL CLOSED** if TycoonX sends consumption information without valid consent, relies on V1 for a new implementation, reports unsupported delivery/consumption facts, treats `202 Accepted` as a refund decision, uses a `CONSUMPTION_REQUEST` as entitlement or fraud authority, lets the evidence submission alter 30-Day VIP/Lifetime VIP semantics, reopens Lifetime VIP sales, or uses optional refund evidence to bypass mandatory consumer/data-protection rights.
+**FAIL CLOSED** if TycoonX sends consumption information without valid consent, relies on V1 for a new implementation, reports unsupported delivery/consumption facts, treats `202 Accepted` as a refund decision, uses a `CONSUMPTION_REQUEST` or `consumptionRequestReason` as entitlement or fraud authority, maps a customer reason mechanically to denial, mishandles an unknown future reason, lets the evidence submission alter 30-Day VIP/Lifetime VIP semantics, reopens Lifetime VIP sales, or uses optional refund evidence to bypass mandatory consumer/data-protection rights.
