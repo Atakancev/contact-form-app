@@ -3,7 +3,7 @@
 **Last reviewed: September 9, 2026**
 
 Owner: CK-Labs  
-Scope: Google Play pricing and distribution changes scheduled for September 14, 2026, including Argentina, Azerbaijan, Uzbekistan, Ethiopia, TycoonX Diamonds, one-time 30-Day VIP, limited-window Lifetime VIP, local currencies, taxes, FX, promotions, historical transactions, refunds, support and accounting.
+Scope: Google Play pricing and distribution changes scheduled for September 14, 2026, including Argentina, Azerbaijan, Uzbekistan, Ethiopia, TycoonX Diamonds, one-time 30-Day VIP, limited-window Lifetime VIP, local currencies, taxes, FX, promotions, historical transactions, refunds, support, settlement and accounting.
 
 ## Purpose
 
@@ -42,6 +42,22 @@ Do not recreate Google's converted prices with CK-Labs' own FX formula and assum
 
 If a post-cutover price or country is ambiguous, stale or missing, fail closed for the affected optional purchase path until the current Google configuration is clear. Do not improvise a price from an old USD cache.
 
+### 2A. Keep customer currency, developer default currency, settlement currency and accounting currency separate
+
+A buyer-facing local-currency migration is not proof that every Google financial record will use that same currency.
+
+Google's current merchant-registration documentation says the **developer default currency is based on the location of the developer's payments profile**. That is a developer-account property, not a statement of the currency shown to a buyer in Argentina, Azerbaijan, Uzbekistan or Ethiopia. Google financial reports/payout records may also use settlement/reporting fields that differ from the buyer-facing amount.
+
+TycoonX therefore must model these concepts separately where they exist:
+
+- customer-facing catalog/checkout currency;
+- provider-confirmed transaction amount and transaction currency;
+- CK-Labs developer default currency;
+- Google settlement/payout/reporting currency and amount; and
+- CK-Labs internal accounting currency and FX normalization.
+
+Never overwrite the provider-confirmed customer transaction amount/currency because a payout report, developer default currency or bookkeeping ledger uses another currency. Conversely, do not infer CK-Labs' payout currency merely from the currency displayed to the player.
+
 ### 3. Invalidate stale USD display caches near checkout
 
 TycoonX-controlled Android purchase screens must refresh current Google product/offer pricing close to checkout rather than continuing to display a pre-cutover USD value as though it were current.
@@ -53,6 +69,8 @@ Google notes that price, SKU and distribution changes can take a few hours to ap
 - do not grant a product from stale client price metadata;
 - preserve any material misleading-display complaint for review; and
 - where the current offer cannot be determined safely, stop that purchase path cleanly rather than guessing.
+
+Google's locally relevant pricing patterns may also produce rounded or otherwise market-specific prices rather than a mathematically exact live-FX conversion. A difference from CK-Labs' own currency calculator is not automatically a catalog error.
 
 ### 4. Historical USD transactions remain historical transactions
 
@@ -99,6 +117,8 @@ Before the cutover, confirm the intended Ethiopia distribution state for each pa
 
 A provider eligibility change is not an entitlement grant. Server-side purchase verification and exactly-once fulfillment remain required.
 
+Google's statement that existing products remain available during the transition is a continuity statement for products that are actually configured to be available. It must not be interpreted as an instruction to reactivate a disabled product, expired promotion, closed Lifetime VIP window or country-restricted offer.
+
 ### 8. Regional currency is not proof of residence or abuse
 
 A Google local-currency result, Play Country value, IP location, account language, payment country and legal residence are different concepts.
@@ -121,11 +141,14 @@ Do not over-apply the goods-specific prior-price rule to ordinary TycoonX digita
 
 Google states that its market-specific pricing can add tax in selected countries and apply country-specific pricing patterns. TycoonX must therefore not hard-code a global rule that every numeric Google catalog value is tax-inclusive or tax-exclusive.
 
+As of the September 9, 2026 review, Google's current Play Console tax/VAT documentation lists **Azerbaijan and Uzbekistan** among markets where Google supports tax-inclusive pricing. **Argentina and Ethiopia are not listed in that current tax-inclusive-pricing list.** This is a dated operational checkpoint, not a permanent tax-law conclusion and not permission to infer that every Argentina or Ethiopia transaction will always be tax-exclusive. Re-check current Google documentation and the actual checkout/reporting evidence at and after the cutover.
+
 For each affected market:
 
 - use the current Google-provided checkout/catalog presentation appropriate to the integration;
 - test the final billing flow before treating a displayed value as the payable total;
-- do not add a second CK-Labs tax amount on top of a provider total merely because the currency changed; and
+- do not add a second CK-Labs tax amount on top of a provider total merely because the currency changed;
+- do not infer tax treatment solely from a currency code or from another affected market; and
 - keep any CK-Labs-controlled German total-price display compliant with mandatory German consumer-price rules.
 
 ### 11. Accounting normalization must not overwrite transaction evidence
@@ -167,6 +190,11 @@ Before treating the September 14 cutover as commercially complete, demonstrate a
 13. **Channel isolation:** a Google price conversion does not rewrite Apple or Xsolla historical prices.
 14. **Future price change:** a later local-price decrease creates no automatic price match for a completed one-time purchase, and a later increase creates no extra charge, except where mandatory law requires otherwise.
 15. **Tax presentation:** each affected market's Google checkout is tested rather than applying one global tax-included/tax-excluded assumption.
+16. **Tax-inclusive checkpoint:** Azerbaijan and Uzbekistan are handled according to Google's current tax-inclusive pricing support without copying that assumption automatically to Argentina or Ethiopia.
+17. **Tax-list drift:** if Google's tax/VAT list changes after this review, TycoonX follows the current provider/checkout evidence rather than a hard-coded September 9 list.
+18. **Currency-role separation:** a customer local-currency purchase can coexist with a different CK-Labs developer default, settlement/reporting or accounting currency without overwriting the customer's transaction evidence.
+19. **Google continuity wording:** "existing products remain available" does not reactivate a disabled Lifetime VIP sale, expired promotion or intentionally unavailable product.
+20. **Local pricing pattern:** provider rounding or local price-pattern differences from CK-Labs' own FX calculation are not treated as player abuse or an automatic catalog error.
 
 ## Current legal and platform checkpoint
 
@@ -174,6 +202,8 @@ Reviewed against official material available on September 9, 2026:
 
 - Google Play Developers Newsletter, August 2026: September 14, 2026 local-currency conversion for Argentina, Azerbaijan and Uzbekistan; new Ethiopia paid-app/in-app-product support with USD to ETB conversion; existing products remain available during the transition.
 - Google Play Console Help, "Set up your app's prices": Play converts base prices into market-specific local currency, can add tax in selected countries, applies locally relevant pricing patterns and valid exchange rates, and notes that price/SKU/distribution changes can take a few hours to propagate.
+- Google Play Console Help, "Tax rates and value-added tax (VAT)": the current tax-inclusive-pricing list includes Azerbaijan and Uzbekistan but does not currently list Argentina or Ethiopia.
+- Google Play Console Help, "Supported locations for developer and merchant registration": developer default currency is based on the developer's payments-profile location, which is separate from the buyer-facing market currency.
 - German PAngV § 3: where applicable to CK-Labs' own consumer-facing offer/price advertising, the total price must be given and highlighted if broken into components.
 - German UWG § 5: misleading commercial practices capable of affecting a consumer's transactional decision remain prohibited.
 
@@ -181,11 +211,13 @@ Primary references:
 
 - https://developer.android.com/newsletter/play-monthly/2026/content/august
 - https://support.google.com/googleplay/android-developer/answer/6334373
+- https://support.google.com/googleplay/android-developer/answer/138000
+- https://support.google.com/googleplay/android-developer/answer/9306917
 - https://www.gesetze-im-internet.de/pangv_2022/__3.html
 - https://www.gesetze-im-internet.de/uwg_2004/__5.html
 
 ## Founder-protective interpretation
 
-This gate does not promise one worldwide TycoonX price and does not stop CK-Labs from changing Google Play prices, Diamond bundle prices/content, VIP prices, regional prices, currencies or genuine future promotions for future purchases. It prevents a provider currency migration from corrupting historical transaction evidence, reopening Lifetime VIP, changing entitlement meaning, manufacturing a false discount, or turning normal provider transition behavior into unsupported abuse findings.
+This gate does not promise one worldwide TycoonX price and does not stop CK-Labs from changing Google Play prices, Diamond bundle prices/content, VIP prices, regional prices, currencies or genuine future promotions for future purchases. It prevents a provider currency migration from corrupting historical transaction evidence, reopening Lifetime VIP, changing entitlement meaning, manufacturing a false discount, confusing customer currency with settlement/accounting currency, double-adding tax, or turning normal provider transition behavior into unsupported abuse findings.
 
-The safest rule is simple: preserve old transactions as they occurred, use Google's current authoritative price and distribution state for new Google purchases, keep entitlement identity separate from currency, keep provider channels separate, and preserve all mandatory consumer remedies and non-waivable rights.
+The safest rule is simple: preserve old transactions as they occurred, use Google's current authoritative price and distribution state for new Google purchases, keep entitlement identity separate from currency, keep customer/settlement/accounting currencies separate, keep provider channels separate, and preserve all mandatory consumer remedies and non-waivable rights.
