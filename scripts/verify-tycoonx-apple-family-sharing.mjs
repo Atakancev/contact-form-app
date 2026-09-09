@@ -52,6 +52,22 @@ requireMatch(gate, /provider-backed product configuration/i, 'Family Sharing gat
 requireMatch(gate, /must not be shown the purchaser's protected payment information/i, 'Family Sharing gate lost purchaser payment privacy boundary.');
 requireMatch(gate, /ownership type and revocation state rather than inferring ownership/i, 'Family Sharing gate lost authoritative Apple ownership-state rule.');
 
+// Modern Apple account/app correlation for Family Sharing.
+requireMatch(gate, /`appTransactionId` as a globally unique identifier for each Apple Account per app/i, 'Family Sharing gate lost appTransactionId per-Apple-Account/app identity rule.');
+requireMatch(gate, /each family member receives a different `appTransactionId`/i, 'Family Sharing gate lost distinct family-member appTransactionId rule.');
+requireMatch(gate, /static.*redownloads.*refunds.*repurchases.*storefront changes/is, 'Family Sharing gate lost appTransactionId stability scope.');
+requireMatch(gate, /`appAccountToken` is \*\*not available for family-shared transactions\*\*/i, 'Family Sharing gate lost Apple family-shared appAccountToken limitation.');
+requireMatch(gate, /absence of `appAccountToken` on a verified `FAMILY_SHARED` transaction as an expected Apple condition/i, 'Family Sharing gate lost missing-appAccountToken safe handling.');
+requireMatch(gate, /do not fabricate a missing family-member `appAccountToken`, reuse the purchaser's token/i, 'Family Sharing gate lost appAccountToken fabrication/reuse blocker.');
+requireMatch(gate, /one verified `appTransactionId`.*TycoonX account A.*TycoonX account B.*fail closed/is, 'Family Sharing gate lost conflicting appTransactionId account-binding safeguard.');
+requireMatch(gate, /do not automatically merge accounts, move Lifetime VIP, duplicate paid value, or sanction either account/i, 'Family Sharing gate lost account-merge and enforcement isolation for appTransactionId conflicts.');
+requireMatch(gate, /do not infer current Family Sharing membership from the continued presence of the same `appTransactionId`/i, 'Family Sharing gate lost current-family-membership versus stable-ID boundary.');
+requireMatch(gate, /do not infer that the holder paid for the transaction.*resides in a particular country.*committed fraud/is, 'Family Sharing gate lost appTransactionId non-authority safeguards.');
+requireMatch(gate, /`appTransactionId` is unavailable.*do not deny a valid purchase, restoration, refund, or mandatory consumer remedy/is, 'Family Sharing gate lost older/missing appTransactionId fallback protection.');
+requireMatch(gate, /persistent pseudonymous provider identifier/i, 'Family Sharing gate lost appTransactionId privacy classification.');
+requireMatch(gate, /GDPR Article 5 purpose limitation and data minimization/i, 'Family Sharing gate lost GDPR purpose-limitation/data-minimization rule.');
+requireMatch(gate, /do not repurpose it for advertising, unrelated behavioral profiling, or marketing segmentation/i, 'Family Sharing gate lost appTransactionId secondary-use blocker.');
+
 // September 2026 StoreKit ownership-surface asymmetry.
 requireMatch(gate, /Transaction\.OwnershipType.*purchased.*familyShared.*assigned/is, 'Family Sharing gate lost current StoreKit assigned ownership type.');
 requireMatch(gate, /user has access to the transaction through an organization/i, 'Family Sharing gate lost Apple assigned-access meaning.');
@@ -89,11 +105,18 @@ requireMatch(gate, /Family Sharing is not a regional-price bypass mechanism by i
 requireMatch(gate, /must not automatically be accused of regional-price abuse/i, 'Family Sharing gate lost no-auto-abuse rule for legitimate family access.');
 requireMatch(gate, /legitimate family-group change as account compromise by default/i, 'Family Sharing gate lost family-change vs account-compromise distinction.');
 
-// New release evidence and regression cases must protect assigned/future ownership values.
+// Release evidence and regression cases must protect assigned/future ownership values and modern identity fields.
 requireMatch(gate, /StoreKit `assigned` ownership is not silently mapped to direct purchase or Family Sharing/i, 'Family Sharing gate lost assigned-ownership release evidence.');
 requireMatch(gate, /future\/unrecognized ownership values fail closed for irreversible paid-value mutation/i, 'Family Sharing gate lost unknown-ownership release evidence.');
+requireMatch(gate, /purchaser and each family beneficiary.*distinct verified `appTransactionId` values.*without being merged/is, 'Family Sharing gate lost distinct-family-identity release evidence.');
+requireMatch(gate, /verified `FAMILY_SHARED` fulfillment works when Apple omits `appAccountToken`/i, 'Family Sharing gate lost family-shared no-appAccountToken release evidence.');
+requireMatch(gate, /conflicting `appTransactionId` to TycoonX-account mapping fails closed/i, 'Family Sharing gate lost conflicting appTransactionId release evidence.');
 requireMatch(gate, /StoreKit returns ownership type `assigned`.*does not count it as a direct paid Lifetime VIP sale/is, 'Family Sharing gate lost assigned-ownership regression case.');
 requireMatch(gate, /future\/unrecognized ownership value.*does not default it to `purchased`/is, 'Family Sharing gate lost unknown-ownership regression case.');
+requireMatch(gate, /Purchaser and family member present different verified `appTransactionId` values.*does not merge/is, 'Family Sharing gate lost distinct appTransactionId regression case.');
+requireMatch(gate, /Verified `FAMILY_SHARED` transaction has no `appAccountToken`.*does not fabricate, reuse, or guess an account token/is, 'Family Sharing gate lost missing appAccountToken regression case.');
+requireMatch(gate, /Same verified `appTransactionId` appears.*second TycoonX account.*quarantined for reconciliation/is, 'Family Sharing gate lost conflicting account-binding regression case.');
+requireMatch(gate, /appTransactionId.*remains unchanged.*current access follows verified Apple ownership\/revocation evidence/is, 'Family Sharing gate lost stable-ID versus current-entitlement regression case.');
 
 // Existing adjacent gates must still preserve the underlying product meaning.
 requireMatch(lifetime, /Apple currently describes a \*\*Non-Consumable\*\* In-App Purchase/i, 'Lifetime VIP gate lost Apple non-consumable mapping.');
@@ -109,7 +132,7 @@ requireMatch(progress, /100\/100 localized full documents/i, 'Localization track
 requireMatch(progress, /25\/25.*target locales/is, 'Localization tracker no longer confirms all 25 target locales/hubs.');
 requireMatch(progress, /Exact next unfinished locale\/document: None/i, 'Localization tracker unexpectedly reports unfinished locale/document work.');
 requireMatch(progress, /September 1, 2026/i, 'Localization tracker lost TycoonX full-release date.');
-requireMatch(gate, /Last reviewed:\*\* September 8, 2026/i, 'Family Sharing gate review date is stale.');
+requireMatch(gate, /Last reviewed:\*\* September 9, 2026/i, 'Family Sharing gate review date is stale.');
 
 // Player-facing brand and stale-release guard.
 for (const [name, text] of [
@@ -123,12 +146,12 @@ if (/TycoonX[^\n]{0,80}\bbeta\b/i.test(gate)) {
   errors.push('Apple Family Sharing gate contains stale live-service beta wording.');
 }
 
-console.log('TycoonX Apple Family Sharing legal, catalog, and entitlement QA');
+console.log('TycoonX Apple Family Sharing legal, catalog, identity, and entitlement QA');
 
 if (errors.length) {
   console.error('\nFAILED:');
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log('PASS: irreversible Apple Family Sharing configuration, StoreKit ownership provenance, derivative entitlement handling, sales-window integrity, localization, and mandatory-rights safeguards are present.');
+  console.log('PASS: irreversible Apple Family Sharing configuration, StoreKit ownership provenance, appTransactionId/appAccountToken identity handling, derivative entitlement handling, sales-window integrity, localization, and mandatory-rights safeguards are present.');
 }
