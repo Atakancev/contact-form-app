@@ -91,6 +91,32 @@ Therefore:
 
 TycoonX must remain correct even if queue ordering is disabled, a subscriber restarts, messages are replayed, or multiple workers receive related events close together.
 
+## 5A. Google multi-quantity partial refunds and multi-product distinction
+
+Google currently distinguishes a **multi-quantity purchase** from a **multi-product one-time-product purchase**. TycoonX must not treat those as the same billing shape.
+
+For a multi-quantity one-time-product purchase:
+
+- `VoidedPurchaseNotification.refundType = REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND` means part of the purchased quantity was voided;
+- Google states that one purchase may be partially voided multiple times;
+- when the remaining total quantity is refunded, Google reports `REFUND_TYPE_FULL_REFUND` rather than another quantity-partial value;
+- the current `purchases.productsv2` response exposes the original `quantity` and the remaining `refundableQuantity`, where `refundableQuantity` reflects quantity-based partial refunds and full refunds; and
+- TycoonX must reconcile the **cumulative refunded quantity** from authoritative purchase state and its own already-applied correction ledger, rather than assuming that each partial-refund notification represents one new unit to claw back.
+
+For quantity reconciliation, the safe target is the provider-supported equivalent of:
+
+`cumulative refunded quantity = original quantity - current refundableQuantity`
+
+The next TycoonX economic correction is only the positive delta between that cumulative provider-refunded quantity and the quantity already corrected for that purchase. Duplicate or replayed partial-refund notifications must therefore converge to zero additional correction when `refundableQuantity` has not changed.
+
+Example: a player buys quantity `3` of a 1,000-Diamond Google product, so the authorized purchase represents 3,000 Diamonds. If authoritative Google state moves from `refundableQuantity = 3` to `2`, TycoonX corrects at most the transaction-specific value for one 1,000-Diamond unit. A duplicate RTDN while authoritative state remains `2` performs no second correction. If a later partial refund changes the value to `1`, only one additional unit is corrected. If the final remaining unit is then refunded and Google reports a full refund with `refundableQuantity = 0`, TycoonX corrects only the final outstanding unit; it must not claw back all three units again.
+
+Google billing **consumption** is separate from a player's later in-game spending of Diamonds. Consumption state must not be used as a substitute for `refundableQuantity`, and a consumed purchase must not be assumed fully spent by the player. Refund correction remains transaction-scoped and must preserve unrelated genuine purchased value and mandatory consumer rights.
+
+For a Google **multi-product one-time-product purchase**, one Google purchase can contain multiple different one-time products. Google currently states that individual items in such a multi-product purchase cannot be refunded separately: refund/cancellation is for the entire multi-product purchase, and all entitlements associated with that purchase are canceled. The RTDN `sku` is not supplied for a multi-product purchase, so TycoonX must resolve the purchase's full item set from the appropriate Google Play Developer API line-item data rather than guessing from a missing SKU.
+
+Do not enable a new TycoonX multi-quantity or multi-product Google purchase shape unless fulfillment, partial/full refund handling, finance reconciliation, support tooling, and idempotency have been tested for that exact shape. A multi-product bundle containing Lifetime VIP requires a separate explicit review before sale because a bundle refund must not be allowed to reopen a closed Lifetime VIP sales window or create a replacement sale.
+
 ## 6. Xsolla webhook retry and reconciliation
 
 For the official TycoonX webshop:
@@ -228,22 +254,27 @@ Before release, production payment changes, webhook/queue migrations, or recover
 6. Google related RTDN messages arrive out of order and the backend still converges from Developer API state.
 7. Pub/Sub replay/seek redelivers an acknowledged historical notification.
 8. Google purchase is voided, then an older positive RTDN is replayed.
-9. Google quantity-based partial refund changes only the matching purchased quantity.
-10. Xsolla `order_paid` is retried after the original handler committed but failed to acknowledge.
-11. Xsolla cancellation/refund evidence arrives before a delayed payment webhook for the same transaction.
-12. Xsolla webhook evidence conflicts and the transaction is reconciled against current Xsolla transaction/report evidence.
-13. 1,000 purchased Diamonds are granted once, refunded once, then an old payment event is replayed without re-granting or double-clawing back.
-14. 30-Day VIP duplicate delivery does not restart or extend the 30 consecutive days.
-15. Lifetime VIP historical restore succeeds after the sales window closes without making Lifetime VIP newly purchasable.
-16. Refunded transaction A cannot revoke a later valid repurchase B of the same product.
-17. An outage backlog contains paid, refund, and duplicate events in mixed arrival order.
-18. A worker crashes after entitlement commit but before webhook acknowledgment; retry produces no second grant.
-19. Two concurrent workers attempt the same Diamond grant and only one economic mutation commits.
-20. A support agent retries a missing-delivery correction after the first correction actually committed.
-21. A provider introduces an unknown event enum and TycoonX performs no irreversible paid mutation until reviewed.
-22. Apple, Google, and Xsolla raw identifiers that happen to look identical remain isolated by channel namespace.
-23. Current catalog price changes after purchase and later reconciliation preserves the original completed transaction amount/currency.
-24. A transport duplicate or reordering event creates no fraud strike, regional-price-abuse flag, account-compromise finding, or suspension by itself.
+9. Google quantity `3` of a 1,000-Diamond product moves from `refundableQuantity = 3` to `2`; only one 1,000-Diamond unit becomes newly eligible for transaction-specific correction.
+10. The same quantity-partial-refund RTDN is delivered again while `refundableQuantity` remains `2`; no second correction occurs.
+11. A second partial refund moves `refundableQuantity` from `2` to `1`; exactly one additional unit becomes newly eligible for correction.
+12. The final remaining Google unit is refunded as `REFUND_TYPE_FULL_REFUND` with `refundableQuantity = 0`; only the final not-yet-corrected unit is applied, not all three units again.
+13. A consumed Google Diamond purchase receives a quantity-based partial refund; Google billing consumption is not treated as proof that the player spent all Diamonds in game.
+14. A Google multi-product one-time-product purchase is fully refunded; TycoonX resolves all line items and does not invent an unsupported item-level refund from the missing RTDN `sku`.
+15. Xsolla `order_paid` is retried after the original handler committed but failed to acknowledge.
+16. Xsolla cancellation/refund evidence arrives before a delayed payment webhook for the same transaction.
+17. Xsolla webhook evidence conflicts and the transaction is reconciled against current Xsolla transaction/report evidence.
+18. 1,000 purchased Diamonds are granted once, refunded once, then an old payment event is replayed without re-granting or double-clawing back.
+19. 30-Day VIP duplicate delivery does not restart or extend the 30 consecutive days.
+20. Lifetime VIP historical restore succeeds after the sales window closes without making Lifetime VIP newly purchasable.
+21. Refunded transaction A cannot revoke a later valid repurchase B of the same product.
+22. An outage backlog contains paid, refund, and duplicate events in mixed arrival order.
+23. A worker crashes after entitlement commit but before webhook acknowledgment; retry produces no second grant.
+24. Two concurrent workers attempt the same Diamond grant and only one economic mutation commits.
+25. A support agent retries a missing-delivery correction after the first correction actually committed.
+26. A provider introduces an unknown event enum and TycoonX performs no irreversible paid mutation until reviewed.
+27. Apple, Google, and Xsolla raw identifiers that happen to look identical remain isolated by channel namespace.
+28. Current catalog price changes after purchase and later reconciliation preserves the original completed transaction amount/currency.
+29. A transport duplicate or reordering event creates no fraud strike, regional-price-abuse flag, account-compromise finding, or suspension by itself.
 
 ## 19. Release-blocking conditions
 
@@ -254,6 +285,9 @@ Before release, production payment changes, webhook/queue migrations, or recover
 - concurrent workers can both commit the same transaction mutation;
 - Apple older `signedDate` snapshots can overwrite newer state solely because they arrived later;
 - Google RTDN is treated as complete current purchase authority without required Developer API reconciliation;
+- Google quantity-based partial refunds are applied per notification rather than reconciled from cumulative authoritative quantity state;
+- a final Google full refund can repeat quantities already corrected by earlier partial refunds;
+- Google multi-product and multi-quantity purchases are treated as interchangeable refund models;
 - Pub/Sub duplicate/out-of-order/replay behavior can change economic outcome;
 - Xsolla retries can duplicate grants or cancellations;
 - refund/reversal events can affect a different later purchase of the same product;
@@ -267,7 +301,9 @@ Before release, production payment changes, webhook/queue migrations, or recover
 Reviewed against current official references on **September 9, 2026**:
 
 - Apple App Store Server Notifications `signedDate` documentation;
-- Google Play Real-time Developer Notifications reference;
+- Google Play Real-time Developer Notifications reference, including `REFUND_TYPE_QUANTITY_BASED_PARTIAL_REFUND`;
+- Google Play `purchases.productsv2` `quantity` / `refundableQuantity` semantics;
+- Google Play multi-product one-time-product purchase/refund guidance;
 - Google Cloud Pub/Sub delivery, ordering, and replay documentation;
 - Xsolla webhook and transaction-report documentation; and
 - current German BGB §§ 327d and 327i.
