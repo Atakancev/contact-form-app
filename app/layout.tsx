@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import GameplayEconomyRuleNotice from "./tycoonx-legal/GameplayEconomyRuleNotice";
 import CompanyCommerceRuleNotice from "./tycoonx-legal/CompanyCommerceRuleNotice";
+import UnionGovernanceRuleNotice from "./tycoonx-legal/UnionGovernanceRuleNotice";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
         {children}
         <GameplayEconomyRuleNotice />
         <CompanyCommerceRuleNotice />
+        <UnionGovernanceRuleNotice />
       </body>
     </html>
   );
