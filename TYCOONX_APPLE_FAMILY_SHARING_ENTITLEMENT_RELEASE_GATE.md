@@ -2,7 +2,7 @@
 
 **Status:** P0 Apple catalog / entitlement / payment / consumer release gate  
 **Owner:** CK-Labs  
-**Last reviewed:** September 8, 2026  
+**Last reviewed:** September 9, 2026  
 **Scope:** Apple App Store In-App Purchases for TycoonX, especially Lifetime VIP, plus the boundary with purchased Diamonds and one-time 30-Day VIP.
 
 ## Purpose
@@ -94,7 +94,7 @@ Apple's StoreKit product metadata exposes whether a product is family-shareable 
 
 Current StoreKit `Transaction.OwnershipType` exposes `purchased`, `familyShared`, and `assigned`. Apple describes `assigned` as a state where **the user has access to the transaction through an organization**.
 
-As of September 8, 2026, Apple's App Store Server API `inAppOwnershipType` documentation still lists only `PURCHASED` and `FAMILY_SHARED`. The client-side StoreKit ownership surface and the App Store Server API ownership field therefore must not be treated as interchangeable exhaustive enums.
+As of September 9, 2026, Apple's App Store Server API `inAppOwnershipType` documentation still lists only `PURCHASED` and `FAMILY_SHARED`. The client-side StoreKit ownership surface and the App Store Server API ownership field therefore must not be treated as interchangeable exhaustive enums.
 
 For TycoonX:
 
@@ -108,6 +108,26 @@ For TycoonX:
 - handle any future or unrecognized Apple ownership value conservatively. Never use an `else = purchased` or equivalent fallback that turns an unknown derivative state into a paid purchase.
 
 An unknown, newly introduced, or organizational ownership state is not evidence that the player hacked TycoonX, committed fraud, abused regional pricing, initiated a chargeback, compromised an account, or manipulated an entitlement. Classification and enforcement require separate transaction/account evidence.
+
+### 4B. Use `appTransactionId` for durable Apple-account/app correlation, not as entitlement authority
+
+Apple's current WWDC25 App Store server guidance describes `appTransactionId` as a globally unique identifier for each Apple Account per app. For apps that support Family Sharing, **each family member receives a different `appTransactionId`**. Apple also says the value is static for that Apple Account and app across redownloads, refunds, repurchases, and storefront changes, and that it is included with the customer's In-App Purchase transaction objects.
+
+Apple separately warns that `appAccountToken` is **not available for family-shared transactions**. TycoonX must therefore support Family Sharing without inventing an `appAccountToken`, copying the purchaser's token to a family member, or falling back to weak identity attributes.
+
+For TycoonX:
+
+- where Apple provides a verified `appTransactionId`, retain it as Apple-generated pseudonymous transaction/account-correlation evidence alongside the transaction, ownership type, revocation state, product ID, and TycoonX entitlement provenance;
+- never assume the purchaser and a family member should have the same `appTransactionId`; Apple says each family member has a unique value;
+- use a stable verified `appTransactionId` to help correlate the same Apple Account/app across restore, repurchase, and transaction-history flows, but never use it alone to grant, revoke, transfer, refund, or permanently classify a paid entitlement;
+- treat the absence of `appAccountToken` on a verified `FAMILY_SHARED` transaction as an expected Apple condition, not as evidence of a malformed receipt, hacked purchase, account compromise, or entitlement abuse;
+- do not fabricate a missing family-member `appAccountToken`, reuse the purchaser's token, or bind the transaction through email address, surname, device, IP address, household address, nickname, language, or country merely to fill the gap;
+- if one verified `appTransactionId` is already bound to TycoonX account A and later appears in a flow that would bind paid or derivative value to TycoonX account B, fail closed for irreversible entitlement mutation and reconcile the conflict. Do not automatically merge accounts, move Lifetime VIP, duplicate paid value, or sanction either account solely from the conflict;
+- do not infer current Family Sharing membership from the continued presence of the same `appTransactionId`. Apple says the value remains static across refunds and storefront changes, so current ownership/revocation evidence remains authoritative for current access;
+- do not infer that the holder paid for the transaction, controls the purchaser's Apple Account, resides in a particular country, owes a tax, committed fraud, abused regional pricing, or compromised an account merely because an `appTransactionId` correlates Apple transactions; and
+- if `appTransactionId` is unavailable in an older or otherwise valid flow, do not deny a valid purchase, restoration, refund, or mandatory consumer remedy solely because that newer correlation field is missing. Reconcile using the other verified Apple transaction evidence available for that flow.
+
+Treat `appTransactionId` as a persistent pseudonymous provider identifier. Under GDPR Article 5 purpose limitation and data minimization, keep it only where reasonably necessary for purchase delivery, restoration, refund/revocation reconciliation, account-binding security, dispute handling, and legally required records. Restrict access, avoid exposing it in player-facing logs or ordinary support messages, and do not repurpose it for advertising, unrelated behavioral profiling, or marketing segmentation.
 
 ## 5. Existing purchasers can be affected after Family Sharing is enabled
 
@@ -249,18 +269,22 @@ Before CK-Labs enables Family Sharing for any TycoonX paid product, preserve dat
 8. StoreKit `assigned` ownership is not silently mapped to direct purchase or Family Sharing;
 9. the current App Store Server API `inAppOwnershipType` two-value surface is not assumed to be identical to StoreKit ownership types;
 10. future/unrecognized ownership values fail closed for irreversible paid-value mutation instead of defaulting to `purchased`;
-11. existing pre-enable non-consumable purchase restore behavior is tested;
-12. purchaser refund produces correct purchaser correction plus family access revocation without double clawback;
-13. family-only `REVOKE` removes derivative access but preserves an independent direct purchase;
-14. leaving/changing the family group is not classified as fraud;
-15. purchased Diamonds are not copied, restored, or deducted through Family Sharing;
-16. 30-Day VIP cannot be silently retyped or restarted;
-17. Lifetime VIP sales-window close does not incorrectly revoke existing direct or valid derivative access;
-18. family member access does not reopen a closed Lifetime VIP sale;
-19. support can distinguish purchaser, family beneficiary, assigned/other derivative beneficiary, and direct owner without exposing unrelated private/payment data;
-20. canonical English legal wording has been reviewed for any material public-meaning change;
-21. all localized legal pages have been synchronized if that canonical public meaning changed; and
-22. mandatory German/EU consumer remedies remain intact.
+11. a purchaser and each family beneficiary are allowed to carry distinct verified `appTransactionId` values without being merged;
+12. verified `FAMILY_SHARED` fulfillment works when Apple omits `appAccountToken` and does not fabricate or reuse another person's token;
+13. a conflicting `appTransactionId` to TycoonX-account mapping fails closed for irreversible entitlement mutation and enters reconciliation instead of auto-transfer;
+14. current entitlement/revocation state is not inferred from the continued presence of a stable `appTransactionId`;
+15. existing pre-enable non-consumable purchase restore behavior is tested;
+16. purchaser refund produces correct purchaser correction plus family access revocation without double clawback;
+17. family-only `REVOKE` removes derivative access but preserves an independent direct purchase;
+18. leaving/changing the family group is not classified as fraud;
+19. purchased Diamonds are not copied, restored, or deducted through Family Sharing;
+20. 30-Day VIP cannot be silently retyped or restarted;
+21. Lifetime VIP sales-window close does not incorrectly revoke existing direct or valid derivative access;
+22. family member access does not reopen a closed Lifetime VIP sale;
+23. support can distinguish purchaser, family beneficiary, assigned/other derivative beneficiary, and direct owner without exposing unrelated private/payment data;
+24. canonical English legal wording has been reviewed for any material public-meaning change;
+25. all localized legal pages have been synchronized if that canonical public meaning changed; and
+26. mandatory German/EU consumer remedies remain intact.
 
 ## 15. Regression scenarios
 
@@ -282,6 +306,10 @@ At minimum test:
 14. App Store Connect configuration accidentally enables Family Sharing on current Lifetime VIP: freeze further catalog changes, preserve evidence, assess historical purchasers, and do not accuse players who receive Apple-authorized access.
 15. StoreKit returns ownership type `assigned`: TycoonX preserves it as distinct organizationally assigned access and does not count it as a direct paid Lifetime VIP sale or force it into `familyShared`.
 16. StoreKit returns a future/unrecognized ownership value: TycoonX preserves the raw value, does not default it to `purchased`, does not perform an irreversible paid-value mutation, and does not sanction the player merely because the client/backend does not yet understand the new value.
+17. Purchaser and family member present different verified `appTransactionId` values: TycoonX keeps their Apple-account/app correlation separate and does not merge the TycoonX accounts or clone the paid purchase.
+18. Verified `FAMILY_SHARED` transaction has no `appAccountToken`: TycoonX fulfills only the valid derivative entitlement from verified Apple evidence and does not fabricate, reuse, or guess an account token.
+19. Same verified `appTransactionId` appears in a flow that would bind to a second TycoonX account: irreversible paid-value mutation is quarantined for reconciliation; no automatic account merge, Lifetime VIP transfer, or abuse sanction occurs.
+20. Family member leaves the family, receives a refund-related revocation, or changes storefront while the `appTransactionId` remains unchanged: current access follows verified Apple ownership/revocation evidence, not the stable identifier alone.
 
 ## 16. Current reference points
 
@@ -292,8 +320,12 @@ Re-check these sources before any production Family Sharing change because Apple
 - Apple StoreKit, `Transaction.OwnershipType`: https://developer.apple.com/documentation/storekit/transaction/ownershiptype-swift.struct
 - Apple StoreKit, `Transaction.OwnershipType.assigned`: https://developer.apple.com/documentation/storekit/transaction/ownershiptype-swift.struct/assigned
 - Apple App Store Server API, `inAppOwnershipType`: https://developer.apple.com/documentation/appstoreserverapi/inappownershiptype
+- Apple App Store Server Notifications, `JWSTransactionDecodedPayload` (`appTransactionId`, `appAccountToken`, ownership and revocation state): https://developer.apple.com/documentation/appstoreservernotifications/jwstransactiondecodedpayload
+- Apple WWDC25, Dive into App Store server APIs for In-App Purchase (`appTransactionId`, Family Sharing identity, `appAccountToken` limitation): https://developer.apple.com/videos/play/wwdc2025/249/
+- Apple WWDC25, What's new in StoreKit and In-App Purchase (`appTransactionID` and distinct family-member identifiers): https://developer.apple.com/videos/play/wwdc2025/241/
 - Apple StoreKit, Family Sharing revocation handling: https://developer.apple.com/documentation/storekit/skpaymenttransactionobserver/paymentqueue(_:didrevokeentitlementsforproductidentifiers:)
 - Apple developer material, Supporting/Exploring Family Sharing for In-App Purchases: https://developer.apple.com/videos/play/tech-talks/110345/
+- GDPR Article 5, purpose limitation and data minimization: https://eur-lex.europa.eu/eli/reg/2016/679/oj
 - German BGB § 327e: https://www.gesetze-im-internet.de/bgb/__327e.html
 - German BGB § 327r: https://www.gesetze-im-internet.de/bgb/__327r.html
 
@@ -301,4 +333,4 @@ Re-check these sources before any production Family Sharing change because Apple
 
 **Do not enable Apple Family Sharing for the current TycoonX Lifetime VIP product as an experiment.** It is an entitlement-scope and catalog decision with an Apple-documented irreversible configuration consequence for that product ID.
 
-If CK-Labs deliberately launches Family Sharing later, the implementation must distinguish direct and derivative ownership, including any Apple-reported organizational assignment state; preserve the limited-time Lifetime VIP sales model; keep Diamonds and one-time 30-Day VIP separate; handle `REVOKE` versus `REFUND` correctly; update player-facing/legal wording where materially required; synchronize all affected localizations; and preserve all mandatory consumer rights.
+If CK-Labs deliberately launches Family Sharing later, the implementation must distinguish direct and derivative ownership, including any Apple-reported organizational assignment state; keep modern Apple account/app correlation (`appTransactionId`) separate for each family member without fabricating missing `appAccountToken` values; preserve the limited-time Lifetime VIP sales model; keep Diamonds and one-time 30-Day VIP separate; handle `REVOKE` versus `REFUND` correctly; update player-facing/legal wording where materially required; synchronize all affected localizations; and preserve all mandatory consumer rights.
