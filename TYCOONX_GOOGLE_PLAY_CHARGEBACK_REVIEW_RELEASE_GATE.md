@@ -2,7 +2,7 @@
 
 **Status:** P0 payment / entitlement / dispute-evidence gate
 
-**Last reviewed:** September 7, 2026
+**Last reviewed:** September 9, 2026
 
 **Applies to:** TycoonX purchases made through Google Play when Google sends a `PendingRefundReviewNotification` and permits CK-Labs to submit a response through `orders.reviewrefund` / the `ReviewRefund` API.
 
@@ -19,6 +19,8 @@ Google's current documentation states that:
 - the current refund-preference values are **`APPROVE`**, **`DECLINE`**, and **`NEUTRAL`**;
 - optional `consumptionPercentageMilliunits` is an integer from **0 through 100000 milliunits**, where **`45200` means `45.2%`**, not 45,200 percent;
 - optional `consumptionUsageEvents` is limited to **1000 events** and requests with more than 1000 events are rejected;
+- each usage event can include optional `obfuscatedAccountId`, `obfuscatedProfileId`, `consumptionTime`, `ipAddress`, `consumptionItemDescription`, and coarse `location` evidence;
+- Google's `consumptionTime` means the time the user consumed, used, downloaded, opened, or streamed the purchased content and uses an **RFC 3339 timestamp**;
 - a usage event's free-form `consumptionItemDescription` is limited to **5000 characters**;
 - when coarse location evidence is supplied, Google's `regionCode` is **never inferred** by Google and CK-Labs is responsible for its correctness; and
 - critically, Google records the **first API call** made in response to the notification and ignores later calls even though later calls can still return an `OK` status.
@@ -26,8 +28,9 @@ Google's current documentation states that:
 Official checkpoints reviewed for this gate:
 
 - Google Play Billing, *Help Google dispute chargebacks*, last updated July 20, 2026: https://developer.android.com/google/play/billing/provide-refund-and-chargeback-suggestions
-- Google Play Billing, *Real-time developer notifications reference guide*, last updated September 1, 2026: https://developer.android.com/google/play/billing/rtdn-reference
-- Google Play Developer API, `orders.reviewrefund`, last updated July 6, 2026: https://developers.google.com/android-publisher/api-ref/rest/v3/orders/reviewrefund
+- Google Play Billing, *Real-time developer notifications reference guide*, current documentation reviewed September 9, 2026: https://developer.android.com/google/play/billing/rtdn-reference
+- Google Play Developer API, `orders.reviewrefund`, last updated July 6, 2026 and reviewed September 9, 2026: https://developers.google.com/android-publisher/api-ref/rest/v3/orders/reviewrefund
+- Google Play Billing, *Test your Google Play Billing Library integration*, current documentation reviewed September 9, 2026: https://developer.android.com/google/play/billing/test
 
 Because Google can change this workflow, CK-Labs must re-check the current official documentation before materially changing the production integration.
 
@@ -71,6 +74,7 @@ At minimum preserve:
 - the exact required `sampleContentProvided` value and the factual basis for it;
 - any submitted `consumptionPercentageMilliunits`, its source calculation, and the underlying transaction-specific numerator/denominator where applicable;
 - the exact `consumptionUsageEvents` submitted and the selection rule used if more relevant events existed than Google accepts;
+- for every submitted usage event, the source record and factual basis for any `consumptionTime`, `ipAddress`, obfuscated ID, description, or coarse location field;
 - exact evidence fields submitted;
 - an immutable request hash or equivalent audit fingerprint;
 - submission timestamp;
@@ -153,6 +157,29 @@ For example, suppose a Google Play transaction granted **500 purchased Diamonds*
 - Do not set it to `true` merely because the player could see a Diamond or VIP product card, price, description, or ordinary game functionality.
 - Set it to `true` only when the relevant free sample, trial, or product/function preview contemplated by Google's field was genuinely provided and CK-Labs can support that fact.
 - Otherwise set it to `false`; do not guess.
+
+### Usage-event temporal and identity binding
+
+A `consumptionUsageEvents` entry is evidence about a particular instance in which the purchased item or service was actually consumed or used. Do not transform unrelated timestamps or account activity into a usage event merely because the API accepts optional evidence.
+
+If CK-Labs supplies `consumptionTime`:
+
+- encode a real recorded use/consumption event using valid **RFC 3339** time syntax;
+- use the time of the relevant consumption/use/open event, not the Google purchase time, purchase-completion time, entitlement-credit time, RTDN arrival time, worker time, support-ticket time, current login time, or time the evidence package is assembled;
+- do not backdate usage to make a transaction appear more consumed and do not replace missing historical timestamps with `now`;
+- do not submit a future timestamp caused by clock skew without first reconciling the source record;
+- keep pre-purchase sample/trial evidence in `sampleContentProvided`; do not mislabel a pre-purchase sample as post-purchase consumption; and
+- if the exact consumption time is not reliably known, omit the optional timestamp or usage event rather than manufacture precision.
+
+If CK-Labs supplies an event `ipAddress`, it must be the IP address genuinely associated with that recorded consumption event where lawfully retained and relevant. Do not substitute the purchase IP, latest login IP, support-session IP, device's current IP, or an IP from another account merely because no event-time IP is available. If the event-time IP was not lawfully retained, omit it.
+
+If `obfuscatedAccountId` or `obfuscatedProfileId` is included inside a usage event, bind it to the account/profile involved in that same recorded usage and the reviewed purchase. Do not copy identifiers from another purchase, another TycoonX account, a household member, or a later account state just to make the event look attributable.
+
+For fungible purchased Diamonds, do not reconstruct granular usage events after the fact if the ledger cannot reliably say which purchased grant funded a particular spend or transfer. A pooled Diamond balance may support a truthful transaction-level percentage only where the attribution method is reliable and documented; it does not justify inventing exact spend timestamps, IPs, locations, or account IDs.
+
+For one-time 30-Day VIP and Lifetime VIP, distinguish **delivery/activation** from actual **use**. A server activation timestamp proves entitlement availability, not automatically that the player opened or used a VIP-only feature at that moment. Submit a usage event only when the underlying record actually supports the usage fact represented to Google.
+
+The 24-hour deadline never justifies retroactively creating new telemetry that was not already lawfully collected. This gate does not authorize CK-Labs to begin retaining IP or location history merely because such fields are available in Google's dispute API.
 
 ### Usage-event count and descriptions
 
@@ -273,7 +300,7 @@ Even then, enforcement must remain proportionate, preserve mandatory consumer ri
 
 Before relying on this workflow in production, keep dated test evidence covering at least:
 
-- [ ] receipt of a test `PendingRefundReviewNotification`;
+- [ ] receipt of a test `PendingRefundReviewNotification` using Google's current chargeback test tooling where available;
 - [ ] correct extraction/storage of `pendingRefundToken`, `orderId`, `eventTimeMillis`, raw `refundReason`, first CK-Labs receipt time, and deadline;
 - [ ] duplicate RTDN delivery does not create a second substantive review and does not reset the 24-hour deadline;
 - [ ] two workers cannot race to submit different preferences;
@@ -283,6 +310,14 @@ Before relying on this workflow in production, keep dated test evidence covering
 - [ ] `sampleContentProvided=true` and `sampleContentProvided=false` are both tested against real factual scenarios rather than guessed defaults;
 - [ ] a **45.2%** transaction-specific consumption calculation becomes exactly **`45200`** `consumptionPercentageMilliunits` and does not become `45.2`, `452`, or `45200000`;
 - [ ] an unreliable consumption percentage is omitted rather than guessed or silently clamped;
+- [ ] a recorded Diamond spend at `2026-09-09T12:00:00Z` can produce that factual RFC 3339 `consumptionTime`, while purchase time, RTDN receipt time, current time, and support time cannot be substituted for it;
+- [ ] an unknown consumption timestamp is omitted rather than backfilled with `now`;
+- [ ] a future/clock-skewed `consumptionTime` is quarantined for reconciliation rather than submitted as factual usage;
+- [ ] event `ipAddress` comes from the same recorded usage event or is omitted; a current-login or purchase IP cannot silently replace it;
+- [ ] usage-event `obfuscatedAccountId` / `obfuscatedProfileId` cannot be copied across TycoonX accounts or unrelated purchases;
+- [ ] pre-purchase sample/trial evidence does not become a post-purchase consumption event;
+- [ ] a fungible Diamond pool with no reliable grant-to-spend attribution cannot manufacture granular spend events;
+- [ ] VIP activation without a recorded usage event is not automatically represented as actual feature use;
 - [ ] more than 1000 candidate usage records cannot produce an API request containing more than 1000 `consumptionUsageEvents`;
 - [ ] a generated `consumptionItemDescription` cannot exceed 5000 characters;
 - [ ] optional coarse `regionCode` is omitted when location is not reliably known and is never inferred from regional price, currency, language, or VPN suspicion;
@@ -291,9 +326,9 @@ Before relying on this workflow in production, keep dated test evidence covering
 - [ ] the `ReviewRefund` response and `consumptionPercentageMilliunits` evidence itself do not change Diamonds or VIP;
 - [ ] a later final Google void/refund corrects the matching entitlement exactly once;
 - [ ] unrelated purchased Diamonds, another 30-Day VIP, and unrelated Lifetime VIP remain untouched; and
-- [ ] chargeback evidence excludes unnecessary private messages, credentials, and excessive personal data.
+- [ ] chargeback evidence excludes unnecessary private messages, credentials, excessive personal data, and newly collected telemetry created only for the dispute.
 
-Google's Play Billing testing documentation currently includes a test instrument for user-initiated chargebacks. Use current Google test tooling where available rather than experimenting with real consumer payments.
+Google's Play Billing testing documentation currently includes a test instrument for user-initiated chargebacks. Use current Google test tooling where available rather than experimenting with real consumer payments. A simulated test chargeback must remain classified as test/non-commercial and must never create a production fraud strike, debt, entitlement clawback, or Lifetime VIP sale-window effect.
 
 ## 14. Release blocker
 
@@ -306,6 +341,8 @@ Treat the Google collaborative chargeback-review integration as **not production
 - the system assumes a later `OK` means the first review was replaced;
 - a normal decimal percentage can be sent into `consumptionPercentageMilliunits` or the milliunit scale can be interpreted as a normal percentage;
 - optional consumption, usage-event, sample, or location evidence can be guessed or fabricated;
+- `consumptionTime` can be backfilled from purchase time, current time, support time, or another unrelated timestamp when actual usage time is unknown;
+- an event-time `ipAddress` or obfuscated identity can be silently substituted from another session, purchase, or account;
 - more than 1000 `consumptionUsageEvents` can be submitted;
 - an unknown future `refundReason` is automatically treated as fraud, automatically approved/declined, or mapped to `CHARGEBACK` without review;
 - `ReviewRefund` directly grants or revokes TycoonX value;
