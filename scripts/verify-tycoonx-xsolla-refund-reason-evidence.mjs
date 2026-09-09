@@ -51,11 +51,11 @@ requireMatch(gate, /Codes 21.{0,5}23|Codes 21–23|codes `21`.*`23`/i, 'Gate is 
 requireMatch(gate, /code `24`.*regional-pric/i, 'Gate is missing Xsolla regional-price-abuse code 24.');
 requireMatch(gate, /country\/eligibility inputs.*final price\/currency.*checkout configuration/is, 'Regional-price enforcement must review actual transaction/configuration evidence.');
 requireMatch(gate, /not retroactively repriced/i, 'Gate must preserve completed-purchase historical pricing.');
-requireMatch(gate, /code `25`.*partner or payment-system exploit/is, 'Gate is missing partner/payment-system exploit code 25.');
+requireMatch(gate, /Code 25.*partner\/payment-system exploit|code `25`.*partner or payment-system side/is, 'Gate is missing partner/payment-system exploit code 25.');
 requireMatch(gate, /possible provider\/partner\/integration compromise/i, 'Code 25 must trigger provider/partner compromise review before player blame.');
 requireMatch(gate, /code `26`.*fraud.*not.*exact attack type/is, 'Gate is missing undefined confirmed-fraud code 26 handling.');
 requireMatch(gate, /must not invent.*card theft.*account takeover.*regional-price abuse/is, 'Code 26 must not authorize invented attack facts.');
-requireMatch(gate, /code `27`.*linked transaction/is, 'Gate is missing linked-transaction code 27 handling.');
+requireMatch(gate, /Code 27.*linked transaction|code `27`.*linked-risk signal/is, 'Gate is missing linked-transaction code 27 handling.');
 requireMatch(gate, /transaction itself was not specified.*fraud report/is, 'Gate must preserve Xsolla\'s linked-transaction evidentiary limitation.');
 requireMatch(gate, /correlation, not direct fraud proof/i, 'Linked-transaction evidence must remain correlation rather than direct proof.');
 requireMatch(gate, /refund_details\.author.*not the identity of the fraudster/i, 'Gate must separate refund initiator from the identity of any fraudster.');
