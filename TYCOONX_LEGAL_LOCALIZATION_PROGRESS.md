@@ -1,8 +1,8 @@
 # TycoonX Legal Localization Progress
 
-Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository.
+Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository, together with rendered canonical Terms clarifications that are synchronized into every localized Terms route.
 
-Last synchronized: **September 6, 2026**.
+Last synchronized: **September 10, 2026**.
 
 ## Rules
 
@@ -16,10 +16,14 @@ Last synchronized: **September 6, 2026**.
 - Do not mark a localized document `Ready` until the rendered page preserves canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed brand or live-service beta wording.
 - Do not use GitHub Actions or paid services for this project. Do not change any database.
 - Before creating another release gate, inspect the repository tree and existing verifier scripts so completed doctrine is hardened incrementally instead of duplicated under a new filename.
+- Gameplay legal hardening must now be **code-first**: inspect the current Flutter feature path and read-only Supabase tables/functions/triggers before drafting a new gameplay rule. Do not invent generic prohibitions for mechanics that do not exist.
+- A current server cap, permission, cooldown, formula, or UI control is implementation evidence, not automatically a permanent contractual promise or a legal safe harbor.
 
 ## Current state
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
+
+The September 10 gameplay clarification is rendered on the canonical Terms route and all 25 localized Terms routes through `GameplayEconomyRuleNotice.tsx`, so the newly clarified gameplay meaning is synchronized without duplicating the complete static localized Terms bodies.
 
 ### Locale status
 
@@ -55,100 +59,94 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** ta
 
 **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Future runs must not duplicate completed localization. Continue with repository-wide legal QA, stale-brand/stale-release-status checks, canonical-English drift checks, duplicate-doctrine cleanup, current-law/platform verification, and remaining commercial/legal/payment-readiness hardening. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize it in the required locale order.
+Future runs must not duplicate completed localization. Continue with code-first gameplay/economy/community legal QA, stale-brand/stale-release-status checks, canonical-English drift checks, duplicate-doctrine cleanup, current-law/platform verification, and remaining commercial/payment maintenance. If canonical English meaning changes materially, reopen only the affected localized document type and resynchronize it in the required locale order.
 
 ## Active legal and product invariants
 
-All canonical and localized legal documents must continue to preserve that purchased Diamonds do not expire solely because time passes; purchased Diamonds, promotional/free Diamonds, one-time 30-Day VIP, and Lifetime VIP are distinct products; 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly says otherwise; Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability; Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels; completed one-time purchases are not retroactively repriced merely because future prices, currencies, taxes, FX, regional prices, bundles, or promotions change, except where mandatory law requires otherwise; and mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility, and other non-waivable rights remain intact.
+All canonical and localized legal documents must continue to preserve that:
 
-Obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, economy corrections, and permanent service shutdown remain subject to their specific canonical rules. Ordinary gameplay transactions must not be treated as disguised donations, wealth funneling, value parking, or unauthorized real-money trading without evidence; unusual/high-value transactions alone are not automatic proof of abuse.
+- purchased Diamonds do not expire solely because time passes;
+- purchased Diamonds, promotional/free Diamonds, one-time 30-Day VIP, and Lifetime VIP are distinct products;
+- 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly says otherwise;
+- Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
+- Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels;
+- completed one-time purchases are not retroactively repriced merely because future prices, currencies, taxes, FX, regional prices, bundles, or promotions change, except where mandatory law requires otherwise; and
+- mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility, and other non-waivable rights remain intact.
+
+Obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, economy corrections, and permanent service shutdown remain subject to their specific canonical rules.
+
+## Active gameplay/economy invariant
+
+Players are expected to build their own TycoonX wealth through gameplay and genuine economic activity. A trade, art purchase, auction, Company transaction, job, contract, market order, or other mechanic must not be used mainly as a disguised gift, donation, wealth-funneling route, value-parking route, real-money-trading route, exploit-laundering route, or way to evade another feature limit.
+
+That rule does **not** mean every mechanic that transfers value is prohibited. TycoonX includes mechanics expressly designed to move or distribute in-game value. Current code-first review confirms Company salaries/payroll, authorized Company-treasury withdrawals, dividends, IPO subscriptions, buybacks, secondary offerings, tenders, and Union Project contributions as real deployed systems. Genuine use of such a mechanic for its intended gameplay purpose is allowed unless another specific rule is violated.
+
+Begging and an available Union Project donation feature are expressly permitted assistance/contribution mechanics within their own stated purpose and limits. Gameplay mechanics that are not designed for gifts, donations, contributions, or assistance are not substitute donation channels.
+
+A high price, large salary, generous dividend, aggressive tender bid, unusual Company financing decision, or large Union contribution is not automatically abuse. Serious enforcement requires reasonable evidence of the prohibited purpose and must distinguish detection, containment, state correction, and punitive account enforcement.
+
+## September 10, 2026 code-first gameplay/Supabase checkpoint
+
+This run deliberately shifted from payment-provider hardening to actual game implementation.
+
+Read-only inspection of the production TycoonX Supabase project and the current `Atakancev/terrax-flutter` repository confirmed deployed server/client paths for Company salaries, payroll, treasury withdrawals, IPOs, dividends, buybacks, secondary offerings, Company tenders, Union Project donations, and many additional economy systems.
+
+The audit found a concrete legal mismatch: the previous transfer notice could be read to say that Begging was the only lawful donation/assistance mechanic, while production TycoonX also has `donate_union_project(...)`, an expressly designed Union Project contribution mechanic. The current backend records `project_donation`, applies a current cumulative per-user contribution ceiling of 50% of project target, and can distribute configured project-completion rewards to active Union members.
+
+The canonical Terms were therefore clarified on September 10, 2026 so that:
+
+- Begging **or another feature expressly designed for contributions/assistance**, including an available Union Project donation feature, can be used within that feature's rules;
+- other mechanics still cannot be repurposed mainly as disguised donation or wealth-funneling channels;
+- legitimate Company salary/payroll, authorized treasury withdrawal, dividend, IPO, buyback, secondary-offering, tender, and Union Project activity is not prohibited merely because value changes hands;
+- sham salaries/distributions, collusive or manipulated tender bidding, circular Company/stock transactions, coordinated self-dealing, alternative-account limit evasion, exploit abuse, and RMT remain reviewable when supported by reasonable evidence; and
+- technical server caps/permissions/cooldowns are not permanent contractual promises or automatic safe harbors.
+
+The same meaning is rendered naturally in English plus all 25 target locales through `app/tycoonx-legal/GameplayEconomyRuleNotice.tsx`, including proper Arabic RTL handling. `scripts/verify-tycoonx-genuine-transfers.mjs` now regression-checks the canonical wording, all locales, layout integration, and the concrete deployed function map.
+
+Internal implementation/legal map: `TYCOONX_CODE_FIRST_GAMEPLAY_LEGAL_MAP.md`.
+
+No database data or schema was changed during the audit.
 
 ## Active privacy/controller invariant
 
 For the TycoonX personal-data processing described in the Privacy Policy, the controller is disclosed directly as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. All 25 localized Privacy routes preserve that meaning and the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla, or other providers.
 
-## Recent operational/current-law checkpoints
+## Current-law clarity checkpoint
 
-### September 6, 2026 Google Play Billing Library version-lifecycle checkpoint
+German BGB § 307 remains relevant to player-facing standard terms: unclear or incomprehensible standard wording can contribute to an unreasonable disadvantage. Gameplay rules should therefore identify authorized mechanics clearly enough that a legitimate feature is not made to look prohibited merely because the implementation exception was known only internally.
 
-A dedicated `TYCOONX_GOOGLE_PLAY_BILLING_LIBRARY_VERSION_LIFECYCLE_RELEASE_GATE.md` and `scripts/verify-tycoonx-google-play-billing-library-lifecycle.mjs` now preserve the current Google Play Billing Library submission lifecycle without conflating it with the separate Billing Choice program minimum.
+Mandatory German/EU digital-product rights remain separate from gameplay discipline. Gameplay balancing or enforcement must not be used as a shortcut to waive mandatory conformity, update, cure, termination, price-reduction, refund, liability, or other non-waivable rights.
 
-Google's current deprecation table says Play Billing Library 7 reached its normal new-app/update deadline on **August 31, 2026**, with an account-specific extension path only until **November 1, 2026** where the extension is actually available and obtained. Existing installed apps can continue to function, but that does not make an unsupported library version acceptable for a new TycoonX submission. Ordinary post-deadline submissions should use a currently supported version; TycoonX Billing Choice remains separately subject to the stricter current **Play Billing Library 9.1+** requirement.
+## Next code-first gameplay audit queue
 
-The gate also requires verification of the effective dependency in the release artifact, transitive SDK/plugin dependencies, merged billing-library manifest metadata, maintained Play tracks, and actual Play Console policy state. A deprecated library or old installed client is treated as a release-maintenance issue, not evidence of player fraud, hacking, chargeback abuse, or entitlement abuse. Purchased Diamonds, one-time non-renewing 30-Day VIP, Lifetime VIP, refunds, restores, acknowledgement, and idempotent fulfillment remain isolated from the migration itself.
+With the first Company/Union value-transfer mismatch corrected, the next substantive audits should continue from the deployed implementation rather than generic policy templates:
 
-This checkpoint is implementation/platform-lifecycle hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 Lifetime VIP verifier/runtime-path and Apple formal-removal checkpoint
-
-Repository-wide QA found that `scripts/verify-tycoonx-lifetime-vip.mjs` referenced two stale/nonexistent release-gate filenames. The verifier therefore could fail at file loading before it reached the substantive Lifetime VIP assertions. The references were corrected to the actual existing gates: `TYCOONX_PERMANENT_SHUTDOWN_END_OF_SERVICE_RELEASE_GATE.md` and `TYCOONX_EU_PROMOTION_DARK_PATTERN_RELEASE_GATE.md`.
-
-The verifier now also cross-checks the existing shutdown gate's current Apple formal In-App Purchase removal safeguards. Apple currently advises announcing an IAP removal and stopping merchandising at least 31 days before removal, and its `Developer Removed from Sale` status preserves access for customers who already purchased while keeping transaction information available through StoreKit/App Store Server API. This formal App Store Connect removal lifecycle is distinct from merely closing a genuine Lifetime VIP promotional sales window, but both states must preserve already-purchased entitlement and mandatory-remedy logic.
-
-This checkpoint is verifier/runtime and platform-lifecycle hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 German BFSG e-commerce accessibility checkpoint
-
-The existing `TYCOONX_BFSG_ECOMMERCE_ACCESSIBILITY_RELEASE_GATE.md` and `scripts/verify-tycoonx-bfsg-accessibility.mjs` were hardened against the current BFSG/BFSGV rather than creating a duplicate accessibility doctrine.
-
-The gate now preserves the exact BFSG § 2 no. 17 microenterprise structure: **fewer than 10 persons AND either annual turnover of no more than €2 million OR annual balance-sheet total of no more than €2 million**. The turnover/balance-sheet limb must not be incorrectly converted into an AND test. Reliance on the service exemption remains evidence-based and subject to reassessment after accounts, hiring, financial change, restructuring, sale, merger, or successor-operator change.
-
-For a non-exempt in-scope service, Annex 3 information must be made available in the terms and conditions or another clearly perceptible manner and in accessible form. Missing, incomplete, or not-accessibly-published Annex 3 information is now tracked separately as **formal nonconformity under BFSG § 30**, not merely as a generic UI defect. The gate also now preserves BFSGV § 19's requirement to provide accessibility information supplied by the responsible economic operator for products/services offered through the electronic-commerce service, while prohibiting invented accessibility claims.
-
-The July 2026 regulation change is now scoped precisely: the BFSGV amendment dated July 10 and effective July 16, 2026 changed BFSGV § 7 and the telecommunications provision in BFSGV § 14. It did **not** replace BFSGV § 19. The gate explicitly separates **BFSG § 14** service-provider duties from **BFSGV § 14** telecommunications requirements so matching section numbers cannot cause a future e-commerce compliance error.
-
-This checkpoint is operational/current-law hardening only. It did not materially change the canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 German BGB § 356 withdrawal-numbering / § 356a checkpoint
-
-The existing `TYCOONX_GERMAN_WITHDRAWAL_DIGITAL_CONTENT_SERVICE_VALUE_RELEASE_GATE.md`, `TYCOONX_GERMAN_ECOMMERCE_CHECKOUT_RELEASE_GATE.md`, and `scripts/verify-tycoonx-german-withdrawal-value.mjs` were corrected against the current German BGB rather than creating a duplicate withdrawal gate.
-
-Current controls now preserve that **BGB § 356(4)** is the general twelve-month-and-14-day long-stop, **BGB § 356(5)** is the current services early-expiry subsection, and **BGB § 356(6)** is the current non-tangible digital-content early-expiry subsection. The prior internal mapping of § 356(4) to services and § 356(5) to digital content was stale after the June 19, 2026 statutory restructuring and is now a verifier-blocked regression.
-
-The checkout gate continues to enforce current **BGB § 356a** electronic-withdrawal-function requirements, including `Vertrag widerrufen`, continuous/prominent/easy availability while the withdrawal period runs, contract-identification/contact fields, `Widerruf bestätigen`, immediate durable-medium receipt containing declaration content/date/time, preservation of the submission timestamp, and separation from the BGB § 312k termination button. The function must not be suppressed merely because entitlement delivery started when the correct § 356(5) or § 356(6) evidence does not prove lawful early expiry.
-
-This checkpoint is operational/current-law hardening only. It did not materially change canonical player-facing Terms, Purchases & Refunds, Privacy Policy, or Community Standards, so no localized document was reopened.
-
-### September 6, 2026 Google Play policy-source precedence / regional-program checkpoint
-
-The existing `TYCOONX_GOOGLE_PLAY_2026_PAYMENT_TRANSITION_GATE.md` preserves that Google's staged-rollout materials can diverge, so TycoonX uses the most current operative program-specific documentation plus actual Play Console eligibility/enrollment rather than whichever older announcement gives a commercially preferred date or rate. Where current official sources materially conflict or Play Console does not confirm the expected program, the affected route/rate fails closed.
-
-It also preserves the one-program-per-region rule, controlled program switching, dated policy evidence, historical transaction treatment, Level Up/game eligibility, current India and South Korea special-market controls, Australia fail-closed handling before actual game eligibility, Japan program exclusivity, U.S. reporting, refunds, RTDN, chargeback review, and separation of Google reporting state, Xsolla payment state, and TycoonX entitlement state.
-
-Dedicated verifier: `scripts/verify-tycoonx-google-play-2026-transition.mjs`.
-
-### September 6, 2026 Apple regional payment checkpoints
-
-The repository already has distinct current release gates/verifiers for Apple EU alternative payment/unified fee reconciliation, U.S. storefront steering, Japan alternative payments, and South Korea alternative payments. These remain separate architectures rather than being reused interchangeably. They preserve storefront/program eligibility, Apple-specific disclosures/APIs, fee/reporting evidence, refund/provider boundaries, Xsolla/payment authority, product invariants, and fail-closed behavior when eligibility is not established.
-
-### September 6, 2026 German promotion-price checkpoint
-
-The existing EU promotion/dark-pattern gate preserves the goods-only scope of PAngV § 11 / Article 6a, the German progressive-reduction rule for in-scope goods, truthful changed-bundle comparisons, and UWG §§ 5a/5b material-information requirements. Ordinary TycoonX Diamonds and VIP are not incorrectly forced into the goods-only prior-price rule.
-
-### September 6, 2026 GDPR controller-identity checkpoint
-
-The canonical Privacy Policy and all 25 localized Privacy routes directly disclose the legal controller identity/contact rather than relying only on the CK-Labs trade name plus a separate Impressum lookup.
-
-## Repository hardening status
-
-The repository already contains dedicated release gates and verifier scripts for the major legal/payment/security subjects. Before adding another gate, inspect the existing `TYCOONX_*_RELEASE_GATE.md`, checklists, and `scripts/verify-tycoonx-*.mjs` files and improve the closest existing control where possible.
-
-Completed hardening includes Apple Custom EULA parity; Apple EU/U.S./Japan/South Korea payment routing and fee/reporting controls; Google Play Billing Choice, Level Up, regional payment transitions, and Billing Library version lifecycle; Xsolla mandatory-consumer-rights override; refunded/transferred-value reconciliation; temporary restriction review lifecycle; CRA reporting; German legal notice/ADR, e-commerce checkout, BGB § 356a withdrawal function and current § 356 subsection mapping; entitlement reconciliation; permanent shutdown; business transfer/successor operation; digital-product conformity/modification; accessibility; DSA/UGC moderation; youth/minor protections; VAT/tax/FX; pricing/promotions; and security/privacy controls.
+1. **Company export/supply/tender lifecycle and authority:** supply requests, export offers, warehouse deliveries, CEO/CFO/COO/manager permissions, cancellation/failure paths, and tender completion.
+2. **Union treasury/governance:** leader deposits/withdrawals, membership fees, project rewards, Union closure, polls, level upgrades, and alternate-account limit evasion.
+3. **Art/Begging:** auction bids, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, and collusion/self-bidding.
+4. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery, and award correction.
+5. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation, and manipulation/exploit boundaries.
+6. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards, and win-trading/duplicate-completion risks.
+7. **Social/UGC:** Company/Union chat, rooms, art/music/books, impersonation, scams, moderation, appeals, and user-content rights.
 
 ## Canonical source status
 
-- English Terms: materially refreshed **September 5, 2026** for genuine transactions and unauthorized RMT/off-platform exchange.
-- English Purchases & Refunds: materially refreshed **September 5, 2026** for the official-purchase versus player/off-platform-deal boundary.
-- English Privacy Policy: materially refreshed **September 6, 2026** for direct GDPR controller identity/contact transparency; September 5 transfer/RMT privacy safeguards remain in force.
-- English Community Standards: current; age-safety, UGC, moderation, reporting, blocking, and review protections remain in force.
+- English Terms: materially refreshed **September 10, 2026** for code-derived Company, tender, Union Project, contribution, and genuine-transaction clarity; September 5 RMT rules remain in force.
+- English Purchases & Refunds: current; official-purchase versus player/off-platform-deal boundary remains in force.
+- English Privacy Policy: current; direct GDPR controller identity/contact transparency and transfer/RMT privacy safeguards remain in force.
+- English Community Standards: current; age-safety, UGC, moderation, reporting, blocking, review, scam, and safety protections remain in force.
 
 ## Progress metrics
 
+The earlier near-100% estimate over-weighted payment/platform work. These percentages are intentionally recalibrated to include the still-incomplete code-first gameplay/economy legal audit.
+
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.93%**
-- **Full commercial/legal/payment readiness:** **99.1%**
-- **Overall project completion:** **99.91%**
+- **Canonical English legal wording:** **96.5%**
+- **Full commercial/legal/payment readiness:** **92.5%**
+- **Overall project completion:** **94.5%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Historical synchronization and older release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state and active invariants so future runs can continue without duplicating completed work.
+**Next substantive code-first target:** Company export/supply/tender lifecycle and CEO/CFO/COO/manager authority, beginning from the current Flutter RPC calls and read-only production Supabase function definitions.
+
+Historical synchronization and older payment/platform release-gate checkpoints remain available in Git history. This tracker intentionally emphasizes current state, active invariants, and the implementation-driven next queue so future runs continue without duplicating completed work.
