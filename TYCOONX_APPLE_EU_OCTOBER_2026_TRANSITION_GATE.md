@@ -1,6 +1,6 @@
 # TycoonX Apple EU October 2026 Transition Gate
 
-Last reviewed: September 7, 2026
+Last reviewed: September 9, 2026
 
 TycoonX went to full release on **September 1, 2026**. This gate now governs the post-release transition to Apple’s updated EU business terms announced on August 18, 2026 and taking effect for an account on **October 1, 2026 or the date the Account Holder agrees to the updated terms, whichever is later**. It is an operational checklist, not public legal copy. It complements the TycoonX Terms, Purchases & Refunds Policy, Apple Custom EULA, Privacy Policy, Payment & Entitlement Release Gates, and Xsolla release gates.
 
@@ -57,7 +57,7 @@ If TycoonX offers alternative payment processing or out-of-app offers in EU stor
 
 Apple’s current entitlement profile is limited to EU storefronts and has minimum supported OS requirements, including at least iOS/iPadOS 26.2 for the new profile and later minimum versions on other Apple platforms. If TycoonX supports an earlier OS version, do not expose a payment UI that depends on an unavailable entitlement or API. Use Apple’s prescribed compatibility route or keep a compliant fallback.
 
-### 4. Runtime checks and ExternalPurchaseCustomLink
+### 4. Runtime checks, in-app payment boundaries, and ExternalPurchaseCustomLink
 
 Before initiating an alternative purchase flow, verify the Apple-required runtime sequence:
 
@@ -66,6 +66,15 @@ Before initiating an alternative purchase flow, verify the Apple-required runtim
 3. after a deliberate user action, call the required `showNotice` disclosure flow before the alternative payment path.
 
 When TycoonX processes an alternative digital purchase inside the app or sends a user to an out-of-app offer using an actionable link, use the Apple-required External Purchase API and disclosure sheet. A normal web link or a custom TycoonX warning is not a substitute where Apple requires the StoreKit flow.
+
+Under the current Attachment 14 design rules:
+
+- an **alternative in-app payment flow must complete within TycoonX itself** rather than handing the user into an undocumented external flow;
+- the in-app payment flow must not contain hidden, dormant, or undocumented payment functionality or behavior;
+- an **actionable out-of-app offer must open outside TycoonX**, such as in a window or tab in the device’s default browser, and must not complete inside an embedded web view where Apple prohibits that implementation; and
+- the actionable link must be accompanied by accurate information about the digital goods or services available at the destination.
+
+Do not blur these two models. If CK-Labs chooses in-app alternative payment processing, keep that flow in-app. If CK-Labs chooses an actionable out-of-app offer, route it to the permitted external destination and use the required Apple disclosure and token flow.
 
 Test at minimum:
 
@@ -76,6 +85,9 @@ Test at minimum:
 - unsupported OS version;
 - unavailable or misconfigured entitlement;
 - wrong/non-EU storefront;
+- in-app alternative payment unexpectedly escaping into a browser;
+- actionable out-of-app offer incorrectly opening in an embedded web view;
+- destination goods/prices not matching the information shown before the link;
 - user returning to TycoonX without purchasing;
 - user returning after a successful Xsolla purchase;
 - delayed Xsolla confirmation;
@@ -106,16 +118,20 @@ Therefore:
 - keep the public TycoonX website free to explain lawful web purchases, but do not assume the same copy belongs in App Store metadata; and
 - keep App Review notes factual and reviewer-oriented, not consumer-facing purchase promotion.
 
-### 7. PSP readiness and App Review notes
+### 7. PSP readiness, payment-services compliance, TestFlight, and App Review notes
 
 If TycoonX uses Xsolla or another alternative payment service provider in the EU flow:
 
 - identify the PSP by name in App Review notes where Apple requires it;
 - verify the PSP is ready to complete a real transaction from the submitted build/environment;
-- verify the PSP satisfies the current **PCI Level 1** requirement applicable to payment-card handling in Apple’s alternative-payment framework;
+- verify and retain current evidence that the PSP satisfies Apple’s **PCI Level 1** requirement for handling credit and debit card data;
+- where the PSP handles non-card payment methods, verify the arrangement satisfies Apple’s current **Payment Services Directive** requirement and the applicable payment-services law for the actual countries/payment methods rather than assuming PCI evidence covers non-card payments;
+- do not certify PSP compliance to Apple merely because a provider markets itself as a merchant of record or because an old compliance badge exists;
 - make sure the customer-support process can handle unauthorized-transaction disputes, refunds, payment problems, purchase history and subscription management if recurring products are ever introduced;
 - do not submit a build whose external payment path points only to a sandbox, test-only, broken, region-ineligible, or incomplete checkout; and
 - make sure App Review can reach any test account, test product, and explanatory notes needed to exercise the actual path without exposing real player payment credentials.
+
+Apple’s current Attachment 14 also allows TestFlight testing of Alternative Payment Processing and Out-of-App Offers only where transactions incurred in that testing are provided to testers **at no cost**. A TestFlight/Xcode/sandbox flow may exercise the payment integration but must never create real production revenue or unrestricted production Diamonds, 30-Day VIP, or Lifetime VIP. Keep the separate Apple sandbox/TestFlight production-isolation gate authoritative for economic isolation.
 
 ### 8. External-purchase token and transaction reporting
 
@@ -140,9 +156,9 @@ Release gate:
 - reporting failures cannot duplicate TycoonX entitlement delivery; and
 - the monthly reporting deadline is operationally owned rather than left as an undocumented manual task.
 
-### 9. Commission, attribution, tax, VAT, and invoice reconciliation
+### 9. Commission, attribution, third-party seller, tax, VAT, invoice, and audit reconciliation
 
-Do not treat Xsolla merchant-of-record settlement as proof that no Apple commission, reporting, tax-information, or invoice obligation exists.
+Do not treat Xsolla merchant-of-record settlement as proof that no Apple commission, reporting, tax-information, invoice, contractual pass-through, or audit obligation exists.
 
 Before enabling Xsolla or another alternative payment option from the EU app:
 
@@ -152,6 +168,33 @@ Before enabling Xsolla or another alternative payment option from the EU app:
 - verify who is responsible for collection and remittance of transaction taxes under the actual Apple/Xsolla arrangement rather than assuming Apple handles taxes for alternative payments;
 - keep records sufficient to answer an Apple audit or invoice dispute; and
 - do not treat a provider refund or chargeback as automatically changing what must be reported to Apple without applying Apple’s current reporting rules for the corresponding correction.
+
+#### Current Attachment 14 commission snapshot
+
+As rechecked on September 9, 2026, Attachment 14 currently states, among other program-specific qualifications:
+
+- **Alternative Payment Processing:** 20% Apple commission, reduced to 10% for qualifying transactions such as while the developer participates in the App Store Small Business Program;
+- **Apple In-App Purchase under the unified EU terms:** 26% Apple commission, reduced to 15% for qualifying program-rate transactions; and
+- **Out-of-App Offers with an actionable link:** 15% store-services commission on qualifying promoted digital sales initiated within **7 calendar days** after the user taps or scans the actionable link, reduced to 10% for qualifying transactions such as while the developer participates in the Small Business Program.
+
+These percentages are a dated operational snapshot, not a promise to players and not a substitute for the then-current agreement, App Store Connect account status, invoices, or Apple Materials. Before setting a TycoonX price or margin assumption, recheck the applicable rate and whether the exact transaction qualifies for a reduced rate. Do not calculate profitability as “Xsolla fee only” if Apple commission can also apply. Do not retroactively reprice a completed player transaction merely because Apple later changes its commission structure.
+
+For an out-of-app sale, do not determine Apple attribution solely from CK-Labs web analytics, a marketing cookie, or the time Xsolla settled funds. Preserve the Apple token/attribution evidence and apply Apple’s then-current seven-day/promoted-goods rules. A later unrelated visit to the standalone TycoonX webshop must not be fabricated into an Apple-attributed sale, and an actually attributable sale must not be intentionally stripped of Apple attribution.
+
+#### Third-party seller / merchant-of-record pass-through blocker
+
+Current Attachment 14 says that where a sale subject to Apple commission or fees is made by someone other than the developer, the developer must have an agreement with that party that applies the relevant Attachment 14 requirements to those sales and remains responsible for ensuring required reports and Apple commissions/fees are handled in accordance with the terms.
+
+Therefore, before using Xsolla or another third party as merchant, seller, reseller, or merchant of record for an Apple-attributable EU purchase:
+
+- confirm in the real CK-Labs/provider contract which entity legally makes the sale to the customer for that checkout;
+- confirm the agreement allocates the data, token, reporting, refund/correction, tax, audit-cooperation, and Apple-commission information CK-Labs needs to meet Attachment 14;
+- do not assume a generic Xsolla dashboard, settlement report, or “merchant of record” label automatically satisfies Apple’s contractual pass-through requirement;
+- ensure CK-Labs can obtain transaction-level records needed to reconcile Apple attribution, gross customer amounts, transaction taxes, refunds, reversals, and chargebacks;
+- do not promise Apple that a third party will report or pay an Apple amount unless the actual contract and workflow support that promise; and
+- keep the EU alternative-payment path disabled if the seller-of-record structure makes the Apple reporting/payment obligation impossible to perform reliably.
+
+This is an Apple/developer contractual allocation and does not change the player’s mandatory consumer rights or silently rewrite who the checkout/receipt identifies as the contracting seller or merchant for the individual transaction.
 
 #### EU VAT ID blocker
 
@@ -166,14 +209,28 @@ Before TycoonX enables the alternative-payment entitlement in production:
 - do not assume Xsolla acting as merchant of record removes Apple’s separate developer-account VAT-ID requirement; and
 - if German law independently requires the resulting VAT ID to appear in the public TycoonX Impressum, synchronize the legal notice after the real number exists rather than publishing a placeholder.
 
-#### Apple invoices
+#### Apple invoices and disputes
 
-Apple’s current EU guidance says qualifying developers receive monthly invoices for applicable commission/fees and that payment is due **within 30 days of receiving the invoice**. Treat this as a live operational obligation:
+Current Attachment 14 states that Apple invoices qualifying commissions and applicable charges and that payment is due **within 30 calendar days of the invoice being issued**. Treat this as a live operational obligation:
 
 - assign ownership for invoice retrieval, reconciliation, and payment;
 - reconcile the invoice to submitted transaction reports before disputing an amount;
-- preserve evidence needed for a legitimate correction or dispute; and
+- submit a payment dispute before the amount is due where the agreement requires that timing;
+- preserve evidence needed for a legitimate correction or dispute;
+- reconcile Apple’s future-invoice credit when a properly reported refund changes commission already paid; and
 - do not allow a missed internal accounting task to create avoidable App Store or Developer Program consequences.
+
+#### Three-year books-and-records / audit readiness
+
+Current Attachment 14 requires complete and accurate books and records concerning amounts payable to Apple and refunds claimed to be maintained for **three years after transmission of the relevant reports** and allows Apple to audit relevant records. It states that an audit request must be accommodated within **30 days**.
+
+Release/operations requirements:
+
+- preserve the minimum transaction, attribution, gross amount, transaction-tax, refund/reversal/chargeback, Apple-report, invoice, and payment evidence needed for this obligation;
+- keep audit records scoped to relevant Apple commission/payment/refund evidence rather than retaining unrelated player data “just in case”;
+- map the three-year Apple contractual retention need into the TycoonX privacy/retention register and delete or anonymize unrelated data when it is no longer necessary;
+- ensure provider replacement, Xsolla account migration, business sale/reorganization, or service shutdown does not destroy records still required for an open Apple audit/payment period; and
+- do not use Apple’s audit-retention clause as a pretext to retain passwords, full payment-card data, unnecessary identity documents, private messages, or unrelated gameplay telemetry.
 
 ### 10. Customer-support allocation
 
@@ -207,7 +264,7 @@ If TycoonX is ever listed in Apple’s Kids category, apply the stricter Kids-ca
 
 #### Declared Age Range and evolving Apple APIs
 
-Apple’s current age-assurance documentation is a separate but related control surface. As of September 7, 2026:
+Apple’s current age-assurance documentation is a separate but related control surface. As of September 9, 2026:
 
 - the Declared Age Range API is available worldwide;
 - Apple says that in regions where age checking is legally required, developers are responsible for checking the age category of people using their app;
@@ -260,26 +317,34 @@ Do not promise that Apple handles refunds for an Xsolla alternative-payment tran
 
 ## Current rollout decision after full release
 
-TycoonX went to full release on **September 1, 2026**. Do not enable an EU alternative-payment implementation merely because the Xsolla webshop exists. Keep the currently compliant storefront behavior while completing the October unified-terms acceptance, payment election, entitlement, runtime API, in-app alternative-processing requirement where applicable, VAT-ID setup, reporting, support, child-safety, age-assurance, commission, invoice, tax and App Review work. Enable the unified-EU alternative-payment path only after the full flow is verified end to end.
+TycoonX went to full release on **September 1, 2026**. Do not enable an EU alternative-payment implementation merely because the Xsolla webshop exists. Keep the currently compliant storefront behavior while completing the October unified-terms acceptance, payment election, entitlement, runtime API, PSP/Payment Services Directive evidence, in-app/out-of-app implementation boundaries, third-party seller pass-through, VAT-ID setup, reporting, support, child-safety, age-assurance, commission, invoice, audit, tax and App Review work. Enable the unified-EU alternative-payment path only after the full flow is verified end to end.
 
 Do not describe this live transition as a beta or pre-release phase. A delayed Apple transition also must not be used to extend a Lifetime VIP countdown, create fake scarcity, or alter the price or entitlement of a purchase that was already completed under the applicable transaction terms.
 
 ## Source checkpoint
 
-Apple’s current guidance was rechecked on **September 7, 2026**. The August 18, 2026 Developer Program License Agreement update, Attachment 14 transition materials, EU alternative-payment guidance, and current age-assurance Q&A currently state that:
+Apple’s current guidance and Attachment 14 were rechecked on **September 9, 2026**. The August 18, 2026 Developer Program License Agreement update, Attachment 14 transition materials, EU alternative-payment guidance, and current age-assurance Q&A currently state that:
 
 - the updated Apple Developer Program License Agreement was published August 18, 2026;
 - the unified EU terms apply starting October 1, 2026 or the date the Account Holder agrees, whichever is later;
 - alternative-payment elections apply across EU storefronts and are subject to a 12-month commitment;
 - an alternative-only configuration that also presents out-of-app offers must give users a genuine opportunity to select alternative payment processing within the app, viewable/selectable on the same screen as the out-of-app offers;
 - qualifying alternative-payment flows require the StoreKit External Purchases or Offers Entitlement and, where applicable, `ExternalPurchaseCustomLink` plus Apple’s disclosure sheet;
+- an in-app alternative payment flow must complete within the same app and must not contain hidden, dormant, or undocumented payment behavior;
+- an actionable out-of-app offer must open outside the app rather than in a web view and must be accompanied by accurate information about the goods/services at the destination;
 - Apple In-App Purchase must be at least as prominent when shown alongside actionable alternatives;
 - alternative-payment information may not be promoted on the App Store product page;
+- PSPs must satisfy the applicable PCI Level 1 and Payment Services Directive/payment-services requirements stated in Attachment 14;
+- TestFlight alternative-payment/out-of-app testing transactions must be provided to testers at no cost;
 - qualifying alternative transactions and tokens require reporting within 15 days after month-end, including applicable tokens that did not result in a purchase;
 - qualifying EU transactions on Apple OS versions 26.4 and later use the External Purchase Server API, while earlier-version reporting follows Apple’s prescribed manual/example route;
+- the current Attachment 14 commission snapshot includes 20% for Alternative Payment Processing, 26% for Apple In-App Purchase, and 15% for qualifying actionable-link Out-of-App Offers, with reduced rates for specified qualifying program transactions;
+- the actionable-link Out-of-App Offer commission currently uses a seven-calendar-day initiation window for qualifying promoted sales;
+- where a sale subject to Apple commission/fees is made by another seller, the developer remains responsible for the required contractual/reporting/payment arrangement under Attachment 14;
 - developers using EU alternative payment options must provide Apple with an EU-specific VAT ID demonstrating VAT registration, with one EU VAT ID sufficient for all EU storefronts;
-- qualifying Apple invoices are payable within 30 days of receipt;
+- qualifying Apple invoices are payable within 30 calendar days after the invoice is issued, and payment disputes must be raised before the amount is due under the current terms;
+- relevant Apple commission/payment/refund books and records must currently be retained for three years after report transmission and be available for a qualifying audit request within 30 days;
 - all apps offering alternative payment options in the EU are subject to Apple’s child-safety requirements, with stricter handling for under-threshold users, teens, and Kids-category apps;
 - `canMakePayments` is required before a payment flow but must not be treated as an age-classification result;
 - Apple’s Declared Age Range / age-assurance frameworks provide separate age-related signals, and Apple says future APIs will further support the EU alternative-payment child-safety requirements; and
-- developers using alternative payments take on additional support, payment, tax, reporting, reconciliation, child-safety, privacy, and compliance responsibilities.
+- developers using alternative payments take on additional support, payment, tax, reporting, reconciliation, child-safety, privacy, audit, third-party seller, and compliance responsibilities.
