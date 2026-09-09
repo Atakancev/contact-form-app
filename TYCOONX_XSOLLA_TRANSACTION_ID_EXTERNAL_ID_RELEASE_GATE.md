@@ -1,8 +1,8 @@
 # TycoonX Xsolla Transaction ID & External ID Release Gate
 
-Last reviewed: September 7, 2026
+Last reviewed: September 9, 2026
 
-This operational gate applies to purchases made through the official CK-Labs TycoonX webshop using Xsolla. It supplements the public TycoonX Terms of Service, Purchases & Refunds Policy and Privacy Policy, plus the existing Xsolla refund/chargeback and entitlement gates. It does not change mandatory consumer rights or make a browser redirect authoritative for a purchase.
+This operational gate applies to purchases made through the official CK-Labs TycoonX webshop using Xsolla. It supplements the public TycoonX Terms of Service, Purchases & Refunds Policy and Privacy Policy, plus the existing Xsolla refund/chargeback and entitlement gates. It does not change mandatory consumer rights or make a browser redirect or Pay Station access token authoritative for a purchase.
 
 ## Why this gate exists
 
@@ -12,7 +12,9 @@ This is release-critical for a JavaScript/TypeScript web stack because ordinary 
 
 Xsolla separately defines `settings.external_id` as the transaction/order ID in the game and currently requires a new unique external ID for each payment. Its current payment FAQ expressly says an external ID must be unique across both **sandbox and live** payments. If a sandbox payment already used `external_id = "1"`, the same external ID cannot later be reused for a real payment.
 
-The safe TycoonX model therefore treats Xsolla's transaction ID and CK-Labs' external ID as separate, exact, immutable identifiers with different authorities.
+Xsolla's current Pay Station API documentation also says that its payment token has a **24-hour lifetime by default**, that a different company-wide lifetime can be configured through Xsolla, and that Xsolla provides an idempotent **Invalidate token** endpoint which expires all sessions using that token. A checkout token is therefore a temporary bearer capability for opening payment UI, not proof that money was paid or that a TycoonX entitlement exists.
+
+The safe TycoonX model therefore treats Xsolla's transaction ID, CK-Labs' external ID and the temporary Pay Station token as separate values with different authorities and lifecycles.
 
 ## P0 release requirements
 
@@ -62,6 +64,50 @@ TycoonX must therefore:
 - keep the external ID immutable after it has been sent to Xsolla.
 
 Where Xsolla external-ID validation is enabled, a duplicate external-ID error is an **integration/idempotency signal**, not a reason to silently generate a second payment for an order that may already exist. Reconcile the existing TycoonX order and Xsolla state first.
+
+### 4A. Treat Pay Station access tokens as temporary checkout capabilities
+
+As of September 9, 2026, Xsolla's current Pay Station API says a payment token has a **24-hour lifetime by default** and provides an idempotent `POST /projects/{project_id}/token/{token}/expire` operation to invalidate a token. Xsolla describes invalidation as preventing the token from opening the payment UI and expiring other sessions opened with the same token.
+
+TycoonX must therefore treat the token as temporary checkout authorization only:
+
+- **Token issuance is not payment.** Creating, displaying, opening or possessing a Pay Station token must never grant Diamonds, start 30-Day VIP, activate Lifetime VIP, record completed revenue, mark a refund, or create a chargeback.
+- The token is not a substitute for Xsolla's authenticated completed-transaction evidence. If webhook delivery is delayed or ambiguous, reconcile against Xsolla's authoritative transaction/report state rather than trusting the token, return URL or browser screen.
+- A token must be bound to the expected CK-Labs order, external ID, internal account, environment and intended product context. A later login, account switch, browser restore or device change must not silently reassign the purchase to whichever TycoonX account happens to be active.
+- Do not rely on Xsolla's default 24-hour expiry as the only control for a shorter TycoonX sale, corrected catalog entry, security incident or selected promotional window. Use a token lifetime compatible with the commercial flow where Xsolla configuration permits it, stop issuing new tokens immediately when an offer closes, and explicitly invalidate still-unpaid tokens when continuing use would bypass the intended closure or create a security risk.
+- Token invalidation is a checkout control, **not a refund or revocation mechanism**. Invalidating a token after Xsolla has already authoritatively completed the matching payment must not erase or revoke the legitimate completed transaction or its entitlement.
+- The invalidate-token operation is idempotent. Repeating an invalidation call must not create duplicate refunds, entitlement removals, fraud events or support actions.
+
+#### Lifetime VIP stale-token rule
+
+Lifetime VIP is a limited-time promotional offering available only during selected genuine sales windows, may be withdrawn from sale, may never return, and creates no expectation of continuous availability.
+
+- A Pay Station token, checkout URL, QR code, screenshot, cached browser tab or unfinished session created while a Lifetime VIP window was open does **not by itself reserve Lifetime VIP, reserve the old price or keep the sales window open**.
+- When a Lifetime VIP window closes, TycoonX must stop issuing new Lifetime VIP tokens and should invalidate still-unpaid Lifetime VIP tokens that could otherwise remain usable after the window. The normal 24-hour token lifetime is not an acceptable substitute when it extends beyond the selected campaign boundary.
+- A stale or replayed token after closure cannot create a new Lifetime VIP sale, and support must not manually recreate a sale merely because a player can show an old token URL or checkout screenshot.
+- This closure rule does not cancel a purchase that was already validly and authoritatively completed under Xsolla and the applicable sales-window rules. If provider confirmation arrives late because of an outage or webhook delay, reconcile the actual transaction chronology and honor a legitimate completed purchase exactly once where required.
+- Token invalidation, campaign closure, provider migration or service recovery can never reopen Lifetime VIP for unrelated users or create an expectation that another Lifetime VIP sales window will occur.
+
+#### 30-Day VIP and Diamonds
+
+- For one-time 30-Day VIP, token creation or checkout opening does not start the 30-day clock. A valid completed purchase creates one non-renewing entitlement of 30 consecutive days from activation or availability under the canonical TycoonX rule.
+- For Diamonds, token creation grants zero Diamonds. Grant the verified purchased bundle exactly once only after authoritative successful payment evidence.
+- If the same token/session is retried or opened concurrently, transaction/external-ID idempotency must still prevent a second economic mutation.
+
+#### Price, promotion, regional price, tax and catalog changes
+
+- A stale token is not permission to bypass a corrected catalog/configuration error, a closed promotion, a regional-availability restriction, a future price change, an updated currency/tax/FX configuration, an unsupported old client, or a security emergency.
+- Conversely, a purchase that Xsolla has already validly completed is not retroactively repriced merely because the catalog, FX rate, tax handling, bundle or promotion later changed. Preserve the actual provider-confirmed amount, currency, item and applicable transaction evidence.
+- A later price decrease does not automatically create a price-match/refund/credit right and a later price increase does not create an extra charge on an already completed one-time purchase, except where mandatory law requires otherwise.
+- If checkout remains open across a material price or catalog change and the provider cannot guarantee accurate final pre-confirmation information, require a fresh checkout rather than silently charging stale commercial terms.
+
+#### Security, privacy and incident response
+
+- Treat a live Pay Station token as sensitive bearer-style checkout metadata. Do not deliberately place full tokens in analytics events, crash logs, support notes, public URLs controlled by CK-Labs, screenshots, chat messages or other storage that does not need the token to operate the payment flow.
+- If a token may have leaked or an unpaid checkout is associated with a credible account-compromise/security incident, invalidate the affected unpaid token where appropriate and require a fresh authenticated checkout. Do not confiscate unrelated legitimate paid value merely because a checkout token was exposed.
+- A token screenshot or copied checkout URL is a support lead, not transaction proof and not sufficient evidence of entitlement ownership, fraud, account compromise or payment completion.
+- Sandbox Pay Station tokens must remain sandbox-only. Copying a sandbox token, URL or screenshot into production must never create production Diamonds, 30-Day VIP, Lifetime VIP or production revenue.
+- During replacement or discontinuation of Xsolla or another payment/infrastructure provider, retire or invalidate unused tokens where practical while preserving the records needed to restore and reconcile legitimate completed purchases.
 
 ### 5. Never confuse Xsolla transaction ID, TycoonX external ID and player ID
 
@@ -151,9 +197,37 @@ The authenticated server/provider state wins for entitlement and refund processi
 
 Do not create another charge blindly. Determine whether the existing external ID corresponds to a sandbox attempt, abandoned checkout, failed payment, completed purchase or another valid order. Create a new external ID only for a genuinely new payment attempt after the existing state is understood and the product flow permits another purchase.
 
+### If a Pay Station token outlives an offer or security decision
+
+Do not wait passively for the default token lifetime when continued checkout would violate an intentional TycoonX commercial or security boundary. Stop issuing the affected checkout immediately, invalidate still-unpaid tokens where appropriate, and require a fresh token/order if the product later becomes lawfully available again.
+
+For Lifetime VIP, a later new campaign is a new genuine sales window. It must issue fresh checkout context under that campaign's then-current price, country/channel availability, tax/FX configuration and promotion terms. Never revive an old campaign token.
+
+If a payment appears to have completed around the same time as invalidation or campaign closure, do not decide entitlement from local timestamps alone. Reconcile Xsolla's authoritative transaction state and chronology, apply exactly-once fulfillment, and preserve mandatory consumer rights.
+
 ## Mandatory German/EU rights
 
-Nothing in this gate waives or narrows mandatory consumer rights. If an identifier/integration failure causes non-delivery, duplicate charging, incorrect entitlement removal, incorrect price handling or inability to exercise a valid refund/withdrawal/conformity remedy, CK-Labs must provide the remedy required by applicable law. Mandatory rights concerning withdrawal, conformity, updates, cure, price reduction, termination, refunds, liability, information and unfair commercial practices remain intact.
+Nothing in this gate waives or narrows mandatory consumer rights. If an identifier/integration failure, stale checkout, token invalidation error or provider delay causes non-delivery, duplicate charging, incorrect entitlement removal, incorrect price handling or inability to exercise a valid refund/withdrawal/conformity remedy, CK-Labs must provide the remedy required by applicable law. Mandatory rights concerning withdrawal, conformity, updates, cure, price reduction, termination, refunds, liability, information and unfair commercial practices remain intact.
+
+## Regression scenarios
+
+At minimum, verify these token-lifecycle cases in addition to the existing identifier tests:
+
+1. A Lifetime VIP token is created ten minutes before a genuine sales window closes but remains unpaid at closure. The window closes, token issuance stops, and the stale token cannot create a new Lifetime VIP sale afterward.
+2. The same Lifetime VIP token would otherwise remain valid under Xsolla's default 24-hour lifetime. TycoonX does not rely on that default when it exceeds the campaign boundary.
+3. CK-Labs invalidates an unpaid token after discovering an obvious catalog/configuration error. No entitlement is granted and no refund is fabricated.
+4. Xsolla had already authoritatively completed the transaction before the token was invalidated. The valid completed purchase remains reconcilable and is not revoked merely because the token later expires.
+5. A support ticket contains a screenshot or copied Pay Station token URL. It is treated as a lookup lead, not proof of payment or entitlement ownership.
+6. A credible account-compromise incident exposes an unpaid token. The affected checkout can be invalidated without confiscating unrelated legitimate purchases.
+7. A 30-Day VIP token is created hours before payment completes. The 30-day entitlement does not start at token creation.
+8. A Diamond checkout is opened twice in parallel with the same token/order context. Only one authoritative completed transaction can produce one economic grant.
+9. A stale checkout crosses a regional-price, currency, VAT/FX or promotion change. TycoonX either obtains accurate provider-confirmed final terms or requires a fresh checkout; it does not silently infer a price from the old token.
+10. A provider outage delays the webhook until after token expiry. TycoonX reconciles the Xsolla transaction instead of assuming expiry means payment failed.
+11. A sandbox token or sandbox Pay Station URL is copied into a production support flow. It never creates production paid value.
+12. The same `external_id` appears with a newly requested token after an ambiguous prior attempt. TycoonX reconciles the prior order instead of blindly charging again.
+13. The player switches TycoonX accounts while Pay Station remains open. Fulfillment remains attached to the intended verified order/account rather than the currently logged-in account.
+14. Xsolla is replaced or disabled. Unused tokens are retired where practical while completed purchases remain restorable from authoritative records.
+15. An invalidation request is retried. Because invalidation is idempotent, the retry cannot create a second entitlement correction, refund or fraud action.
 
 ## Release evidence
 
@@ -166,14 +240,19 @@ Before considering this gate satisfied, CK-Labs should retain evidence that:
 - external IDs are newly generated and unique across sandbox and live payments;
 - transaction ID, external ID and user ID remain separate fields;
 - duplicate/replayed events remain idempotent for Diamonds, 30-Day VIP and Lifetime VIP;
-- refund tooling resolves the exact transaction from authoritative order mappings rather than a rounded/manual identifier; and
-- sandbox transactions cannot reach production entitlements.
+- refund tooling resolves the exact transaction from authoritative order mappings rather than a rounded/manual identifier;
+- sandbox transactions cannot reach production entitlements;
+- Pay Station token issuance alone grants no paid value and creates no completed revenue;
+- time-limited offers, especially Lifetime VIP, do not rely on the default 24-hour token lifetime when the token would outlive the selected sales window;
+- still-unpaid stale/security-sensitive tokens can be invalidated through the provider-supported flow without revoking an already completed legitimate transaction;
+- token/order/account/environment binding survives retries, app restarts and account switching; and
+- full live Pay Station tokens are excluded from unnecessary analytics, crash logs, support notes and other non-payment storage.
 
 ## Current reference points
 
 - Xsolla, **Configure redirects**: documents `user_id`, `foreigninvoice`, `invoice_id`, redirect statuses, empty `invoice_id` on an unfinished checkout, and the June 1, 2026 move to `int64` transaction IDs.
 - Xsolla, **Payment configuration FAQ**: documents `external_id`, cross-sandbox/live uniqueness, a fresh external ID per payment, and the recommendation to test transaction IDs above `2^32` such as `4,300,000,000`.
-- Xsolla, **Pay Station token API**: documents `settings.external_id` as a string transaction/order identity that must be unique for each user payment.
+- Xsolla, **Pay Station token API**: documents `settings.external_id`; the current default 24-hour token lifetime; production and sandbox Pay Station URLs; and the idempotent Invalidate token endpoint that expires other sessions using the same payment token.
 - Xsolla webhook/API schemas: currently type provider `transaction.id` / transaction path IDs as `integer(int64)`.
 
 Provider behavior can change. Re-check the current Xsolla documentation before materially changing the webshop integration.
