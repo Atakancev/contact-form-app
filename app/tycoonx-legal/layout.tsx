@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import LegalInlineFormatting from './LegalInlineFormatting';
 import TransferRuleNotice from './TransferRuleNotice';
-import GameplayEconomyRuleNotice from './GameplayEconomyRuleNotice';
 import RealMoneyTradingNotice from './RealMoneyTradingNotice';
 import TransferRiskPrivacyNotice from './TransferRiskPrivacyNotice';
 import ControllerIdentityPrivacyNotice from './ControllerIdentityPrivacyNotice';
@@ -13,7 +12,6 @@ export default function TycoonXLegalLayout({ children }: { children: ReactNode }
       <LegalInlineFormatting />
       {children}
       <TransferRuleNotice />
-      <GameplayEconomyRuleNotice />
       <RealMoneyTradingNotice />
       <TransferRiskPrivacyNotice />
       <ControllerIdentityPrivacyNotice />
