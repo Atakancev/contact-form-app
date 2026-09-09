@@ -23,12 +23,15 @@ Last synchronized: **September 10, 2026**.
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
 
-Two September 10 code-derived Terms clarifications are now synchronized across the canonical Terms route and all target locales:
+Three September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
 
 1. `GameplayEconomyRuleNotice.tsx` covers genuine Company/Union value movement, contribution mechanics and the genuine-purpose rule.
 2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling prices, settlement/state exploitation, proportional correction, outages/account compromise and mandatory-rights protection.
+3. `UnionGovernanceRuleNotice.tsx` covers Union membership fees, leader treasury deposits/withdrawals, maintenance/closure, projects/rewards, level upgrades, polls, altered-client/state manipulation, limit evasion, compromise/outage correction and mandatory-rights protection.
 
-`CompanyCommerceRuleNotice.tsx` is mounted through the root layout and route-gated to the canonical `/tyconx-terms-of-service` route plus `/tycoonx-legal/{locale}/terms`, including RTL Arabic and locale-specific Spanish, French, Portuguese and Chinese variants.
+The route-gated gameplay clarifications are mounted through the application layout and display only on the canonical `/tyconx-terms-of-service` route and `/tycoonx-legal/{locale}/terms`. Arabic uses RTL and the locale-specific Spanish, French, Portuguese and Chinese variants remain separately localized.
+
+A duplicate canonical mount of `GameplayEconomyRuleNotice.tsx` was removed from the nested Terms layout because the root layout already supplies it.
 
 ### Locale status
 
@@ -84,9 +87,9 @@ Obvious configuration errors, failed/pending/reversed payments, duplicate or acc
 
 Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, art purchase, auction, Company transaction, job, contract, market order, or other mechanic must not be repurposed mainly as a disguised gift, donation, wealth-funneling route, value-parking route, RMT route, exploit-laundering route, or way to evade another feature limit.
 
-This does **not** make every mechanic that transfers value unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock mechanics, Company supply procurement, warehouse specialist fulfillment, Company-to-Company exports/contracts, tenders, Begging and Union Project contributions. Genuine use for the feature’s intended purpose is allowed unless another specific rule is violated.
+This does **not** make every mechanic that transfers value unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock mechanics, Company supply procurement, warehouse specialist fulfillment, Company-to-Company exports/contracts, tenders, Begging, Union Project contributions, Union membership fees and leader treasury movements. Genuine use for the feature’s intended purpose is allowed unless another specific rule is violated.
 
-A high or low price, large salary, generous dividend, aggressive tender bid, large Union contribution, profitable Company delivery, contract failure, penalty or insolvency is not automatically abuse. Serious enforcement requires reasonable evidence of the prohibited purpose and should distinguish detection, containment, state correction and punitive account enforcement.
+A high or low price, large salary, generous dividend, aggressive tender bid, large Union contribution, legitimate leader treasury withdrawal, profitable Company delivery, contract failure, penalty or insolvency is not automatically abuse. Serious enforcement requires reasonable evidence of the prohibited purpose and should distinguish detection, containment, state correction and punitive account enforcement.
 
 ## September 10 code-first Company commerce checkpoint
 
@@ -100,23 +103,40 @@ Read-only production Supabase inspection and current Flutter/economy-source revi
 - current tenders use `manage_tenders`, support live/blind bidding and targeted visibility, and the sweep awards the lowest bid with time as tie-breaker; and
 - contract failure/overdue handling can apply a Company penalty and insolvency consequences as a normal gameplay outcome.
 
-### Important implementation/legal finding
+### Company implementation/legal finding
 
-The reviewed richer `company_supply_request_create(...)` path validates the initial price of a linked export/V2 supply request against the linked contract/offer price.
+The reviewed richer `company_supply_request_create(...)` path validates the initial price of a linked export/V2 supply request against the linked contract/offer price. The reviewed richer `company_supply_request_update(...)` path does **not clearly reapply that linked contract/V2-offer price ceiling** before writing a changed unit price. Older retained overloads have different historic checks.
 
-The reviewed richer `company_supply_request_update(...)` path does **not clearly reapply that linked contract/V2-offer price ceiling** before writing a changed unit price. Older retained overloads have different historic checks.
+This creates source-drift and enforcement risk. Server acceptance is not conclusive authorization for knowing exploitation of an obviously inconsistent settlement state, but accidental or ordinary one-off use must be distinguished from knowing/repeated extraction. Engineering follow-up remains required outside this legal project. No database change was made.
 
-This creates source-drift and enforcement risk: a server-success response can potentially create a linked-request state that the current creation path would not permit. The legal treatment is therefore explicit:
+Detailed gate: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.
 
-- server acceptance is not conclusive authorization for knowing exploitation of an obviously inconsistent settlement state;
-- sham/artificial pricing used mainly to funnel Company value can be reviewed when supported by evidence;
-- accidental or ordinary one-off use must be distinguished from knowing or repeated extraction;
-- directly attributable invalid state may be reconciled without treating the correction itself as a fraud finding; and
-- unrelated legitimate paid value and mandatory consumer rights remain protected.
+## September 10 code-first Union treasury/governance checkpoint
 
-Engineering follow-up is required outside this legal project to make linked price validation symmetric and resolve retained overload drift. **No database change was made by this run.**
+Current Flutter entry points and read-only production Supabase inspection confirm:
 
-Detailed gate: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.  
+- `pay_union_membership_fee()` transfers an active member’s in-game money to Union treasury;
+- `union_leader_deposit(...)` and `union_leader_withdraw(...)` are intended leader treasury-transfer mechanics;
+- `pay_union_maintenance_now()` pays one authoritative unpaid maintenance day from Union treasury;
+- the active daily Union sweep handles due auto-pay membership fees and maintenance and currently closes an active Union after seven unpaid maintenance days;
+- `donate_union_project(...)` currently caps one user’s cumulative contribution at 50% of the project target, moves completed project value into treasury, grants Union XP and can distribute a configured portion of project value among active members;
+- `start_union_level_upgrade()` immediately debits the current cost and stores a future completion time, while `sync_union_level_upgrade(...)` later finalizes level/XP/member-limit state;
+- polls are in-game governance tools; and
+- `collapse_union()` is an intended leader-only closure path that closes the Union, removes active membership state, cancels pending applications and disables recruitment.
+
+Player-facing legal treatment is now explicit: these are genuine mechanics. A legitimate high fee, contribution, reward, leader withdrawal, maintenance charge or upgrade expense is not automatically cheating. Union treasury is fictional shared game state rather than a bank account or an individual real-money claim. Outages, duplicate jobs, stale state and account compromise must be distinguished from knowing abuse.
+
+### Critical Union implementation/security finding
+
+The current Flutter settings path directly updates selected fields of the `unions` table. Production RLS permits an active Union leader or officer to UPDATE the Union row, while authenticated UPDATE privileges currently cover all columns, including sensitive server-owned fields such as `leader_id`, `status`, `union_level`, `union_xp`, `member_limit`, maintenance state and treasury.
+
+The current Finance V2 deferred authority guard protects treasury consistency while Finance V2 is in `FULL_AUTHORITY`, but the reviewed trigger does not make non-treasury governance/progression fields immutable. The reviewed constraints do not make `leader_id` immutable.
+
+Therefore a modified/direct client may be able to attempt state changes beyond the ordinary Flutter UI. A successful database request caused by an over-broad authorization surface is not a legal safe harbor for manipulated state. Engineering should narrow generic Union UPDATE rights, make server-owned fields non-writable through ordinary client updates, and use a dedicated constrained/audited path for any intentional leadership transfer.
+
+**No production database policy, function, trigger, row, schema or configuration was changed by this legal audit.**
+
+Detailed gate: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.  
 Implementation/legal map: `TYCOONX_CODE_FIRST_GAMEPLAY_LEGAL_MAP.md`.
 
 ## Active privacy/controller invariant
@@ -127,7 +147,7 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 German BGB § 307 remains relevant to standard terms: unclear or incomprehensible wording can contribute to an unreasonable disadvantage. Gameplay rules therefore need to explain real authorized mechanics clearly rather than making an intended feature look prohibited while relying on hidden implementation knowledge for the exception.
 
-German digital-product conformity/remedy rules remain separate from gameplay discipline. BGB § 327d requires covered digital products to be supplied in conformity with the statutory regime, and § 327i preserves qualifying remedies for defective digital products. Gameplay balancing, Company penalties, anti-exploit correction or account enforcement must not be used as a shortcut to waive mandatory remedies.
+German digital-product conformity/remedy rules remain separate from gameplay discipline. BGB § 327d requires covered digital products to be supplied in conformity with the statutory regime. Gameplay balancing, Union closure/maintenance, Company penalties, anti-exploit correction or account enforcement must not be used as a shortcut to waive mandatory remedies.
 
 ## Next code-first gameplay audit queue
 
@@ -136,15 +156,15 @@ Completed substantive gameplay clusters:
 1. Company governance/value movement: salaries, payroll, treasury distributions, IPO/dividends/buybacks/offerings.
 2. Company commerce: supply requests, member delivery, warehouse specialist fulfillment, export/procurement offers, tenders, completion, failure/penalties and permissions.
 3. Union Project contribution exception: expressly authorized contribution versus ordinary mechanics used as disguised donation channels.
+4. Union treasury/governance: membership fees, leader deposits/withdrawals, maintenance/closure, projects/rewards, polls, level upgrades, Union closure, alternate-account/limit-evasion boundaries and generic Union UPDATE authority risk.
 
 Continue in this order:
 
-1. **Union treasury/governance:** membership fees, leader deposits/withdrawals, maintenance, projects/rewards, polls, level upgrades, Union closure and alternate-account/limit-evasion boundaries.
-2. **Art/Begging:** auction bids, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, collusion and self-bidding.
-3. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery and award correction.
-4. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
-5. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
-6. **Social/UGC:** Company/Union chat, rooms, art/music/books, impersonation, scams, moderation, appeals and user-content rights.
+1. **Art/Begging:** auction bids, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, collusion and self-bidding.
+2. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery and award correction.
+3. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
+4. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
+5. **Social/UGC:** Company/Union chat, rooms, art/music/books, impersonation, scams, moderation, appeals and user-content rights.
 
 ## Canonical source status
 
@@ -152,19 +172,19 @@ Continue in this order:
 - English Purchases & Refunds: current.
 - English Privacy Policy: current.
 - English Community Standards: current.
-- All 25 localized Terms now receive the Company commerce clarification without duplicating the full static translated body.
+- All 25 localized Terms receive the gameplay/economy, Company commerce and Union governance clarifications without duplicating the full static translated body.
 
 ## Progress metrics
 
-The percentages intentionally include the still-incomplete code-first gameplay/economy/community audit rather than over-weighting completed payment/platform work.
+The percentages intentionally include the still-incomplete code-first gameplay/economy/community audit rather than over-weighting completed payment/platform work. The unresolved Union generic-UPDATE security finding is also reflected in readiness rather than hidden by completed localization.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **97.0%**
-- **Full commercial/legal/payment readiness:** **93.5%**
-- **Overall project completion:** **95.2%**
+- **Canonical English legal wording:** **97.5%**
+- **Full commercial/legal/payment readiness:** **93.7%**
+- **Overall project completion:** **95.4%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** Union treasury/governance, beginning with current production functions for membership fees, leader deposits/withdrawals, maintenance, projects/rewards, polls, level upgrades and Union closure.
+**Next substantive code-first target:** Art/Begging, beginning with current auction bidding/finalization, direct offers, duplicate publication, moderation, genuine art purchases, intended assistance, self-bidding/collusion and server-authority/correction paths.
 
 Historical payment/platform hardening remains available in Git history. This tracker emphasizes current state, active invariants and the implementation-driven next queue so future runs continue without duplicating completed work.
