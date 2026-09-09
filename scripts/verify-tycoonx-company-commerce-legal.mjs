@@ -14,7 +14,9 @@ const gate = read('TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md');
 const map = read('TYCOONX_CODE_FIRST_GAMEPLAY_LEGAL_MAP.md');
 const progress = read('TYCOONX_LEGAL_LOCALIZATION_PROGRESS.md');
 const notice = read('app/tycoonx-legal/CompanyCommerceRuleNotice.tsx');
-const layout = read('app/layout.tsx');
+const gameplayNotice = read('app/tycoonx-legal/GameplayEconomyRuleNotice.tsx');
+const rootLayout = read('app/layout.tsx');
+const legalLayout = read('app/tycoonx-legal/layout.tsx');
 
 hasAll(gate, [
   'company_supply_request_create',
@@ -59,6 +61,7 @@ const targetLocales = [
 ];
 for (const locale of ['en', ...targetLocales]) {
   assert(new RegExp(`\\b${locale.replace('_', '\\_')}\\s*:`).test(notice), `localized notice: missing locale ${locale}`);
+  assert(new RegExp(`\\b${locale.replace('_', '\\_')}\\s*:`).test(gameplayNotice), `gameplay notice: missing locale ${locale}`);
 }
 
 hasAll(notice, [
@@ -83,16 +86,28 @@ hasAll(notice, [
   "zh_Hant: 'zh-Hant'",
 ], 'localized notice');
 
-assert(!notice.includes('TyconX'), 'localized notice contains forbidden displayed brand TyconX');
-assert(!/\bTycoonX\s+beta\b/i.test(notice), 'localized notice contains stale TycoonX beta wording');
+hasAll(gameplayNotice, [
+  '/^\\/tyconx-terms-of-service\\/?$/',
+  '/^\\/tycoonx-legal\\/([^/]+)\\/terms\\/?$/',
+  "const rtl = locale === 'ar'",
+], 'gameplay notice routing');
 
-hasAll(layout, [
+assert(!notice.includes('TyconX'), 'localized notice contains forbidden displayed brand TyconX');
+assert(!gameplayNotice.includes('TyconX'), 'gameplay notice contains forbidden displayed brand TyconX');
+assert(!/\bTycoonX\s+beta\b/i.test(`${notice}\n${gameplayNotice}`), 'gameplay notices contain stale TycoonX beta wording');
+
+hasAll(rootLayout, [
+  'GameplayEconomyRuleNotice',
+  '<GameplayEconomyRuleNotice />',
   'CompanyCommerceRuleNotice',
   '<CompanyCommerceRuleNotice />',
 ], 'root layout');
+assert(!legalLayout.includes('GameplayEconomyRuleNotice'), 'localized legal layout must not duplicate the root-routed gameplay notice');
+assert(!legalLayout.includes('CompanyCommerceRuleNotice'), 'localized legal layout must not duplicate the root-routed company notice');
 
 hasAll(progress, [
   'All 25 target locales and all 100 localized full documents are current.',
+  'GameplayEconomyRuleNotice.tsx',
   'CompanyCommerceRuleNotice.tsx',
   'linked contract/V2-offer price ceiling',
   'No database change was made by this run.',
@@ -105,8 +120,8 @@ hasAll(progress, [
   'Next substantive code-first target:** Union treasury/governance',
 ], 'progress tracker');
 
-const publicFacing = `${notice}\n${progress}`;
+const publicFacing = `${notice}\n${gameplayNotice}\n${progress}`;
 assert(!publicFacing.includes('TyconX'), 'public/progress text contains forbidden TyconX spelling');
 assert(!/TycoonX.{0,20}\bbeta\b/i.test(publicFacing), 'public/progress text implies live TycoonX is beta');
 
-console.log('PASS: TycoonX Company supply/export/tender legal gate, localization sync, branding and progress invariants verified.');
+console.log('PASS: TycoonX Company commerce gate, localization sync, canonical notice routing, branding and progress invariants verified.');
