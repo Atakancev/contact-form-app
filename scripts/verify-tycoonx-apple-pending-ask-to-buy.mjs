@@ -87,7 +87,7 @@ requireText(gate, 'a test approval cannot reopen a production Lifetime VIP sales
 requireText(gate, 'Unknown future StoreKit purchase result/state', 'future-state handling');
 requireText(gate, 'do not coerce it to `success`', 'future success guard');
 requireText(gate, 'do not coerce it to fraud or chargeback', 'future fraud guard');
-requireText(gate, 'Support does not grant from screenshots', 'support screenshot safeguard');
+requireText(gate, 'support does not grant from screenshots', 'support screenshot safeguard');
 requireText(gate, 'do not ask for Apple Account passwords', 'support credential minimization');
 
 // Regression coverage.
