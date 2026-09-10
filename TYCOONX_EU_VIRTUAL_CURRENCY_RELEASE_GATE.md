@@ -1,7 +1,7 @@
 # TycoonX EU/EEA Virtual Currency Release Gate
 
 **Status:** P0 consumer-law / monetization gate  
-**Last reviewed:** September 2, 2026
+**Last reviewed:** September 10, 2026
 
 **Applies to:** purchased TycoonX Diamonds and any in-game digital content or service that can be acquired with Diamonds that are directly or indirectly purchasable with real-world money.
 
@@ -64,11 +64,14 @@ An item costs 750 Diamonds, while the player can buy only 660 or 1,400 Diamonds 
 
 For EU/EEA consumers:
 
+- The CPC Network's current position expressly treats the **purchase of in-game virtual currency itself as not being digital content for purposes of the digital-content immediate-performance withdrawal exception**. TycoonX therefore must not rely on that exception merely because purchased Diamonds are credited immediately.
 - Do **not** treat the mere crediting of purchased Diamonds as immediately supplied digital content that automatically extinguishes the statutory withdrawal right.
 - Where the statutory 14-day withdrawal right applies to a purchase of in-game virtual currency, unused purchased Diamonds must remain eligible for that right during the statutory period.
 - Do not use a blanket `no refunds` or `all withdrawal rights waived` checkbox for Diamonds, 30-Day VIP, Lifetime VIP, and later Diamond spending as though they are legally identical transactions.
 - Apple, Google, Xsolla, or another provider may control the request channel, merchant-of-record process, or refund mechanics for a specific transaction. That allocation of roles does not remove a mandatory consumer right.
 - If purchased Diamonds have already been spent, transferred, or exchanged for digital content/services, determine the consequences of withdrawal from mandatory law and the actual transaction history. Do not invent a blanket rule that silently removes statutory rights.
+
+This distinction protects CK-Labs as well as the player. It avoids creating an invalid checkout shortcut that could later undermine an otherwise legitimate transaction, while preserving the ability to apply the correct rules to a later purchase of actual digital content or a digital service.
 
 ## 5. Spending Diamonds on digital content or services
 
@@ -79,9 +82,13 @@ Before that transaction where required:
 - present the main characteristics of the item/service;
 - present the required real-money price information as well as the Diamond amount;
 - provide required trader identity/contact, payment/delivery, conformity/legal-guarantee, and withdrawal information;
-- if relying on the digital-content early-performance exception, obtain the legally required express consent and acknowledgement separately from the act of purchasing where required and provide the required contract confirmation;
+- if relying on the digital-content early-performance exception, obtain the legally required express consent to immediate performance and acknowledgement of loss of the withdrawal right;
+- where those consent/acknowledgement requirements apply, they may be combined in one dedicated control, but the control must be **separate from the click that actually purchases the digital content or service**, such as the `Buy` button;
+- provide the required contract confirmation and ensure it records or reproduces the consumer's express consent and acknowledgement where the law requires that confirmation;
 - do not assume that acceptance of the general TycoonX Terms alone replaces transaction-specific consent where the law requires separate consent; and
 - preserve enough authoritative transaction history to determine what was purchased with paid Diamonds, promotional Diamonds and gameplay-earned Diamonds when a lawful remedy depends on that distinction.
+
+A single `Buy` click must not silently perform three legally distinct jobs at once: place the order, request immediate performance, and acknowledge loss of a statutory withdrawal right where separate consent/acknowledgement is required.
 
 ## 6. Fair contract terms, value changes and access to paid content
 
@@ -127,9 +134,9 @@ Age gates and parental controls help reduce risk but do not remove CK-Labs' resp
 
 This EU/EEA gate applies alongside the channel-specific rules already maintained for TycoonX:
 
-- **Apple App Store:** StoreKit/IAP rules, refund/revocation status, storefront-specific external-purchase rules, and Apple parental controls remain applicable.
-- **Google Play:** Google Play Billing / alternative-billing or external-offers program requirements, purchase-token authority, refund status, and parental controls remain applicable.
-- **Xsolla web shop:** the transaction-specific Xsolla entity, checkout, refund policy, tax/VAT handling, fraud screening, and merchant-of-record role remain relevant.
+- **Apple App Store:** StoreKit/IAP rules, refund/revocation status, storefront-specific external-purchase rules, and Apple parental controls remain applicable. Apple currently states that credits or in-game currencies bought through In-App Purchase may not expire and that restorable In-App Purchases need a restore mechanism.
+- **Google Play:** Google Play Billing / alternative-billing or external-offers program requirements, purchase-token authority, refund status, and parental controls remain applicable. Google's current order-management APIs distinguish refunds from revocation and support management of one-time purchases using transaction/order state.
+- **Xsolla web shop:** the transaction-specific Xsolla entity, checkout, refund policy, tax/VAT handling, fraud screening, and merchant-of-record role remain relevant. Current Xsolla documentation supports combined order webhooks for newer projects and separate payment/refund plus order webhooks for older configurations; TycoonX must process the event model actually configured for CK-Labs.
 
 A provider's fixed product tiers or checkout limitations do not by themselves settle the EU consumer-law analysis of a TycoonX package design. If provider constraints conflict with the intended EU/EEA monetization flow, document the constraint and use a compliant product structure rather than assuming the provider absorbs CK-Labs' consumer-law responsibility.
 
@@ -152,8 +159,11 @@ Before enabling or materially changing a Diamond purchase/spend surface, test at
 11. an economy rebalance, confirming legitimate purchased Diamond balances are not arbitrarily confiscated or silently devalued;
 12. an account suspension affecting access to paid content, confirming the applicable challenge/redress path remains available;
 13. a child-reachable purchase surface, confirming no direct exhortation and functional parental controls/defaults;
-14. a high-spending account, confirming the player is not targeted because an internal model labels them a `whale` or vulnerable spender; and
-15. Apple, Google Play and Xsolla channel variants, confirming provider-specific prices and constraints do not create misleading cross-channel real-money equivalents.
+14. a high-spending account, confirming the player is not targeted because an internal model labels them a `whale` or vulnerable spender;
+15. Apple, Google Play and Xsolla channel variants, confirming provider-specific prices and constraints do not create misleading cross-channel real-money equivalents;
+16. a Diamond package credited instantly, confirming the implementation does not mark the initial virtual-currency purchase as exempt from withdrawal merely because the balance was credited;
+17. a digital-content or digital-service purchase made with Diamonds where early performance is requested, confirming the express-consent/acknowledgement control is separate from the `Buy` control; and
+18. the same transaction's contract confirmation, confirming the required consent and acknowledgement evidence is included or reproducibly linked as required.
 
 ## 10. Pre-release verification
 
@@ -165,8 +175,11 @@ Before enabling or materially changing a Diamond purchase/spend surface, test at
 - [ ] Diamond package sizing does not systematically force materially unwanted surplus currency;
 - [ ] a specific-amount or equivalent direct-purchase route exists where required by the CPC release position, or a documented legal review supports the alternative design;
 - [ ] unused purchased Diamonds are not automatically excluded from the statutory withdrawal process;
+- [ ] the initial Diamond purchase is not classified as digital content merely to invoke the immediate-performance withdrawal exception;
 - [ ] the checkout does not misuse the digital-content early-performance exception for the initial Diamond purchase;
 - [ ] later Diamond spending has the required pre-contract information and withdrawal treatment;
+- [ ] any required express consent and acknowledgement for early supply of digital content/service is separate from the purchase click;
+- [ ] the contract confirmation preserves the required consent/acknowledgement evidence;
 - [ ] transaction/provider records can distinguish unused, spent, refunded, reversed, chargeback-affected, promotional, and gameplay-earned Diamonds where needed for a lawful remedy;
 - [ ] paid-value changes and account enforcement preserve mandatory conformity/redress rights;
 - [ ] child-directed purchase pressure is absent and vulnerable-consumer targeting is not used;
@@ -183,6 +196,9 @@ Keep dated evidence of:
 - a simple currency-topology map showing every directly or indirectly real-money-purchasable currency and conversion path;
 - proof that promotional/gameplay balances and an existing player's balance do not silently change the advertised objective item price;
 - withdrawal/refund configuration by Apple, Google and Xsolla channel;
+- the exact early-performance consent/acknowledgement UI text and version, plus evidence that it is separate from the purchase control where required;
+- timestamps and transaction identifiers linking any required express consent/acknowledgement to the relevant digital-content or service transaction;
+- the contract confirmation or durable record containing the required consent/acknowledgement evidence;
 - Diamond ledger states needed to distinguish unused and spent purchased value from free/promotional/gameplay value;
 - material economy/value changes and the legal/compliance review supporting them;
 - account-enforcement challenge/redress screenshots or workflow evidence where paid access is affected;
@@ -190,10 +206,16 @@ Keep dated evidence of:
 - any documented provider limitation that prevents the preferred package/exact-amount design and the legal review of the alternative; and
 - material monetization changes and the legal/compliance review performed before release.
 
-This evidence helps CK-Labs demonstrate that TycoonX pricing and virtual-currency design were configured intentionally and transparently rather than relying on misleading client displays, stranded balances, hidden currency layers, or undocumented assumptions.
+This evidence helps CK-Labs demonstrate that TycoonX pricing and virtual-currency design were configured intentionally and transparently rather than relying on misleading client displays, stranded balances, hidden currency layers, undocumented withdrawal shortcuts, or undocumented assumptions.
 
 ## Current official reference checkpoint
 
-Rechecked September 2, 2026 against the European Commission / CPC Network *Key Principles on In-Game Virtual Currencies* dated March 21, 2025. The current CPC position expressly addresses real-money price transparency, multiple virtual-currency layers, forced surplus bundles/specific-amount purchasing, pre-contract information, withdrawal rights, unfair contract/value-change terms, access to contest account restrictions, children and vulnerable consumers.
+Rechecked September 10, 2026 against the European Commission / CPC Network *Key Principles on In-Game Virtual Currencies* dated March 21, 2025. The current CPC position expressly addresses real-money price transparency, multiple virtual-currency layers, forced surplus bundles/specific-amount purchasing, pre-contract information, withdrawal rights, unfair contract/value-change terms, access to contest account restrictions, children and vulnerable consumers.
 
-The European Commission has continued to present those principles as the CPC Network's minimum requirements/best practices for in-game virtual currencies. Recheck the Commission/CPC position before a material redesign of TycoonX Diamond monetization because coordinated enforcement practice can evolve.
+The March 21, 2025 CPC document expressly identifies three withdrawal practices to avoid that are directly relevant to TycoonX: treating the purchase of in-game virtual currency as digital content for the withdrawal exception, denying withdrawal within the applicable 14-day period for purchased virtual currency that remains unused, and denying withdrawal for in-game digital content/services merely because payment was made with virtual currency rather than real-world money. It also states that where the digital-content immediate-performance exception is relied upon, the express consent and acknowledgement may be collected together but must be separate from the click that purchases the digital content, and the contract confirmation must include confirmation of that consent and acknowledgement.
+
+The European Commission continued in its June 3, 2025 stakeholder workshop to describe the CPC principles as minimum requirements applicable under Union consumer law and to discuss implementation with industry and consumer stakeholders. No later Commission/CPC publication located in the September 10, 2026 recheck displaced these points.
+
+Current platform/provider checks remain compatible with this gate: Apple continues to state that purchased in-game IAP currency may not expire and that restorable purchases need a restore mechanism; Google Play's purchase-management documentation updated September 9, 2026 continues to distinguish refund and revocation for one-time purchases; and Xsolla continues to document transaction-specific refund/cancellation webhooks and separate versus combined webhook configurations. These provider mechanics can determine workflow and evidence, but they do not themselves remove mandatory EU consumer rights.
+
+Recheck the Commission/CPC position and the applicable Apple, Google Play and Xsolla rules before a material redesign of TycoonX Diamond monetization because coordinated enforcement practice and provider requirements can evolve.
