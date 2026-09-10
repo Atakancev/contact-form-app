@@ -102,44 +102,23 @@ Detailed gates remain authoritative implementation QA references:
 - `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`
 - `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`
 
-## September 10 production remediation recheck
+## September 10 production remediation verification
 
-A fresh read-only production recheck was performed after the final release-readiness consolidation. The previously documented P0/P1 implementation findings were **not assumed fixed merely because legal wording is complete**. The latest detailed verification is recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`.
+The latest read-only production follow-up is recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`. Previously documented P0/P1 findings were not assumed fixed merely because the legal wording is complete.
 
-No verified closure was found among the representative critical controls sampled in this recheck. In particular, the reviewed production definitions still expose caller-influenceable XP/energy and arbitrary-target progression/raw-credit helpers, Housing authority helpers, connected-fill identity helpers, broad stock/crypto price-control helpers, broad bank internals, global care/daily-task/reward workers and generic official-looking Company notification dispatch.
+No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls and generic official-looking notification authority remain open in the reviewed production definitions.
 
-The Company supply finding is now more precise: the older update overload applies an export-contract price ceiling, while the richer update overload does not reload the linked export contract or V2 offer before writing a caller-supplied unit price. The richer overload therefore remains the remediation target rather than treating every overload as equally weak.
+A **partial hardening** was verified in `_internal_shop_connected_fill(...)`: its current destination lookup now resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement and is now recorded as such. It does not close the identity-authority finding because the SECURITY DEFINER helper is still broadly executable, still accepts caller-supplied `p_user_id`, and still rewrites effective JWT subject state to that supplied identity. The effective user must be derived or independently authorized by the server.
 
-The shop destination finding is also re-confirmed. The reviewed `shop_auto_fill_cheapest(...)` and shop buy-and-store helpers load and update the supplied destination slot without first proving inside the SECURITY DEFINER function that the destination shop belongs to the authenticated caller.
+The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and `shop_market_buy_and_store_agri/live/mine/factory(...)` authenticate the caller but still do not prove inside the SECURITY DEFINER operation that the supplied destination slot belongs to `auth.uid()` before wallet/source/destination mutation.
 
-The Social/UGC read finding is clarified rather than overstated. The Executive Company Chat raw-read policy is RESTRICTIVE and remains an effective server boundary even though generic SELECT policies are permissive. The remaining raw-read gap concerns ordinary Company and Union messages, for which equivalent membership restrictions were not found in the reviewed `messages` policy set.
+The profile recheck also remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
 
-A fresh production-function scan also found the legacy misspelled player-facing brand string embedded in **12 current function definitions**, including notification, welcome, Social Table, NPC-job, research, Company-news and activity-related logic. No database text/function was changed. An approved engineering migration should replace rendered occurrences with `TycoonX` and then re-scan deployed functions/configuration/content.
+The Company supply finding remains precise: the older update overload applies the linked export-contract price check, while the richer update overload does not reload the linked export contract or V2 offer before accepting a caller-supplied unit price. The richer path remains the remediation target.
 
-The following high-risk categories remain open in the reviewed production definitions:
+The Social/UGC read finding remains nuanced. Executive Company Chat has an effective RESTRICTIVE raw-read policy. Equivalent authoritative membership restrictions were not found for ordinary Company and Union messages in the reviewed policy set, so those ordinary restricted channels remain the raw-read hardening target.
 
-- sensitive self-profile UPDATE and excessive public profile exposure;
-- raw/client-trusting XP, energy, reward-checkpoint and refund-credit authority;
-- arbitrary-target or globally scoped internal helpers exposed to ordinary client roles;
-- Housing cooldown/supply authority;
-- connected-fill identity rebinding and destination-slot ownership gaps;
-- non-positive agriculture/livestock/mining price validation gaps at settlement;
-- richer Company supply update not reapplying linked price ceilings;
-- cross-Company Company-job RLS correlation defect;
-- broad Union leader/officer generic UPDATE;
-- Art generic owner UPDATE/raw DELETE and resale-current-owner self-bid gap;
-- player-writable stock holdings and client-insertable stock transaction/price-history inputs;
-- broadly executable stock/crypto price automation/mutation functions;
-- overly broad internal bank/debt helpers;
-- broadly executable care-job/daily-task/global reward helpers;
-- ordinary Company/Union raw-message membership gaps and remaining Social/UGC confidentiality/authority issues; and
-- generic Company/moderation/Housing official-looking notification helpers.
-
-The exact consolidated matrix, positives/closed false positives, evidence rules and engineering remediation order remain maintained in `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`, with the latest production nuance in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`.
-
-Important positive/closed points remain recorded there, including Finance V2 money protection, no generic profile Diamond UPDATE, current FX zero-balance delete protection, hardened persona training, Housing deposit-release behavior, industrial positive-price purchase validation, intended built-in automation, scoped raw Post Office letter reads and the effective Executive Company Chat restrictive raw-read boundary.
-
-No production database mutation was made during this recheck.
+The previously identified production branding migration remains outstanding. Player-facing text generated from deployed backend functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or text was changed during this legal audit.
 
 ## Active privacy/controller invariant
 
@@ -151,13 +130,13 @@ Restricted social/history data, anonymous Post Office sender identity, gameplay 
 
 Rechecked on **September 10, 2026**:
 
-- Apple's current App Review Guidelines continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, and require restoration where applicable.
+- Apple's App Review Guidelines, last updated June 8, 2026, continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, require restoration where applicable, and apply storefront/program-specific rules to external purchase links and related exceptions.
 - Google Play continues to regulate billing for in-app digital goods/virtual currency, requires clear and accurate purchase pricing, restricts virtual currency to the app/game title for which it was purchased, and limits alternative-billing/external-offer paths to eligible regional/program frameworks.
-- Xsolla's current refund/legal framework remains a separate provider/merchant layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties; current Xsolla documentation also distinguishes chargebacks, integration errors, test payments and other refund/payment outcomes.
+- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Its current refund documentation distinguishes matters such as technical/integration issues, duplicate purchases, unauthorized payments, payment-method rules and applicable EU/EEA withdrawal treatment.
 - German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
 - GDPR Articles 5, 25 and 32 continue to support data minimisation, privacy by design/default and risk-appropriate confidentiality/security controls.
 
-No material current-law/provider meaning change was identified in this recheck that requires reopening the canonical or localized purchase/legal documents.
+No material current-law/provider meaning change was identified in this follow-up that requires reopening the canonical or localized purchase/legal documents.
 
 ## Next code-first audit queue
 
@@ -177,13 +156,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. Completing the latest production remediation recheck improves verification coverage without pretending those server-authority/privacy defects have been fixed.
+Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. The latest production follow-up increased remediation-verification precision, including recording one partial hardening, without falsely treating a partial control as a closed release blocker.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
 - **Full commercial/legal/payment readiness:** **82.5%**
-- **Overall project completion:** **97.8%**
+- **Overall project completion:** **97.9%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** implementation remediation verification against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`, followed by final regression and current-law/provider closure once the verified P0/P1 fixes have actually landed.
+**Next substantive code-first target:** implementation remediation verification against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md` and `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`, closing only P0/P1 findings demonstrably fixed in production, followed by final regression and current-law/provider closure once those fixes have actually landed.
