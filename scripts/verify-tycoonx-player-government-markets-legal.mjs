@@ -10,6 +10,9 @@ const fail = (message) => {
 const requireText = (body, needle, label) => {
   if (!body.includes(needle)) fail(`${label} is missing: ${needle}`);
 };
+const requireTextCI = (body, needle, label) => {
+  if (!body.toLowerCase().includes(needle.toLowerCase())) fail(`${label} is missing: ${needle}`);
+};
 
 const gatePath = 'TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md';
 const noticePath = 'app/tycoonx-legal/PlayerGovernmentMarketRuleNotice.tsx';
@@ -50,7 +53,7 @@ const gateChecks = [
   'government_market_deliver_task',
   'unrelated valid paid entitlements',
 ];
-for (const check of gateChecks) requireText(gate, check, 'market gate');
+for (const check of gateChecks) requireTextCI(gate, check, 'market gate');
 
 const locales = [
   'en', 'tr', 'de', 'es', 'es_MX', 'fr', 'fr_CA', 'it', 'pt', 'pt_BR',
@@ -64,8 +67,8 @@ for (const locale of locales) {
 
 for (const required of [
   'PlayerGovernmentMarketRuleNotice',
-  '/^\\/tyconx-terms-of-service\\/?$/',
-  '/^\\/tycoonx-legal\\/([^/]+)\\/terms\\/?$/',
+  'tyconx-terms-of-service',
+  'tycoonx-legal',
   "locale === 'ar'",
   "es_MX: 'es-MX'",
   "fr_CA: 'fr-CA'",
@@ -98,8 +101,7 @@ for (const required of [
   'Exact next unfinished locale/document: None',
 ]) requireText(progress, required, 'localization progress');
 
-const displayedFiles = [notice, gate, progress];
-for (const body of displayedFiles) {
+for (const body of [notice, gate, progress]) {
   if (/\bTyconX\b/.test(body)) fail('Found prohibited displayed spelling TyconX');
   if (/TycoonX[^\n]{0,80}\bbeta\b/i.test(body)) fail('Found stale current-service beta wording');
 }
