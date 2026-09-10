@@ -23,12 +23,13 @@ Last synchronized: **September 10, 2026**.
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
 
-Four September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
+Five September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
 
 1. `GameplayEconomyRuleNotice.tsx` covers genuine Company/Union value movement, contribution mechanics and the genuine-purpose rule.
 2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling prices, settlement/state exploitation, proportional correction, outages/account compromise and mandatory-rights protection.
 3. `UnionGovernanceRuleNotice.tsx` covers Union membership fees, leader treasury deposits/withdrawals, maintenance/closure, projects/rewards, level upgrades, polls, altered-client/state manipulation, limit evasion, compromise/outage correction and mandatory-rights protection.
 4. `ArtBeggingRuleNotice.tsx` covers Art auctions/resales, formal direct offers, genuine Art trading versus disguised gifting, Begging as an intended assistance channel, self-bidding/collusion, moderation before or after publication, escrow reconciliation, account compromise and proportional correction.
+5. `PlayerGovernmentMarketRuleNotice.tsx` covers player production markets, built-in shop auto-fill, TycoonX-operated automatic market purchases, Government direct sales and tenders, market/tender manipulation, stale-state and anomaly-evidence limits, correction/account-compromise rules and prospective economy balancing.
 
 The route-gated gameplay clarifications are mounted through the application layout and display only on the canonical `/tyconx-terms-of-service` route and `/tycoonx-legal/{locale}/terms`. Arabic uses RTL and the locale-specific Spanish, French, Portuguese and Chinese variants remain separately localized.
 
@@ -84,11 +85,11 @@ Obvious configuration errors, failed/pending/reversed payments, duplicate or acc
 
 ## Active gameplay/economy invariant
 
-Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, art purchase, auction, Company transaction, job, contract, market order, or other mechanic must not be repurposed mainly as a disguised gift, donation, wealth-funneling route, value-parking route, RMT route, exploit-laundering route, or way to evade another feature limit.
+Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, art purchase, auction, Company transaction, job, contract, market order, Government tender, or other mechanic must not be repurposed mainly as a disguised gift, donation, wealth-funneling route, value-parking route, RMT route, exploit-laundering route, or way to evade another feature limit.
 
-This does **not** make every mechanic that transfers value unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock mechanics, Company supply procurement, warehouse specialist fulfillment, Company-to-Company exports/contracts, tenders, Begging, Union Project contributions, Union membership fees and leader treasury movements. Genuine use for the feature's intended purpose is allowed unless another specific rule is violated.
+This does **not** make every mechanic that transfers value or acts automatically unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock mechanics, Company supply procurement, warehouse specialist fulfillment, Company-to-Company exports/contracts, tenders, Begging, Union Project contributions, Union membership fees and leader treasury movements, player market sales, shop auto-fill, TycoonX-operated automatic market purchases and Government Market sales/tenders. Genuine use for the feature's intended purpose is allowed unless another specific rule is violated.
 
-A high or low price, large salary, generous dividend, aggressive tender bid, large Union contribution, legitimate leader treasury withdrawal, profitable Company delivery, large legitimate Art bid/direct offer, large Begging donation, contract failure, penalty or insolvency is not automatically abuse. Serious enforcement requires reasonable evidence of the prohibited purpose and should distinguish detection, containment, state correction and punitive account enforcement.
+A high or low price, large salary, generous dividend, aggressive tender bid, large Union contribution, legitimate leader treasury withdrawal, profitable Company delivery, large legitimate Art bid/direct offer, large Begging donation, repeated market sale, Government tender win, contract failure, penalty or insolvency is not automatically abuse. Serious enforcement requires reasonable evidence of the prohibited purpose and should distinguish detection, containment, state correction and punitive account enforcement.
 
 ## Code-first Company commerce checkpoint
 
@@ -106,33 +107,49 @@ Production RLS currently permits an active Union leader or officer to UPDATE the
 
 Detailed gate: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.
 
-## September 10 code-first Art/Begging checkpoint
+## Code-first Art/Begging checkpoint
+
+Current Flutter paths and read-only production Supabase inspection confirm Art publication/idempotency, escrow-style bidding, auction finalization, resales, formal direct offers, moderation before or after publication, and Begging as a genuine player-assistance feature.
+
+Open engineering findings remain:
+
+1. **P0:** the reviewed Art bid guard rejects the original artist but does not clearly reject a different current resale owner from bidding on their own relisted Art.
+2. **P0:** current Art RLS exposes a broader owner UPDATE surface than the normal validated auction RPCs and does not visibly make all auction-managed fields immutable.
+3. **P0:** raw deletion of an active Art row is not visibly refund-equivalent to the safe cancellation/moderation paths for a current bidder hold.
+4. **P1:** the reviewed direct-offer server function does not visibly enforce the recipient's client-exposed Art-offer enabled/minimum preferences.
+
+Legal treatment remains explicit: legitimate collecting, speculation, direct-offer negotiation and Begging assistance are allowed; self-bidding, collusion, controlled-account/circular trades, manipulated auction state, disguised gifting through Art, exploit laundering and prohibited RMT remain reviewable when evidence supports the prohibited purpose. A high Art price or large Begging donation alone is not proof of abuse.
+
+Detailed gate: `TYCOONX_ART_BEGGING_RELEASE_GATE.md`.
+
+## September 10 code-first Player and Government markets checkpoint
 
 Current Flutter paths and read-only production Supabase inspection confirm:
 
-- Art publication uses authentication, image presence, nonce/idempotency and fingerprint/single-flight duplicate protection;
-- Art bidding is an intended escrow-style gameplay mechanism with outbid refunds, current Finance V2 hold handling and near-close anti-sniping behavior;
-- auction finalization transfers in-game ownership to a winner and pays the current seller, while the finalizer cron uses locking to process expired auctions;
-- `social_resell_art(...)` intentionally preserves the previous `highest_bid` as the next listing's current starting-price floor;
-- `social_cancel_listing(...)` is refund-aware when cancelling an active listing with a current bidder;
-- formal Art direct offers exist through the Post Office/direct-offer system, with escrow, accept/decline/counter/expiry states, stale-ownership checks, current offer limits and reference-price guards;
-- the Flutter client lets an owner enable/disable Art direct offers and set an Art minimum offer preference;
-- Art moderation can occur before or after publication: the reviewed client treats a temporary moderation-unavailable response as allowing publication to continue, while a database trigger separately requests moderation on active Art state changes;
-- Begging is an intentionally designed assistance channel: current post creation has message/cadence limits, donations must be positive and not self-directed, and eligible uncollected donations are later collected by the recipient; and
-- a genuine Art purchase is a trade for the artwork, while a genuine Begging donation is allowed precisely because Begging is intended to let a player help another without receiving consideration.
+- player production markets for agriculture, livestock, mining and industry;
+- seller-controlled listing activation/pricing and server purchase settlement;
+- shop stock filling through player production and market purchases;
+- built-in auto-fill and TycoonX-operated `auto_market_tick()` economy purchases;
+- Government direct-sale/buyback routes;
+- Government tender bidding, lower-price competition, current anti-sniping extension, award creation, partial delivery, completion reward and overdue-task penalty; and
+- Flutter-authored Government delivery attempt/outcome telemetry, including a simple client-side `suspicious` flag.
 
-### Art/Begging implementation and security findings
+The legal clarification now states that these are genuine TycoonX systems. Built-in auto-fill/system buying is not prohibited botting; a low/high price, repeated sale, fast retry, automatic transaction, large delivery, competitive bid, tender win or genuine failure alone is not proof of abuse. Current prices, formulas, demand, quality/shipping effects, bid ceilings, deadlines, rewards and penalties are balance rules that may change prospectively.
 
-The read-only audit identified four engineering priorities. No database change was made.
+### Player/Government market implementation and security findings
 
-1. **P0 - current-owner self-bid guard:** the reviewed Art bid function rejects the original artist `user_id`, but after resale the current seller is `owner_id`. A non-original current owner therefore appears able to attempt a bid on their own relisted Art. The server should reject the current seller/owner and test resale specifically.
-2. **P0 - generic Art UPDATE authority:** production Art RLS permits the current owner to UPDATE the Art row without visibly restricting auction-managed columns. A modified/direct client may therefore attempt to alter `highest_bid`, `highest_bidder_id`, `status`, `expires_at` or similar server-managed state outside the validated bidding RPC. Auction state should be server-owned through narrow transitions.
-3. **P0 - active Art raw DELETE settlement:** the normal cancellation and refund-aware moderation paths explicitly restore/release current bidder value, while the reviewed generic/raw delete path does not visibly perform the same wallet refund in the Art hold trigger. Every active-delete path should be refund-equivalent or should route through the safe settlement primitive.
-4. **P1 - direct-offer recipient preferences:** the current client exposes `direct_offers_art_enabled` and an owner minimum Art offer amount, but the reviewed production `social_postoffice_send_offer(...)` definition does not visibly enforce those per-recipient preferences. They should be enforced server-side so a modified/direct client cannot bypass them.
+The read-only audit identified material engineering priorities. No database change was made.
 
-Legal treatment is now explicit across all Terms routes: legitimate collecting, speculation, direct-offer negotiation and Begging assistance are allowed; self-bidding, collusion, controlled-account/circular trades, manipulated auction state, disguised gifting through Art, exploit laundering and prohibited RMT remain reviewable when evidence supports the prohibited purpose. A high Art price or large Begging donation alone is not proof of abuse.
+1. **P0 - non-positive producer-price settlement:** the reviewed agriculture/livestock/mining sale setters do not visibly enforce a positive server-valid price, and their reviewed purchase RPCs do not independently reject a non-positive price before calculating subtotal/total and wallet effects. The ordinary listing query hides non-positive external listings, but a direct known-ID RPC can bypass that UI filter. A negative total can invert a buyer debit into a money increase. The reviewed industrial purchase path does contain an explicit positive-price guard. Price validity must be enforced in setters and settlement paths, with defense in depth.
+2. **P0 - shop auto-fill destination ownership:** `shop_auto_fill_cheapest(...)` and the reviewed `shop_market_buy_and_store_*` helpers authenticate the caller but do not visibly prove that `p_slot_id` belongs to the caller before stock/wallet mutation. Caller-owned production can therefore potentially be consumed into another player's shop slot, and paid purchases can potentially charge one user while filling a different user's destination. Every path must verify destination shop ownership server-side.
+3. **P0/P1 - generic market-sensitive writes:** own-row producer UPDATE permissions and the absence of an obvious database positive-price CHECK increase the effect of the settlement gap. Market-sensitive state should be narrowed to validated server transitions where practical.
+4. **P1 - Government anomaly evidence:** the Flutter client writes `government_market_logs` and can set `suspicious=true` using simple retry/stale-quantity heuristics; production RLS permits users to insert their own rows. This telemetry is useful as a signal but cannot be sole authoritative evidence of cheating.
+5. **P1 - tender consequence clarity:** the current server can create a delivery obligation whose overdue penalty can make the in-game wallet negative. The material deadline/penalty consequence should be understandable in the player flow before or at commitment/award rather than existing only as a hidden backend formula.
+6. **P2 - privileged helper grants:** auto-fill cleanup/worker execute grants should be reviewed and narrowed where ordinary player/anonymous execution is unnecessary.
 
-Detailed gate: `TYCOONX_ART_BEGGING_RELEASE_GATE.md`.
+Legal treatment distinguishes deliberate modified-client/direct-RPC exploitation, controlled-account funneling, circular trading, impossible/negative prices, settlement duplication and RMT from ordinary UI use, stale previews, one-off retries, outages and account compromise. Corrections should target directly attributable invalid state rather than unrelated legitimate paid value or unrelated legitimate wealth.
+
+Detailed gate: `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`.
 
 ## Active privacy/controller invariant
 
@@ -142,9 +159,9 @@ For the TycoonX personal-data processing described in the Privacy Policy, the co
 
 German BGB § 307 remains relevant to standard terms: unclear or incomprehensible wording can contribute to an unreasonable disadvantage. Gameplay rules therefore need to explain real authorized mechanics clearly rather than making an intended feature look prohibited while relying on hidden implementation knowledge for the exception.
 
-German digital-product conformity/remedy rules remain separate from gameplay discipline. BGB § 327d and the related remedy regime must not be displaced by gameplay balancing, anti-exploit correction, moderation or account enforcement.
+German digital-product conformity/remedy rules remain separate from gameplay discipline. BGB §§ 327d and 327i and the related remedy regime must not be displaced by gameplay balancing, anti-exploit correction, moderation or account enforcement.
 
-Content moderation must also preserve any mandatory notice, reason, complaint/appeal or other procedural obligations that apply to CK-Labs for the relevant service, content and jurisdiction. A temporary automated-moderation outage must not be represented as permanent approval of user content.
+Content moderation must also preserve any mandatory notice, reason, complaint/appeal or other procedural obligations that apply to CK-Labs for the relevant service, content and jurisdiction.
 
 ## Next code-first gameplay audit queue
 
@@ -155,13 +172,13 @@ Completed substantive gameplay clusters:
 3. Union Project contribution exception: authorized contribution versus ordinary mechanics used as disguised donation channels.
 4. Union treasury/governance: membership fees, leader deposits/withdrawals, maintenance/closure, projects/rewards, polls, level upgrades, Union closure and generic UPDATE authority risk.
 5. Art/Begging: publication/idempotency, auctions/resales, direct offers/escrow, moderation timing, genuine Art transactions, intended Begging assistance, self-bidding/collusion and direct-write/refund risks.
+6. Player and Government markets: producer listings/purchases, shop auto-fill, system auto-market, Government sales, Government tenders/tasks, price/destination authorization gaps, stale-state correction and evidence-quality boundaries.
 
 Continue in this order:
 
-1. **Player and Government markets:** listings, auto-fill/auto-market, price manipulation, coordinated trading, stale prices, delivery and award correction.
-2. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
-3. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
-4. **Social/UGC:** Company/Union chat, rooms, music/books and remaining UGC, impersonation, scams, moderation, appeals and user-content rights.
+1. **Bank/credit/FX/stocks/crypto:** loans, collateral, debt recovery, interest, bankruptcy, FX cooldowns, market-price automation and manipulation/exploit boundaries.
+2. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
+3. **Social/UGC:** Company/Union chat, rooms, music/books and remaining UGC, impersonation, scams, moderation, appeals and user-content rights.
 
 ## Canonical source status
 
@@ -169,7 +186,7 @@ Continue in this order:
 - English Purchases & Refunds: current.
 - English Privacy Policy: current.
 - English Community Standards: current.
-- All 25 localized Terms receive the gameplay/economy, Company commerce, Union governance and Art/Begging clarifications without duplicating the full static translated body.
+- All 25 localized Terms receive the gameplay/economy, Company commerce, Union governance, Art/Begging and Player/Government market clarifications without duplicating the full static translated body.
 
 ## Progress metrics
 
@@ -177,11 +194,11 @@ The percentages intentionally include the still-incomplete code-first gameplay/e
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **98.0%**
-- **Full commercial/legal/payment readiness:** **94.1%**
-- **Overall project completion:** **95.8%**
+- **Canonical English legal wording:** **98.4%**
+- **Full commercial/legal/payment readiness:** **93.9%**
+- **Overall project completion:** **96.0%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** Player and Government markets, beginning with current listing/purchase/auto-fill/auto-market paths, pricing constraints, stale-state handling, coordinated trading, Government Market bids/awards/delivery and correction boundaries.
+**Next substantive code-first target:** Bank/credit/FX/stocks/crypto, beginning with current deposit/savings/interest, loan/installment/collateral/debt/bankruptcy paths, FX trading/cooldowns, stock and crypto transaction settlement, automated price movement and manipulation/exploit boundaries.
 
 Historical payment/platform hardening remains available in Git history. This tracker emphasizes current state, active invariants and the implementation-driven next queue so future runs continue without duplicating completed work.
