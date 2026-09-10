@@ -134,7 +134,7 @@ Open findings:
 6. **P1 - poll parent authorization:** voting/count and non-anonymous vote visibility do not consistently bind access to the parent message/channel.
 7. **P1 - Home Room private state:** intended entrance/load RPCs are access-aware, but several collection/profile tables permit broad authenticated reads.
 8. **P1 - moderation notification spoofing:** `notify_moderation_event(...)` is broadly executable and can send official-looking moderation pushes without establishing a trusted caller inside the reviewed function.
-9. **Brand defect:** `handle_new_message_mention()` still contains the live player-facing fallback string `TyconX Community Global Chat Channel`. Database changes were prohibited, so this must be corrected in a future approved migration to `TycoonX Community Global Chat Channel`.
+9. **Brand defect:** `handle_new_message_mention()` still contains a legacy misspelling of the **TycoonX** brand in a player-facing global-channel label. Database changes were prohibited, so this must be corrected in a future approved migration.
 
 Positive controls confirmed include the Executive RLS read function itself, private social-table membership rules, Company meeting-room admission/management checks, Home Room active-visit chat checks, reporter ownership, staff-gated restoration functions and caller-bound Book publication/review controls.
 
