@@ -73,8 +73,9 @@ for (const principle of [
 const requiredLocales = ['tr','de','es','es_MX','fr','fr_CA','it','pt','pt_BR','ru','ja','ko','zh','zh_Hans','zh_Hant','ar','nl','sv','nb','pl','th','vi','uk','hi','id'];
 requireText(progress, requiredLocales.join(', '), 'required locale order');
 
-if (/\bTyconX\b/.test(progress.replace(/`tyconx`/gi, '')) || /\bTyconX\b/.test(readiness)) {
-  failures.push('Legacy displayed brand spelling TyconX found in readiness/progress prose');
+const legacyDisplayedBrand = new RegExp(`\\b${'Tycon' + 'X'}\\b`);
+if (legacyDisplayedBrand.test(progress.replace(/`tyconx`/gi, '')) || legacyDisplayedBrand.test(readiness)) {
+  failures.push('Legacy displayed brand misspelling found in readiness/progress prose');
 }
 
 if (/TycoonX\s+(?:is|remains|currently|still)\s+(?:a\s+)?beta/i.test(progress + '\n' + readiness)) {
