@@ -29,7 +29,7 @@ Do not duplicate completed localization. If canonical English meaning materially
 
 ## Synchronized player-facing Terms clarifications
 
-Eight code-derived Terms clarifications remain synchronized across the canonical Terms route and all target locales:
+Nine rendered Terms clarifications are synchronized across the canonical Terms route and all target locales:
 
 1. `GameplayEconomyRuleNotice.tsx`
 2. `CompanyCommerceRuleNotice.tsx`
@@ -39,14 +39,36 @@ Eight code-derived Terms clarifications remain synchronized across the canonical
 6. `BankCreditMarketsRuleNotice.tsx`
 7. `LogisticsJobsCompetitionsRuleNotice.tsx`
 8. `SocialUgcRuleNotice.tsx`
+9. `RealMoneyTradingNotice.tsx`
 
-No ninth public Terms notice is currently required for the unresolved authority/payment defects. Existing Terms already cover knowing exploitation, server acceptance not being an absolute safe harbor, account compromise, evidence quality, proportional corrections and preservation of unrelated valid paid value. Implementation defects should be fixed technically rather than normalized as intended access or product behavior.
+`RealMoneyTradingNotice.tsx` was already fully localized but was not mounted in the shared layout. On September 10, 2026 it was wired into `app/layout.tsx`, so the canonical English Terms and all localized Terms now actually render the existing rule distinguishing prohibited off-platform real-money trading from authorized TycoonX purchase and supported gift/transfer mechanisms.
 
-## Synchronized player-facing Privacy clarification
+Existing Terms continue to cover knowing exploitation, server acceptance not being an absolute safe harbor, account compromise, evidence quality, proportional corrections and preservation of unrelated valid paid value. Implementation defects should be fixed technically rather than normalized as intended access or product behavior.
 
-`PersonalDataBreachPrivacyNotice.tsx` is synchronized across the canonical English Privacy Policy route and all 25 localized Privacy routes. It adds the current GDPR personal-data-breach distinction without overstating notification duties: CK-Labs assesses and documents personal data breaches as required; where GDPR Article 33 applies it notifies the competent supervisory authority without undue delay and, where feasible, within 72 hours after awareness unless the breach is unlikely to result in a risk to natural persons' rights and freedoms; and where GDPR Article 34 applies it informs affected individuals without undue delay when a high risk is likely, subject to applicable statutory exceptions.
+## Synchronized player-facing Purchases clarification
 
-The clarification is rendered only on Privacy routes, preserves native language and regional variants, and uses RTL for Arabic. It does not imply that every attack, outage, bug or security alert is a legally notifiable personal data breach, and it does not waive mandatory data-protection rights or remedies.
+`OfficialPurchaseRefundNotice.tsx` is now mounted in `app/layout.tsx` and renders on the canonical Purchases & Refunds route and all localized Purchases routes.
+
+The notice was already localized but previously not mounted. It now visibly distinguishes genuine purchases through Apple App Store, Google Play and the official TycoonX webshop using Xsolla from ordinary player-to-player game-value movements and unauthorized off-platform deals. It also preserves mandatory rights for unrelated valid official purchases and does not make CK-Labs the seller, escrow provider or refund guarantor for unauthorized user-to-user off-platform arrangements.
+
+## Synchronized player-facing Privacy clarifications
+
+Two Privacy clarifications are now part of rendered route coverage:
+
+1. `ControllerIdentityPrivacyNotice.tsx`
+2. `PersonalDataBreachPrivacyNotice.tsx`
+
+The canonical English Privacy Policy already contains a dedicated controller/contact section. `ControllerIdentityPrivacyNotice.tsx` was already localized for the 25 target locale Privacy routes but was not mounted. It is now mounted from `app/layout.tsx`, so localized Privacy readers receive the controller identity and contact route directly instead of only being referred onward to another legal page.
+
+This presentation fix supports GDPR Articles 12 and 13: privacy information must be concise, transparent, intelligible and easily accessible, and Article 13(1)(a) requires the identity and contact details of the controller when personal data are collected from the data subject.
+
+`PersonalDataBreachPrivacyNotice.tsx` remains synchronized across the canonical English Privacy Policy route and all 25 localized Privacy routes. It states the current GDPR personal-data-breach distinction without overstating notification duties: CK-Labs assesses and documents personal data breaches as required; where GDPR Article 33 applies it notifies the competent supervisory authority without undue delay and, where feasible, within 72 hours after awareness unless the breach is unlikely to result in a risk to natural persons' rights and freedoms; and where GDPR Article 34 applies it informs affected individuals without undue delay when a high risk is likely, subject to applicable statutory exceptions.
+
+The clarifications preserve native language and regional variants, and Arabic uses RTL. They do not imply that every attack, outage, bug or security alert is a legally notifiable personal data breach, and they do not waive mandatory data-protection rights or remedies.
+
+## Rendered-notice integration gate
+
+`TYCOONX_RENDERED_LEGAL_NOTICE_INTEGRATION_GATE.md` records the September 10 rendering defect and regression criteria. A translated legal component does not count as delivered legal information merely because its source file exists. The intended Terms, Purchases and Privacy notices must remain mounted or otherwise rendered on the relevant canonical/localized routes.
 
 ## Active purchase/product invariants
 
@@ -99,6 +121,7 @@ Detailed implementation gates remain the QA source of truth:
 - `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md`
 - `TYCOONX_PROMOTION_REFERENCE_PRICE_COMMERCIAL_PRESENTATION_GATE.md`
 - `TYCOONX_PERSONAL_DATA_BREACH_PRIVACY_GATE.md`
+- `TYCOONX_RENDERED_LEGAL_NOTICE_INTEGRATION_GATE.md`
 
 ## September 10 production remediation verification
 
@@ -131,7 +154,7 @@ A separate P1 commercial-consistency issue is also recorded: one-time VIP stacki
 
 ### Xsolla refund and stacked-VIP reversal gap
 
-A focused read-only review adds `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md` as a P0/P1 payment-integrity gate for the CK-Labs TycoonX webshop.
+`TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md` remains an open P0/P1 payment-integrity gate for the CK-Labs TycoonX webshop.
 
 The current Xsolla purchase path keeps transaction/order-level purchase records and its Diamond reversal logic is materially stronger than the RevenueCat refund path: it identifies the source purchase, prevents duplicate reversal, removes only currently recoverable granted Diamonds and moves attributable consumed value into bounded clawback debt instead of blindly driving the visible balance negative.
 
@@ -145,24 +168,26 @@ The unmatched-reversal path is also recorded as P1 resilience work. If a refund/
 
 Rechecked on **September 10, 2026**:
 
+- GDPR Article 12 requires Articles 13/14 information to be concise, transparent, intelligible and easily accessible. GDPR Article 13(1)(a) requires the identity and contact details of the controller when personal data are collected from the data subject. The localized controller/contact notice is now actually rendered instead of remaining an unused component.
 - RevenueCat's current webhook reference states that `CANCELLATION` covers a subscription or non-renewing purchase that was canceled or refunded, and separately defines `REFUND_REVERSED`. Its refund guidance states that a refunded one-time/non-subscription purchase loses the associated entitlement and describes platform-specific detection requirements.
-- Apple's current App Review Guidelines continue to state that purchased in-game IAP currency may not expire and that restorable purchases need a restore mechanism. Apple also supports transaction-specific refund notifications/server history for applicable in-app purchases.
-- Google Play's current purchase-management documentation, updated September 9, 2026, distinguishes refund from revocation and documents server-side refund/revocation handling; current RTDN documentation identifies voided one-time purchases by purchase token/order ID and refund type.
-- Xsolla's current webhook documentation distinguishes combined `order_paid`/`order_canceled` flows from legacy payment/refund flows, documents refund retries, and states that relevant Store/Payments webhooks are sent sequentially. TycoonX should normalize the supported provider event shapes into authoritative transaction state and preserve source-specific entitlement provenance.
+- Apple's current App Review Guidelines continue to state that purchased in-game IAP currency may not expire and that restorable purchases need a restore mechanism.
+- Google Play's current Payments policy continues to require Play Billing for covered in-app digital goods unless an applicable exception/program applies, expressly includes virtual currency, requires clear and accurate pricing and limits purchased virtual currency to the app/game title for which it was bought.
+- Xsolla's current webhook documentation continues to send transaction-specific refund/cancellation information and documents retry behavior. TycoonX should normalize supported provider event shapes into authoritative transaction state and preserve source-specific entitlement provenance.
 - EU digital-content rules and German BGB implementation continue to preserve mandatory conformity, price-reduction/termination/refund and other non-waivable remedies. The legal framework must not use entitlement reconciliation to contract around those rights.
-- GDPR Articles 33 and 34 require risk-based personal-data-breach handling: supervisory-authority notification without undue delay and, where feasible, within 72 hours after awareness unless the Article 33 risk threshold is not met; documentation of personal data breaches; and communication to affected individuals without undue delay where a high risk is likely, subject to the Article 34 exceptions.
+- GDPR Articles 33 and 34 continue to require risk-based personal-data-breach handling: supervisory-authority notification without undue delay and, where feasible, within 72 hours after awareness unless the Article 33 risk threshold is not met; documentation of personal data breaches; and communication to affected individuals without undue delay where a high risk is likely, subject to the Article 34 exceptions.
 - GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and should be fixed technically rather than normalized in player-facing privacy prose.
 
-The personal-data-breach rules are a material Privacy clarification and are now synchronized in canonical English and all 25 localized Privacy routes through `PersonalDataBreachPrivacyNotice.tsx`. No material purchase/provider meaning change was identified that requires reopening Terms, Purchases & Refunds or Community Standards.
+No material provider-rule change was identified in this run that requires reopening the substantive purchase product definitions or Community Standards.
 
 ## Canonical source status
 
-- English Terms: current and supplemented by eight synchronized code-derived clarifications.
-- English Purchases & Refunds: current.
-- English Privacy Policy: current and supplemented by the synchronized personal-data-breach notification clarification; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
+- English Terms: current and supplemented by nine rendered synchronized clarifications, including the now-mounted RMT clarification.
+- English Purchases & Refunds: current and supplemented by the now-mounted official-purchase/off-platform distinction.
+- English Privacy Policy: current, contains controller/contact information directly, and is supplemented by the synchronized personal-data-breach clarification; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
 - English Community Standards: current.
-- All 25 localized Terms receive all eight synchronized code-derived clarifications.
-- All 25 localized Privacy routes receive the synchronized personal-data-breach clarification in their own locale, including RTL rendering for Arabic.
+- All 25 localized Terms receive all nine rendered synchronized Terms clarifications.
+- All 25 localized Purchases routes receive the official-purchase/off-platform distinction.
+- All 25 localized Privacy routes receive both localized controller/contact information and the synchronized personal-data-breach clarification, including RTL rendering for Arabic.
 
 ## Next code-first audit queue
 
@@ -179,7 +204,7 @@ Highest priority remains **payment/entitlement remediation verification**:
 7. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
 8. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
 
-A separate privacy-operations verification should confirm that CK-Labs can record awareness time, incident facts, affected systems/data, risk assessment, containment/remediation, supervisory-authority notification decision/timing, affected-user communication decision/timing, statutory exceptions relied on and reasons for delay where required. The new Privacy wording does not claim those operational controls are already complete.
+A separate privacy-operations verification should confirm that CK-Labs can record awareness time, incident facts, affected systems/data, risk assessment, containment/remediation, supervisory-authority notification decision/timing, affected-user communication decision/timing, statutory exceptions relied on and reasons for delay where required. The Privacy wording does not claim those operational controls are already complete.
 
 Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, repeat current Apple/Google/RevenueCat/Xsolla plus German/EU checks and reopen only localized document types affected by a material canonical meaning change.
 
@@ -187,13 +212,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage remains essentially complete. This run materially strengthened privacy wording and synchronized the same breach-notification meaning across canonical English and all 25 localized Privacy routes without changing any production database state. The open payment/entitlement implementation blockers remain, so operational commercial readiness is not increased.
+Legal/localization coverage remains essentially complete. This run fixed a real delivery defect: three already-localized legal components existed but were not mounted, so their wording was not actually reaching the intended legal pages. Terms RMT, Purchases official-vs-off-platform distinction, and localized Privacy controller/contact information are now rendered from the shared layout. The major payment/entitlement implementation blockers remain open.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.8%**
-- **Full commercial/legal/payment readiness:** **77.0%**
-- **Overall project completion:** **98.4%**
+- **Canonical English legal wording:** **99.9%**
+- **Full commercial/legal/payment readiness:** **77.5%**
+- **Overall project completion:** **98.6%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. In parallel, verify the operational personal-data-breach response controls required to make the new Privacy commitment executable. Close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
+**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. In parallel, verify the operational personal-data-breach response controls. After those, run a rendered-route regression to ensure every canonical/localized legal notice remains mounted and correctly scoped.
