@@ -8,6 +8,9 @@ import PlayerGovernmentMarketRuleNotice from "./tycoonx-legal/PlayerGovernmentMa
 import BankCreditMarketsRuleNotice from "./tycoonx-legal/BankCreditMarketsRuleNotice";
 import LogisticsJobsCompetitionsRuleNotice from "./tycoonx-legal/LogisticsJobsCompetitionsRuleNotice";
 import SocialUgcRuleNotice from "./tycoonx-legal/SocialUgcRuleNotice";
+import RealMoneyTradingNotice from "./tycoonx-legal/RealMoneyTradingNotice";
+import OfficialPurchaseRefundNotice from "./tycoonx-legal/OfficialPurchaseRefundNotice";
+import ControllerIdentityPrivacyNotice from "./tycoonx-legal/ControllerIdentityPrivacyNotice";
 import PersonalDataBreachPrivacyNotice from "./tycoonx-legal/PersonalDataBreachPrivacyNotice";
 import "./globals.css";
 
@@ -46,6 +49,9 @@ export default function RootLayout({
         <BankCreditMarketsRuleNotice />
         <LogisticsJobsCompetitionsRuleNotice />
         <SocialUgcRuleNotice />
+        <RealMoneyTradingNotice />
+        <OfficialPurchaseRefundNotice />
+        <ControllerIdentityPrivacyNotice />
         <PersonalDataBreachPrivacyNotice />
       </body>
     </html>
