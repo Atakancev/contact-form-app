@@ -120,6 +120,7 @@ Detailed implementation gates remain the QA source of truth:
 - `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md`
 - `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md`
 - `TYCOONX_PROMOTION_REFERENCE_PRICE_COMMERCIAL_PRESENTATION_GATE.md`
+- `TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md`
 - `TYCOONX_PERSONAL_DATA_BREACH_PRIVACY_GATE.md`
 - `TYCOONX_RENDERED_LEGAL_NOTICE_INTEGRATION_GATE.md`
 
@@ -164,15 +165,26 @@ This is presently a structural risk rather than a known live-player loss. Aggreg
 
 The unmatched-reversal path is also recorded as P1 resilience work. If a refund/reversal arrives for a transaction/order that cannot be found locally, the current function marks it `ignored` with `purchase_not_found`; later purchase fulfillment does not visibly consult a durable negative state for that transaction/order. Xsolla's current documentation says its relevant Store/Payments webhooks are sent sequentially, which reduces normal out-of-order risk, so this is not evidence that Xsolla normally reorders events. Still, a trusted unmatched refund should be retained as a transaction-level negative/hold state so recovery, import, migration or concurrent-processing problems cannot later grant value against a payment already known to be reversed. Current production had zero such ignored events at the time of this review.
 
+### EU/EEA virtual-currency withdrawal and checkout recheck
+
+`TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md` was rechecked and tightened on September 10, 2026 against the European Commission / CPC Network *Key Principles on In-Game Virtual Currencies* dated March 21, 2025.
+
+The existing TycoonX canonical and localized Purchases wording already preserves the material outcome, so no locale was reopened. The implementation gate is now more explicit about the CPC Network's current position that the purchase of in-game virtual currency itself is not digital content for purposes of relying on the digital-content immediate-performance withdrawal exception. TycoonX must therefore not treat immediate Diamond crediting as an automatic loss of an otherwise applicable statutory withdrawal right, and unused purchased Diamonds must remain within that right during the applicable 14-day period where the right exists.
+
+For a later Diamond purchase of actual digital content or a digital service, if the implementation relies on the early-performance exception, the gate now requires the legally relevant express consent and acknowledgement to be collected in a dedicated control separate from the click that purchases the content/service. The CPC principles allow consent and acknowledgement to be combined together, but not silently folded into the `Buy` click. The required contract confirmation must also contain or preserve confirmation of that consent and acknowledgement. New regression cases and evidence-retention requirements now cover these distinctions.
+
+This is a checkout/consumer-rights implementation clarification, not a promise that every TycoonX transaction always has a withdrawal right and not a change to the product definitions of Diamonds, one-time 30-Day VIP or Lifetime VIP.
+
 ## Current-law and provider checkpoint
 
 Rechecked on **September 10, 2026**:
 
+- The European Commission continues to present the CPC Network's March 21, 2025 virtual-currency principles as minimum requirements/best practices under Union consumer law. The official CPC document expressly identifies as practices to avoid treating in-game virtual currency itself as digital content for the withdrawal exception, denying withdrawal within the applicable 14-day period for purchased virtual currency that remains unused, and denying withdrawal for in-game digital content/services merely because the user paid with virtual currency. It also states that where the digital-content immediate-performance exception is used, express consent and acknowledgement may be collected together but must be separate from the purchase click, and the contract confirmation must include confirmation of them.
 - GDPR Article 12 requires Articles 13/14 information to be concise, transparent, intelligible and easily accessible. GDPR Article 13(1)(a) requires the identity and contact details of the controller when personal data are collected from the data subject. The localized controller/contact notice is now actually rendered instead of remaining an unused component.
 - RevenueCat's current webhook reference states that `CANCELLATION` covers a subscription or non-renewing purchase that was canceled or refunded, and separately defines `REFUND_REVERSED`. Its refund guidance states that a refunded one-time/non-subscription purchase loses the associated entitlement and describes platform-specific detection requirements.
 - Apple's current App Review Guidelines continue to state that purchased in-game IAP currency may not expire and that restorable purchases need a restore mechanism.
-- Google Play's current Payments policy continues to require Play Billing for covered in-app digital goods unless an applicable exception/program applies, expressly includes virtual currency, requires clear and accurate pricing and limits purchased virtual currency to the app/game title for which it was bought.
-- Xsolla's current webhook documentation continues to send transaction-specific refund/cancellation information and documents retry behavior. TycoonX should normalize supported provider event shapes into authoritative transaction state and preserve source-specific entitlement provenance.
+- Google Play's purchase-management documentation updated September 9, 2026 continues to distinguish refunds from revocation for one-time purchases and exposes transaction/order state suitable for source-specific reconciliation.
+- Xsolla's current webhook documentation continues to send transaction-specific refund/cancellation information, documents retry behavior, and distinguishes newer combined order webhooks from older separate payment/refund plus order webhook configurations. TycoonX should normalize the event model actually configured for CK-Labs into authoritative transaction state and preserve source-specific entitlement provenance.
 - EU digital-content rules and German BGB implementation continue to preserve mandatory conformity, price-reduction/termination/refund and other non-waivable remedies. The legal framework must not use entitlement reconciliation to contract around those rights.
 - GDPR Articles 33 and 34 continue to require risk-based personal-data-breach handling: supervisory-authority notification without undue delay and, where feasible, within 72 hours after awareness unless the Article 33 risk threshold is not met; documentation of personal data breaches; and communication to affected individuals without undue delay where a high risk is likely, subject to the Article 34 exceptions.
 - GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and should be fixed technically rather than normalized in player-facing privacy prose.
@@ -182,11 +194,11 @@ No material provider-rule change was identified in this run that requires reopen
 ## Canonical source status
 
 - English Terms: current and supplemented by nine rendered synchronized clarifications, including the now-mounted RMT clarification.
-- English Purchases & Refunds: current and supplemented by the now-mounted official-purchase/off-platform distinction.
+- English Purchases & Refunds: current and supplemented by the now-mounted official-purchase/off-platform distinction. Its current EU/EEA withdrawal wording already states that the mere crediting of purchased Diamonds is not treated as immediate digital-content performance automatically extinguishing withdrawal rights, so the September 10 CPC recheck did not require a canonical wording change.
 - English Privacy Policy: current, contains controller/contact information directly, and is supplemented by the synchronized personal-data-breach clarification; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
 - English Community Standards: current.
 - All 25 localized Terms receive all nine rendered synchronized Terms clarifications.
-- All 25 localized Purchases routes receive the official-purchase/off-platform distinction.
+- All 25 localized Purchases routes receive the official-purchase/off-platform distinction and already preserve the same mandatory EU/EEA Diamond-withdrawal outcome.
 - All 25 localized Privacy routes receive both localized controller/contact information and the synchronized personal-data-breach clarification, including RTL rendering for Arabic.
 
 ## Next code-first audit queue
@@ -204,6 +216,8 @@ Highest priority remains **payment/entitlement remediation verification**:
 7. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
 8. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
 
+A separate checkout verification should confirm the actual EU/EEA Diamond purchase/spend flows against `TYCOONX_EU_VIRTUAL_CURRENCY_RELEASE_GATE.md`, including real-money equivalent presentation, avoidance of forced surplus paid currency, unused-Diamond withdrawal treatment, separation of any digital-content early-performance consent/acknowledgement from the purchase click, and retention of the required contract confirmation evidence. This repository does not contain the complete live Apple, Google Play or Xsolla checkout implementation, so that operational verification cannot be inferred from the legal pages alone.
+
 A separate privacy-operations verification should confirm that CK-Labs can record awareness time, incident facts, affected systems/data, risk assessment, containment/remediation, supervisory-authority notification decision/timing, affected-user communication decision/timing, statutory exceptions relied on and reasons for delay where required. The Privacy wording does not claim those operational controls are already complete.
 
 Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, repeat current Apple/Google/RevenueCat/Xsolla plus German/EU checks and reopen only localized document types affected by a material canonical meaning change.
@@ -212,13 +226,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage remains essentially complete. This run fixed a real delivery defect: three already-localized legal components existed but were not mounted, so their wording was not actually reaching the intended legal pages. Terms RMT, Purchases official-vs-off-platform distinction, and localized Privacy controller/contact information are now rendered from the shared layout. The major payment/entitlement implementation blockers remain open.
+Legal/localization coverage remains essentially complete. This run tightened the existing EU/EEA virtual-currency release gate to mirror the CPC Network's withdrawal classification and checkout-consent mechanics more precisely, without duplicating completed localization or changing the already-correct canonical legal meaning. The major payment/entitlement implementation blockers remain open, and the actual live checkout implementation still needs operational verification outside this legal-page repository.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.9%**
 - **Full commercial/legal/payment readiness:** **77.5%**
-- **Overall project completion:** **98.6%**
+- **Overall project completion:** **98.7%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. In parallel, verify the operational personal-data-breach response controls. After those, run a rendered-route regression to ensure every canonical/localized legal notice remains mounted and correctly scoped.
+**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. In parallel, verify the actual EU/EEA Diamond checkout/spend flow against the tightened CPC withdrawal/consent gate and the operational personal-data-breach response controls.
