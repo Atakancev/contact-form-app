@@ -1,6 +1,6 @@
 # TycoonX Legal Localization Progress
 
-Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository, together with rendered canonical Terms clarifications synchronized into every localized Terms route.
+Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository, together with the rendered canonical Terms clarifications synchronized into every localized Terms route.
 
 Last synchronized: **September 10, 2026**.
 
@@ -8,176 +8,74 @@ Last synchronized: **September 10, 2026**.
 
 - Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display a legacy misspelling.
 - TycoonX went to full release on **September 1, 2026**. Do not describe the live service, users, purchases, VIP, Diamonds, rewards, or current legal terms as beta.
-- Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving the legal effect of the English source.
-- English remains canonical. Refresh localized versions whenever canonical meaning changes materially.
+- English remains canonical. Reopen localized documents only when canonical English meaning materially changes.
+- Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving exact legal effect, product distinctions, payment-channel responsibilities and mandatory-rights caveats.
 - Locale variants must remain genuinely localized, including `es`/`es_MX`, `fr`/`fr_CA`, `pt`/`pt_BR`, and `zh`/`zh_Hans`/`zh_Hant`; Arabic uses RTL layout.
-- Locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
+- Required locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
 - Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
-- Do not mark a localized document `Ready` until the rendered page preserves canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed brand or live-service beta wording.
-- Do not use GitHub Actions or paid services for this project. Do not change any database.
-- Before creating another release gate, inspect the repository and existing verifier scripts so completed doctrine is hardened incrementally instead of duplicated.
-- Gameplay/community legal hardening is **code-first**: inspect current Flutter feature paths and read-only production Supabase functions, tables, policies, grants and triggers before drafting rules.
-- A current server cap, permission, cooldown, formula, settlement path, moderation signal or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or legal safe harbor.
+- Do not use GitHub Actions or paid services for this project. Do not change any production database row, function, trigger, policy, grant, schema, cron, balance or configuration as part of this legal audit.
+- Gameplay/community hardening is code-first: inspect current Flutter behavior and read-only production Supabase authority/settlement paths before changing legal meaning.
+- A current cap, cooldown, formula, permission, settlement rule, moderation signal or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or safe harbor for knowing exploitation.
 
 ## Current localization state
 
-The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
+The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** required locales.
+
+**Localized hubs: 25/25. Localized full documents: 100/100.** Every locale has current Terms, Purchases & Refunds, Privacy and Community Standards.
+
+Exact next unfinished locale/document: **None. All 25 target locales and all 100 localized full documents are current.**
+
+Do not duplicate completed localization. If canonical English meaning changes materially, reopen only the affected document type and resynchronize it in the required locale order.
+
+## Synchronized player-facing Terms clarifications
 
 Eight September 10 code-derived Terms clarifications remain synchronized across the canonical Terms route and all target locales:
 
-1. `GameplayEconomyRuleNotice.tsx` covers genuine Company/Union value movement, contribution mechanics and the genuine-purpose rule.
-2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling, settlement/state exploitation, proportional correction, outages/account compromise and mandatory rights.
-3. `UnionGovernanceRuleNotice.tsx` covers Union membership fees, leader treasury deposits/withdrawals, maintenance/closure, projects/rewards, upgrades, polls, altered-client/state manipulation, limit evasion, compromise/outage correction and mandatory rights.
-4. `ArtBeggingRuleNotice.tsx` covers Art auctions/resales, formal direct offers, genuine Art trading versus disguised gifting, Begging as intended assistance, self-bidding/collusion, moderation timing, escrow reconciliation, compromise and proportional correction.
-5. `PlayerGovernmentMarketRuleNotice.tsx` covers player production markets, built-in shop auto-fill, TycoonX-operated automatic market purchases, Government sales/tenders, manipulation, stale-state/evidence limits, correction and prospective balancing.
-6. `BankCreditMarketsRuleNotice.tsx` covers virtual banking/savings/credit/FX/stocks/crypto, ordinary debt/default/trading outcomes, Diamond-funded FX-slot entitlement, system-operated price movement, manipulation/exploit boundaries, paid-entitlement separation, evidence quality, proportional correction and mandatory change/conformity rights.
-7. `LogisticsJobsCompetitionsRuleNotice.tsx` covers truck commerce/rentals, deliveries, care jobs, Company recruitment, built-in job automation, leaderboards/competitions/rewards, Diamond-funded delivery acceleration, sham jobs, win trading, cooldown/reward manipulation, proportional correction and mandatory rights.
-8. `SocialUgcRuleNotice.tsx` covers public/restricted social spaces, Company/Union/Executive chat, mentions, rooms, Post Office anonymity, Music/Books, impersonation/scams/phishing, altered-client access abuse, moderation/evidence limits, compromise, proportional correction and mandatory rights.
+1. `GameplayEconomyRuleNotice.tsx`.
+2. `CompanyCommerceRuleNotice.tsx`.
+3. `UnionGovernanceRuleNotice.tsx`.
+4. `ArtBeggingRuleNotice.tsx`.
+5. `PlayerGovernmentMarketRuleNotice.tsx`.
+6. `BankCreditMarketsRuleNotice.tsx`.
+7. `LogisticsJobsCompetitionsRuleNotice.tsx`.
+8. `SocialUgcRuleNotice.tsx`.
 
-These clarifications display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`. Arabic uses RTL and the locale-specific Spanish, French, Portuguese and Chinese variants remain separately localized.
+They cover genuine intended gameplay, Company/Union commerce, Art/Begging, player/Government markets, banking/credit/FX/stocks/crypto, Logistics/jobs/competitions/rewards and Social/UGC, while preserving exploit/compromise/evidence/proportional-correction and mandatory-rights boundaries. They display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`; Arabic uses RTL and required regional variants remain separately localized.
 
-### Locale status
-
-| Locale | Terms | Purchases & Refunds | Privacy | Community | Total current |
-| --- | --- | --- | --- | --- | --- |
-| tr | Ready | Ready | Ready | Ready | 4/4 |
-| de | Ready | Ready | Ready | Ready | 4/4 |
-| es | Ready | Ready | Ready | Ready | 4/4 |
-| es_MX | Ready | Ready | Ready | Ready | 4/4 |
-| fr | Ready | Ready | Ready | Ready | 4/4 |
-| fr_CA | Ready | Ready | Ready | Ready | 4/4 |
-| it | Ready | Ready | Ready | Ready | 4/4 |
-| pt | Ready | Ready | Ready | Ready | 4/4 |
-| pt_BR | Ready | Ready | Ready | Ready | 4/4 |
-| ru | Ready | Ready | Ready | Ready | 4/4 |
-| ja | Ready | Ready | Ready | Ready | 4/4 |
-| ko | Ready | Ready | Ready | Ready | 4/4 |
-| zh | Ready | Ready | Ready | Ready | 4/4 |
-| zh_Hans | Ready | Ready | Ready | Ready | 4/4 |
-| zh_Hant | Ready | Ready | Ready | Ready | 4/4 |
-| ar | Ready | Ready | Ready | Ready | 4/4 |
-| nl | Ready | Ready | Ready | Ready | 4/4 |
-| sv | Ready | Ready | Ready | Ready | 4/4 |
-| nb | Ready | Ready | Ready | Ready | 4/4 |
-| pl | Ready | Ready | Ready | Ready | 4/4 |
-| th | Ready | Ready | Ready | Ready | 4/4 |
-| vi | Ready | Ready | Ready | Ready | 4/4 |
-| uk | Ready | Ready | Ready | Ready | 4/4 |
-| hi | Ready | Ready | Ready | Ready | 4/4 |
-| id | Ready | Ready | Ready | Ready | 4/4 |
-
-## Localization queue
-
-**Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
-
-Do not duplicate completed localization. If canonical English meaning changes materially, reopen only the affected document type and resynchronize it in the required locale order.
+No ninth public notice is currently required for the cross-cutting authority defects. Existing canonical/localized Terms already cover the material exploit/server-acceptance/account-compromise/evidence/correction rules. Security defects should be fixed technically rather than normalized as intended player access.
 
 ## Active purchase/product invariants
 
 All canonical and localized legal documents must continue to preserve that:
 
 - purchased Diamonds do not expire solely because time passes;
-- purchased Diamonds, promotional/free Diamonds, one-time 30-Day VIP, and Lifetime VIP are distinct products;
+- purchased Diamonds, promotional/free Diamonds, one-time 30-Day VIP and Lifetime VIP are distinct products;
 - 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly says otherwise;
-- Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
-- Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels;
-- CK-Labs may change future Diamond bundles, VIP prices, regional prices, currencies and promotions subject to applicable law, while a completed one-time purchase is not retroactively repriced merely because later prices, taxes, FX or promotions differ; and
-- mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility and other non-waivable rights remain intact.
+- Lifetime VIP is a one-time promotional entitlement available only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
+- Apple App Store, Google Play and the official CK-Labs TycoonX webshop using Xsolla are distinct payment channels;
+- CK-Labs may change future Diamond bundle prices/content, VIP prices, regional prices, currencies and future promotions subject to applicable law;
+- prices may differ by country, platform and channel, including because of provider tax/VAT/FX handling;
+- the final total price shown before confirmation governs a completed transaction, subject to mandatory law and correction of legally relevant errors;
+- completed one-time purchases are not retroactively repriced merely because a later price, tax, FX rate, sale or promotion differs;
+- a later decrease does not automatically create a refund/credit/price-match right, and a later increase does not create an extra charge on a completed one-time purchase, except where mandatory law requires otherwise;
+- Lifetime VIP may have different genuine prices in different sales windows and misleading countdown/crossed-out/discount claims are not permitted;
+- total consumer prices and mandatory taxes/fees are displayed as required by applicable German/EU law;
+- any future recurring product requires its own compliant recurring-price, renewal, notice and cancellation treatment; and
+- mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy and other non-waivable rights remain intact.
 
-Obvious catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages/rule changes/replacement, unsupported clients, business transfers, economy corrections and permanent service shutdown remain subject to their specific canonical rules.
+Obvious pricing/catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, regional-price abuse, promotion/coupon abuse, account compromise, provider outages/rule changes/replacement, unsupported clients, business sale/reorganization/successor operation, economy corrections, feature replacement and lawful permanent service discontinuation remain covered by their canonical rules.
 
-A fresh September 10, 2026 platform/legal source check did not identify a material purchase-policy meaning change requiring canonical or localized purchase wording to be reopened in this run. Continue to recheck Apple, Google Play and Xsolla before final release-readiness closure because regional billing programs and provider terms can change.
+## Active gameplay/enforcement invariant
 
-## Active gameplay and community invariant
+TycoonX intentionally contains value-moving and automatic mechanics. Genuine salaries/payroll, Company distributions, supply/export/tenders, Begging, Union contributions/fees/treasury movements, player markets, shop auto-fill, TycoonX-operated automation, Government Market systems, Art/Music/Books, trucks/deliveries, care jobs, Company recruitment, bank/FX/stocks/crypto, competitions/rewards, chats, rooms and other supported systems are not prohibited merely because they move value or operate automatically.
 
-Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, Art or Music purchase, auction, Company transaction, job, contract, market order, Government tender, truck transaction, competition, creator sale or other mechanic must not be repurposed mainly as a disguised gift, value-funneling route, value-parking route, prohibited real-money trading route, exploit-laundering route or way to evade another feature limit.
+A large amount, unusual price, aggressive bid, default, bankruptcy, large gain/loss, high salary, repeated delivery, repeated win, favorable reward or popular creator work is not automatically abuse. A mechanic becomes legally/enforcement-relevant when reliable evidence supports knowing manipulation, disguised value funneling, controlled-account evasion, prohibited RMT, external automation, altered-client/API abuse, exploit laundering, fraud or another actual rule violation.
 
-This does not make intended value-moving, social or automatic mechanics unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock/crypto/FX mechanics, supply procurement, exports/contracts, tenders, Begging, Union contributions/fees/treasury movements, player markets, shop auto-fill, TycoonX-operated automation, Government Market systems, truck commerce/deliveries, care jobs, Company recruitment, leaderboards/rewards, chats, rooms, Post Office, Music, Books and other UGC systems. Genuine use for the intended purpose is allowed unless another rule is violated.
+A successful RPC/row mutation is not an absolute safe harbor if an authorization/validation defect clearly enabled an unintended manipulated state. Conversely, server acceptance or abnormal state alone does not prove knowledge or intent. Enforcement must distinguish detection, containment, state correction and punishment, consider account compromise/outages/retries/races, and correct directly attributable invalid state proportionately rather than automatically destroying unrelated valid paid value.
 
-A large amount, high/low price, aggressive bid, legitimate default, bankruptcy, large gain/loss, high truck price, high lawful salary, repeated delivery, high rank, repeated win, favorable random reward, popular creator work, large genuine Music bid or unusual social interaction is not automatically abuse. Serious enforcement requires reliable evidence and should distinguish detection, containment, state correction and punitive enforcement.
+## Completed code-first legal map
 
-## Completed code-first checkpoints
-
-### Company commerce
-
-Reviewed supply requests, member/warehouse fulfillment, exports/procurement, tenders, completion, failure and permissions. Open finding: linked-price validation is stronger on reviewed create than update paths. Detailed gate: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.
-
-### Union treasury/governance
-
-Reviewed membership fees, leader treasury movements, maintenance/closure, project contributions/rewards, levels and polls. Open finding: leader/officer generic Union UPDATE is broader than the ordinary UI. Detailed gate: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.
-
-### Art/Begging
-
-Reviewed publication/idempotency, auctions/resales, direct offers, escrow, moderation timing and Begging. Open findings include resale-owner self-bid protection, broad Art owner UPDATE, raw active-Art deletion/refund parity and direct-offer preference enforcement. Detailed gate: `TYCOONX_ART_BEGGING_RELEASE_GATE.md`.
-
-### Player and Government markets
-
-Reviewed producer markets, shop auto-fill, system auto-market and Government Market. Open findings include non-positive seller-price validation gaps, destination-slot caller binding and client-authored Government anomaly evidence limits. Detailed gate: `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`.
-
-### Bank/credit/FX/stocks/crypto
-
-Reviewed banking, savings, credit, collateral, debt recovery, FX, stocks/crypto and market automation. Open findings include player-writable holdings/economic state, client-insertable market inputs, broad price-mutation helpers and over-broad internal bank/debt helpers. The FX zero-balance account-delete safeguard was confirmed. Detailed gate: `TYCOONX_BANK_CREDIT_FX_STOCKS_CRYPTO_RELEASE_GATE.md`.
-
-### Logistics/jobs/competitions/rewards
-
-Reviewed trucks, deliveries, Diamond acceleration, care jobs, Company recruitment, daily tasks, level/hourly rewards, rankings and match settlement. Open findings include broad global care helpers, arbitrary-user daily-task stock consumption, client-writable reward checkpoints, cross-Company job RLS correlation, stale overloads and broad match-settlement execution. Detailed gate: `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`.
-
-### Social/UGC
-
-Reviewed Company/Union/Executive chat, mentions/replies/group mentions, polls/pins, Company meeting rooms, private social tables, Home Rooms, Post Office anonymity, Music/Books, moderation/reports/restoration and creator-content authority. Open findings include ordinary Company/Union confidentiality, message-routing authority, Executive push disclosure, Music auction-state authority, anonymous Post Office raw identity, poll parent authorization, Home Room raw reads and generic moderation-notification authority. Detailed gate: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
-
-### Cross-cutting server authority and privacy
-
-The September 10 read-only cross-cutting sweep confirmed that the broad self-profile sensitive UPDATE surface, broad public profile SELECT, raw refund/XP helpers, connected-fill identity helpers and generic Company/moderation notification authority remain open in production. Detailed gate: `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`.
-
-### Residual Housing/profile/energy/friends/activity/log checkpoint
-
-This run completed the remaining mapped residual gameplay/privacy surface and explicitly rechecked remediation status rather than assuming fixes had landed.
-
-New/expanded release-blocking findings:
-
-1. **P0 - raw current-user XP authority:** `rpc_add_xp(amount)` still accepts a client-supplied positive XP amount without independently proving a feature-specific reward source. Current Flutter `AuthService.addXP(...)` uses it.
-2. **P0 - raw current-user energy authority:** `rpc_add_energy(amount)` accepts a caller-provided positive energy amount without proving an authoritative source or applying the intended gameplay cap inside that function. Authenticated direct profile UPDATE also includes `energy` and `hunger`.
-3. **P0 - Housing cooldown authority:** `new_housing_tenant_cooldowns` is player-writable for the player's own row even though the canonical rent flow relies on it to enforce the current same-owner re-rental cooldown. The raw `set_housing_tenant_cooldown(...)` helper is also broadly executable with a supplied target user.
-4. **P0 - Housing supply creation:** `_spawn_next_house_plot(p_country)` remains an internal SECURITY DEFINER Housing-supply helper exposed to ordinary/anonymous client execution.
-5. **P1 - Housing maintenance/foreclosure:** `new_housing_daily_cron()` and `new_housing_foreclose_overdue()` should move to a trusted service boundary, but current Flutter itself invokes the foreclosure function before mortgage reads and the function derives overdue targets from server state. Supported invocation is therefore not misconduct by itself.
-6. **P1 - Housing notification authority:** raw Housing event notification helpers are too broadly callable to be authoritative evidence of the underlying rent/eviction/mortgage event.
-7. **P1 - daily activity/news service proxies:** daily-activity generation/regeneration invokers expose privileged service work more broadly than current ordinary Flutter usage requires.
-
-Positive controls confirmed in the same read-only production sweep:
-
-- current persona compatibility training is materially hardened compared with stale migration bodies: server authentication, constrained reward shape, user/session energy receipt and structured evidence are present;
-- current Housing owner-eviction/tenant-leave settlement returns or records valid tenant deposit release rather than silently treating it as forfeited;
-- Housing mortgage, rent-application, Housing transaction-log, strategy-reveal and login-fingerprint reads are meaningfully scoped in the reviewed policy subset;
-- `social_list_user_friends(...)` intentionally returns a narrow accepted-friends list and is used by current Flutter, so friend-list visibility is a product/privacy-design choice rather than an automatic vulnerability; and
-- direct profile-money edits remain separately protected and the reviewed authenticated profile UPDATE surface still does not include Diamond balance.
-
-The residual sweep also confirmed that the previously documented cross-cutting privileged helpers remain open in the deployed state. Role-based privacy/security policies that rely on profile admin/support flags cannot be treated as fully trustworthy until those role fields are made server-owned.
-
-No ninth 25-locale Terms notice was added. Existing canonical/localized exploit, compromised-account, evidence-quality and proportional-correction wording already covers the legal meaning. The newly confirmed issues are technical authority/privacy defects that should be fixed in implementation, not normalized as intended player access.
-
-## Active privacy/controller invariant
-
-For personal-data processing described in the Privacy Policy, the controller remains disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
-
-Restricted chat/history, Post Office sender identity, Home Room state, gameplay finance, applications, anti-abuse signals and moderation evidence may be processed where justified to operate, secure and support TycoonX, but that does not authorize unnecessary player-to-player disclosure. Client-influenceable, over-broadly readable/writable or notification-derived records must be weighted according to their evidentiary quality rather than treated as automatically conclusive.
-
-A player-facing anonymous option may remain identifiable to CK-Labs for lawful moderation/security/legal purposes, but the recipient should not receive hidden sender identity merely because the raw storage row contains it if the product represents that identity as hidden from the recipient.
-
-## Current-law and platform checkpoint
-
-As rechecked on **September 10, 2026**:
-
-- current Apple App Store rules continue to require compliant in-app purchase handling for digital functionality/in-game currency, truthful purchase metadata, restoration where applicable and non-expiration of purchased in-game currency;
-- current Google Play payment rules continue to govern in-app digital goods/virtual currency while regional billing programs can differ and must be checked per distribution/payment path;
-- current Xsolla agreements/refund/chargeback terms remain a separate provider layer from CK-Labs' own entitlement-delivery and mandatory-consumer-law duties;
-- GDPR Articles 5, 25 and 32 remain relevant to data minimisation, privacy by design/default and risk-appropriate security;
-- German BGB § 307 and the digital-product rules including §§ 327d, 327i and 327r remain separate from anti-exploit enforcement and prospective game balancing; and
-- a genuine backend/security defect cannot be relabeled misconduct merely to avoid an applicable statutory remedy.
-
-## Next code-first audit queue
-
-Completed substantive mapping clusters:
+Substantive mapping is complete for:
 
 1. Company governance/value movement.
 2. Company supply/export/tender commerce.
@@ -187,28 +85,93 @@ Completed substantive mapping clusters:
 6. Bank/credit/FX/stocks/crypto.
 7. Logistics/jobs/competitions/rewards.
 8. Social/UGC.
-9. Cross-cutting server-authority/privacy.
-10. Residual Housing/profile/energy/friends/activity/log sweep.
+9. Cross-cutting profile/server-authority/privacy.
+10. Residual Housing/profile/energy/friends/activity/log authority.
 
-There is no unfinished localization document. The next substantive target is **P0/P1 implementation remediation verification and final legal release-readiness consolidation**: recheck every open server-authority/privacy/economy finding after engineering changes, verify that no implementation change has created a canonical/localization mismatch, and repeat the final current Apple/Google/Xsolla plus German/EU source review. Do not change production database state without explicit approval.
+Detailed gates remain authoritative implementation QA references:
+
+- `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`
+- `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`
+- `TYCOONX_ART_BEGGING_RELEASE_GATE.md`
+- `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`
+- `TYCOONX_BANK_CREDIT_FX_STOCKS_CRYPTO_RELEASE_GATE.md`
+- `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`
+- `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`
+- `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`
+- `TYCOONX_CODE_FIRST_GAMEPLAY_LEGAL_MAP.md`
+
+## September 10 final remediation recheck
+
+A fresh read-only production recheck was performed before final release-readiness consolidation. The previously documented P0/P1 implementation findings were **not assumed fixed merely because legal wording is complete**.
+
+The following high-risk categories are still open in the reviewed production definitions:
+
+- sensitive self-profile UPDATE and excessive public profile exposure;
+- raw/client-trusting XP, energy, reward-checkpoint and refund-credit authority;
+- arbitrary-target or globally scoped internal helpers exposed to ordinary client roles;
+- Housing cooldown/supply authority;
+- connected-fill identity rebinding and destination-slot ownership gaps;
+- non-positive agriculture/livestock/mining price validation gaps at settlement;
+- richer Company supply update not visibly reapplying linked price ceilings;
+- cross-Company Company-job RLS correlation defect;
+- broad Union leader/officer generic UPDATE;
+- Art generic owner UPDATE/raw DELETE and resale-current-owner self-bid gap;
+- player-writable stock holdings and client-insertable stock transaction/price-history inputs;
+- broadly executable stock/crypto price automation/mutation functions;
+- overly broad internal bank/debt helpers;
+- broadly executable care-job/daily-task/global reward helpers;
+- globally permissive raw message reads and remaining Social/UGC confidentiality/authority issues; and
+- generic Company/moderation/Housing official-looking notification helpers.
+
+The exact consolidated matrix, positives/closed false positives, evidence rules and engineering remediation order are now maintained in `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`.
+
+Important positive/closed points remain recorded there, including Finance V2 money protection, no generic profile Diamond UPDATE, current FX zero-balance delete protection, hardened persona training, Housing deposit-release behavior, industrial positive-price purchase validation, intended built-in automation, and scoped raw Post Office letter reads.
+
+No production database mutation was made during this recheck.
+
+## Active privacy/controller invariant
+
+For personal-data processing described in the Privacy Policy, the controller remains disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
+
+Restricted social/history data, anonymous Post Office sender identity, gameplay finance, applications, anti-abuse signals and moderation evidence may be processed where justified to operate, secure and support TycoonX, but that does not authorize unnecessary player-to-player disclosure. Client-influenceable, over-broadly readable/writable or notification-derived records must be weighted according to evidentiary quality rather than treated as automatically conclusive.
+
+## Current-law and provider checkpoint
+
+Rechecked on **September 10, 2026**:
+
+- Apple's current App Review Guidelines continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, and require restoration where applicable.
+- Google Play continues to regulate billing for in-app digital goods/virtual currency, with region/program-specific alternatives that must be checked for the actual distribution/payment path rather than described as one universal rule.
+- Xsolla's current refund/legal framework remains a separate provider/merchant layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties.
+- German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
+- GDPR data minimisation, privacy by design/default and appropriate security remain relevant to broad profile/social access defects.
+
+No material current-law/provider meaning change was identified in this recheck that requires reopening the canonical or localized purchase/legal documents.
+
+## Next code-first audit queue
+
+There is no unfinished localization document and no unmapped substantive gameplay cluster.
+
+The next substantive target is **implementation remediation verification**. After engineering changes land, recheck the production definitions against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`, close only findings demonstrably fixed, verify that deployed behavior still matches canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
+
+Database remediation remains outside this legal audit unless explicitly approved.
 
 ## Canonical source status
 
-- English Terms: current and supplemented by eight synchronized rendered code-derived gameplay/community clarifications dated September 10, 2026.
+- English Terms: current and supplemented by eight synchronized code-derived clarifications.
 - English Purchases & Refunds: current.
-- English Privacy Policy: current; broad public profile access remains an implementation defect and is not treated as an intended disclosure.
+- English Privacy Policy: current; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
 - English Community Standards: current.
-- All 25 localized Terms receive all eight synchronized code-derived clarifications without duplicating the static translated body.
+- All 25 localized Terms receive all eight synchronized code-derived clarifications.
 
 ## Progress metrics
 
-The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization. This residual sweep increased legal/implementation coverage but confirmed additional P0 authority gaps in XP, energy and Housing state, while earlier cross-cutting P0s remain open. Readiness therefore decreases until engineering remediation is verified.
+Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. Completing the consolidated risk/remediation matrix increases project completion without pretending those server-authority/privacy defects have been fixed.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
 - **Full commercial/legal/payment readiness:** **82.5%**
-- **Overall project completion:** **97.5%**
+- **Overall project completion:** **97.7%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** P0/P1 implementation remediation verification and final legal release-readiness consolidation across profiles/public data, paid/staff role state, XP/energy, Housing cooldown/plot spawn, connected-fill/refund helpers, notifications/service proxies, and the open Company/Union/Art/market/bank/Logistics/Social findings.
+**Next substantive code-first target:** implementation remediation verification against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`, followed by final regression and current-law/provider closure once the verified P0/P1 fixes have actually landed.
