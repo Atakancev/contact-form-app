@@ -14,7 +14,7 @@ Last synchronized: **September 10, 2026**.
 - Required locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
 - Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
 - Do not use GitHub Actions or paid services for this project. Do not change any production database row, function, trigger, policy, grant, schema, cron, balance or configuration as part of this legal audit.
-- Gameplay/community hardening is code-first: inspect current Flutter behavior and read-only production Supabase authority/settlement paths before changing legal meaning.
+- Gameplay/community hardening is code-first: inspect current Flutter behavior and read-only production authority/settlement paths before changing legal meaning.
 - A current cap, cooldown, formula, permission, settlement rule, moderation signal or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or safe harbor for knowing exploitation.
 
 ## Current localization state
@@ -40,9 +40,9 @@ Eight September 10 code-derived Terms clarifications remain synchronized across 
 7. `LogisticsJobsCompetitionsRuleNotice.tsx`.
 8. `SocialUgcRuleNotice.tsx`.
 
-They cover genuine intended gameplay, Company/Union commerce, Art/Begging, player/Government markets, banking/credit/FX/stocks/crypto, Logistics/jobs/competitions/rewards and Social/UGC, while preserving exploit/compromise/evidence/proportional-correction and mandatory-rights boundaries. They display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`; Arabic uses RTL and required regional variants remain separately localized.
+They cover genuine intended gameplay, Company/Union commerce, Art/Begging, player/Government markets, banking/credit/FX/stocks/crypto, Logistics/jobs/competitions/rewards and Social/UGC while preserving exploit/compromise/evidence/proportional-correction and mandatory-rights boundaries. They display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`; Arabic uses RTL and required regional variants remain separately localized.
 
-No ninth public notice is currently required for the cross-cutting authority defects. Existing canonical/localized Terms already cover the material exploit/server-acceptance/account-compromise/evidence/correction rules. Security defects should be fixed technically rather than normalized as intended player access.
+No ninth public Terms notice is currently required for the cross-cutting authority defects. Existing canonical/localized Terms already cover the material exploit/server-acceptance/account-compromise/evidence/correction rules. Security and commercial-message implementation defects should be fixed technically rather than normalized as intended player access or product behavior.
 
 ## Active purchase/product invariants
 
@@ -60,7 +60,7 @@ All canonical and localized legal documents must continue to preserve that:
 - a later decrease does not automatically create a refund/credit/price-match right, and a later increase does not create an extra charge on a completed one-time purchase, except where mandatory law requires otherwise;
 - Lifetime VIP may have different genuine prices in different sales windows and misleading countdown/crossed-out/discount claims are not permitted;
 - total consumer prices and mandatory taxes/fees are displayed as required by applicable German/EU law;
-- any future recurring product requires its own compliant recurring-price, renewal, notice and cancellation treatment; and
+- any future recurring product requires its own compliant recurring-price, renewal, notice, cancellation and reminder treatment; and
 - mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy and other non-waivable rights remain intact.
 
 Obvious pricing/catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, regional-price abuse, promotion/coupon abuse, account compromise, provider outages/rule changes/replacement, unsupported clients, business sale/reorganization/successor operation, economy corrections, feature replacement and lawful permanent service discontinuation remain covered by their canonical rules.
@@ -75,20 +75,9 @@ A successful RPC/row mutation is not an absolute safe harbor if an authorization
 
 ## Completed code-first legal map
 
-Substantive mapping is complete for:
+Substantive mapping is complete for Company governance/value movement; Company supply/export/tender commerce; Union contribution/treasury/governance; Art/Begging; player markets/shop auto-fill/system auto-market/Government Market; bank/credit/FX/stocks/crypto; Logistics/jobs/competitions/rewards; Social/UGC; cross-cutting profile/server-authority/privacy; and residual Housing/profile/energy/friends/activity/log authority.
 
-1. Company governance/value movement.
-2. Company supply/export/tender commerce.
-3. Union contribution/treasury/governance.
-4. Art/Begging.
-5. Player markets/shop auto-fill/system auto-market/Government Market.
-6. Bank/credit/FX/stocks/crypto.
-7. Logistics/jobs/competitions/rewards.
-8. Social/UGC.
-9. Cross-cutting profile/server-authority/privacy.
-10. Residual Housing/profile/energy/friends/activity/log authority.
-
-Detailed gates remain authoritative implementation QA references:
+Detailed implementation gates remain the QA source of truth:
 
 - `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`
 - `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`
@@ -105,33 +94,41 @@ Detailed gates remain authoritative implementation QA references:
 
 ## September 10 production remediation verification
 
-The latest read-only production follow-up is recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md` and the focused VIP/payment follow-up in `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`. Previously documented P0/P1 findings were not assumed fixed merely because the legal wording is complete.
+Latest read-only production follow-ups are recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md` and `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`. Previously documented P0/P1 findings are not assumed fixed merely because legal wording is complete.
 
-No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls and generic official-looking notification authority remain open in the reviewed production definitions.
+No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls, sensitive profile write/read exposure and generic official-looking notification authority remain open in the reviewed production definitions.
 
-A **partial hardening** remains verified in `_internal_shop_connected_fill(...)`: its current destination lookup resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement and is now recorded as such. It does not close the identity-authority finding because the SECURITY DEFINER helper is still broadly executable, still accepts caller-supplied `p_user_id`, and still rewrites effective JWT subject state to that supplied identity. The effective user must be derived or independently authorized by the server.
+A partial hardening remains verified in `_internal_shop_connected_fill(...)`: its current destination lookup resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement but does not close the identity-authority finding because the SECURITY DEFINER helper remains broadly executable, accepts caller-supplied `p_user_id` and rewrites effective JWT subject state to that identity. The effective user must be derived or independently authorized by the server. `_internal_industrial_connected_fill(...)` remains open on the same identity boundary.
 
-The latest follow-up separately reconfirmed `_internal_industrial_connected_fill(...)` with the same identity-boundary problem. It ties facility/source state to the supplied `p_user_id`, but the helper remains broadly executable and rewrites effective JWT subject state to that caller-supplied identity.
+The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and reviewed `shop_market_buy_and_store_*` helpers use shop metadata but still do not establish the required authenticated-owner predicate inside the privileged settlement path before wallet/source/destination mutation.
 
-The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and the reviewed `shop_market_buy_and_store_*` helpers do use `user_shop_assets` for shop metadata, but the reviewed destination lookups still do not require the destination owner to equal `auth.uid()` before wallet/source/destination mutation. A metadata join is not an ownership check.
+The profile recheck remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
 
-The profile recheck also remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
+### VIP provenance and expiry-message follow-up
 
-A focused VIP entitlement provenance check now shows why the self-writable `profiles.vip` field is especially serious. `activate_vip_with_diamonds()` can preserve a pre-existing VIP state when no recognized provider/Diamond entitlement explains it, and `xsolla_apply_subscription_event(...)` can similarly preserve a pre-existing profile VIP when creating the first Xsolla subscription record. `xsolla_effective_vip(...)` treats those preservation flags as continuing VIP without an expiry condition. Therefore an untrusted self-set profile VIP can contaminate an otherwise valid later Diamond conversion or Xsolla purchase and become persistent preserved entitlement state. The fix is to make the profile VIP flag server-owned and preserve only an independently authoritative prior entitlement source, not a bare cache boolean.
+A focused entitlement check confirms why the self-writable `profiles.vip` field is especially serious. `activate_vip_with_diamonds()` can preserve a pre-existing VIP state when no recognized authoritative provider/Diamond entitlement explains it, and the Xsolla entitlement path can similarly preserve a pre-existing profile VIP when creating a first provider record. Effective-VIP logic can then treat that preserved state as continuing entitlement. An untrusted cache boolean must not become authoritative merely because a later legitimate purchase or Diamond exchange occurs.
 
-The same focused check found a separate commercial-communication P0. The raw VIP-expiry Professor sender is currently SECURITY DEFINER and executable by anonymous/authenticated roles, accepts an arbitrary target user, expiry timestamp and source, and does not validate those facts against authoritative RevenueCat/Xsolla/Diamond entitlement records before generating a renewal-oriented in-app or push message. Renewal reminders must be caused by authoritative entitlement state, not caller-authored assertions. The global reminder processor derives entitlement state and deduplicates materially better, but should still be scheduler/service-only rather than client-executable.
+A separate commercial-communication P0 remains open. `send_vip_expiry_professor_notification(...)` is SECURITY DEFINER and currently executable by anonymous/authenticated roles, accepts target user, expiry time, lead days and source from the caller, and does not independently resolve those commercial facts from authoritative entitlement records before sending an official-looking reminder.
 
-The historical free-VIP claim path remains disabled in production: the controlling `game_config` flag is false, so the reviewed legacy claim RPC cannot currently grant free VIP. However, its disabled error path still contains stale pre-release player-readable wording. An approved engineering cleanup should retire/revoke the obsolete RPC if possible or neutralize that player-readable text without reactivating the historical offer.
+The current reminder copy also introduces a **newly verified product-description defect**: the same renewal-oriented message family is used for candidates that include one-time/non-renewing entitlement sources. Current TycoonX 30-Day VIP is a one-time, non-renewing product. Its reminder must therefore say that the current entitlement ends, does not renew automatically, and that a separate future VIP purchase is possible only if an eligible offer is actually available. It must not imply automatic renewal or rebilling.
 
-The Company supply finding remains precise and was strengthened by trigger inspection. The older update overload applies the linked export-contract price check. The richer six-argument overload recognizes linked export/V2 state for quantity/minimum-quality behavior but still writes the caller-supplied `unit_price`; no reviewed BEFORE trigger on `company_supply_requests` independently restores the missing linked-price validation.
+Lifetime VIP should not receive an ordinary expiry reminder. Any future genuinely recurring product must receive separate subscription-specific billing, renewal, cancellation, price-change and reminder treatment rather than reusing the one-time 30-Day VIP message.
 
-Company recruitment RLS remains open: the reviewed Company job-post management and manager application-read policies still contain the tautological condition `mm.company_id = mm.company_id` rather than correlating the manager's Company with the protected Company.
+The global `process_vip_expiry_professor_reminders(...)` function is materially safer than the raw sender because it derives candidates from provider records, excludes conflicting active/later sources and deduplicates reminders. It is nevertheless a global service/scheduler operation and remains executable by ordinary client roles, so it should be restricted to the trusted worker path.
 
-Art resale self-bid protection also remains open. The reviewed `social_bid_art(...)` settlement still checks the bidder against the original artist `user_id`, not the current resale `owner_id`.
+Commercial reminder localization should use the canonical TycoonX locale resolver and source-specific native copy for every supported locale/variant. The reviewed sender has many localized branches but does not cleanly mirror the full app/legal locale model, including generic locale variants. Arabic presentation must remain RTL in the UI.
 
-The Social/UGC read finding remains nuanced. Executive Company Chat has an effective RESTRICTIVE raw-read policy. Equivalent authoritative membership restrictions were not found for ordinary Company and Union messages in the reviewed policy set, so those ordinary restricted channels remain the raw-read hardening target.
+The historical free-VIP claim path remains disabled in production. Its stale player-readable pre-release error wording should be retired or neutralized without reactivating that historical offer.
 
-The previously identified production branding migration remains outstanding. A fresh scan still finds the legacy misspelled brand string in **12 deployed function definitions**. Player-facing text generated from deployed backend functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or text was changed during this legal audit.
+### Other confirmed open/closed findings
+
+The Company supply finding remains precise: the older update overload applies linked export-contract price validation, while the richer six-argument overload can still write caller-supplied `unit_price`; no reviewed BEFORE trigger independently restores the missing linked-price validation.
+
+Company recruitment RLS remains open where reviewed policies use a tautological Company comparison instead of correlating the manager's Company with the protected Company. Art resale self-bid protection remains open because the reviewed settlement compares the bidder against the original artist rather than the current resale owner.
+
+Executive Company Chat retains an effective RESTRICTIVE raw-read policy and should not be misreported as open. Equivalent authoritative membership restrictions were not found for ordinary Company/Union message reads in the reviewed policy set, so those channels remain the raw-read hardening target.
+
+The production branding migration also remains outstanding. The latest read-only scan still found the legacy misspelled brand string in **12 deployed function definitions**. Any player-facing text emitted by those functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or content was changed by this legal audit.
 
 ## Active privacy/controller invariant
 
@@ -143,20 +140,22 @@ Restricted social/history data, anonymous Post Office sender identity, gameplay 
 
 Rechecked on **September 10, 2026**:
 
-- Apple's current App Review Guidelines continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, require restoration where applicable, and apply storefront/program-specific rules to external purchase links and related exceptions.
-- Google Play continues to regulate billing for in-app digital goods/virtual currency, requires clear and accurate purchase pricing, restricts virtual currency to the app/game title for which it was purchased, and limits alternative-billing/external-offer paths to eligible regional/program frameworks.
-- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Current documentation distinguishes full/partial refund handling and refund webhooks, including provider retry behavior; this operational state does not require a canonical legal meaning change.
-- EU unfair-commercial-practices rules and German UWG misleading-commercial-practice rules make the new VIP-reminder authority finding commercially relevant: purchase-oriented expiry/renewal messages should reflect authoritative entitlement facts and must not be fabricated by arbitrary callers.
+- EU Unfair Commercial Practices Directive Article 6 treats a practice as misleading where false or deceptive information about material product/sales facts causes or is likely to cause a transactional decision the consumer would not otherwise take. German UWG § 5 similarly addresses misleading commercial acts capable of influencing a consumer's business decision. This makes source-accurate VIP expiry/purchase messaging a commercial-integrity requirement, not merely a stylistic preference.
+- Apple distinguishes auto-renewable subscriptions from one-time products. Current Apple subscription documentation describes auto-renewable subscriptions as renewing unless canceled and uses provider subscription state to determine renewal/expiry behavior. TycoonX's one-time 30-Day VIP should therefore not be described with auto-renewal semantics.
+- Google Play's current subscription policy requires clear, accurate disclosure of subscription terms, billing frequency and automatic renewal and expressly says one-time benefits must not be disguised or mischaracterized as subscriptions. This supports keeping current one-time 30-Day VIP copy clearly non-recurring.
+- Xsolla remains a separate payment/provider layer from CK-Labs' TycoonX entitlement-delivery and mandatory-consumer-law duties.
 - German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
 - GDPR Articles 5, 25 and 32 continue to support data minimisation, privacy by design/default and risk-appropriate confidentiality/security controls.
 
-No material current-law/provider meaning change was identified in this follow-up that requires reopening the canonical or localized purchase/legal documents.
+No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The newly verified renewal-language problem is a live commercial-notification implementation/content mismatch against legal wording that is already correct.
 
 ## Next code-first audit queue
 
 There is no unfinished localization document and no unmapped substantive gameplay cluster.
 
-The next substantive target is **implementation remediation verification**. Highest priority is now the profile/VIP provenance chain and the raw VIP-expiry commercial-message sender, followed by the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings. Close only findings demonstrably fixed in deployed definitions/policies/grants. After engineering changes land, verify that deployed behavior still matches canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
+The next substantive target is **implementation remediation verification**. Highest priority is server-authoritative VIP provenance plus the VIP-expiry sender/processor and source-aware one-time 30-Day VIP copy. Close this gate only when ordinary clients cannot generate expiry messages, target/source/expiry are independently derived, one-time reminders expressly avoid auto-renewal semantics, Lifetime VIP does not receive an ordinary expiry reminder, supported locale dispatch is complete, and legitimate paid/documented entitlements survive the fix.
+
+Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, verify deployed behavior against canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
 
 Database remediation remains outside this legal audit unless explicitly approved.
 
@@ -170,13 +169,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage is essentially complete. The focused VIP/payment audit increased implementation knowledge but uncovered a serious entitlement-provenance chain and an arbitrary renewal-message path, so operational commercial readiness is intentionally reduced rather than hidden behind the completed localization percentage.
+Legal/localization coverage is essentially complete. This follow-up did not close a production blocker, but it identified a concrete commercially material copy mismatch in the live VIP-expiry path and added source-aware closure criteria. Operational commercial readiness is therefore reduced slightly rather than hidden behind completed localization.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **81.0%**
-- **Overall project completion:** **98.0%**
+- **Full commercial/legal/payment readiness:** **80.5%**
+- **Overall project completion:** **98.1%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** implementation remediation verification, starting with server-authoritative VIP provenance and trusted VIP-expiry communications, then closing only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
+**Next substantive code-first target:** verify server-authoritative VIP provenance and service-only/source-aware VIP-expiry messaging first, then close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
