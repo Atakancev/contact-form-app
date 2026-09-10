@@ -6,16 +6,16 @@ Last synchronized: **September 10, 2026**.
 
 ## Rules
 
-- Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display a legacy misspelling.
-- TycoonX went to full release on **September 1, 2026**. Do not describe the live service, users, purchases, VIP, Diamonds, rewards, or current legal terms as beta.
+- Always display the brand as **TycoonX**. Compatibility-sensitive technical route/file identifiers may remain unchanged, but rendered player-facing or legal prose must use **TycoonX**.
+- TycoonX has been in full release since **September 1, 2026**. Do not describe the current live service, users, purchases, VIP, Diamonds, rewards or legal terms as a pre-release service.
 - English remains canonical. Reopen localized documents only when canonical English meaning materially changes.
-- Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving exact legal effect, product distinctions, payment-channel responsibilities and mandatory-rights caveats.
-- Locale variants must remain genuinely localized, including `es`/`es_MX`, `fr`/`fr_CA`, `pt`/`pt_BR`, and `zh`/`zh_Hans`/`zh_Hant`; Arabic uses RTL layout.
+- Translate for legal meaning, not word-for-word. Every locale must preserve product distinctions, dates, price logic, payment-channel responsibilities, liability/consumer-rights caveats and the exact legal effect while sounding natural to a native speaker.
 - Required locale order is: tr, de, es, es_MX, fr, fr_CA, it, pt, pt_BR, ru, ja, ko, zh, zh_Hans, zh_Hant, ar, nl, sv, nb, pl, th, vi, uk, hi, id.
+- Keep `es`/`es_MX`, `fr`/`fr_CA`, `pt`/`pt_BR`, and `zh`/`zh_Hans`/`zh_Hant` genuinely localized. Arabic uses RTL layout.
 - Within each locale the order is Terms, Purchases & Refunds, Privacy, Community Standards, then native-language QA.
-- Do not use GitHub Actions or paid services for this project. Do not change any production database row, function, trigger, policy, grant, schema, cron, balance or configuration as part of this legal audit.
-- Gameplay/community hardening is code-first: inspect current Flutter behavior and read-only production authority/settlement paths before changing legal meaning.
-- A current cap, cooldown, formula, permission, settlement rule, moderation signal or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or safe harbor for knowing exploitation.
+- Do not use GitHub Actions or paid services for this project.
+- Do not change any production database row, function, trigger, policy, grant, schema, cron, balance, entitlement or configuration as part of this legal audit. Production inspection is read-only unless a separate database change is explicitly approved.
+- Gameplay/payment hardening is code-first: current implementation evidence can justify an engineering release gate but is not automatically a permanent contractual promise, proof of player intent or safe harbor for knowing exploitation.
 
 ## Current localization state
 
@@ -25,24 +25,22 @@ The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** re
 
 Exact next unfinished locale/document: **None. All 25 target locales and all 100 localized full documents are current.**
 
-Do not duplicate completed localization. If canonical English meaning changes materially, reopen only the affected document type and resynchronize it in the required locale order.
+Do not duplicate completed localization. If canonical English meaning materially changes, reopen only the affected document type and resynchronize it in the required locale order.
 
 ## Synchronized player-facing Terms clarifications
 
-Eight September 10 code-derived Terms clarifications remain synchronized across the canonical Terms route and all target locales:
+Eight code-derived Terms clarifications remain synchronized across the canonical Terms route and all target locales:
 
-1. `GameplayEconomyRuleNotice.tsx`.
-2. `CompanyCommerceRuleNotice.tsx`.
-3. `UnionGovernanceRuleNotice.tsx`.
-4. `ArtBeggingRuleNotice.tsx`.
-5. `PlayerGovernmentMarketRuleNotice.tsx`.
-6. `BankCreditMarketsRuleNotice.tsx`.
-7. `LogisticsJobsCompetitionsRuleNotice.tsx`.
-8. `SocialUgcRuleNotice.tsx`.
+1. `GameplayEconomyRuleNotice.tsx`
+2. `CompanyCommerceRuleNotice.tsx`
+3. `UnionGovernanceRuleNotice.tsx`
+4. `ArtBeggingRuleNotice.tsx`
+5. `PlayerGovernmentMarketRuleNotice.tsx`
+6. `BankCreditMarketsRuleNotice.tsx`
+7. `LogisticsJobsCompetitionsRuleNotice.tsx`
+8. `SocialUgcRuleNotice.tsx`
 
-They cover genuine intended gameplay, Company/Union commerce, Art/Begging, player/Government markets, banking/credit/FX/stocks/crypto, Logistics/jobs/competitions/rewards and Social/UGC while preserving exploit/compromise/evidence/proportional-correction and mandatory-rights boundaries. They display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`; Arabic uses RTL and required regional variants remain separately localized.
-
-No ninth public Terms notice is currently required for the cross-cutting authority defects. Existing canonical/localized Terms already cover the material exploit/server-acceptance/account-compromise/evidence/correction rules. Security and commercial-message implementation defects should be fixed technically rather than normalized as intended player access or product behavior.
+No ninth public Terms notice is currently required for the unresolved authority/payment defects. Existing Terms already cover knowing exploitation, server acceptance not being an absolute safe harbor, account compromise, evidence quality, proportional corrections and preservation of unrelated valid paid value. Implementation defects should be fixed technically rather than normalized as intended access or product behavior.
 
 ## Active purchase/product invariants
 
@@ -50,32 +48,32 @@ All canonical and localized legal documents must continue to preserve that:
 
 - purchased Diamonds do not expire solely because time passes;
 - purchased Diamonds, promotional/free Diamonds, one-time 30-Day VIP and Lifetime VIP are distinct products;
-- 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly says otherwise;
-- Lifetime VIP is a one-time promotional entitlement available only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
-- Apple App Store, Google Play and the official CK-Labs TycoonX webshop using Xsolla are distinct payment channels;
-- CK-Labs may change future Diamond bundle prices/content, VIP prices, regional prices, currencies and future promotions subject to applicable law;
+- 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly states otherwise;
+- Lifetime VIP is a limited-time promotional one-time entitlement available only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
+- Apple App Store, Google Play and the official CK-Labs TycoonX webshop using Xsolla are distinct payment channels under one coherent legal framework;
+- CK-Labs may change future Diamond bundle pricing/content, VIP prices, regional prices, currencies and future promotions subject to applicable law;
 - prices may differ by country, platform and channel, including because of provider tax/VAT/FX handling;
 - the final total price shown before confirmation governs a completed transaction, subject to mandatory law and correction of legally relevant errors;
 - completed one-time purchases are not retroactively repriced merely because a later price, tax, FX rate, sale or promotion differs;
-- a later decrease does not automatically create a refund/credit/price-match right, and a later increase does not create an extra charge on a completed one-time purchase, except where mandatory law requires otherwise;
-- Lifetime VIP may have different genuine prices in different sales windows and misleading countdown/crossed-out/discount claims are not permitted;
-- total consumer prices and mandatory taxes/fees are displayed as required by applicable German/EU law;
-- any future recurring product requires its own compliant recurring-price, renewal, notice, cancellation and reminder treatment; and
+- a later decrease does not automatically create a refund/credit/price-match right and a later increase does not create an extra charge on a completed one-time purchase, except where mandatory law requires otherwise;
+- Lifetime VIP may have different genuine prices in different sales windows and promotional claims/countdowns/crossed-out prices must not be misleading;
+- total consumer prices and mandatory taxes/fees must be displayed as required by applicable German/EU law;
+- future recurring products require separate compliant renewal, recurring-price, cancellation, notice and reminder rules; and
 - mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy and other non-waivable rights remain intact.
 
-Obvious pricing/catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, regional-price abuse, promotion/coupon abuse, account compromise, provider outages/rule changes/replacement, unsupported clients, business sale/reorganization/successor operation, economy corrections, feature replacement and lawful permanent service discontinuation remain covered by their canonical rules.
+Obvious catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, regional-price abuse, promotion/coupon abuse, account compromise, provider outages/rule changes/replacement, unsupported clients, business sale/reorganization/successor operation, economy corrections, feature replacement and lawful permanent service discontinuation remain covered by canonical rules.
 
 ## Active gameplay/enforcement invariant
 
-TycoonX intentionally contains value-moving and automatic mechanics. Genuine salaries/payroll, Company distributions, supply/export/tenders, Begging, Union contributions/fees/treasury movements, player markets, shop auto-fill, TycoonX-operated automation, Government Market systems, Art/Music/Books, trucks/deliveries, care jobs, Company recruitment, bank/FX/stocks/crypto, competitions/rewards, chats, rooms and other supported systems are not prohibited merely because they move value or operate automatically.
+Genuine salaries/payroll, Company distributions, supply/export/tenders, Begging, Union contributions/fees, player markets, shop auto-fill, TycoonX-operated automation, Government Market systems, Art/Music/Books, trucks/deliveries, care jobs, Company recruitment, bank/FX/stocks/crypto, competitions/rewards, chats, rooms and other supported systems are not prohibited merely because they move value or operate automatically.
 
-A large amount, unusual price, aggressive bid, default, bankruptcy, large gain/loss, high salary, repeated delivery, repeated win, favorable reward or popular creator work is not automatically abuse. A mechanic becomes legally/enforcement-relevant when reliable evidence supports knowing manipulation, disguised value funneling, controlled-account evasion, prohibited RMT, external automation, altered-client/API abuse, exploit laundering, fraud or another actual rule violation.
+A large amount, unusual price, aggressive bid, default, bankruptcy, large gain/loss, high salary, repeated delivery, repeated win, favorable reward or popular creator work is not automatically abuse. Reliable evidence must support knowing manipulation, disguised value funneling, controlled-account evasion, prohibited RMT, external automation, altered-client/API abuse, exploit laundering, fraud or another actual rule violation.
 
-A successful RPC/row mutation is not an absolute safe harbor if an authorization/validation defect clearly enabled an unintended manipulated state. Conversely, server acceptance or abnormal state alone does not prove knowledge or intent. Enforcement must distinguish detection, containment, state correction and punishment, consider account compromise/outages/retries/races, and correct directly attributable invalid state proportionately rather than automatically destroying unrelated valid paid value.
+Server acceptance alone does not prove legitimacy, and abnormal state alone does not prove knowledge or intent. Enforcement must distinguish detection, containment, state correction and punishment, consider account compromise/outages/retries/races/provider errors, and correct directly attributable invalid state proportionately rather than automatically destroying unrelated valid paid value.
 
-## Completed code-first legal map
+## Completed code-first legal map and release gates
 
-Substantive mapping is complete for Company governance/value movement; Company supply/export/tender commerce; Union contribution/treasury/governance; Art/Begging; player markets/shop auto-fill/system auto-market/Government Market; bank/credit/FX/stocks/crypto; Logistics/jobs/competitions/rewards; Social/UGC; cross-cutting profile/server-authority/privacy; and residual Housing/profile/energy/friends/activity/log authority.
+Substantive mapping is complete for Company governance/value movement; Company supply/export/tender commerce; Union governance/treasury; Art/Begging; player/Government markets; bank/credit/FX/stocks/crypto; Logistics/jobs/competitions/rewards; Social/UGC; cross-cutting profile/server-authority/privacy; and residual Housing/profile/energy/friends/activity/log authority.
 
 Detailed implementation gates remain the QA source of truth:
 
@@ -91,73 +89,49 @@ Detailed implementation gates remain the QA source of truth:
 - `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`
 - `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`
 - `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`
+- `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md`
 
 ## September 10 production remediation verification
 
-Latest read-only production follow-ups are recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md` and `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`. Previously documented P0/P1 findings are not assumed fixed merely because legal wording is complete.
+Previously documented P0/P1 findings are not assumed fixed merely because legal wording/localization is complete. Representative open controls still include sensitive self-profile authority and broad public profile exposure, caller-influenced XP/energy/raw-credit paths, Housing authority helpers, connected-fill/shop ownership boundaries, Company/Union/Art authorization defects, stock/crypto/bank service boundaries, raw social/confidentiality gaps and generic official-looking notification authority.
 
-No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls, sensitive profile write/read exposure and generic official-looking notification authority remain open in the reviewed production definitions.
+The VIP-focused recheck remains open:
 
-A partial hardening remains verified in `_internal_shop_connected_fill(...)`: its current destination lookup resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement but does not close the identity-authority finding because the SECURITY DEFINER helper remains broadly executable, accepts caller-supplied `p_user_id` and rewrites effective JWT subject state to that identity. The effective user must be derived or independently authorized by the server. `_internal_industrial_connected_fill(...)` remains open on the same identity boundary.
+- `profiles.vip` is still not suitable as authoritative entitlement provenance while ordinary-client influence exists;
+- later Diamond/Xsolla paths can preserve a pre-existing VIP cache, so a corrupted cache must not be laundered into indefinite trusted entitlement;
+- `send_vip_expiry_professor_notification(...)` remains a privileged raw sender callable by ordinary client roles with caller-supplied target/expiry/source facts;
+- `process_vip_expiry_professor_reminders(...)` derives candidates more safely but remains a global service operation callable more broadly than required;
+- one-time/non-renewing VIP candidates still receive generic renewal-oriented copy instead of source-aware wording that makes clear current 30-Day VIP does not renew automatically; and
+- Lifetime VIP must not receive an ordinary expiry reminder.
 
-The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and reviewed `shop_market_buy_and_store_*` helpers use shop metadata but still do not establish the required authenticated-owner predicate inside the privileged settlement path before wallet/source/destination mutation.
+### Newly verified RevenueCat refund/reversal gap
 
-The profile recheck remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
+A focused read-only review now adds `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md` as a P0 payment-integrity gate.
 
-### VIP provenance and expiry-message follow-up
+The current RevenueCat fulfillment functions correctly record and idempotently grant many successful purchases, but the reviewed base event handler does not economically reconcile a `CANCELLATION` event for a refunded non-renewing purchase. Current RevenueCat documentation defines `CANCELLATION` as covering a subscription or non-renewing purchase that was canceled **or refunded**. The implementation therefore needs to distinguish ordinary unsubscribe from refund/revocation using authoritative event reason and transaction state.
 
-A focused entitlement check confirms why the self-writable `profiles.vip` field is especially serious. `activate_vip_with_diamonds()` can preserve a pre-existing VIP state when no recognized authoritative provider/Diamond entitlement explains it, and the Xsolla entitlement path can similarly preserve a pre-existing profile VIP when creating a first provider record. Effective-VIP logic can then treat that preserved state as continuing entitlement. An untrusted cache boolean must not become authoritative merely because a later legitimate purchase or Diamond exchange occurs.
+For Diamonds, a refunded one-time purchase must reconcile the exact transaction and use an idempotent, bounded clawback/debt model for already-consumed paid Diamonds rather than blindly deleting unrelated earned/promotional value. `REFUND_REVERSED` must restore the corresponding correction exactly once.
 
-A separate commercial-communication P0 remains open. `send_vip_expiry_professor_notification(...)` is SECURITY DEFINER and currently executable by anonymous/authenticated roles, accepts target user, expiry time, lead days and source from the caller, and does not independently resolve those commercial facts from authoritative entitlement records before sending an official-looking reminder.
+For one-time 30-Day VIP, a refunded source must remove only that source/duration and then recompute effective VIP from every other valid authoritative source. A separate Lifetime VIP, other valid 30-Day VIP, Diamond-funded period, Xsolla entitlement, documented complimentary grant or other valid entitlement must survive an unrelated refund.
 
-The current reminder copy also introduces a **newly verified product-description defect**: the same renewal-oriented message family is used for candidates that include one-time/non-renewing entitlement sources. Current TycoonX 30-Day VIP is a one-time, non-renewing product. Its reminder must therefore say that the current entitlement ends, does not renew automatically, and that a separate future VIP purchase is possible only if an eligible offer is actually available. It must not imply automatic renewal or rebilling.
+RevenueCat gift fulfillment adds a provenance requirement: the current v3 path resolves a gift recipient when fulfilling the original purchase but later cancellation/refund events are not equivalently re-resolved through the original gift transaction. Refund reconciliation must target the account that actually received the gift by immutable transaction/gift provenance, not merely whichever account identity appears in a later provider event.
 
-Lifetime VIP should not receive an ordinary expiry reminder. Any future genuinely recurring product must receive separate subscription-specific billing, renewal, cancellation, price-change and reminder treatment rather than reusing the one-time 30-Day VIP message.
+Aggregate production evidence in this read-only review showed 43 RevenueCat Diamond non-renewing purchase events with 8,750 Diamonds logged as granted, 26 VIP non-renewing purchase events, 15 VIP cancellation events and 3 VIP expiration events. All 15 currently recorded VIP cancellations carry the nested provider reason `UNSUBSCRIBE`; no Diamond cancellation event was present at the time of this check. Delivered RevenueCat gifts exist for both Diamonds and VIP, with no matching cancellation found for those delivered gift transactions. This identifies a structural readiness defect without claiming that a refund has already been mishandled or that any player exploited it.
 
-The global `process_vip_expiry_professor_reminders(...)` function is materially safer than the raw sender because it derives candidates from provider records, excludes conflicting active/later sources and deduplicates reminders. It is nevertheless a global service/scheduler operation and remains executable by ordinary client roles, so it should be restricted to the trusted worker path.
-
-Commercial reminder localization should use the canonical TycoonX locale resolver and source-specific native copy for every supported locale/variant. The reviewed sender has many localized branches but does not cleanly mirror the full app/legal locale model, including generic locale variants. Arabic presentation must remain RTL in the UI.
-
-The historical free-VIP claim path remains disabled in production. Its stale player-readable pre-release error wording should be retired or neutralized without reactivating that historical offer.
-
-### Other confirmed open/closed findings
-
-The Company supply finding remains precise: the older update overload applies linked export-contract price validation, while the richer six-argument overload can still write caller-supplied `unit_price`; no reviewed BEFORE trigger independently restores the missing linked-price validation.
-
-Company recruitment RLS remains open where reviewed policies use a tautological Company comparison instead of correlating the manager's Company with the protected Company. Art resale self-bid protection remains open because the reviewed settlement compares the bidder against the original artist rather than the current resale owner.
-
-Executive Company Chat retains an effective RESTRICTIVE raw-read policy and should not be misreported as open. Equivalent authoritative membership restrictions were not found for ordinary Company/Union message reads in the reviewed policy set, so those channels remain the raw-read hardening target.
-
-The production branding migration also remains outstanding. The latest read-only scan still found the legacy misspelled brand string in **12 deployed function definitions**. Any player-facing text emitted by those functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or content was changed by this legal audit.
-
-## Active privacy/controller invariant
-
-For personal-data processing described in the Privacy Policy, the controller remains disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
-
-Restricted social/history data, anonymous Post Office sender identity, gameplay finance, applications, anti-abuse signals and moderation evidence may be processed where justified to operate, secure and support TycoonX, but that does not authorize unnecessary player-to-player disclosure. Client-influenceable, over-broadly readable/writable or notification-derived records must be weighted according to evidentiary quality rather than treated as automatically conclusive.
+A separate P1 commercial-consistency issue is also recorded: one-time VIP stacking is asymmetric across Diamond, RevenueCat and Xsolla paths. Either make stacking uniform, block a purchase that would overlap unexpectedly, or disclose the actual timing before confirmation. Do not represent a purchase as adding another 30 days if the implementation will run that entitlement concurrently with an already-active source.
 
 ## Current-law and provider checkpoint
 
 Rechecked on **September 10, 2026**:
 
-- EU Unfair Commercial Practices Directive Article 6 treats a practice as misleading where false or deceptive information about material product/sales facts causes or is likely to cause a transactional decision the consumer would not otherwise take. German UWG § 5 similarly addresses misleading commercial acts capable of influencing a consumer's business decision. This makes source-accurate VIP expiry/purchase messaging a commercial-integrity requirement, not merely a stylistic preference.
-- Apple distinguishes auto-renewable subscriptions from one-time products. Current Apple subscription documentation describes auto-renewable subscriptions as renewing unless canceled and uses provider subscription state to determine renewal/expiry behavior. TycoonX's one-time 30-Day VIP should therefore not be described with auto-renewal semantics.
-- Google Play's current subscription policy requires clear, accurate disclosure of subscription terms, billing frequency and automatic renewal and expressly says one-time benefits must not be disguised or mischaracterized as subscriptions. This supports keeping current one-time 30-Day VIP copy clearly non-recurring.
+- RevenueCat's current webhook reference states that `CANCELLATION` covers a subscription or non-renewing purchase that was canceled or refunded, and separately defines `REFUND_REVERSED`. Its refund guidance states that a refunded one-time/non-subscription purchase loses the associated entitlement and describes platform-specific detection requirements.
+- Apple documents refund notifications and refund-history mechanisms for in-app purchases. Refund handling should reconcile the identified transaction on the server rather than treating a local profile flag as proof of current entitlement.
+- Google Play's purchase-management documentation, updated September 9, 2026, distinguishes refund and revocation and describes server notification/API mechanisms. Current one-time-product documentation also places refunded orders in Voided Purchases/real-time notification flows.
 - Xsolla remains a separate payment/provider layer from CK-Labs' TycoonX entitlement-delivery and mandatory-consumer-law duties.
-- German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
-- GDPR Articles 5, 25 and 32 continue to support data minimisation, privacy by design/default and risk-appropriate confidentiality/security controls.
+- EU digital-content rules and German BGB implementation continue to preserve mandatory conformity, price-reduction/termination/refund and other non-waivable remedies. The legal framework must not use entitlement reconciliation to contract around those rights.
+- GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and should be fixed technically rather than normalized in player-facing privacy prose.
 
-No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The newly verified renewal-language problem is a live commercial-notification implementation/content mismatch against legal wording that is already correct.
-
-## Next code-first audit queue
-
-There is no unfinished localization document and no unmapped substantive gameplay cluster.
-
-The next substantive target is **implementation remediation verification**. Highest priority is server-authoritative VIP provenance plus the VIP-expiry sender/processor and source-aware one-time 30-Day VIP copy. Close this gate only when ordinary clients cannot generate expiry messages, target/source/expiry are independently derived, one-time reminders expressly avoid auto-renewal semantics, Lifetime VIP does not receive an ordinary expiry reminder, supported locale dispatch is complete, and legitimate paid/documented entitlements survive the fix.
-
-Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, verify deployed behavior against canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
-
-Database remediation remains outside this legal audit unless explicitly approved.
+No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The new RevenueCat finding is an implementation mismatch against payment/refund wording that is already materially correct.
 
 ## Canonical source status
 
@@ -167,15 +141,32 @@ Database remediation remains outside this legal audit unless explicitly approved
 - English Community Standards: current.
 - All 25 localized Terms receive all eight synchronized code-derived clarifications.
 
+## Next code-first audit queue
+
+There is no unfinished localization document and no unmapped substantive gameplay cluster.
+
+Highest priority is now **payment/entitlement remediation verification**:
+
+1. make VIP provenance server-authoritative rather than cache-authoritative;
+2. make VIP-expiry sender/processor service-only and source-aware;
+3. implement RevenueCat refund/revocation and `REFUND_REVERSED` reconciliation for Diamonds, one-time VIP and gifts using immutable transaction provenance;
+4. ensure refunded/revoked sources cannot trigger false expiry/purchase reminders;
+5. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
+6. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
+
+Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, repeat current Apple/Google/RevenueCat/Xsolla plus German/EU checks and reopen only localized document types affected by a material canonical meaning change.
+
+Database remediation remains outside this legal audit unless explicitly approved.
+
 ## Progress metrics
 
-Legal/localization coverage is essentially complete. This follow-up did not close a production blocker, but it identified a concrete commercially material copy mismatch in the live VIP-expiry path and added source-aware closure criteria. Operational commercial readiness is therefore reduced slightly rather than hidden behind completed localization.
+Legal/localization coverage remains essentially complete. This run did not close a production blocker and instead found a material refund/reversal reconciliation gap affecting provider-backed one-time purchases and gifts. Operational commercial readiness is therefore reduced while overall audit coverage increases.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **80.5%**
-- **Overall project completion:** **98.1%**
+- **Full commercial/legal/payment readiness:** **78.5%**
+- **Overall project completion:** **98.2%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** verify server-authoritative VIP provenance and service-only/source-aware VIP-expiry messaging first, then close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
+**Next substantive code-first target:** verify server-authoritative VIP provenance and service-only/source-aware VIP-expiry messaging together with RevenueCat refund/reversal/gift reconciliation, then close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
