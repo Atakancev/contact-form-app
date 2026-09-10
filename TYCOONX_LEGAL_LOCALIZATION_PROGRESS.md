@@ -108,17 +108,23 @@ The latest read-only production follow-up is recorded in `TYCOONX_PRODUCTION_REM
 
 No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls and generic official-looking notification authority remain open in the reviewed production definitions.
 
-A **partial hardening** was verified in `_internal_shop_connected_fill(...)`: its current destination lookup now resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement and is now recorded as such. It does not close the identity-authority finding because the SECURITY DEFINER helper is still broadly executable, still accepts caller-supplied `p_user_id`, and still rewrites effective JWT subject state to that supplied identity. The effective user must be derived or independently authorized by the server.
+A **partial hardening** remains verified in `_internal_shop_connected_fill(...)`: its current destination lookup resolves the slot through `user_shop_assets` and requires the shop to belong to the supplied `p_user_id`. This is a real improvement and is now recorded as such. It does not close the identity-authority finding because the SECURITY DEFINER helper is still broadly executable, still accepts caller-supplied `p_user_id`, and still rewrites effective JWT subject state to that supplied identity. The effective user must be derived or independently authorized by the server.
 
-The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and `shop_market_buy_and_store_agri/live/mine/factory(...)` authenticate the caller but still do not prove inside the SECURITY DEFINER operation that the supplied destination slot belongs to `auth.uid()` before wallet/source/destination mutation.
+The latest follow-up separately reconfirmed `_internal_industrial_connected_fill(...)` with the same identity-boundary problem. It ties facility/source state to the supplied `p_user_id`, but the helper remains broadly executable and rewrites effective JWT subject state to that caller-supplied identity.
+
+The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and the reviewed `shop_market_buy_and_store_*` helpers do use `user_shop_assets` for shop metadata, but the reviewed destination lookups still do not require the destination owner to equal `auth.uid()` before wallet/source/destination mutation. A metadata join is not an ownership check.
 
 The profile recheck also remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
 
-The Company supply finding remains precise: the older update overload applies the linked export-contract price check, while the richer update overload does not reload the linked export contract or V2 offer before accepting a caller-supplied unit price. The richer path remains the remediation target.
+The Company supply finding remains precise and was strengthened by trigger inspection. The older update overload applies the linked export-contract price check. The richer six-argument overload recognizes linked export/V2 state for quantity/minimum-quality behavior but still writes the caller-supplied `unit_price`; no reviewed BEFORE trigger on `company_supply_requests` independently restores the missing linked-price validation.
+
+Company recruitment RLS remains open: the reviewed Company job-post management and manager application-read policies still contain the tautological condition `mm.company_id = mm.company_id` rather than correlating the manager's Company with the protected Company.
+
+Art resale self-bid protection also remains open. The reviewed `social_bid_art(...)` settlement still checks the bidder against the original artist `user_id`, not the current resale `owner_id`.
 
 The Social/UGC read finding remains nuanced. Executive Company Chat has an effective RESTRICTIVE raw-read policy. Equivalent authoritative membership restrictions were not found for ordinary Company and Union messages in the reviewed policy set, so those ordinary restricted channels remain the raw-read hardening target.
 
-The previously identified production branding migration remains outstanding. Player-facing text generated from deployed backend functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or text was changed during this legal audit.
+The previously identified production branding migration remains outstanding. A fresh scan still finds the legacy misspelled brand string in **12 deployed function definitions**. Player-facing text generated from deployed backend functions must render `TycoonX`; technical identifiers may remain only where compatibility requires them. No database function or text was changed during this legal audit.
 
 ## Active privacy/controller invariant
 
@@ -130,9 +136,9 @@ Restricted social/history data, anonymous Post Office sender identity, gameplay 
 
 Rechecked on **September 10, 2026**:
 
-- Apple's App Review Guidelines, last updated June 8, 2026, continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, require restoration where applicable, and apply storefront/program-specific rules to external purchase links and related exceptions.
+- Apple's current App Review Guidelines continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, require restoration where applicable, and apply storefront/program-specific rules to external purchase links and related exceptions.
 - Google Play continues to regulate billing for in-app digital goods/virtual currency, requires clear and accurate purchase pricing, restricts virtual currency to the app/game title for which it was purchased, and limits alternative-billing/external-offer paths to eligible regional/program frameworks.
-- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Its current refund documentation distinguishes matters such as technical/integration issues, duplicate purchases, unauthorized payments, payment-method rules and applicable EU/EEA withdrawal treatment.
+- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Its current refund documentation distinguishes matters such as technical/integration issues, duplicate purchases, unauthorized payments, payment-method rules and applicable EU/EEA withdrawal treatment. Xsolla's developer refund documentation, updated **September 7, 2026**, also documents full/partial refund processing and refund webhooks; this operational update does not require a canonical legal meaning change.
 - German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
 - GDPR Articles 5, 25 and 32 continue to support data minimisation, privacy by design/default and risk-appropriate confidentiality/security controls.
 
@@ -156,7 +162,7 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. The latest production follow-up increased remediation-verification precision, including recording one partial hardening, without falsely treating a partial control as a closed release blocker.
+Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. The latest production follow-up increases remediation-verification precision without falsely treating partial controls, metadata joins or internal refactors as closed release blockers.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
