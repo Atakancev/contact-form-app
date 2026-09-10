@@ -185,7 +185,7 @@ No material current-law/provider meaning change was identified in this consolida
 
 ### Phase 4 - branding and verification
 
-15. Replace legacy player-facing/database-generated `TyconX` strings with `TycoonX` through an approved database migration while leaving compatibility-sensitive technical identifiers unchanged.
+15. Replace legacy player-facing/database-generated brand misspellings with `TycoonX` through an approved database migration while leaving compatibility-sensitive technical identifiers unchanged.
 16. Re-run every code-first gate against production after engineering remediation.
 17. Run repository verifiers without GitHub Actions, repeat provider/German/EU source checks, and reopen only any localized document whose canonical legal meaning actually changed.
 
@@ -197,7 +197,7 @@ Full commercial/legal/payment readiness should not be marked complete merely bec
 - P1 findings are remediated or have an explicit, justified owner/risk decision that does not contradict mandatory law;
 - canonical English Terms, Purchases & Refunds, Privacy and Community Standards match deployed behavior and current product offerings;
 - all affected localized pages remain semantically synchronized with any material canonical change;
-- rendered player-facing text contains no legacy `TyconX` branding and no current-service beta wording;
+- rendered player-facing text contains no legacy brand misspelling and no current-service beta wording;
 - paid-entitlement restoration/refund/chargeback paths remain consistent across Apple, Google Play and Xsolla roles;
 - proportional correction, compromised-account handling and evidence-quality safeguards remain intact; and
 - current German/EU and provider requirements have been rechecked immediately before closure.
