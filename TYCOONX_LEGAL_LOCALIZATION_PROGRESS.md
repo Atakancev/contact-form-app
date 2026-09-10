@@ -16,22 +16,23 @@ Last synchronized: **September 10, 2026**.
 - Do not mark a localized document `Ready` until the rendered page preserves canonical legal meaning and product distinctions, uses natural native-language wording and punctuation, and contains no stale displayed brand or live-service beta wording.
 - Do not use GitHub Actions or paid services for this project. Do not change any database.
 - Before creating another release gate, inspect the repository and existing verifier scripts so completed doctrine is hardened incrementally instead of duplicated.
-- Gameplay legal hardening is **code-first**: inspect current Flutter feature paths and read-only production Supabase functions, tables, policies, grants and triggers before drafting gameplay rules.
-- A current server cap, permission, cooldown, formula, settlement path or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or legal safe harbor.
+- Gameplay/community legal hardening is **code-first**: inspect current Flutter feature paths and read-only production Supabase functions, tables, policies, grants and triggers before drafting rules.
+- A current server cap, permission, cooldown, formula, settlement path, moderation signal or UI control is implementation evidence, not automatically a permanent contractual promise, proof of misconduct or legal safe harbor.
 
 ## Current localization state
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
 
-Seven September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
+Eight September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
 
 1. `GameplayEconomyRuleNotice.tsx` covers genuine Company/Union value movement, contribution mechanics and the genuine-purpose rule.
-2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling terms, settlement/state exploitation, proportional correction, outages/account compromise and mandatory-rights protection.
-3. `UnionGovernanceRuleNotice.tsx` covers Union membership fees, leader treasury deposits/withdrawals, maintenance/closure, projects/rewards, level upgrades, polls, altered-client/state manipulation, limit evasion, compromise/outage correction and mandatory rights.
+2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling, settlement/state exploitation, proportional correction, outages/account compromise and mandatory rights.
+3. `UnionGovernanceRuleNotice.tsx` covers Union membership fees, leader treasury deposits/withdrawals, maintenance/closure, projects/rewards, upgrades, polls, altered-client/state manipulation, limit evasion, compromise/outage correction and mandatory rights.
 4. `ArtBeggingRuleNotice.tsx` covers Art auctions/resales, formal direct offers, genuine Art trading versus disguised gifting, Begging as intended assistance, self-bidding/collusion, moderation timing, escrow reconciliation, compromise and proportional correction.
 5. `PlayerGovernmentMarketRuleNotice.tsx` covers player production markets, built-in shop auto-fill, TycoonX-operated automatic market purchases, Government sales/tenders, manipulation, stale-state/evidence limits, correction and prospective balancing.
 6. `BankCreditMarketsRuleNotice.tsx` covers virtual banking/savings/credit/FX/stocks/crypto, ordinary debt/default/trading outcomes, Diamond-funded FX-slot entitlement, system-operated price movement, manipulation/exploit boundaries, paid-entitlement separation, evidence quality, proportional correction and mandatory change/conformity rights.
-7. `LogisticsJobsCompetitionsRuleNotice.tsx` covers truck commerce/rentals, delivery work, care jobs, Company recruitment, built-in job automation, leaderboards/competitions/rewards, Diamond-funded delivery acceleration, sham jobs, win trading, cooldown/reward manipulation, proportional correction and mandatory rights.
+7. `LogisticsJobsCompetitionsRuleNotice.tsx` covers truck commerce/rentals, deliveries, care jobs, Company recruitment, built-in job automation, leaderboards/competitions/rewards, Diamond-funded delivery acceleration, sham jobs, win trading, cooldown/reward manipulation, proportional correction and mandatory rights.
+8. `SocialUgcRuleNotice.tsx` covers public/restricted social spaces, Company/Union/Executive chat, mentions, rooms, Post Office anonymity, Music/Books, impersonation/scams/phishing, altered-client access abuse, moderation/evidence limits, compromise, proportional correction and mandatory rights.
 
 These clarifications display only on the canonical Terms route and `/tycoonx-legal/{locale}/terms`. Arabic uses RTL and the locale-specific Spanish, French, Portuguese and Chinese variants remain separately localized.
 
@@ -69,7 +70,7 @@ These clarifications display only on the canonical Terms route and `/tycoonx-leg
 
 **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-Do not duplicate completed localization. Continue code-first gameplay/economy/community legal QA. If canonical meaning changes materially, reopen only the affected localized document type and resynchronize it in the required locale order.
+Do not duplicate completed localization. If canonical English meaning changes materially, reopen only the affected document type and resynchronize it in the required locale order.
 
 ## Active purchase/product invariants
 
@@ -80,101 +81,86 @@ All canonical and localized legal documents must continue to preserve that:
 - 30-Day VIP is a **one-time, non-renewing 30-day entitlement** unless a future compliant product clearly says otherwise;
 - Lifetime VIP is a one-time promotional entitlement offered only during selected genuine sales windows, may be withdrawn from future sale, may never return, and creates no expectation of continuous availability;
 - Apple App Store, Google Play, and the official TycoonX webshop using Xsolla remain distinct payment channels;
-- completed one-time purchases are not retroactively repriced merely because future prices, currencies, taxes, FX, regional prices, bundles or promotions change, except where mandatory law requires otherwise; and
+- CK-Labs may change future Diamond bundles, VIP prices, regional prices, currencies and promotions subject to applicable law, while a completed one-time purchase is not retroactively repriced merely because later prices, taxes, FX or promotions differ; and
 - mandatory EU/German withdrawal, conformity, update, notice, consent, price-reduction, termination, refund, liability, privacy, accessibility and other non-waivable rights remain intact.
 
-Obvious configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages, unsupported clients, provider replacement, business transfers, economy corrections and permanent service shutdown remain subject to their specific canonical rules.
+Obvious catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages/rule changes/replacement, unsupported clients, business transfers, economy corrections and permanent service shutdown remain subject to their specific canonical rules.
 
-## Active gameplay/economy invariant
+## Active gameplay and community invariant
 
-Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, Art purchase, auction, Company transaction, job, contract, market order, Government tender, truck transaction, competition or other mechanic must not be repurposed mainly as a disguised gift, value-funneling route, value-parking route, RMT route, exploit-laundering route or way to evade another feature limit.
+Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, Art or Music purchase, auction, Company transaction, job, contract, market order, Government tender, truck transaction, competition, creator sale or other mechanic must not be repurposed mainly as a disguised gift, value-funneling route, value-parking route, prohibited real-money trading route, exploit-laundering route or way to evade another feature limit.
 
-This does not make every value-moving or automatic mechanic unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock/crypto/FX mechanics, supply procurement, warehouse specialist fulfillment, Company exports/contracts, tenders, Begging, Union contributions/fees/treasury movements, player markets, shop auto-fill, TycoonX-operated market automation, Government Market systems, truck commerce/deliveries, care jobs, Company recruitment, automatic job processing, leaderboards and gameplay rewards. Genuine use for the intended purpose is allowed unless another specific rule is violated.
+This does not make intended value-moving, social or automatic mechanics unlawful. TycoonX intentionally contains salaries/payroll, authorized Company distributions, stock/crypto/FX mechanics, supply procurement, exports/contracts, tenders, Begging, Union contributions/fees/treasury movements, player markets, shop auto-fill, TycoonX-operated automation, Government Market systems, truck commerce/deliveries, care jobs, Company recruitment, leaderboards/rewards, chats, rooms, Post Office, Music, Books and other UGC systems. Genuine use for the intended purpose is allowed unless another rule is violated.
 
-A large amount, high/low price, aggressive bid, legitimate default, bankruptcy, large market gain/loss, unusual market movement, high truck price, high lawful salary, repeated delivery, high rank, repeated win or favorable random reward is not automatically abuse. Serious enforcement requires reliable evidence of the prohibited purpose and should distinguish detection, containment, state correction and punitive enforcement.
+A large amount, high/low price, aggressive bid, legitimate default, bankruptcy, large gain/loss, high truck price, high lawful salary, repeated delivery, high rank, repeated win, favorable random reward, popular creator work, large genuine Music bid or unusual social interaction is not automatically abuse. Serious enforcement requires reliable evidence and should distinguish detection, containment, state correction and punitive enforcement.
 
 ## Completed code-first checkpoints
 
 ### Company commerce
 
-Current Flutter/server review covered supply requests, member inventory delivery, Company warehouse specialist fulfillment, exports/procurement, tenders, completion, failure and permissions.
-
-Open finding: linked export/V2 request price validation is stronger on the reviewed create path than on the reviewed update path. Engineering should make linked-price validation symmetric.
-
-Detailed gate: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.
+Reviewed supply requests, member/warehouse fulfillment, exports/procurement, tenders, completion, failure and permissions. Open finding: linked-price validation is stronger on reviewed create than update paths. Detailed gate: `TYCOONX_COMPANY_SUPPLY_EXPORT_TENDER_RELEASE_GATE.md`.
 
 ### Union treasury/governance
 
-Review covered membership fees, leader deposits/withdrawals, maintenance/closure, project contributions/rewards, levels, polls and closure.
-
-Open finding: active Union leaders/officers currently have a broader generic row UPDATE surface than the ordinary UI. Server-owned governance/progression fields should use constrained server transitions.
-
-Detailed gate: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.
+Reviewed membership fees, leader treasury movements, maintenance/closure, project contributions/rewards, levels and polls. Open finding: leader/officer generic Union UPDATE is broader than the ordinary UI. Detailed gate: `TYCOONX_UNION_TREASURY_GOVERNANCE_RELEASE_GATE.md`.
 
 ### Art/Begging
 
-Review covered publication/idempotency, auctions/resales, direct offers, escrow, moderation timing and Begging.
-
-Open findings remain: current resale-owner self-bid protection is incomplete; generic Art owner UPDATE is broader than validated auction RPCs; raw active-Art deletion is not visibly bidder-refund equivalent; and direct-offer server logic does not visibly enforce every owner preference exposed by the client.
-
-Detailed gate: `TYCOONX_ART_BEGGING_RELEASE_GATE.md`.
+Reviewed publication/idempotency, auctions/resales, direct offers, escrow, moderation timing and Begging. Open findings include resale-owner self-bid protection, broad Art owner UPDATE, raw active-Art deletion/refund parity and direct-offer preference enforcement. Detailed gate: `TYCOONX_ART_BEGGING_RELEASE_GATE.md`.
 
 ### Player and Government markets
 
-Review covered producer listings/purchases, shop auto-fill, system auto-market, Government sales, Government tenders/tasks and client-authored anomaly evidence.
-
-Open findings remain: non-positive agriculture/livestock/mining seller prices are not consistently rejected in setter and settlement paths; shop auto-fill/store helpers do not visibly bind destination slots to the authenticated caller; client-authored Government anomaly telemetry cannot be sole proof; and material tender consequences should be clear to players.
-
-Detailed gate: `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`.
+Reviewed producer markets, shop auto-fill, system auto-market and Government Market. Open findings include non-positive seller-price validation gaps, destination-slot caller binding and client-authored Government anomaly evidence limits. Detailed gate: `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`.
 
 ### Bank/credit/FX/stocks/crypto
 
-The current read-only review covers banking, savings, credit, collateral, debt recovery, FX and stock/crypto systems. The synchronized legal clarification identifies these as fictional simulation systems and preserves the paid-entitlement boundary.
-
-Open implementation/security findings include direct player write authority over `user_stocks`, client-insertable `stock_transactions`, overly broad `stock_price_history` insertion, broadly executable price mutation helpers, client-writable retained legacy bank economic state, overly broad debt-resolution and bank helper functions, and system processing helpers that should be narrowed. The current FX zero-balance account-delete safeguard was separately confirmed and an earlier preliminary concern about bypassing it is closed.
-
-Detailed gate: `TYCOONX_BANK_CREDIT_FX_STOCKS_CRYPTO_RELEASE_GATE.md`.
+Reviewed banking, savings, credit, collateral, debt recovery, FX, stocks/crypto and market automation. Open findings include player-writable holdings/economic state, client-insertable market inputs, broad price-mutation helpers and over-broad internal bank/debt helpers. The FX zero-balance account-delete safeguard was confirmed. Detailed gate: `TYCOONX_BANK_CREDIT_FX_STOCKS_CRYPTO_RELEASE_GATE.md`.
 
 ### Logistics/jobs/competitions/rewards
 
-Current Flutter and read-only production Supabase review covered truck sales/rentals, new and loaded fleet delivery, delivery claims, Diamond-funded acceleration, rental/expiry behavior, care jobs, Company recruitment, automatic job processing, daily tasks, level-up rewards, hourly rewards, rankings and game-match reward settlement.
+Reviewed trucks, deliveries, Diamond acceleration, care jobs, Company recruitment, daily tasks, level/hourly rewards, rankings and match settlement. Open findings include broad global care helpers, arbitrary-user daily-task stock consumption, client-writable reward checkpoints, cross-Company job RLS correlation, stale overloads and broad match-settlement execution. Detailed gate: `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`.
 
-The reviewed new Logistics truck/delivery paths are comparatively server-authoritative: truck ownership and delivery eligibility are checked in settlement RPCs and the core truck/delivery tables expose own-read rather than generic player-write RLS in the inspected policies. High prices, delivery profit and system automation are not automatically misconduct.
+### Social/UGC
 
-New open findings:
+Current Flutter plus read-only production Supabase review covered Company/Union/Executive chat, mentions/replies/group mentions, polls/pins, Company meeting rooms, private social tables, Home Rooms, Post Office anonymity, Music/Books, moderation/reports/restoration and creator-content authority.
 
-1. **P0 - global care automation exposure:** `_auto_complete_care_jobs_aged(...)` and `_auto_post_care_jobs_batched(...)` are SECURITY DEFINER system helpers broadly executable by public/anonymous/authenticated roles without an adequate trusted-caller boundary.
-2. **P0 - arbitrary-user daily-task stock consumption:** `_daily_task_consume_user_product_stock(p_user_id, ...)` is broadly executable and directly consumes the supplied user's production stock without binding the target to `auth.uid()`.
-3. **P0 - hourly reward cooldown authority:** players currently have generic modification rights over their own `hourly_chart_rewards` row while `spin_hourly_chart_reward()` trusts the row's cooldown state before awarding money, XP, energy or free gameplay Diamonds.
-4. **P0 - level-up reward checkpoint authority:** `claim_level_up_rewards()` trusts `profiles.last_level_reward_claimed`, but the generic profile UPDATE surface and reviewed trigger set do not visibly make that checkpoint server-owned or monotonic.
-5. **P0/P1 - Company job RLS correlation defect:** the reviewed job-post management and application-manager read policies use `mm.company_id = mm.company_id`, a tautology rather than a correlation to the protected row's Company. This creates cross-company integrity and applicant-confidentiality risk.
-6. **P1 - stale Company job overloads:** older retained job-create overloads have weaker salary validation than the richer current Flutter/RPC path and should be retired or unified.
-7. **P1 - global match reward settlement exposure:** `fm_settle_match_rewards()` is broadly executable by authenticated users even though it is a system-wide SECURITY DEFINER settlement sweep. Its reviewed row locking and `reward_paid` check reduce duplicate-settlement risk, but least privilege should still be applied.
-8. **P2 - legacy Logistics dependency drift:** `finance_v2_start_logistics_job(...)` delegates to `public.rpc_logistics_start_job(...)`, while the read-only production lookup found no current function by that name. Current new Logistics is separate; stale compatibility code should be retired or repaired.
+Open findings:
 
-The legal clarification now distinguishes legitimate truck/job/reward behavior from sham jobs, controlled-account value funneling, circular truck trades, win trading, fabricated progress, unauthorized bots, reward/cooldown manipulation and duplicate/replay/race exploitation. Diamond-funded delivery acceleration is an in-game action entitlement, not a guaranteed delivery/profit/ranking result. A defect that charges Diamonds without applying the represented action should be transaction-specifically reconciled under applicable rights; unrelated valid purchased Diamonds or VIP should not be removed merely because of another gameplay correction.
+1. **P0 - Company/Union chat confidentiality:** ordinary Company and Union messages currently inherit permissive broad SELECT policies; only Executive Company Chat receives the reviewed restrictive server read boundary. Flutter filtering is not sufficient confidentiality enforcement.
+2. **P0 - message routing/privileged state:** normal message INSERT/owner UPDATE authority does not visibly bind all non-executive Company/Union routing fields or make routing/pin state server-owned.
+3. **P0 - Executive push disclosure:** current direct-mention, reply, channel-notification and group-mention logic can disclose Executive Company Chat message bodies to recipients who fail the Executive read rule, including specialists or outsiders in some paths.
+4. **P0 - Music auction settlement authority:** a Music owner has broad UPDATE authority over auction-managed state, while reviewed finalize/cancel settlement trusts listing bid fields when crediting wallets. Settlement must require an authoritative bid/hold rather than trusting the listing row alone.
+5. **P1 - Post Office anonymous identity:** anonymous letters retain `from_user_id`, while recipient SELECT currently exposes the raw letter row. Recipient-facing anonymity requires a redacted read surface.
+6. **P1 - poll parent authorization:** voting/count and non-anonymous vote visibility do not consistently bind access to the parent message/channel.
+7. **P1 - Home Room private state:** intended entrance/load RPCs are access-aware, but several collection/profile tables permit broad authenticated reads.
+8. **P1 - moderation notification spoofing:** `notify_moderation_event(...)` is broadly executable and can send official-looking moderation pushes without establishing a trusted caller inside the reviewed function.
+9. **Brand defect:** `handle_new_message_mention()` still contains the live player-facing fallback string `TyconX Community Global Chat Channel`. Database changes were prohibited, so this must be corrected in a future approved migration to `TycoonX Community Global Chat Channel`.
 
-Detailed gate: `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`.
+Positive controls confirmed include the Executive RLS read function itself, private social-table membership rules, Company meeting-room admission/management checks, Home Room active-visit chat checks, reporter ownership, staff-gated restoration functions and caller-bound Book publication/review controls.
+
+Detailed gate: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
 
 ## Active privacy/controller invariant
 
-For personal-data processing described in the Privacy Policy, the controller is disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
+For personal-data processing described in the Privacy Policy, the controller remains disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
 
-Gameplay financial history, virtual debt/holdings, job/application data, rankings and anti-abuse signals may be processed where justified to operate, secure and support TycoonX, but that does not authorize unnecessary disclosure of one player's private gameplay state to another player. Client-influenceable or broadly writable records must be weighted according to their evidentiary quality rather than treated as automatically conclusive.
+Restricted chat/history, Post Office sender identity, Home Room state, gameplay finance, applications, anti-abuse signals and moderation evidence may be processed where justified to operate, secure and support TycoonX, but that does not authorize unnecessary player-to-player disclosure. Client-influenceable, over-broadly readable/writable or notification-derived records must be weighted according to their evidentiary quality rather than treated as automatically conclusive.
 
-The Company job-application RLS finding is therefore both an authorization issue and a privacy/confidentiality follow-up: managers of one Company should not gain application visibility for an unrelated Company merely because of a tautological policy predicate.
+A player-facing anonymous option may remain identifiable to CK-Labs for lawful moderation/security/legal purposes, but the recipient should not receive hidden sender identity merely because the raw storage row contains it if the product represents that identity as hidden from the recipient.
 
-## Current-law clarity checkpoint
+## Current-law and platform checkpoint
 
-German BGB § 307 remains relevant to standard terms: unclear or incomprehensible wording can contribute to an unreasonable disadvantage. Gameplay rules should explain intended mechanics clearly rather than relying on hidden implementation knowledge.
+As rechecked on **September 10, 2026**:
 
-German digital-product conformity/remedy rules remain separate from gameplay discipline. BGB §§ 327d and 327i and related remedies must not be displaced by balancing, anti-exploit correction, moderation or account enforcement.
+- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide filtering of objectionable material, reporting with timely response, blocking of abusive users and published contact information; creator content remains subject to UGC moderation rules.
+- Google Play's current UGC policy requires terms/user-policy acceptance before users create/upload UGC, clear objectionable-content rules, robust ongoing moderation, in-app reporting and blocking for 1:1 interactions such as messaging, tagging and mentions.
+- Where applicable, the EU Digital Services Act preserves statement-of-reasons and complaint/redress safeguards for covered moderation decisions.
+- GDPR principles including lawfulness/fairness/transparency, purpose limitation, data minimisation, accuracy and applicable integrity/confidentiality/security requirements remain separate from game access labels.
+- German BGB mandatory consumer/digital-product rights remain separate from moderation, access-control and anti-exploit enforcement. A genuine backend defect cannot be relabeled misconduct to avoid an applicable statutory remedy.
 
-For qualifying continuous digital-product contracts, BGB § 327r can condition changes beyond what is needed to maintain conformity. Any TycoonX reservation to rebalance fees, cooldowns, delivery times, reward tables, competition formats, rates or formulas is therefore subject to applicable mandatory valid-reason, no-additional-cost, clear-information, advance-notice, termination and other statutory requirements.
+## Next code-first audit queue
 
-## Next code-first gameplay audit queue
-
-Completed substantive gameplay clusters:
+Completed substantive clusters:
 
 1. Company governance/value movement.
 2. Company supply/export/tender commerce.
@@ -184,28 +170,27 @@ Completed substantive gameplay clusters:
 6. Player markets/shop auto-fill/system auto-market/Government Market.
 7. Bank/credit/FX/stocks/crypto.
 8. Logistics/jobs/competitions/rewards.
+9. Social/UGC.
 
-Continue next with:
-
-1. **Social/UGC:** Company/Union chat, executive/private chat and mentions, rooms/avatars, music/books and remaining UGC, impersonation, scams/phishing, moderation, reports/appeals, content rights/licensing, access-control/privacy and evidence quality.
+There is no unfinished localization document. Continue with a **cross-cutting server-authority/privacy remediation and residual-gap sweep**: revisit the open P0/P1 findings from all code-first clusters, inspect remaining privileged SQL/Edge Functions and legacy paths not yet mapped, and confirm that canonical/localized wording still matches the deployed behavior. Do not change production database state without explicit approval.
 
 ## Canonical source status
 
-- English Terms: current and supplemented by seven synchronized rendered code-derived gameplay clarifications dated September 10, 2026.
+- English Terms: current and supplemented by eight synchronized rendered code-derived gameplay/community clarifications dated September 10, 2026.
 - English Purchases & Refunds: current.
 - English Privacy Policy: current.
 - English Community Standards: current.
-- All 25 localized Terms receive all seven synchronized gameplay/economy clarifications without duplicating the full static translated body.
+- All 25 localized Terms receive all eight synchronized code-derived clarifications without duplicating the static translated body.
 
 ## Progress metrics
 
-The percentages intentionally include unfinished code-first Social/UGC review and unresolved implementation/security findings rather than over-weighting completed localization or payment work. This run found several additional P0 gameplay authority gaps, so operational readiness decreases even though legal coverage and total project completion increase.
+The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization or payment work. Social/UGC legal coverage improved materially, but several new P0 confidentiality, notification and Music-settlement authority defects reduce operational readiness until engineering remediation is verified.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.2%**
-- **Full commercial/legal/payment readiness:** **91.6%**
-- **Overall project completion:** **96.7%**
+- **Canonical English legal wording:** **99.6%**
+- **Full commercial/legal/payment readiness:** **89.8%**
+- **Overall project completion:** **97.2%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** Social/UGC, beginning with Company/Union chat, private/executive history access, mentions, rooms/avatars, music/books, scams/impersonation, moderation/appeals, copyright/user-content rights and privacy/access-control boundaries.
+**Next substantive code-first target:** Cross-cutting server-authority/privacy remediation and residual-gap sweep across the nine audited gameplay/community clusters, with special priority on restricted-chat confidentiality, Executive notification audience, Music auction settlement authority and the remaining previously documented P0 economy/authentication surfaces.
