@@ -7,11 +7,11 @@ Scope: map player-facing TycoonX legal rules to gameplay/community mechanics tha
 
 ## 1. Source hierarchy and safety boundary
 
-This is an internal implementation/legal QA document. It does not replace the canonical English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy or Community Standards.
+This is internal implementation/legal QA. It does not replace the canonical English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy or Community Standards.
 
-Reviews use read-only production Supabase schema/function/policy/trigger inspection, current `Atakancev/terrax-flutter` source and the current `Atakancev/contact-form-app` legal repository. No database row, function, trigger, policy, grant, schema object, cron or configuration is changed as part of this legal audit.
+Reviews use read-only production Supabase schema/function/policy/trigger inspection, current `Atakancev/terrax-flutter` source and current `Atakancev/contact-form-app` legal source. No database row, function, trigger, policy, grant, schema object, cron or configuration is changed as part of this legal audit.
 
-Backend implementation is evidence of a feature's current technical purpose, but a current server cap, permission, cooldown, formula, UI control, moderation signal or anomaly threshold is not automatically a permanent contractual promise, proof of wrongdoing or safe harbor for knowing exploit use.
+Backend implementation is evidence of a feature's current technical purpose, but a current cap, permission, cooldown, formula, UI control, moderation signal or anomaly threshold is not automatically a permanent contractual promise, proof of wrongdoing or safe harbor for knowing exploit use.
 
 ## 2. Cross-system legal and enforcement principles
 
@@ -77,83 +77,66 @@ Detailed control: `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`.
 
 ## 10. Completed cluster: Social, chat and UGC
 
-Current Flutter plus read-only production Supabase review covered ordinary/global/country/Company/Union/Executive chat, direct/group/team mentions, replies, polls, pins, Company meeting rooms, restaurant/private social tables, Home Rooms, Post Office, Music, Books, moderation, reports, restoration and creator-content access/settlement.
+Reviewed ordinary/global/country/Company/Union/Executive chat, direct/group/team mentions, replies, polls, pins, Company meeting rooms, restaurant/private social tables, Home Rooms, Post Office, Music, Books, moderation, reports, restoration and creator-content access/settlement.
 
-### P0: ordinary Company/Union chat confidentiality is not server-bound
+Open findings remain:
 
-Current `messages` SELECT policies include broad permissive access. The reviewed restrictive server read boundary is specific to Executive Company Chat. Ordinary Company and Union history is filtered by the Flutter query but is not equivalently membership-bound at the server policy layer.
+- ordinary Company/Union history is not equivalently server-membership-bound to the Executive channel;
+- ordinary message routing and privileged row fields are too client-writable;
+- Executive Company Chat can leak message content through notification branches that do not reapply the current audience rule;
+- Music owner UPDATE authority is broader than the validated auction settlement path;
+- Post Office anonymous recipient presentation can be undermined by raw row access;
+- poll-derived data does not consistently inherit parent-message authorization;
+- some Home Room collection/profile tables are broader than the intended entrance/read RPC boundary; and
+- generic moderation notification authority is too broad.
 
-Legal meaning: restricted channels are intended for their authorized audience. A direct-API read through an authorization defect is not permitted merely because the backend returned data. CK-Labs should not promise absolute secrecy or end-to-end encryption, but it must not use legal language to excuse avoidable unauthorized disclosure.
-
-### P0: ordinary message routing and privileged row fields are too client-writable
-
-The Flutter chat service inserts directly into `messages` with client-supplied routing fields. Current non-executive INSERT/owner UPDATE authority does not visibly make all Company/Union routing fields immutable or server-validate membership. Row-wide owner UPDATE can also undermine the dedicated permission-aware pin RPC.
-
-Required direction: server-authoritative destination validation, immutable routing after creation, server-owned pin state, and narrow player-editable message fields.
-
-### P0: Executive Company Chat can leak through notifications
-
-`can_access_executive_company_chat(...)` itself applies a meaningful current role boundary. However, reviewed mention/reply/channel/group-notification logic can include the full message body without applying the same current audience check. This can expose Executive Company Chat content to specialists, outsiders mentioned by nickname, or former recipients in reply paths.
-
-Required direction: every content-bearing restricted push must reuse the same current authorization rule as reading the parent message.
-
-### P0: Music auction settlement trusts owner-writable listing state
-
-The normal Flutter path uses `social_create_music_post(...)` and `social_bid_music(...)`; the canonical bid RPC authenticates, locks, blocks owner self-bids, checks funds and records the bid.
-
-But current Music owner UPDATE policy is broader than the validated auction RPC and can expose auction-managed fields. Reviewed finalization/cancellation credits wallets based on listing `highest_bid` / `highest_bidder_id` state without independently establishing that every credited amount is backed by the authoritative accepted bid/hold.
-
-Required direction: settlement-managed Music fields must be server-owned, and wallet credits must reconcile to authoritative bid/hold evidence within an idempotent locked settlement boundary.
-
-Legal meaning: a genuine high Music bid is not abuse. Fabricated bid/settlement state, controlled-account circular trades, exploit-created value and prohibited RMT remain reviewable. Contaminated state or receipt of a bad settlement alone does not automatically prove intentional exploitation.
-
-### P1: anonymous Post Office presentation is not enforced in the raw recipient read
-
-The real Post Office send path includes an `is_anonymous` option, but stored rows retain `from_user_id` and the current recipient is authorized to SELECT the row. A technically capable recipient can therefore potentially obtain sender identity despite the ordinary interface's anonymous presentation.
-
-Required direction: if anonymity to the recipient remains a product promise, use a recipient-safe read surface that redacts sender identity while retaining lawful CK-Labs identity access for moderation/security/legal obligations.
-
-### P1: polls do not consistently inherit parent-message authorization
-
-`vote_chat_poll(...)`, vote-count access and vote-row visibility focus on poll/voter rules without consistently proving that the caller may read the parent restricted message. Parent-message authorization should be shared by poll participation, counts, voter identity, reactions, replies and derived features.
-
-### P1: Home Room private collection state bypasses the intended entrance RPC
-
-Home Room entry, profile loading, chat, collection saving and playback RPCs contain meaningful audience/ownership checks. However, several underlying collection/profile tables use broad authenticated SELECT policies, allowing direct reads that bypass the intended entrance requirement.
-
-Required direction: align raw table reads with the intended active-room audience or expose only an intentional minimal public view.
-
-### P1: official-looking moderation notification is broadly callable
-
-`notify_moderation_event(...)` is SECURITY DEFINER, can send official-looking moderation pushes using a server notification secret, and the reviewed function does not establish a trusted caller before using caller-provided event facts.
-
-Required direction: trigger/service/staff-internal execution only, preferably deriving notification facts from an authoritative moderation event. A push notification is evidence that a notification was sent, not proof that the underlying violation occurred.
-
-### Brand defect in deployed notification prose
-
-The reviewed `handle_new_message_mention()` fallback still contains a **legacy brand misspelling** in its player-facing global-channel label. No database change was made. The next approved migration touching the function should change the label to `TycoonX Community Global Chat Channel` and review all notification branches for the same legacy spelling.
-
-### Positive controls confirmed
-
-- Executive Company Chat has a restrictive read function based on current Company access.
-- Private social-table chat binds reads/inserts to active table membership and validates reply-table consistency.
-- Company meeting-room validation checks current Company membership and management/admission state.
-- Home Room entry/chat RPCs use resident/invitation/admission/current-visit checks.
-- Message/user reports bind reporter identity and expose staff review separately.
-- Moderation restoration functions include internal staff checks and recovery reasons.
-- Book publication, restocking, pricing and review RPCs enforce caller/author/ownership/eligibility rules.
-
-### Legal doctrine synchronized
-
-The Social/UGC Terms clarification now explains public versus restricted audiences, operator-side lawful access, anonymous-feature limits, altered-client/access-control abuse, impersonation/phishing/scams/doxxing, Music/Book commerce, moderation timing, evidence quality, account compromise, proportional correction and mandatory appeal/privacy/consumer rights.
-
-General creator rights, the limited UGC licence, copyright complaint handling and UrhDaG classification remain governed by `TYCOONX_UGC_COPYRIGHT_URHDAG_RELEASE_GATE.md` rather than duplicated here.
+Positive controls include restrictive Executive read logic, private social-table membership rules, Company meeting-room admission checks, Home Room active-visit checks, reporter ownership, staff-gated restoration and caller-bound Book controls.
 
 Detailed control: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
 
-## 11. Player-facing synchronized Terms notices
+## 11. Completed cluster: residual profile, privacy, Housing, energy, friends/activity/log authority
 
-The following route-gated Terms clarifications are synchronized in English plus all 25 target locales:
+The September 10 residual sweep rechecked current production instead of assuming previously documented P0/P1 remediation had landed.
+
+### Still-open cross-cutting P0s
+
+The reviewed deployment still exposes broad self-profile UPDATE over sensitive profile state and broad public profile reads. Previously documented privileged paths also remain open in the inspected production definitions: `specialization_upgrade_refund_wallet_credit(...)`, `gain_xp(...)`, `award_collect_xp(...)`, `_internal_shop_connected_fill(...)`, `_internal_industrial_connected_fill(...)`, `send_company_event_notification(...)` and `notify_moderation_event(...)`.
+
+### New/expanded P0: raw XP and energy authority
+
+`rpc_add_xp(amount)` still accepts a client-supplied positive XP amount for the authenticated user without independently proving a feature-specific reward event. Current Flutter `AuthService.addXP(...)` uses that path, including current job UI usage.
+
+`rpc_add_energy(amount)` likewise accepts a caller-provided positive energy amount without independently proving a source event or enforcing the intended gameplay cap in the reviewed function. Authenticated profile UPDATE also includes `energy` and `hunger`, so the root problem is broader than one RPC.
+
+### Positive remediation: persona training
+
+Current production persona compatibility RPCs are materially safer than stale migration bodies suggest. The reviewed deployed `rpc_add_persona_stats(...)` authenticates, restricts the reward shape, consumes a user/session-bound energy receipt and records structured evidence. Current `rpc_spend_energy_for_persona(...)` validates the cost/reward relationship and delegates to the server-owned quick-training path. Do not classify the obsolete migration version as current behavior.
+
+### New P0 Housing findings
+
+`new_housing_tenant_cooldowns` is used to enforce the current same-owner re-rental cooldown, but the affected authenticated user can INSERT/UPDATE their own cooldown row in the reviewed policy/grant set. `set_housing_tenant_cooldown(...)` is also broadly executable and accepts an arbitrary target user. Server enforcement therefore relies on player-writable state and an over-broad raw setter.
+
+`_spawn_next_house_plot(p_country)` is a privileged internal Housing supply-creation helper, but current reviewed privileges allow anonymous/authenticated execution. It should be callable only from trusted Housing maintenance/settlement paths.
+
+### Housing maintenance nuance
+
+`new_housing_foreclose_overdue()` and `new_housing_daily_cron()` are global maintenance/settlement functions and should be service-bound. However, current Flutter bank code itself invokes `new_housing_foreclose_overdue()` before mortgage reads, and the function derives overdue targets from server state. Ordinary invocation through that supported client flow is therefore not misconduct by itself.
+
+The current Finance V2-wrapped Housing rent/leave paths also positively confirm tenant-deposit return/release behavior, including owner-eviction deposit return. Older migration bodies should not be used to claim a current deposit-forfeiture defect without rechecking production.
+
+### Friends/log privacy nuance
+
+The reviewed Housing transaction logs, profile strategy reveals and login fingerprint tables did not show a comparable broad cross-user read in this subset. `social_list_user_friends(p_user_id, ...)` intentionally returns a narrow accepted-friends list for another user and is used by the current Flutter Friends service, so that is a product/privacy-design decision rather than an automatic security defect. Broader public profile exposure remains a separate P0.
+
+### Additional P1 service surfaces
+
+Housing notification helpers are too broadly callable to serve as authoritative evidence of rent/eviction/mortgage events. Daily-activity/news invocation/regeneration helpers are privileged service proxies exposed more broadly than current ordinary Flutter usage requires. They should be trusted scheduler/staff/service operations.
+
+Detailed control: `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`.
+
+## 12. Player-facing synchronized Terms notices
+
+The following route-gated Terms clarifications remain synchronized in English plus all 25 target locales:
 
 1. `GameplayEconomyRuleNotice.tsx`
 2. `CompanyCommerceRuleNotice.tsx`
@@ -166,24 +149,27 @@ The following route-gated Terms clarifications are synchronized in English plus 
 
 They display only on the canonical Terms route and localized Terms routes. Arabic uses RTL and required Spanish, French, Portuguese and Chinese variants remain separately localized.
 
-## 12. Current law and platform boundary
+No ninth player-facing notice was added for the residual authority sweep because existing canonical/localized Terms already state the material exploit/server-acceptance/compromise/correction rule. Newly identified insecure implementation surfaces should be remediated technically, not normalized as intended player access.
 
-As rechecked on September 10, 2026, Apple App Review Guideline 1.2 and Google Play's UGC policy continue to require meaningful moderation/reporting/blocking safeguards for relevant UGC/social interactions. Where applicable, the EU Digital Services Act preserves content-moderation reason/complaint safeguards. GDPR processing principles and security/confidentiality duties remain independent of in-game access labels.
+## 13. Current-law and platform boundary
 
-German BGB mandatory consumer and digital-product rights remain separate from gameplay/community discipline. A genuine confidentiality, moderation, entitlement or backend defect cannot simply be relabeled ordinary gameplay risk to contract around a mandatory remedy.
+As rechecked on September 10, 2026, the existing legal framework continues to preserve current Apple/Google digital-purchase requirements, current Xsolla payment/refund/chargeback boundaries, mandatory German digital-product/AGB rules, GDPR privacy/security duties and applicable content-moderation safeguards.
 
-## 13. Next code-first audit order
+A genuine authorization, confidentiality, settlement, entitlement or backend defect cannot simply be relabeled ordinary gameplay risk to contract around a mandatory remedy. Likewise, knowing use of an altered client/API path to manipulate protected state is not automatically legitimized merely because a defective backend accepted the request.
 
-Completed substantive clusters:
+## 14. Next code-first audit order
+
+Completed substantive mapping clusters:
 
 1. Company governance/value movement.
 2. Company supply/export/tender commerce.
-3. Union contribution exception.
-4. Union treasury/governance.
-5. Art/Begging.
-6. Player markets/shop auto-fill/system auto-market/Government Market.
-7. Bank/credit/FX/stocks/crypto.
-8. Logistics/jobs/competitions/rewards.
-9. Social/UGC.
+3. Union contribution/treasury/governance.
+4. Art/Begging.
+5. Player markets/shop auto-fill/system auto-market/Government Market.
+6. Bank/credit/FX/stocks/crypto.
+7. Logistics/jobs/competitions/rewards.
+8. Social/UGC.
+9. Cross-cutting profile/server-authority/privacy.
+10. Residual Housing/profile/energy/friends/activity/log remediation verification.
 
-Next: **cross-cutting server-authority/privacy remediation and residual-gap sweep**. Revisit all open P0/P1 findings, inspect privileged SQL/Edge Functions and legacy paths not yet mapped, and verify that current legal wording still matches deployed behavior. Database remediation remains outside this legal audit unless explicitly approved.
+The implementation-derived legal map is now substantively complete. The next work is **P0/P1 remediation verification and final release-readiness consolidation**: recheck every open implementation finding after engineering changes, confirm the canonical/legal notices still match deployed behavior, repeat current Apple/Google/Xsolla and German/EU source checks, and close readiness only when the server-authority/privacy blockers are actually remediated. Database remediation remains outside this legal audit unless explicitly approved.
