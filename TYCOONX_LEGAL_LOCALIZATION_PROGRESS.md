@@ -1,6 +1,6 @@
 # TycoonX Legal Localization Progress
 
-Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository, together with the rendered canonical Terms clarifications synchronized into every localized Terms route.
+Canonical legal source: the English TycoonX Terms of Service, Purchases & Refunds Policy, Privacy Policy, and Community Standards in this repository, together with the rendered canonical legal clarifications synchronized into affected localized routes.
 
 Last synchronized: **September 10, 2026**.
 
@@ -41,6 +41,12 @@ Eight code-derived Terms clarifications remain synchronized across the canonical
 8. `SocialUgcRuleNotice.tsx`
 
 No ninth public Terms notice is currently required for the unresolved authority/payment defects. Existing Terms already cover knowing exploitation, server acceptance not being an absolute safe harbor, account compromise, evidence quality, proportional corrections and preservation of unrelated valid paid value. Implementation defects should be fixed technically rather than normalized as intended access or product behavior.
+
+## Synchronized player-facing Privacy clarification
+
+`PersonalDataBreachPrivacyNotice.tsx` is synchronized across the canonical English Privacy Policy route and all 25 localized Privacy routes. It adds the current GDPR personal-data-breach distinction without overstating notification duties: CK-Labs assesses and documents personal data breaches as required; where GDPR Article 33 applies it notifies the competent supervisory authority without undue delay and, where feasible, within 72 hours after awareness unless the breach is unlikely to result in a risk to natural persons' rights and freedoms; and where GDPR Article 34 applies it informs affected individuals without undue delay when a high risk is likely, subject to applicable statutory exceptions.
+
+The clarification is rendered only on Privacy routes, preserves native language and regional variants, and uses RTL for Arabic. It does not imply that every attack, outage, bug or security alert is a legally notifiable personal data breach, and it does not waive mandatory data-protection rights or remedies.
 
 ## Active purchase/product invariants
 
@@ -91,6 +97,8 @@ Detailed implementation gates remain the QA source of truth:
 - `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`
 - `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md`
 - `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md`
+- `TYCOONX_PROMOTION_REFERENCE_PRICE_COMMERCIAL_PRESENTATION_GATE.md`
+- `TYCOONX_PERSONAL_DATA_BREACH_PRIVACY_GATE.md`
 
 ## September 10 production remediation verification
 
@@ -123,7 +131,7 @@ A separate P1 commercial-consistency issue is also recorded: one-time VIP stacki
 
 ### Xsolla refund and stacked-VIP reversal gap
 
-A new focused read-only review adds `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md` as a P0/P1 payment-integrity gate for the CK-Labs TycoonX webshop.
+A focused read-only review adds `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md` as a P0/P1 payment-integrity gate for the CK-Labs TycoonX webshop.
 
 The current Xsolla purchase path keeps transaction/order-level purchase records and its Diamond reversal logic is materially stronger than the RevenueCat refund path: it identifies the source purchase, prevents duplicate reversal, removes only currently recoverable granted Diamonds and moves attributable consumed value into bounded clawback debt instead of blindly driving the visible balance negative.
 
@@ -142,23 +150,25 @@ Rechecked on **September 10, 2026**:
 - Google Play's current purchase-management documentation, updated September 9, 2026, distinguishes refund from revocation and documents server-side refund/revocation handling; current RTDN documentation identifies voided one-time purchases by purchase token/order ID and refund type.
 - Xsolla's current webhook documentation distinguishes combined `order_paid`/`order_canceled` flows from legacy payment/refund flows, documents refund retries, and states that relevant Store/Payments webhooks are sent sequentially. TycoonX should normalize the supported provider event shapes into authoritative transaction state and preserve source-specific entitlement provenance.
 - EU digital-content rules and German BGB implementation continue to preserve mandatory conformity, price-reduction/termination/refund and other non-waivable remedies. The legal framework must not use entitlement reconciliation to contract around those rights.
+- GDPR Articles 33 and 34 require risk-based personal-data-breach handling: supervisory-authority notification without undue delay and, where feasible, within 72 hours after awareness unless the Article 33 risk threshold is not met; documentation of personal data breaches; and communication to affected individuals without undue delay where a high risk is likely, subject to the Article 34 exceptions.
 - GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and should be fixed technically rather than normalized in player-facing privacy prose.
 
-No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The RevenueCat and Xsolla findings are implementation mismatches against payment/refund wording that is already materially correct.
+The personal-data-breach rules are a material Privacy clarification and are now synchronized in canonical English and all 25 localized Privacy routes through `PersonalDataBreachPrivacyNotice.tsx`. No material purchase/provider meaning change was identified that requires reopening Terms, Purchases & Refunds or Community Standards.
 
 ## Canonical source status
 
 - English Terms: current and supplemented by eight synchronized code-derived clarifications.
 - English Purchases & Refunds: current.
-- English Privacy Policy: current; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
+- English Privacy Policy: current and supplemented by the synchronized personal-data-breach notification clarification; broad profile/social exposure remains an implementation defect and is not treated as intended disclosure.
 - English Community Standards: current.
 - All 25 localized Terms receive all eight synchronized code-derived clarifications.
+- All 25 localized Privacy routes receive the synchronized personal-data-breach clarification in their own locale, including RTL rendering for Arabic.
 
 ## Next code-first audit queue
 
 There is no unfinished localization document and no unmapped substantive gameplay cluster.
 
-Highest priority is now **payment/entitlement remediation verification**:
+Highest priority remains **payment/entitlement remediation verification**:
 
 1. make VIP provenance server-authoritative rather than cache-authoritative;
 2. make VIP-expiry sender/processor service-only and source-aware;
@@ -169,19 +179,21 @@ Highest priority is now **payment/entitlement remediation verification**:
 7. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
 8. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
 
+A separate privacy-operations verification should confirm that CK-Labs can record awareness time, incident facts, affected systems/data, risk assessment, containment/remediation, supervisory-authority notification decision/timing, affected-user communication decision/timing, statutory exceptions relied on and reasons for delay where required. The new Privacy wording does not claim those operational controls are already complete.
+
 Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, repeat current Apple/Google/RevenueCat/Xsolla plus German/EU checks and reopen only localized document types affected by a material canonical meaning change.
 
 Database remediation remains outside this legal audit unless explicitly approved.
 
 ## Progress metrics
 
-Legal/localization coverage remains essentially complete. This run did not close a production blocker and found an additional source-attribution defect in Xsolla one-time VIP refund/reversal arithmetic. Operational commercial readiness is therefore reduced while overall audit coverage increases.
+Legal/localization coverage remains essentially complete. This run materially strengthened privacy wording and synchronized the same breach-notification meaning across canonical English and all 25 localized Privacy routes without changing any production database state. The open payment/entitlement implementation blockers remain, so operational commercial readiness is not increased.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
-- **Canonical English legal wording:** **99.6%**
+- **Canonical English legal wording:** **99.8%**
 - **Full commercial/legal/payment readiness:** **77.0%**
-- **Overall project completion:** **98.3%**
+- **Overall project completion:** **98.4%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. Close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
+**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. In parallel, verify the operational personal-data-breach response controls required to make the new Privacy commitment executable. Close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
