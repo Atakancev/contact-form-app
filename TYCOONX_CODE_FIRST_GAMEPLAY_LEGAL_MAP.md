@@ -82,7 +82,7 @@ Open implementation findings:
 
 Detailed control: `TYCOONX_PLAYER_GOVERNMENT_MARKETS_RELEASE_GATE.md`.
 
-## 8. Completed legal mapping: Bank/credit/FX/stocks/crypto
+## 8. Completed cluster: Bank, credit, FX, stocks and crypto
 
 Reviewed implementation includes retained legacy banking, current cash/savings, savings accrual, credit quotes and notes, installments, collateral, debt recovery, bankruptcy, FX accounts/trading/cooldowns, Diamond-funded FX slot unlocks, stock/crypto positions and settlement, transaction/price history, automated stock prices and crypto price updates.
 
@@ -96,71 +96,69 @@ Player-facing baseline:
 - TycoonX-operated market-price automation is intended gameplay; and
 - modified-client/direct-API state fabrication, wash/circular trading, controlled-account manipulation, unauthorized automation, price-input tampering, replay/race exploitation, exploit laundering and prohibited RMT remain reviewable when evidence supports them.
 
-### P0: `user_stocks` is directly writable
+Open implementation/security findings remain:
 
-Production RLS currently permits players to INSERT, UPDATE and DELETE their own `user_stocks` rows. The Finance V2 stock-basis trigger mirrors those rows rather than rejecting non-settlement writes. The canonical sell path then trusts position quantity for wallet settlement. This creates a material risk that a fabricated positive position can be monetized through the normal sale path.
+1. **P0:** player-owned `user_stocks` rows are directly writable while canonical sale settlement trusts position quantity.
+2. **P0:** authenticated users can insert `stock_transactions`, while current automated pricing consumes recent transaction totals as demand/volume input.
+3. **P0:** `stock_price_history` insertion is broader than its service-role policy name suggests and current automation consumes recent history.
+4. **P0:** market-price mutation helpers including `force_update_stock(...)`, `bulk_update_crypto_prices(...)`, `automate_stock_prices()` and `run_stock_price_automation_safe()` are more broadly executable than ordinary clients require.
+5. **P0:** retained legacy `bank_accounts`, `bank_loans` and `bank_profiles` economic fields remain directly writable by owning players while compatibility functions still trust them.
+6. **P0:** `new_bank_debt_recovery_resolve_note(...)` exposes arbitrary-note mutation without establishing target-user authorization before every related mutation.
+7. **P0/P1:** arbitrary-user bank helper functions expose integrity/private gameplay-finance surfaces that should be internal or caller-bound.
+8. **P1:** system-style credit/due/savings processing helpers should be narrowed to trusted execution paths.
 
-Engineering priority: make player positions server-owned and mutable only through trusted buy/sell, IPO, corporate-action, migration or correction transitions.
-
-### P0: client-inserted `stock_transactions` can affect price automation
-
-Authenticated players can currently insert their own `stock_transactions` rows. The reviewed automated stock-price logic consumes recent buy/sell totals as market demand/volume input. Table constraints validate shape but do not prove actual wallet/position settlement.
-
-Engineering priority: transaction history used for economics or enforcement must be created by and linked to canonical settlement, not generic client INSERT.
-
-### P0: public `stock_price_history` insertion can affect momentum
-
-The production INSERT policy named `Service role can insert price history` is currently scoped to `public` with an unrestricted check, and anon/authenticated roles have INSERT privileges. The price automation consumes recent history for momentum/reference calculations.
-
-Engineering priority: make price history server-owned and written only by trusted pricing/corporate-action/migration paths.
-
-### P0: market-price mutation helpers are publicly executable
-
-Reviewed SECURITY DEFINER functions `force_update_stock(...)`, `bulk_update_crypto_prices(...)`, `automate_stock_prices()` and `run_stock_price_automation_safe()` currently expose EXECUTE to public/anonymous/authenticated roles without a sufficient internal trusted-caller boundary. `cleanup_stock_price_history()` is also broadly executable maintenance authority.
-
-Engineering priority: service/cron/admin-only execution plus internal fail-closed caller checks.
-
-### P0: retained legacy bank economic state is client-writable
-
-Production RLS currently permits users to UPDATE their own legacy `bank_accounts`, `bank_loans` and `bank_profiles`. Those rows contain principal/rates/due state, loan state and credit score, and retained compatibility functions still rely on them. Finance V2 legacy triggers mirror the state but do not make it immutable.
-
-Engineering priority: while compatibility paths remain callable, value-bearing legacy bank fields must be server-owned and mutated only by narrow server transitions.
-
-### P0: debt-resolution helper exposes arbitrary-note mutation
-
-`new_bank_debt_recovery_resolve_note(p_note_id, p_user_id)` is currently broadly executable as SECURITY DEFINER. Its reviewed body updates installments and pledged collateral by note ID before the later note update applies a user filter.
-
-Engineering priority: service/internal-only execution and authorization before every mutation.
-
-### P0/P1: internal bank helpers expose integrity and private game-finance data
-
-The read-only review found broad execution on helpers including:
-
-- `new_bank_log_transaction(...)`, allowing authoritative-looking transaction insertion for a supplied user;
-- `new_bank_get_transactions_internal(...)`, reading a supplied user's combined bank history;
-- `new_bank_get_quote_internal(...)`, exposing/processing wallet, debt, savings, FX, collateral and credit-related state for a supplied user;
-- `new_bank_get_collateral_candidates(...)` and `new_bank_get_professor_recovery_assets(...)`, exposing supplied-user asset/value details; and
-- `new_bank_push_notification(...)`, capable of creating official-looking bank notifications for a supplied player when its allowed event type is used.
-
-Public/system-style processing helpers such as `new_bank_process_credit_for_user(...)`, `new_bank_process_due_items()` and `new_bank_roll_forward_savings(...)` should also be narrowed to the trusted roles actually required.
-
-Engineering priority: separate user-facing wrappers that derive the subject from `auth.uid()` from internal arbitrary-user helpers that are service-only. Ledger/event creation must come from trusted settlement paths. A convenience push or client-influenceable row must never be treated as sole proof of default, seizure or cheating.
-
-### Protected paths confirmed during the same review
-
-The audit also confirmed useful controls that should be preserved:
-
-- canonical `buy_stock(...)` and `sell_stock(...)` bind the supplied player ID to `auth.uid()`;
-- `new_bank_debt_recovery_bankrupt_user(...)` and `new_bank_seize_collateral(...)` are restricted to trusted roles;
-- `new_bank_sell_debt_recovery_asset(...)` authenticates and binds the active recovery case to the caller;
-- current FX-account DELETE RLS requires the authenticated owner and an effectively zero holding; and
-- `new_bank_fx_clear_account(...)` independently checks ownership and near-zero balance.
-
-This last point corrects an earlier preliminary concern: the current Flutter direct FX delete does **not** by itself bypass the zero-balance rule under the production policy reviewed on September 10, 2026.
+Protected paths confirmed include caller binding in canonical stock buy/sell, trusted-role bankruptcy/collateral seizure, caller-bound recovery-asset selling, and the production FX-account zero-balance DELETE safeguard. An earlier preliminary concern that Flutter's direct FX delete bypassed that safeguard is closed under the reviewed policy.
 
 Detailed control: `TYCOONX_BANK_CREDIT_FX_STOCKS_CRYPTO_RELEASE_GATE.md`.
 
-## 9. Player-facing synchronized Terms notices
+## 9. Completed cluster: Logistics, jobs, competitions and rewards
+
+Current Flutter and read-only production review covered truck sales/rentals, new and loaded fleet delivery, delivery claims, delivery speed-up, rental/expiry behavior, care jobs and automatic care processing, Company job posts/applications, daily tasks, level-up rewards, hourly random rewards, rankings and game-match reward settlement.
+
+Player-facing baseline:
+
+- truck commerce, deliveries, care jobs, Company jobs, TycoonX-operated automatic job processing, leaderboards, competitions and free gameplay rewards are intended game systems;
+- a high truck price, large valid salary, repeated delivery, high rank, repeated win or favorable random reward is not automatically misconduct;
+- built-in TycoonX automation is not player botting;
+- Diamond-funded delivery speed-up purchases the eligible represented in-game acceleration, not a guaranteed profit, delivery result or rank;
+- current fees, rental limits, cooldowns, delivery times, job requirements, reward tables and competition/ranking formulas are prospective game parameters rather than permanent promises, subject to mandatory rights; and
+- modified-client/direct-API manipulation, sham jobs, controlled-account value funneling, circular truck trades, fabricated progress, win trading, unauthorized bots, cooldown/reward tampering, duplicate/replay/race exploitation, exploit laundering and prohibited RMT remain reviewable when reliable evidence supports them.
+
+### P0: global care automation helpers are too broadly executable
+
+Reviewed SECURITY DEFINER helpers including `_auto_complete_care_jobs_aged(...)` and `_auto_post_care_jobs_batched(...)` are executable by public/anonymous/authenticated roles without an adequate trusted service/cron caller boundary. They can scan or mutate global care-job state. System-wide job automation should be trusted-only; ordinary player wrappers should remain caller-bound.
+
+### P0: arbitrary-user daily-task stock consumption
+
+`_daily_task_consume_user_product_stock(p_user_id, p_product_name, p_quantity)` is broadly executable as SECURITY DEFINER and mutates the supplied user's agriculture/livestock/mining/industrial stock without binding the target to `auth.uid()`. The normal `daily_task_claim(...)` is caller-bound and should remain the public path. Arbitrary-user daily-task helpers should be internal/trusted only.
+
+### P0: hourly reward cooldown tracker is client-writable
+
+Production RLS currently permits a player generic modification of their own `hourly_chart_rewards` row. The reward RPC trusts `next_spin_at` from that row before awarding money, XP, energy or a free gameplay Diamond. Cooldown and reward-control state should be server-owned and ordinary clients should have read-only access.
+
+### P0: level-up reward checkpoint is not visibly monotonic/server-owned
+
+`claim_level_up_rewards()` relies on `profiles.last_level_reward_claimed` to decide which historical levels still pay money/energy. The generic profile UPDATE policy and reviewed trigger set do not visibly prevent an ordinary client from lowering that checkpoint. It should be server-owned and monotonic outside a trusted migration/correction path.
+
+### P0/P1: Company job RLS cross-company authorization/privacy defect
+
+The reviewed `company_job_posts` management policy and `company_job_applications` manager-read policy contain `mm.company_id = mm.company_id`, which is a tautology rather than a correlation to the protected row's Company. This can permit a qualifying manager/HR/CEO of one Company to satisfy the subquery for another Company's rows. The safer RPCs perform Company-specific checks and should remain canonical. RLS must be correlated to the target `company_id`.
+
+### P1: stale Company job overload validation
+
+The richer current Company job-create path used by Flutter clamps salary to a non-negative value and includes current level/research/specialization requirements. Older retained overloads have weaker validation. Unused overloads should be retired or delegate to one authoritative implementation.
+
+### P1: system-wide match/reward settlement should use least privilege
+
+`fm_settle_match_rewards()` is currently executable by authenticated users even though it is a global SECURITY DEFINER settlement sweep. It has useful row-locking and `reward_paid=false` idempotency protection, and reviewed match/team/player tables are not generically writable by ordinary players, so this is not itself proof of a value exploit. It should nevertheless be service/scheduler-only unless there is a documented product reason for public triggering.
+
+### P2: stale legacy Logistics compatibility dependency
+
+`finance_v2_start_logistics_job(...)` currently delegates to `public.rpc_logistics_start_job(...)`, while the read-only production lookup found no current function by that name. Current new Logistics paths are separate. Retire or repair this stale compatibility path rather than creating an implied promise to keep unsupported legacy behavior.
+
+Detailed control: `TYCOONX_LOGISTICS_JOBS_COMPETITIONS_RELEASE_GATE.md`.
+
+## 10. Player-facing synchronized Terms notices
 
 The following route-gated Terms clarifications are synchronized in English plus all 25 target locales:
 
@@ -170,29 +168,32 @@ The following route-gated Terms clarifications are synchronized in English plus 
 4. `ArtBeggingRuleNotice.tsx`
 5. `PlayerGovernmentMarketRuleNotice.tsx`
 6. `BankCreditMarketsRuleNotice.tsx`
+7. `LogisticsJobsCompetitionsRuleNotice.tsx`
 
 They display only on the canonical Terms route and localized Terms routes. Arabic uses RTL and the required Spanish, French, Portuguese and Chinese locale variants remain separately localized.
 
-## 10. Current German-law boundary
+## 11. Current German-law boundary
 
 German BGB § 307 remains relevant because unclear or incomprehensible standard wording can contribute to an unreasonable disadvantage. Gameplay rules must therefore explain intended game systems and exceptions clearly.
 
-German digital-product conformity/remedy rules, including BGB §§ 327d and 327i where applicable, remain separate from gameplay discipline. A genuine backend defect cannot simply be relabeled ordinary market or credit risk to contract around mandatory remedies.
+German digital-product conformity/remedy rules, including BGB §§ 327d and 327i where applicable, remain separate from gameplay discipline. A genuine backend defect cannot simply be relabeled ordinary market, delivery, job or competition risk to contract around mandatory remedies.
 
 For qualifying continuous digital-product contracts, BGB § 327r can condition changes beyond those necessary to maintain conformity. A broad balancing clause is therefore not a waiver of any required valid reason, no-extra-cost condition, clear information, advance durable-medium notice, termination right or other statutory consequence that applies to the particular change.
 
-## 11. Remaining deployed systems for implementation-first review
+## 12. Remaining deployed systems for implementation-first review
 
-The next active inventory is:
+The next active inventory is Social/UGC:
 
-- trucks, logistics-market listings, loaded deliveries, delivery claims, expiry and compensation/correction paths;
-- care jobs, Company jobs, applications, salaries and automated completion;
-- leaderboards, competitions, event rewards and ranking systems;
-- Company/Union chat, rooms and social features;
-- music/books and remaining UGC; and
-- impersonation, scams, moderation, appeals and user-content rights across those social surfaces.
+- Company and Union chat, executive/private chat and mentions;
+- social/home rooms and avatars;
+- music, books and remaining user-submitted or shareable content;
+- impersonation, scams, phishing, external-payment solicitation and prohibited real-money trading signals;
+- moderation, reporting, appeals and statements of reasons where applicable;
+- copyright/user-content licensing and repeat infringement handling;
+- privacy/access-control boundaries for chat/history/content; and
+- evidence quality for moderation and sanctions.
 
-## 12. Next code-first gameplay legal audit order
+## 13. Next code-first gameplay legal audit order
 
 Completed substantive clusters:
 
@@ -203,10 +204,6 @@ Completed substantive clusters:
 5. Art/Begging.
 6. Player markets/shop auto-fill/system auto-market/Government Market.
 7. Bank/credit/FX/stocks/crypto.
+8. Logistics/jobs/competitions/rewards.
 
-Continue in this order:
-
-1. **Logistics/jobs/competitions:** trucks, deliveries, care jobs, Company jobs, automated completion, leaderboards, rewards and win-trading/duplicate-completion risks.
-2. **Social/UGC:** Company/Union chat, rooms, music/books and remaining UGC, impersonation, scams, moderation, appeals and user-content rights.
-
-Future runs should continue from this deployed implementation inventory rather than generic game-policy templates.
+Continue next with **Social/UGC**, derived from the deployed client and production server authority rather than generic game-policy templates.
