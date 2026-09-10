@@ -90,6 +90,7 @@ Detailed implementation gates remain the QA source of truth:
 - `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`
 - `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`
 - `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md`
+- `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md`
 
 ## September 10 production remediation verification
 
@@ -104,9 +105,9 @@ The VIP-focused recheck remains open:
 - one-time/non-renewing VIP candidates still receive generic renewal-oriented copy instead of source-aware wording that makes clear current 30-Day VIP does not renew automatically; and
 - Lifetime VIP must not receive an ordinary expiry reminder.
 
-### Newly verified RevenueCat refund/reversal gap
+### RevenueCat refund/reversal gap
 
-A focused read-only review now adds `TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md` as a P0 payment-integrity gate.
+`TYCOONX_REVENUECAT_REFUND_ENTITLEMENT_RECHECK.md` remains an open P0 payment-integrity gate.
 
 The current RevenueCat fulfillment functions correctly record and idempotently grant many successful purchases, but the reviewed base event handler does not economically reconcile a `CANCELLATION` event for a refunded non-renewing purchase. Current RevenueCat documentation defines `CANCELLATION` as covering a subscription or non-renewing purchase that was canceled **or refunded**. The implementation therefore needs to distinguish ordinary unsubscribe from refund/revocation using authoritative event reason and transaction state.
 
@@ -116,22 +117,34 @@ For one-time 30-Day VIP, a refunded source must remove only that source/duration
 
 RevenueCat gift fulfillment adds a provenance requirement: the current v3 path resolves a gift recipient when fulfilling the original purchase but later cancellation/refund events are not equivalently re-resolved through the original gift transaction. Refund reconciliation must target the account that actually received the gift by immutable transaction/gift provenance, not merely whichever account identity appears in a later provider event.
 
-Aggregate production evidence in this read-only review showed 43 RevenueCat Diamond non-renewing purchase events with 8,750 Diamonds logged as granted, 26 VIP non-renewing purchase events, 15 VIP cancellation events and 3 VIP expiration events. All 15 currently recorded VIP cancellations carry the nested provider reason `UNSUBSCRIBE`; no Diamond cancellation event was present at the time of this check. Delivered RevenueCat gifts exist for both Diamonds and VIP, with no matching cancellation found for those delivered gift transactions. This identifies a structural readiness defect without claiming that a refund has already been mishandled or that any player exploited it.
+Aggregate production evidence in the read-only review showed 43 RevenueCat Diamond non-renewing purchase events with 8,750 Diamonds logged as granted, 26 VIP non-renewing purchase events, 15 VIP cancellation events and 3 VIP expiration events. All 15 currently recorded VIP cancellations carry the nested provider reason `UNSUBSCRIBE`; no Diamond cancellation event was present at the time of that check. Delivered RevenueCat gifts exist for both Diamonds and VIP, with no matching cancellation found for those delivered gift transactions. This identifies a structural readiness defect without claiming that a refund has already been mishandled or that any player exploited it.
 
 A separate P1 commercial-consistency issue is also recorded: one-time VIP stacking is asymmetric across Diamond, RevenueCat and Xsolla paths. Either make stacking uniform, block a purchase that would overlap unexpectedly, or disclose the actual timing before confirmation. Do not represent a purchase as adding another 30 days if the implementation will run that entitlement concurrently with an already-active source.
+
+### Xsolla refund and stacked-VIP reversal gap
+
+A new focused read-only review adds `TYCOONX_XSOLLA_REFUND_ENTITLEMENT_RECHECK.md` as a P0/P1 payment-integrity gate for the CK-Labs TycoonX webshop.
+
+The current Xsolla purchase path keeps transaction/order-level purchase records and its Diamond reversal logic is materially stronger than the RevenueCat refund path: it identifies the source purchase, prevents duplicate reversal, removes only currently recoverable granted Diamonds and moves attributable consumed value into bounded clawback debt instead of blindly driving the visible balance negative.
+
+The one-time VIP reversal arithmetic is not yet source-safe. `xsolla_reverse_store_purchase(...)` currently subtracts the reversed purchase's **full original VIP duration** from the player's aggregate Xsolla pass expiry. If a later legitimate Xsolla VIP purchase has already been stacked behind an earlier purchase, and the earlier purchase is refunded after part of its period has elapsed, full-duration subtraction can remove time belonging to the later valid purchase. Reversal therefore needs authoritative per-purchase entitlement provenance and schedule recomputation that removes only the remaining unconsumed time attributable to the reversed source while preserving the full remaining value of every other valid source.
+
+This is presently a structural risk rather than a known live-player loss. Aggregate production checks found 9 live/default Xsolla VIP purchases and 6 live/default Xsolla Diamond purchases, no live/default purchase currently marked reversed, and no player with more than one recorded live/default Xsolla VIP purchase. One refund/reversal event exists only in sandbox state.
+
+The unmatched-reversal path is also recorded as P1 resilience work. If a refund/reversal arrives for a transaction/order that cannot be found locally, the current function marks it `ignored` with `purchase_not_found`; later purchase fulfillment does not visibly consult a durable negative state for that transaction/order. Xsolla's current documentation says its relevant Store/Payments webhooks are sent sequentially, which reduces normal out-of-order risk, so this is not evidence that Xsolla normally reorders events. Still, a trusted unmatched refund should be retained as a transaction-level negative/hold state so recovery, import, migration or concurrent-processing problems cannot later grant value against a payment already known to be reversed. Current production had zero such ignored events at the time of this review.
 
 ## Current-law and provider checkpoint
 
 Rechecked on **September 10, 2026**:
 
 - RevenueCat's current webhook reference states that `CANCELLATION` covers a subscription or non-renewing purchase that was canceled or refunded, and separately defines `REFUND_REVERSED`. Its refund guidance states that a refunded one-time/non-subscription purchase loses the associated entitlement and describes platform-specific detection requirements.
-- Apple documents refund notifications and refund-history mechanisms for in-app purchases. Refund handling should reconcile the identified transaction on the server rather than treating a local profile flag as proof of current entitlement.
-- Google Play's purchase-management documentation, updated September 9, 2026, distinguishes refund and revocation and describes server notification/API mechanisms. Current one-time-product documentation also places refunded orders in Voided Purchases/real-time notification flows.
-- Xsolla remains a separate payment/provider layer from CK-Labs' TycoonX entitlement-delivery and mandatory-consumer-law duties.
+- Apple's current App Review Guidelines continue to state that purchased in-game IAP currency may not expire and that restorable purchases need a restore mechanism. Apple also supports transaction-specific refund notifications/server history for applicable in-app purchases.
+- Google Play's current purchase-management documentation, updated September 9, 2026, distinguishes refund from revocation and documents server-side refund/revocation handling; current RTDN documentation identifies voided one-time purchases by purchase token/order ID and refund type.
+- Xsolla's current webhook documentation distinguishes combined `order_paid`/`order_canceled` flows from legacy payment/refund flows, documents refund retries, and states that relevant Store/Payments webhooks are sent sequentially. TycoonX should normalize the supported provider event shapes into authoritative transaction state and preserve source-specific entitlement provenance.
 - EU digital-content rules and German BGB implementation continue to preserve mandatory conformity, price-reduction/termination/refund and other non-waivable remedies. The legal framework must not use entitlement reconciliation to contract around those rights.
 - GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and should be fixed technically rather than normalized in player-facing privacy prose.
 
-No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The new RevenueCat finding is an implementation mismatch against payment/refund wording that is already materially correct.
+No material current-law/provider meaning change was identified that requires reopening the canonical or localized legal documents. The RevenueCat and Xsolla findings are implementation mismatches against payment/refund wording that is already materially correct.
 
 ## Canonical source status
 
@@ -150,9 +163,11 @@ Highest priority is now **payment/entitlement remediation verification**:
 1. make VIP provenance server-authoritative rather than cache-authoritative;
 2. make VIP-expiry sender/processor service-only and source-aware;
 3. implement RevenueCat refund/revocation and `REFUND_REVERSED` reconciliation for Diamonds, one-time VIP and gifts using immutable transaction provenance;
-4. ensure refunded/revoked sources cannot trigger false expiry/purchase reminders;
-5. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
-6. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
+4. replace Xsolla aggregate full-duration VIP reversal with source-aware reconciliation that preserves later valid stacked VIP time;
+5. retain unmatched authoritative Xsolla refunds/reversals as durable transaction-level negative/hold state rather than terminally forgetting them;
+6. ensure refunded/revoked sources cannot trigger false expiry/purchase reminders;
+7. choose and enforce a consistent cross-channel active-VIP stacking/overlap rule; and
+8. preserve all unrelated valid paid/documented entitlements and mandatory consumer rights.
 
 Then continue closing the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings only when deployed definitions/policies/grants demonstrate the remediation. After engineering changes land, repeat current Apple/Google/RevenueCat/Xsolla plus German/EU checks and reopen only localized document types affected by a material canonical meaning change.
 
@@ -160,13 +175,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage remains essentially complete. This run did not close a production blocker and instead found a material refund/reversal reconciliation gap affecting provider-backed one-time purchases and gifts. Operational commercial readiness is therefore reduced while overall audit coverage increases.
+Legal/localization coverage remains essentially complete. This run did not close a production blocker and found an additional source-attribution defect in Xsolla one-time VIP refund/reversal arithmetic. Operational commercial readiness is therefore reduced while overall audit coverage increases.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **78.5%**
-- **Overall project completion:** **98.2%**
+- **Full commercial/legal/payment readiness:** **77.0%**
+- **Overall project completion:** **98.3%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** verify server-authoritative VIP provenance and service-only/source-aware VIP-expiry messaging together with RevenueCat refund/reversal/gift reconciliation, then close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
+**Next substantive code-first target:** verify and close source-authoritative payment reconciliation first: RevenueCat refund/reversal/gifts, Xsolla stacked-VIP reversal and unmatched-refund state, VIP provenance and source-aware expiry messaging. Close only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
