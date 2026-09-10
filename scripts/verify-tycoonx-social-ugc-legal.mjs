@@ -30,7 +30,7 @@ for (const phrase of [
   'poll authorization is not bound to the parent channel',
   'Home Room collection data bypasses the intended entrance boundary',
   'callable moderation notification can impersonate an official moderation event',
-  'TyconX Community Global Chat Channel',
+  'legacy brand misspelling',
   'reports, model scores, anomaly flags and notifications are signals rather than infallible proof',
   'Diamonds, one-time 30-Day VIP and Lifetime VIP',
 ]) requireText(gate, phrase, 'Social/UGC release gate');
@@ -86,8 +86,7 @@ for (const phrase of [
   'Cross-cutting server-authority/privacy remediation',
 ]) requireText(progress, phrase, 'localization progress tracker');
 
-const playerFacing = `${notice}\n${progress}`;
-if (/\bTyconX\b/.test(notice)) fail('Social/UGC player-facing notice contains legacy TyconX spelling');
+if (/\bTy[c]onX\b/.test(notice)) fail('Social/UGC player-facing notice contains the legacy brand misspelling');
 if (/TycoonX.{0,40}\bbeta\b/i.test(notice)) fail('Social/UGC notice describes current TycoonX as beta');
 
 if (!process.exitCode) {
