@@ -6,7 +6,7 @@ Last synchronized: **September 10, 2026**.
 
 ## Rules
 
-- Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display the legacy misspelling.
+- Always display the brand as **TycoonX**. Technical route/file names containing `tyconx` may remain where changing them could break URLs, but rendered prose must never display a legacy misspelling.
 - TycoonX went to full release on **September 1, 2026**. Do not describe the live service, users, purchases, VIP, Diamonds, rewards, or current legal terms as beta.
 - Translate for legal meaning, not word-for-word. Localized copy must sound natural to a native speaker while preserving the legal effect of the English source.
 - English remains canonical. Refresh localized versions whenever canonical meaning changes materially.
@@ -23,7 +23,7 @@ Last synchronized: **September 10, 2026**.
 
 The localized legal hub at `/tycoonx-legal/{locale}` exists for all **25/25** target locales. **All 25 target locales and all 100 localized full documents are current.**
 
-Eight September 10 code-derived Terms clarifications are synchronized across the canonical Terms route and all target locales:
+Eight September 10 code-derived Terms clarifications remain synchronized across the canonical Terms route and all target locales:
 
 1. `GameplayEconomyRuleNotice.tsx` covers genuine Company/Union value movement, contribution mechanics and the genuine-purpose rule.
 2. `CompanyCommerceRuleNotice.tsx` covers Company supply, warehouse fulfillment, exports, tenders, collusion/self-dealing, artificial value-funneling, settlement/state exploitation, proportional correction, outages/account compromise and mandatory rights.
@@ -86,6 +86,8 @@ All canonical and localized legal documents must continue to preserve that:
 
 Obvious catalog/configuration errors, failed/pending/reversed payments, duplicate or accidental grants, fraud, chargebacks, account compromise, provider outages/rule changes/replacement, unsupported clients, business transfers, economy corrections and permanent service shutdown remain subject to their specific canonical rules.
 
+A fresh September 10, 2026 platform/legal source check did not identify a material purchase-policy meaning change requiring canonical or localized purchase wording to be reopened in this run. Continue to recheck Apple, Google Play and Xsolla before final release-readiness closure because regional billing programs and provider terms can change.
+
 ## Active gameplay and community invariant
 
 Players are expected to build TycoonX wealth through gameplay and genuine economic activity. A trade, Art or Music purchase, auction, Company transaction, job, contract, market order, Government tender, truck transaction, competition, creator sale or other mechanic must not be repurposed mainly as a disguised gift, value-funneling route, value-parking route, prohibited real-money trading route, exploit-laundering route or way to evade another feature limit.
@@ -122,43 +124,37 @@ Reviewed trucks, deliveries, Diamond acceleration, care jobs, Company recruitmen
 
 ### Social/UGC
 
-Current Flutter plus read-only production Supabase review covered Company/Union/Executive chat, mentions/replies/group mentions, polls/pins, Company meeting rooms, private social tables, Home Rooms, Post Office anonymity, Music/Books, moderation/reports/restoration and creator-content authority.
-
-Open findings:
-
-1. **P0 - Company/Union chat confidentiality:** ordinary Company and Union messages currently inherit permissive broad SELECT policies; only Executive Company Chat receives the reviewed restrictive server read boundary. Flutter filtering is not sufficient confidentiality enforcement.
-2. **P0 - message routing/privileged state:** normal message INSERT/owner UPDATE authority does not visibly bind all non-executive Company/Union routing fields or make routing/pin state server-owned.
-3. **P0 - Executive push disclosure:** current direct-mention, reply, channel-notification and group-mention logic can disclose Executive Company Chat message bodies to recipients who fail the Executive read rule, including specialists or outsiders in some paths.
-4. **P0 - Music auction settlement authority:** a Music owner has broad UPDATE authority over auction-managed state, while reviewed finalize/cancel settlement trusts listing bid fields when crediting wallets. Settlement must require an authoritative bid/hold rather than trusting the listing row alone.
-5. **P1 - Post Office anonymous identity:** anonymous letters retain `from_user_id`, while recipient SELECT currently exposes the raw letter row. Recipient-facing anonymity requires a redacted read surface.
-6. **P1 - poll parent authorization:** voting/count and non-anonymous vote visibility do not consistently bind access to the parent message/channel.
-7. **P1 - Home Room private state:** intended entrance/load RPCs are access-aware, but several collection/profile tables permit broad authenticated reads.
-8. **P1 - moderation notification spoofing:** `notify_moderation_event(...)` is broadly executable and can send official-looking moderation pushes without establishing a trusted caller inside the reviewed function.
-9. **Brand defect:** `handle_new_message_mention()` still contains a legacy misspelling of the **TycoonX** brand in a player-facing global-channel label. Database changes were prohibited, so this must be corrected in a future approved migration.
-
-Positive controls confirmed include the Executive RLS read function itself, private social-table membership rules, Company meeting-room admission/management checks, Home Room active-visit chat checks, reporter ownership, staff-gated restoration functions and caller-bound Book publication/review controls.
-
-Detailed gate: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
+Reviewed Company/Union/Executive chat, mentions/replies/group mentions, polls/pins, Company meeting rooms, private social tables, Home Rooms, Post Office anonymity, Music/Books, moderation/reports/restoration and creator-content authority. Open findings include ordinary Company/Union confidentiality, message-routing authority, Executive push disclosure, Music auction-state authority, anonymous Post Office raw identity, poll parent authorization, Home Room raw reads and generic moderation-notification authority. Detailed gate: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
 
 ### Cross-cutting server authority and privacy
 
-The September 10 read-only residual sweep reviewed broad profile permissions, privileged SECURITY DEFINER helpers, public/private data boundaries, notification authority and deployed database-generated brand copy across the already audited gameplay/community systems.
+The September 10 read-only cross-cutting sweep confirmed that the broad self-profile sensitive UPDATE surface, broad public profile SELECT, raw refund/XP helpers, connected-fill identity helpers and generic Company/moderation notification authority remain open in production. Detailed gate: `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`.
 
-New release-blocking findings:
+### Residual Housing/profile/energy/friends/activity/log checkpoint
 
-1. **P0 - profile privilege/entitlement/moderation authority:** the reviewed self-profile UPDATE surface includes server/staff-owned fields such as VIP, admin/mod/support/test/whitelist and moderation state without an equivalent general protected-column guard.
-2. **P0 - public profile privacy boundary:** broad profile SELECT access exposes substantially more internal/security/economic/account state than a public player card requires.
-3. **P0 - arbitrary refund wallet credit:** `specialization_upgrade_refund_wallet_credit(...)` is broadly executable and does not establish the trusted source/target/amount boundary inside the reviewed function.
-4. **P0 - progression/evidence helpers:** `gain_xp(...)` and `award_collect_xp(...)` accept caller-controlled target/amount inputs through broadly executable privileged paths.
-5. **P0 - connected-fill identity impersonation:** `_internal_shop_connected_fill(...)` and `_internal_industrial_connected_fill(...)` can rewrite effective JWT subject from a supplied user identifier and must not be ordinary client-callable operations.
-6. **P0 - official-looking notification authority:** generic Company/moderation notification helpers can accept caller-supplied event facts/recipients without a sufficiently trusted caller boundary in the reviewed function.
-7. **Brand defects:** production database-generated welcome/market/notification prose and a deployed market/NPC display name still contain the legacy misspelling and must be migrated to displayed `TycoonX` wording.
+This run completed the remaining mapped residual gameplay/privacy surface and explicitly rechecked remediation status rather than assuming fixes had landed.
 
-Positive controls confirmed include Finance V2 protection against direct profile-money edits, no authenticated direct Diamond-column update grant in the reviewed profile permissions, industrial external-purchase rejection of non-positive seller prices, and no relevant sensitive table with RLS disabled in the constrained public/authenticated scan.
+New/expanded release-blocking findings:
 
-The Privacy Policy should not be expanded to make accidental public exposure of internal profile/device/security fields appear intended. The correct direction is to narrow the deployed access boundary and change legal disclosure only if intended processing itself materially changes.
+1. **P0 - raw current-user XP authority:** `rpc_add_xp(amount)` still accepts a client-supplied positive XP amount without independently proving a feature-specific reward source. Current Flutter `AuthService.addXP(...)` uses it.
+2. **P0 - raw current-user energy authority:** `rpc_add_energy(amount)` accepts a caller-provided positive energy amount without proving an authoritative source or applying the intended gameplay cap inside that function. Authenticated direct profile UPDATE also includes `energy` and `hunger`.
+3. **P0 - Housing cooldown authority:** `new_housing_tenant_cooldowns` is player-writable for the player's own row even though the canonical rent flow relies on it to enforce the current same-owner re-rental cooldown. The raw `set_housing_tenant_cooldown(...)` helper is also broadly executable with a supplied target user.
+4. **P0 - Housing supply creation:** `_spawn_next_house_plot(p_country)` remains an internal SECURITY DEFINER Housing-supply helper exposed to ordinary/anonymous client execution.
+5. **P1 - Housing maintenance/foreclosure:** `new_housing_daily_cron()` and `new_housing_foreclose_overdue()` should move to a trusted service boundary, but current Flutter itself invokes the foreclosure function before mortgage reads and the function derives overdue targets from server state. Supported invocation is therefore not misconduct by itself.
+6. **P1 - Housing notification authority:** raw Housing event notification helpers are too broadly callable to be authoritative evidence of the underlying rent/eviction/mortgage event.
+7. **P1 - daily activity/news service proxies:** daily-activity generation/regeneration invokers expose privileged service work more broadly than current ordinary Flutter usage requires.
 
-Detailed gate: `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`.
+Positive controls confirmed in the same read-only production sweep:
+
+- current persona compatibility training is materially hardened compared with stale migration bodies: server authentication, constrained reward shape, user/session energy receipt and structured evidence are present;
+- current Housing owner-eviction/tenant-leave settlement returns or records valid tenant deposit release rather than silently treating it as forfeited;
+- Housing mortgage, rent-application, Housing transaction-log, strategy-reveal and login-fingerprint reads are meaningfully scoped in the reviewed policy subset;
+- `social_list_user_friends(...)` intentionally returns a narrow accepted-friends list and is used by current Flutter, so friend-list visibility is a product/privacy-design choice rather than an automatic vulnerability; and
+- direct profile-money edits remain separately protected and the reviewed authenticated profile UPDATE surface still does not include Diamond balance.
+
+The residual sweep also confirmed that the previously documented cross-cutting privileged helpers remain open in the deployed state. Role-based privacy/security policies that rely on profile admin/support flags cannot be treated as fully trustworthy until those role fields are made server-owned.
+
+No ninth 25-locale Terms notice was added. Existing canonical/localized exploit, compromised-account, evidence-quality and proportional-correction wording already covers the legal meaning. The newly confirmed issues are technical authority/privacy defects that should be fixed in implementation, not normalized as intended player access.
 
 ## Active privacy/controller invariant
 
@@ -172,46 +168,47 @@ A player-facing anonymous option may remain identifiable to CK-Labs for lawful m
 
 As rechecked on **September 10, 2026**:
 
-- Apple App Review Guideline 1.2 continues to require UGC/social apps to provide filtering of objectionable material, reporting with timely response, blocking of abusive users and published contact information; creator content remains subject to UGC moderation rules.
-- Google Play's current UGC policy requires terms/user-policy acceptance before users create/upload UGC, clear objectionable-content rules, robust ongoing moderation, in-app reporting and blocking for 1:1 interactions such as messaging, tagging and mentions.
-- Where applicable, the EU Digital Services Act preserves statement-of-reasons and complaint/redress safeguards for covered moderation decisions.
-- GDPR Articles 5, 25 and 32 require, as applicable, data minimisation, privacy by design/default and security appropriate to risk; these duties remain separate from game access labels and anti-abuse rules.
-- German BGB § 307 and the digital-product rules including §§ 327d and 327i remain separate from moderation, access-control and anti-exploit enforcement. A genuine backend/security defect cannot be relabeled misconduct merely to avoid an applicable statutory remedy.
+- current Apple App Store rules continue to require compliant in-app purchase handling for digital functionality/in-game currency, truthful purchase metadata, restoration where applicable and non-expiration of purchased in-game currency;
+- current Google Play payment rules continue to govern in-app digital goods/virtual currency while regional billing programs can differ and must be checked per distribution/payment path;
+- current Xsolla agreements/refund/chargeback terms remain a separate provider layer from CK-Labs' own entitlement-delivery and mandatory-consumer-law duties;
+- GDPR Articles 5, 25 and 32 remain relevant to data minimisation, privacy by design/default and risk-appropriate security;
+- German BGB § 307 and the digital-product rules including §§ 327d, 327i and 327r remain separate from anti-exploit enforcement and prospective game balancing; and
+- a genuine backend/security defect cannot be relabeled misconduct merely to avoid an applicable statutory remedy.
 
 ## Next code-first audit queue
 
-Completed substantive clusters:
+Completed substantive mapping clusters:
 
 1. Company governance/value movement.
 2. Company supply/export/tender commerce.
-3. Union contribution exception.
-4. Union treasury/governance.
-5. Art/Begging.
-6. Player markets/shop auto-fill/system auto-market/Government Market.
-7. Bank/credit/FX/stocks/crypto.
-8. Logistics/jobs/competitions/rewards.
-9. Social/UGC.
-10. Cross-cutting server-authority/privacy sweep.
+3. Union contribution/treasury/governance.
+4. Art/Begging.
+5. Player markets/shop auto-fill/system auto-market/Government Market.
+6. Bank/credit/FX/stocks/crypto.
+7. Logistics/jobs/competitions/rewards.
+8. Social/UGC.
+9. Cross-cutting server-authority/privacy.
+10. Residual Housing/profile/energy/friends/activity/log sweep.
 
-There is no unfinished localization document. Continue with a **residual gameplay/privacy surface and remediation-verification sweep**: inspect Housing, profile/profession/energy helpers, friends/activity/log exposure and remaining broadly executable privileged functions, then verify whether the documented P0/P1 server-authority fixes have landed. Do not change production database state without explicit approval.
+There is no unfinished localization document. The next substantive target is **P0/P1 implementation remediation verification and final legal release-readiness consolidation**: recheck every open server-authority/privacy/economy finding after engineering changes, verify that no implementation change has created a canonical/localization mismatch, and repeat the final current Apple/Google/Xsolla plus German/EU source review. Do not change production database state without explicit approval.
 
 ## Canonical source status
 
 - English Terms: current and supplemented by eight synchronized rendered code-derived gameplay/community clarifications dated September 10, 2026.
 - English Purchases & Refunds: current.
-- English Privacy Policy: current; the newly identified broad public profile access is an implementation defect and is not treated as an intended new disclosure.
+- English Privacy Policy: current; broad public profile access remains an implementation defect and is not treated as an intended disclosure.
 - English Community Standards: current.
 - All 25 localized Terms receive all eight synchronized code-derived clarifications without duplicating the static translated body.
 
 ## Progress metrics
 
-The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization or payment work. Cross-cutting legal/privacy coverage improved, but the newly identified profile privilege/entitlement surface, public profile overexposure, arbitrary wallet-credit/progression helpers, identity-impersonating fill helpers and generic notification authority are severe P0 release blockers until engineering remediation is verified.
+The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization. This residual sweep increased legal/implementation coverage but confirmed additional P0 authority gaps in XP, energy and Housing state, while earlier cross-cutting P0s remain open. Readiness therefore decreases until engineering remediation is verified.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **85.0%**
-- **Overall project completion:** **97.3%**
+- **Full commercial/legal/payment readiness:** **82.5%**
+- **Overall project completion:** **97.5%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** Residual gameplay/privacy surface and remediation verification, especially Housing, profile/profession/energy helpers, friends/activity/log exposure, remaining broadly executable privileged functions and closure status of the documented P0/P1 findings.
+**Next substantive code-first target:** P0/P1 implementation remediation verification and final legal release-readiness consolidation across profiles/public data, paid/staff role state, XP/energy, Housing cooldown/plot spawn, connected-fill/refund helpers, notifications/service proxies, and the open Company/Union/Art/market/bank/Logistics/Social findings.
