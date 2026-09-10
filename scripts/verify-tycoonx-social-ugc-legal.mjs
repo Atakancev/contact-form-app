@@ -24,14 +24,14 @@ const locales = [
 
 for (const phrase of [
   'ordinary Company and Union chat are not currently server-confidential',
-  'Executive Company Chat content can leak through push notifications',
+  'Executive Company Chat content can leak through notifications',
   'social Music auction state can be fabricated and converted into wallet value',
-  'anonymous Post Office sender identity is visible in the raw authorized row',
+  'anonymous Post Office sender identity is exposed by the raw authorized row',
   'poll authorization is not bound to the parent channel',
   'Home Room collection data bypasses the intended entrance boundary',
   'callable moderation notification can impersonate an official moderation event',
-  'legacy brand misspelling',
-  'reports, model scores, anomaly flags and notifications are signals rather than infallible proof',
+  'legacy misspelling of the TycoonX brand',
+  'Reports, model scores, anomaly flags and notifications are signals rather than infallible proof',
   'Diamonds, one-time 30-Day VIP and Lifetime VIP',
 ]) requireText(gate, phrase, 'Social/UGC release gate');
 
@@ -64,7 +64,7 @@ for (const locale of locales) {
 for (const phrase of [
   'restricted community spaces',
   'altered clients',
-  'impersonation',
+  'Impersonation',
   'phishing',
   'doxxing',
   'visible content is not necessarily pre-approved',
