@@ -101,10 +101,11 @@ Detailed gates remain authoritative implementation QA references:
 - `TYCOONX_CODE_FIRST_GAMEPLAY_LEGAL_MAP.md`
 - `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md`
 - `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`
+- `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`
 
 ## September 10 production remediation verification
 
-The latest read-only production follow-up is recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`. Previously documented P0/P1 findings were not assumed fixed merely because the legal wording is complete.
+The latest read-only production follow-up is recorded in `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md` and the focused VIP/payment follow-up in `TYCOONX_VIP_ENTITLEMENT_COMMERCIAL_INTEGRITY_RECHECK.md`. Previously documented P0/P1 findings were not assumed fixed merely because the legal wording is complete.
 
 No complete verified closure was found among the representative critical controls sampled in the latest follow-up. Caller-controlled XP and energy, arbitrary-target/raw-credit authority, Housing authority helpers, broad market-price controls and generic official-looking notification authority remain open in the reviewed production definitions.
 
@@ -115,6 +116,12 @@ The latest follow-up separately reconfirmed `_internal_industrial_connected_fill
 The player-facing shop paths remain separately open. `shop_auto_fill_cheapest(...)` and the reviewed `shop_market_buy_and_store_*` helpers do use `user_shop_assets` for shop metadata, but the reviewed destination lookups still do not require the destination owner to equal `auth.uid()` before wallet/source/destination mutation. A metadata join is not an ownership check.
 
 The profile recheck also remains release-blocking. Authenticated self-update authority still includes sensitive entitlement/staff/moderation/progression fields, while public/anonymous reads expose substantially more raw profile state than a minimal public player card requires. The reviewed generic authenticated UPDATE surface still does not include the Diamond balance, which remains a positive control.
+
+A focused VIP entitlement provenance check now shows why the self-writable `profiles.vip` field is especially serious. `activate_vip_with_diamonds()` can preserve a pre-existing VIP state when no recognized provider/Diamond entitlement explains it, and `xsolla_apply_subscription_event(...)` can similarly preserve a pre-existing profile VIP when creating the first Xsolla subscription record. `xsolla_effective_vip(...)` treats those preservation flags as continuing VIP without an expiry condition. Therefore an untrusted self-set profile VIP can contaminate an otherwise valid later Diamond conversion or Xsolla purchase and become persistent preserved entitlement state. The fix is to make the profile VIP flag server-owned and preserve only an independently authoritative prior entitlement source, not a bare cache boolean.
+
+The same focused check found a separate commercial-communication P0. The raw VIP-expiry Professor sender is currently SECURITY DEFINER and executable by anonymous/authenticated roles, accepts an arbitrary target user, expiry timestamp and source, and does not validate those facts against authoritative RevenueCat/Xsolla/Diamond entitlement records before generating a renewal-oriented in-app or push message. Renewal reminders must be caused by authoritative entitlement state, not caller-authored assertions. The global reminder processor derives entitlement state and deduplicates materially better, but should still be scheduler/service-only rather than client-executable.
+
+The historical free-VIP claim path remains disabled in production: the controlling `game_config` flag is false, so the reviewed legacy claim RPC cannot currently grant free VIP. However, its disabled error path still contains stale pre-release player-readable wording. An approved engineering cleanup should retire/revoke the obsolete RPC if possible or neutralize that player-readable text without reactivating the historical offer.
 
 The Company supply finding remains precise and was strengthened by trigger inspection. The older update overload applies the linked export-contract price check. The richer six-argument overload recognizes linked export/V2 state for quantity/minimum-quality behavior but still writes the caller-supplied `unit_price`; no reviewed BEFORE trigger on `company_supply_requests` independently restores the missing linked-price validation.
 
@@ -138,7 +145,8 @@ Rechecked on **September 10, 2026**:
 
 - Apple's current App Review Guidelines continue to regulate in-app digital functionality/currency through the applicable In-App Purchase framework, state that purchased in-game IAP currency may not expire, require restoration where applicable, and apply storefront/program-specific rules to external purchase links and related exceptions.
 - Google Play continues to regulate billing for in-app digital goods/virtual currency, requires clear and accurate purchase pricing, restricts virtual currency to the app/game title for which it was purchased, and limits alternative-billing/external-offer paths to eligible regional/program frameworks.
-- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Its current refund documentation distinguishes matters such as technical/integration issues, duplicate purchases, unauthorized payments, payment-method rules and applicable EU/EEA withdrawal treatment. Xsolla's developer refund documentation, updated **September 7, 2026**, also documents full/partial refund processing and refund webhooks; this operational update does not require a canonical legal meaning change.
+- Xsolla's current refund/legal framework remains a separate provider/payment layer from CK-Labs' own TycoonX entitlement-delivery and mandatory-consumer-law duties. Current documentation distinguishes full/partial refund handling and refund webhooks, including provider retry behavior; this operational state does not require a canonical legal meaning change.
+- EU unfair-commercial-practices rules and German UWG misleading-commercial-practice rules make the new VIP-reminder authority finding commercially relevant: purchase-oriented expiry/renewal messages should reflect authoritative entitlement facts and must not be fabricated by arbitrary callers.
 - German BGB § 307 continues to restrict unfair/unclear standard terms; §§ 327d and 327i preserve applicable digital-product conformity/remedies; § 327r imposes conditions and, for qualifying material access/usability changes, notice/termination protections for certain continuously supplied digital products.
 - GDPR Articles 5, 25 and 32 continue to support data minimisation, privacy by design/default and risk-appropriate confidentiality/security controls.
 
@@ -148,7 +156,7 @@ No material current-law/provider meaning change was identified in this follow-up
 
 There is no unfinished localization document and no unmapped substantive gameplay cluster.
 
-The next substantive target is **implementation remediation verification**. After engineering changes land, recheck the production definitions against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md` and `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`, close only findings demonstrably fixed, verify that deployed behavior still matches canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
+The next substantive target is **implementation remediation verification**. Highest priority is now the profile/VIP provenance chain and the raw VIP-expiry commercial-message sender, followed by the existing profile/public-data, XP/energy/wallet, Housing, connected-fill/shop, Company/Union/Art, market/bank/stock, Social/confidentiality and trusted-worker findings. Close only findings demonstrably fixed in deployed definitions/policies/grants. After engineering changes land, verify that deployed behavior still matches canonical/legal notices, repeat current Apple/Google/Xsolla plus German/EU checks, and reopen only localized document types affected by a material canonical meaning change.
 
 Database remediation remains outside this legal audit unless explicitly approved.
 
@@ -162,13 +170,13 @@ Database remediation remains outside this legal audit unless explicitly approved
 
 ## Progress metrics
 
-Legal/localization coverage is essentially complete, while operational readiness remains deliberately lower because the verified P0 implementation findings remain open. The latest production follow-up increases remediation-verification precision without falsely treating partial controls, metadata joins or internal refactors as closed release blockers.
+Legal/localization coverage is essentially complete. The focused VIP/payment audit increased implementation knowledge but uncovered a serious entitlement-provenance chain and an arbitrary renewal-message path, so operational commercial readiness is intentionally reduced rather than hidden behind the completed localization percentage.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **82.5%**
-- **Overall project completion:** **97.9%**
+- **Full commercial/legal/payment readiness:** **81.0%**
+- **Overall project completion:** **98.0%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** implementation remediation verification against `TYCOONX_FINAL_LEGAL_RELEASE_READINESS.md` and `TYCOONX_PRODUCTION_REMEDIATION_RECHECK.md`, closing only P0/P1 findings demonstrably fixed in production, followed by final regression and current-law/provider closure once those fixes have actually landed.
+**Next substantive code-first target:** implementation remediation verification, starting with server-authoritative VIP provenance and trusted VIP-expiry communications, then closing only P0/P1 findings demonstrably fixed in production before final regression and current-law/provider closure.
