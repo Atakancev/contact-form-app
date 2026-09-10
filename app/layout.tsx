@@ -8,6 +8,7 @@ import PlayerGovernmentMarketRuleNotice from "./tycoonx-legal/PlayerGovernmentMa
 import BankCreditMarketsRuleNotice from "./tycoonx-legal/BankCreditMarketsRuleNotice";
 import LogisticsJobsCompetitionsRuleNotice from "./tycoonx-legal/LogisticsJobsCompetitionsRuleNotice";
 import SocialUgcRuleNotice from "./tycoonx-legal/SocialUgcRuleNotice";
+import PersonalDataBreachPrivacyNotice from "./tycoonx-legal/PersonalDataBreachPrivacyNotice";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -45,6 +46,7 @@ export default function RootLayout({
         <BankCreditMarketsRuleNotice />
         <LogisticsJobsCompetitionsRuleNotice />
         <SocialUgcRuleNotice />
+        <PersonalDataBreachPrivacyNotice />
       </body>
     </html>
   );
