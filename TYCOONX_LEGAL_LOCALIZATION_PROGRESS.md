@@ -140,6 +140,26 @@ Positive controls confirmed include the Executive RLS read function itself, priv
 
 Detailed gate: `TYCOONX_SOCIAL_UGC_RELEASE_GATE.md`.
 
+### Cross-cutting server authority and privacy
+
+The September 10 read-only residual sweep reviewed broad profile permissions, privileged SECURITY DEFINER helpers, public/private data boundaries, notification authority and deployed database-generated brand copy across the already audited gameplay/community systems.
+
+New release-blocking findings:
+
+1. **P0 - profile privilege/entitlement/moderation authority:** the reviewed self-profile UPDATE surface includes server/staff-owned fields such as VIP, admin/mod/support/test/whitelist and moderation state without an equivalent general protected-column guard.
+2. **P0 - public profile privacy boundary:** broad profile SELECT access exposes substantially more internal/security/economic/account state than a public player card requires.
+3. **P0 - arbitrary refund wallet credit:** `specialization_upgrade_refund_wallet_credit(...)` is broadly executable and does not establish the trusted source/target/amount boundary inside the reviewed function.
+4. **P0 - progression/evidence helpers:** `gain_xp(...)` and `award_collect_xp(...)` accept caller-controlled target/amount inputs through broadly executable privileged paths.
+5. **P0 - connected-fill identity impersonation:** `_internal_shop_connected_fill(...)` and `_internal_industrial_connected_fill(...)` can rewrite effective JWT subject from a supplied user identifier and must not be ordinary client-callable operations.
+6. **P0 - official-looking notification authority:** generic Company/moderation notification helpers can accept caller-supplied event facts/recipients without a sufficiently trusted caller boundary in the reviewed function.
+7. **Brand defects:** production database-generated welcome/market/notification prose and a deployed market/NPC display name still contain the legacy misspelling and must be migrated to displayed `TycoonX` wording.
+
+Positive controls confirmed include Finance V2 protection against direct profile-money edits, no authenticated direct Diamond-column update grant in the reviewed profile permissions, industrial external-purchase rejection of non-positive seller prices, and no relevant sensitive table with RLS disabled in the constrained public/authenticated scan.
+
+The Privacy Policy should not be expanded to make accidental public exposure of internal profile/device/security fields appear intended. The correct direction is to narrow the deployed access boundary and change legal disclosure only if intended processing itself materially changes.
+
+Detailed gate: `TYCOONX_CROSS_CUTTING_SERVER_AUTHORITY_PRIVACY_RELEASE_GATE.md`.
+
 ## Active privacy/controller invariant
 
 For personal-data processing described in the Privacy Policy, the controller remains disclosed as **Atakan Cevik, trading as CK-Labs, Prämonstratenserstraße 80, 51069 Köln, Germany**, with the published privacy contact and TycoonX Support. Localized Privacy routes preserve the distinction between CK-Labs' controller role and any independent-controller role of Apple, Google, Xsolla or another provider.
@@ -155,8 +175,8 @@ As rechecked on **September 10, 2026**:
 - Apple App Review Guideline 1.2 continues to require UGC/social apps to provide filtering of objectionable material, reporting with timely response, blocking of abusive users and published contact information; creator content remains subject to UGC moderation rules.
 - Google Play's current UGC policy requires terms/user-policy acceptance before users create/upload UGC, clear objectionable-content rules, robust ongoing moderation, in-app reporting and blocking for 1:1 interactions such as messaging, tagging and mentions.
 - Where applicable, the EU Digital Services Act preserves statement-of-reasons and complaint/redress safeguards for covered moderation decisions.
-- GDPR principles including lawfulness/fairness/transparency, purpose limitation, data minimisation, accuracy and applicable integrity/confidentiality/security requirements remain separate from game access labels.
-- German BGB mandatory consumer/digital-product rights remain separate from moderation, access-control and anti-exploit enforcement. A genuine backend defect cannot be relabeled misconduct to avoid an applicable statutory remedy.
+- GDPR Articles 5, 25 and 32 require, as applicable, data minimisation, privacy by design/default and security appropriate to risk; these duties remain separate from game access labels and anti-abuse rules.
+- German BGB § 307 and the digital-product rules including §§ 327d and 327i remain separate from moderation, access-control and anti-exploit enforcement. A genuine backend/security defect cannot be relabeled misconduct merely to avoid an applicable statutory remedy.
 
 ## Next code-first audit queue
 
@@ -171,26 +191,27 @@ Completed substantive clusters:
 7. Bank/credit/FX/stocks/crypto.
 8. Logistics/jobs/competitions/rewards.
 9. Social/UGC.
+10. Cross-cutting server-authority/privacy sweep.
 
-There is no unfinished localization document. Continue with a **cross-cutting server-authority/privacy remediation and residual-gap sweep**: revisit the open P0/P1 findings from all code-first clusters, inspect remaining privileged SQL/Edge Functions and legacy paths not yet mapped, and confirm that canonical/localized wording still matches the deployed behavior. Do not change production database state without explicit approval.
+There is no unfinished localization document. Continue with a **residual gameplay/privacy surface and remediation-verification sweep**: inspect Housing, profile/profession/energy helpers, friends/activity/log exposure and remaining broadly executable privileged functions, then verify whether the documented P0/P1 server-authority fixes have landed. Do not change production database state without explicit approval.
 
 ## Canonical source status
 
 - English Terms: current and supplemented by eight synchronized rendered code-derived gameplay/community clarifications dated September 10, 2026.
 - English Purchases & Refunds: current.
-- English Privacy Policy: current.
+- English Privacy Policy: current; the newly identified broad public profile access is an implementation defect and is not treated as an intended new disclosure.
 - English Community Standards: current.
 - All 25 localized Terms receive all eight synchronized code-derived clarifications without duplicating the static translated body.
 
 ## Progress metrics
 
-The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization or payment work. Social/UGC legal coverage improved materially, but several new P0 confidentiality, notification and Music-settlement authority defects reduce operational readiness until engineering remediation is verified.
+The percentages intentionally include unresolved implementation/security findings rather than over-weighting completed localization or payment work. Cross-cutting legal/privacy coverage improved, but the newly identified profile privilege/entitlement surface, public profile overexposure, arbitrary wallet-credit/progression helpers, identity-impersonating fill helpers and generic notification authority are severe P0 release blockers until engineering remediation is verified.
 
 - **Localized full documents:** 100/100, **100%**
 - **Localized hubs:** 25/25, **100%**
 - **Canonical English legal wording:** **99.6%**
-- **Full commercial/legal/payment readiness:** **89.8%**
-- **Overall project completion:** **97.2%**
+- **Full commercial/legal/payment readiness:** **85.0%**
+- **Overall project completion:** **97.3%**
 - **Exact next unfinished locale/document: None. All 25 target locales and all 100 localized full documents are current.**
 
-**Next substantive code-first target:** Cross-cutting server-authority/privacy remediation and residual-gap sweep across the nine audited gameplay/community clusters, with special priority on restricted-chat confidentiality, Executive notification audience, Music auction settlement authority and the remaining previously documented P0 economy/authentication surfaces.
+**Next substantive code-first target:** Residual gameplay/privacy surface and remediation verification, especially Housing, profile/profession/energy helpers, friends/activity/log exposure, remaining broadly executable privileged functions and closure status of the documented P0/P1 findings.
