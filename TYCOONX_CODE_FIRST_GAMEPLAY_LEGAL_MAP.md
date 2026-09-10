@@ -131,7 +131,7 @@ Required direction: trigger/service/staff-internal execution only, preferably de
 
 ### Brand defect in deployed notification prose
 
-The reviewed `handle_new_message_mention()` fallback still contains `TyconX Community Global Chat Channel`. This is player-facing server-generated prose and violates the mandatory brand rule. No database change was made. The next approved migration touching the function should change it to `TycoonX Community Global Chat Channel` and search all notification branches for the same misspelling.
+The reviewed `handle_new_message_mention()` fallback still contains a **legacy brand misspelling** in its player-facing global-channel label. No database change was made. The next approved migration touching the function should change the label to `TycoonX Community Global Chat Channel` and review all notification branches for the same legacy spelling.
 
 ### Positive controls confirmed
 
@@ -140,7 +140,7 @@ The reviewed `handle_new_message_mention()` fallback still contains `TyconX Comm
 - Company meeting-room validation checks current Company membership and management/admission state.
 - Home Room entry/chat RPCs use resident/invitation/admission/current-visit checks.
 - Message/user reports bind reporter identity and expose staff review separately.
-- moderation restoration functions include internal staff checks and recovery reasons.
+- Moderation restoration functions include internal staff checks and recovery reasons.
 - Book publication, restocking, pricing and review RPCs enforce caller/author/ownership/eligibility rules.
 
 ### Legal doctrine synchronized
