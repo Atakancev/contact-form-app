@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "git diff --quiet \"${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}\" HEAD -- app public components package.json package-lock.json pnpm-lock.yaml yarn.lock next.config.js next.config.mjs next.config.ts tsconfig.json middleware.js middleware.ts vercel.json"
+  "ignoreCommand": "sh -c 'BASE=\"${VERCEL_GIT_PREVIOUS_SHA:-}\"; if [ -n \"$BASE\" ] && ! git cat-file -e \"$BASE^{commit}\" 2>/dev/null; then git fetch --no-tags --depth=1 origin \"$BASE\" >/dev/null 2>&1 || BASE=\"\"; fi; if [ -n \"$BASE\" ] && git cat-file -e \"$BASE^{commit}\" 2>/dev/null; then git diff --quiet \"$BASE\" HEAD -- app public components package.json package-lock.json pnpm-lock.yaml yarn.lock next.config.js next.config.mjs next.config.ts tsconfig.json middleware.js middleware.ts vercel.json; elif git rev-parse --verify HEAD^ >/dev/null 2>&1; then git diff --quiet HEAD^ HEAD -- app public components package.json package-lock.json pnpm-lock.yaml yarn.lock next.config.js next.config.mjs next.config.ts tsconfig.json middleware.js middleware.ts vercel.json; else exit 1; fi'"
 }
