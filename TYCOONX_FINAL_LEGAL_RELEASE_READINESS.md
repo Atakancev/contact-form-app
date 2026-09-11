@@ -1,6 +1,6 @@
 # TycoonX Final Legal Release-Readiness Consolidation
 
-**Last reviewed: September 10, 2026.**  
+**Last reviewed: September 11, 2026.**  
 Owner: CK-Labs  
 Scope: internal legal/implementation release-readiness control for TycoonX.
 
@@ -20,7 +20,7 @@ This document does not replace the canonical English Terms of Service, Purchases
 
 ## 2. Current production conclusion
 
-The implementation-derived legal map is substantively complete, but **full commercial/legal/payment readiness is not yet achieved** because multiple P0 server-authority, economy-integrity and confidentiality findings remain open in the production definitions rechecked on September 10, 2026.
+The implementation-derived legal map is substantively complete, but **full commercial/legal/payment readiness is not yet achieved** because multiple P0 server-authority, economy-integrity, confidentiality and payment-reconciliation findings remain open in the production definitions rechecked on September 10-11, 2026.
 
 No production database change is authorized by this document. The fixes below require a separate engineering migration/change process and verification. This legal audit remains read-only with respect to production data, functions, policies, grants, triggers, schema, cron, balances and configuration.
 
@@ -116,6 +116,17 @@ Required direction: system-wide workers and arbitrary-user mutation helpers must
 
 Required direction: enforce audience authorization on the raw read path and every notification/push fan-out path; make official event notifications consequences of authoritative server events rather than caller-authored assertions.
 
+### M. Payment and entitlement source authority
+
+31. **RevenueCat refunded non-renewing purchases are not yet reconciled source-by-source.** The current recheck shows that `CANCELLATION` is recorded but the reviewed path does not reliably distinguish ordinary unsubscribe from a refund/revocation of a one-time purchase and does not yet implement source-specific Diamond or one-time 30-Day VIP correction plus `REFUND_REVERSED` restoration.
+32. **RevenueCat gift refunds need immutable recipient provenance.** A later refund/reversal must reconcile the account that actually received the gift from the original transaction/gift record, not merely the account identity appearing on a later provider event.
+33. **Xsolla stacked one-time VIP reversal is not source-safe.** The reviewed reversal arithmetic subtracts the full original VIP duration from an aggregate Xsolla expiry and can consume later valid paid VIP time if an earlier partially consumed purchase is refunded.
+34. **Xsolla unmatched authoritative reversals need durable negative state.** A trusted reversal that cannot yet be matched to a local purchase must not be forgotten in a way that permits a later delayed/imported fulfillment for the same transaction/order to grant value.
+35. **`profiles.vip` is not authoritative entitlement provenance.** Effective VIP must be derived from valid source records, including one-time 30-Day VIP, Lifetime VIP, Diamond-funded periods, Xsolla, RevenueCat/store and documented complimentary sources. A cached boolean may reflect the result but must not become proof of entitlement.
+36. **VIP expiry messaging must be source-aware.** One-time 30-Day VIP does not renew automatically, Lifetime VIP must not receive an ordinary expiry reminder, and refunded/revoked sources must not continue to generate renewal-oriented reminders merely because an old expiry timestamp remains in the future.
+
+Required direction: build an immutable, provider/source-specific entitlement ledger and normalize provider purchase, refund, reversal and restoration events into idempotent transaction state. Remove or restore only value attributable to the affected source, preserve unrelated valid paid/promotional value, and recompute effective VIP from all remaining authoritative sources.
+
 ## 4. Important positive controls and closed false positives
 
 The final risk list must not keep stale findings after production has improved. Current positive/closed points include:
@@ -129,6 +140,7 @@ The final risk list must not keep stale findings after production has improved. 
 - `social_postoffice_letters` raw table SELECT is sender/recipient scoped in the reviewed policy set; the remaining anonymity issue concerns whether other raw/helper paths can reveal identity contrary to the player-facing anonymous presentation.
 - Built-in TycoonX automation, including system market behavior, job automation and server-operated price movement, is intended gameplay and is not player botting merely because it is automatic.
 - Supported invocation of a globally scoped function is not retroactively misconduct merely because CK-Labs later decides the architecture should move that function behind a scheduler/service boundary.
+- The reviewed Xsolla Diamond reversal path already has materially stronger purchase-level attribution and bounded clawback-debt behavior than an undifferentiated wallet correction. Preserve that pattern while fixing Xsolla VIP and RevenueCat reconciliation.
 
 ## 5. Evidence and enforcement rule while remediation is pending
 
@@ -141,6 +153,7 @@ Examples:
 - A current Art owner bidding on their own relisted Art through a modified/direct client can be investigated as self-bidding, but a settlement/refund defect caused by an owner deletion or moderation path must be reconstructed before blaming the bidder.
 - A notification saying that a default, moderation action or Company event occurred is supporting telemetry, not independent proof if the notification helper itself is caller-influenceable.
 - A compromised account, stale client, provider outage, replay/retry, race condition or CK-Labs backend defect must be distinguished from knowing exploitation wherever reasonably possible.
+- A refund, chargeback, cancellation or provider correction is not automatic proof of fraud. Investigate intentional refund/chargeback abuse separately from ordinary consumer refunds, payment-provider corrections, account compromise and integration defects.
 
 Correct directly attributable invalid game state proportionately. Do not automatically erase unrelated legitimate wealth or paid entitlements. Mandatory statutory remedies remain available where applicable.
 
@@ -148,15 +161,33 @@ Correct directly attributable invalid game state proportionately. Do not automat
 
 The legal purchase framework remains coherent across Apple, Google Play and Xsolla, but provider rules remain external and can change by date, region and program.
 
-As rechecked on September 10, 2026:
+As rechecked on September 11, 2026:
 
-- Apple's current App Review Guidelines continue to require In-App Purchase for in-app digital functionality/currency within the applicable framework, state that purchased in-game IAP currency may not expire, and require restoration where applicable.
-- Google Play continues to regulate billing for in-app digital goods/virtual currency, with regional/program-specific alternatives that must be checked for the actual distribution/payment path rather than described as one universal rule.
-- Xsolla's current refund/legal framework remains a separate provider/merchant layer for the webshop. CK-Labs remains responsible for its own TycoonX entitlement delivery, truthful product description and any mandatory consumer-law obligations that cannot be shifted to the payment provider.
+- Apple's current App Review Guidelines continue to require In-App Purchase for in-app digital functionality/currency within the applicable framework, state that credits or in-game currencies purchased through In-App Purchase may not expire, require a restore mechanism for restorable purchases, and state that eligible gifted In-App Purchase items may be refunded only to the original purchaser. Source: https://developer.apple.com/app-store/review/guidelines/
+- Google Play's current billing documentation distinguishes one-time purchase, pending, refund, revocation and voided-purchase states. Voided-purchase notifications identify the purchase token/order and whether a full or quantity-based partial refund occurred, and Google's current guidance says entitlement should be granted only after authoritative purchase validation rather than while a payment remains pending. Sources: https://developer.android.com/google/play/billing/rtdn-reference and https://developer.android.com/google/play/billing/manage-purchases
+- RevenueCat's current webhook reference defines `CANCELLATION` as covering a subscription or non-renewing purchase that was canceled or refunded. The implementation therefore cannot infer the business consequence from the event name alone; it must inspect authoritative reason/transaction state. Source: https://www.revenuecat.com/docs/integrations/webhooks/event-types-and-fields
+- Xsolla currently documents both combined `order_paid` / `order_canceled` webhooks and, for applicable older configurations, separate `payment` / `refund` webhooks. Xsolla also states that relevant Store/Payments webhooks are sent sequentially and that refunds can still complete in documented failure/retry cases, so TycoonX must treat provider transaction state as authoritative even when local webhook processing is imperfect. Sources: https://developers.xsolla.com/webhooks/payments and https://developers.xsolla.com/webhooks/payments/refund
 - German BGB §§ 307, 327d, 327i and 327r continue to limit unfair/unclear standard terms, preserve applicable digital-product conformity/remedies, and impose conditions on certain changes to continuously supplied digital products.
 - GDPR data-minimisation, privacy-by-design/default and security duties remain relevant to the broad profile/social access defects and must be addressed technically rather than normalized in player-facing privacy prose.
 
-No material current-law/provider meaning change was identified in this consolidation that requires reopening all localized purchase/legal documents.
+### Source-authoritative payment reconciliation minimum
+
+Before commercial/payment readiness can be marked complete, all payment channels must satisfy the same minimum accounting and entitlement rules even though their provider event formats differ:
+
+1. Every paid grant must have immutable provenance linking provider/channel, transaction or purchase token/order identity, product/SKU, purchaser, actual fulfillment recipient when different, quantity/duration/value granted, and current provider transaction state.
+2. Duplicate/retried success events must not double-grant, and duplicate/retried refund/reversal events must not double-remove.
+3. Pending or unverified payments must not be treated as completed purchases merely because a client callback or local UI says success.
+4. A refund, reversal or chargeback must affect only the entitlement/value attributable to that source. Unrelated earned/promotional Diamonds, other valid 30-Day VIP, Lifetime VIP and other independent entitlements must survive unless another lawful basis independently requires correction.
+5. If paid Diamonds attributable to a refunded transaction were already consumed, use a bounded, auditable source-specific reconciliation/debt model rather than blindly deleting unrelated value or creating an unexplained aggregate negative balance.
+6. A one-time 30-Day VIP refund must remove only that source's remaining attributable period and then recompute effective VIP from all other valid sources.
+7. A provider refund reversal or equivalent restoration must reverse the corresponding prior source-specific correction exactly once.
+8. Gift refunds must follow the immutable original purchase-to-recipient mapping so the correct fulfillment account is reconciled.
+9. A trusted negative provider state that cannot yet be matched locally must be retained as a durable hold/tombstone or equivalent reconciliation state so later delayed/imported fulfillment cannot grant value against a payment already known to be invalidated.
+10. Lifetime VIP remains a distinct limited-time promotional one-time entitlement and must never be silently converted into a recurring product or ordinary expiring 30-Day VIP source during reconciliation.
+11. `profiles.vip` or any other convenience cache must be derived from authoritative entitlement sources and must not be used as the sole proof that a purchase exists or survives a refund.
+12. Support and enforcement records must distinguish payment correction from fraud findings. Refund status alone is not sufficient evidence of intentional abuse.
+
+No material current-law/provider meaning change identified in this recheck requires reopening all localized purchase/legal documents. The current public legal meaning is already compatible with source-specific, proportionate correction while preserving mandatory consumer rights. The remaining work is implementation closure.
 
 ## 7. Remediation order
 
@@ -183,22 +214,34 @@ No material current-law/provider meaning change was identified in this consolida
 13. Restrict generic Company/moderation/Housing notification helpers.
 14. Close remaining Music, polls, Home Room and anonymous Post Office authority/privacy gaps.
 
-### Phase 4 - branding and verification
+### Phase 4 - payment and entitlement reconciliation
 
-15. Replace legacy player-facing/database-generated brand misspellings with `TycoonX` through an approved database migration while leaving compatibility-sensitive technical identifiers unchanged.
-16. Re-run every code-first gate against production after engineering remediation.
-17. Run repository verifiers without GitHub Actions, repeat provider/German/EU source checks, and reopen only any localized document whose canonical legal meaning actually changed.
+15. Classify RevenueCat cancellation/refund events by authoritative reason and transaction state; implement source-specific Diamond and one-time 30-Day VIP reconciliation plus idempotent refund-reversal restoration.
+16. Make RevenueCat gift refund handling resolve the original fulfillment recipient from immutable gift/purchase provenance.
+17. Replace Xsolla aggregate-expiry subtraction with source-aware one-time VIP schedule recomputation that preserves later valid purchases.
+18. Retain unmatched authoritative Xsolla reversals as durable negative/hold state and block later grant until reconciled.
+19. Make effective VIP and expiry messaging derive from authoritative source records rather than `profiles.vip` or stale expiry timestamps.
+20. Test Apple/Google/RevenueCat/Xsolla purchase, pending, refund, reversal, gift and restoration cases end-to-end with current provider configuration.
+
+### Phase 5 - branding and verification
+
+21. Replace legacy player-facing/database-generated brand misspellings with `TycoonX` through an approved database migration while leaving compatibility-sensitive technical identifiers unchanged.
+22. Re-run every code-first gate against production after engineering remediation.
+23. Run repository verifiers without GitHub Actions, repeat provider/German/EU source checks, and reopen only any localized document whose canonical legal meaning actually changed.
 
 ## 8. Readiness closure criteria
 
 Full commercial/legal/payment readiness should not be marked complete merely because the legal pages are translated. Close this gate only when:
 
-- no known P0 server-authority, economy-integrity or confidentiality defect above remains open;
+- no known P0 server-authority, economy-integrity, confidentiality or payment-reconciliation defect above remains open;
 - P1 findings are remediated or have an explicit, justified owner/risk decision that does not contradict mandatory law;
 - canonical English Terms, Purchases & Refunds, Privacy and Community Standards match deployed behavior and current product offerings;
 - all affected localized pages remain semantically synchronized with any material canonical change;
 - rendered player-facing text contains no legacy brand misspelling and no current-service beta wording;
-- paid-entitlement restoration/refund/chargeback paths remain consistent across Apple, Google Play and Xsolla roles;
+- paid-entitlement restoration/refund/chargeback paths are idempotent, source-specific and consistent across Apple, Google Play, RevenueCat and Xsolla roles;
+- gift fulfillment and later refund/reversal preserve immutable recipient provenance;
+- one-time 30-Day VIP remains non-renewing, Lifetime VIP remains distinct, and reminder copy reflects the actual source/state;
+- pending, failed, reversed and unmatched provider states cannot silently grant or preserve value contrary to authoritative payment state;
 - proportional correction, compromised-account handling and evidence-quality safeguards remain intact; and
 - current German/EU and provider requirements have been rechecked immediately before closure.
 
@@ -208,4 +251,4 @@ Full commercial/legal/payment readiness should not be marked complete merely bec
 
 TycoonX can continue to operate subject to CK-Labs' ordinary incident/security judgment, but the P0 items above should be treated as urgent engineering hardening. This document does not instruct or authorize an emergency shutdown, a database migration, player sanctions or entitlement removal.
 
-The next audit step is **implementation remediation verification**: compare production definitions against this exact matrix after engineering changes, close only findings that are demonstrably fixed, and avoid lowering the standard merely because a weak backend previously accepted the state.
+The next audit step is **implementation remediation verification**, with source-authoritative payment reconciliation treated as an explicit closure workstream rather than hidden inside a generic payment-readiness sentence. Compare production definitions against this exact matrix after engineering changes, close only findings that are demonstrably fixed, and avoid lowering the standard merely because a weak backend previously accepted the state.
